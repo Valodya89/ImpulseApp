@@ -1,0 +1,141 @@
+PODS:
+  - Google-Maps-iOS-Utils (6.1.0):
+    - GoogleMaps (~> 9.0)
+  - GoogleMaps (9.4.0):
+    - GoogleMaps/Maps (= 9.4.0)
+  - GoogleMaps/Maps (9.4.0)
+  - GooglePlaces (9.4.1)
+  - IQKeyboardCore (1.0.5)
+  - IQKeyboardManagerSwift (8.0.1):
+    - IQKeyboardManagerSwift/Appearance (= 8.0.1)
+    - IQKeyboardManagerSwift/Core (= 8.0.1)
+    - IQKeyboardManagerSwift/IQKeyboardReturnManager (= 8.0.1)
+    - IQKeyboardManagerSwift/IQKeyboardToolbarManager (= 8.0.1)
+    - IQKeyboardManagerSwift/IQTextView (= 8.0.1)
+    - IQKeyboardManagerSwift/Resign (= 8.0.1)
+  - IQKeyboardManagerSwift/Appearance (8.0.1):
+    - IQKeyboardManagerSwift/Core
+  - IQKeyboardManagerSwift/Core (8.0.1):
+    - IQKeyboardNotification
+    - IQTextInputViewNotification
+  - IQKeyboardManagerSwift/IQKeyboardReturnManager (8.0.1):
+    - IQKeyboardReturnManager
+  - IQKeyboardManagerSwift/IQKeyboardToolbarManager (8.0.1):
+    - IQKeyboardManagerSwift/Core
+    - IQKeyboardToolbarManager
+  - IQKeyboardManagerSwift/IQTextView (8.0.1):
+    - IQTextView
+  - IQKeyboardManagerSwift/Resign (8.0.1):
+    - IQKeyboardManagerSwift/Core
+  - IQKeyboardNotification (1.0.3)
+  - IQKeyboardReturnManager (1.0.4):
+    - IQKeyboardCore (= 1.0.5)
+  - IQKeyboardToolbar (1.1.1):
+    - IQKeyboardCore
+    - IQKeyboardToolbar/Core (= 1.1.1)
+  - IQKeyboardToolbar/Core (1.1.1):
+    - IQKeyboardCore
+    - IQKeyboardToolbar/Placeholderable
+  - IQKeyboardToolbar/Placeholderable (1.1.1):
+    - IQKeyboardCore
+  - IQKeyboardToolbarManager (1.1.3):
+    - IQKeyboardToolbar
+    - IQTextInputViewNotification
+  - IQTextInputViewNotification (1.0.8):
+    - IQKeyboardCore
+  - IQTextView (1.0.5):
+    - IQKeyboardToolbar/Placeholderable
+  - KeychainAccess (4.2.2)
+  - Kingfisher (7.12.0)
+  - libPhoneNumber-iOS (0.9.15)
+  - lottie-ios (4.5.1)
+  - MercariQRScanner (1.9.0)
+  - PhoneNumberKit (3.8.0):
+    - PhoneNumberKit/PhoneNumberKitCore (= 3.8.0)
+    - PhoneNumberKit/UIKit (= 3.8.0)
+  - PhoneNumberKit/PhoneNumberKitCore (3.8.0)
+  - PhoneNumberKit/UIKit (3.8.0):
+    - PhoneNumberKit/PhoneNumberKitCore
+  - ReachabilitySwift (5.2.4)
+  - SDWebImage (5.21.0):
+    - SDWebImage/Core (= 5.21.0)
+  - SDWebImage/Core (5.21.0)
+  - Starscream (4.0.4)
+  - SwiftMaskTextfield (1.1.0)
+  - SwiftMessages (10.0.1):
+    - SwiftMessages/App (= 10.0.1)
+  - SwiftMessages/App (10.0.1)
+  - SwiftStomp (1.2.1):
+    - ReachabilitySwift (~> 5.2.1)
+
+DEPENDENCIES:
+  - Google-Maps-iOS-Utils
+  - GoogleMaps
+  - GooglePlaces
+  - IQKeyboardManagerSwift
+  - KeychainAccess
+  - Kingfisher (~> 7.0)
+  - libPhoneNumber-iOS (~> 0.8)
+  - lottie-ios
+  - MercariQRScanner
+  - PhoneNumberKit (~> 3.3)
+  - SDWebImage
+  - Starscream (= 4.0.4)
+  - SwiftMaskTextfield
+  - SwiftMessages
+  - SwiftStomp
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Google-Maps-iOS-Utils
+    - GoogleMaps
+    - GooglePlaces
+    - IQKeyboardCore
+    - IQKeyboardManagerSwift
+    - IQKeyboardNotification
+    - IQKeyboardReturnManager
+    - IQKeyboardToolbar
+    - IQKeyboardToolbarManager
+    - IQTextInputViewNotification
+    - IQTextView
+    - KeychainAccess
+    - Kingfisher
+    - libPhoneNumber-iOS
+    - lottie-ios
+    - MercariQRScanner
+    - PhoneNumberKit
+    - ReachabilitySwift
+    - SDWebImage
+    - Starscream
+    - SwiftMaskTextfield
+    - SwiftMessages
+    - SwiftStomp
+
+SPEC CHECKSUMS:
+  Google-Maps-iOS-Utils: 0a484b05ed21d88c9f9ebbacb007956edd508a96
+  GoogleMaps: 0608099d4870cac8754bdba9b6953db543432438
+  GooglePlaces: 8afca6c4e946472e91298589d1640d614b51749a
+  IQKeyboardCore: 28c8bf3bcd8ba5aa1570b318cbc4da94b861711e
+  IQKeyboardManagerSwift: 835fc9c6e4732398113406d84900ad2e8f141218
+  IQKeyboardNotification: d7382c4466c5a5adef92c7452ebf861b36050088
+  IQKeyboardReturnManager: 972be48528ce9e7508ab3ab15ac7efac803f17f5
+  IQKeyboardToolbar: d4bdccfb78324aec2f3920659c77bb89acd33312
+  IQKeyboardToolbarManager: 6c693c8478d6327a7ef2107528d29698b3514dbb
+  IQTextInputViewNotification: f5e954d8881fd9808b744e49e024cc0d4bcfe572
+  IQTextView: ae13b4922f22e6f027f62c557d9f4f236b19d5c7
+  KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
+  Kingfisher: 53a10ea35051a436b5fb626ca2dd8f3144d755e9
+  libPhoneNumber-iOS: 0a32a9525cf8744fe02c5206eb30d571e38f7d75
+  lottie-ios: 248b380fa1b97d18e792c37d90da7ab2aa0d6562
+  MercariQRScanner: e5aea873969af59b09b4cc411fc1c5b6293dba44
+  PhoneNumberKit: ec00ab8cef5342c1dc49fadb99d23fa7e66cf0ef
+  ReachabilitySwift: 32793e867593cfc1177f5d16491e3a197d2fccda
+  SDWebImage: f84b0feeb08d2d11e6a9b843cb06d75ebf5b8868
+  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
+  SwiftMaskTextfield: 8c792e56f25779939d1fd5cf6153ba439b1be761
+  SwiftMessages: 759b4a0bf5c3a116a0d7e8a34b098ba83c458625
+  SwiftStomp: 13fed4c82f587fb4b59a98fba1b05f205a0f6158
+
+PODFILE CHECKSUM: 181b97441dc28367469fb3f15edd076cd30b1468
+
+COCOAPODS: 1.16.2
