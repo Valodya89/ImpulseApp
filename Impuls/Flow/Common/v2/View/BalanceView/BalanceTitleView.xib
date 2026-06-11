@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BalanceTitleView" customModule="MimoBike" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="sEX-fh-Ijc" id="YVc-ig-qGQ"/>
+                <outlet property="balanceLabel" destination="WXf-Ez-dCx" id="KX7-QG-m1L"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="dqp-w4-9Y1"/>
+                <outlet property="plusButton" destination="3sr-Wo-PC4" id="vbL-VM-0BL"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="69"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iOi-uR-aYJ">
+                    <rect key="frame" x="145" y="26.666666666666671" width="103.33333333333331" height="22"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00AMD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXf-Ez-dCx">
+                            <rect key="frame" x="0.0" y="0.0" width="75.333333333333329" height="22"/>
+                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
+                            <color key="textColor" name="mimoBlackWith075alpha"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="sEX-fh-Ijc">
+                            <rect key="frame" x="27.666666666666657" y="1" width="20" height="20"/>
+                            <color key="color" name="mimoDarkGray"/>
+                        </activityIndicatorView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sr-Wo-PC4">
+                            <rect key="frame" x="81.333333333333343" y="0.0" width="22" height="22"/>
+                            <color key="backgroundColor" name="mimoYellow500"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="3sr-Wo-PC4" secondAttribute="height" id="3up-AG-7w9"/>
+                                <constraint firstAttribute="width" constant="22" id="edD-wC-Kap"/>
+                            </constraints>
+                            <color key="tintColor" name="mimoDarkGray"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="plus" catalog="system">
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="11"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5Y-kM-1OB">
+                            <rect key="frame" x="0.0" y="0.0" width="103.33333333333333" height="22"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <connections>
+                                <action selector="addBalanceAction" destination="-1" eventType="touchUpInside" id="M0G-8j-f4K"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="3sr-Wo-PC4" firstAttribute="top" secondItem="iOi-uR-aYJ" secondAttribute="top" id="9FT-9M-WQj"/>
+                        <constraint firstAttribute="bottom" secondItem="WXf-Ez-dCx" secondAttribute="bottom" id="GOn-nx-cBm"/>
+                        <constraint firstItem="sEX-fh-Ijc" firstAttribute="centerY" secondItem="WXf-Ez-dCx" secondAttribute="centerY" id="J02-Uh-Odx"/>
+                        <constraint firstItem="sEX-fh-Ijc" firstAttribute="centerX" secondItem="WXf-Ez-dCx" secondAttribute="centerX" id="MPb-tE-vMV"/>
+                        <constraint firstItem="Z5Y-kM-1OB" firstAttribute="top" secondItem="iOi-uR-aYJ" secondAttribute="top" id="N4h-VQ-uUU"/>
+                        <constraint firstItem="WXf-Ez-dCx" firstAttribute="top" secondItem="iOi-uR-aYJ" secondAttribute="top" id="OKS-b9-nhA"/>
+                        <constraint firstItem="WXf-Ez-dCx" firstAttribute="leading" secondItem="iOi-uR-aYJ" secondAttribute="leading" id="OUW-G4-RUX"/>
+                        <constraint firstAttribute="bottom" secondItem="Z5Y-kM-1OB" secondAttribute="bottom" id="U7B-em-BPf"/>
+                        <constraint firstItem="Z5Y-kM-1OB" firstAttribute="leading" secondItem="iOi-uR-aYJ" secondAttribute="leading" id="VtQ-92-ai3"/>
+                        <constraint firstAttribute="bottom" secondItem="3sr-Wo-PC4" secondAttribute="bottom" id="jqx-kI-qhO"/>
+                        <constraint firstAttribute="trailing" secondItem="3sr-Wo-PC4" secondAttribute="trailing" id="kFf-Vb-hzJ"/>
+                        <constraint firstItem="3sr-Wo-PC4" firstAttribute="leading" secondItem="WXf-Ez-dCx" secondAttribute="trailing" constant="6" id="lh0-k8-Y9H"/>
+                        <constraint firstAttribute="trailing" secondItem="Z5Y-kM-1OB" secondAttribute="trailing" id="wRP-4p-cSq"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Mimo Balance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZzY-7A-Ffi" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="48.666666666666664" width="393" height="15.333333333333336"/>
+                    <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="13"/>
+                    <color key="textColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_mimo_balance"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="iOi-uR-aYJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="60y-sR-A4H"/>
+                <constraint firstAttribute="trailing" secondItem="ZzY-7A-Ffi" secondAttribute="trailing" id="C3k-vw-mUB"/>
+                <constraint firstItem="ZzY-7A-Ffi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="MPD-0O-FY7"/>
+                <constraint firstAttribute="bottom" secondItem="ZzY-7A-Ffi" secondAttribute="bottom" constant="5" id="UBj-ZC-hzw"/>
+                <constraint firstItem="ZzY-7A-Ffi" firstAttribute="top" secondItem="iOi-uR-aYJ" secondAttribute="bottom" id="mmb-9r-ELS"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="136.64122137404578" y="269.36619718309862"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <namedColor name="mimoBlackWith075alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoDarkGray">
+            <color red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoYellow500">
+            <color red="1" green="0.92156862745098034" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

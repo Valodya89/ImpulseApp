@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Mardoto-Regular.ttf">
+            <string>Mardoto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MultiTransportViewCollectionViewCell" customModule="MimoBike" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="130" height="36"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="130" height="36"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSi-es-7tS">
+                        <rect key="frame" x="0.0" y="0.0" width="130" height="36"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scooter 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqz-Z4-RSa">
+                                <rect key="frame" x="8" y="0.0" width="114" height="36"/>
+                                <fontDescription key="fontDescription" name="Mardoto-Regular" family="Mardoto" pointSize="14"/>
+                                <color key="textColor" name="mimoDarkGray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="fqz-Z4-RSa" secondAttribute="bottom" id="AQe-f5-SRZ"/>
+                            <constraint firstAttribute="trailing" secondItem="fqz-Z4-RSa" secondAttribute="trailing" constant="8" id="IGx-9j-8C9"/>
+                            <constraint firstItem="fqz-Z4-RSa" firstAttribute="leading" secondItem="kSi-es-7tS" secondAttribute="leading" constant="8" id="MBQ-dY-ROQ"/>
+                            <constraint firstItem="fqz-Z4-RSa" firstAttribute="top" secondItem="kSi-es-7tS" secondAttribute="top" id="PdX-Ic-Q6S"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="6"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1.5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="kSi-es-7tS" secondAttribute="bottom" id="1Jf-pv-sHu"/>
+                <constraint firstAttribute="trailing" secondItem="kSi-es-7tS" secondAttribute="trailing" id="NFr-IA-sYX"/>
+                <constraint firstItem="kSi-es-7tS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ehr-nl-HZF"/>
+                <constraint firstItem="kSi-es-7tS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="rxW-A7-vKp"/>
+            </constraints>
+            <size key="customSize" width="130" height="36"/>
+            <connections>
+                <outlet property="containerView" destination="kSi-es-7tS" id="Scn-bE-lMn"/>
+                <outlet property="titleLabel" destination="fqz-Z4-RSa" id="sI2-sl-4d9"/>
+            </connections>
+            <point key="canvasLocation" x="200" y="15.492957746478874"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="mimoDarkGray">
+            <color red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

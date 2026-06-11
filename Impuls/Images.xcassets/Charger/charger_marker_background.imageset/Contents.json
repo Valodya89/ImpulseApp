@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "charger_marker_background.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

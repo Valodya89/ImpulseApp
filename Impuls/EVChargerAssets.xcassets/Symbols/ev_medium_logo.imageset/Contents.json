@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ev_medium_logo.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

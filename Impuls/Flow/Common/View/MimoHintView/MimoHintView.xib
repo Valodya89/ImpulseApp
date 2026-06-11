@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MimoHintView" customModule="MimoBike" customModuleProvider="target">
+            <connections>
+                <outlet property="blureView" destination="fSc-vs-201" id="Vek-KD-fga"/>
+                <outlet property="hintTextView" destination="ROf-5t-ZLZ" id="RpO-yq-JED"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="496" height="146"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IpE-Ew-5Xs">
+                    <rect key="frame" x="0.0" y="0.0" width="496" height="146"/>
+                    <color key="backgroundColor" name="#FFFACD"/>
+                </view>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSc-vs-201">
+                    <rect key="frame" x="0.0" y="0.0" width="496" height="146"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="yYX-kH-3Q1">
+                        <rect key="frame" x="0.0" y="0.0" width="496" height="146"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="light"/>
+                </visualEffectView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zfc-A3-RuF">
+                    <rect key="frame" x="0.0" y="0.0" width="496" height="146"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ROf-5t-ZLZ">
+                            <rect key="frame" x="18" y="12" width="460" height="119"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" name="mimoBlackWith075alpha"/>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                        </textView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="ROf-5t-ZLZ" secondAttribute="bottom" constant="15" id="BWb-aG-Bgd"/>
+                        <constraint firstAttribute="trailing" secondItem="ROf-5t-ZLZ" secondAttribute="trailing" constant="18" id="T7r-kT-3Jq"/>
+                        <constraint firstItem="ROf-5t-ZLZ" firstAttribute="leading" secondItem="Zfc-A3-RuF" secondAttribute="leading" constant="18" id="cDh-Y5-lPx"/>
+                        <constraint firstItem="ROf-5t-ZLZ" firstAttribute="top" secondItem="Zfc-A3-RuF" secondAttribute="top" constant="12" id="sdb-QL-f8v"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="fSc-vs-201" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3fG-Pm-gmz"/>
+                <constraint firstAttribute="trailing" secondItem="fSc-vs-201" secondAttribute="trailing" id="3yJ-ev-Ama"/>
+                <constraint firstAttribute="trailing" secondItem="IpE-Ew-5Xs" secondAttribute="trailing" id="78G-xC-VjT"/>
+                <constraint firstItem="IpE-Ew-5Xs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7TN-Qn-fVv"/>
+                <constraint firstItem="Zfc-A3-RuF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7zG-Kz-hXO"/>
+                <constraint firstAttribute="trailing" secondItem="Zfc-A3-RuF" secondAttribute="trailing" id="Cwh-tP-mOw"/>
+                <constraint firstItem="Zfc-A3-RuF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="S2u-HO-E62"/>
+                <constraint firstItem="fSc-vs-201" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Sh6-nw-EmA"/>
+                <constraint firstAttribute="bottom" secondItem="Zfc-A3-RuF" secondAttribute="bottom" id="WBk-oD-Lj6"/>
+                <constraint firstAttribute="bottom" secondItem="IpE-Ew-5Xs" secondAttribute="bottom" id="pJY-Wd-SJc"/>
+                <constraint firstItem="IpE-Ew-5Xs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qh3-Cw-NEd"/>
+                <constraint firstAttribute="bottom" secondItem="fSc-vs-201" secondAttribute="bottom" id="yK0-w9-9mc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="218.32061068702288" y="-25.35211267605634"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="#FFFACD">
+            <color red="1" green="0.98039215686274506" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoBlackWith075alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

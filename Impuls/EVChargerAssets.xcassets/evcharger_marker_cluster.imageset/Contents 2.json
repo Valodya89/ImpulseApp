@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "evcharger_marker_cluster.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

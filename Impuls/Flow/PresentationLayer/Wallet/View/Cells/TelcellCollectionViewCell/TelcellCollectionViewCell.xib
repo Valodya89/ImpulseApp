@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TelcellCollectionViewCell" customModule="MimoBike" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="335" height="220"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="335" height="220"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NZF-z2-ge7">
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="220"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBH-KV-eCT">
+                                <rect key="frame" x="23" y="189" width="309" height="18"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="20" maxY="0.0"/>
+                                <state key="normal" title="Choose a current number [num]" image="ic_checkBox_empty">
+                                    <color key="titleColor" name="mimoGray100"/>
+                                </state>
+                                <connections>
+                                    <action selector="chooseUserPhoneTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Fwo-PS-9Ea"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ggR-pL-jfU" userLabel="RadioBView">
+                                <rect key="frame" x="0.0" y="1" width="335" height="22"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yj-Ux-Jps">
+                                        <rect key="frame" x="0.0" y="0.0" width="53" height="22"/>
+                                        <inset key="contentEdgeInsets" minX="18" minY="0.0" maxX="15" maxY="0.0"/>
+                                        <state key="normal" image="ic_unSelected_radioButton_image"/>
+                                        <connections>
+                                            <action selector="radioButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="GmC-9U-ffd"/>
+                                        </connections>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_tellCell_v2" translatesAutoresizingMaskIntoConstraints="NO" id="lb4-i8-xjs">
+                                        <rect key="frame" x="57.5" y="-23" width="220" height="68"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="68" id="bQQ-at-b9M"/>
+                                            <constraint firstAttribute="width" constant="220" id="fg9-I9-vKl"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="7yj-Ux-Jps" secondAttribute="bottom" id="Mvp-pJ-m6g"/>
+                                    <constraint firstItem="lb4-i8-xjs" firstAttribute="centerY" secondItem="7yj-Ux-Jps" secondAttribute="centerY" id="rcH-jM-8xU"/>
+                                    <constraint firstItem="7yj-Ux-Jps" firstAttribute="leading" secondItem="ggR-pL-jfU" secondAttribute="leading" id="sP3-y9-n41"/>
+                                    <constraint firstItem="lb4-i8-xjs" firstAttribute="centerX" secondItem="ggR-pL-jfU" secondAttribute="centerX" id="tfa-Kv-abf"/>
+                                    <constraint firstItem="7yj-Ux-Jps" firstAttribute="top" secondItem="ggR-pL-jfU" secondAttribute="top" id="yEp-iw-G9U"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Zo-1d-Tso" customClass="MIPhonePicker" customModule="MimoBike" customModuleProvider="target">
+                                <rect key="frame" x="17" y="61" width="310" height="63"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="mEb-8E-nfa"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="text" value="Phone number"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="+374 99 00 00 00"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hj4-GX-fG5" customClass="UILocalizedButton" customModule="MimoBike" customModuleProvider="target">
+                                <rect key="frame" x="17" y="139" width="298" height="35"/>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
+                                <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="3" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="-1" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Find my contacts" image="ic_findContects">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_wallet_find_from_contacts"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="findFromContactsTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="cFh-e7-UYo"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.38431372549019605" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="hj4-GX-fG5" secondAttribute="trailing" constant="20" id="0wW-a2-wfn"/>
+                            <constraint firstAttribute="trailing" secondItem="ggR-pL-jfU" secondAttribute="trailing" id="4Cj-fo-cBq"/>
+                            <constraint firstItem="oBH-KV-eCT" firstAttribute="top" secondItem="hj4-GX-fG5" secondAttribute="bottom" constant="15" id="4VU-HB-5tN"/>
+                            <constraint firstItem="oBH-KV-eCT" firstAttribute="leading" secondItem="hj4-GX-fG5" secondAttribute="leading" constant="6" id="BwQ-GA-uam"/>
+                            <constraint firstItem="4Zo-1d-Tso" firstAttribute="leading" secondItem="NZF-z2-ge7" secondAttribute="leading" constant="17" id="Jrr-Hw-BfO"/>
+                            <constraint firstItem="hj4-GX-fG5" firstAttribute="top" secondItem="4Zo-1d-Tso" secondAttribute="bottom" constant="15" id="ZZl-eQ-tA9"/>
+                            <constraint firstAttribute="bottom" secondItem="oBH-KV-eCT" secondAttribute="bottom" constant="13" id="f2V-p7-5pp"/>
+                            <constraint firstItem="hj4-GX-fG5" firstAttribute="leading" secondItem="4Zo-1d-Tso" secondAttribute="leading" id="m2B-Sc-WHM"/>
+                            <constraint firstAttribute="height" constant="220" id="mCe-MO-5aS"/>
+                            <constraint firstItem="4Zo-1d-Tso" firstAttribute="top" secondItem="NZF-z2-ge7" secondAttribute="top" constant="61" id="oaZ-HS-Fzc"/>
+                            <constraint firstItem="ggR-pL-jfU" firstAttribute="top" secondItem="NZF-z2-ge7" secondAttribute="top" priority="997" constant="1" id="pFY-jV-1dn"/>
+                            <constraint firstAttribute="trailing" secondItem="oBH-KV-eCT" secondAttribute="trailing" constant="3" id="qql-Z0-GK6"/>
+                            <constraint firstItem="ggR-pL-jfU" firstAttribute="leading" secondItem="NZF-z2-ge7" secondAttribute="leading" id="wPn-fC-u1t"/>
+                            <constraint firstAttribute="trailing" secondItem="4Zo-1d-Tso" secondAttribute="trailing" constant="8" id="xxI-6w-lPN"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="NZF-z2-ge7" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Lob-8c-TFW"/>
+                <constraint firstItem="NZF-z2-ge7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="MXm-KC-g5C"/>
+                <constraint firstAttribute="trailing" secondItem="NZF-z2-ge7" secondAttribute="trailing" id="wEp-ie-nwb"/>
+            </constraints>
+            <size key="customSize" width="335" height="204"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="12"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="chooseNumberButton" destination="oBH-KV-eCT" id="Kax-8h-LLy"/>
+                <outlet property="contextHeightConstant" destination="mCe-MO-5aS" id="KE7-An-zgo"/>
+                <outlet property="contextView" destination="NZF-z2-ge7" id="J0d-yW-Fuz"/>
+                <outlet property="findContactButton" destination="hj4-GX-fG5" id="lcE-qp-uEV"/>
+                <outlet property="phoneNumberField" destination="4Zo-1d-Tso" id="PrA-kc-MJh"/>
+                <outlet property="radioButton" destination="7yj-Ux-Jps" id="6za-6J-hyp"/>
+                <outlet property="radiuButtonView" destination="ggR-pL-jfU" id="SbJ-1P-4Qv"/>
+                <outlet property="telCellTopConstant" destination="pFY-jV-1dn" id="12s-Nm-6vM"/>
+                <outlet property="telcellView" destination="lb4-i8-xjs" id="IR8-ez-l6S"/>
+            </connections>
+            <point key="canvasLocation" x="-151.44927536231884" y="-49.553571428571423"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ic_checkBox_empty" width="18" height="18"/>
+        <image name="ic_findContects" width="30" height="30"/>
+        <image name="ic_tellCell_v2" width="75" height="24"/>
+        <image name="ic_unSelected_radioButton_image" width="20" height="20"/>
+        <namedColor name="mimoGray100">
+            <color red="0.9100000262260437" green="0.93699997663497925" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

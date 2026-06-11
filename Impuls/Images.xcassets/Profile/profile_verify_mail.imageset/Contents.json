@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "profile_verify_mail.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "flag_om.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

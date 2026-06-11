@@ -1,0 +1,15 @@
+//
+//  LanguageResult.swift
+//  MimoBike
+//
+//  Created by Vardan on 26.04.21.
+//
+
+import Foundation
+
+struct LanguageResult {
+    let id: String
+    let name: String
+    let flag: Data
+    var isSelected: Bool
+}

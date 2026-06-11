@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MIPhonePicker" customModule="MimoBike" customModuleProvider="target">
+            <connections>
+                <outlet property="countryCodeLabel" destination="oGh-3T-AfF" id="rxm-3g-k20"/>
+                <outlet property="countryFlagImageView" destination="PDs-02-Tpt" id="rf7-eF-zl5"/>
+                <outlet property="downArrouBtn" destination="i6l-Ai-tbg" id="dgZ-q4-fCe"/>
+                <outlet property="phoneTextField" destination="wt8-1i-MTl" id="UTc-EQ-Mf6"/>
+                <outlet property="titleLabel" destination="KvQ-le-eY2" id="Jm9-5s-Gg5"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="335" height="63"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvQ-le-eY2" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                    <rect key="frame" x="15" y="10" width="96.5" height="16"/>
+                    <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="15"/>
+                    <color key="textColor" name="mimoBlackWith05alpha"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_sign_in_phone_number"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6l-Ai-tbg">
+                    <rect key="frame" x="31" y="29" width="24.5" height="27"/>
+                    <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="8" maxY="5"/>
+                    <state key="normal" image="ic_arrow_down"/>
+                    <connections>
+                        <action selector="openPhonePicker" destination="-1" eventType="touchUpInside" id="Mjw-K9-PUg"/>
+                    </connections>
+                </button>
+                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+374" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGh-3T-AfF">
+                    <rect key="frame" x="55.5" y="33" width="36.5" height="19"/>
+                    <gestureRecognizers/>
+                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="16"/>
+                    <color key="textColor" name="mimoBlackWith075alpha"/>
+                    <nil key="highlightedColor"/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="oAe-3U-oRX" appends="YES" id="WUT-0d-YTp"/>
+                    </connections>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="99 099 099 0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wt8-1i-MTl" customClass="SwiftMaskTextfield" customModule="SwiftMaskTextfield">
+                    <rect key="frame" x="95" y="32" width="220" height="21"/>
+                    <color key="textColor" name="mimoBlackWith075alpha"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                    <connections>
+                        <action selector="didChangeField" destination="-1" eventType="editingChanged" id="y8P-0a-sYw"/>
+                    </connections>
+                </textField>
+                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_russia" translatesAutoresizingMaskIntoConstraints="NO" id="PDs-02-Tpt">
+                    <rect key="frame" x="15" y="33.5" width="16" height="18"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="LMX-6M-i2U"/>
+                        <constraint firstAttribute="width" constant="16" id="nrJ-Th-H1r"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="Ny1-ru-BFh" appends="YES" id="5l6-bV-Uce"/>
+                    </connections>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="oGh-3T-AfF" firstAttribute="top" secondItem="KvQ-le-eY2" secondAttribute="bottom" constant="7" id="0Lu-qH-Glq"/>
+                <constraint firstItem="KvQ-le-eY2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="0eW-Tq-5zO"/>
+                <constraint firstItem="wt8-1i-MTl" firstAttribute="centerY" secondItem="oGh-3T-AfF" secondAttribute="centerY" id="D3I-Yy-uMm"/>
+                <constraint firstAttribute="trailing" secondItem="wt8-1i-MTl" secondAttribute="trailing" constant="20" id="Fzn-W8-UVj"/>
+                <constraint firstItem="PDs-02-Tpt" firstAttribute="centerY" secondItem="i6l-Ai-tbg" secondAttribute="centerY" id="GbS-nS-fdk"/>
+                <constraint firstItem="wt8-1i-MTl" firstAttribute="leading" secondItem="oGh-3T-AfF" secondAttribute="trailing" constant="3" id="I8y-GK-2jg"/>
+                <constraint firstItem="KvQ-le-eY2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="OYr-u9-jvG"/>
+                <constraint firstItem="oGh-3T-AfF" firstAttribute="centerY" secondItem="i6l-Ai-tbg" secondAttribute="centerY" id="PJl-vO-zwa"/>
+                <constraint firstAttribute="bottom" secondItem="wt8-1i-MTl" secondAttribute="bottom" constant="10" id="RgB-wy-DpD"/>
+                <constraint firstItem="i6l-Ai-tbg" firstAttribute="leading" secondItem="PDs-02-Tpt" secondAttribute="trailing" id="kOe-gs-6Dz"/>
+                <constraint firstItem="PDs-02-Tpt" firstAttribute="leading" secondItem="KvQ-le-eY2" secondAttribute="leading" id="lqI-ot-s6k"/>
+                <constraint firstItem="oGh-3T-AfF" firstAttribute="leading" secondItem="i6l-Ai-tbg" secondAttribute="trailing" id="pKX-Bk-KYe"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="Ppl-iK-oyP" appends="YES" id="fnq-5N-ugP"/>
+            </connections>
+            <point key="canvasLocation" x="2.1739130434782612" y="406.13839285714283"/>
+        </view>
+        <tapGestureRecognizer id="Ny1-ru-BFh">
+            <connections>
+                <action selector="openPhonePicker" destination="-1" id="9q1-b7-mzL"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="oAe-3U-oRX">
+            <connections>
+                <action selector="openPhonePicker" destination="-1" id="gVD-yF-Hz8"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="Ppl-iK-oyP">
+            <connections>
+                <action selector="touchTextField" destination="-1" id="IMw-Yw-hdn"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="ic_arrow_down" width="11.5" height="11"/>
+        <image name="ic_russia" width="34" height="34.5"/>
+        <namedColor name="mimoBlackWith05alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoBlackWith075alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

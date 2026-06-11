@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Hind-Regular.ttf">
+            <string>Hind-Regular</string>
+        </array>
+        <array key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MITextFieldView" customModule="MimoBike" customModuleProvider="target">
+            <connections>
+                <outlet property="errorLabelHeightConstraint" destination="ls5-fe-D4j" id="Wkd-NT-JSO"/>
+                <outlet property="errorLabelTopConstraint" destination="ZNE-zn-qFI" id="STy-5k-hL9"/>
+                <outlet property="errorMessageLabel" destination="fno-X0-xRj" id="Scs-ft-ey0"/>
+                <outlet property="fieldView" destination="BHR-E0-9Nc" id="Y80-g0-baH"/>
+                <outlet property="leftConstaintTextLabel" destination="dtZ-rb-7Zt" id="lcX-iy-iMy"/>
+                <outlet property="leftConstraintTextField" destination="7cv-j5-6Ch" id="9kh-cf-Y6p"/>
+                <outlet property="textField" destination="Bj3-nH-M9f" id="RvF-P0-BJl"/>
+                <outlet property="textFieldBottomConstraint" destination="xR6-Hp-sna" id="FbX-pG-odr"/>
+                <outlet property="textFieldHeight" destination="Dzl-OC-oPe" id="cxi-hd-GV4"/>
+                <outlet property="textFieldHeightConstraint" destination="C2p-iR-oxj" id="2rH-o3-LGc"/>
+                <outlet property="titleBottomConstraint" destination="xwn-br-trn" id="jld-Nq-2jV"/>
+                <outlet property="titleLabel" destination="Dr2-Tj-OLP" id="Y3c-Hn-Kn5"/>
+                <outlet property="titleTopConstraint" destination="KRi-ps-wlk" id="m6I-X6-ABj"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="328" height="38"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="error message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fno-X0-xRj">
+                    <rect key="frame" x="0.0" y="38" width="70.5" height="0.0"/>
+                    <constraints>
+                        <constraint firstAttribute="height" id="ls5-fe-D4j"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Hind-Regular" family="Hind" pointSize="11"/>
+                    <color key="textColor" name="red"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BHR-E0-9Nc">
+                    <rect key="frame" x="0.0" y="0.0" width="328" height="38"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dr2-Tj-OLP">
+                            <rect key="frame" x="20" y="10" width="24" height="13"/>
+                            <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="13"/>
+                            <color key="textColor" name="mimoBlackWith05alpha"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bj3-nH-M9f" customClass="MATextField" customModule="MimoBike" customModuleProvider="target">
+                            <rect key="frame" x="20" y="33" width="298" height="0.0"/>
+                            <color key="tintColor" name="navy"/>
+                            <constraints>
+                                <constraint firstAttribute="height" id="C2p-iR-oxj"/>
+                            </constraints>
+                            <color key="textColor" name="mimoBlackWith075alpha"/>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            <connections>
+                                <action selector="didChangeFieldValue:" destination="-1" eventType="editingChanged" id="LZv-IR-aRX"/>
+                            </connections>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Bj3-nH-M9f" firstAttribute="leading" secondItem="BHR-E0-9Nc" secondAttribute="leading" constant="20" id="7cv-j5-6Ch"/>
+                        <constraint firstAttribute="height" constant="38" id="Dzl-OC-oPe"/>
+                        <constraint firstItem="Dr2-Tj-OLP" firstAttribute="top" secondItem="BHR-E0-9Nc" secondAttribute="top" constant="10" id="KRi-ps-wlk"/>
+                        <constraint firstItem="Dr2-Tj-OLP" firstAttribute="leading" secondItem="BHR-E0-9Nc" secondAttribute="leading" constant="20" id="dtZ-rb-7Zt"/>
+                        <constraint firstAttribute="trailing" secondItem="Bj3-nH-M9f" secondAttribute="trailing" priority="998" constant="10" id="pyF-TA-Fx6"/>
+                        <constraint firstAttribute="bottom" secondItem="Bj3-nH-M9f" secondAttribute="bottom" constant="5" id="xR6-Hp-sna"/>
+                        <constraint firstItem="Bj3-nH-M9f" firstAttribute="top" secondItem="Dr2-Tj-OLP" secondAttribute="bottom" constant="10" id="xwn-br-trn"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="fno-X0-xRj" firstAttribute="leading" secondItem="BHR-E0-9Nc" secondAttribute="leading" id="5Pk-zn-fry"/>
+                <constraint firstItem="BHR-E0-9Nc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ul7-wX-3kA"/>
+                <constraint firstItem="fno-X0-xRj" firstAttribute="top" secondItem="BHR-E0-9Nc" secondAttribute="bottom" priority="750" id="ZNE-zn-qFI"/>
+                <constraint firstItem="BHR-E0-9Nc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="f8g-TI-hey"/>
+                <constraint firstAttribute="bottom" secondItem="fno-X0-xRj" secondAttribute="bottom" id="ya5-Ok-xes"/>
+                <constraint firstAttribute="trailing" secondItem="BHR-E0-9Nc" secondAttribute="trailing" id="z3r-Bw-D5d"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="8"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="Muv-gd-hgo" appends="YES" id="13p-dd-if2"/>
+            </connections>
+            <point key="canvasLocation" x="185.50724637681162" y="424.55357142857139"/>
+        </view>
+        <tapGestureRecognizer id="Muv-gd-hgo">
+            <connections>
+                <action selector="didTappInView:" destination="-1" id="JDV-ij-NBs"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <namedColor name="mimoBlackWith05alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoBlackWith075alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="navy">
+            <color red="0.32199999690055847" green="0.35699999332427979" blue="0.40000000596046448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="red">
+            <color red="1" green="0.31000000238418579" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

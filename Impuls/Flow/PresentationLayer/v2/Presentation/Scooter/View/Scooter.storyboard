@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Scooter View Controller-->
+        <scene sceneID="wEI-TZ-aoS">
+            <objects>
+                <viewController storyboardIdentifier="ScooterViewController" hidesBottomBarWhenPushed="YES" id="g7b-0r-JkI" customClass="ScooterViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="oLo-ks-5H2">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N8k-yU-blP" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaO-k9-hol">
+                                <rect key="frame" x="0.0" y="571" width="393" height="227"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iO9-dt-sa8">
+                                        <rect key="frame" x="20" y="0.0" width="38" height="38"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="38" id="DIP-SC-gih"/>
+                                            <constraint firstAttribute="width" secondItem="iO9-dt-sa8" secondAttribute="height" id="jGd-0p-A1b"/>
+                                        </constraints>
+                                        <color key="tintColor" name="mimoBlackWith075alpha"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="chevron.left" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="medium"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="19"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="scootersBackAction" destination="g7b-0r-JkI" eventType="touchUpInside" id="7uz-cD-Bff"/>
+                                        </connections>
+                                    </button>
+                                    <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UeW-uG-dOP">
+                                        <rect key="frame" x="0.0" y="53" width="393" height="174"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="174" id="7PO-cX-aCp"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Zgy-ol-aws">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="g7b-0r-JkI" id="jCc-2W-18i"/>
+                                            <outlet property="delegate" destination="g7b-0r-JkI" id="c5x-JT-jpY"/>
+                                        </connections>
+                                    </collectionView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="UeW-uG-dOP" secondAttribute="trailing" id="0TD-FT-UMM"/>
+                                    <constraint firstItem="iO9-dt-sa8" firstAttribute="leading" secondItem="xaO-k9-hol" secondAttribute="leading" constant="20" id="A10-Gk-n4j"/>
+                                    <constraint firstItem="UeW-uG-dOP" firstAttribute="leading" secondItem="xaO-k9-hol" secondAttribute="leading" id="IS7-e7-CWJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="UeW-uG-dOP" secondAttribute="bottom" id="RRo-3S-BOv"/>
+                                    <constraint firstAttribute="height" constant="227" id="WfB-yc-dEX"/>
+                                    <constraint firstItem="iO9-dt-sa8" firstAttribute="top" secondItem="xaO-k9-hol" secondAttribute="top" id="dIT-m4-rwa"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xV5-1j-daL" customClass="MultiTransportView" customModule="MimoBike" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="446" width="393" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="YM9-Lb-TBh"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4UT-y4-vAe">
+                                <rect key="frame" x="335" y="680" width="38" height="38"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="38" id="1qd-xP-j6O"/>
+                                    <constraint firstAttribute="width" secondItem="4UT-y4-vAe" secondAttribute="height" id="YwS-t8-scc"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="ic_current_location"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="19"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="myLocationAction" destination="g7b-0r-JkI" eventType="touchUpInside" id="YF9-mV-0Jh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XPq-Z5-P5C">
+                                <rect key="frame" x="335" y="147" width="38" height="38"/>
+                                <color key="backgroundColor" name="mimoYellow500"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="38" id="IaL-oP-h9g"/>
+                                    <constraint firstAttribute="width" secondItem="XPq-Z5-P5C" secondAttribute="height" id="Jhe-tz-4ST"/>
+                                    <constraint firstAttribute="width" secondItem="XPq-Z5-P5C" secondAttribute="height" id="sZX-0f-ak5"/>
+                                </constraints>
+                                <color key="tintColor" red="0.95686274509803915" green="0.2627450980392157" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="mappin.and.ellipse" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="medium"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="19"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="parkingsAction" destination="g7b-0r-JkI" eventType="touchUpInside" id="QuI-r1-1gq"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlE-R5-nkd" customClass="MimoSupportView" customModule="MimoBike" customModuleProvider="target">
+                                <rect key="frame" x="18" y="69" width="357" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="YtD-78-Lvp"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F88-a8-YRW" customClass="ZoneStatusView" customModule="MimoBike" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="59" width="393" height="48"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="1Mk-0R-mhj"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kME-np-HIt"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kME-np-HIt" firstAttribute="trailing" secondItem="4UT-y4-vAe" secondAttribute="trailing" constant="20" id="0wB-SF-AHB"/>
+                            <constraint firstItem="kME-np-HIt" firstAttribute="trailing" secondItem="xaO-k9-hol" secondAttribute="trailing" id="1Wn-5I-cEt"/>
+                            <constraint firstItem="F88-a8-YRW" firstAttribute="top" secondItem="kME-np-HIt" secondAttribute="top" id="3ja-ZD-Cm3"/>
+                            <constraint firstItem="kME-np-HIt" firstAttribute="trailing" secondItem="XPq-Z5-P5C" secondAttribute="trailing" constant="20" id="4f7-5G-ZP7"/>
+                            <constraint firstItem="IlE-R5-nkd" firstAttribute="top" secondItem="kME-np-HIt" secondAttribute="top" constant="10" id="5aL-mb-0H2"/>
+                            <constraint firstItem="F88-a8-YRW" firstAttribute="leading" secondItem="kME-np-HIt" secondAttribute="leading" id="5nz-uH-uf7"/>
+                            <constraint firstItem="IlE-R5-nkd" firstAttribute="leading" secondItem="kME-np-HIt" secondAttribute="leading" constant="18" id="AfZ-tf-Rgx"/>
+                            <constraint firstItem="N8k-yU-blP" firstAttribute="top" secondItem="oLo-ks-5H2" secondAttribute="top" id="Dur-wv-2UL"/>
+                            <constraint firstAttribute="bottom" secondItem="N8k-yU-blP" secondAttribute="bottom" id="E36-UA-07A"/>
+                            <constraint firstItem="kME-np-HIt" firstAttribute="bottom" secondItem="xaO-k9-hol" secondAttribute="bottom" constant="20" id="MCO-c6-dAB"/>
+                            <constraint firstItem="kME-np-HIt" firstAttribute="trailing" secondItem="IlE-R5-nkd" secondAttribute="trailing" constant="18" id="QV2-22-rfY"/>
+                            <constraint firstItem="XPq-Z5-P5C" firstAttribute="top" secondItem="IlE-R5-nkd" secondAttribute="bottom" constant="14" id="Rew-re-y7f"/>
+                            <constraint firstItem="kME-np-HIt" firstAttribute="trailing" secondItem="xV5-1j-daL" secondAttribute="trailing" id="aJI-Hf-jB0"/>
+                            <constraint firstItem="N8k-yU-blP" firstAttribute="trailing" secondItem="kME-np-HIt" secondAttribute="trailing" id="aqJ-Ql-zkf"/>
+                            <constraint firstItem="N8k-yU-blP" firstAttribute="leading" secondItem="kME-np-HIt" secondAttribute="leading" id="f7f-O5-Sxg"/>
+                            <constraint firstItem="kME-np-HIt" firstAttribute="trailing" secondItem="F88-a8-YRW" secondAttribute="trailing" id="jNg-Ln-86T"/>
+                            <constraint firstItem="kME-np-HIt" firstAttribute="bottom" secondItem="xV5-1j-daL" secondAttribute="bottom" constant="336" id="khL-6Y-HN5"/>
+                            <constraint firstItem="xaO-k9-hol" firstAttribute="leading" secondItem="kME-np-HIt" secondAttribute="leading" id="m4Q-4i-p7d"/>
+                            <constraint firstItem="kME-np-HIt" firstAttribute="bottom" secondItem="4UT-y4-vAe" secondAttribute="bottom" constant="100" id="ygy-Xt-pcg"/>
+                            <constraint firstItem="xV5-1j-daL" firstAttribute="leading" secondItem="kME-np-HIt" secondAttribute="leading" id="zAH-Zv-yQB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="vie-fO-cTh"/>
+                    <connections>
+                        <outlet property="collectionContainerView" destination="xaO-k9-hol" id="o1f-UJ-YZB"/>
+                        <outlet property="mapView" destination="N8k-yU-blP" id="JO2-GT-dTe"/>
+                        <outlet property="multiScooterView" destination="xV5-1j-daL" id="foS-Ua-Asx"/>
+                        <outlet property="myLocationBottomConstraint" destination="ygy-Xt-pcg" id="aXu-zY-UAz"/>
+                        <outlet property="myLocationButton" destination="4UT-y4-vAe" id="huX-3t-FGA"/>
+                        <outlet property="parkingsButton" destination="XPq-Z5-P5C" id="tX1-g3-VZu"/>
+                        <outlet property="scooterCollectionBackButton" destination="iO9-dt-sa8" id="ZqW-hX-oMz"/>
+                        <outlet property="scooterCollectionView" destination="UeW-uG-dOP" id="ndZ-nE-Yn2"/>
+                        <outlet property="supportView" destination="IlE-R5-nkd" id="Xwg-mE-ytL"/>
+                        <outlet property="zoneStatusView" destination="F88-a8-YRW" id="xjf-Qg-SL8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4XV-aK-mg2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="787.02290076335873" y="-771.83098591549299"/>
+        </scene>
+        <!--Parking Details View Controller-->
+        <scene sceneID="mQk-md-fsZ">
+            <objects>
+                <viewController storyboardIdentifier="ParkingDetailsViewController" id="FL3-e5-ayZ" customClass="ParkingDetailsViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dda-RC-iB5">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Slu-5S-sR9">
+                                <rect key="frame" x="19.666666666666657" y="225.66666666666663" width="353.66666666666674" height="426"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="parkingPopup" translatesAutoresizingMaskIntoConstraints="NO" id="yOi-eZ-Itp">
+                                        <rect key="frame" x="42.666666666666657" y="18.666666666666686" width="268.33333333333337" height="196.66666666666666"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIRTUAL PARKING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyd-sz-Xsz" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="96.333333333333314" y="232.00000000000003" width="161" height="23"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="19"/>
+                                        <color key="textColor" name="mimoBlack"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_virtual_parking"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="id4-du-sq4" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="265" width="313.66666666666669" height="76.666666666666686"/>
+                                        <string key="text">There's no parking rack here.
+Place the scooter carefully so it doesn't interfere with anyone</string>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                        <color key="textColor" name="mimoBlack"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_virtual_parking_description"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NAn-Tk-QCa" customClass="UILocalizedButton" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="52.999999999999986" y="359.66666666666674" width="247.66666666666663" height="46.666666666666686"/>
+                                        <color key="backgroundColor" name="mimoYellow500"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="OK">
+                                            <color key="titleColor" name="mimoBlack"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_global_ok"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTapOK:" destination="FL3-e5-ayZ" eventType="touchUpInside" id="xqg-4b-9sz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="id4-du-sq4" firstAttribute="height" secondItem="Slu-5S-sR9" secondAttribute="height" multiplier="0.18" id="38Q-KO-rxH"/>
+                                    <constraint firstItem="NAn-Tk-QCa" firstAttribute="height" secondItem="Slu-5S-sR9" secondAttribute="height" multiplier="0.109005" id="3Fo-Iu-7kA"/>
+                                    <constraint firstItem="yOi-eZ-Itp" firstAttribute="centerX" secondItem="Slu-5S-sR9" secondAttribute="centerX" id="9Qd-aK-wqB"/>
+                                    <constraint firstItem="NAn-Tk-QCa" firstAttribute="top" secondItem="id4-du-sq4" secondAttribute="bottom" constant="18" id="E7n-mf-Kjd"/>
+                                    <constraint firstItem="yOi-eZ-Itp" firstAttribute="height" secondItem="Slu-5S-sR9" secondAttribute="height" multiplier="0.462085" id="Lah-O7-d6j"/>
+                                    <constraint firstItem="id4-du-sq4" firstAttribute="top" secondItem="uyd-sz-Xsz" secondAttribute="bottom" constant="10" id="MqE-fn-c0N"/>
+                                    <constraint firstItem="uyd-sz-Xsz" firstAttribute="top" secondItem="yOi-eZ-Itp" secondAttribute="bottom" constant="16.666666666666657" id="S3f-Wp-SN5"/>
+                                    <constraint firstItem="yOi-eZ-Itp" firstAttribute="width" secondItem="Slu-5S-sR9" secondAttribute="width" multiplier="0.757835" id="VEO-lj-ZfK"/>
+                                    <constraint firstItem="id4-du-sq4" firstAttribute="leading" secondItem="Slu-5S-sR9" secondAttribute="leading" constant="20" id="bLI-dL-mEA"/>
+                                    <constraint firstItem="NAn-Tk-QCa" firstAttribute="width" secondItem="Slu-5S-sR9" secondAttribute="width" multiplier="0.700855" id="bnX-38-RYf"/>
+                                    <constraint firstAttribute="trailing" secondItem="id4-du-sq4" secondAttribute="trailing" constant="20" id="fRe-9S-NBe"/>
+                                    <constraint firstItem="uyd-sz-Xsz" firstAttribute="centerX" secondItem="yOi-eZ-Itp" secondAttribute="centerX" id="kgc-jL-Irp"/>
+                                    <constraint firstItem="yOi-eZ-Itp" firstAttribute="centerY" secondItem="Slu-5S-sR9" secondAttribute="centerY" multiplier="0.55" id="lot-Wj-EBf"/>
+                                    <constraint firstItem="NAn-Tk-QCa" firstAttribute="centerX" secondItem="Slu-5S-sR9" secondAttribute="centerX" id="slP-ve-nty"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="gg2-eT-l1U"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Slu-5S-sR9" firstAttribute="centerX" secondItem="gg2-eT-l1U" secondAttribute="centerX" id="Vb9-US-qvi"/>
+                            <constraint firstItem="Slu-5S-sR9" firstAttribute="centerY" secondItem="gg2-eT-l1U" secondAttribute="centerY" id="Xp6-nk-eWD"/>
+                            <constraint firstItem="Slu-5S-sR9" firstAttribute="width" secondItem="dda-RC-iB5" secondAttribute="width" multiplier="0.9" id="fUi-8O-BeM"/>
+                            <constraint firstItem="Slu-5S-sR9" firstAttribute="height" secondItem="dda-RC-iB5" secondAttribute="height" multiplier="0.5" id="oAe-sj-cEw"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="id4-du-sq4" id="fuz-FJ-Jpp"/>
+                        <outlet property="popupOKButton" destination="NAn-Tk-QCa" id="QLs-Do-3vq"/>
+                        <outlet property="popupView" destination="Slu-5S-sR9" id="SPD-71-PxZ"/>
+                        <outlet property="titleLabel" destination="uyd-sz-Xsz" id="6I6-fE-Xdy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qJG-ig-4rs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1572" y="-772"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chevron.left" catalog="system" width="97" height="128"/>
+        <image name="ic_current_location" width="22" height="22"/>
+        <image name="mappin.and.ellipse" catalog="system" width="110" height="128"/>
+        <image name="parkingPopup" width="1836" height="1836"/>
+        <namedColor name="mimoBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoBlackWith075alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoYellow500">
+            <color red="1" green="0.92156862745098034" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

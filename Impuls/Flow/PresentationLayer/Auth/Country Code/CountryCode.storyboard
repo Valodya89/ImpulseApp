@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Country Code-->
+        <scene sceneID="LB0-0c-967">
+            <objects>
+                <viewController storyboardIdentifier="CountryCodeViewController" id="akM-AN-SFo" customClass="CountryCodeViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hox-8D-Hmb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KML-vR-gmK" userLabel="ViewForTableView">
+                                <rect key="frame" x="0.0" y="158" width="414" height="738"/>
+                                <subviews>
+                                    <tableView contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjb-ec-YcP">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="738"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <inset key="scrollIndicatorInsets" minX="0.0" minY="3" maxX="0.0" maxY="0.0"/>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="qjb-ec-YcP" secondAttribute="trailing" id="4Oe-9G-61f"/>
+                                    <constraint firstAttribute="bottom" secondItem="qjb-ec-YcP" secondAttribute="bottom" id="4iV-W1-ojB"/>
+                                    <constraint firstItem="qjb-ec-YcP" firstAttribute="leading" secondItem="KML-vR-gmK" secondAttribute="leading" id="8nO-HJ-mrK"/>
+                                    <constraint firstItem="qjb-ec-YcP" firstAttribute="top" secondItem="KML-vR-gmK" secondAttribute="top" id="Hlq-ar-bD7"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5e-sI-opF">
+                                <rect key="frame" x="0.0" y="92" width="414" height="54"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oeC-tu-x1R">
+                                        <rect key="frame" x="20.5" y="8" width="373" height="46"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_search" translatesAutoresizingMaskIntoConstraints="NO" id="HKg-fz-s8I">
+                                                <rect key="frame" x="20" y="13" width="20" height="20"/>
+                                            </imageView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vRD-kn-Zri">
+                                                <rect key="frame" x="40" y="0.0" width="14" height="46"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search countries" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eFl-XV-WYy" customClass="UILocalizedTextField" customModule="MimoBike" customModuleProvider="target">
+                                                <rect key="frame" x="54" y="0.0" width="319" height="46"/>
+                                                <color key="textColor" name="mimoBlackWith05alpha"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedPlaceholder" value="MOBILE_sign_in_search_countries"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" name="mimoBlackWith01alpha"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="HKg-fz-s8I" secondAttribute="bottom" constant="13" id="KRI-9Q-88O"/>
+                                            <constraint firstItem="vRD-kn-Zri" firstAttribute="width" secondItem="oeC-tu-x1R" secondAttribute="width" multiplier="0.0380952" id="Tfq-Rv-v4g"/>
+                                            <constraint firstItem="eFl-XV-WYy" firstAttribute="leading" secondItem="vRD-kn-Zri" secondAttribute="trailing" id="U5x-5i-zMK"/>
+                                            <constraint firstItem="vRD-kn-Zri" firstAttribute="top" secondItem="oeC-tu-x1R" secondAttribute="top" id="gLh-DA-flP"/>
+                                            <constraint firstAttribute="bottom" secondItem="eFl-XV-WYy" secondAttribute="bottom" id="i2H-Sh-sgR"/>
+                                            <constraint firstItem="HKg-fz-s8I" firstAttribute="top" secondItem="oeC-tu-x1R" secondAttribute="top" constant="13" id="k9K-Iz-cGL"/>
+                                            <constraint firstAttribute="trailing" secondItem="eFl-XV-WYy" secondAttribute="trailing" id="otW-XV-4cQ"/>
+                                            <constraint firstItem="eFl-XV-WYy" firstAttribute="top" secondItem="oeC-tu-x1R" secondAttribute="top" id="qoo-Ca-GJZ"/>
+                                            <constraint firstItem="HKg-fz-s8I" firstAttribute="centerX" secondItem="oeC-tu-x1R" secondAttribute="centerX" multiplier="0.159" id="rFz-CV-EWU"/>
+                                            <constraint firstAttribute="bottom" secondItem="vRD-kn-Zri" secondAttribute="bottom" id="rSQ-1f-Mpi"/>
+                                            <constraint firstItem="vRD-kn-Zri" firstAttribute="leading" secondItem="HKg-fz-s8I" secondAttribute="trailing" id="tzJ-vv-XC6"/>
+                                            <constraint firstItem="HKg-fz-s8I" firstAttribute="centerY" secondItem="oeC-tu-x1R" secondAttribute="centerY" id="w9J-R5-mIe"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="oeC-tu-x1R" firstAttribute="top" secondItem="a5e-sI-opF" secondAttribute="top" constant="8" id="4Ic-Hx-t3q"/>
+                                    <constraint firstAttribute="bottom" secondItem="oeC-tu-x1R" secondAttribute="bottom" id="8Ey-8K-tNu"/>
+                                    <constraint firstItem="oeC-tu-x1R" firstAttribute="width" secondItem="a5e-sI-opF" secondAttribute="width" multiplier="0.9" id="mNS-D8-h5w"/>
+                                    <constraint firstItem="oeC-tu-x1R" firstAttribute="centerX" secondItem="a5e-sI-opF" secondAttribute="centerX" id="xIk-gd-BEr"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="FMw-T5-EIh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="a5e-sI-opF" firstAttribute="top" secondItem="FMw-T5-EIh" secondAttribute="top" id="2hm-ec-3gz"/>
+                            <constraint firstItem="FMw-T5-EIh" firstAttribute="trailing" secondItem="KML-vR-gmK" secondAttribute="trailing" id="49M-In-Nx3"/>
+                            <constraint firstItem="KML-vR-gmK" firstAttribute="leading" secondItem="FMw-T5-EIh" secondAttribute="leading" id="DuM-Vl-YVh"/>
+                            <constraint firstItem="KML-vR-gmK" firstAttribute="top" secondItem="a5e-sI-opF" secondAttribute="bottom" constant="12" id="WM6-GS-R5I"/>
+                            <constraint firstItem="FMw-T5-EIh" firstAttribute="trailing" secondItem="a5e-sI-opF" secondAttribute="trailing" id="bsd-lY-3VR"/>
+                            <constraint firstItem="a5e-sI-opF" firstAttribute="leading" secondItem="FMw-T5-EIh" secondAttribute="leading" id="xvA-12-z8U"/>
+                            <constraint firstAttribute="bottom" secondItem="KML-vR-gmK" secondAttribute="bottom" id="zat-8N-C1Q"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Country Code" id="OTa-Go-IjU">
+                        <barButtonItem key="leftBarButtonItem" image="ic_close" id="FFZ-z4-Auz">
+                            <color key="tintColor" name="mimoBlack"/>
+                            <connections>
+                                <action selector="closeButtonTapped:" destination="akM-AN-SFo" id="qNb-Ev-yr8"/>
+                            </connections>
+                        </barButtonItem>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_sign_in_country_code"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchFieldContentView" destination="oeC-tu-x1R" id="cMd-9W-LvD"/>
+                        <outlet property="searchTextField" destination="eFl-XV-WYy" id="Gps-0C-C6W"/>
+                        <outlet property="tableView" destination="qjb-ec-YcP" id="anq-TV-InA"/>
+                        <outlet property="viewForTabelView" destination="KML-vR-gmK" id="Qya-N6-pr8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VZD-v9-K1l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4426.0869565217399" y="807.58928571428567"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fpZ-oz-dvC">
+            <objects>
+                <navigationController storyboardIdentifier="CountryCodeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="VeB-ih-Z5F" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QMT-8t-Qx7">
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="akM-AN-SFo" kind="relationship" relationship="rootViewController" id="YPT-Ty-SoU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EsZ-Mg-SSG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3515.9420289855075" y="807.58928571428567"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_close" width="13" height="13"/>
+        <image name="ic_search" width="20" height="20"/>
+        <namedColor name="mimoBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoBlackWith01alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.10000000149011612" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoBlackWith05alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19115.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19107.5"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MimoImportantView" customModule="MimoBike" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="MimoImportantView" customModule="MimoBike" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mbU-TV-xkr" userLabel="Media View">
+                    <rect key="frame" x="79" y="22" width="114" height="114"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_POP_UP_chekmark" translatesAutoresizingMaskIntoConstraints="NO" id="ioN-nP-dwj">
+                            <rect key="frame" x="0.0" y="0.0" width="114" height="114"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="ioN-nP-dwj" secondAttribute="trailing" id="9kM-hR-prl"/>
+                        <constraint firstItem="ioN-nP-dwj" firstAttribute="leading" secondItem="mbU-TV-xkr" secondAttribute="leading" id="QQR-hm-wWL"/>
+                        <constraint firstAttribute="width" secondItem="mbU-TV-xkr" secondAttribute="height" multiplier="1:1" id="ZtM-qV-LK3"/>
+                        <constraint firstItem="ioN-nP-dwj" firstAttribute="top" secondItem="mbU-TV-xkr" secondAttribute="top" id="cyt-am-QsV"/>
+                        <constraint firstAttribute="bottom" secondItem="ioN-nP-dwj" secondAttribute="bottom" id="ofI-R0-LSq"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Successfully sent" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEX-ZX-lqJ" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                    <rect key="frame" x="17" y="136" width="216" height="28.333333333333343"/>
+                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
+                    <color key="textColor" name="mimoBlack"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_verify_successful_alert"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please, check your email" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="liB-iy-fBa" userLabel="message" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                    <rect key="frame" x="17" y="164.33333333333334" width="216" height="17.666666666666657"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                    <color key="textColor" name="mimoBlackWith05alpha"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_verify_successful_alert_bottom_text"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="liB-iy-fBa" secondAttribute="bottom" constant="68" id="M47-F6-xVb"/>
+                <constraint firstItem="SEX-ZX-lqJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="R9s-B9-Sec"/>
+                <constraint firstItem="liB-iy-fBa" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Tpr-UJ-dbB"/>
+                <constraint firstItem="mbU-TV-xkr" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.456" id="VJO-XE-bbe"/>
+                <constraint firstItem="SEX-ZX-lqJ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.863" id="aZM-Te-VJY"/>
+                <constraint firstItem="mbU-TV-xkr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="79" id="cBN-72-je6"/>
+                <constraint firstItem="mbU-TV-xkr" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="cds-dW-fEe"/>
+                <constraint firstItem="SEX-ZX-lqJ" firstAttribute="top" secondItem="mbU-TV-xkr" secondAttribute="bottom" id="ia0-g8-Qyy"/>
+                <constraint firstItem="liB-iy-fBa" firstAttribute="width" secondItem="SEX-ZX-lqJ" secondAttribute="width" id="ioQ-A7-F6A"/>
+                <constraint firstItem="liB-iy-fBa" firstAttribute="top" secondItem="SEX-ZX-lqJ" secondAttribute="bottom" id="lO2-k4-O4E"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageView" destination="ioN-nP-dwj" id="AuU-bG-z78"/>
+                <outlet property="mediaView" destination="mbU-TV-xkr" id="lS3-Pp-Spr"/>
+                <outlet property="mediaViewLeftConstraint" destination="cBN-72-je6" id="GuY-2u-T87"/>
+                <outlet property="messageLabel" destination="liB-iy-fBa" id="tMk-fX-k6x"/>
+                <outlet property="titleLabel" destination="SEX-ZX-lqJ" id="3gX-JQ-tgf"/>
+            </connections>
+            <point key="canvasLocation" x="76" y="-184.72906403940888"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_POP_UP_chekmark" width="114" height="114"/>
+        <namedColor name="mimoBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoBlackWith05alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

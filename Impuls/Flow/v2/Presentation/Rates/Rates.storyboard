@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Mimo Rates View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="MimoRatesViewController" id="Y6W-OH-hqX" customClass="MimoRatesViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8kQ-GM-lcf">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <color key="backgroundColor" name="mimoWhite"/>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHy-FA-OiE">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <color key="backgroundColor" name="mimoWhite"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <navigationItem title="Mimo Rates" id="Pvn-bt-xOF">
+                                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="ReY-yf-9IF">
+                                            <color key="tintColor" name="mimoBlack"/>
+                                            <connections>
+                                                <action selector="closeAction" destination="Y6W-OH-hqX" id="ELG-kZ-LdQ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C4s-xk-sPS">
+                                <rect key="frame" x="16" y="135" width="361" height="40"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2b-bT-znz">
+                                        <rect key="frame" x="0.66666666666665719" y="0.66666666666665719" width="360" height="39"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="mimoBlackWith025alpha"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="2VQ-sX-XUb">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8c-K8-w2b" customClass="MimoToggleButton" customModule="MimoBike" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="117.66666666666667" height="40"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                                                <state key="normal" title="Scooter" image="scooter_black">
+                                                    <color key="titleColor" name="mimoBlack"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="normalBackgroundColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedBackgroundColor">
+                                                        <color key="value" name="mimoYellow500"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="mimoTypeAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="erq-dm-xX1"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDa-5k-uuz" customClass="MimoToggleButton" customModule="MimoBike" customModuleProvider="target">
+                                                <rect key="frame" x="121.66666666666666" y="0.0" width="117.66666666666666" height="40"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                                <color key="tintColor" name="mimoBlack"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                                                <state key="normal" title="Bike" image="ic_bike_package">
+                                                    <color key="titleColor" name="mimoBlack"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="normalBackgroundColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedBackgroundColor">
+                                                        <color key="value" name="mimoYellow500"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="mimoTypeAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="rMW-xT-rqD"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CcB-xP-3sL" customClass="MimoToggleButton" customModule="MimoBike" customModuleProvider="target">
+                                                <rect key="frame" x="243.33333333333329" y="0.0" width="117.66666666666666" height="40"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                                                <state key="normal" title="Charger" image="charger_black">
+                                                    <color key="titleColor" name="mimoBlack"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="normalBackgroundColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedBackgroundColor">
+                                                        <color key="value" name="mimoYellow500"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="mimoTypeAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="YzZ-sE-PjM"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="2VQ-sX-XUb" secondAttribute="bottom" id="5ct-eJ-aVE"/>
+                                    <constraint firstItem="2VQ-sX-XUb" firstAttribute="leading" secondItem="C4s-xk-sPS" secondAttribute="leading" id="CfQ-gT-UcK"/>
+                                    <constraint firstAttribute="trailing" secondItem="n2b-bT-znz" secondAttribute="trailing" constant="0.5" id="G3h-GS-CgJ"/>
+                                    <constraint firstItem="2VQ-sX-XUb" firstAttribute="top" secondItem="C4s-xk-sPS" secondAttribute="top" id="HFo-Ie-6Yk"/>
+                                    <constraint firstItem="n2b-bT-znz" firstAttribute="top" secondItem="C4s-xk-sPS" secondAttribute="top" constant="0.5" id="Set-dk-tum"/>
+                                    <constraint firstAttribute="bottom" secondItem="n2b-bT-znz" secondAttribute="bottom" constant="0.5" id="TAt-Fg-vAq"/>
+                                    <constraint firstAttribute="trailing" secondItem="2VQ-sX-XUb" secondAttribute="trailing" id="dGe-ig-q6C"/>
+                                    <constraint firstAttribute="height" constant="40" id="hQs-CL-V5J"/>
+                                    <constraint firstItem="n2b-bT-znz" firstAttribute="leading" secondItem="C4s-xk-sPS" secondAttribute="leading" constant="0.5" id="l2o-2H-i6A"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="EJV-1C-jdN">
+                                <rect key="frame" x="16" y="189" width="361" height="40"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gW3-ut-2Bt">
+                                        <rect key="frame" x="0.0" y="0.0" width="107" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSu-Aj-7RO" customClass="UILocalizedButton" customModule="MimoBike" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="107" height="40"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Tariffs">
+                                                    <color key="titleColor" name="mimoBlack"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_rates_tariffs"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="tariffPlanAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ofQ-WG-avQ"/>
+                                                </connections>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KlW-mt-GLD">
+                                                <rect key="frame" x="0.0" y="38" width="107" height="2"/>
+                                                <color key="backgroundColor" name="mimoBlack"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="2" id="CIB-GG-S87"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="JSu-Aj-7RO" secondAttribute="trailing" id="HED-3F-0fJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="JSu-Aj-7RO" secondAttribute="bottom" id="YcB-xk-p2W"/>
+                                            <constraint firstAttribute="bottom" secondItem="KlW-mt-GLD" secondAttribute="bottom" id="a7b-cQ-eJn"/>
+                                            <constraint firstItem="KlW-mt-GLD" firstAttribute="leading" secondItem="gW3-ut-2Bt" secondAttribute="leading" id="eIH-pE-HnJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="KlW-mt-GLD" secondAttribute="trailing" id="hIG-7Z-tVk"/>
+                                            <constraint firstItem="JSu-Aj-7RO" firstAttribute="leading" secondItem="gW3-ut-2Bt" secondAttribute="leading" id="kYN-0G-bCr"/>
+                                            <constraint firstItem="JSu-Aj-7RO" firstAttribute="top" secondItem="gW3-ut-2Bt" secondAttribute="top" id="rPF-oI-rhi"/>
+                                        </constraints>
+                                    </view>
+                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4r-xp-G4O">
+                                        <rect key="frame" x="127" y="0.0" width="107" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7r-yx-WUT" customClass="UILocalizedButton" customModule="MimoBike" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="107" height="40"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Plans">
+                                                    <color key="titleColor" name="mimoBlack"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_rates_plans"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="tariffPlanAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="gdV-QY-FnU"/>
+                                                </connections>
+                                            </button>
+                                            <view hidden="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Kh-DE-mAy">
+                                                <rect key="frame" x="0.0" y="38" width="107" height="2"/>
+                                                <color key="backgroundColor" name="mimoBlack"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="2" id="WV4-qt-nTI"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="5Kh-DE-mAy" secondAttribute="trailing" id="D9z-7X-Dv3"/>
+                                            <constraint firstAttribute="bottom" secondItem="f7r-yx-WUT" secondAttribute="bottom" id="Oh5-0r-OZ5"/>
+                                            <constraint firstItem="f7r-yx-WUT" firstAttribute="leading" secondItem="h4r-xp-G4O" secondAttribute="leading" id="RYR-Jm-Gq6"/>
+                                            <constraint firstItem="f7r-yx-WUT" firstAttribute="top" secondItem="h4r-xp-G4O" secondAttribute="top" id="kTC-MZ-Bju"/>
+                                            <constraint firstItem="5Kh-DE-mAy" firstAttribute="leading" secondItem="h4r-xp-G4O" secondAttribute="leading" id="otv-aN-x6w"/>
+                                            <constraint firstAttribute="trailing" secondItem="f7r-yx-WUT" secondAttribute="trailing" id="w04-CJ-S90"/>
+                                            <constraint firstAttribute="bottom" secondItem="5Kh-DE-mAy" secondAttribute="bottom" id="wAj-hx-EEP"/>
+                                        </constraints>
+                                    </view>
+                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWa-Go-Iaj">
+                                        <rect key="frame" x="254" y="0.0" width="107" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kh2-Ds-6ru" customClass="UILocalizedButton" customModule="MimoBike" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="107" height="40"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Discounts">
+                                                    <color key="titleColor" name="mimoBlack"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_rates_discounts"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="tariffPlanAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="BI4-ky-Ud7"/>
+                                                </connections>
+                                            </button>
+                                            <view hidden="YES" tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="elC-0m-sGS">
+                                                <rect key="frame" x="0.0" y="38" width="107" height="2"/>
+                                                <color key="backgroundColor" name="mimoBlack"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="2" id="YJS-Zt-4AN"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Kh2-Ds-6ru" firstAttribute="top" secondItem="dWa-Go-Iaj" secondAttribute="top" id="3FD-rC-rkE"/>
+                                            <constraint firstAttribute="bottom" secondItem="Kh2-Ds-6ru" secondAttribute="bottom" id="4dH-6L-3sA"/>
+                                            <constraint firstAttribute="trailing" secondItem="elC-0m-sGS" secondAttribute="trailing" id="4sJ-nz-FV7"/>
+                                            <constraint firstAttribute="trailing" secondItem="Kh2-Ds-6ru" secondAttribute="trailing" id="7vg-fn-Uup"/>
+                                            <constraint firstAttribute="bottom" secondItem="elC-0m-sGS" secondAttribute="bottom" id="R8B-B2-a1D"/>
+                                            <constraint firstItem="Kh2-Ds-6ru" firstAttribute="leading" secondItem="dWa-Go-Iaj" secondAttribute="leading" id="ZA1-vm-soF"/>
+                                            <constraint firstItem="elC-0m-sGS" firstAttribute="leading" secondItem="dWa-Go-Iaj" secondAttribute="leading" id="faK-dC-nTV"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="epC-tr-Qbg"/>
+                                </constraints>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gID-n8-jpg">
+                                <rect key="frame" x="0.0" y="239" width="393" height="613"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="uMk-Hh-UV1"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="r4x-pg-EUq"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" red="0.96862745100000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="C4s-xk-sPS" firstAttribute="top" secondItem="LHy-FA-OiE" secondAttribute="bottom" constant="32" id="2rX-xE-lss"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8kQ-GM-lcf" secondAttribute="trailing" id="4H6-Sp-EOq"/>
+                            <constraint firstItem="gID-n8-jpg" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="6pY-rK-bNr"/>
+                            <constraint firstItem="EJV-1C-jdN" firstAttribute="top" secondItem="C4s-xk-sPS" secondAttribute="bottom" constant="14" id="9O8-SU-ys6"/>
+                            <constraint firstItem="8kQ-GM-lcf" firstAttribute="height" secondItem="LHy-FA-OiE" secondAttribute="height" id="Br5-3a-91N"/>
+                            <constraint firstItem="LHy-FA-OiE" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="CeV-5b-QzB"/>
+                            <constraint firstAttribute="bottom" secondItem="gID-n8-jpg" secondAttribute="bottom" id="HHf-Qv-Ayo"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="EJV-1C-jdN" secondAttribute="trailing" constant="16" id="aYM-x8-Crp"/>
+                            <constraint firstItem="LHy-FA-OiE" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="bZ9-w0-Syx"/>
+                            <constraint firstItem="8kQ-GM-lcf" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="i7l-ei-rS9"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="C4s-xk-sPS" secondAttribute="trailing" constant="16" id="ltg-5I-tV3"/>
+                            <constraint firstItem="C4s-xk-sPS" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="m4b-pP-8g7"/>
+                            <constraint firstItem="8kQ-GM-lcf" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="naj-ka-dlq"/>
+                            <constraint firstItem="EJV-1C-jdN" firstAttribute="top" secondItem="8kQ-GM-lcf" secondAttribute="bottom" constant="14" id="tRg-dc-RsI"/>
+                            <constraint firstItem="gID-n8-jpg" firstAttribute="top" secondItem="EJV-1C-jdN" secondAttribute="bottom" constant="10" id="uuV-cj-cer"/>
+                            <constraint firstItem="EJV-1C-jdN" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="v8v-nW-NGx"/>
+                            <constraint firstItem="LHy-FA-OiE" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="zBu-Uk-Mja"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="gID-n8-jpg" secondAttribute="trailing" id="zQX-ox-w2d"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="tRg-dc-RsI"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="mimoTypesContainerView" destination="C4s-xk-sPS" id="8fq-io-AfA"/>
+                        <outlet property="navBar" destination="LHy-FA-OiE" id="TJX-r1-RJ3"/>
+                        <outlet property="ratesContainerView" destination="EJV-1C-jdN" id="UPu-kP-MhF"/>
+                        <outlet property="ratesStackView" destination="2VQ-sX-XUb" id="4kf-iG-NNc"/>
+                        <outlet property="tableView" destination="gID-n8-jpg" id="dBH-20-NIp"/>
+                        <outlet property="tariffsTopConstraintFromNavigationView" destination="tRg-dc-RsI" id="Uop-qk-2cl"/>
+                        <outlet property="tariffsTopConstraintFromTypesView" destination="9O8-SU-ys6" id="CHK-Hs-JEi"/>
+                        <outletCollection property="mimoTypeButtons" destination="A8c-K8-w2b" collectionClass="NSMutableArray" id="7ee-MF-WbT"/>
+                        <outletCollection property="mimoTypeButtons" destination="nDa-5k-uuz" collectionClass="NSMutableArray" id="Hpi-QL-LQC"/>
+                        <outletCollection property="mimoTypeButtons" destination="CcB-xP-3sL" collectionClass="NSMutableArray" id="P0H-f3-oRU"/>
+                        <outletCollection property="plansViews" destination="5Kh-DE-mAy" collectionClass="NSMutableArray" id="p7G-kn-cWI"/>
+                        <outletCollection property="plansViews" destination="KlW-mt-GLD" collectionClass="NSMutableArray" id="dNu-Cb-aIR"/>
+                        <outletCollection property="plansViews" destination="elC-0m-sGS" collectionClass="NSMutableArray" id="hFF-4r-vS0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139.69465648854961" y="4.9295774647887329"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="charger_black" width="14" height="21"/>
+        <image name="ic_bike_package" width="25" height="16"/>
+        <image name="scooter_black" width="24" height="24"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="mimoBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoBlackWith025alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoYellow500">
+            <color red="1" green="0.92156862745098034" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

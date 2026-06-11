@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Order Card-->
+        <scene sceneID="AQ3-0i-uyy">
+            <objects>
+                <viewController storyboardIdentifier="OrderCardViewController" id="WVg-i4-BBs" customClass="OrderCardViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WTh-BG-dak">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yww-47-jMf">
+                                <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                                <color key="tintColor" name="mimoWhite"/>
+                                <color key="barTintColor" name="mimoWhite"/>
+                                <items>
+                                    <navigationItem title="Order Card" id="PSz-iU-3Jn">
+                                        <barButtonItem key="leftBarButtonItem" id="ppb-cB-iSF">
+                                            <imageReference key="image" image="xmark" catalog="system" symbolScale="large"/>
+                                            <color key="tintColor" name="mimoDarkGray"/>
+                                            <connections>
+                                                <action selector="closeAction" destination="WVg-i4-BBs" id="emU-tg-2jp"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fDV-rx-KoZ" customClass="KeyboardScrollView" customModule="MimoBike" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="414" height="804"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xO8-yc-yvY">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="225"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HKT-Pl-c4j">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="225"/>
+                                                <imageReference key="image" image="ic_cardMimoBike_large"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="HKT-Pl-c4j" firstAttribute="leading" secondItem="xO8-yc-yvY" secondAttribute="leading" id="Epv-wq-cLU"/>
+                                            <constraint firstAttribute="trailing" secondItem="HKT-Pl-c4j" secondAttribute="trailing" id="Soq-QA-ge5"/>
+                                            <constraint firstAttribute="bottom" secondItem="HKT-Pl-c4j" secondAttribute="bottom" id="V3u-EW-Nvn"/>
+                                            <constraint firstItem="HKT-Pl-c4j" firstAttribute="top" secondItem="xO8-yc-yvY" secondAttribute="top" id="Wl8-PR-9nN"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SxR-sn-Lu6" customClass="MIPhonePicker" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="233" width="374" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" placeholder="YES" id="Kej-sg-M6l"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="text" value=""/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lrN-br-AAw" customClass="MITextFieldView" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="323" width="374" height="56"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" placeholder="YES" id="cpY-S5-8xP"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="text" value="MOBILE_registartion_email"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="APv-aN-zfJ" customClass="MITextFieldView" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="399" width="374" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" placeholder="YES" id="xib-Ul-U8U"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="text" value="MOBILE_registartion_dob"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gaM-JC-OUQ" customClass="MITextFieldView" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="489" width="374" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" placeholder="YES" id="Sc9-CF-7BV"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="text" value="MOBILE_order_address"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R6I-Ct-uF0" customClass="MITextFieldView" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="579" width="374" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" placeholder="YES" id="4E3-d0-JUL"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="text" value="MOBILE_order_social_card_number"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u2m-Ic-xtR" customClass="ImageField" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="669" width="374" height="70"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" placeholder="YES" id="57P-Fd-EyY"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="MOBILE_order_passport"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="lrN-br-AAw" firstAttribute="width" secondItem="SxR-sn-Lu6" secondAttribute="width" id="3Bg-2D-uG0"/>
+                                    <constraint firstItem="APv-aN-zfJ" firstAttribute="top" secondItem="lrN-br-AAw" secondAttribute="bottom" constant="20" id="441-WL-hP9"/>
+                                    <constraint firstItem="gaM-JC-OUQ" firstAttribute="width" secondItem="APv-aN-zfJ" secondAttribute="width" id="BMP-kf-U6f"/>
+                                    <constraint firstItem="APv-aN-zfJ" firstAttribute="centerX" secondItem="lrN-br-AAw" secondAttribute="centerX" id="DUd-4n-yod"/>
+                                    <constraint firstItem="HKT-Pl-c4j" firstAttribute="centerX" secondItem="fDV-rx-KoZ" secondAttribute="centerX" id="GVk-mM-em5"/>
+                                    <constraint firstItem="gaM-JC-OUQ" firstAttribute="top" secondItem="APv-aN-zfJ" secondAttribute="bottom" constant="20" id="JeM-w7-ACT"/>
+                                    <constraint firstItem="u2m-Ic-xtR" firstAttribute="width" secondItem="R6I-Ct-uF0" secondAttribute="width" id="Vf4-bd-Dgg"/>
+                                    <constraint firstItem="SxR-sn-Lu6" firstAttribute="centerX" secondItem="HKT-Pl-c4j" secondAttribute="centerX" id="XIR-4O-8dK"/>
+                                    <constraint firstItem="lrN-br-AAw" firstAttribute="top" secondItem="SxR-sn-Lu6" secondAttribute="bottom" constant="20" id="YCx-7F-FRx"/>
+                                    <constraint firstItem="xO8-yc-yvY" firstAttribute="top" secondItem="fDV-rx-KoZ" secondAttribute="top" id="Z1H-zU-7cn"/>
+                                    <constraint firstAttribute="trailing" secondItem="SxR-sn-Lu6" secondAttribute="trailing" constant="20" id="aUO-uc-NZX"/>
+                                    <constraint firstItem="SxR-sn-Lu6" firstAttribute="leading" secondItem="fDV-rx-KoZ" secondAttribute="leading" constant="20" id="b5h-jq-IYg"/>
+                                    <constraint firstItem="gaM-JC-OUQ" firstAttribute="centerX" secondItem="APv-aN-zfJ" secondAttribute="centerX" id="b9O-MM-gRZ"/>
+                                    <constraint firstItem="SxR-sn-Lu6" firstAttribute="top" secondItem="xO8-yc-yvY" secondAttribute="bottom" constant="8" symbolic="YES" id="cNB-og-F66"/>
+                                    <constraint firstItem="u2m-Ic-xtR" firstAttribute="centerX" secondItem="R6I-Ct-uF0" secondAttribute="centerX" id="d5S-DZ-QSf"/>
+                                    <constraint firstItem="gaM-JC-OUQ" firstAttribute="bottom" secondItem="R6I-Ct-uF0" secondAttribute="top" constant="-20" id="gHu-qS-6Ag"/>
+                                    <constraint firstAttribute="bottom" secondItem="u2m-Ic-xtR" secondAttribute="bottom" constant="80" id="gJa-39-D9w"/>
+                                    <constraint firstItem="xO8-yc-yvY" firstAttribute="leading" secondItem="fDV-rx-KoZ" secondAttribute="leading" id="hJL-Y5-vDi"/>
+                                    <constraint firstItem="APv-aN-zfJ" firstAttribute="width" secondItem="lrN-br-AAw" secondAttribute="width" id="hsH-CK-zyD"/>
+                                    <constraint firstItem="R6I-Ct-uF0" firstAttribute="centerX" secondItem="gaM-JC-OUQ" secondAttribute="centerX" id="k3Q-bI-GLF"/>
+                                    <constraint firstItem="R6I-Ct-uF0" firstAttribute="bottom" secondItem="u2m-Ic-xtR" secondAttribute="top" constant="-20" id="sKl-1F-Odg"/>
+                                    <constraint firstItem="R6I-Ct-uF0" firstAttribute="width" secondItem="gaM-JC-OUQ" secondAttribute="width" id="sL9-0h-xuZ"/>
+                                    <constraint firstItem="lrN-br-AAw" firstAttribute="centerX" secondItem="SxR-sn-Lu6" secondAttribute="centerX" id="tfd-Du-GSz"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="maTextFields" destination="lrN-br-AAw" collectionClass="NSMutableArray" id="lkl-id-xcE"/>
+                                    <outletCollection property="maTextFields" destination="gaM-JC-OUQ" collectionClass="NSMutableArray" id="QFC-RD-ZBC"/>
+                                    <outletCollection property="maTextFields" destination="R6I-Ct-uF0" collectionClass="NSMutableArray" id="mQg-C1-Y0P"/>
+                                </connections>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1f-78-Acx" customClass="ActionButton" customModule="MimoBike" customModuleProvider="target">
+                                <rect key="frame" x="20" y="790" width="374" height="52"/>
+                                <color key="backgroundColor" name="mimoYellow500"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="15" maxX="0.0" maxY="15"/>
+                                <state key="normal" title="Order">
+                                    <color key="titleColor" name="mimoBlack"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isActive" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_global_mimobike_card_order"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="orderTapped:" destination="WVg-i4-BBs" eventType="touchUpInside" id="HWl-1o-WDe"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hFK-XI-fez"/>
+                        <color key="backgroundColor" name="GrayBackground"/>
+                        <constraints>
+                            <constraint firstItem="fDV-rx-KoZ" firstAttribute="top" secondItem="Yww-47-jMf" secondAttribute="bottom" id="5Op-KG-Yga"/>
+                            <constraint firstItem="Yww-47-jMf" firstAttribute="trailing" secondItem="hFK-XI-fez" secondAttribute="trailing" id="7cv-k6-ZEV"/>
+                            <constraint firstItem="hFK-XI-fez" firstAttribute="bottom" secondItem="O1f-78-Acx" secondAttribute="bottom" constant="20" id="Eqm-KX-bi0"/>
+                            <constraint firstItem="O1f-78-Acx" firstAttribute="leading" secondItem="hFK-XI-fez" secondAttribute="leading" constant="20" id="ItA-Du-e6i"/>
+                            <constraint firstItem="hFK-XI-fez" firstAttribute="trailing" secondItem="fDV-rx-KoZ" secondAttribute="trailing" id="Y6j-Ed-nB8"/>
+                            <constraint firstAttribute="bottom" secondItem="fDV-rx-KoZ" secondAttribute="bottom" id="snI-RQ-1Tb"/>
+                            <constraint firstItem="Yww-47-jMf" firstAttribute="top" secondItem="hFK-XI-fez" secondAttribute="top" id="utF-Av-gpk"/>
+                            <constraint firstItem="fDV-rx-KoZ" firstAttribute="leading" secondItem="hFK-XI-fez" secondAttribute="leading" id="vRK-XI-nVQ"/>
+                            <constraint firstItem="hFK-XI-fez" firstAttribute="trailing" secondItem="O1f-78-Acx" secondAttribute="trailing" constant="20" id="wEQ-hD-1GV"/>
+                            <constraint firstItem="Yww-47-jMf" firstAttribute="leading" secondItem="hFK-XI-fez" secondAttribute="leading" id="yza-Vd-0qD"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Order Card" id="T1r-q1-LW8">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_wallet_order_card"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="addressTextField" destination="gaM-JC-OUQ" id="TQm-GI-wwK"/>
+                        <outlet property="dateOfBirthTextField" destination="APv-aN-zfJ" id="GoP-Do-RdW"/>
+                        <outlet property="emailPhoneNumberField" destination="lrN-br-AAw" id="PMM-Do-4Ie"/>
+                        <outlet property="imageTextField" destination="u2m-Ic-xtR" id="u7f-3l-h7w"/>
+                        <outlet property="navBar" destination="Yww-47-jMf" id="MUW-Nd-zUi"/>
+                        <outlet property="orderButton" destination="O1f-78-Acx" id="0eR-7v-M5J"/>
+                        <outlet property="phoneNumberTextField" destination="SxR-sn-Lu6" id="7p1-HU-YB4"/>
+                        <outlet property="scnTextFieldView" destination="R6I-Ct-uF0" id="625-x9-Ako"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0jj-k9-dZw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1014.4927536231885" y="112.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_cardMimoBike_large" width="332" height="225"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="GrayBackground">
+            <color red="0.97254901960784312" green="0.97647058823529409" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoDarkGray">
+            <color red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoYellow500">
+            <color red="1" green="0.92156862745098034" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

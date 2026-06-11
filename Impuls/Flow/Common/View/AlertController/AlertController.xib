@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlertController" customModule="MimoBike" customModuleProvider="target">
+            <connections>
+                <outlet property="alertImageView" destination="1Xu-In-1V3" id="Wnd-3T-7DO"/>
+                <outlet property="contentView" destination="DUB-14-uYs" id="abr-ij-zQO"/>
+                <outlet property="contentVisualEffect" destination="HxH-d7-FEE" id="p6r-rd-k1a"/>
+                <outlet property="messageLabel" destination="cH8-aT-RrM" id="alD-3R-ASr"/>
+                <outlet property="titleLabel" destination="2Xw-IX-04c" id="QLl-t4-RfP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DUB-14-uYs">
+                    <rect key="frame" x="72.5" y="344" width="269" height="222.5"/>
+                    <subviews>
+                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HxH-d7-FEE">
+                            <rect key="frame" x="0.0" y="0.0" width="269" height="222.5"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="oCy-r7-whB">
+                                <rect key="frame" x="0.0" y="0.0" width="269" height="222"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                            <blurEffect style="extraLight"/>
+                        </visualEffectView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" image="ic_alert_approve" translatesAutoresizingMaskIntoConstraints="NO" id="1Xu-In-1V3">
+                            <rect key="frame" x="85.5" y="35" width="98" height="98"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="98" id="HsJ-JE-PnW"/>
+                                <constraint firstAttribute="height" constant="98" id="O0i-S9-4Ot"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="98" id="OJ6-M4-bRu"/>
+                                <constraint firstAttribute="width" constant="98" id="v4n-2s-ukd"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Insufficient account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2Xw-IX-04c">
+                            <rect key="frame" x="20" y="145" width="229" height="28.5"/>
+                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="Please wait..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cH8-aT-RrM">
+                            <rect key="frame" x="20" y="179.5" width="229" height="18"/>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                            <color key="textColor" name="mimoBlackWith05alpha"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="HxH-d7-FEE" firstAttribute="leading" secondItem="DUB-14-uYs" secondAttribute="leading" id="N5e-y2-Nhi"/>
+                        <constraint firstAttribute="bottom" secondItem="cH8-aT-RrM" secondAttribute="bottom" constant="25" id="SZV-kp-PR0"/>
+                        <constraint firstItem="1Xu-In-1V3" firstAttribute="top" secondItem="DUB-14-uYs" secondAttribute="top" constant="35" id="Yq8-uH-7aC"/>
+                        <constraint firstItem="HxH-d7-FEE" firstAttribute="top" secondItem="DUB-14-uYs" secondAttribute="top" id="bsa-7u-H9a"/>
+                        <constraint firstItem="1Xu-In-1V3" firstAttribute="centerX" secondItem="DUB-14-uYs" secondAttribute="centerX" id="cfM-NN-Ciz"/>
+                        <constraint firstItem="2Xw-IX-04c" firstAttribute="leading" secondItem="DUB-14-uYs" secondAttribute="leading" constant="20" id="fnf-sl-oer"/>
+                        <constraint firstAttribute="trailing" secondItem="HxH-d7-FEE" secondAttribute="trailing" id="hh6-r3-BKa"/>
+                        <constraint firstAttribute="trailing" secondItem="2Xw-IX-04c" secondAttribute="trailing" constant="20" id="lMs-4k-yEU"/>
+                        <constraint firstItem="cH8-aT-RrM" firstAttribute="leading" secondItem="DUB-14-uYs" secondAttribute="leading" constant="20" id="sK6-Wv-GbW"/>
+                        <constraint firstAttribute="trailing" secondItem="cH8-aT-RrM" secondAttribute="trailing" constant="20" id="vib-Ip-j8I"/>
+                        <constraint firstItem="2Xw-IX-04c" firstAttribute="top" secondItem="1Xu-In-1V3" secondAttribute="bottom" constant="12" id="xc5-vE-G05"/>
+                        <constraint firstAttribute="bottom" secondItem="HxH-d7-FEE" secondAttribute="bottom" id="yNg-Px-z6Z"/>
+                        <constraint firstItem="cH8-aT-RrM" firstAttribute="top" secondItem="2Xw-IX-04c" secondAttribute="bottom" constant="6" id="zNk-7t-90U"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="30"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="30"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="DUB-14-uYs" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="14g-mH-Y5k"/>
+                <constraint firstItem="DUB-14-uYs" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="gsJ-Av-gFN"/>
+                <constraint firstItem="DUB-14-uYs" firstAttribute="width" secondItem="vUN-kp-3ea" secondAttribute="width" multiplier="0.65" id="kbi-CD-RPt"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="109.82142857142857"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_alert_approve" width="134" height="134"/>
+        <namedColor name="mimoBlackWith05alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Verify Email View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="VerifyEmailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="VerifyEmailViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mew-mA-Ls0">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please verify your email" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qig-VN-NuD" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="80.5" y="56" width="253" height="28"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="24"/>
+                                        <color key="textColor" name="mimoBlackWith075alpha"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_verify_please"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You’re almost there! We sent an email to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ijm-qj-d4x" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="54" y="132" width="306" height="18"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                        <color key="textColor" name="mimoBlackWith05alpha"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lusine.khorasanjyan@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qj1-fL-lE0">
+                                        <rect key="frame" x="20" y="150" width="374" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Just click on the link in that email to complete your email. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uoD-uF-PVL" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="30" y="194" width="354" height="37.5"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                        <color key="textColor" name="mimoBlackWith05alpha"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_verify_click_the_link"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OK8-IM-3TO" customClass="ActionButton" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="256.5" width="374" height="49"/>
+                                        <color key="backgroundColor" name="mimoYellow500"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="15" maxX="0.0" maxY="15"/>
+                                        <state key="normal" title="Resend Email">
+                                            <color key="titleColor" name="mimoBlack"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isActive" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_verify_resend_button"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="verifyTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="aAV-J1-SRN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gxG-jP-2GU" customClass="UILocalizedButton" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="136.5" y="325.5" width="141" height="32"/>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Edit Email Address">
+                                                    <attributes>
+                                                        <color key="NSBackgroundColor" red="0.90980392156862744" green="0.93725490196078431" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" metaFont="system" size="17"/>
+                                                        <integer key="NSUnderline" value="1"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_verify_edit_address"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="editEmailTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="LJN-hF-N6V"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.90980392156862744" green="0.93725490196078431" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="uoD-uF-PVL" secondAttribute="trailing" constant="30" id="0hs-8t-pZ7"/>
+                                    <constraint firstItem="Qj1-fL-lE0" firstAttribute="top" secondItem="Ijm-qj-d4x" secondAttribute="bottom" id="1aB-W7-BXx"/>
+                                    <constraint firstItem="OK8-IM-3TO" firstAttribute="leading" secondItem="mew-mA-Ls0" secondAttribute="leading" constant="20" id="6HH-ZC-irn"/>
+                                    <constraint firstItem="Qj1-fL-lE0" firstAttribute="leading" secondItem="mew-mA-Ls0" secondAttribute="leading" constant="20" id="7SV-h2-u7K"/>
+                                    <constraint firstItem="gxG-jP-2GU" firstAttribute="centerX" secondItem="OK8-IM-3TO" secondAttribute="centerX" id="Dne-QD-oZg"/>
+                                    <constraint firstAttribute="trailing" secondItem="OK8-IM-3TO" secondAttribute="trailing" constant="20" id="P5k-e7-hZN"/>
+                                    <constraint firstItem="gxG-jP-2GU" firstAttribute="top" secondItem="OK8-IM-3TO" secondAttribute="bottom" constant="20" id="Ri9-QJ-JZf"/>
+                                    <constraint firstItem="Ijm-qj-d4x" firstAttribute="centerX" secondItem="Qig-VN-NuD" secondAttribute="centerX" id="WG3-Dl-k5r"/>
+                                    <constraint firstAttribute="trailing" secondItem="Qj1-fL-lE0" secondAttribute="trailing" constant="20" id="WLA-ne-9ls"/>
+                                    <constraint firstItem="uoD-uF-PVL" firstAttribute="leading" secondItem="mew-mA-Ls0" secondAttribute="leading" constant="30" id="XUU-Bl-81m"/>
+                                    <constraint firstItem="Qj1-fL-lE0" firstAttribute="centerX" secondItem="Ijm-qj-d4x" secondAttribute="centerX" id="YAN-2C-4G2"/>
+                                    <constraint firstItem="OK8-IM-3TO" firstAttribute="top" secondItem="uoD-uF-PVL" secondAttribute="bottom" constant="25" id="ao8-if-wWD"/>
+                                    <constraint firstItem="Ijm-qj-d4x" firstAttribute="width" secondItem="mew-mA-Ls0" secondAttribute="width" multiplier="0.73913" id="cTO-1T-nyL"/>
+                                    <constraint firstItem="Ijm-qj-d4x" firstAttribute="top" secondItem="Qig-VN-NuD" secondAttribute="bottom" constant="48" id="hAX-vJ-8bu"/>
+                                    <constraint firstItem="Qig-VN-NuD" firstAttribute="centerX" secondItem="mew-mA-Ls0" secondAttribute="centerX" id="hUu-ca-2z8"/>
+                                    <constraint firstItem="uoD-uF-PVL" firstAttribute="centerX" secondItem="Qj1-fL-lE0" secondAttribute="centerX" id="hY5-Xc-UA8"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Qig-VN-NuD" secondAttribute="trailing" constant="15" id="hbM-dR-qDM"/>
+                                    <constraint firstItem="Qig-VN-NuD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mew-mA-Ls0" secondAttribute="leading" constant="15" id="kzX-fk-WdU"/>
+                                    <constraint firstItem="Qig-VN-NuD" firstAttribute="top" secondItem="mew-mA-Ls0" secondAttribute="top" constant="56" id="x11-BH-gYx"/>
+                                    <constraint firstItem="uoD-uF-PVL" firstAttribute="top" secondItem="Qj1-fL-lE0" secondAttribute="bottom" constant="23" id="z1z-fH-suX"/>
+                                    <constraint firstItem="OK8-IM-3TO" firstAttribute="centerX" secondItem="uoD-uF-PVL" secondAttribute="centerX" id="zXX-8p-qjY"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mew-mA-Ls0" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="9dU-qV-L7K"/>
+                            <constraint firstItem="mew-mA-Ls0" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="LSv-1E-L8O"/>
+                            <constraint firstAttribute="bottom" secondItem="mew-mA-Ls0" secondAttribute="bottom" id="mXa-Xl-5NE"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="mew-mA-Ls0" secondAttribute="trailing" id="tNW-Ng-94v"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="HN5-aW-w8F">
+                        <barButtonItem key="backBarButtonItem" title=" " id="f3d-4a-ekB"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="almostThereLabel" destination="Ijm-qj-d4x" id="ltn-gu-5eF"/>
+                        <outlet property="emailLabel" destination="Qj1-fL-lE0" id="3d6-DF-Kbk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="94.419642857142847"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="elI-kj-EHf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cMJ-1T-JbP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ER2-5R-02P">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="x5U-JV-Ami"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cd9-pI-Lyz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="303" y="94"/>
+        </scene>
+        <!--Edit Email Address-->
+        <scene sceneID="tCX-5U-0bv">
+            <objects>
+                <viewController storyboardIdentifier="EditEmailAdressViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DxU-J0-rpX" customClass="EditEmailAdressViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3XA-Ms-tRE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XYh-aM-PbN">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please edit your email address or add a new one, then need to verify it again." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ulb-PF-SEX" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="19" y="10" width="376" height="35"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                        <color key="textColor" name="mimoBlackWith05alpha"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_verify_email_command"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tuj-s1-se0" customClass="MITextFieldView" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="19" y="64.5" width="376" height="56"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" placeholder="YES" id="CgS-FX-dDy"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="text" value="MOBILE_registartion_email"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCr-89-cFu" customClass="ActionButton" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="769" width="374" height="49"/>
+                                        <color key="backgroundColor" name="mimoYellow500"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="15" maxX="0.0" maxY="15"/>
+                                        <state key="normal" title="Verify Email">
+                                            <color key="titleColor" name="mimoBlack"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isActive" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_global_verify_email_button"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="verifyEmailTapped:" destination="DxU-J0-rpX" eventType="touchUpInside" id="OJQ-YX-jfF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.90980392160000001" green="0.93725490199999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Ulb-PF-SEX" secondAttribute="trailing" constant="19" id="2gI-Ce-YnU"/>
+                                    <constraint firstItem="Tuj-s1-se0" firstAttribute="leading" secondItem="Ulb-PF-SEX" secondAttribute="leading" id="7EN-pM-LO8"/>
+                                    <constraint firstItem="Ulb-PF-SEX" firstAttribute="centerX" secondItem="XYh-aM-PbN" secondAttribute="centerX" id="Lx6-v6-aTe"/>
+                                    <constraint firstItem="Tuj-s1-se0" firstAttribute="trailing" secondItem="Ulb-PF-SEX" secondAttribute="trailing" id="Pis-Hy-VwX"/>
+                                    <constraint firstItem="Ulb-PF-SEX" firstAttribute="leading" secondItem="XYh-aM-PbN" secondAttribute="leading" constant="19" id="W8P-at-J2u"/>
+                                    <constraint firstAttribute="trailing" secondItem="hCr-89-cFu" secondAttribute="trailing" constant="20" id="gfA-fx-N8Y"/>
+                                    <constraint firstItem="Ulb-PF-SEX" firstAttribute="top" secondItem="XYh-aM-PbN" secondAttribute="top" constant="10" id="mmA-sl-a52"/>
+                                    <constraint firstItem="hCr-89-cFu" firstAttribute="leading" secondItem="XYh-aM-PbN" secondAttribute="leading" constant="20" id="vSG-jt-0Wc"/>
+                                    <constraint firstItem="Tuj-s1-se0" firstAttribute="top" secondItem="Ulb-PF-SEX" secondAttribute="bottom" constant="19.5" id="zBy-JA-oka"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="WWv-pK-rDs" appends="YES" id="osE-S9-vw3"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="VL7-Sf-p1p"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="XYh-aM-PbN" secondAttribute="bottom" id="7Y0-Ly-NVM"/>
+                            <constraint firstItem="XYh-aM-PbN" firstAttribute="leading" secondItem="VL7-Sf-p1p" secondAttribute="leading" id="C3m-5h-kMe"/>
+                            <constraint firstItem="VL7-Sf-p1p" firstAttribute="trailing" secondItem="XYh-aM-PbN" secondAttribute="trailing" id="ThG-CC-uBm"/>
+                            <constraint firstItem="XYh-aM-PbN" firstAttribute="top" secondItem="VL7-Sf-p1p" secondAttribute="top" id="ocI-F8-bSU"/>
+                            <constraint firstItem="VL7-Sf-p1p" firstAttribute="bottom" secondItem="hCr-89-cFu" secondAttribute="bottom" id="yKa-DO-LSf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Email Address" id="aJm-D7-Ixg">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_verify_edit_address"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="buttonBottomConstraint" destination="yKa-DO-LSf" id="NvL-Tx-6QB"/>
+                        <outlet property="emailTextField" destination="Tuj-s1-se0" id="zYQ-fH-4pd"/>
+                        <outlet property="verifyButton" destination="hCr-89-cFu" id="A1g-AF-bNV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jCG-P1-iw8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="WWv-pK-rDs">
+                    <connections>
+                        <action selector="tappInView" destination="DxU-J0-rpX" id="dPR-8l-A58"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1788" y="94"/>
+        </scene>
+        <!--Code Email View Controller-->
+        <scene sceneID="nso-6O-Q4H">
+            <objects>
+                <viewController storyboardIdentifier="CodeEmailViewController" id="vuk-lC-fr6" customClass="CodeEmailViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ULL-7K-EsJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gyH-mc-vfR" userLabel="labelView">
+                                <rect key="frame" x="20" y="66" width="374" height="31"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_back" translatesAutoresizingMaskIntoConstraints="NO" id="ogz-u1-leR">
+                                        <rect key="frame" x="0.0" y="4" width="13" height="23"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ogz-u1-leR" secondAttribute="height" multiplier="4:7" id="hKO-dU-kNY"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verify number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFo-mL-MeW" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="113" y="0.0" width="148" height="31"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="24"/>
+                                        <color key="textColor" name="mimoBlackWith075alpha"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_sign_in_verification_of_number"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ogz-u1-leR" firstAttribute="leading" secondItem="gyH-mc-vfR" secondAttribute="leading" id="4x5-de-a4i"/>
+                                    <constraint firstAttribute="bottom" secondItem="lFo-mL-MeW" secondAttribute="bottom" id="ERl-HW-0gO"/>
+                                    <constraint firstItem="ogz-u1-leR" firstAttribute="width" secondItem="gyH-mc-vfR" secondAttribute="width" multiplier="0.0353982" id="G62-F5-BT0"/>
+                                    <constraint firstItem="lFo-mL-MeW" firstAttribute="centerX" secondItem="gyH-mc-vfR" secondAttribute="centerX" id="dah-If-eDJ"/>
+                                    <constraint firstItem="ogz-u1-leR" firstAttribute="centerY" secondItem="gyH-mc-vfR" secondAttribute="centerY" id="gLp-Bm-ccD"/>
+                                    <constraint firstItem="lFo-mL-MeW" firstAttribute="top" secondItem="gyH-mc-vfR" secondAttribute="top" id="vph-fK-Jcw"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muP-h3-cM4">
+                                <rect key="frame" x="6.5" y="58.5" width="40" height="46"/>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="vuk-lC-fr6" eventType="touchUpInside" id="NIm-gy-j9Z"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Code is sent to email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQt-lb-vhm">
+                                <rect key="frame" x="127" y="142.5" width="160.5" height="20"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                <color key="textColor" name="mimoBlackWith025alpha"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5U5-lf-jAs" userLabel="buttonsView">
+                                <rect key="frame" x="22" y="762" width="370" height="97"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SbP-SV-aDE">
+                                        <rect key="frame" x="0.0" y="0.0" width="370" height="20"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Didn’t recieve the code?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="UXC-Cs-cfO" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="196.5" height="20"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                                <color key="textColor" name="mimoBlackWith025alpha"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_sign_in_didn't_get_the_code"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request again" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="KsP-zn-Dnh" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                                <rect key="frame" x="260.5" y="0.0" width="109.5" height="20"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                                <color key="textColor" name="mimoBlack"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_sign_in_request_again"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="KsP-zn-Dnh" secondAttribute="trailing" id="WYX-Yl-Xgk"/>
+                                            <constraint firstItem="UXC-Cs-cfO" firstAttribute="top" secondItem="SbP-SV-aDE" secondAttribute="top" id="Y9l-ne-dGp"/>
+                                            <constraint firstItem="KsP-zn-Dnh" firstAttribute="top" secondItem="SbP-SV-aDE" secondAttribute="top" id="esH-k5-wO5"/>
+                                            <constraint firstItem="UXC-Cs-cfO" firstAttribute="leading" secondItem="SbP-SV-aDE" secondAttribute="leading" id="kBB-bR-JHA"/>
+                                            <constraint firstItem="UXC-Cs-cfO" firstAttribute="width" secondItem="SbP-SV-aDE" secondAttribute="width" multiplier="0.531343" id="leg-U4-2w4"/>
+                                            <constraint firstAttribute="bottom" secondItem="UXC-Cs-cfO" secondAttribute="bottom" id="rK4-ac-c27"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uue-1K-iwq" userLabel="verifyContentView">
+                                        <rect key="frame" x="0.0" y="44" width="370" height="53"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verify" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="l1N-y6-6Pe" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                                <rect key="frame" x="166.5" y="17.5" width="37" height="18"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
+                                                <color key="textColor" name="mimoBlack"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_sign_in_code_verification"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VfP-rh-ymU">
+                                                <rect key="frame" x="0.0" y="0.0" width="370" height="53"/>
+                                                <connections>
+                                                    <action selector="verifyTapped:" destination="vuk-lC-fr6" eventType="touchUpInside" id="NZU-NF-sHR"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" name="mimoBlackWith01alpha"/>
+                                        <constraints>
+                                            <constraint firstItem="VfP-rh-ymU" firstAttribute="top" secondItem="uue-1K-iwq" secondAttribute="top" id="6OO-1O-p6k"/>
+                                            <constraint firstItem="VfP-rh-ymU" firstAttribute="leading" secondItem="uue-1K-iwq" secondAttribute="leading" id="8Tf-aF-1Op"/>
+                                            <constraint firstAttribute="trailing" secondItem="VfP-rh-ymU" secondAttribute="trailing" id="dPC-Hk-30i"/>
+                                            <constraint firstItem="l1N-y6-6Pe" firstAttribute="centerX" secondItem="uue-1K-iwq" secondAttribute="centerX" id="vZX-LM-LM6"/>
+                                            <constraint firstAttribute="bottom" secondItem="VfP-rh-ymU" secondAttribute="bottom" id="zEW-Ed-WCX"/>
+                                            <constraint firstItem="l1N-y6-6Pe" firstAttribute="centerY" secondItem="uue-1K-iwq" secondAttribute="centerY" id="zn2-1d-UBh"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" name="mimoGray100"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="SbP-SV-aDE" secondAttribute="trailing" id="4Eq-Ts-Ud9"/>
+                                    <constraint firstItem="SbP-SV-aDE" firstAttribute="top" secondItem="5U5-lf-jAs" secondAttribute="top" id="8yX-RA-r9c"/>
+                                    <constraint firstItem="uue-1K-iwq" firstAttribute="leading" secondItem="5U5-lf-jAs" secondAttribute="leading" id="ETq-kW-unO"/>
+                                    <constraint firstItem="SbP-SV-aDE" firstAttribute="leading" secondItem="5U5-lf-jAs" secondAttribute="leading" id="G2Y-th-3td"/>
+                                    <constraint firstAttribute="trailing" secondItem="uue-1K-iwq" secondAttribute="trailing" id="snM-fc-1ia"/>
+                                    <constraint firstItem="uue-1K-iwq" firstAttribute="height" secondItem="5U5-lf-jAs" secondAttribute="height" multiplier="0.545455" id="udq-5E-hAe"/>
+                                    <constraint firstAttribute="bottom" secondItem="uue-1K-iwq" secondAttribute="bottom" id="vda-5q-qHO"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pja-f4-A3S">
+                                <rect key="frame" x="282.5" y="756" width="109.5" height="32"/>
+                                <connections>
+                                    <action selector="requestCodeAgainTapped:" destination="vuk-lC-fr6" eventType="touchUpInside" id="oWm-6Y-le2"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TdL-9T-O40" customClass="MimoOneTimeCodeTextField" customModule="MimoBike" customModuleProvider="target">
+                                <rect key="frame" x="22" y="256" width="370" height="69.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nhc-na-Zse" userLabel="spaceView">
+                                <rect key="frame" x="0.0" y="325.5" width="414" height="14.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" You will receive the SMS in 0:59" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QF1-vR-I5w">
+                                <rect key="frame" x="83.5" y="340" width="247" height="39.5"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                <color key="textColor" name="mimoBlackWith05alpha"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="yii-wS-iet"/>
+                        <color key="backgroundColor" red="0.90980392156862744" green="0.93725490196078431" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="muP-h3-cM4" firstAttribute="centerY" secondItem="ogz-u1-leR" secondAttribute="centerY" id="4WB-zn-L6d"/>
+                            <constraint firstItem="5U5-lf-jAs" firstAttribute="centerX" secondItem="ULL-7K-EsJ" secondAttribute="centerX" id="6Dr-OQ-tW5"/>
+                            <constraint firstItem="muP-h3-cM4" firstAttribute="height" secondItem="ogz-u1-leR" secondAttribute="height" multiplier="2" id="7VA-Bi-Ln9"/>
+                            <constraint firstItem="nhc-na-Zse" firstAttribute="leading" secondItem="yii-wS-iet" secondAttribute="leading" id="Bwf-6n-YP2"/>
+                            <constraint firstItem="QF1-vR-I5w" firstAttribute="height" secondItem="ULL-7K-EsJ" secondAttribute="height" multiplier="0.044335" id="DuY-Fm-sQU"/>
+                            <constraint firstItem="pja-f4-A3S" firstAttribute="width" secondItem="KsP-zn-Dnh" secondAttribute="width" id="E2J-41-wg1"/>
+                            <constraint firstItem="5U5-lf-jAs" firstAttribute="width" secondItem="ULL-7K-EsJ" secondAttribute="width" multiplier="0.893333" id="FRy-BK-9vC"/>
+                            <constraint firstItem="TdL-9T-O40" firstAttribute="centerX" secondItem="ULL-7K-EsJ" secondAttribute="centerX" id="Ftk-Fc-fKA"/>
+                            <constraint firstItem="gyH-mc-vfR" firstAttribute="height" secondItem="ULL-7K-EsJ" secondAttribute="height" multiplier="0.0344828" id="GR3-dx-5CP"/>
+                            <constraint firstItem="TdL-9T-O40" firstAttribute="centerY" secondItem="ULL-7K-EsJ" secondAttribute="centerY" multiplier="0.649" id="Hz2-Yo-5F7"/>
+                            <constraint firstItem="yii-wS-iet" firstAttribute="trailing" secondItem="nhc-na-Zse" secondAttribute="trailing" id="S5z-O8-hHw"/>
+                            <constraint firstItem="gyH-mc-vfR" firstAttribute="centerY" secondItem="ULL-7K-EsJ" secondAttribute="centerY" multiplier="0.182" id="UlZ-3S-sv5"/>
+                            <constraint firstItem="nhc-na-Zse" firstAttribute="height" secondItem="ULL-7K-EsJ" secondAttribute="height" multiplier="0.0160099" id="Uob-11-R2Y"/>
+                            <constraint firstItem="gyH-mc-vfR" firstAttribute="centerX" secondItem="ULL-7K-EsJ" secondAttribute="centerX" id="V9d-VA-IYM"/>
+                            <constraint firstItem="QF1-vR-I5w" firstAttribute="centerX" secondItem="ULL-7K-EsJ" secondAttribute="centerX" id="VKo-7D-qJH"/>
+                            <constraint firstItem="TdL-9T-O40" firstAttribute="height" secondItem="ULL-7K-EsJ" secondAttribute="height" multiplier="0.0775862" id="VNR-8U-1Vf"/>
+                            <constraint firstItem="pja-f4-A3S" firstAttribute="centerY" secondItem="KsP-zn-Dnh" secondAttribute="centerY" id="VSi-Km-y2K"/>
+                            <constraint firstItem="muP-h3-cM4" firstAttribute="centerX" secondItem="ogz-u1-leR" secondAttribute="centerX" id="XiJ-6C-ZLT"/>
+                            <constraint firstItem="QQt-lb-vhm" firstAttribute="centerX" secondItem="ULL-7K-EsJ" secondAttribute="centerX" id="YEv-yE-vZo"/>
+                            <constraint firstItem="pja-f4-A3S" firstAttribute="centerX" secondItem="KsP-zn-Dnh" secondAttribute="centerX" id="cgL-af-ph2"/>
+                            <constraint firstItem="pja-f4-A3S" firstAttribute="height" secondItem="KsP-zn-Dnh" secondAttribute="height" multiplier="1.6" id="fBf-d5-8x1"/>
+                            <constraint firstItem="QQt-lb-vhm" firstAttribute="centerY" secondItem="ULL-7K-EsJ" secondAttribute="centerY" multiplier="0.34" id="fzM-6q-EwO"/>
+                            <constraint firstItem="5U5-lf-jAs" firstAttribute="height" secondItem="ULL-7K-EsJ" secondAttribute="height" multiplier="0.108374" id="ik7-E3-wwb"/>
+                            <constraint firstItem="TdL-9T-O40" firstAttribute="width" secondItem="ULL-7K-EsJ" secondAttribute="width" multiplier="0.893333" id="l6K-ZI-E4e"/>
+                            <constraint firstItem="gyH-mc-vfR" firstAttribute="width" secondItem="ULL-7K-EsJ" secondAttribute="width" multiplier="0.904" id="oLg-n7-SB7"/>
+                            <constraint firstItem="muP-h3-cM4" firstAttribute="width" secondItem="ogz-u1-leR" secondAttribute="width" multiplier="3" id="s1U-3o-ZUs"/>
+                            <constraint firstItem="QF1-vR-I5w" firstAttribute="top" secondItem="nhc-na-Zse" secondAttribute="bottom" id="toi-Pk-q01"/>
+                            <constraint firstItem="nhc-na-Zse" firstAttribute="top" secondItem="TdL-9T-O40" secondAttribute="bottom" id="uX9-XG-0rg"/>
+                            <constraint firstAttribute="bottom" secondItem="5U5-lf-jAs" secondAttribute="bottom" constant="37" id="yej-DF-5Lm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Mig-XM-3MO"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="bottomContentViewBottomConstraint" destination="yej-DF-5Lm" id="xfs-6f-hPp"/>
+                        <outlet property="codeTextField" destination="TdL-9T-O40" id="rBb-rd-hjJ"/>
+                        <outlet property="requestAgainCodeButton" destination="pja-f4-A3S" id="RSU-6N-5Ie"/>
+                        <outlet property="requestAgainContentView" destination="SbP-SV-aDE" id="xXW-hE-7zM"/>
+                        <outlet property="requestAgainLabel" destination="KsP-zn-Dnh" id="L7l-zT-yzd"/>
+                        <outlet property="timerLabel" destination="QF1-vR-I5w" id="eFk-CK-E1S"/>
+                        <outlet property="userPhoneNumberLabel" destination="QQt-lb-vhm" id="fpV-OZ-dcZ"/>
+                        <outlet property="verifyButtonContentView" destination="uue-1K-iwq" id="2SX-xK-NtW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ru2-vf-gJY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2552" y="94"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_back" width="12" height="21"/>
+        <namedColor name="mimoBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoBlackWith01alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.10000000149011612" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoBlackWith025alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoBlackWith05alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoBlackWith075alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoGray100">
+            <color red="0.90980392156862744" green="0.93725490196078431" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoYellow500">
+            <color red="1" green="0.92156862745098034" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

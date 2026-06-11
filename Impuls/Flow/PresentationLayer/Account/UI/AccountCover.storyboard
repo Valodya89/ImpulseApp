@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Setting Navigation View Controller-->
+        <scene sceneID="7Vw-6i-mgr">
+            <objects>
+                <navigationController storyboardIdentifier="SettingNavigationViewController" id="cTA-QT-it5" customClass="SettingNavigationViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ItT-6Z-Md8"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hn9-FV-UGs">
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="chf-DN-ue0" kind="relationship" relationship="rootViewController" id="0Og-oq-erZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="58L-FU-PSr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="734" y="-559"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="uxk-pp-zDa">
+            <objects>
+                <viewController storyboardIdentifier="SettingsViewController" id="chf-DN-ue0" customClass="SettingsViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9VA-JO-NuZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0dS-2e-ZSR">
+                                <rect key="frame" x="0.0" y="122" width="414" height="453"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uEm-2y-Tah">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="207"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_settingPage" translatesAutoresizingMaskIntoConstraints="NO" id="ngH-Nd-X1m">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="207"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="ngH-Nd-X1m" secondAttribute="height" multiplier="2" id="Dzh-8y-0M6"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="ngH-Nd-X1m" firstAttribute="leading" secondItem="uEm-2y-Tah" secondAttribute="leading" id="GCa-fQ-FeL"/>
+                                            <constraint firstItem="ngH-Nd-X1m" firstAttribute="top" secondItem="uEm-2y-Tah" secondAttribute="top" id="Ubb-or-udP"/>
+                                            <constraint firstAttribute="trailing" secondItem="ngH-Nd-X1m" secondAttribute="trailing" id="eYJ-UG-N1I"/>
+                                            <constraint firstAttribute="bottom" secondItem="ngH-Nd-X1m" secondAttribute="bottom" id="hTu-rs-2S3"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qod-bq-6II">
+                                        <rect key="frame" x="0.0" y="227" width="414" height="44"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4P-ci-eJ7">
+                                                <rect key="frame" x="10" y="0.0" width="394" height="44"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Internet" translatesAutoresizingMaskIntoConstraints="NO" id="opp-rT-7RA">
+                                                        <rect key="frame" x="15" y="10" width="24" height="24"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="opp-rT-7RA" secondAttribute="height" id="Oe9-SH-4vG"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Languages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31I-2o-Hgb" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                                        <rect key="frame" x="49" y="12" width="83.5" height="20"/>
+                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_global_languages"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="ic_arrow_right_bold" translatesAutoresizingMaskIntoConstraints="NO" id="2nM-dx-8qI">
+                                                        <rect key="frame" x="365" y="15" width="14" height="14"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="2nM-dx-8qI" secondAttribute="height" id="lgG-uk-jLX"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lm4-AI-nGb">
+                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="44"/>
+                                                        <connections>
+                                                            <action selector="settinTapped:" destination="chf-DN-ue0" eventType="touchUpInside" id="mWL-dv-So2"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" name="mimoWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="lm4-AI-nGb" firstAttribute="top" secondItem="U4P-ci-eJ7" secondAttribute="top" id="5cZ-IA-VkR"/>
+                                                    <constraint firstItem="opp-rT-7RA" firstAttribute="centerY" secondItem="U4P-ci-eJ7" secondAttribute="centerY" id="7Zz-Xc-goR"/>
+                                                    <constraint firstItem="opp-rT-7RA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="U4P-ci-eJ7" secondAttribute="top" id="88X-aK-yDW"/>
+                                                    <constraint firstItem="opp-rT-7RA" firstAttribute="leading" secondItem="U4P-ci-eJ7" secondAttribute="leading" constant="15" id="9lg-Lu-hRe"/>
+                                                    <constraint firstItem="lm4-AI-nGb" firstAttribute="leading" secondItem="U4P-ci-eJ7" secondAttribute="leading" id="Czs-eB-aI6"/>
+                                                    <constraint firstAttribute="bottom" secondItem="2nM-dx-8qI" secondAttribute="bottom" constant="15" id="HdV-4O-gjr"/>
+                                                    <constraint firstItem="31I-2o-Hgb" firstAttribute="centerY" secondItem="U4P-ci-eJ7" secondAttribute="centerY" id="Hpy-Z7-v9z"/>
+                                                    <constraint firstAttribute="trailing" secondItem="2nM-dx-8qI" secondAttribute="trailing" constant="15" id="JOg-Jg-h6t"/>
+                                                    <constraint firstItem="31I-2o-Hgb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="U4P-ci-eJ7" secondAttribute="top" id="Mtw-kP-Iw3"/>
+                                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="opp-rT-7RA" secondAttribute="bottom" id="ORB-be-ebm"/>
+                                                    <constraint firstAttribute="trailing" secondItem="lm4-AI-nGb" secondAttribute="trailing" id="Qsg-3W-Gh5"/>
+                                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="31I-2o-Hgb" secondAttribute="bottom" id="Soh-k6-4bK"/>
+                                                    <constraint firstAttribute="bottom" secondItem="lm4-AI-nGb" secondAttribute="bottom" id="clr-Bo-xeJ"/>
+                                                    <constraint firstItem="2nM-dx-8qI" firstAttribute="top" secondItem="U4P-ci-eJ7" secondAttribute="top" constant="15" id="fHe-j0-ilH"/>
+                                                    <constraint firstItem="31I-2o-Hgb" firstAttribute="leading" secondItem="opp-rT-7RA" secondAttribute="trailing" constant="10" id="znO-TK-jCX"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="U4P-ci-eJ7" firstAttribute="top" secondItem="qod-bq-6II" secondAttribute="top" id="CD4-7T-m2W"/>
+                                            <constraint firstAttribute="trailing" secondItem="U4P-ci-eJ7" secondAttribute="trailing" constant="10" id="a4j-f3-uee"/>
+                                            <constraint firstItem="U4P-ci-eJ7" firstAttribute="leading" secondItem="qod-bq-6II" secondAttribute="leading" constant="10" id="hXp-iu-hDH"/>
+                                            <constraint firstAttribute="bottom" secondItem="U4P-ci-eJ7" secondAttribute="bottom" id="uso-ZY-RNq"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gAj-29-pZo">
+                                        <rect key="frame" x="0.0" y="291" width="414" height="162"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7sH-jI-qGO">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Preferences" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eM-53-Uix" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                                        <rect key="frame" x="10" y="0.0" width="404" height="20"/>
+                                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                                        <color key="textColor" name="mimoGray500"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_settings_preferences"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="2eM-53-Uix" firstAttribute="leading" secondItem="7sH-jI-qGO" secondAttribute="leading" constant="10" id="HKy-Ds-HQU"/>
+                                                    <constraint firstAttribute="bottom" secondItem="2eM-53-Uix" secondAttribute="bottom" id="U3d-o9-g6W"/>
+                                                    <constraint firstAttribute="trailing" secondItem="2eM-53-Uix" secondAttribute="trailing" id="edX-v2-Xn3"/>
+                                                    <constraint firstItem="2eM-53-Uix" firstAttribute="top" secondItem="7sH-jI-qGO" secondAttribute="top" id="gLu-7g-4wt"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYa-jt-j9L">
+                                                <rect key="frame" x="0.0" y="30" width="414" height="61"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4yL-er-z6q">
+                                                        <rect key="frame" x="10" y="0.0" width="394" height="61"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Push notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuG-6R-62o" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                                                <rect key="frame" x="15" y="20.5" width="136.5" height="20"/>
+                                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_settings_push_notifications"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M9k-0Q-XCd">
+                                                                <rect key="frame" x="330" y="15" width="51" height="31"/>
+                                                                <connections>
+                                                                    <action selector="switchTapped:" destination="chf-DN-ue0" eventType="valueChanged" id="uDm-lc-zmD"/>
+                                                                </connections>
+                                                            </switch>
+                                                        </subviews>
+                                                        <color key="backgroundColor" name="mimoWhite"/>
+                                                        <constraints>
+                                                            <constraint firstItem="iuG-6R-62o" firstAttribute="leading" secondItem="4yL-er-z6q" secondAttribute="leading" constant="15" id="8vF-hM-GFv"/>
+                                                            <constraint firstItem="M9k-0Q-XCd" firstAttribute="centerY" secondItem="iuG-6R-62o" secondAttribute="centerY" id="WzD-1S-f5y"/>
+                                                            <constraint firstItem="M9k-0Q-XCd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iuG-6R-62o" secondAttribute="trailing" constant="10" id="XL9-cl-tOF"/>
+                                                            <constraint firstItem="M9k-0Q-XCd" firstAttribute="top" secondItem="4yL-er-z6q" secondAttribute="top" constant="15" id="cDZ-0Q-fl4"/>
+                                                            <constraint firstAttribute="bottom" secondItem="M9k-0Q-XCd" secondAttribute="bottom" constant="15" id="cmq-xH-PvD"/>
+                                                            <constraint firstItem="iuG-6R-62o" firstAttribute="centerY" secondItem="4yL-er-z6q" secondAttribute="centerY" id="foG-Ja-Y5l"/>
+                                                            <constraint firstItem="iuG-6R-62o" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4yL-er-z6q" secondAttribute="top" id="kvy-Cu-Sqf"/>
+                                                            <constraint firstAttribute="trailing" secondItem="M9k-0Q-XCd" secondAttribute="trailing" constant="15" id="mSh-cj-ctL"/>
+                                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="iuG-6R-62o" secondAttribute="bottom" id="yys-kW-5gm"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="4yL-er-z6q" secondAttribute="bottom" id="9ox-NJ-yja"/>
+                                                    <constraint firstItem="4yL-er-z6q" firstAttribute="top" secondItem="hYa-jt-j9L" secondAttribute="top" id="MaE-10-C81"/>
+                                                    <constraint firstItem="4yL-er-z6q" firstAttribute="leading" secondItem="hYa-jt-j9L" secondAttribute="leading" constant="10" id="rri-sh-JJ0"/>
+                                                    <constraint firstAttribute="trailing" secondItem="4yL-er-z6q" secondAttribute="trailing" constant="10" id="wEH-gK-gYr"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lb5-9a-707">
+                                                <rect key="frame" x="0.0" y="101" width="414" height="61"/>
+                                                <subviews>
+                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EHK-mE-16h">
+                                                        <rect key="frame" x="10" y="0.0" width="394" height="61"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GaT-Cp-Y7J" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                                                <rect key="frame" x="15" y="20.5" width="82.5" height="20"/>
+                                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_settings_dark_mode"/>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </label>
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZcN-Hm-OTk">
+                                                                <rect key="frame" x="330" y="15" width="51" height="31"/>
+                                                            </switch>
+                                                        </subviews>
+                                                        <color key="backgroundColor" name="mimoWhite"/>
+                                                        <constraints>
+                                                            <constraint firstItem="ZcN-Hm-OTk" firstAttribute="centerY" secondItem="GaT-Cp-Y7J" secondAttribute="centerY" id="BmS-ed-Fz1"/>
+                                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="GaT-Cp-Y7J" secondAttribute="bottom" id="CyH-Nf-num"/>
+                                                            <constraint firstItem="ZcN-Hm-OTk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GaT-Cp-Y7J" secondAttribute="trailing" constant="10" id="MB4-D0-uJj"/>
+                                                            <constraint firstItem="ZcN-Hm-OTk" firstAttribute="top" secondItem="EHK-mE-16h" secondAttribute="top" constant="15" id="UDM-Ja-JCQ"/>
+                                                            <constraint firstItem="GaT-Cp-Y7J" firstAttribute="leading" secondItem="EHK-mE-16h" secondAttribute="leading" constant="15" id="ieL-Qv-be4"/>
+                                                            <constraint firstAttribute="bottom" secondItem="ZcN-Hm-OTk" secondAttribute="bottom" constant="15" id="jHv-Xf-AWj"/>
+                                                            <constraint firstItem="GaT-Cp-Y7J" firstAttribute="centerY" secondItem="EHK-mE-16h" secondAttribute="centerY" id="lQ4-mN-oSL"/>
+                                                            <constraint firstAttribute="trailing" secondItem="ZcN-Hm-OTk" secondAttribute="trailing" constant="15" id="sI7-5j-hD3"/>
+                                                            <constraint firstItem="GaT-Cp-Y7J" firstAttribute="top" relation="greaterThanOrEqual" secondItem="EHK-mE-16h" secondAttribute="top" id="wzV-VH-hv0"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="EHK-mE-16h" secondAttribute="trailing" constant="10" id="3gR-Fl-u5C"/>
+                                                    <constraint firstAttribute="bottom" secondItem="EHK-mE-16h" secondAttribute="bottom" id="Bon-Fc-kFT"/>
+                                                    <constraint firstItem="EHK-mE-16h" firstAttribute="leading" secondItem="Lb5-9a-707" secondAttribute="leading" constant="10" id="KIf-sq-ZNI"/>
+                                                    <constraint firstItem="EHK-mE-16h" firstAttribute="top" secondItem="Lb5-9a-707" secondAttribute="top" id="MCI-dp-nWs"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6ef-k3-te9"/>
+                        <color key="backgroundColor" name="mimoGray100"/>
+                        <constraints>
+                            <constraint firstItem="0dS-2e-ZSR" firstAttribute="top" secondItem="6ef-k3-te9" secondAttribute="top" constant="30" id="Jh9-BD-513"/>
+                            <constraint firstItem="6ef-k3-te9" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="0dS-2e-ZSR" secondAttribute="bottom" id="Ld1-bR-Ifz"/>
+                            <constraint firstItem="6ef-k3-te9" firstAttribute="trailing" secondItem="0dS-2e-ZSR" secondAttribute="trailing" id="Lqv-kI-08D"/>
+                            <constraint firstItem="0dS-2e-ZSR" firstAttribute="leading" secondItem="6ef-k3-te9" secondAttribute="leading" id="Yng-dy-V19"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="ds3-OA-7YM">
+                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="Y3D-t7-sVN">
+                            <color key="tintColor" name="mimoBlack"/>
+                            <connections>
+                                <action selector="backButtonTapped:" destination="chf-DN-ue0" id="cZZ-9I-vVY"/>
+                            </connections>
+                        </barButtonItem>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_profile_settings"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="switch" destination="M9k-0Q-XCd" id="1ix-Kt-hmv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="snz-X4-2DM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1562" y="-559"/>
+        </scene>
+        <!--Support-->
+        <scene sceneID="cQo-tO-gTS">
+            <objects>
+                <viewController storyboardIdentifier="SupportViewController" id="DQo-jl-c9u" customClass="SupportViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HnF-OG-YlW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mo0-41-Vsw">
+                                <rect key="frame" x="0.0" y="122" width="414" height="316"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2W8-Fi-enk">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="207"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_supportPage" translatesAutoresizingMaskIntoConstraints="NO" id="OQY-N6-ExU">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="207"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="OQY-N6-ExU" secondAttribute="height" multiplier="2" id="Y1C-Xr-bYm"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="OQY-N6-ExU" firstAttribute="leading" secondItem="2W8-Fi-enk" secondAttribute="leading" id="1kt-ND-3GA"/>
+                                            <constraint firstAttribute="bottom" secondItem="OQY-N6-ExU" secondAttribute="bottom" id="3pH-Ym-JEB"/>
+                                            <constraint firstAttribute="trailing" secondItem="OQY-N6-ExU" secondAttribute="trailing" id="Wm1-1i-OF1"/>
+                                            <constraint firstItem="OQY-N6-ExU" firstAttribute="top" secondItem="2W8-Fi-enk" secondAttribute="top" id="ZbO-Zq-4QF"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How can we help you?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hX1-T3-edS" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="227" width="414" height="25"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="21"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_profile_support_text"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vlb-Ko-8GW">
+                                        <rect key="frame" x="0.0" y="272" width="414" height="44"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="scs-3j-XfI">
+                                                <rect key="frame" x="10" y="0.0" width="394" height="44"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="call" translatesAutoresizingMaskIntoConstraints="NO" id="sVR-ZR-S8i">
+                                                        <rect key="frame" x="15" y="15" width="14" height="14"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="sVR-ZR-S8i" secondAttribute="height" id="byS-7M-7Ue"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Call now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9XB-ji-r33" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                                        <rect key="frame" x="39" y="12" width="65" height="20"/>
+                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_profile_support_call_button"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" image="ic_arrow_right_bold" translatesAutoresizingMaskIntoConstraints="NO" id="gVF-xV-9kD">
+                                                        <rect key="frame" x="365" y="15" width="14" height="14"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="gVF-xV-9kD" secondAttribute="height" id="f2x-Ec-vU8"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" name="mimoWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="gVF-xV-9kD" firstAttribute="top" secondItem="scs-3j-XfI" secondAttribute="top" constant="15" id="7O6-Ue-RRW"/>
+                                                    <constraint firstAttribute="trailing" secondItem="gVF-xV-9kD" secondAttribute="trailing" constant="15" id="9V5-fE-LeO"/>
+                                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="sVR-ZR-S8i" secondAttribute="bottom" id="DKL-xb-LuQ"/>
+                                                    <constraint firstItem="9XB-ji-r33" firstAttribute="centerY" secondItem="scs-3j-XfI" secondAttribute="centerY" id="Jhu-Ll-p8L"/>
+                                                    <constraint firstItem="sVR-ZR-S8i" firstAttribute="centerY" secondItem="scs-3j-XfI" secondAttribute="centerY" id="Jyc-xn-ryE"/>
+                                                    <constraint firstItem="sVR-ZR-S8i" firstAttribute="top" relation="greaterThanOrEqual" secondItem="scs-3j-XfI" secondAttribute="top" id="Nt9-Pu-6dN"/>
+                                                    <constraint firstItem="sVR-ZR-S8i" firstAttribute="leading" secondItem="scs-3j-XfI" secondAttribute="leading" constant="15" id="WLi-je-1fU"/>
+                                                    <constraint firstItem="9XB-ji-r33" firstAttribute="top" relation="greaterThanOrEqual" secondItem="scs-3j-XfI" secondAttribute="top" id="f3G-K2-F3k"/>
+                                                    <constraint firstItem="gVF-xV-9kD" firstAttribute="height" secondItem="sVR-ZR-S8i" secondAttribute="height" id="fkP-3x-0oR"/>
+                                                    <constraint firstAttribute="bottom" secondItem="gVF-xV-9kD" secondAttribute="bottom" constant="15" id="rvK-9z-1gS"/>
+                                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="9XB-ji-r33" secondAttribute="bottom" id="sGU-t2-d9d"/>
+                                                    <constraint firstItem="9XB-ji-r33" firstAttribute="leading" secondItem="sVR-ZR-S8i" secondAttribute="trailing" constant="10" id="uFy-Cz-zg6"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fpU-0P-s9c">
+                                                <rect key="frame" x="10" y="0.0" width="394" height="44"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="call:" destination="DQo-jl-c9u" eventType="touchUpInside" id="vtj-R8-GcQ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="scs-3j-XfI" firstAttribute="top" secondItem="vlb-Ko-8GW" secondAttribute="top" id="7oC-jK-vBY"/>
+                                            <constraint firstItem="scs-3j-XfI" firstAttribute="leading" secondItem="vlb-Ko-8GW" secondAttribute="leading" constant="10" id="HEm-wt-LtO"/>
+                                            <constraint firstItem="fpU-0P-s9c" firstAttribute="leading" secondItem="scs-3j-XfI" secondAttribute="leading" id="Mxp-rT-wev"/>
+                                            <constraint firstItem="fpU-0P-s9c" firstAttribute="top" secondItem="vlb-Ko-8GW" secondAttribute="top" id="QiG-LU-3li"/>
+                                            <constraint firstAttribute="bottom" secondItem="scs-3j-XfI" secondAttribute="bottom" id="TB8-Z4-Hay"/>
+                                            <constraint firstAttribute="trailing" secondItem="scs-3j-XfI" secondAttribute="trailing" constant="10" id="XOn-sa-441"/>
+                                            <constraint firstAttribute="bottom" secondItem="fpU-0P-s9c" secondAttribute="bottom" id="gmx-nq-70e"/>
+                                            <constraint firstItem="fpU-0P-s9c" firstAttribute="trailing" secondItem="scs-3j-XfI" secondAttribute="trailing" id="rjb-cb-uMa"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="NiE-jE-nvL"/>
+                        <color key="backgroundColor" name="mimoGray100"/>
+                        <constraints>
+                            <constraint firstItem="NiE-jE-nvL" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="mo0-41-Vsw" secondAttribute="bottom" id="5MG-sz-y7q"/>
+                            <constraint firstItem="mo0-41-Vsw" firstAttribute="top" secondItem="NiE-jE-nvL" secondAttribute="top" constant="30" id="GcP-Rf-iiW"/>
+                            <constraint firstItem="NiE-jE-nvL" firstAttribute="trailing" secondItem="mo0-41-Vsw" secondAttribute="trailing" id="iPT-TB-sqp"/>
+                            <constraint firstItem="mo0-41-Vsw" firstAttribute="leading" secondItem="NiE-jE-nvL" secondAttribute="leading" id="sJJ-HM-yF4"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Support" id="Xie-wc-QZu">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="xmark" catalog="system" id="LQj-gA-1d7">
+                            <color key="tintColor" name="mimoBlack"/>
+                            <connections>
+                                <action selector="backButtonTapped:" destination="DQo-jl-c9u" id="GeR-mz-6pW"/>
+                            </connections>
+                        </barButtonItem>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_map_support"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CdO-O4-Ico" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1561" y="123"/>
+        </scene>
+        <!--Mimo Agreement-->
+        <scene sceneID="2mv-IE-4jT">
+            <objects>
+                <viewController storyboardIdentifier="AgreementViewController" id="qvJ-Pv-9Rz" customClass="AgreementViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fYs-ex-pgV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i9j-tW-hfh">
+                                <rect key="frame" x="0.0" y="92" width="414" height="804"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <wkWebViewConfiguration key="configuration" allowsInlineMediaPlayback="YES">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" audio="YES" video="YES"/>
+                                    <wkPreferences key="preferences" javaScriptCanOpenWindowsAutomatically="YES"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="VZs-N6-IQD"/>
+                        <color key="backgroundColor" name="mimoGray100"/>
+                        <constraints>
+                            <constraint firstItem="i9j-tW-hfh" firstAttribute="leading" secondItem="VZs-N6-IQD" secondAttribute="leading" id="HHj-by-9wz"/>
+                            <constraint firstAttribute="bottom" secondItem="i9j-tW-hfh" secondAttribute="bottom" id="IfY-Id-Ctw"/>
+                            <constraint firstItem="VZs-N6-IQD" firstAttribute="trailing" secondItem="i9j-tW-hfh" secondAttribute="trailing" id="LBA-aj-bjz"/>
+                            <constraint firstItem="i9j-tW-hfh" firstAttribute="top" secondItem="VZs-N6-IQD" secondAttribute="top" id="yrN-Bd-Wte"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Mimo Agreement" id="02g-j4-NmW">
+                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="eBt-1R-huU">
+                            <color key="tintColor" name="mimoBlack"/>
+                            <connections>
+                                <action selector="dismissTapped:" destination="qvJ-Pv-9Rz" id="eQJ-NU-gsP"/>
+                            </connections>
+                        </barButtonItem>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_profile_agreement"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="i9j-tW-hfh" id="UvC-Q5-Egx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kge-P0-lxd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1561" y="2305"/>
+        </scene>
+        <!--Support Navigation View Controller-->
+        <scene sceneID="FoM-Nc-fei">
+            <objects>
+                <navigationController storyboardIdentifier="SupportNavigationViewController" id="XBr-g5-qYI" customClass="SupportNavigationViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="4lI-Sp-kGc"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="v6o-us-Nfj">
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="DQo-jl-c9u" kind="relationship" relationship="rootViewController" id="CQm-Zb-iPx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zaf-Cs-KSE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="734" y="123"/>
+        </scene>
+        <!--How to use-->
+        <scene sceneID="hVd-dP-wPP">
+            <objects>
+                <viewController storyboardIdentifier="HowToUseViewController" id="ZZN-rr-8iz" customClass="HowToUseViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RP9-Op-Rto">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="howToUse" translatesAutoresizingMaskIntoConstraints="NO" id="4CZ-mw-hoz">
+                                <rect key="frame" x="0.0" y="92" width="414" height="207"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4CZ-mw-hoz" secondAttribute="height" multiplier="2" id="1tT-Pe-sz3"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kt8-nc-9vg">
+                                <rect key="frame" x="0.0" y="360" width="414" height="210"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="210" id="Zp5-K9-gDb"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mute" translatesAutoresizingMaskIntoConstraints="NO" id="Xjz-j7-2Gt">
+                                <rect key="frame" x="360" y="375" width="29" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Xjz-j7-2Gt" secondAttribute="height" multiplier="1:1" id="StZ-jI-bw9"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbB-lj-OxJ">
+                                <rect key="frame" x="351" y="368" width="47" height="43"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="muteAction:" destination="ZZN-rr-8iz" eventType="touchUpInside" id="8qg-Bl-hFe"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tGV-CW-tcT"/>
+                        <color key="backgroundColor" name="mimoGray100"/>
+                        <constraints>
+                            <constraint firstItem="fbB-lj-OxJ" firstAttribute="centerX" secondItem="Xjz-j7-2Gt" secondAttribute="centerX" id="8hF-5t-wS8"/>
+                            <constraint firstItem="tGV-CW-tcT" firstAttribute="trailing" secondItem="4CZ-mw-hoz" secondAttribute="trailing" id="Dig-6o-Pfx"/>
+                            <constraint firstItem="kt8-nc-9vg" firstAttribute="trailing" secondItem="4CZ-mw-hoz" secondAttribute="trailing" id="KsC-Vq-2n3"/>
+                            <constraint firstItem="4CZ-mw-hoz" firstAttribute="leading" secondItem="tGV-CW-tcT" secondAttribute="leading" id="VxQ-83-k3y"/>
+                            <constraint firstItem="fbB-lj-OxJ" firstAttribute="centerY" secondItem="Xjz-j7-2Gt" secondAttribute="centerY" id="Ye7-0s-5CU"/>
+                            <constraint firstItem="Xjz-j7-2Gt" firstAttribute="width" secondItem="RP9-Op-Rto" secondAttribute="width" multiplier="0.07" id="aTv-eY-0fc"/>
+                            <constraint firstItem="fbB-lj-OxJ" firstAttribute="width" secondItem="Xjz-j7-2Gt" secondAttribute="width" multiplier="1.61446" id="fHC-rW-jU3"/>
+                            <constraint firstItem="Xjz-j7-2Gt" firstAttribute="trailing" secondItem="kt8-nc-9vg" secondAttribute="trailing" constant="-25" id="hmd-xG-F2g"/>
+                            <constraint firstItem="kt8-nc-9vg" firstAttribute="top" secondItem="4CZ-mw-hoz" secondAttribute="bottom" constant="61" id="kw2-hP-LpN"/>
+                            <constraint firstItem="fbB-lj-OxJ" firstAttribute="height" secondItem="Xjz-j7-2Gt" secondAttribute="height" multiplier="1.5" id="tT1-F9-U61"/>
+                            <constraint firstItem="Xjz-j7-2Gt" firstAttribute="top" secondItem="kt8-nc-9vg" secondAttribute="top" constant="15" id="vR0-3G-UNX"/>
+                            <constraint firstItem="kt8-nc-9vg" firstAttribute="leading" secondItem="4CZ-mw-hoz" secondAttribute="leading" id="w8V-n7-vIh"/>
+                            <constraint firstItem="4CZ-mw-hoz" firstAttribute="top" secondItem="tGV-CW-tcT" secondAttribute="top" id="wPk-7h-4ft"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="How to use" id="HBV-J1-bt4">
+                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="FTl-sY-yCw">
+                            <color key="tintColor" name="mimoBlack"/>
+                            <connections>
+                                <action selector="dismissTapped:" destination="ZZN-rr-8iz" id="jns-ga-G4I"/>
+                            </connections>
+                        </barButtonItem>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_profile_how_to_use"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="muteIcon" destination="Xjz-j7-2Gt" id="zOX-nv-7Vt"/>
+                        <outlet property="playerView" destination="kt8-nc-9vg" id="WOl-Ly-Xzc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9V0-PR-xwx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1561" y="1507"/>
+        </scene>
+        <!--How To Use Navigation View Controller-->
+        <scene sceneID="kxg-Kh-oPD">
+            <objects>
+                <navigationController storyboardIdentifier="HowToUseNavigationViewController" id="9Lc-sN-Dzs" customClass="HowToUseNavigationViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="wfn-2m-Od3"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pKv-fc-Le8">
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ZZN-rr-8iz" kind="relationship" relationship="rootViewController" id="QrH-mv-116"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="smH-75-G9I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="734" y="1492"/>
+        </scene>
+        <!--Agreement Navigation View Controller-->
+        <scene sceneID="K1J-3N-xeG">
+            <objects>
+                <navigationController storyboardIdentifier="AgreementNavigationViewController" id="vhw-AP-Q8k" customClass="AgreementNavigationViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="kwr-x0-29Y"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FjY-ks-eTg">
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="qvJ-Pv-9Rz" kind="relationship" relationship="rootViewController" id="mqd-Zg-L5p"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RAg-Q9-4IZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="699" y="2305"/>
+        </scene>
+        <!--Privacy Policy-->
+        <scene sceneID="T6T-bK-Gcr">
+            <objects>
+                <viewController storyboardIdentifier="PrivacyPolicyViewController" id="2vs-LL-u9g" customClass="PrivacyPolicyViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rNY-Be-mc0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m93-QX-eH5">
+                                <rect key="frame" x="0.0" y="92" width="414" height="804"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <wkWebViewConfiguration key="configuration" allowsInlineMediaPlayback="YES">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" audio="YES" video="YES"/>
+                                    <wkPreferences key="preferences" javaScriptCanOpenWindowsAutomatically="YES"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="OKZ-7Y-tcm"/>
+                        <color key="backgroundColor" name="mimoGray100"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="m93-QX-eH5" secondAttribute="bottom" id="CSo-gE-lwa"/>
+                            <constraint firstItem="m93-QX-eH5" firstAttribute="leading" secondItem="OKZ-7Y-tcm" secondAttribute="leading" id="MiH-Ze-RtS"/>
+                            <constraint firstItem="m93-QX-eH5" firstAttribute="trailing" secondItem="OKZ-7Y-tcm" secondAttribute="trailing" id="cFq-nn-LgR"/>
+                            <constraint firstItem="m93-QX-eH5" firstAttribute="top" secondItem="OKZ-7Y-tcm" secondAttribute="top" id="eXE-6E-xg3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Privacy Policy" id="YKN-Vh-dgg">
+                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="1Gg-dc-TF5">
+                            <color key="tintColor" name="mimoBlack"/>
+                            <connections>
+                                <action selector="dismissTapped:" destination="2vs-LL-u9g" id="zSZ-cQ-FYt"/>
+                            </connections>
+                        </barButtonItem>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_profile_privacy_and_policy"/>
+                        </userDefinedRuntimeAttributes>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="m93-QX-eH5" id="rYt-ma-U0W"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZdW-dC-vpA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1561" y="814"/>
+        </scene>
+        <!--Privacy Policy Navigation View Controller-->
+        <scene sceneID="Dhv-BL-ty9">
+            <objects>
+                <navigationController storyboardIdentifier="PrivacyPolicyNavigationViewController" id="Wf6-ED-xck" customClass="PrivacyPolicyNavigationViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="WdZ-xx-9OT"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VGa-cn-tkW">
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="2vs-LL-u9g" kind="relationship" relationship="rootViewController" id="VoB-27-N3Q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WWU-Ui-28j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="735" y="814"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Internet" width="24" height="24"/>
+        <image name="call" width="24" height="24"/>
+        <image name="howToUse" width="148" height="148"/>
+        <image name="ic_arrow_right_bold" width="8" height="14"/>
+        <image name="ic_settingPage" width="148" height="148"/>
+        <image name="ic_supportPage" width="148" height="148"/>
+        <image name="mute" width="512" height="512"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="mimoBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoGray100">
+            <color red="0.9100000262260437" green="0.93699997663497925" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoGray500">
+            <color red="0.62000000476837158" green="0.68599998950958252" blue="0.74500000476837158" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

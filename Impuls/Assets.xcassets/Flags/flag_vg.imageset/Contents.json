@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "flag_vg.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

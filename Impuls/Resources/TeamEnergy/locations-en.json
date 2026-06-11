@@ -1,0 +1,2774 @@
+[
+    {
+        "id": "2",
+        "cord": [
+            40.180965,
+            44.526494
+        ],
+        "city": "Yerevan State University",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "10:00-19:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "1 Alex Manoogian Str., Yerevan, Armenia",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "3",
+        "cord": [
+            40.759606,
+            44.907322
+        ],
+        "city": " \"Getap\" Restaurant and Hotel Complex",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "10:00-19:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": " 44 Tbilisyan Highway, Dilijan, Tavush, Armenia  ",
+        "region": {
+            "id": "11",
+            "label": "Tavush "
+        }
+    },
+    {
+        "id": "4",
+        "cord": [
+            40.77815,
+            44.926268
+        ],
+        "city": "DiliJazz Hotel & Restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "10:00-19:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "1/1 Teghut 2nd Str., Dilijan, Tavush, Armenia",
+        "region": {
+            "id": "11",
+            "label": "Tavush "
+        }
+    },
+    {
+        "id": "5",
+        "cord": [
+            39.838582,
+            45.666891
+        ],
+        "city": "Grant Resort Jermuk",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "10:00-19:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "7/5 Shahumyan Str․, Jermuk, Vayots Dzor, Armenia",
+        "region": {
+            "id": "8",
+            "label": "Vayots Dzor"
+        }
+    },
+    {
+        "id": "6",
+        "cord": [
+            40.264036,
+            44.677647
+        ],
+        "city": "Byurakn Restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "10:00-19:00",
+            "satSun": "10:00-19:00"
+        },
+        "street": "10 Yekeghetsu Str., Akunq, Kotayk, Armenia",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "7",
+        "cord": [
+            39.755447,
+            45.339808
+        ],
+        "city": "Yeghegnadzor Food Court",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "10:00-19:00",
+            "satSun": "10:00-19:00"
+        },
+        "street": "7 Yerevanyan Highway, Yeghegnadzor, Vayots Dzor, Armenia",
+        "region": {
+            "id": "8",
+            "label": "Vayots Dzor"
+        }
+    },
+    {
+        "id": "8",
+        "cord": [
+            40.339202,
+            44.268645
+        ],
+        "city": "Byurakan Pandok Restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "10:00-19:00",
+            "satSun": "09։00-18:00"
+        },
+        "street": "1/1, 1st Str., 6th Lane., v. Byurakan, Aragatsotn, Armenia ",
+        "region": {
+            "id": "9",
+            "label": "Aragatsotn "
+        }
+    },
+    {
+        "id": "9",
+        "cord": [
+            40.186775,
+            44.603342
+        ],
+        "city": "Alga Restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "10:00-19:00",
+            "satSun": "09։00-18:00"
+        },
+        "street": "15/13 Qochinyan Str., Jrvezh, Kotayk, Armenia",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "10",
+        "cord": [
+            40.193094,
+            44.586681
+        ],
+        "city": "Royal Yerevan Restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "10:00-19:00",
+            "satSun": "Выходной"
+        },
+        "street": " 102 Bagrevand, Yerevan, Armenia",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "11",
+        "cord": [
+            40.262221,
+            44.679325
+        ],
+        "city": "Akunqi Drakht Restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "10:00-19:00",
+            "satSun": "09։00-18:00"
+        },
+        "street": "V. Akunq, Kotayk, Armenia",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "12",
+        "cord": [
+            40.194905,
+            44.609874
+        ],
+        "city": "Khnoci Restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09։00-18:00",
+            "satSun": "09։00-18:00"
+        },
+        "street": " 7/6, 3rd Field, Jrvezh, Yerevan, Armenia",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "13",
+        "cord": [
+            40.30187,
+            44.378767
+        ],
+        "city": "Ashtaraki Dzor Restaurant Complex",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09։00-18:00",
+            "satSun": "09։00-18:00"
+        },
+        "street": "1 Kasakh Gorge, Ashtarak, Aragatsotn, Armenia",
+        "region": {
+            "id": "9",
+            "label": "Aragatsotn "
+        }
+    },
+    {
+        "id": "14",
+        "cord": [
+            39.689691,
+            45.471856
+        ],
+        "city": "Vayq Hotel",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "10:00-19:00",
+            "satSun": "09։00-18:00"
+        },
+        "street": "10/1 Jermuki Highway, Vayq, Vayots Dzor, Armenia",
+        "region": {
+            "id": "8",
+            "label": "Vayots Dzor"
+        }
+    },
+    {
+        "id": "15",
+        "cord": [
+            40.191673,
+            44.58845
+        ],
+        "city": "Old Jrvezh Restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09։00-18:00",
+            "satSun": "09։00-18:00"
+        },
+        "street": "2/1, 17 Str., v. Jrvezh, Kotayk, Armenia",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "16",
+        "cord": [
+            40.739758,
+            44.853351
+        ],
+        "city": "Papanino House Restaurant and Bakery ",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09։00-18:00",
+            "satSun": "09։00-18:00"
+        },
+        "street": "104 Kalinin Str․, Tavush, Dilijan, Armenia",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "17",
+        "cord": [
+            40.752287,
+            43.83754
+        ],
+        "city": "Parvana Ojakh Restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "10:00-19:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "V. Azatan, Shirak, Armenia",
+        "region": {
+            "id": "4",
+            "label": "Shirak"
+        }
+    },
+    {
+        "id": "19",
+        "cord": [
+            40.736404,
+            43.79646
+        ],
+        "city": "Ghars restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "N1, 2 Lane, Gyumri-Armavir highway, Shirak, Armenia",
+        "region": {
+            "id": "4",
+            "label": "Shirak"
+        }
+    },
+    {
+        "id": "20",
+        "cord": [
+            40.255003,
+            44.495677
+        ],
+        "city": "Zov Garden Restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "Выходной"
+        },
+        "street": "1 street 260, Zovuni, Armenia",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "21",
+        "cord": [
+            40.124678,
+            44.696853
+        ],
+        "city": "Luxury Garden Garni leisure area",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "7/77 Azatamartineri Highway, v.Garni, Kotayk, Armenia",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "22",
+        "cord": [
+            40.960489,
+            44.634322
+        ],
+        "city": "Avan Dzoraget Hotel",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "2035 v. Dzoraget, Lori, Armenia",
+        "region": {
+            "id": "3",
+            "label": "Lori"
+        }
+    },
+    {
+        "id": "23",
+        "cord": [
+            40.411559,
+            45.471135
+        ],
+        "city": "Avan Marak Tsapatagh Hotel",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Tsapatagh 1611, Gegharkunik, Armenia",
+        "region": {
+            "id": "6",
+            "label": "Gegharkunik"
+        }
+    },
+    {
+        "id": "24",
+        "cord": [
+            39.682218,
+            45.486445
+        ],
+        "city": "Vayk",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "29, 25th Str., v. Zaritap, Vayk, Vayotc Dzor, Armenia /Jermuk Highway- Zaritap Crossroad",
+        "region": {
+            "id": "8",
+            "label": "Vayots Dzor"
+        }
+    },
+    {
+        "id": "25",
+        "cord": [
+            39.48107,
+            46.27923
+        ],
+        "city": "Shinuhayr",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Shinuhayr Crossroad, Goris, Syunik, Armenia",
+        "region": {
+            "id": "10",
+            "label": "Syunik "
+        }
+    },
+    {
+        "id": "26",
+        "cord": [
+            39.204386,
+            46.444177
+        ],
+        "city": "Kapan",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "17/4 Gortsaranayin, Kapan, Kapan, Syunik, Armenia",
+        "region": {
+            "id": "10",
+            "label": "Syunik "
+        }
+    },
+    {
+        "id": "27",
+        "cord": [
+            40.619171,
+            44.951778
+        ],
+        "city": "Tsovagyux",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Next to Tsovagyux Food Court",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "28",
+        "cord": [
+            41.221398,
+            44.893938
+        ],
+        "city": "Noyemberyan",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "6th str, Haghtanak, Noyemberyan, Tavush, Armenia",
+        "region": {
+            "id": "11",
+            "label": "Tavush "
+        }
+    },
+    {
+        "id": "30",
+        "cord": [
+            40.209194,
+            44.46483
+        ],
+        "city": "Garage Masters' Mall",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "1 Mazmanyan Str., Yerevan, Armenia",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "35",
+        "cord": [
+            40.532587,
+            44.720614
+        ],
+        "city": "Pur Restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Kotayk Marz, Tsaghkadzor Orbeli Yeghbayrneri St., 18 Building",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "36",
+        "cord": [
+            40.534042,
+            44.702921
+        ],
+        "city": "Teghenis Tsaghkadzor hotel and holiday home",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 2310, Kotayk Marz, Tsaghkadzor Tandzaghbyuri St., 31 Building",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "37",
+        "cord": [
+            40.118715,
+            44.71584
+        ],
+        "city": "\"TIME TO EAT\" Garni",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Kotayk Marz, Garni village Azatamartikneri St., 4 Building",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "38",
+        "cord": [
+            38.904208,
+            46.239388
+        ],
+        "city": "\"Nice house hotel\" Meghri",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Meghri, Adelyan Street, 15a/23",
+        "region": {
+            "id": "10",
+            "label": "Syunik "
+        }
+    },
+    {
+        "id": "39",
+        "cord": [
+            40.203791,
+            44.531593
+        ],
+        "city": "\"Wigmore Group\" medical center",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 0014, Yerevan Hrachya Nersisyan St., 10a Building",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "40",
+        "cord": [
+            40.489157,
+            44.600157
+        ],
+        "city": "\"Park Resort\" Aghveran",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 2503, Kotayk Province, Arzakan, Antarain str., 1/4",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "41",
+        "cord": [
+            40.217754,
+            44.440766
+        ],
+        "city": "Latar Hotel",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 0029, Yerevan Silikyan District (3rd Gyugh), 5th St., 58 bld",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "42",
+        "cord": [
+            40.216456,
+            44.439165
+        ],
+        "city": "Latar Restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 0029, Yerevan Silikyan District (3rd Gyugh), 5th St., 58 bld",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "43",
+        "cord": [
+            40.19206,
+            44.431741
+        ],
+        "city": "La Defense Hotel",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Yerevan Tichinai St., 300/9 bld",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "44",
+        "cord": [
+            40.489093,
+            44.594539
+        ],
+        "city": "Aghveran Ararat Resort",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Kotayk Marz, Arzakan village Antarain St., 11 bld",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "45",
+        "cord": [
+            40.205,
+            44.531444
+        ],
+        "city": "Hematology center after prof. R.Yeolyan",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 0014, Yerevan Hrachya Nersisyan St., 7",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "46",
+        "cord": [
+            40.530833,
+            44.728472
+        ],
+        "city": "Sion Resort",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 2310, Kotayk Marz, Tsaghkadzor Avetik Isahakyan St., 5/3",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "47",
+        "cord": [
+            40.309149,
+            44.588602
+        ],
+        "city": "Arzni Dzor Restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 2410, Kotayk Marz, Nor Geghi village Aroghjaranayin St. 4th Blind Alley, 11/1",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "48",
+        "cord": [
+            40.203022,
+            44.556003
+        ],
+        "city": "Most Business Center",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 0025, Yerevan Myasnikyan Ave., 38/5",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "49",
+        "cord": [
+            40.151814,
+            44.503178
+        ],
+        "city": "Artsakh Hotel 1",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 0026, Yerevan Sevani St., 116 Building",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "50",
+        "cord": [
+            40.743122,
+            44.882019
+        ],
+        "city": "Dilijani Tun 1",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Tavush Marz, Dilijan Orjonikidzei St., 36/4",
+        "region": {
+            "id": "11",
+            "label": "Tavush "
+        }
+    },
+    {
+        "id": "51",
+        "cord": [
+            40.690556,
+            44.841389
+        ],
+        "city": "Kompozitor Hotel Dilijan",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Dilijan, Arno Babajanyan street, 1",
+        "region": {
+            "id": "11",
+            "label": "Tavush "
+        }
+    },
+    {
+        "id": "52",
+        "cord": [
+            39.696333,
+            45.461792
+        ],
+        "city": "Vayk Amrots Hotel",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 3801, Vayots Dzor Marz, Vayk Yerkrabanneri St., 2",
+        "region": {
+            "id": "8",
+            "label": "Vayots Dzor"
+        }
+    },
+    {
+        "id": "53",
+        "cord": [
+            40.711321,
+            44.850912
+        ],
+        "city": "Cozy House Dilijan",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Dilijan, Golovino District, Kamoi St., 126 Building",
+        "region": {
+            "id": "11",
+            "label": "Tavush "
+        }
+    },
+    {
+        "id": "54",
+        "cord": [
+            40.744233,
+            44.855134
+        ],
+        "city": "Dili Town 2",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Dilijan, Andraniki St. 3rd Lane, 11 Building",
+        "region": {
+            "id": "11",
+            "label": "Tavush "
+        }
+    },
+    {
+        "id": "55",
+        "cord": [
+            40.137653,
+            44.815319
+        ],
+        "city": "Geghard Restaurant 1",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Kotayk Marz Geghard Highway 36/1",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "56",
+        "cord": [
+            40.252861,
+            44.649777
+        ],
+        "city": "Avalon restaurant 1",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 2211, Kotayk Marz, Aramus village",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "57",
+        "cord": [
+            40.847694,
+            44.419222
+        ],
+        "city": "AYG restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Vanadzor, Shiraki Motorway, 6 Building",
+        "region": {
+            "id": "3",
+            "label": "Lori"
+        }
+    },
+    {
+        "id": "58",
+        "cord": [
+            40.822611,
+            44.45925
+        ],
+        "city": "Palermo Hotel",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Vanadzor Karen Demirchyan St., 1/35 Building",
+        "region": {
+            "id": "3",
+            "label": "Lori"
+        }
+    },
+    {
+        "id": "59",
+        "cord": [
+            40.12814,
+            44.526948
+        ],
+        "city": "Peaceful Don",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Yerevan, Erebuni, 19/14 Khaghagh Doni",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "60",
+        "cord": [
+            40.938722,
+            44.478417
+        ],
+        "city": "Sochut Resort Stepanavan",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Lori Marz, Gyulagarak village",
+        "region": {
+            "id": "3",
+            "label": "Lori"
+        }
+    },
+    {
+        "id": "61",
+        "cord": [
+            40.101173,
+            44.461082
+        ],
+        "city": "Ketrin Hotel & Restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Ararat region, Aintap, 1st st. 46",
+        "region": {
+            "id": "5",
+            "label": "Ararat"
+        }
+    },
+    {
+        "id": "62",
+        "cord": [
+            39.522441,
+            46.332691
+        ],
+        "city": "Mina Hotel",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Syunik Marz, Goris Mashtotsi St., 169 Building",
+        "region": {
+            "id": "10",
+            "label": "Syunik "
+        }
+    },
+    {
+        "id": "63",
+        "cord": [
+            40.529967,
+            44.721371
+        ],
+        "city": "Writers Hotel / Tsaghkadzor",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Kotayk Marz, Tsaghkadzor Charentsi St. Lane, 4",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "64",
+        "cord": [
+            40.298203,
+            44.366944
+        ],
+        "city": "Stone Bridge Restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Ashtaraki dzor / Qasaxi kirch 22/2 , Ashtarak.",
+        "region": {
+            "id": "9",
+            "label": "Aragatsotn "
+        }
+    },
+    {
+        "id": "65",
+        "cord": [
+            40.240097,
+            44.529744
+        ],
+        "city": "\"Red Group\" LLC",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Kotayk region, Kanakeravan community, Yerevan highway No. 1",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "66",
+        "cord": [
+            40.185358,
+            44.509658
+        ],
+        "city": "Wigmore Clinic",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 0002, Yerevan Pushkini St., 56 Building",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "67",
+        "cord": [
+            40.938222,
+            44.478417
+        ],
+        "city": "Dream Park",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Lori Marz, Gyulagarak village",
+        "region": {
+            "id": "3",
+            "label": "Lori"
+        }
+    },
+    {
+        "id": "68",
+        "cord": [
+            40.00775,
+            44.474944
+        ],
+        "city": "Adana restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Ararat Marz, Mkhchyan village",
+        "region": {
+            "id": "5",
+            "label": "Ararat"
+        }
+    },
+    {
+        "id": "69",
+        "cord": [
+            40.289723,
+            44.340806
+        ],
+        "city": "Vineyard restaurant",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Mesrop Mashtots 148, Ashtarak",
+        "region": {
+            "id": "9",
+            "label": "Aragatsotn "
+        }
+    },
+    {
+        "id": "70",
+        "cord": [
+            40.359591,
+            45.14513
+        ],
+        "city": "Bayazet Hall 1",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Gegharkunik Marz, Gavar Sayadyan St., 112/2 Building",
+        "region": {
+            "id": "6",
+            "label": "Gegharkunik"
+        }
+    },
+    {
+        "id": "71",
+        "cord": [
+            40.183573,
+            44.630113
+        ],
+        "city": "Woods Center",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Kotayk Marz, Jrvezh village",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "72",
+        "cord": [
+            40.925648,
+            44.640635
+        ],
+        "city": "Concept Hotel by COAF 1",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 2031, Lori Marz, Debet village 1st St., 35 Building",
+        "region": {
+            "id": "3",
+            "label": "Lori"
+        }
+    },
+    {
+        "id": "73",
+        "cord": [
+            40.761493,
+            44.934869
+        ],
+        "city": "VAK Resort Dilijan 1",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "\"Dilijan National Park\", 1st District, 9th Forest Area, Dilijan, Tavush, Armenia",
+        "region": {
+            "id": "11",
+            "label": "Tavush "
+        }
+    },
+    {
+        "id": "74",
+        "cord": [
+            40.173551,
+            44.566628
+        ],
+        "city": "Car wash /9th array",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Yerevan, Nor Nork, Vilnius St. 2/7",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "75",
+        "cord": [
+            40.205389,
+            44.565281
+        ],
+        "city": "Barber Shop",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 0096, Yerevan Moldovakan St., 3 Building",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "76",
+        "cord": [
+            40.740683,
+            44.839706
+        ],
+        "city": "Greenwood Residence 1",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Tavush region, Dilijan city, Kalinin 245/1",
+        "region": {
+            "id": "11",
+            "label": "Tavush "
+        }
+    },
+    {
+        "id": "77",
+        "cord": [
+            40.335154,
+            44.262311
+        ],
+        "city": "ZipWine Byurakan",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Aragatsotn Marz, Byurakan village 2nd St. 2nd Lane, 27 House",
+        "region": {
+            "id": "9",
+            "label": "Aragatsotn "
+        }
+    },
+    {
+        "id": "78",
+        "cord": [
+            40.927797,
+            44.625638
+        ],
+        "city": "Visitor Center by COAF",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Lori Marz, Vahagni village Vanadzor-Alaverdi Highway 25th km, 2 Building",
+        "region": {
+            "id": "3",
+            "label": "Lori"
+        }
+    },
+    {
+        "id": "79",
+        "cord": [
+            40.154451,
+            44.652908
+        ],
+        "city": "Mer Tun Pandok",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 2216, Kotayk Marz, Geghadir village",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "80",
+        "cord": [
+            40.186771,
+            44.525887
+        ],
+        "city": "Koryun 5",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Koryun 5",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "81",
+        "cord": [
+            40.202896,
+            44.543361
+        ],
+        "city": "Paruyr Sevak 90",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Paruyr Sevak 90",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "82",
+        "cord": [
+            40.172565,
+            44.50721
+        ],
+        "city": "Grigor Lusavorich 3",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Grigor Lusavorich 3",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "83",
+        "cord": [
+            40.18825,
+            44.51242
+        ],
+        "city": "Moskovyan 24",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Moskovyan 24",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "84",
+        "cord": [
+            40.18169,
+            44.520359
+        ],
+        "city": "Nalbandyan 106",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Nalbandyan 106",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "85",
+        "cord": [
+            40.159474,
+            44.511621
+        ],
+        "city": "Tigran Mets 50",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Tigran Mets 50",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "86",
+        "cord": [
+            40.180143,
+            44.527657
+        ],
+        "city": "Charents 27",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Charents 27",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "87",
+        "cord": [
+            40.180936,
+            44.527731
+        ],
+        "city": "Charents 12/14",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Charents 12/14",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "88",
+        "cord": [
+            40.183582,
+            44.527315
+        ],
+        "city": "Charents 7",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Charents 7",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "89",
+        "cord": [
+            40.185219,
+            44.526726
+        ],
+        "city": "Charents 1b",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Charents 1b",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "90",
+        "cord": [
+            40.177534,
+            44.526672
+        ],
+        "city": "Sayat-Nova 39",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Sayat-Nova 39",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "91",
+        "cord": [
+            40.178303,
+            44.525356
+        ],
+        "city": "Sayat-Nova 26/6",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Sayat-Nova 26/6",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "92",
+        "cord": [
+            40.185046,
+            44.506495
+        ],
+        "city": "Saryan 20",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Saryan 20",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "93",
+        "cord": [
+            40.183982,
+            44.505123
+        ],
+        "city": "Saryan 24",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Saryan 24",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "94",
+        "cord": [
+            40.170416,
+            44.513412
+        ],
+        "city": "Tigran Mets 25",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Tigran Mets 25",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "95",
+        "cord": [
+            40.15636,
+            44.510748
+        ],
+        "city": "Tigran Mets 69",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Tigran Mets 69",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "96",
+        "cord": [
+            40.184704,
+            44.524799
+        ],
+        "city": "Nalbandyan 45",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Nalbandyan 45",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "97",
+        "cord": [
+            40.173494,
+            44.52679
+        ],
+        "city": "Charents 70",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Charents 70",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "98",
+        "cord": [
+            40.765492,
+            45.01981
+        ],
+        "city": "SoNat Resort",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Tavush Marz, Gosh village Mkhitar Goshi St. 1st Blind Alley",
+        "region": {
+            "id": "11",
+            "label": "Tavush "
+        }
+    },
+    {
+        "id": "99",
+        "cord": [
+            40.18008,
+            44.50563
+        ],
+        "city": "Saryan 35/6",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Saryan 35/6",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "100",
+        "cord": [
+            40.188335,
+            44.513592
+        ],
+        "city": "Moskovyan 20",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Moskovyan 20",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "101",
+        "cord": [
+            40.182781,
+            44.510048
+        ],
+        "city": "Mashtoc 17",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Mashtoc 17",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "102",
+        "cord": [
+            40.184132,
+            44.51157
+        ],
+        "city": "Mashtoc 27",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Mashtoc 27",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "103",
+        "cord": [
+            40.185154,
+            44.522449
+        ],
+        "city": "Moskovyan 11",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Moskovyan 11",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "104",
+        "cord": [
+            40.537969,
+            44.723084
+        ],
+        "city": "Sia Resort & SPA",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Tsaghkadzor, Saralanj street 12/1",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "105",
+        "cord": [
+            40.204655,
+            44.510025
+        ],
+        "city": "Hrachya Kochar 49",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Hrachya Kochar 49",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "106",
+        "cord": [
+            40.217563,
+            44.563224
+        ],
+        "city": "Avan",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Yerevan, Acharyan St. 1st Blind Alley, 6 House",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "107",
+        "cord": [
+            40.170411,
+            44.525255
+        ],
+        "city": "Mega charging station",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "76 Charents str, Yerevan, Armenia",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "108",
+        "cord": [
+            40.202749,
+            44.544595
+        ],
+        "city": "Zeytun / Yerevan City",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "15, 5 Rubinyants St, Yerevan, Armenia",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "109",
+        "cord": [
+            40.796558,
+            43.850528
+        ],
+        "city": "Shirak Mall",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 3103, Shirak Marz, Gyumri Proshyan St., 77/7 Building",
+        "region": {
+            "id": "4",
+            "label": "Shirak"
+        }
+    },
+    {
+        "id": "110",
+        "cord": [
+            41.204947,
+            44.318443
+        ],
+        "city": "Gogavan",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Lori Marz, Gogavan village (Sarchapet community)",
+        "region": {
+            "id": "3",
+            "label": "Lori"
+        }
+    },
+    {
+        "id": "111",
+        "cord": [
+            40.960504,
+            44.633985
+        ],
+        "city": "Tufenkyan Avan Dzoraget Hotel",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "2035 v. Dzoraget, Lori, Armenia",
+        "region": {
+            "id": "3",
+            "label": "Lori"
+        }
+    },
+    {
+        "id": "112",
+        "cord": [
+            40.277353,
+            44.628573
+        ],
+        "city": "Abovyan \"Team Telecom Armenia\"",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Barekamutyan Square, 2",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "113",
+        "cord": [
+            40.191674,
+            44.521665
+        ],
+        "city": "National Polytechnic University of Armenia",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 0009, Yerevan Teryan St., 105 Building, 5th Subsidiary Buildings",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "114",
+        "cord": [
+            40.187461,
+            44.484558
+        ],
+        "city": "K․ Demirtchian Sport/Concert Complex",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 0028, Yerevan Tsitsernakaberd Park, parking zone",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "115",
+        "cord": [
+            40.215346,
+            44.542931
+        ],
+        "city": "V.A. Fanarjian NCO",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 0052, Yerevan Fanarjyan St., 76 Building",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "116",
+        "cord": [
+            39.819035,
+            44.724974
+        ],
+        "city": "Ararat \"Gaspar 51\"",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Ararat Marz, Yerevanyan str. 1",
+        "region": {
+            "id": "5",
+            "label": "Ararat"
+        }
+    },
+    {
+        "id": "117",
+        "cord": [
+            41.028805,
+            45.150435
+        ],
+        "city": "Sarigyugh \"Sari Market\"",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Tavush marz, Ijevan community village Sarigiugh, 2nd street 1",
+        "region": {
+            "id": "11",
+            "label": "Tavush "
+        }
+    },
+    {
+        "id": "118",
+        "cord": [
+            41.231408,
+            44.838454
+        ],
+        "city": "Bagratashen \"Yerak\"",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Bagratashen 19/65",
+        "region": {
+            "id": "11",
+            "label": "Tavush "
+        }
+    },
+    {
+        "id": "119",
+        "cord": [
+            40.173223,
+            44.465854
+        ],
+        "city": "\"Astghik\" MC",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 0032, Yerevan Daniel Varuzhani St., 28 Building",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "120",
+        "cord": [
+            40.787376,
+            43.848407
+        ],
+        "city": "Gyumri \"Team Telecom Armenia\"",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 3102, Shirak Marz, Gyumri Gorku St., 65 Building",
+        "region": {
+            "id": "4",
+            "label": "Shirak"
+        }
+    },
+    {
+        "id": "121",
+        "cord": [
+            40.220269,
+            44.493726
+        ],
+        "city": "Davtashen \"Team Telecom Armenia\"",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Yerevan, Str Pirumyanneri 25/1",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "122",
+        "cord": [
+            40.152819,
+            44.400528
+        ],
+        "city": "Zvartnots Airport",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 0042, Yerevan \"Zvartnots\" Airport",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "123",
+        "cord": [
+            40.195744,
+            44.566414
+        ],
+        "city": "Megamall Armenia",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 0056, Yerevan Nor Nork 3rd Block, Gai Ave., 16",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "124",
+        "cord": [
+            40.232597,
+            44.442444
+        ],
+        "city": "Homplex Hyper Mall",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Kotayk Marz, village Proshyan G. Chowch 1/47 of Highway",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "125",
+        "cord": [
+            40.205031,
+            44.520775
+        ],
+        "city": "Yerevan City, Komitas",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 0014, Yerevan Komitasi Ave., 60/2",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "126",
+        "cord": [
+            41.101342,
+            44.658169
+        ],
+        "city": "Vallex Garden Hotel Alaverdi",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Lori marz, c. Alaverdi, Spandaryan 2",
+        "region": {
+            "id": "3",
+            "label": "Lori"
+        }
+    },
+    {
+        "id": "127",
+        "cord": [
+            40.177306,
+            44.438344
+        ],
+        "city": "Titan Oil",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Yerevan, Malatia-Sebastia, G. Sheram Street, 108",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "128",
+        "cord": [
+            40.245289,
+            44.577136
+        ],
+        "city": "Multi Magic Mall",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 2228, Kotayk Marz, Verin Ptghni village 5th St. 1st Blind Alley, 5 Building",
+        "region": {
+            "id": "2",
+            "label": "Kotayk"
+        }
+    },
+    {
+        "id": "129",
+        "cord": [
+            40.200169,
+            44.490603
+        ],
+        "city": "Mergelyan Scientific Research Institute",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 0033, Yerevan Hakob Hakobyan St., 3",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "130",
+        "cord": [
+            40.163167,
+            44.293983
+        ],
+        "city": "Vagharshapat \"Team Telecom Armenia\"",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 1101, Armavir Marz, Ejmiatsin Mashtotsi St., 2",
+        "region": {
+            "id": "7",
+            "label": "Armavir"
+        }
+    },
+    {
+        "id": "131",
+        "cord": [
+            40.946679,
+            44.442395
+        ],
+        "city": "Gargar Bakery",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, Lori Region, Village of Gargar",
+        "region": {
+            "id": "3",
+            "label": "Lori"
+        }
+    },
+    {
+        "id": "132",
+        "cord": [
+            40.171636,
+            44.497355
+        ],
+        "city": "Aigy Business Center",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 0082, Yerevan Tairovi St., 24 Building",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "133",
+        "cord": [
+            39.689359,
+            45.473226
+        ],
+        "city": "Vayk Food Court",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 3801, Vayots Dzor Marz, Vayk Jermuki Highway, 6",
+        "region": {
+            "id": "8",
+            "label": "Vayots Dzor"
+        }
+    },
+    {
+        "id": "134",
+        "cord": [
+            40.146327,
+            45.312992
+        ],
+        "city": "Leader Supermarket",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Martuni city, Kamo 51/3",
+        "region": {
+            "id": "6",
+            "label": "Gegharkunik"
+        }
+    },
+    {
+        "id": "135",
+        "cord": [
+            40.182239,
+            44.572023
+        ],
+        "city": "Nor-Nork \"Team Telecom Armenia\"",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "c. Yerevan, Mikoyan 15/3",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "136",
+        "cord": [
+            40.219278,
+            44.560972
+        ],
+        "city": "Harsnaqar Restaurant Complex",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Armenia, 0022, Yerevan Acharyan St., 37 Building",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "137",
+        "cord": [
+            40.210945,
+            44.514626
+        ],
+        "city": "Griboyedov",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Griboyedov 48",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "138",
+        "cord": [
+            40.13999,
+            44.492209
+        ],
+        "city": "Arshakunyac",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Arshakunyac 254",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    },
+    {
+        "id": "139",
+        "cord": [
+            40.181756,
+            44.523896
+        ],
+        "city": "Khanjyan",
+        "days": {
+            "monFry": "Mon - Fri",
+            "satSun": "Sat"
+        },
+        "hours": {
+            "monFry": "09:00-18:00",
+            "satSun": "09:00-18:00"
+        },
+        "street": "Khanjyan 51 in front of",
+        "region": {
+            "id": "1",
+            "label": "Yerevan"
+        }
+    }
+]

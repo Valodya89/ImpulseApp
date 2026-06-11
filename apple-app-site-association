@@ -1,0 +1,21 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "SHG3WMPK3S.com.mimo.MimoBike",
+          "SHG3WMPK3S.com.mimo.MimoBike.dev"
+        ],
+        "components": [
+          { "/": "/ameriatransactionstate*", "comment": "Ameria payment callback" }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "SHG3WMPK3S.com.mimo.MimoBike",
+      "SHG3WMPK3S.com.mimo.MimoBike.dev"
+    ]
+  }
+}

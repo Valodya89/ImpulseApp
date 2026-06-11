@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MAToolBar" customModule="MimoBike" customModuleProvider="target">
+            <connections>
+                <outlet property="contentBarScrollView" destination="6XS-ng-HGb" id="5QY-cE-ghQ"/>
+                <outlet property="indicatorViewLeadingConstraint" destination="dZD-m8-Fh3" id="tZq-MZ-DkY"/>
+                <outlet property="indicatorViewWidthConstraint" destination="axs-go-h1U" id="BDs-uZ-Li6"/>
+                <outlet property="titleBarIndicatorView" destination="h6i-Dj-qLc" id="Pef-k1-brz"/>
+                <outlet property="titleBarScrollView" destination="Ojo-cl-ZHR" id="c8e-zN-ZeD"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ojo-cl-ZHR">
+                    <rect key="frame" x="30" y="0.0" width="354" height="40"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qRO-3D-SXV">
+                            <rect key="frame" x="0.0" y="0.0" width="354" height="40"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kDJ-du-2lQ">
+                            <rect key="frame" x="0.0" y="39" width="354" height="1"/>
+                            <color key="backgroundColor" red="0.44705882352941173" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="fpH-eC-jOB"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h6i-Dj-qLc">
+                            <rect key="frame" x="10" y="38" width="56" height="1"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="56" id="axs-go-h1U"/>
+                                <constraint firstAttribute="height" constant="1" id="ys4-Ty-7nP"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="kDJ-du-2lQ" firstAttribute="centerX" secondItem="Ojo-cl-ZHR" secondAttribute="centerX" id="BQ6-oh-CgU"/>
+                        <constraint firstItem="kDJ-du-2lQ" firstAttribute="width" secondItem="Ojo-cl-ZHR" secondAttribute="width" id="Ffz-o4-avr"/>
+                        <constraint firstItem="qRO-3D-SXV" firstAttribute="leading" secondItem="Ojo-cl-ZHR" secondAttribute="leading" id="KNe-MZ-5dt"/>
+                        <constraint firstAttribute="trailing" secondItem="qRO-3D-SXV" secondAttribute="trailing" id="V2d-Za-dWm"/>
+                        <constraint firstAttribute="bottom" secondItem="qRO-3D-SXV" secondAttribute="bottom" id="aUE-3S-wgz"/>
+                        <constraint firstItem="h6i-Dj-qLc" firstAttribute="leading" secondItem="qRO-3D-SXV" secondAttribute="leading" constant="10" id="dZD-m8-Fh3"/>
+                        <constraint firstItem="qRO-3D-SXV" firstAttribute="height" secondItem="Ojo-cl-ZHR" secondAttribute="height" id="ep1-1F-5HL"/>
+                        <constraint firstItem="qRO-3D-SXV" firstAttribute="top" secondItem="Ojo-cl-ZHR" secondAttribute="top" id="jcy-TB-DfS"/>
+                        <constraint firstItem="qRO-3D-SXV" firstAttribute="width" secondItem="Ojo-cl-ZHR" secondAttribute="width" placeholder="YES" id="kwa-cP-WE6"/>
+                        <constraint firstItem="kDJ-du-2lQ" firstAttribute="top" secondItem="h6i-Dj-qLc" secondAttribute="bottom" id="qW9-em-KqB"/>
+                        <constraint firstAttribute="bottom" secondItem="kDJ-du-2lQ" secondAttribute="bottom" id="vH5-sl-jrp"/>
+                        <constraint firstAttribute="height" constant="40" id="yzm-NY-cdm"/>
+                    </constraints>
+                </scrollView>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6XS-ng-HGb">
+                    <rect key="frame" x="0.0" y="40" width="414" height="856"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Ojo-cl-ZHR" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="-30" id="Cgn-HE-1Wa"/>
+                <constraint firstAttribute="bottom" secondItem="6XS-ng-HGb" secondAttribute="bottom" id="Jef-wT-cR7"/>
+                <constraint firstItem="Ojo-cl-ZHR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="PhO-xg-cD8"/>
+                <constraint firstAttribute="trailing" secondItem="6XS-ng-HGb" secondAttribute="trailing" id="VYE-CE-AnJ"/>
+                <constraint firstItem="6XS-ng-HGb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jMV-3p-1dF"/>
+                <constraint firstItem="Ojo-cl-ZHR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="otp-9g-zWm"/>
+                <constraint firstItem="6XS-ng-HGb" firstAttribute="top" secondItem="Ojo-cl-ZHR" secondAttribute="bottom" id="qjU-hC-O1K"/>
+            </constraints>
+            <point key="canvasLocation" x="-17.39130434782609" y="95.758928571428569"/>
+        </view>
+    </objects>
+</document>

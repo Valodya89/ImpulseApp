@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="106" id="KGk-i7-Jjw" customClass="InsuranceTableViewCell" customModule="MimoBike" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="104"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insurance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ZZ-70-3Ax">
+                        <rect key="frame" x="172" y="24" width="70.5" height="19"/>
+                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
+                        <color key="textColor" name="mimoDarkGray"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9bd-JL-j6X">
+                        <rect key="frame" x="183" y="49" width="48" height="24"/>
+                        <color key="backgroundColor" name="mimoGrayLight"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="1Lu-hQ-Smd"/>
+                            <constraint firstAttribute="width" constant="48" id="PCZ-ZT-zpw"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <connections>
+                            <action selector="insuranceButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="H8J-Ah-dM3"/>
+                        </connections>
+                    </button>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_chield" translatesAutoresizingMaskIntoConstraints="NO" id="k2l-Qo-bZj">
+                        <rect key="frame" x="182" y="43" width="36" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="36" id="Phz-2v-LKp"/>
+                            <constraint firstAttribute="height" constant="36" id="cuZ-kj-owp"/>
+                        </constraints>
+                    </imageView>
+                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNO-Ad-Eoe">
+                        <rect key="frame" x="245" y="39" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="IqC-vq-stc"/>
+                            <constraint firstAttribute="width" constant="44" id="nA1-gk-k4I"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="ic_info"/>
+                        <connections>
+                            <action selector="informationButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8D3-GC-ump"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Insure your ride for 500֏" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJ0-7w-Icm">
+                        <rect key="frame" x="128" y="87" width="158" height="17"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                        <color key="textColor" name="mimoDarkGray"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMi-P0-b4H">
+                        <rect key="frame" x="172" y="86.5" width="70" height="18"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="k2l-Qo-bZj" firstAttribute="centerY" secondItem="9bd-JL-j6X" secondAttribute="centerY" id="1A6-EL-puX"/>
+                    <constraint firstItem="9bd-JL-j6X" firstAttribute="centerX" secondItem="5ZZ-70-3Ax" secondAttribute="centerX" id="8xG-jv-O5V"/>
+                    <constraint firstItem="RJ0-7w-Icm" firstAttribute="centerX" secondItem="9bd-JL-j6X" secondAttribute="centerX" id="EXj-bd-Pj7"/>
+                    <constraint firstItem="nNO-Ad-Eoe" firstAttribute="centerY" secondItem="9bd-JL-j6X" secondAttribute="centerY" id="FgW-Px-HPF"/>
+                    <constraint firstItem="9bd-JL-j6X" firstAttribute="top" secondItem="5ZZ-70-3Ax" secondAttribute="bottom" constant="6" id="G5A-pa-EG7"/>
+                    <constraint firstItem="5ZZ-70-3Ax" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="G7K-iQ-FEb"/>
+                    <constraint firstItem="5ZZ-70-3Ax" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="GOY-aG-ZnZ"/>
+                    <constraint firstItem="nNO-Ad-Eoe" firstAttribute="leading" secondItem="9bd-JL-j6X" secondAttribute="trailing" constant="14" id="HQ7-Qs-tQT"/>
+                    <constraint firstItem="LMi-P0-b4H" firstAttribute="centerY" secondItem="RJ0-7w-Icm" secondAttribute="centerY" id="NGR-ul-tLc"/>
+                    <constraint firstItem="k2l-Qo-bZj" firstAttribute="centerX" secondItem="9bd-JL-j6X" secondAttribute="centerX" constant="-7" id="eQG-lh-t4v"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="RJ0-7w-Icm" secondAttribute="bottom" id="u4u-H9-YJ0"/>
+                    <constraint firstItem="LMi-P0-b4H" firstAttribute="centerX" secondItem="RJ0-7w-Icm" secondAttribute="centerX" id="xWR-v6-vsg"/>
+                    <constraint firstItem="RJ0-7w-Icm" firstAttribute="top" secondItem="9bd-JL-j6X" secondAttribute="bottom" constant="14" id="xtD-38-xox"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="informationButton" destination="nNO-Ad-Eoe" id="XJQ-Fm-MgR"/>
+                <outlet property="insuranceButton" destination="9bd-JL-j6X" id="z92-Xl-I3B"/>
+                <outlet property="insuranceCheildImageView" destination="k2l-Qo-bZj" id="mJF-uZ-99n"/>
+                <outlet property="insuranceCheildImageViewCenterHorizontalConstraint" destination="eQG-lh-t4v" id="8jJ-bv-00Z"/>
+                <outlet property="insuranceLabel" destination="5ZZ-70-3Ax" id="cEZ-cy-dSO"/>
+                <outlet property="insurancePriceLabel" destination="RJ0-7w-Icm" id="4MR-RZ-KZv"/>
+                <outlet property="timerLabel" destination="LMi-P0-b4H" id="13E-b8-Efo"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="173.4375"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_chield" width="36" height="36"/>
+        <image name="ic_info" width="24" height="24"/>
+        <namedColor name="mimoDarkGray">
+            <color red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoGrayLight">
+            <color red="0.9649999737739563" green="0.97299998998641968" blue="0.98400002717971802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

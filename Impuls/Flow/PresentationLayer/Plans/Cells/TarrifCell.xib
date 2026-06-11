@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+        </array>
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yjV-wW-EvS" userLabel="TarrifISmall" customClass="TarrifCell" customModule="MimoBike" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="335" height="121"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ojn-ON-dVo" customClass="GradientFillView" customModule="MimoBike" customModuleProvider="target">
+                    <rect key="frame" x="20" y="16" width="295" height="89"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_calendar_package" translatesAutoresizingMaskIntoConstraints="NO" id="b5d-Jm-v3Y">
+                            <rect key="frame" x="17" y="14" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="Bwe-Nh-lY0"/>
+                                <constraint firstAttribute="height" constant="24" id="fwC-0P-zIk"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weekend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="CE7-uK-HSg">
+                            <rect key="frame" x="51" y="16.5" width="66" height="19"/>
+                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
+                            <color key="textColor" name="mimoBlackWith075alpha"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minimal fee is 99.9 amd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFg-aL-lfh">
+                            <rect key="frame" x="16" y="56.5" width="146.5" height="22.5"/>
+                            <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="14"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7mp-gc-Lok">
+                            <rect key="frame" x="14" y="46" width="267" height="0.5"/>
+                            <color key="backgroundColor" name="mimoBlackWith025alpha"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.5" id="tHx-pX-N1w"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.99 AMD/MINUTE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="A2N-ac-9uC">
+                            <rect key="frame" x="149.5" y="16.5" width="137" height="19"/>
+                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
+                            <color key="textColor" name="mimoBlackWith075alpha"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="iFg-aL-lfh" firstAttribute="top" secondItem="7mp-gc-Lok" secondAttribute="bottom" constant="10" id="0I7-cW-Jg1"/>
+                        <constraint firstItem="7mp-gc-Lok" firstAttribute="leading" secondItem="Ojn-ON-dVo" secondAttribute="leading" constant="14" id="5a0-Gz-7HH"/>
+                        <constraint firstItem="b5d-Jm-v3Y" firstAttribute="leading" secondItem="Ojn-ON-dVo" secondAttribute="leading" constant="17" id="68T-EW-vqy"/>
+                        <constraint firstItem="A2N-ac-9uC" firstAttribute="centerY" secondItem="CE7-uK-HSg" secondAttribute="centerY" id="7yP-Zf-ucs"/>
+                        <constraint firstItem="CE7-uK-HSg" firstAttribute="leading" secondItem="b5d-Jm-v3Y" secondAttribute="trailing" constant="10" id="92W-9z-MEz"/>
+                        <constraint firstItem="iFg-aL-lfh" firstAttribute="leading" secondItem="Ojn-ON-dVo" secondAttribute="leading" constant="16" id="NIz-Le-wcP"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CE7-uK-HSg" secondAttribute="trailing" constant="20" id="OHS-Ge-5MD"/>
+                        <constraint firstAttribute="trailing" secondItem="A2N-ac-9uC" secondAttribute="trailing" constant="8.5" id="QZH-ym-Ynw"/>
+                        <constraint firstItem="A2N-ac-9uC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CE7-uK-HSg" secondAttribute="trailing" constant="10" id="Tx6-Fy-DPG"/>
+                        <constraint firstItem="b5d-Jm-v3Y" firstAttribute="top" secondItem="Ojn-ON-dVo" secondAttribute="top" constant="14" id="VEI-Lr-qm1"/>
+                        <constraint firstAttribute="trailing" secondItem="7mp-gc-Lok" secondAttribute="trailing" constant="14" id="cOf-79-teo"/>
+                        <constraint firstItem="CE7-uK-HSg" firstAttribute="centerY" secondItem="b5d-Jm-v3Y" secondAttribute="centerY" id="i0C-mm-Tsp"/>
+                        <constraint firstAttribute="bottom" secondItem="iFg-aL-lfh" secondAttribute="bottom" constant="10" id="oTK-0C-Kq6"/>
+                        <constraint firstItem="7mp-gc-Lok" firstAttribute="top" secondItem="b5d-Jm-v3Y" secondAttribute="bottom" constant="8" id="yEq-Oj-0P9"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowY">
+                            <real key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="dox-b2-Ber"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Ojn-ON-dVo" firstAttribute="top" secondItem="yjV-wW-EvS" secondAttribute="top" constant="16" id="KeD-lx-BYx"/>
+                <constraint firstItem="Ojn-ON-dVo" firstAttribute="leading" secondItem="yjV-wW-EvS" secondAttribute="leading" constant="20" id="WcV-yA-lit"/>
+                <constraint firstAttribute="trailing" secondItem="Ojn-ON-dVo" secondAttribute="trailing" constant="20" id="XgZ-HS-6kJ"/>
+                <constraint firstAttribute="bottom" secondItem="Ojn-ON-dVo" secondAttribute="bottom" constant="16" id="bjd-YG-xeL"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="contentIcon" destination="b5d-Jm-v3Y" id="9cz-Eg-rrj"/>
+                <outlet property="contextView" destination="Ojn-ON-dVo" id="DjI-VA-4xE"/>
+                <outlet property="descriptionLabel" destination="A2N-ac-9uC" id="aTG-Tf-qBu"/>
+                <outlet property="infoLabel" destination="iFg-aL-lfh" id="6l6-ns-BZT"/>
+                <outlet property="timeLabel" destination="CE7-uK-HSg" id="q09-hZ-nxI"/>
+            </connections>
+            <point key="canvasLocation" x="152.89855072463769" y="264.84375"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_calendar_package" width="35" height="30"/>
+        <namedColor name="mimoBlackWith025alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoBlackWith075alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

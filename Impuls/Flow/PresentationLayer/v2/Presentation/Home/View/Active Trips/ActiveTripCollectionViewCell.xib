@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ActiveTripCollectionViewCell" customModule="MimoBike" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="388" height="90"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="388" height="90"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yor Bike" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Emy-bd-Ku9">
+                        <rect key="frame" x="16" y="16" width="59" height="19"/>
+                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
+                        <color key="textColor" name="mimoDarkGray"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ktq-FR-gLQ">
+                        <rect key="frame" x="87" y="13.666666666666664" width="97" height="24"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_qr" translatesAutoresizingMaskIntoConstraints="NO" id="4Vn-Uc-ov9">
+                                <rect key="frame" x="8" y="4.0000000000000018" width="16" height="15.999999999999998"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4Vn-Uc-ov9" secondAttribute="height" id="CBn-9Q-j2L"/>
+                                    <constraint firstAttribute="width" constant="16" id="Fgw-Md-DZ5"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10010342" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Dw-66-htK">
+                                <rect key="frame" x="26" y="0.0" width="63" height="24"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4Vn-Uc-ov9" firstAttribute="centerY" secondItem="ktq-FR-gLQ" secondAttribute="centerY" id="02f-Ww-S7i"/>
+                            <constraint firstAttribute="trailing" secondItem="4Dw-66-htK" secondAttribute="trailing" constant="8" id="7h0-Qg-4GE"/>
+                            <constraint firstItem="4Dw-66-htK" firstAttribute="top" secondItem="ktq-FR-gLQ" secondAttribute="top" id="Ejv-j7-M1C"/>
+                            <constraint firstAttribute="height" constant="24" id="Yqm-5i-PY5"/>
+                            <constraint firstItem="4Dw-66-htK" firstAttribute="leading" secondItem="4Vn-Uc-ov9" secondAttribute="trailing" constant="2" id="akt-6e-YO8"/>
+                            <constraint firstAttribute="bottom" secondItem="4Dw-66-htK" secondAttribute="bottom" id="eTS-CO-kQW"/>
+                            <constraint firstItem="4Vn-Uc-ov9" firstAttribute="leading" secondItem="ktq-FR-gLQ" secondAttribute="leading" constant="8" id="phd-ss-KnL"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" name="mimoYellow500"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_active_trip_location" translatesAutoresizingMaskIntoConstraints="NO" id="Shq-hJ-zbr">
+                        <rect key="frame" x="12" y="47" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Shq-hJ-zbr" secondAttribute="height" id="2ef-ck-beh"/>
+                            <constraint firstAttribute="width" constant="32" id="LI4-0N-ue9"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="St Market 145 St Market 145 St Market 145 St Market 145" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPt-uI-v52">
+                        <rect key="frame" x="52" y="53" width="244" height="16.333333333333329"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                        <color key="textColor" name="mimoDarkGray"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mimo_bike_New" translatesAutoresizingMaskIntoConstraints="NO" id="acu-D0-cjg">
+                        <rect key="frame" x="312" y="26" width="60" height="38"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="6yd-5U-Uw5"/>
+                        </constraints>
+                    </imageView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYc-BY-p5q">
+                        <rect key="frame" x="260.66666666666669" y="13.666666666666666" width="35.333333333333314" height="28.666666666666671"/>
+                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="24"/>
+                        <color key="textColor" name="mimoDarkGray"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="acu-D0-cjg" firstAttribute="leading" secondItem="PYc-BY-p5q" secondAttribute="trailing" constant="16" id="1rt-l4-dPy"/>
+                <constraint firstItem="Emy-bd-Ku9" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="48C-8D-bv4"/>
+                <constraint firstItem="Shq-hJ-zbr" firstAttribute="top" secondItem="Emy-bd-Ku9" secondAttribute="bottom" constant="12" id="6db-4b-m40"/>
+                <constraint firstItem="ktq-FR-gLQ" firstAttribute="leading" secondItem="Emy-bd-Ku9" secondAttribute="trailing" constant="12" id="Edz-a0-YVN"/>
+                <constraint firstAttribute="trailing" secondItem="acu-D0-cjg" secondAttribute="trailing" constant="16" id="TK1-b5-ZAd"/>
+                <constraint firstItem="ktq-FR-gLQ" firstAttribute="centerY" secondItem="Emy-bd-Ku9" secondAttribute="centerY" id="U7i-O3-PRf"/>
+                <constraint firstItem="Shq-hJ-zbr" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="12" id="W37-OA-Gs9"/>
+                <constraint firstItem="PYc-BY-p5q" firstAttribute="top" secondItem="ktq-FR-gLQ" secondAttribute="top" id="YkH-pE-1Kf"/>
+                <constraint firstAttribute="bottom" secondItem="acu-D0-cjg" secondAttribute="bottom" constant="26" id="bnn-MH-rgA"/>
+                <constraint firstItem="acu-D0-cjg" firstAttribute="leading" secondItem="nPt-uI-v52" secondAttribute="trailing" constant="16" id="ear-6n-mNX"/>
+                <constraint firstItem="Emy-bd-Ku9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="fcb-jr-daj"/>
+                <constraint firstItem="acu-D0-cjg" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="26" id="lx4-JK-hYH"/>
+                <constraint firstItem="nPt-uI-v52" firstAttribute="leading" secondItem="Shq-hJ-zbr" secondAttribute="trailing" constant="8" id="pYx-u0-4sb"/>
+                <constraint firstItem="nPt-uI-v52" firstAttribute="centerY" secondItem="Shq-hJ-zbr" secondAttribute="centerY" constant="-2" id="vn0-4H-vQ5"/>
+            </constraints>
+            <size key="customSize" width="388" height="90"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="8"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="addressLabel" destination="nPt-uI-v52" id="jSi-FA-cEm"/>
+                <outlet property="iconImageView" destination="acu-D0-cjg" id="VkE-K4-A3b"/>
+                <outlet property="nameLabel" destination="Emy-bd-Ku9" id="ngj-WY-AdE"/>
+                <outlet property="percentLabel" destination="PYc-BY-p5q" id="YZf-4F-Kgc"/>
+                <outlet property="qrLabel" destination="4Dw-66-htK" id="fBn-Jb-VrP"/>
+                <outlet property="qrView" destination="ktq-FR-gLQ" id="73G-Dy-h4d"/>
+            </connections>
+            <point key="canvasLocation" x="396.94656488549617" y="34.507042253521128"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Mimo_bike_New" width="330" height="216"/>
+        <image name="ic_active_trip_location" width="34" height="34"/>
+        <image name="ic_qr" width="16" height="16"/>
+        <namedColor name="mimoDarkGray">
+            <color red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoYellow500">
+            <color red="1" green="0.92156862745098034" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

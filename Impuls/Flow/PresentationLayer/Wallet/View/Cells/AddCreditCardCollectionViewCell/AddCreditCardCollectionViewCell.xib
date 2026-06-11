@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="AddCreditCardCollectionViewCell" customModule="MimoBike" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="335" height="176"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="335" height="176"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z5M-eA-ve1">
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="176"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="Gb2-xK-Wfo">
+                                <rect key="frame" x="85" y="20.5" width="200" height="47.5"/>
+                                <subviews>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hei-dM-HUi">
+                                        <rect key="frame" x="0.0" y="33" width="200" height="14.5"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Get 10Min Free">
+                                                <attributes>
+                                                    <color key="NSColor" name="mimoGreen"/>
+                                                    <font key="NSFont" metaFont="cellTitle"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    <integer key="NSUnderline" value="1"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Credit CardAdd" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYs-D9-WaO" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="3" width="200" height="20"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                        <color key="textColor" name="mimoBlack"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_wallet_add_a_credit_card"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="leading" secondItem="Gb2-xK-Wfo" secondAttribute="leading" id="01g-qB-HTE"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZYs-D9-WaO" secondAttribute="trailing" id="2ho-WT-NFH"/>
+                                    <constraint firstAttribute="bottom" secondItem="hei-dM-HUi" secondAttribute="bottom" id="NJA-pj-9lS"/>
+                                    <constraint firstItem="ZYs-D9-WaO" firstAttribute="leading" secondItem="Gb2-xK-Wfo" secondAttribute="leading" id="SYm-vY-Awe"/>
+                                    <constraint firstItem="ZYs-D9-WaO" firstAttribute="top" secondItem="Gb2-xK-Wfo" secondAttribute="top" constant="3" id="cSM-dI-mjk"/>
+                                    <constraint firstAttribute="width" constant="200" id="cmt-hW-HNY"/>
+                                    <constraint firstItem="hei-dM-HUi" firstAttribute="top" secondItem="ZYs-D9-WaO" secondAttribute="bottom" constant="10" id="ec8-76-USz"/>
+                                    <constraint firstItem="hei-dM-HUi" firstAttribute="leading" secondItem="Gb2-xK-Wfo" secondAttribute="leading" id="m9F-sp-RvI"/>
+                                    <constraint firstAttribute="trailing" secondItem="hei-dM-HUi" secondAttribute="trailing" id="mie-Fp-CcJ"/>
+                                    <constraint firstAttribute="top" secondItem="Gb2-xK-Wfo" secondAttribute="top" id="oSX-Nl-4SC"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4J3-Fj-CTi">
+                                <rect key="frame" x="50.5" y="140" width="234" height="20"/>
+                                <imageReference key="image" image="icon_add_card_cardType"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="9sE-41-agK">
+                                <rect key="frame" x="0.0" y="53" width="75" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="wvq-4R-PI5"/>
+                                </constraints>
+                                <imageReference key="image" image="ic_creditCard_add_1"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="MJO-Il-eIs">
+                                <rect key="frame" x="120.5" y="75" width="94" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="MJO-Il-eIs" secondAttribute="height" multiplier="57:16" id="c3D-yh-kbH"/>
+                                </constraints>
+                                <imageReference key="image" image="ic_mir"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UHo-nl-VCT">
+                                <rect key="frame" x="0.0" y="60" width="335" height="116"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <connections>
+                                    <action selector="didClick:" destination="gTV-IL-0wX" eventType="touchUpInside" id="nD3-EP-tUU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" name="mimoWhite"/>
+                        <constraints>
+                            <constraint firstItem="MJO-Il-eIs" firstAttribute="height" secondItem="z5M-eA-ve1" secondAttribute="height" multiplier="0.15" id="8RZ-SE-P6B"/>
+                            <constraint firstAttribute="bottom" secondItem="UHo-nl-VCT" secondAttribute="bottom" id="Fb4-ka-mWl"/>
+                            <constraint firstItem="MJO-Il-eIs" firstAttribute="centerX" secondItem="z5M-eA-ve1" secondAttribute="centerX" id="Ogw-7s-Jcg"/>
+                            <constraint firstAttribute="trailing" secondItem="UHo-nl-VCT" secondAttribute="trailing" id="OnL-3G-U4m"/>
+                            <constraint firstItem="UHo-nl-VCT" firstAttribute="leading" secondItem="z5M-eA-ve1" secondAttribute="leading" id="RRO-ay-fJn"/>
+                            <constraint firstItem="Gb2-xK-Wfo" firstAttribute="centerY" secondItem="z5M-eA-ve1" secondAttribute="centerY" multiplier="0.5" id="glw-qf-x3O"/>
+                            <constraint firstItem="MJO-Il-eIs" firstAttribute="centerY" secondItem="z5M-eA-ve1" secondAttribute="centerY" id="k5r-wN-5xU"/>
+                            <constraint firstAttribute="bottom" secondItem="4J3-Fj-CTi" secondAttribute="bottom" constant="16" id="pfE-D3-ntg"/>
+                            <constraint firstItem="UHo-nl-VCT" firstAttribute="top" secondItem="z5M-eA-ve1" secondAttribute="top" constant="60" id="qdG-L5-YVc"/>
+                            <constraint firstItem="Gb2-xK-Wfo" firstAttribute="leading" secondItem="9sE-41-agK" secondAttribute="trailing" constant="10" id="sIf-8w-Gbe"/>
+                            <constraint firstItem="9sE-41-agK" firstAttribute="centerY" secondItem="z5M-eA-ve1" secondAttribute="centerY" id="sey-l9-Vsl"/>
+                            <constraint firstItem="4J3-Fj-CTi" firstAttribute="centerX" secondItem="z5M-eA-ve1" secondAttribute="centerX" id="u7r-dL-dXa"/>
+                            <constraint firstItem="9sE-41-agK" firstAttribute="leading" secondItem="z5M-eA-ve1" secondAttribute="leading" id="wmB-Kh-KkX"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" name="mimoWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="z5M-eA-ve1" secondAttribute="bottom" id="6rZ-5w-jtm"/>
+                <constraint firstAttribute="trailing" secondItem="z5M-eA-ve1" secondAttribute="trailing" id="LbQ-UK-gMV"/>
+                <constraint firstItem="z5M-eA-ve1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="NT1-Er-7S2"/>
+                <constraint firstItem="z5M-eA-ve1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="pEj-0O-kW2"/>
+            </constraints>
+            <size key="customSize" width="335" height="176"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="12"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="minFreeLabel" destination="hei-dM-HUi" id="vSB-qn-w5G"/>
+            </connections>
+            <point key="canvasLocation" x="138.40579710144928" y="131.91964285714286"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ic_creditCard_add_1" width="70" height="70"/>
+        <image name="ic_mir" width="57.5" height="16"/>
+        <image name="icon_add_card_cardType" width="234" height="20"/>
+        <namedColor name="mimoBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoGreen">
+            <color red="0.2627450980392157" green="0.62745098039215685" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

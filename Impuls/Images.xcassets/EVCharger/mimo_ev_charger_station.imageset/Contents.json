@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "mimo_ev_charger_station.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

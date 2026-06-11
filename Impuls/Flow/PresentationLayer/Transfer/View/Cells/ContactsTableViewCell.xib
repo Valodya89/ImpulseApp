@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19115.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19107.5"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ContactsTableViewCell" customModule="MimoBike" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ayH-2r-Db6" userLabel="findFromContactsView">
+                        <rect key="frame" x="20" y="8" width="335" height="38"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Kim" translatesAutoresizingMaskIntoConstraints="NO" id="smw-sH-jfB" customClass="CircleImageView" customModule="MimoBike" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="38" height="38"/>
+                                <color key="backgroundColor" name="mimoGray500"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="smw-sH-jfB" secondAttribute="height" multiplier="1:1" id="TgX-Uv-JiM"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dhi-c9-ZvP" userLabel="SpaceView">
+                                <rect key="frame" x="38" y="0.0" width="20" height="38"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find from contacts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ub4-h2-ddj" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                <rect key="frame" x="58" y="10" width="127" height="18"/>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
+                                <color key="textColor" name="mimoBlack"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_wallet_find_from_contacts"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="smw-sH-jfB" firstAttribute="leading" secondItem="ayH-2r-Db6" secondAttribute="leading" id="2hE-g1-Ue7"/>
+                            <constraint firstItem="dhi-c9-ZvP" firstAttribute="leading" secondItem="smw-sH-jfB" secondAttribute="trailing" id="7WV-Xf-vSP"/>
+                            <constraint firstItem="dhi-c9-ZvP" firstAttribute="top" secondItem="ayH-2r-Db6" secondAttribute="top" id="QQa-Ip-aqe"/>
+                            <constraint firstItem="smw-sH-jfB" firstAttribute="width" secondItem="ayH-2r-Db6" secondAttribute="width" multiplier="0.113433" id="RfE-9V-x0q"/>
+                            <constraint firstItem="Ub4-h2-ddj" firstAttribute="leading" secondItem="dhi-c9-ZvP" secondAttribute="trailing" id="SkY-rW-gtu"/>
+                            <constraint firstItem="smw-sH-jfB" firstAttribute="top" secondItem="ayH-2r-Db6" secondAttribute="top" id="Ule-lb-bd4"/>
+                            <constraint firstItem="dhi-c9-ZvP" firstAttribute="width" secondItem="ayH-2r-Db6" secondAttribute="width" multiplier="0.06" id="WQr-ke-9Oh"/>
+                            <constraint firstItem="Ub4-h2-ddj" firstAttribute="centerY" secondItem="smw-sH-jfB" secondAttribute="centerY" id="d86-Sb-wZ5"/>
+                            <constraint firstItem="dhi-c9-ZvP" firstAttribute="height" secondItem="smw-sH-jfB" secondAttribute="height" id="t0K-PL-LTf"/>
+                            <constraint firstAttribute="bottom" secondItem="smw-sH-jfB" secondAttribute="bottom" id="vvb-Sx-vPP"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" name="mimoGray100"/>
+                <constraints>
+                    <constraint firstItem="ayH-2r-Db6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ado-lF-4Ob"/>
+                    <constraint firstItem="ayH-2r-Db6" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="aAU-Qa-on3"/>
+                    <constraint firstItem="ayH-2r-Db6" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.893333" id="dZ7-i8-VCy"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="profileImageView" destination="smw-sH-jfB" id="IrC-cn-DaO"/>
+                <outlet property="profileName" destination="Ub4-h2-ddj" id="5BH-QT-i0V"/>
+            </connections>
+            <point key="canvasLocation" x="28" y="87"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Kim" width="866" height="866"/>
+        <namedColor name="mimoBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoGray100">
+            <color red="0.90980392156862744" green="0.93725490196078431" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoGray500">
+            <color red="0.61960784313725492" green="0.68627450980392157" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

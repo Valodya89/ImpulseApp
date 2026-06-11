@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZoningView" customModule="MimoBike" customModuleProvider="target">
+            <connections>
+                <outlet property="animatedView" destination="ggG-0W-4Ch" id="5Hi-Ct-6bW"/>
+                <outlet property="contentTopConstraint" destination="qas-Ri-U9C" id="RKb-Qx-ubj"/>
+                <outlet property="contextView" destination="5Oy-Jc-BrL" id="GqM-bF-xSJ"/>
+                <outlet property="shadowView" destination="uTd-mE-EWS" id="ste-AW-0Pe"/>
+                <outlet property="zoneDescriptionLabel" destination="2L6-Wn-2jn" id="LBp-ax-MhY"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uTd-mE-EWS">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <color key="backgroundColor" name="mimoBlackWith05alpha"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="Aph-IA-BKy" appends="YES" id="gPe-fI-5YE"/>
+                    </connections>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Oy-Jc-BrL">
+                    <rect key="frame" x="0.0" y="297" width="414" height="480"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7m9-nR-esy">
+                            <rect key="frame" x="376" y="18" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="7m9-nR-esy" secondAttribute="height" id="84A-Y6-ruY"/>
+                                <constraint firstAttribute="height" constant="20" id="WzU-Yp-MEm"/>
+                            </constraints>
+                            <color key="tintColor" name="mimoBlackWith075alpha"/>
+                            <state key="normal" backgroundImage="ic_close"/>
+                            <connections>
+                                <action selector="removeContent" destination="-1" eventType="touchUpInside" id="pNE-og-23Z"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Red Zone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOJ-0X-QcT" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                            <rect key="frame" x="19" y="48" width="105" height="28"/>
+                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
+                            <color key="textColor" name="mimoBlackWith075alpha"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_zone_red_zone"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ride a bicycle from red zone to green zone and get [num] free from Mimo Bike" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2L6-Wn-2jn" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                            <rect key="frame" x="19" y="86" width="375" height="41"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_map_bonus_text"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_zoneBackground" translatesAutoresizingMaskIntoConstraints="NO" id="vGR-iO-kdA">
+                            <rect key="frame" x="0.0" y="147" width="414" height="299"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="vGR-iO-kdA" secondAttribute="height" multiplier="375:271" id="pAb-FV-LQ0"/>
+                            </constraints>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ggG-0W-4Ch" customClass="AnimatedView" customModule="MimoBike" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="147" width="414" height="299"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="playAnimation" value="YES"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="bicycleAnimation"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="loopAnimation" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="2L6-Wn-2jn" firstAttribute="leading" secondItem="vOJ-0X-QcT" secondAttribute="leading" id="2wo-k4-y6T"/>
+                        <constraint firstItem="2L6-Wn-2jn" firstAttribute="top" secondItem="vOJ-0X-QcT" secondAttribute="bottom" constant="10" id="7oc-br-3n4"/>
+                        <constraint firstItem="vGR-iO-kdA" firstAttribute="leading" secondItem="5Oy-Jc-BrL" secondAttribute="leading" id="98k-d8-Kws"/>
+                        <constraint firstItem="ggG-0W-4Ch" firstAttribute="height" secondItem="vGR-iO-kdA" secondAttribute="height" id="Chg-XX-6qS"/>
+                        <constraint firstAttribute="trailing" secondItem="2L6-Wn-2jn" secondAttribute="trailing" constant="20" id="KJG-4q-PhB"/>
+                        <constraint firstItem="vGR-iO-kdA" firstAttribute="leading" secondItem="5Oy-Jc-BrL" secondAttribute="leading" id="NzW-bY-Tg1"/>
+                        <constraint firstItem="vOJ-0X-QcT" firstAttribute="top" secondItem="7m9-nR-esy" secondAttribute="bottom" constant="10" id="Omb-aH-aX9"/>
+                        <constraint firstItem="ggG-0W-4Ch" firstAttribute="leading" secondItem="vGR-iO-kdA" secondAttribute="leading" id="Rmf-HD-4b8"/>
+                        <constraint firstItem="7m9-nR-esy" firstAttribute="top" secondItem="5Oy-Jc-BrL" secondAttribute="top" constant="18" id="VSy-R6-I8N"/>
+                        <constraint firstItem="vOJ-0X-QcT" firstAttribute="leading" secondItem="5Oy-Jc-BrL" secondAttribute="leading" constant="19" id="WaI-tk-EFA"/>
+                        <constraint firstAttribute="bottom" secondItem="vGR-iO-kdA" secondAttribute="bottom" constant="34" id="ZOS-mo-4du"/>
+                        <constraint firstItem="ggG-0W-4Ch" firstAttribute="trailing" secondItem="vGR-iO-kdA" secondAttribute="trailing" id="bax-cu-azQ"/>
+                        <constraint firstItem="ggG-0W-4Ch" firstAttribute="bottom" secondItem="vGR-iO-kdA" secondAttribute="bottom" id="hsJ-l0-sR3"/>
+                        <constraint firstItem="vGR-iO-kdA" firstAttribute="top" secondItem="2L6-Wn-2jn" secondAttribute="bottom" constant="20" id="itj-YN-Bs4"/>
+                        <constraint firstAttribute="trailing" secondItem="vGR-iO-kdA" secondAttribute="trailing" id="r6o-or-1t7"/>
+                        <constraint firstAttribute="trailing" secondItem="7m9-nR-esy" secondAttribute="trailing" constant="18" id="uYk-UH-tVl"/>
+                        <constraint firstAttribute="trailing" secondItem="vGR-iO-kdA" secondAttribute="trailing" id="x7c-xW-Dgd"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="uTd-mE-EWS" secondAttribute="bottom" id="3M9-f1-nBA"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="uTd-mE-EWS" secondAttribute="trailing" id="IsD-SQ-F3u"/>
+                <constraint firstItem="5Oy-Jc-BrL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="JDd-d4-ait"/>
+                <constraint firstItem="uTd-mE-EWS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Njw-eP-lHs"/>
+                <constraint firstItem="5Oy-Jc-BrL" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Ws9-O9-q4X"/>
+                <constraint firstItem="5Oy-Jc-BrL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="bottom" constant="-599" id="qas-Ri-U9C"/>
+                <constraint firstItem="uTd-mE-EWS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="xQS-tv-tGg"/>
+            </constraints>
+            <point key="canvasLocation" x="134.78260869565219" y="111.83035714285714"/>
+        </view>
+        <tapGestureRecognizer id="Aph-IA-BKy">
+            <connections>
+                <action selector="removeContent" destination="-1" id="nbV-Ia-KEh"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="ic_close" width="13" height="13"/>
+        <image name="ic_zoneBackground" width="375" height="271"/>
+        <namedColor name="mimoBlackWith05alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoBlackWith075alpha">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

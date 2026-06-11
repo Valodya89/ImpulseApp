@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SHp-7K-0cF">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="Ifj-ev-KgD">
+            <objects>
+                <viewController storyboardIdentifier="SplashViewController" id="SHp-7K-0cF" customClass="SplashViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wiv-GA-mDb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MdR-rG-Ves">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JeQ-nM-Jry" customClass="LottieAnimationView" customModule="Lottie">
+                                <rect key="frame" x="37.666666666666657" y="343.66666666666669" width="300" height="125"/>
+                                <subviews>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_splash_logo" translatesAutoresizingMaskIntoConstraints="NO" id="zM6-Af-paZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="125"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="zM6-Af-paZ" secondAttribute="bottom" id="GT6-d3-5Ml"/>
+                                    <constraint firstItem="zM6-Af-paZ" firstAttribute="top" secondItem="JeQ-nM-Jry" secondAttribute="top" id="H7a-YU-024"/>
+                                    <constraint firstAttribute="width" secondItem="JeQ-nM-Jry" secondAttribute="height" multiplier="12:5" id="Mvq-Cx-Wqw"/>
+                                    <constraint firstAttribute="trailing" secondItem="zM6-Af-paZ" secondAttribute="trailing" id="Sgj-fJ-K71"/>
+                                    <constraint firstItem="zM6-Af-paZ" firstAttribute="leading" secondItem="JeQ-nM-Jry" secondAttribute="leading" id="bnc-dL-lXM"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="E0X-HO-fa1"/>
+                        <color key="backgroundColor" red="0.1333333333" green="0.30196078430000001" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="MdR-rG-Ves" secondAttribute="trailing" id="BKk-qU-wCw"/>
+                            <constraint firstItem="JeQ-nM-Jry" firstAttribute="centerX" secondItem="Wiv-GA-mDb" secondAttribute="centerX" id="Dc9-hy-er1"/>
+                            <constraint firstItem="JeQ-nM-Jry" firstAttribute="width" secondItem="Wiv-GA-mDb" secondAttribute="width" multiplier="0.8" id="E6O-hv-uTW"/>
+                            <constraint firstItem="MdR-rG-Ves" firstAttribute="leading" secondItem="Wiv-GA-mDb" secondAttribute="leading" id="FAB-Zf-KIb"/>
+                            <constraint firstItem="MdR-rG-Ves" firstAttribute="top" secondItem="Wiv-GA-mDb" secondAttribute="top" id="dnj-Qt-o9W"/>
+                            <constraint firstItem="JeQ-nM-Jry" firstAttribute="centerY" secondItem="Wiv-GA-mDb" secondAttribute="centerY" id="jcG-vj-Loi"/>
+                            <constraint firstAttribute="bottom" secondItem="MdR-rG-Ves" secondAttribute="bottom" id="kJG-wo-QgN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="logoLottieView" destination="JeQ-nM-Jry" id="pfi-87-2CO"/>
+                        <outlet property="viewForGradient" destination="MdR-rG-Ves" id="GIz-Vb-aJX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9TL-ay-aZG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-499" y="66"/>
+        </scene>
+        <!--No Internet View Controller-->
+        <scene sceneID="bg7-Mb-l1r">
+            <objects>
+                <viewController storyboardIdentifier="NoInternetViewController" id="2n7-A7-fov" customClass="NoInternetViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CbP-sM-J9E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_wi_fi" translatesAutoresizingMaskIntoConstraints="NO" id="8Nw-v9-ZyB">
+                                <rect key="frame" x="142.66666666666666" y="127.33333333333331" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8Nw-v9-ZyB" secondAttribute="height" multiplier="1:1" id="N4E-uI-CtD"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_splash_logo" translatesAutoresizingMaskIntoConstraints="NO" id="Bzm-9J-7e1">
+                                <rect key="frame" x="37.666666666666657" y="227.33333333333337" width="300" height="125"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Bzm-9J-7e1" secondAttribute="height" multiplier="12:5" id="Pka-Iy-z0Z"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Internet Connection" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OV-vB-ROO">
+                                <rect key="frame" x="16" y="397" width="343" height="26.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QK2-tj-jIi">
+                                <rect key="frame" x="135" y="449.33333333333331" width="105" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Try Again"/>
+                                <connections>
+                                    <action selector="tryAgain:" destination="2n7-A7-fov" eventType="touchUpInside" id="gnP-vs-lOC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BMT-Yk-548"/>
+                        <color key="backgroundColor" name="mimoYellow500"/>
+                        <constraints>
+                            <constraint firstItem="8Nw-v9-ZyB" firstAttribute="centerX" secondItem="Bzm-9J-7e1" secondAttribute="centerX" id="1CF-ma-hvj"/>
+                            <constraint firstItem="Bzm-9J-7e1" firstAttribute="centerY" secondItem="BMT-Yk-548" secondAttribute="centerY" multiplier="0.7" id="8Y9-Rb-5YC"/>
+                            <constraint firstItem="Bzm-9J-7e1" firstAttribute="width" secondItem="CbP-sM-J9E" secondAttribute="width" multiplier="0.8" id="Shg-vI-1JA"/>
+                            <constraint firstItem="8Nw-v9-ZyB" firstAttribute="width" secondItem="Bzm-9J-7e1" secondAttribute="width" multiplier="0.3" id="Ttr-7R-5Sv"/>
+                            <constraint firstItem="2OV-vB-ROO" firstAttribute="bottom" secondItem="QK2-tj-jIi" secondAttribute="top" constant="-26" id="UPy-nU-CYP"/>
+                            <constraint firstItem="QK2-tj-jIi" firstAttribute="centerX" secondItem="2OV-vB-ROO" secondAttribute="centerX" id="coS-0W-nh9"/>
+                            <constraint firstItem="2OV-vB-ROO" firstAttribute="top" secondItem="Bzm-9J-7e1" secondAttribute="bottom" constant="44.666666666666629" id="dxQ-8h-58Q"/>
+                            <constraint firstItem="Bzm-9J-7e1" firstAttribute="centerX" secondItem="BMT-Yk-548" secondAttribute="centerX" id="gDW-DN-6q0"/>
+                            <constraint firstItem="BMT-Yk-548" firstAttribute="trailing" secondItem="2OV-vB-ROO" secondAttribute="trailing" constant="16" id="gZe-zc-Z3F"/>
+                            <constraint firstItem="2OV-vB-ROO" firstAttribute="leading" secondItem="BMT-Yk-548" secondAttribute="leading" constant="16" id="oI7-a3-ybf"/>
+                            <constraint firstItem="8Nw-v9-ZyB" firstAttribute="bottom" secondItem="Bzm-9J-7e1" secondAttribute="top" constant="-10" id="qg2-BN-UoE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="wifi" destination="8Nw-v9-ZyB" id="wrX-Sd-QKc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0vX-0v-bLi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="412" y="67"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_splash_logo" width="200" height="58"/>
+        <image name="no_wi_fi" width="200" height="200"/>
+        <namedColor name="mimoYellow500">
+            <color red="1" green="0.92156862745098034" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
