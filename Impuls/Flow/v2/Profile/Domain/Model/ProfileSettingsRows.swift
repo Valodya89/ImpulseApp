@@ -76,4 +76,8 @@ enum ProfileSettingsRows: CaseIterable, Identifiable {
     var isDestuctive: Bool {
         return self == .logOut || self == .deleteAccount
     }
+    
+    static var allCases: [ProfileSettingsRows] {
+        [.history, .support, .howToUse, .settings, .privacy, .terms, .logOut, .deleteAccount]
+    }
 }
