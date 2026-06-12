@@ -12,19 +12,19 @@ struct HistoryView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            SegmentedCapsulePicker(selected: $viewModel.selectedItem, options: viewModel.selectionItems)
-                .padding([.top, .horizontal], 16)
-            
-            switch viewModel.selectedItem {
-            case .scooter:
-                scooterTripsListView()
-            case .bike:
-                bikeTripsListView()
-            case .charger:
+//            SegmentedCapsulePicker(selected: $viewModel.selectedItem, options: viewModel.selectionItems)
+//                .padding([.top, .horizontal], 16)
+//            
+//            switch viewModel.selectedItem {
+//            case .scooter:
+//                scooterTripsListView()
+//            case .bike:
+//                bikeTripsListView()
+//            case .charger:
                 chargerRentsListView()
-            case .evup:
-                evChargerRentsListView()
-            }
+//            case .evup:
+//                evChargerRentsListView()
+//            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.evBgColor.ignoresSafeArea())

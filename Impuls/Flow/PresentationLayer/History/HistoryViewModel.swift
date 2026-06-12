@@ -13,7 +13,7 @@ final class HistoryViewModel: MimoBaseViewModel, ObservableObject {
     private let worker: TripWorkerProtocol
     
     var selectionItems = PickerOption.allCases
-    @Published var selectedItem: PickerOption = .scooter
+    @Published var selectedItem: PickerOption = .charger//.scooter
     
     @Published private(set) var scooterTrips: [ItemSection<TripScooterDataModel>] = []
     @Published private(set) var bikeTrips: [ItemSection<TripBikeDataModel>] = []
@@ -29,7 +29,8 @@ final class HistoryViewModel: MimoBaseViewModel, ObservableObject {
         self.worker = worker
         super.init()
         
-        getScooterTripList()
+//        getScooterTripList()
+        getChargerRentList()
         observeSelectedItem()
     }
     

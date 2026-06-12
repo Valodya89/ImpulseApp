@@ -74,9 +74,10 @@ final class TripsListViewController: UIViewController, StoryboardInitializable {
         
         let missingTypes = MimoType.allCases.filter({ !ApplicationSettings.shared.availableServices.contains($0) })
         missingTypes.forEach { type in
-            let view = servicesStackView.subviews.first(where: { $0.tag == type.rawValue })!
-            view.alpha = 0
-            servicesStackView.removeArrangedSubview(view)
+            if let view = servicesStackView.subviews.first(where: { $0.tag == type.rawValue }) {
+                view.alpha = 0
+                servicesStackView.removeArrangedSubview(view)
+            }
         }
         
         self.mimoType = ApplicationSettings.shared.availableServices.first ?? .scooter
