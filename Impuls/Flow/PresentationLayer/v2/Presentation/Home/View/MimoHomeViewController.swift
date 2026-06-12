@@ -91,11 +91,21 @@ class MimoHomeViewController: MimoBaseViewController {
             guard let self, let availableServices = availableServices else { return }
             
             self.servicesLoadingViews.forEach({ $0.isHidden = true })
-            self.servicesViews.forEach { serviceView in
-                serviceView.isHidden = !availableServices.compactMap({ $0.rawValue }).contains(serviceView.tag)
-            }
             
-            self.servicesViews.first(where: {$0.tag == 4 })?.isHidden = availableServices.count == 4
+            if availableServices == [.charger] {
+                self.servicesViews.first(where: {$0.tag == 4 })?.isHidden = true
+                
+                self.servicesViews.forEach { serviceView in
+                    serviceView.isHidden = serviceView.tag != 22 // Charger full width view
+                }
+                
+            } else {
+                self.servicesViews.forEach { serviceView in
+                    serviceView.isHidden = !availableServices.compactMap({ $0.rawValue }).contains(serviceView.tag)
+                }
+                
+                self.servicesViews.first(where: {$0.tag == 4 })?.isHidden = availableServices.count == 4
+            }
         })
         .store(in: &cancellables)
         

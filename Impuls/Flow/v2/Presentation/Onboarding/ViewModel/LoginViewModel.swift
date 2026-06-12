@@ -223,7 +223,8 @@ class LoginViewModel: MimoBaseViewModel, ObservableObject {
                     self?.availableProducts[index].isSelected = data.services?.contains(value.service) ?? false
                 }
                 StorageManager().store(data.isAccountComplated, key: .isAccountCompleted)
-                self?.set(step: .preferedServices)
+//                self?.set(step: .preferedServices)
+                self?.openHomeView()
             }
             .store(in: &cancellables)
     }
