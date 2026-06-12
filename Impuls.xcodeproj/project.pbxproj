@@ -23,8 +23,8 @@
 		164473AA2D6CF15B00803E10 /* EVBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164473A82D6CF15B00803E10 /* EVBottomView.swift */; };
 		164473AD2D6CF6FA00803E10 /* LinearGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164473AC2D6CF6FA00803E10 /* LinearGradient.swift */; };
 		164473AE2D6CF6FA00803E10 /* LinearGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164473AC2D6CF6FA00803E10 /* LinearGradient.swift */; };
-		164473BA2D6D053D00803E10 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
-		164473BB2D6D053D00803E10 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		164473BA2D6D053D00803E10 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		164473BB2D6D053D00803E10 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		166439CF2D52B06D00C79ED2 /* EVChargerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166439CE2D52B06D00C79ED2 /* EVChargerRouter.swift */; };
 		166439D02D52B06D00C79ED2 /* EVChargerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166439CE2D52B06D00C79ED2 /* EVChargerRouter.swift */; };
 		166439D82D52B3C200C79ED2 /* EVChargerHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166439D72D52B3C200C79ED2 /* EVChargerHostingController.swift */; };
@@ -7846,9 +7846,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Impuls/Pods-Impuls-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Impuls/Pods-Impuls-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7885,9 +7889,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Impuls/Pods-Impuls-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Impuls/Pods-Impuls-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7921,9 +7929,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Impuls-Dev/Pods-Impuls-Dev-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Impuls-Dev/Pods-Impuls-Dev-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7957,9 +7969,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Impuls-Dev/Pods-Impuls-Dev-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Impuls-Dev/Pods-Impuls-Dev-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -8114,7 +8130,7 @@
 				168DCFD42D7DCAB000672BA4 /* BaseCoordinator.swift in Sources */,
 				75E510612A000753000D99F0 /* SessionExpiredAlert.swift in Sources */,
 				757E3FC82A6B1DDE0038A751 /* BikeDetailsWorker.swift in Sources */,
-				164473BB2D6D053D00803E10 /* BuildFile in Sources */,
+				164473BB2D6D053D00803E10 /* (null) in Sources */,
 				751D8C5D2A2E168B00BD426E /* MessageService.swift in Sources */,
 				752961DC2B39F6BC005839EF /* Story.swift in Sources */,
 				75E510622A000753000D99F0 /* AppVersion.swift in Sources */,
@@ -8824,7 +8840,7 @@
 				168DCFD32D7DCAB000672BA4 /* BaseCoordinator.swift in Sources */,
 				6C0687E529D9FE2C00837D2E /* AppVersion.swift in Sources */,
 				439C12B52892FD9C00EA0440 /* PauseViewController.swift in Sources */,
-				164473BA2D6D053D00803E10 /* BuildFile in Sources */,
+				164473BA2D6D053D00803E10 /* (null) in Sources */,
 				8864D75D268D1B3F008D1B22 /* Binary.swift in Sources */,
 				752961DB2B39F6BC005839EF /* Story.swift in Sources */,
 				6C73453E28B186E300CD7093 /* DebtInfoViewController.swift in Sources */,
@@ -9615,7 +9631,7 @@
 				CODE_SIGN_ENTITLEMENTS = Impuls/MimoBike.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = SHG3WMPK3S;
 				EXCLUDED_ARCHS = "";
@@ -9656,7 +9672,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8.1;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mimo.impuls;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -9680,7 +9696,7 @@
 				CODE_SIGN_ENTITLEMENTS = Impuls/MimoBikeRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SHG3WMPK3S;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9719,7 +9735,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8.1;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mimo.impuls;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
