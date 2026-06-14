@@ -65,7 +65,7 @@ extension RentedChargerSheetViewController: UICollectionViewDataSource {
         let cell: RentedChargerCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         
         if let rentedCharger = viewModel?.rentedChargers.value?[indexPath.item] {
-            cell.set(rentedCharger: rentedCharger)
+            cell.set(rentedCharger: rentedCharger, currency: viewModel?.currency ?? "₽‎")
         }
         
         return cell

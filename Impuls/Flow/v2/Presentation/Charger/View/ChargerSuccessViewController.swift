@@ -19,11 +19,12 @@ class ChargerSuccessViewController: MimoBaseViewController {
     @IBOutlet private weak var planLabel: UILabel!
     
     var rentedCharger: RentedCharger?
+    var currency: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        amountLabel.text = String(format: "%.2f ֏", rentedCharger?.data?.billingDetails?.amount ?? 0)
+        amountLabel.text = String(format: "%.2f \(currency ?? "₽‎")", rentedCharger?.data?.billingDetails?.amount ?? 0)
         stationIDLabel.text = rentedCharger?.data?.startStationQR ?? "-"
         chargerIDLabel.text = rentedCharger?.powerBank?.id
         navigationBar.topItem?.title = "MOBILE_charger_thankYou_navigationTitle".localized()

@@ -128,7 +128,7 @@ SPEC CHECKSUMS:
   libPhoneNumber-iOS: 0a32a9525cf8744fe02c5206eb30d571e38f7d75
   lottie-ios: 248b380fa1b97d18e792c37d90da7ab2aa0d6562
   MercariQRScanner: e5aea873969af59b09b4cc411fc1c5b6293dba44
-  PhoneNumberKit: ec00ab8cef5342c1dc49fadb99d23fa7e66cf0ef
+  PhoneNumberKit: 460b1ae0347f2447af12749fc42f27fc3eb743b1
   ReachabilitySwift: 32793e867593cfc1177f5d16491e3a197d2fccda
   SDWebImage: f84b0feeb08d2d11e6a9b843cb06d75ebf5b8868
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
@@ -138,4 +138,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 181b97441dc28367469fb3f15edd076cd30b1468
 
-COCOAPODS: 1.16.2
+COCOAPODS: 1.15.2

@@ -77,7 +77,7 @@
 		<string>fb</string>
 		<string>idramapp</string>
 		<string>linkedin</string>
-		<string>mimobike</string>
+		<string>impulse</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -95,9 +95,9 @@
 	<key>NSContactsUsageDescription</key>
 	<string>Access is needed to save your Mimo friends information to your Contacts list. </string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Mimo uses you location to show bikes near to you</string>
+	<string>Impulse uses you location to show bikes near to you</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Mimo uses you location to show bikes near to you!</string>
+	<string>Impulse uses you location to show bikes near to you!</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Your photo library will be used to add photos to your profile!</string>
 	<key>NSPhotoLibraryUsageDescription</key>

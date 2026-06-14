@@ -307,27 +307,27 @@ struct LoginView: View {
             }
             .padding(.horizontal, 15)
             
-            VStack(spacing: 12) {
-                Text("\("MOBILE_login_agreement_transferred_to_child".localized())\n\n\("MOBILE_login_agreement_riding_more_than_one".localized())\n\n\("MOBILE_login_agreement_scooter_transfer_to_others".localized())")
-                    .lineLimit(nil)
-                    .font(.robotoLight14)
-                    .foregroundColor(Color.black075)
-                    .padding()
-                
-                HStack {
-                    Text("MOBILE_good_trip".localized())
-                        .font(.robotoSemibold16)
-                        .foregroundColor(.black)
-                    
-                    Image("Mimo_scooter_New")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 30, height: 34)
-                }
-                .padding(.bottom, 20)
-            }
-            .background(Color(red: 0.98, green: 0.52, blue: 0.52).opacity(0.1))
-            .clipShape(RoundedRectangle(cornerRadius: 8))
+//            VStack(spacing: 12) {
+//                Text("\("MOBILE_login_agreement_transferred_to_child".localized())\n\n\("MOBILE_login_agreement_riding_more_than_one".localized())\n\n\("MOBILE_login_agreement_scooter_transfer_to_others".localized())")
+//                    .lineLimit(nil)
+//                    .font(.robotoLight14)
+//                    .foregroundColor(Color.black075)
+//                    .padding()
+//                
+//                HStack {
+//                    Text("MOBILE_good_trip".localized())
+//                        .font(.robotoSemibold16)
+//                        .foregroundColor(.black)
+//                    
+//                    Image("Mimo_scooter_New")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(width: 30, height: 34)
+//                }
+//                .padding(.bottom, 20)
+//            }
+//            .background(Color(red: 0.98, green: 0.52, blue: 0.52).opacity(0.1))
+//            .clipShape(RoundedRectangle(cornerRadius: 8))
         }
         .sheet(isPresented: $isCountryCodePresented) {
             CountryCodeView(code: $viewModel.selectedCountry)

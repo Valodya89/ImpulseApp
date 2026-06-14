@@ -44,8 +44,7 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
     @Published var promoCodeSuccess: Bool = false
     
     @Published var productItemViewModels: [ProductItemViewModel] = []
-    let transactionListViewModel: TransactionListViewModel = TransactionListViewModel(worker: TransactionWorker())
-    
+
     init(worker: WalletWorkerProtocol, productType: MimoProductType? = nil) {
         self.worker = worker
         self.productType = productType
@@ -58,17 +57,16 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
     }
     
     func loadData() {
-        Publishers.Zip5(worker.loadPaymentMethods(), worker.loadBalance(), worker.loadFinancialState(), worker.getUser(), worker.getAccount())
+        Publishers.Zip4(worker.loadPaymentMethods(), worker.loadBalance(), worker.loadFinancialState(), worker.getUser())
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {
                     self?.mimoError = error
                 }
-            } receiveValue: { [weak self] paymentMethods, wallet, financialState, user, account in
+            } receiveValue: { [weak self] paymentMethods, wallet, financialState, user in
                 self?.handleWalletResponse(paymentMethods: paymentMethods, wallet: wallet, financialState: financialState)
-                
+
                 self?.user = user
-                self?.freeMinutes = String(format: "%.1f", account.minutes ?? 0)
             }
             .store(in: &BAG)
     }

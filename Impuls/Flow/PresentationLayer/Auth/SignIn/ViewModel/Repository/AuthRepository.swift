@@ -170,19 +170,23 @@ final class AuthRepository {
                     completion(.failure(NetworkError.serverError))
                     return
                 }
-                if let content = signInResponse.content, signInResponse.statusCode == 200 {
+                // The delete endpoint returns 200 with no content (the account
+                // is gone), so don't require `content` to be present here —
+                // otherwise no completion fires and the request hangs forever.
+                if signInResponse.statusCode == 200 {
                     print("SignInReponse === \(signInResponse)")
                     completion(.success(true))
-                }
-                if signInResponse.statusCode == 412 {
+                } else if signInResponse.statusCode == 412 {
                     completion(.success(false))
+                } else {
+                    completion(.failure(NetworkError.responseError(signInResponse.message)))
                 }
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
-    
+
     func prevalidate(completion: @escaping (Result<Void, Error>) -> Void) {
         let id = DeviceCheckManager.shared.deviceUnicToken //UIDevice.current.identifierForVendor?.uuidString ?? ""
         

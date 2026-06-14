@@ -24,13 +24,15 @@ final class AccountRepository {
                 if let content = userResponse.content, userResponse.statusCode == 200 {
                     print("UserResponse === \(userResponse)")
                     completion(.success(content))
+                } else {
+                    completion(.failure(NetworkError.responseError(userResponse.message)))
                 }
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
-    
+
     func getUserAccount(completion: @escaping (Result<UserResponse, NetworkError>) -> Void) {
         
         let builder = URLBuilder(from: AuthAPI.getAccount)
@@ -48,6 +50,7 @@ final class AccountRepository {
                     completion(.failure(NetworkError.responseError(userResponse.message)))
                 }
             case .failure(let error):
+                print("getUserAccount error = \(error.description)")
                 completion(.failure(.serverError))
             }
         }

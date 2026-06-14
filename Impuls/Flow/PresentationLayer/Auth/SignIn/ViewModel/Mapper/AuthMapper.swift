@@ -9,8 +9,15 @@ import Foundation
 
 final class AuthMapper {
     
+    /// The only languages the app supports.
+    static let supportedLanguageCodes: Set<String> = ["en", "ru"]
+
     static func toLanguageResults(from response: [LanguageResponse], completion: @escaping (Result<[LanguageResult], Error>) -> ()) {
-        
+
+        // Restrict to the app's supported languages regardless of what the
+        // server returns.
+        let response = response.filter { supportedLanguageCodes.contains($0.id ?? "") }
+
         guard let _ = KeychainManager().getAccessToken(), KeychainManager().isUserLoggedIn() else {
             var languageResults = [LanguageResult]()
             

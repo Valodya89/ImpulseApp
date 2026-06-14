@@ -8,7 +8,7 @@
 	<array>
 		<string>webcredentials:impulsepower.ru</string>
 		<string>applinks:accounts.impulsepower.ru</string>
-		<string>mimobike.com/.well-known/apple-app-site-association</string>
+		<string>impulsepower.ru/.well-known/apple-app-site-association</string>
 	</array>
 </dict>
 </plist>

@@ -109,11 +109,11 @@ class ChargerRouter {
         }
     }
     
-    func showRentedChargerSheet(_ viewController: UIViewController?, rentedChargers: [RentedCharger]?, delegate: RentedChargerSheetViewControllerDelegate?) {
+    func showRentedChargerSheet(_ viewController: UIViewController?, rentedChargers: [RentedCharger]?, currency: String, delegate: RentedChargerSheetViewControllerDelegate?) {
         guard let viewController, rentedChargerSheetViewController == nil else { rentedChargerSheetViewController?.viewModel?.rentedChargers.send(rentedChargers); return }
         
         rentedChargerSheetViewController = RentedChargerSheetViewController.loadFromNib()
-        rentedChargerSheetViewController?.viewModel = RentedChargerViewModel(rentedChargers: rentedChargers)
+        rentedChargerSheetViewController?.viewModel = RentedChargerViewModel(rentedChargers: rentedChargers, currency: currency)
         rentedChargerSheetViewController?.delegate = delegate
         
         var sheetOptions = SheetOptions()
@@ -132,9 +132,10 @@ class ChargerRouter {
         sheetViewController.animateIn(to: viewController.view, in: viewController)
     }
     
-    func showChargerSuccessViewController(_ viewController: UIViewController, rentedCharger: RentedCharger?) {
+    func showChargerSuccessViewController(_ viewController: UIViewController, currency: String?, rentedCharger: RentedCharger?) {
         if let successViewController: ChargerSuccessViewController = storyboard.instantiate() {
             successViewController.rentedCharger = rentedCharger
+            successViewController.currency = currency
             
             viewController.present(successViewController, animated: true)
         }

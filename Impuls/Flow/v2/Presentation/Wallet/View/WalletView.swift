@@ -17,7 +17,6 @@ struct WalletView: View {
     @State var attachCardAlertMessage: String = ""
     @State var successMessage: SuccessMessage?
     @State var errorMessage: ErrorMessage?
-    @State var showTransactions: Bool = false
     @ObservedObject private var viewModel: MimoWalletViewModel
     
     init(viewModel: MimoWalletViewModel) {
@@ -70,14 +69,7 @@ struct WalletView: View {
                         .sectionTopContent(label: "wallet".uppercased())
                         .padding(.top, 20)
                     
-                    
-                    IconTitleView(title: "MOBILE_profile_transactions".localized())
-                        .frame(height: 60)
-                        .padding(.top, 10)
-                        .onTapGesture {
-                            showTransactions = true
-                        }
-                    
+
                     PromoCodeView(
                         promoCode: $viewModel.promoCode,
                         submitAction: { promoCode in
@@ -220,9 +212,6 @@ struct WalletView: View {
                 )
             }
         )
-        .sheet(isPresented: $showTransactions, content: {
-            TransactionListView(viewModel: viewModel.transactionListViewModel)
-        })
         .onReceive(viewModel.$errorMessage) { error in
             if let errorMessage = error {
                 MILoader.hide()

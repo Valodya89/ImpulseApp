@@ -45,20 +45,37 @@ final class ProfileViewModel: MimoBaseViewModel, ObservableObject {
     }
     
     func loadData() {
-        Publishers.Zip4(worker.loadBalance(), worker.loadFinancialState(), worker.getUser(), worker.getActivePackage())
+        // User data is loaded independently so that a failure in the
+        // balance / financial-state / package calls can't blank the profile.
+        worker.getUser()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {
                     self?.mimoError = error
                 }
-            } receiveValue: { [weak self] wallet, financialState, user, package in
-                self?.handleWalletResponse(wallet: wallet, financialState: financialState)
+            } receiveValue: { [weak self] user in
                 self?.handleUserResponse(user)
-                self?.package = package?.package
-                
-                self?.freeMinutes = String(format: "%.1f", package?.minutes ?? 0)
             }
             .store(in: &BAG)
+
+        // Wallet / financial-state / package are decoupled from the user fetch.
+        // Each error is swallowed (mapped to nil) so one failing call doesn't
+        // prevent the others — or the user data above — from showing.
+        Publishers.Zip3(
+            worker.loadBalance().map(Optional.some).replaceError(with: nil),
+            worker.loadFinancialState().map(Optional.some).replaceError(with: nil),
+            worker.getActivePackage().replaceError(with: nil)
+        )
+        .receive(on: DispatchQueue.main)
+        .sink { [weak self] wallet, financialState, package in
+            if let wallet, let financialState {
+                self?.handleWalletResponse(wallet: wallet, financialState: financialState)
+            }
+            self?.package = package?.package
+
+            self?.freeMinutes = String(format: "%.1f", package?.minutes ?? 0)
+        }
+        .store(in: &BAG)
     }
     
     func logout() {

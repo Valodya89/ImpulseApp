@@ -2,22 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CLIENT_ID</key>
-	<string>577550172829-i8alauohrj4hgpe688f33nmomkjljv1p.apps.googleusercontent.com</string>
-	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.577550172829-i8alauohrj4hgpe688f33nmomkjljv1p</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDdfHwZgTWtKESlz-_NznadoS-CJVbFVWc</string>
+	<string>AIzaSyCBRQUfjKlMehM7UVdpyxJWm0TEhiKA2zs</string>
 	<key>GCM_SENDER_ID</key>
-	<string>577550172829</string>
+	<string>595381523976</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.mimo.MimoBike</string>
+	<string>com.impulsepower.app</string>
 	<key>PROJECT_ID</key>
-	<string>mimo-meta-sharing</string>
+	<string>impulsepower-app</string>
 	<key>STORAGE_BUCKET</key>
-	<string>mimo-meta-sharing.appspot.com</string>
+	<string>impulsepower-app.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:577550172829:ios:a859507af9f2cd162eca74</string>
+	<string>1:595381523976:ios:485420e72ba942d9ffe3bd</string>
 </dict>
 </plist>

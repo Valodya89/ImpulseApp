@@ -22,10 +22,19 @@ struct ProfileView: View {
     @State var isHaveProfilePicture: Bool = false
     
     @State private var showActiveTripAlert = false
-    @State private var showLogoutAlert = false
-    @State private var showDeleteAccountAlert = false
+    @State private var activeAlert: ProfileAlert?
     @State private var showWalletScreen = false
     @State private var showSubscriptionScreen = false
+
+    // A single source of truth for the confirmation alerts. Driving both from
+    // one `.alert(item:)` avoids SwiftUI dropping one when multiple
+    // `.alert(isPresented:)` modifiers share a view hierarchy.
+    private enum ProfileAlert: Identifiable {
+        case logout
+        case deleteAccount
+
+        var id: Int { hashValue }
+    }
     
     init(viewModel: ProfileViewModel, navigationController: UINavigationController) {
         self.viewModel = viewModel
@@ -95,18 +104,7 @@ struct ProfileView: View {
                             .foregroundColor(.black05)
                             .padding(.top, 6)
                     }
-                    .alert(isPresented: $showDeleteAccountAlert) {
-                        Alert(title: Text("MOBILE_profice_deleete_confirm".localized()).foregroundColor(.mimoDarkGray),
-                              primaryButton: .destructive(
-                                Text("MOBILE__confirmation_yes".localized()),
-                                action: {
-                                    MILoader.show()
-                                    viewModel.deleteAccount()
-                                }),
-                              secondaryButton: .cancel(Text("MOBILE__confirmation_no".localized()).foregroundColor(.black))
-                        )
-                    }
-//                    
+//
 //                    HStack {
 //                        ZStack {
 //                            VStack {
@@ -156,18 +154,7 @@ struct ProfileView: View {
 //                    .frame(height: 44)
 //                    .padding(.top, 25)
 //                    .padding(.horizontal, 10)
-                    .alert(isPresented: $showLogoutAlert) {
-                        Alert(title: Text("MOBILE__profile_log_out_message".localized()).foregroundColor(.mimoDarkGray),
-                              primaryButton: .destructive(
-                                Text("MOBILE__confirmation_yes".localized()),
-                                action: {
-                                    MILoader.show()
-                                    viewModel.logout()
-                                }),
-                              secondaryButton: .cancel(Text("MOBILE__confirmation_no".localized()).foregroundColor(.black))
-                        )
-                    }
-                    
+
 //                    if !viewModel.isEmailVerified {
 //                        ProfileRowView(icon: "profile_verify_mail", title: "Verify your email")
 //                            .clipShape(RoundedRectangle(cornerRadius: 8))
@@ -262,6 +249,32 @@ struct ProfileView: View {
                 .padding(.top, 3)
                 .padding(.horizontal, 20)
                 .padding(.bottom, 32)
+                // Both logout and delete-account confirmations are driven by a
+                // single `.alert(item:)` so they can't clobber each other.
+                .alert(item: $activeAlert) { alert in
+                    switch alert {
+                    case .logout:
+                        return Alert(title: Text("MOBILE__profile_log_out_message".localized()).foregroundColor(.mimoDarkGray),
+                                     primaryButton: .destructive(
+                                        Text("MOBILE__confirmation_yes".localized()),
+                                        action: {
+                                            MILoader.show()
+                                            viewModel.logout()
+                                        }),
+                                     secondaryButton: .cancel(Text("MOBILE__confirmation_no".localized()).foregroundColor(.black))
+                        )
+                    case .deleteAccount:
+                        return Alert(title: Text("MOBILE_profice_deleete_confirm".localized()).foregroundColor(.mimoDarkGray),
+                                     primaryButton: .destructive(
+                                        Text("MOBILE__confirmation_yes".localized()),
+                                        action: {
+                                            MILoader.show()
+                                            viewModel.deleteAccount()
+                                        }),
+                                     secondaryButton: .cancel(Text("MOBILE__confirmation_no".localized()).foregroundColor(.black))
+                        )
+                    }
+                }
             }
             .frame(minWidth: 0, maxWidth: .infinity)
         }
@@ -313,13 +326,13 @@ struct ProfileView: View {
 //            if UserManager.share.isHaveBikeTrip || UserManager.share.isHaveScooterTrip {
 //                showActiveTripAlert = true
 //            } else {
-                showLogoutAlert = true
+                activeAlert = .logout
 //            }
         case .deleteAccount:
 //            if UserManager.share.isHaveBikeTrip || UserManager.share.isHaveScooterTrip {
 //                showActiveTripAlert = true
 //            } else {
-                showDeleteAccountAlert = true
+                activeAlert = .deleteAccount
 //            }
         }
     }

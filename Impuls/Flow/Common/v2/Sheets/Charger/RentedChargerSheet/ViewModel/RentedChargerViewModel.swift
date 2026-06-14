@@ -12,7 +12,10 @@ class RentedChargerViewModel: MimoBaseViewModel {
     
     var rentedChargers: CurrentValueSubject<[RentedCharger]?, Never> = .init(nil)
     
-    init(rentedChargers: [RentedCharger]?) {
+    let currency: String
+    
+    init(rentedChargers: [RentedCharger]?, currency: String) {
         self.rentedChargers.send(rentedChargers)
+        self.currency = currency
     }
 }

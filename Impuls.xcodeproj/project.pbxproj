@@ -321,9 +321,10 @@
 		6C1878FA2F2FC17300057261 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 6C1878F92F2FC17300057261 /* FirebaseMessaging */; };
 		6C1878FC2F2FC17300057261 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 6C1878FB2F2FC17300057261 /* FirebaseRemoteConfig */; };
 		6C1878FE2F2FC17300057261 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 6C1878FD2F2FC17300057261 /* FirebaseStorage */; };
-		6C1D43C22870E9BC004ABA0D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C1D43C12870E9BC004ABA0D /* GoogleService-Info.plist */; };
 		6C38A21B2F5C585200CF21B0 /* VibrateEffectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C38A21A2F5C583600CF21B0 /* VibrateEffectManager.swift */; };
 		6C38A21C2F5C585200CF21B0 /* VibrateEffectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C38A21A2F5C583600CF21B0 /* VibrateEffectManager.swift */; };
+		6C4285192FDDCF77001DB5EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C4285182FDDCF72001DB5EE /* GoogleService-Info.plist */; };
+		6C42851A2FDDCF77001DB5EE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C4285182FDDCF72001DB5EE /* GoogleService-Info.plist */; };
 		6C4B6D8F28B419E400A40210 /* VibrateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4B6D8E28B419E400A40210 /* VibrateManager.swift */; };
 		6C4B6D9128B55A1600A40210 /* ShowDebtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4B6D9028B55A1600A40210 /* ShowDebtViewController.swift */; };
 		6C4D54242893159F008DD4DA /* StartTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D54232893159F008DD4DA /* StartTripViewController.swift */; };
@@ -1382,7 +1383,6 @@
 		75F1F3A22B163511006A6A9D /* BikePackageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F1F39F2B163511006A6A9D /* BikePackageTableViewCell.swift */; };
 		75F1F3A32B163511006A6A9D /* BikePackageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75F1F3A02B163511006A6A9D /* BikePackageTableViewCell.xib */; };
 		75F1F3A42B163511006A6A9D /* BikePackageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75F1F3A02B163511006A6A9D /* BikePackageTableViewCell.xib */; };
-		75F59A652B825BB800B41D3D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75F59A642B825BB800B41D3D /* GoogleService-Info.plist */; };
 		75F8527A2AC1C5C000606A81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F852792AC1C5C000606A81 /* SceneDelegate.swift */; };
 		75F8527D2AC2028F00606A81 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F8527C2AC2028F00606A81 /* HomeView.swift */; };
 		75F8527F2AC210A000606A81 /* DatePickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F8527E2AC210A000606A81 /* DatePickerTextField.swift */; };
@@ -1904,8 +1904,9 @@
 		6C1878DC2F2FB97300057261 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		6C1878DF2F2FBAD400057261 /* MimoMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimoMeta.swift; sourceTree = "<group>"; };
 		6C1878E22F2FBC9800057261 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
-		6C1D43C12870E9BC004ABA0D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6C38A21A2F5C583600CF21B0 /* VibrateEffectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrateEffectManager.swift; sourceTree = "<group>"; };
+		6C4285182FDDCF72001DB5EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6C42851B2FDDCF7F001DB5EE /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6C4B6D8E28B419E400A40210 /* VibrateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrateManager.swift; sourceTree = "<group>"; };
 		6C4B6D9028B55A1600A40210 /* ShowDebtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDebtViewController.swift; sourceTree = "<group>"; };
 		6C4D54232893159F008DD4DA /* StartTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTripViewController.swift; sourceTree = "<group>"; };
@@ -2265,7 +2266,6 @@
 		75F1F3992B153E82006A6A9D /* BikeTariffTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BikeTariffTableViewCell.xib; sourceTree = "<group>"; };
 		75F1F39F2B163511006A6A9D /* BikePackageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikePackageTableViewCell.swift; sourceTree = "<group>"; };
 		75F1F3A02B163511006A6A9D /* BikePackageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BikePackageTableViewCell.xib; sourceTree = "<group>"; };
-		75F59A642B825BB800B41D3D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75F852792AC1C5C000606A81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		75F8527C2AC2028F00606A81 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		75F8527E2AC210A000606A81 /* DatePickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTextField.swift; sourceTree = "<group>"; };
@@ -5136,8 +5136,8 @@
 		75AB74DD2B1A1BDB00E11A00 /* Dev */ = {
 			isa = PBXGroup;
 			children = (
+				6C42851B2FDDCF7F001DB5EE /* GoogleService-Info.plist */,
 				75AB74DF2B1A1BF900E11A00 /* Info.plist */,
-				75F59A642B825BB800B41D3D /* GoogleService-Info.plist */,
 			);
 			path = Dev;
 			sourceTree = "<group>";
@@ -5145,8 +5145,8 @@
 		75AB74DE2B1A1BDF00E11A00 /* Prod */ = {
 			isa = PBXGroup;
 			children = (
+				6C4285182FDDCF72001DB5EE /* GoogleService-Info.plist */,
 				CADC287B26205BE600666628 /* Info.plist */,
-				6C1D43C12870E9BC004ABA0D /* GoogleService-Info.plist */,
 			);
 			path = Prod;
 			sourceTree = "<group>";
@@ -7655,6 +7655,7 @@
 				75E511A32A000753000D99F0 /* VerifyEmail.storyboard in Resources */,
 				75D004832A2FB86400FC49C4 /* HomePromoPartnerCollectionViewCell.xib in Resources */,
 				75E7DEBC2B0FD58B00B8E853 /* ImageCollectionViewCell.xib in Resources */,
+				6C42851A2FDDCF77001DB5EE /* GoogleService-Info.plist in Resources */,
 				75E511A42A000753000D99F0 /* Assets.xcassets in Resources */,
 				75E511A52A000753000D99F0 /* MITextView.xib in Resources */,
 				75E511A62A000753000D99F0 /* BackgroundVid_1.mp4 in Resources */,
@@ -7670,7 +7671,6 @@
 				75378EF72A2FCD6A00BCC433 /* FastDecisionTableViewCell.xib in Resources */,
 				75E511AF2A000753000D99F0 /* IDramCollectionViewCell.xib in Resources */,
 				7595815A2B9BBDD500892424 /* ChargerDiscountsTableViewCell.xib in Resources */,
-				75F59A652B825BB800B41D3D /* GoogleService-Info.plist in Resources */,
 				75AAA8D52B13C515007EAC8A /* ChargerTariffTableViewCell.xib in Resources */,
 				75C313802A4E26170079595C /* Bike.storyboard in Resources */,
 				75E511B02A000753000D99F0 /* img_01.png in Resources */,
@@ -7712,7 +7712,6 @@
 				7575BEFB2A436F92005327B2 /* SpeedTariffChangeViewController.xib in Resources */,
 				756EAEBD2A1A8B400095139F /* ScooterCollectionViewCell.xib in Resources */,
 				6C57539A2FD2265E0048BAAF /* BackgroundVid.mp4 in Resources */,
-				6C1D43C22870E9BC004ABA0D /* GoogleService-Info.plist in Resources */,
 				CAE2A5452628CABD00B4BDF4 /* Roboto-LightItalic.ttf in Resources */,
 				6C7E9C7F288F7D0F004E7EED /* ParkingPhotoCamera.storyboard in Resources */,
 				EAEB1BEF26A333EB007D3193 /* bicycleAnimation.json in Resources */,
@@ -7805,6 +7804,7 @@
 				88A161322669684E001C19D0 /* VerifyEmail.storyboard in Resources */,
 				75D004822A2FB86400FC49C4 /* HomePromoPartnerCollectionViewCell.xib in Resources */,
 				75E7DEBB2B0FD58B00B8E853 /* ImageCollectionViewCell.xib in Resources */,
+				6C4285192FDDCF77001DB5EE /* GoogleService-Info.plist in Resources */,
 				CADC287726205BE600666628 /* Assets.xcassets in Resources */,
 				884AE1492648131900D7577B /* MITextView.xib in Resources */,
 				6CF05E70274C5E3300CA2675 /* BackgroundVid_1.mp4 in Resources */,
@@ -9630,10 +9630,12 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Impuls/MimoBike.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = SHG3WMPK3S;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = SHG3WMPK3S;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9673,9 +9675,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mimo.impuls;
+				PRODUCT_BUNDLE_IDENTIFIER = com.impulsepower.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "ImpulsePower App Dev";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -9695,9 +9698,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Impuls/MimoBikeRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = SHG3WMPK3S;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = SHG3WMPK3S;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils\"",
@@ -9736,9 +9741,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mimo.impuls;
+				PRODUCT_BUNDLE_IDENTIFIER = com.impulsepower.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "ImpulsePower App Dev";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

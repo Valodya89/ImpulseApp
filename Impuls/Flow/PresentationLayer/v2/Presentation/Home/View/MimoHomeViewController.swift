@@ -74,6 +74,7 @@ class MimoHomeViewController: MimoBaseViewController {
         
         navigationController?.setNavigationBarHidden(false, animated: false)
         makeNavigationBarWithProfileView()
+        updateFCMToken()
     }
     
     private func setupViewModel() {
@@ -161,7 +162,7 @@ class MimoHomeViewController: MimoBaseViewController {
                 if charger.state == .rentEnded {
                     self.viewModel?.getActiveTrips()
                     
-                    ChargerRouter.shared.showChargerSuccessViewController(self, rentedCharger: charger)
+                    ChargerRouter.shared.showChargerSuccessViewController(self, currency: viewModel?.walletInfo?.currency, rentedCharger: charger)
                 }
             })
             .store(in: &cancellables)

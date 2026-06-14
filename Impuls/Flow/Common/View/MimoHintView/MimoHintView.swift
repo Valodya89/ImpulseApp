@@ -21,7 +21,7 @@ class MimoHintView: MimoNibInstantiatableView {
         paragraphStyle.alignment = NSTextAlignment.center
         
         let demoText = "MOBILE_demo_info".localized()
-        let supportPart = (demoText as NSString).range(of: "Mimo Support")
+        let supportPart = (demoText as NSString).range(of: "Impulse Support")
         let attributedString = NSMutableAttributedString(string: demoText, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle,
                                                                                         NSAttributedString.Key.font: UIFont(name: "Roboto", size: 15) as Any])
         attributedString.addAttribute(.link, value: "tg://resolve?domain=MimoReview", range: supportPart)

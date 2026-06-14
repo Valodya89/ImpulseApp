@@ -25,10 +25,10 @@ class RentedChargerCollectionViewCell: BaseCollectionViewCell {
     
     private var timer: AnyCancellable?
     
-    func set(rentedCharger: RentedCharger) {
+    func set(rentedCharger: RentedCharger, currency: String) {
         nameLabel.text = rentedCharger.data?.startStationQR
         powerBankNumberLabel.text = rentedCharger.data?.powerBank
-        priceLabel.text = String(format: "%.2f ֏", rentedCharger.data?.billingDetails?.amount ?? 0)
+        priceLabel.text = String(format: "%.2f \(currency)", rentedCharger.data?.billingDetails?.amount ?? 0)
         plansContainerView.isHidden = true
         onePlanContainerView.isHidden = true
         

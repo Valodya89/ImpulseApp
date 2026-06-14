@@ -154,7 +154,7 @@ class ChargerViewController: MimoBaseViewController {
             }
             
             if !_rentEndedChargers.isEmpty {
-                ChargerRouter.shared.showChargerSuccessViewController(self, rentedCharger: _rentEndedChargers.first)
+                ChargerRouter.shared.showChargerSuccessViewController(self, currency: viewModel.walletInfo?.currency, rentedCharger: _rentEndedChargers.first)
                 
                 if _rentedChargers.isEmpty && _rentScannedChargers.isEmpty {
                     self.viewModel?.viewState = .initial
@@ -193,7 +193,8 @@ class ChargerViewController: MimoBaseViewController {
         collectionBackButton.addShadow(color: .black.withAlphaComponent(0.4), offset: .init(width: 0, height: 4), shadowRadius: 12)
         myLocationButton.addShadow(color: .black.withAlphaComponent(0.4), offset: .init(width: 0, height: 4), shadowRadius: 12)
         discountsButton.addShadow(color: .black.withAlphaComponent(0.4), offset: .init(width: 0, height: 4), shadowRadius: 12)
-        
+        discountsButton.isHidden = true
+
         //MARK: - MapView
         mapView.isMyLocationEnabled = true
         mapView.delegate = self
@@ -256,7 +257,7 @@ extension ChargerViewController {
             ChargerRouter.shared.hideScanSheet()
             ChargerRouter.shared.hideChargerDetailsSheet(force: false)
             
-            ChargerRouter.shared.showRentedChargerSheet(self, rentedChargers: rentedChargers, delegate: self)
+            ChargerRouter.shared.showRentedChargerSheet(self, rentedChargers: rentedChargers, currency: viewModel?.walletInfo?.currency ?? "₽‎", delegate: self)
             updateLocationButtonPosition(constant: 280)
             
             if viewModel?.selectedPowerBank == nil {
