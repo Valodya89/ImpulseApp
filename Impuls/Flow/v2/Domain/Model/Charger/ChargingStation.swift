@@ -6,8 +6,7 @@
 //
 
 import Foundation
-import GoogleMaps
-
+import CoreLocation
 struct ChargingStation: Decodable, MimoResult {
     let id: String?
     let type: String?
@@ -42,8 +41,8 @@ struct PowerBank: Decodable {
 
 extension ChargingStation {
     
-    func toGMSMarker() -> GMSMarker {
-        let marker = GMSMarker()
+    func toGMSMarker() -> MimoMarker {
+        let marker = MimoMarker()
         marker.position = CLLocationCoordinate2D(latitude: location?.latitude ?? 0, longitude: location?.longitude ?? 0)
         marker.appearAnimation = .none
         let slotsCount = slotsCount ?? 0
@@ -57,8 +56,8 @@ extension ChargingStation {
         return marker
     }
     
-    func toSelectedGMSMarker() -> GMSMarker {
-        let marker = GMSMarker()
+    func toSelectedGMSMarker() -> MimoMarker {
+        let marker = MimoMarker()
         marker.position = CLLocationCoordinate2D(latitude: location?.latitude ?? 0, longitude: location?.longitude ?? 0)
         marker.appearAnimation = .none
         let slotsCount = slotsCount ?? 0

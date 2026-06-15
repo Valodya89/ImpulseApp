@@ -8,8 +8,7 @@
 import Foundation
 import Combine
 import CoreLocation
-import GoogleMaps
-
+import CoreLocation
 enum MimoChargerViewState {
     case initial
     case chargerList(Int)
@@ -35,10 +34,10 @@ class ChargerViewModel: MimoBaseViewModel {
     @Published private(set) var user: UserResponse?
     
     private(set) var stations: CurrentValueSubject<[ChargingStation]?, Never> = .init(nil)
-    @Published private(set) var stationsMarkers: [GMSMarker]?
+    @Published private(set) var stationsMarkers: [MimoMarker]?
     
     @Published private(set) var news: [NewsObject]?
-    @Published private(set) var selectedStationMarker: GMSMarker?
+    @Published private(set) var selectedStationMarker: MimoMarker?
     @Published private(set) var rentedChargers: [RentedCharger] = []
     @Published private(set) var preScannedQR: String?
     private var _scannedQR: String?

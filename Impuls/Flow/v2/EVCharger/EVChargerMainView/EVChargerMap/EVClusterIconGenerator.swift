@@ -5,9 +5,8 @@
 //  Created by Albert Mnatsakanyan on 9/25/25.
 //
 
-import GoogleMapsUtils
-
-class EVClusterIconGenerator: NSObject, GMUClusterIconGenerator {
+import UIKit
+class EVClusterIconGenerator: NSObject, MimoClusterIconGenerating {
     
     private struct IconSize {
         let size: UInt

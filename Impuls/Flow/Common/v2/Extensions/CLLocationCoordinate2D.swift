@@ -38,6 +38,12 @@ extension CLLocationCoordinate2D {
     var clLocation: CLLocation {
         return CLLocation(latitude: latitude, longitude: longitude)
     }
+
+    /// Distance in meters between two coordinates. Previously provided by the
+    /// Google Maps SDK; reimplemented with CoreLocation after the 2GIS migration.
+    func distance(to coordinate: CLLocationCoordinate2D) -> Double {
+        return clLocation.distance(from: coordinate.clLocation)
+    }
 }
 
 extension Array where Element == CLLocationCoordinate2D {

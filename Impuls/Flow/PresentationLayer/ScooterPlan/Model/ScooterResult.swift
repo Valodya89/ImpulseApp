@@ -5,7 +5,7 @@
 //  Created by Karen Galoyan on 7/18/22.
 //
 
-import GoogleMaps
+import CoreLocation
 import Foundation
 
 class ScooterLocationCaching {
@@ -40,8 +40,8 @@ struct ScooterResult: MimoResult {
         self.remainingMileage = remainingMileage
     }
     
-    func toGMSMarker(animate: Bool = true) -> GMSMarker {
-        let marker = GMSMarker()
+    func toGMSMarker(animate: Bool = true) -> MimoMarker {
+        let marker = MimoMarker()
         marker.icon = batteryPercent.scooterMarkerIcon
         marker.position = coordinate
         marker.appearAnimation = animate ? .pop : .none
@@ -49,8 +49,8 @@ struct ScooterResult: MimoResult {
         return marker
     }
     
-    func toSelectedGMSMarker(animate: Bool = true) -> GMSMarker {
-        let marker = GMSMarker()
+    func toSelectedGMSMarker(animate: Bool = true) -> MimoMarker {
+        let marker = MimoMarker()
         marker.icon = batteryPercent.scooterMarkerSelectedIcon
         marker.position = coordinate
         marker.appearAnimation = animate ? .pop : .none

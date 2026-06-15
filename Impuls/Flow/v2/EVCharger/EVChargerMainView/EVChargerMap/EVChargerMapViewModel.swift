@@ -8,9 +8,9 @@
 import Foundation
 import Foundation
 import CoreLocation
+import UIKit
 import Combine
-import GoogleMaps
-
+import CoreLocation
 enum EvChargerViewState {
     case initial
     case scooterList(Int)
@@ -36,8 +36,8 @@ final class EVChargerMapViewModel: MimoBaseViewModel {
     @Published private(set) var walletState: FinancialState?
     @Published private(set) var user: UserResponse?
     
-    @Published private(set) var stationMarkers: [GMSMarker] = []
-    @Published private(set) var selectedStationMarker: GMSMarker?
+    @Published private(set) var stationMarkers: [MimoMarker] = []
+    @Published private(set) var selectedStationMarker: MimoMarker?
     
     @Published private(set) var scooterTripData: ScooterStateModel?
     @Published private(set) var scooterStateData: [ScooterStateModel]?
@@ -235,7 +235,7 @@ final class EVChargerMapViewModel: MimoBaseViewModel {
             return
         }
         
-        var _scootersMarkers: [GMSMarker] = []
+        var _scootersMarkers: [MimoMarker] = []
         stations?.forEach({ scooter in
             let marker = scooter.toGMSMarker(animate: stationMarkers.isEmpty)
             

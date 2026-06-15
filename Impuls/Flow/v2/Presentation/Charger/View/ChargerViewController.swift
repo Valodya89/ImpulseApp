@@ -6,17 +6,17 @@
 //
 
 import UIKit
-import GoogleMaps
+import CoreLocation
 //import GoogleMapsUtils
 import Combine
 
 class ChargerViewController: MimoBaseViewController {
     
     private var cancellables = Set<AnyCancellable>()
-//    private var clusterManager: GMUClusterManager?
+//    private var clusterManager: MimoClusterManager?
     
     //MARK: - Outlets
-    @IBOutlet private weak var mapView: GMSMapView!
+    @IBOutlet private weak var mapView: MimoMapView!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var collectionViewContainerView: UIView!
     @IBOutlet private weak var collectionBackButton: UIButton!
@@ -73,7 +73,7 @@ class ChargerViewController: MimoBaseViewController {
                 viewModel.getChargingStations(currentLocation: coordinate)
             }
             
-            let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 18)
+            let camera = MimoCameraPosition.camera(withLatitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 18)
             self.mapView.animate(to: camera)
         }
         .store(in: &cancellables)
@@ -124,7 +124,7 @@ class ChargerViewController: MimoBaseViewController {
             
             let point = mapView.projection.point(for: position)
             let camera = mapView.projection.coordinate(for: point)
-            let cameraUpdate = GMSCameraUpdate.setTarget(camera, zoom: 18)
+            let cameraUpdate = MimoCameraUpdate.setTarget(camera, zoom: 18)
             mapView.animate(with: cameraUpdate)
             
             if let index = viewModel.stations.value?.firstIndex(where: { $0.id == self.viewModel?.selectedStation?.id }) {
@@ -277,7 +277,7 @@ extension ChargerViewController {
         }
     }
     
-    private func drawStations(_ stations: [GMSMarker]) {
+    private func drawStations(_ stations: [MimoMarker]) {
         viewModel?.stationsMarkers?.forEach({ $0.map = nil })
         stations.forEach({ $0.map = mapView })
 //        clusterManager?.clearItems()
@@ -290,12 +290,12 @@ extension ChargerViewController {
     
 //    private func setupMapCluster() {
 //        let iconGenerator = MimoClusterIconGenerator()
-//        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm(clusterDistancePoints: 100) ?? GMUNonHierarchicalDistanceBasedAlgorithm()
-//        let renderer = GMUDefaultClusterRenderer(mapView: self.mapView, clusterIconGenerator: iconGenerator)
+//        let algorithm = MimoNonHierarchicalDistanceBasedAlgorithm(clusterDistancePoints: 100) ?? MimoNonHierarchicalDistanceBasedAlgorithm()
+//        let renderer = MimoDefaultClusterRenderer(mapView: self.mapView, clusterIconGenerator: iconGenerator)
 //        renderer.minimumClusterSize = 1
 //        renderer.maximumClusterZoom = 16
 //        renderer.animatesClusters = true
-//        self.clusterManager = GMUClusterManager(map: self.mapView, algorithm: algorithm, renderer: renderer)
+//        self.clusterManager = MimoClusterManager(map: self.mapView, algorithm: algorithm, renderer: renderer)
 //        self.clusterManager?.setMapDelegate(self)
 //    }
 }
@@ -370,17 +370,17 @@ extension ChargerViewController: ChargingStationSheetViewControllerDelegate {
     }
 }
 
-//MARK: - GMSMapViewDelegate
-extension ChargerViewController: GMSMapViewDelegate {
+//MARK: - MimoMapViewDelegate
+extension ChargerViewController: MimoMapViewDelegate {
     
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+    func mapView(_ mapView: MimoMapView, didTap marker: MimoMarker) -> Bool {
         
-//        if marker.userData is GMUCluster {
+//        if marker.userData is MimoCluster {
 //            mapView.animate(toLocation: marker.position)
 //            mapView.animate(toZoom: 18)
 //        } else {
             if let rentedChargers = viewModel?.rentedChargers, !rentedChargers.isEmpty {
-//                if (marker.userData as? GMUCluster) == nil {
+//                if (marker.userData as? MimoCluster) == nil {
                     guard let station = viewModel?.stations.value?.first(where: { ($0.location?.latitude ?? 0) == marker.position.latitude && ($0.location?.longitude ?? 0) == marker.position.longitude }) else { return false }
                     
                     ChargerRouter.shared.showChargerDetailsSheet(

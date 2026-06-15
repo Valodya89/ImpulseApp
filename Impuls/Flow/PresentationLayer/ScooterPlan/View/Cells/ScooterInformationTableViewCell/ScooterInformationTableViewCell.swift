@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import GoogleMaps
+import CoreLocation
 import CoreLocation
 
 final public class ScooterInformationTableViewCell: UITableViewCell {
@@ -23,7 +23,7 @@ final public class ScooterInformationTableViewCell: UITableViewCell {
     // MARK: Properties
     public static let cellNibName = UINib(nibName: "ScooterInformationTableViewCell", bundle: nil)
     public static let cellIdentifier = "ScooterInformationTableViewCell"
-    let geocoder = GMSGeocoder()
+    let geocoder = MimoGeocoder()
     
     // MARK: View Lifecycle
     public override func awakeFromNib() {

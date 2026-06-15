@@ -6,19 +6,19 @@
 //
 
 import Foundation
-import GoogleMaps
-
+import CoreLocation
+import UIKit
 class PolygonDrawer {
     
     public static let shared = PolygonDrawer()
     
-    private var redPaths: [GMSMutablePath] = []
-    private var yellowPath: GMSMutablePath = GMSMutablePath()
-    private var greenPath: GMSMutablePath = GMSMutablePath()
+    private var redPaths: [MimoMutablePath] = []
+    private var yellowPath: MimoMutablePath = MimoMutablePath()
+    private var greenPath: MimoMutablePath = MimoMutablePath()
     
-    var ridePolygon: [GMSPolygon] = []
-    var restrictedPolygon: [GMSPolygon] = []
-    var forbiddenPolygon: [GMSPolygon] = []
+    var ridePolygon: [MimoPolygon] = []
+    var restrictedPolygon: [MimoPolygon] = []
+    var forbiddenPolygon: [MimoPolygon] = []
     
     var forbiddenCoordinates: [[CLLocationCoordinate2D]] = []
     
@@ -27,20 +27,20 @@ class PolygonDrawer {
     func polygon(with zones: [Zone], withHoles: Bool) -> ZoneDrawerData {
         forbiddenCoordinates = []
         redPaths = []
-        yellowPath = GMSMutablePath()
-        greenPath = GMSMutablePath()
+        yellowPath = MimoMutablePath()
+        greenPath = MimoMutablePath()
         
         ridePolygon = withHoles ? [.fillingPolygon1, .fillingPolygon2, .fillingPolygon3, .fillingPolygon4] : []
         forbiddenPolygon = []
         restrictedPolygon = []
         
-        var ridePolylines: [GMSPolyline] = []
-        var forbiddenPolylines: [GMSPolyline] = []
-        var restrictedPolylines: [GMSPolyline] = []
+        var ridePolylines: [MimoPolyline] = []
+        var forbiddenPolylines: [MimoPolyline] = []
+        var restrictedPolylines: [MimoPolyline] = []
         
         zones.enumerated().forEach { index, zone in
-            let path = GMSMutablePath()
-            let redPath = GMSMutablePath()
+            let path = MimoMutablePath()
+            let redPath = MimoMutablePath()
             let feature = zone.featureCollection?.features?.first
             let coordinates = feature?.geometry?.coordinates?.first ?? []
             
@@ -70,30 +70,30 @@ class PolygonDrawer {
                 ridePolygon.forEach({ $0.fillColor = UIColor.red.withAlphaComponent(0.2) })
                 ridePolygon.forEach({ $0.holes?.append(path) })
             } else {
-                let polygone = GMSPolygon(path: path)
+                let polygone = MimoPolygon(path: path)
                 polygone.fillColor = UIColor.green.withAlphaComponent(0.2)
                 ridePolygon.append(polygone)
             }
             
-            let polygon1 = GMSPolygon(path: yellowPath)
+            let polygon1 = MimoPolygon(path: yellowPath)
             polygon1.fillColor = UIColor.mimoYellow500.withAlphaComponent(0.2)
             restrictedPolygon.append(polygon1)
             
-            let polygone2 = GMSPolygon(path: redPath)
+            let polygone2 = MimoPolygon(path: redPath)
             polygone2.fillColor = UIColor.red.withAlphaComponent(0.2)
             forbiddenPolygon.append(polygone2)
             
-            let ridePolyline = GMSPolyline(path: path)
+            let ridePolyline = MimoPolyline(path: path)
             ridePolyline.strokeColor = zone.borderColor?.hexStringToUIColor() ?? .mimoGreen
             ridePolyline.strokeWidth = 2
             ridePolylines.append(ridePolyline)
             
-            let forbiddenPolyline = GMSPolyline(path: redPath)
+            let forbiddenPolyline = MimoPolyline(path: redPath)
             forbiddenPolyline.strokeColor = UIColor.red
             forbiddenPolyline.strokeWidth = 2
             forbiddenPolylines.append(forbiddenPolyline)
             
-            let restrictedPolyline = GMSPolyline(path: yellowPath)
+            let restrictedPolyline = MimoPolyline(path: yellowPath)
             restrictedPolyline.strokeColor = UIColor.mimoYellow500
             restrictedPolyline.strokeWidth = 2
             restrictedPolylines.append(restrictedPolyline)
@@ -111,16 +111,16 @@ class PolygonDrawer {
     
     func zoneType(for coordinate: CLLocationCoordinate2D) -> ZoneType {
         for redPath in redPaths {
-            if GMSGeometryContainsLocation(coordinate, redPath, true) {
+            if mimoGeometryContainsLocation(coordinate, redPath, true) {
                 return .FORBIDDEN
             }
         }
         
-        if GMSGeometryContainsLocation(coordinate, yellowPath, true) {
+        if mimoGeometryContainsLocation(coordinate, yellowPath, true) {
             return .RESTRICTED
         }
         
-        if GMSGeometryContainsLocation(coordinate, greenPath, true) {
+        if mimoGeometryContainsLocation(coordinate, greenPath, true) {
             return .RIDE
         }
         
@@ -128,75 +128,75 @@ class PolygonDrawer {
     }
 }
 
-extension GMSPolygon {
+extension MimoPolygon {
     
-    static var fillingPolygon1: GMSPolygon {
-        let fillingPath = GMSMutablePath()
+    static var fillingPolygon1: MimoPolygon {
+        let fillingPath = MimoMutablePath()
         fillingPath.add(CLLocationCoordinate2D(latitude: 90, longitude: -90))
         fillingPath.add(CLLocationCoordinate2D(latitude: 90, longitude: 90))
         fillingPath.add(CLLocationCoordinate2D(latitude: 0, longitude: 90))
         fillingPath.add(CLLocationCoordinate2D(latitude: 0, longitude: -90))
         
-        let polygon = GMSPolygon(path: fillingPath)
+        let polygon = MimoPolygon(path: fillingPath)
         polygon.holes = []
         
         return polygon
     }
     
-    static var fillingPolygon2: GMSPolygon {
-        let fillingPath = GMSMutablePath()
+    static var fillingPolygon2: MimoPolygon {
+        let fillingPath = MimoMutablePath()
         fillingPath.add(CLLocationCoordinate2D(latitude: 90, longitude: -90.01))
         fillingPath.add(CLLocationCoordinate2D(latitude: 90.01, longitude: 90))
         fillingPath.add(CLLocationCoordinate2D(latitude: 0, longitude: 90.01))
         fillingPath.add(CLLocationCoordinate2D(latitude: 0, longitude: -90))
         
-        let polygon = GMSPolygon(path: fillingPath)
+        let polygon = MimoPolygon(path: fillingPath)
         polygon.holes = []
         
         return polygon
     }
     
-    static var fillingPolygon3: GMSPolygon {
-        let fillingPath = GMSMutablePath()
+    static var fillingPolygon3: MimoPolygon {
+        let fillingPath = MimoMutablePath()
         fillingPath.add(CLLocationCoordinate2D(latitude: 90, longitude: -90))
         fillingPath.add(CLLocationCoordinate2D(latitude: 90, longitude: 90))
         fillingPath.add(CLLocationCoordinate2D(latitude: -0.01, longitude: 90))
         fillingPath.add(CLLocationCoordinate2D(latitude: -0.01, longitude: -90))
         
-        let polygon = GMSPolygon(path: fillingPath)
+        let polygon = MimoPolygon(path: fillingPath)
         polygon.holes = []
         
         return polygon
     }
     
-    static var fillingPolygon4: GMSPolygon {
-        let fillingPath = GMSMutablePath()
+    static var fillingPolygon4: MimoPolygon {
+        let fillingPath = MimoMutablePath()
         fillingPath.add(CLLocationCoordinate2D(latitude: 90, longitude: -90.01))
         fillingPath.add(CLLocationCoordinate2D(latitude: 90, longitude: 90))
         fillingPath.add(CLLocationCoordinate2D(latitude: -0.01, longitude: 90.01))
         fillingPath.add(CLLocationCoordinate2D(latitude: -0.01, longitude: -90))
         
-        let polygon = GMSPolygon(path: fillingPath)
+        let polygon = MimoPolygon(path: fillingPath)
         polygon.holes = []
         
         return polygon
     }
     
-    static var emptyPolygon: GMSPolygon {
-        let emptyPath = GMSMutablePath()
+    static var emptyPolygon: MimoPolygon {
+        let emptyPath = MimoMutablePath()
         
-        let polygon = GMSPolygon(path: emptyPath)
+        let polygon = MimoPolygon(path: emptyPath)
         
         return polygon
     }
 }
 
 struct ZoneDrawerData {
-    let ridePolygon: [GMSPolygon]
-    var restrictedPolygon: [GMSPolygon]
-    var forbiddenPolygon: [GMSPolygon]
+    let ridePolygon: [MimoPolygon]
+    var restrictedPolygon: [MimoPolygon]
+    var forbiddenPolygon: [MimoPolygon]
     
-    var ridePolyline: [GMSPolyline]
-    var restrictedPolyline: [GMSPolyline]
-    var forbiddenPolyline: [GMSPolyline]
+    var ridePolyline: [MimoPolyline]
+    var restrictedPolyline: [MimoPolyline]
+    var forbiddenPolyline: [MimoPolyline]
 }

@@ -5,7 +5,8 @@
 //  Created by Albert on 13.05.21.
 //
 
-import GoogleMaps
+import CoreLocation
+import UIKit
 import Foundation
 
 protocol MimoResult {
@@ -56,8 +57,8 @@ struct BikeResult: MimoResult {
         self.updated = updated
     }
     
-    func toGMSMarker() -> GMSMarker {
-        let marker = GMSMarker()
+    func toGMSMarker() -> MimoMarker {
+        let marker = MimoMarker()
         marker.icon = #imageLiteral(resourceName: "ic_bike_marker")
         marker.position = coordinate
         marker.appearAnimation = .pop
@@ -65,8 +66,8 @@ struct BikeResult: MimoResult {
         return marker
     }
     
-    func toSelectedGMSMarker() -> GMSMarker {
-        let marker = GMSMarker()
+    func toSelectedGMSMarker() -> MimoMarker {
+        let marker = MimoMarker()
         marker.icon = "ic_markerSelected".image
         marker.position = coordinate
         marker.appearAnimation = .pop

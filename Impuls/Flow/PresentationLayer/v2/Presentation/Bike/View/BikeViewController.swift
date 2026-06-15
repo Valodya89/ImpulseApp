@@ -7,17 +7,16 @@
 
 import UIKit
 import Combine
-import GoogleMaps
-import GoogleMapsUtils
-
+import CoreLocation
+import UIKit
 class BikeViewController: MimoBaseViewController {
     
     private var cancellables = Set<AnyCancellable>()
-    private var clusterManager: GMUClusterManager?
+    private var clusterManager: MimoClusterManager?
     
     var viewModel: BikeViewModel?
     
-    @IBOutlet private weak var mapView: GMSMapView!
+    @IBOutlet private weak var mapView: MimoMapView!
     @IBOutlet private weak var bikesCollectionView: UICollectionView!
     @IBOutlet private weak var bikesCollectionContainerView: UIView!
     @IBOutlet private weak var bikesCollectionBackButton: UIButton!
@@ -30,7 +29,7 @@ class BikeViewController: MimoBaseViewController {
     
     private var isTransferDebtSelected: Bool = false
     
-    private var forbiddenMarkers: [GMSMarker] = []
+    private var forbiddenMarkers: [MimoMarker] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,7 +143,7 @@ class BikeViewController: MimoBaseViewController {
         if self.forbiddenMarkers.isEmpty {
             PolygonDrawer.shared.forbiddenCoordinates.forEach({
                 let center = $0.center()
-                let marker = GMSMarker(position: center)
+                let marker = MimoMarker(position: center)
                 marker.icon = "noRidingSmall".image
                 
                 self.forbiddenMarkers.append(marker)
@@ -160,12 +159,12 @@ class BikeViewController: MimoBaseViewController {
     
     private func setupMapCluster() {
         let iconGenerator = MimoClusterIconGenerator()
-        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm(clusterDistancePoints: 100) ?? GMUNonHierarchicalDistanceBasedAlgorithm()
-        let renderer = GMUDefaultClusterRenderer(mapView: self.mapView, clusterIconGenerator: iconGenerator)
+        let algorithm = MimoNonHierarchicalDistanceBasedAlgorithm(clusterDistancePoints: 100) ?? MimoNonHierarchicalDistanceBasedAlgorithm()
+        let renderer = MimoDefaultClusterRenderer(mapView: self.mapView, clusterIconGenerator: iconGenerator)
         renderer.minimumClusterSize = 1
         renderer.maximumClusterZoom = 16
         renderer.animatesClusters = true
-        self.clusterManager = GMUClusterManager(map: self.mapView, algorithm: algorithm, renderer: renderer)
+        self.clusterManager = MimoClusterManager(map: self.mapView, algorithm: algorithm, renderer: renderer)
         self.clusterManager?.setMapDelegate(self)
     }
     
@@ -195,7 +194,7 @@ class BikeViewController: MimoBaseViewController {
                 viewModel.loadBikes(currentLocation: coordinate)
             }
             
-            let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 16)
+            let camera = MimoCameraPosition.camera(withLatitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 16)
             self.mapView.animate(to: camera)
         }
         .store(in: &cancellables)
@@ -259,7 +258,7 @@ class BikeViewController: MimoBaseViewController {
             
             let point = mapView.projection.point(for: position)
             let camera = mapView.projection.coordinate(for: point)
-            let cameraUpdate = GMSCameraUpdate.setTarget(camera, zoom: 18)
+            let cameraUpdate = MimoCameraUpdate.setTarget(camera, zoom: 18)
             mapView.animate(with: cameraUpdate)
             
             if let index = viewModel.bikes?.firstIndex(where: { $0.qr == viewModel.selectedBike?.qr }) {
@@ -431,9 +430,9 @@ extension BikeViewController: MimoScanQrViewControllerDelegate {
     }
 }
 
-extension BikeViewController: GMSMapViewDelegate {
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        if marker.userData is GMUCluster {
+extension BikeViewController: MimoMapViewDelegate {
+    func mapView(_ mapView: MimoMapView, didTap marker: MimoMarker) -> Bool {
+        if marker.userData is MimoCluster {
             mapView.animate(toLocation: marker.position)
             mapView.animate(toZoom: 18)
         } else {
@@ -444,16 +443,16 @@ extension BikeViewController: GMSMapViewDelegate {
         return true
     }
     
-    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+    func mapView(_ mapView: MimoMapView, didChange position: MimoCameraPosition) {
         guard let zones = viewModel?.mapZones else { return }
         draw(zones: zones, withHoles: position.zoom > 11)
     }
     
-    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+    func mapView(_ mapView: MimoMapView, markerInfoWindow marker: MimoMarker) -> UIView? {
         return nil
     }
     
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+    func mapView(_ mapView: MimoMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         let zoneType = PolygonDrawer.shared.zoneType(for: coordinate)
         ScooterRouter.shared.showZoneInfo(self, zoneType: zoneType)
     }

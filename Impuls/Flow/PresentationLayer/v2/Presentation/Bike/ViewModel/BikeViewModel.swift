@@ -8,8 +8,8 @@
 import Foundation
 import Combine
 import CoreLocation
-import GoogleMaps
-
+import UIKit
+import CoreLocation
 enum BikeViewState {
     case initial
     case bikeList(Int)
@@ -41,8 +41,8 @@ class BikeViewModel: MimoBaseViewModel {
     @Published private(set) var user: UserResponse?
     
     @Published private(set) var bikes: [BikeResult]?
-    @Published private(set) var bikesMarkers: [GMSMarker] = []
-    @Published private(set) var selectedBikeMarker: GMSMarker?
+    @Published private(set) var bikesMarkers: [MimoMarker] = []
+    @Published private(set) var selectedBikeMarker: MimoMarker?
     
     @Published private(set) var mapZones: [Zone]?
     

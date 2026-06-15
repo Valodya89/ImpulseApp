@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import GoogleMaps
-
+import CoreLocation
+import UIKit
 struct EVChargingStationResponse: Decodable {
     let station: EVChargingStationDTO
     let feedbacks: [EVStationFeedbackDTO]
@@ -267,8 +267,8 @@ struct EVChargingStation: Identifiable, MimoResult, Equatable {
         chargingTypes.contains(.faster)
     }
     
-    func toGMSMarker(animate: Bool = true) -> GMSMarker {
-        let marker = GMSMarker()
+    func toGMSMarker(animate: Bool = true) -> MimoMarker {
+        let marker = MimoMarker()
         marker.icon = isFast ? #imageLiteral(resourceName: "evcharger_fast_marker") : #imageLiteral(resourceName: "evcharger_marker")
         marker.position = coordinate
         marker.appearAnimation = animate ? .pop : .none
@@ -276,8 +276,8 @@ struct EVChargingStation: Identifiable, MimoResult, Equatable {
         return marker
     }
     
-    func toSelectedGMSMarker(animate: Bool = true) -> GMSMarker {
-        let marker = GMSMarker()
+    func toSelectedGMSMarker(animate: Bool = true) -> MimoMarker {
+        let marker = MimoMarker()
         marker.icon = isFast ? #imageLiteral(resourceName: "evcharger_fast_selected_marker") : #imageLiteral(resourceName: "evcharger_selected_marker")
         marker.position = coordinate
         marker.appearAnimation = animate ? .pop : .none
@@ -350,8 +350,8 @@ struct EVChargingInfoDTO: Decodable {
 }
 
 extension EVChargingStation {
-    func toGMSMarker() -> GMSMarker {
-        let marker = GMSMarker()
+    func toGMSMarker() -> MimoMarker {
+        let marker = MimoMarker()
         marker.position = CLLocationCoordinate2D(latitude: location?.latitude ?? 0, longitude: location?.longitude ?? 0)
         marker.appearAnimation = .none
         marker.iconView = ChargerMarkerView(
@@ -363,8 +363,8 @@ extension EVChargingStation {
         return marker
     }
     
-    func toSelectedGMSMarker() -> GMSMarker {
-        let marker = GMSMarker()
+    func toSelectedGMSMarker() -> MimoMarker {
+        let marker = MimoMarker()
         marker.position = CLLocationCoordinate2D(latitude: location?.latitude ?? 0, longitude: location?.longitude ?? 0)
         marker.appearAnimation = .none
         marker.iconView = ChargerSelectedMarkerView(

@@ -7,24 +7,23 @@
 
 import UIKit
 
-import GoogleMaps
-
+import CoreLocation
 class DrawPolygone: NSObject {
 
     static let shared = DrawPolygone()
         
-    var polygons: GMSPolygon?
-    var redPolygons: GMSPolygon?
-    var greenPolygons: GMSPolygon?
-    var yellowPolygons: GMSPolygon?
+    var polygons: MimoPolygon?
+    var redPolygons: MimoPolygon?
+    var greenPolygons: MimoPolygon?
+    var yellowPolygons: MimoPolygon?
     
-    func drawZone(mapZone: [Zone], mapView: GMSMapView) {
+    func drawZone(mapZone: [Zone], mapView: MimoMapView) {
             //Add vertex's to Path like as shown bellow
             //get vertices from map
            // https://developers.google.com/maps/documentation/ios-sdk/shapes
-        let redPath = GMSMutablePath()
-        let greenPath = GMSMutablePath()
-        let yellowPath = GMSMutablePath()
+        let redPath = MimoMutablePath()
+        let greenPath = MimoMutablePath()
+        let yellowPath = MimoMutablePath()
         
         for zoneItem in mapZone {
             print(zoneItem)
@@ -33,7 +32,7 @@ class DrawPolygone: NSObject {
             }
 
             for item in features {
-                let path = GMSMutablePath()
+                let path = MimoMutablePath()
                 if let zoneList = item.geometry?.coordinates?.first {
                     for value in zoneList  {
                         print("poligone value = \(value)")
@@ -51,57 +50,57 @@ class DrawPolygone: NSObject {
                         }
                     }
                 }
-//                polygons = GMSPolygon(path: path)
+//                polygons = MimoPolygon(path: path)
 //
 //                polygons?.strokeColor = zoneItem.borderColor?.hexStringToUIColor() //?? UIColor.mimoGray500
 //                polygons?.fillColor = zoneItem.color?.hexStringToUIColor().withAlphaComponent(0.16) ?? UIColor.mimoGreenLight.withAlphaComponent(0.30)
 //                polygons?.strokeWidth = 2.0
 //                polygons?.map = mapView
                 
-//                polygons = GMSPolygon(path: redPath)
+//                polygons = MimoPolygon(path: redPath)
 //                polygons?.fillColor = zoneItem.color?.hexStringToUIColor().withAlphaComponent(0.16) ?? UIColor.mimoGreenLight.withAlphaComponent(0.30)
 //                polygons?.strokeWidth = 2.0
 //                polygons?.map = mapView
                 
                 
-                let fillingPath = GMSMutablePath()
+                let fillingPath = MimoMutablePath()
                 fillingPath.add(CLLocationCoordinate2D(latitude: 90, longitude: -90))
                 fillingPath.add(CLLocationCoordinate2D(latitude: 90, longitude: 90))
                 fillingPath.add(CLLocationCoordinate2D(latitude: 0, longitude: 90))
                 fillingPath.add(CLLocationCoordinate2D(latitude: 0, longitude: -90))
                 
-                let fillingPath2 = GMSMutablePath()
+                let fillingPath2 = MimoMutablePath()
                 fillingPath2.add(CLLocationCoordinate2D(latitude: 90, longitude: -90.01))
                 fillingPath2.add(CLLocationCoordinate2D(latitude: 90.01, longitude: 90))
                 fillingPath2.add(CLLocationCoordinate2D(latitude: 0, longitude: 90.01))
                 fillingPath2.add(CLLocationCoordinate2D(latitude: 0, longitude: -90))
                 
-                let fillingPath3 = GMSMutablePath()
+                let fillingPath3 = MimoMutablePath()
                 fillingPath3.add(CLLocationCoordinate2D(latitude: 90, longitude: -90))
                 fillingPath3.add(CLLocationCoordinate2D(latitude: 90, longitude: 90))
                 fillingPath3.add(CLLocationCoordinate2D(latitude: -0.01, longitude: 90))
                 fillingPath3.add(CLLocationCoordinate2D(latitude: -0.01, longitude: -90))
                 
-                let fillingPath4 = GMSMutablePath()
+                let fillingPath4 = MimoMutablePath()
                 fillingPath4.add(CLLocationCoordinate2D(latitude: 90, longitude: -90.01))
                 fillingPath4.add(CLLocationCoordinate2D(latitude: 90, longitude: 90))
                 fillingPath4.add(CLLocationCoordinate2D(latitude: -0.01, longitude: 90.01))
                 fillingPath4.add(CLLocationCoordinate2D(latitude: -0.01, longitude: -90))
                 
-                let fillingPolygon = GMSPolygon(path: fillingPath)
+                let fillingPolygon = MimoPolygon(path: fillingPath)
                 let fillColor = UIColor.mimoGreenLight.withAlphaComponent(0.1)
                 fillingPolygon.fillColor = fillColor
                 fillingPolygon.map = mapView
                 
-                let fillingPolygon2 = GMSPolygon(path: fillingPath2)
+                let fillingPolygon2 = MimoPolygon(path: fillingPath2)
                 fillingPolygon2.fillColor = fillColor
                 fillingPolygon2.map = mapView
                 
-                let fillingPolygon3 = GMSPolygon(path: fillingPath3)
+                let fillingPolygon3 = MimoPolygon(path: fillingPath3)
                 fillingPolygon3.fillColor = fillColor
                 fillingPolygon3.map = mapView
                 
-                let fillingPolygon4 = GMSPolygon(path: fillingPath4)
+                let fillingPolygon4 = MimoPolygon(path: fillingPath4)
                 fillingPolygon4.fillColor = fillColor
                 fillingPolygon4.map = mapView
                 
@@ -110,23 +109,23 @@ class DrawPolygone: NSObject {
                 fillingPolygon3.holes = [greenPath]
                 fillingPolygon4.holes = [greenPath]
                 
-                let line = GMSPolyline(path: greenPath)
+                let line = MimoPolyline(path: greenPath)
                 line.map = mapView
                 line.strokeColor = UIColor.mimoGreenLight
                 line.strokeWidth = 2
             }
         }
         
-        yellowPolygons = GMSPolygon(path: yellowPath)
-        greenPolygons = GMSPolygon(path: greenPath)
-        redPolygons = GMSPolygon(path: redPath)
+        yellowPolygons = MimoPolygon(path: yellowPath)
+        greenPolygons = MimoPolygon(path: greenPath)
+        redPolygons = MimoPolygon(path: redPath)
     }
     
     func isContain(coordinate: CLLocationCoordinate2D) -> Bool {
         
         guard let path = polygons?.path else { return false }
         
-        return GMSGeometryContainsLocation(coordinate, path, true)
+        return mimoGeometryContainsLocation(coordinate, path, true)
     }
     
     func isCanFinish(coordinate: CLLocationCoordinate2D) -> Bool {
@@ -135,7 +134,7 @@ class DrawPolygone: NSObject {
         guard let grenPath = greenPolygons?.path else { return false }
         guard let yellowPath = yellowPolygons?.path else { return false }
         
-        if GMSGeometryContainsLocation(coordinate, yellowPath, true) {
+        if mimoGeometryContainsLocation(coordinate, yellowPath, true) {
             return true
         }
         return false
@@ -147,15 +146,15 @@ class DrawPolygone: NSObject {
         guard let grenPath = greenPolygons?.path else { return "OUT" }
         guard let yellowPath = yellowPolygons?.path else { return "OUT" }
         
-        if GMSGeometryContainsLocation(coordinate, yellowPath, true) {
+        if mimoGeometryContainsLocation(coordinate, yellowPath, true) {
             return "RESTRICTED"
         }
         
-        if GMSGeometryContainsLocation(coordinate, redPath, true) {
+        if mimoGeometryContainsLocation(coordinate, redPath, true) {
             return "FORBIDDEN"
         }
         
-        if GMSGeometryContainsLocation(coordinate, grenPath, true) {
+        if mimoGeometryContainsLocation(coordinate, grenPath, true) {
             return "RIDE"
         }
         return "OUT"

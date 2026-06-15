@@ -5,7 +5,7 @@
 //  Created by Sedrak Igityan on 6/21/21.
 //
 
-import GoogleMaps
+import CoreLocation
 import UIKit
 
 enum TripAction: String, Codable {
@@ -50,7 +50,7 @@ struct TripBikeDataModel: Decodable {
         let latitude: Double
         let timestamp: Int
         
-        let geocoder: GMSGeocoder = GMSGeocoder()
+        let geocoder: MimoGeocoder = MimoGeocoder()
         
         enum CodingKeys: CodingKey {
             case longitude

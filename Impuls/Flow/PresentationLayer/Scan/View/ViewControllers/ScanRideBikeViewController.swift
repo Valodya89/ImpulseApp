@@ -6,14 +6,13 @@
 //
 
 import UIKit
-import GoogleMaps
-
+import CoreLocation
 final class ScanRideBikeViewController: BaseViewController, StoryboardInitializable {
 
     
     //MARK: - Outlets
     @IBOutlet private weak var timerLabel: UILabel!
-    @IBOutlet weak var mapView: GMSMapView!
+    @IBOutlet weak var mapView: MimoMapView!
     @IBOutlet weak var gradientBlurView: GradientView!
     
     
@@ -70,7 +69,7 @@ extension ScanRideBikeViewController: CLLocationManagerDelegate {
 
         let location = locations.last
 
-        let camera = GMSCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 17.0)
+        let camera = MimoCameraPosition.camera(withLatitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!, zoom: 17.0)
 
         self.mapView?.animate(to: camera)
 

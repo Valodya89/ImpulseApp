@@ -6,14 +6,13 @@
 //
 
 import UIKit
-import GoogleMaps
-
+import CoreLocation
 final class MapViewController: BaseViewController, StoryboardInitializable {
 
     
     //MARK: - Outlets
     
-    @IBOutlet private weak var mapView: GMSMapView!
+    @IBOutlet private weak var mapView: MimoMapView!
     @IBOutlet private weak var bikesContentView: UIView!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var registerAndEnjoyTextLabel: UILabel!
@@ -32,16 +31,16 @@ final class MapViewController: BaseViewController, StoryboardInitializable {
     
     private var locationManager: MALocation = .current
     
-    var markers: [String: GMSMarker] = [:]
+    var markers: [String: MimoMarker] = [:]
     var selectedIndex: IndexPath?
     private var singleBikeBookNowTapped = false
     
-    var previousMarker: GMSMarker? {
+    var previousMarker: MimoMarker? {
         didSet {
             previousMarker?.iconView = UIImageView(image: #imageLiteral(resourceName: "ic_bike_marker"))
         }
     }
-    var currentMarker: GMSMarker? {
+    var currentMarker: MimoMarker? {
         didSet {
             currentMarker?.iconView = UIImageView(image: #imageLiteral(resourceName: "ic_markerSelected"))
         }
@@ -84,23 +83,20 @@ final class MapViewController: BaseViewController, StoryboardInitializable {
     }
     
     func drawZone() {
-        let camera = GMSCameraPosition.camera(withLatitude: 76.0,
-                                                  longitude: 87.0,
-                                                  zoom: 18)
-            let mapView = GMSMapView.map(withFrame: .zero, camera: camera)
+        let mapView = self.mapView
 
             //Add vertex's to Path like as shown bellow
             //get vertices from map
            // https://developers.google.com/maps/documentation/ios-sdk/shapes
 
-        let path = GMSMutablePath()
+        let path = MimoMutablePath()
         path.add(CLLocationCoordinate2D(latitude: 37.36, longitude: -122.0))
         path.add(CLLocationCoordinate2D(latitude: 37.45, longitude: -122.0))
         path.add(CLLocationCoordinate2D(latitude: 37.45, longitude: -122.2))
         path.add(CLLocationCoordinate2D(latitude: 37.36, longitude: -122.2))
         path.add(CLLocationCoordinate2D(latitude: 37.36, longitude: -122.0))
 
-            let polyline = GMSPolyline(path: path)
+            let polyline = MimoPolyline(path: path)
             polyline.strokeColor = .blue
             polyline.strokeWidth = 5.0
             polyline.map = mapView
@@ -122,6 +118,7 @@ final class MapViewController: BaseViewController, StoryboardInitializable {
     /// configure map view
     private func configureMapView() {
         mapView.isMyLocationEnabled = true
+        mapView.delegate = self
     }
     
     /// configure user interface
@@ -149,7 +146,7 @@ final class MapViewController: BaseViewController, StoryboardInitializable {
     }
     
     private func centerMapOnCurrentLocation() {
-        let camera = GMSCameraPosition.camera(withLatitude: (locationManager.currentLocation?.coordinate.latitude)!, longitude: (locationManager.currentLocation?.coordinate.longitude)!, zoom: 17.0)
+        let camera = MimoCameraPosition.camera(withLatitude: (locationManager.currentLocation?.coordinate.latitude)!, longitude: (locationManager.currentLocation?.coordinate.longitude)!, zoom: 17.0)
         self.mapView?.animate(to: camera)
     }
     
@@ -313,7 +310,7 @@ final class MapViewController: BaseViewController, StoryboardInitializable {
     }
     
     private func addMarker(model: BikeResult) {
-        let marker = GMSMarker()
+        let marker = MimoMarker()
         marker.position = CLLocationCoordinate2D(latitude: model.latitude, longitude: model.longitude)
 
 //        let customMarker: CustomMarker = .fromNib()
@@ -329,8 +326,8 @@ final class MapViewController: BaseViewController, StoryboardInitializable {
         }
     }
     
-    func centerMapOnLocation(_ location: CLLocation, mapView: GMSMapView, zoom: Float = 10) {
-        let camera = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: zoom)
+    func centerMapOnLocation(_ location: CLLocation, mapView: MimoMapView, zoom: Float = 10) {
+        let camera = MimoCameraPosition.camera(withTarget: location.coordinate, zoom: zoom)
         mapView.animate(to: camera)
     }
     
@@ -351,7 +348,7 @@ final class MapViewController: BaseViewController, StoryboardInitializable {
     
     @IBAction func currentLocationTapped(_ sender: UIButton) {
         if locationManager.isAccessed, let location = locationManager.currentLocation {
-            let camera = GMSCameraPosition.camera(withLatitude: (location.coordinate.latitude), longitude: location.coordinate.longitude, zoom: 17.0)
+            let camera = MimoCameraPosition.camera(withLatitude: (location.coordinate.latitude), longitude: location.coordinate.longitude, zoom: 17.0)
             mapView?.animate(to: camera)
         } else {
             locationManager.alertLocationAccess()
@@ -415,7 +412,7 @@ extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegat
         self.makeSelectedMarker(previousMarker: self.currentMarker, currentMarker: marker, index: visibleIndexPath, cell: cell)
     }
     
-    func makeSelectedMarker(previousMarker: GMSMarker?, currentMarker: GMSMarker, index: IndexPath, cell: MapBikeCollectionViewCell) {
+    func makeSelectedMarker(previousMarker: MimoMarker?, currentMarker: MimoMarker, index: IndexPath, cell: MapBikeCollectionViewCell) {
         self.previousMarker = previousMarker
         self.currentMarker = currentMarker
         
@@ -482,15 +479,15 @@ extension MapViewController: MapBikeCollectionViewCellDelegate {
 }
 
 
-// MARK: - GMSMapViewDelegate -
+// MARK: - MimoMapViewDelegate -
 
-extension MapViewController: GMSMapViewDelegate {
+extension MapViewController: MimoMapViewDelegate {
     
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+    func mapView(_ mapView: MimoMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print("tappedcooordinate = \(coordinate)")
     }
     
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+    func mapView(_ mapView: MimoMapView, didTap marker: MimoMarker) -> Bool {
         if bikesContentView.isHidden {
             let cellIndex = bikes.firstIndex(where: { $0.latitude == marker.position.latitude && $0.longitude == marker.position.longitude }) ?? 0
 

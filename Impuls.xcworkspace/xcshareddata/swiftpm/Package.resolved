@@ -1,5 +1,5 @@
 {
-  "originHash" : "f5ae593f2273e582607e79c1b03527a1ecf75626925066d11033c08716f91d4d",
+  "originHash" : "b7bdb0ea0349160020d48c11f53e1d70141372d8a48f3a91dfd1682ce6e102bc",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -107,6 +107,15 @@
       "state" : {
         "revision" : "a0bc79961d7be727d258d33d5a6b2f1023270ba1",
         "version" : "1.22.5"
+      }
+    },
+    {
+      "identity" : "mobile-sdk-map-swift-package",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/2gis/mobile-sdk-map-swift-package",
+      "state" : {
+        "revision" : "7c1d5cc3ba629919e163a0ddf4c0b97a971a3dc8",
+        "version" : "12.10.0"
       }
     },
     {

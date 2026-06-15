@@ -8,8 +8,7 @@
 import Foundation
 import CoreLocation
 import Combine
-import GoogleMaps
-
+import CoreLocation
 enum MimoScooterViewState {
     case initial
     case scooterList(Int)
@@ -34,14 +33,14 @@ class MimoScooterViewModel: MimoBaseViewModel {
     @Published private(set) var currentLocation: CLLocationCoordinate2D?
     
     @Published private(set) var scooters: [ScooterResult]?
-    @Published private(set) var parkingMarkers: [GMSMarker] = []
+    @Published private(set) var parkingMarkers: [MimoMarker] = []
     
     @Published private(set) var walletInfo: WalletModel?
     @Published private(set) var financialState: FinancialStateModel?
     @Published private(set) var walletState: FinancialState?
     @Published private(set) var user: UserResponse?
     
-    @Published private(set) var selectedScooterMarker: GMSMarker?
+    @Published private(set) var selectedScooterMarker: MimoMarker?
     
     @Published private(set) var scooterTripData: ScooterStateModel?
     @Published private(set) var scooterStateData: [ScooterStateModel]?
@@ -60,7 +59,7 @@ class MimoScooterViewModel: MimoBaseViewModel {
     private(set) var bookingStartedList: [ScooterStateModel] = []
     private(set) var bookingEndedList: [ScooterStateModel] = []
     
-    @Published private(set) var scooterMarkers: [GMSMarker] = []
+    @Published private(set) var scooterMarkers: [MimoMarker] = []
     
     @Published private(set) var showInfoMessage: Bool = false
     
@@ -369,7 +368,7 @@ class MimoScooterViewModel: MimoBaseViewModel {
             return
         }
         
-        var _scootersMarkers: [GMSMarker] = []
+        var _scootersMarkers: [MimoMarker] = []
         scooters?.forEach({ scooter in
             let marker = scooter.toGMSMarker(animate: scooterMarkers.isEmpty)
             

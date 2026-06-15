@@ -1,10 +1,4 @@
 PODS:
-  - Google-Maps-iOS-Utils (6.1.0):
-    - GoogleMaps (~> 9.0)
-  - GoogleMaps (9.4.0):
-    - GoogleMaps/Maps (= 9.4.0)
-  - GoogleMaps/Maps (9.4.0)
-  - GooglePlaces (9.4.1)
   - IQKeyboardCore (1.0.5)
   - IQKeyboardManagerSwift (8.0.1):
     - IQKeyboardManagerSwift/Appearance (= 8.0.1)
@@ -69,9 +63,6 @@ PODS:
     - ReachabilitySwift (~> 5.2.1)
 
 DEPENDENCIES:
-  - Google-Maps-iOS-Utils
-  - GoogleMaps
-  - GooglePlaces
   - IQKeyboardManagerSwift
   - KeychainAccess
   - Kingfisher (~> 7.0)
@@ -87,9 +78,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - Google-Maps-iOS-Utils
-    - GoogleMaps
-    - GooglePlaces
     - IQKeyboardCore
     - IQKeyboardManagerSwift
     - IQKeyboardNotification
@@ -112,9 +100,6 @@ SPEC REPOS:
     - SwiftStomp
 
 SPEC CHECKSUMS:
-  Google-Maps-iOS-Utils: 0a484b05ed21d88c9f9ebbacb007956edd508a96
-  GoogleMaps: 0608099d4870cac8754bdba9b6953db543432438
-  GooglePlaces: 8afca6c4e946472e91298589d1640d614b51749a
   IQKeyboardCore: 28c8bf3bcd8ba5aa1570b318cbc4da94b861711e
   IQKeyboardManagerSwift: 835fc9c6e4732398113406d84900ad2e8f141218
   IQKeyboardNotification: d7382c4466c5a5adef92c7452ebf861b36050088
@@ -136,6 +121,6 @@ SPEC CHECKSUMS:
   SwiftMessages: 759b4a0bf5c3a116a0d7e8a34b098ba83c458625
   SwiftStomp: 13fed4c82f587fb4b59a98fba1b05f205a0f6158
 
-PODFILE CHECKSUM: 181b97441dc28367469fb3f15edd076cd30b1468
+PODFILE CHECKSUM: f26ede88db9e41b3e8b91424c778ec61aebefbcb
 
 COCOAPODS: 1.15.2

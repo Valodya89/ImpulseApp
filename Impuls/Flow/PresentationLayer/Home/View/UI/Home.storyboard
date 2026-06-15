@@ -35,12 +35,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fy-yx-WFL" customClass="GMSMapView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fy-yx-WFL" customClass="MimoMapView" customModule="MimoBike" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="-200" width="393" height="1052"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <connections>
-                                    <outlet property="delegate" destination="5nO-7e-lO7" id="XRH-Bc-Ndf"/>
-                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1M-BK-8XP" userLabel="NavView">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="96.666666666666671"/>

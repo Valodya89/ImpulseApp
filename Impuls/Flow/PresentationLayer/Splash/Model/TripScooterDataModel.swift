@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import GoogleMaps
+import CoreLocation
 /*
 {
             "id": "62e3e32c86679b2c2eff0b02",
@@ -134,7 +134,7 @@ import GoogleMaps
      let longitude: Double
      let timestamp: Int
 
-     let geocoder: GMSGeocoder = GMSGeocoder()
+     let geocoder: MimoGeocoder = MimoGeocoder()
 
     enum CodingKeys: String, CodingKey {
         case latitude = "latitude"

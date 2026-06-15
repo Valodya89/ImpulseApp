@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import GoogleMaps
-import GoogleMapsUtils
+import CoreLocation
+import UIKit
 import Combine
 import SwiftMessages
 import SwiftUI
@@ -15,7 +15,7 @@ import SwiftUI
 class EVChargerMapViewController: MimoBaseViewController {
     
     //MARK: - Outlets
-    @IBOutlet private weak var mapView: GMSMapView!
+    @IBOutlet private weak var mapView: MimoMapView!
     @IBOutlet private weak var stationsCollectionView: UICollectionView!
     @IBOutlet private weak var collectionBackButton: UIButton!
     @IBOutlet private weak var collectionInfoButton: UIButton!
@@ -32,11 +32,11 @@ class EVChargerMapViewController: MimoBaseViewController {
     //MARK: - Private properties
     var viewModel: EVChargerMapViewModel?
     private var cancellables = Set<AnyCancellable>()
-    private var clusterManager: GMUClusterManager?
+    private var clusterManager: MimoClusterManager?
     
     private var isTransferDebtSelected: Bool = false
     private var hasLoadedInitialStations: Bool = false
-    private var teamEnergyMarkers: [GMSMarker] = []
+    private var teamEnergyMarkers: [MimoMarker] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +94,7 @@ class EVChargerMapViewController: MimoBaseViewController {
         viewModel.$startLocation.sink { [weak self] coordinate in
             guard let self, let coordinate else { return }
 
-            let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 16)
+            let camera = MimoCameraPosition.camera(withLatitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 16)
             self.mapView.animate(to: camera)
         }
         .store(in: &cancellables)
@@ -170,7 +170,7 @@ class EVChargerMapViewController: MimoBaseViewController {
             
             let point = mapView.projection.point(for: position)
             let camera = mapView.projection.coordinate(for: point)
-            let cameraUpdate = GMSCameraUpdate.setTarget(camera, zoom: 18)
+            let cameraUpdate = MimoCameraUpdate.setTarget(camera, zoom: 18)
             mapView.animate(with: cameraUpdate)
             
             if viewModel.scooterStateData == nil || (viewModel.scooterStateData != nil && viewModel.scooterStateData!.isEmpty) {
@@ -355,16 +355,16 @@ extension EVChargerMapViewController {
     
     private func setupMapCluster() {
         let iconGenerator = EVClusterIconGenerator()
-        let algorithm = GMUNonHierarchicalDistanceBasedAlgorithm(clusterDistancePoints: 100) ?? GMUNonHierarchicalDistanceBasedAlgorithm()
-        let renderer = GMUDefaultClusterRenderer(mapView: self.mapView, clusterIconGenerator: iconGenerator)
+        let algorithm = MimoNonHierarchicalDistanceBasedAlgorithm(clusterDistancePoints: 100) ?? MimoNonHierarchicalDistanceBasedAlgorithm()
+        let renderer = MimoDefaultClusterRenderer(mapView: self.mapView, clusterIconGenerator: iconGenerator)
         renderer.minimumClusterSize = 1
         renderer.maximumClusterZoom = 16
         renderer.animatesClusters = true
-        self.clusterManager = GMUClusterManager(map: self.mapView, algorithm: algorithm, renderer: renderer)
+        self.clusterManager = MimoClusterManager(map: self.mapView, algorithm: algorithm, renderer: renderer)
         self.clusterManager?.setMapDelegate(self)
     }
     
-    private func drawScooters(_ markers: [GMSMarker]) {
+    private func drawScooters(_ markers: [MimoMarker]) {
         clusterManager?.clearItems()
         markers.forEach { marker in
             self.clusterManager?.add(marker)
@@ -381,9 +381,9 @@ extension EVChargerMapViewController {
     }
 }
 
-//MARK: - GMSMapViewDelegate
-extension EVChargerMapViewController: GMSMapViewDelegate {
-    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+//MARK: - MimoMapViewDelegate
+extension EVChargerMapViewController: MimoMapViewDelegate {
+    func mapView(_ mapView: MimoMapView, idleAt position: MimoCameraPosition) {
         guard let viewModel else { return }
 
         viewModel.mapRadius = currentMapRadius()
@@ -397,7 +397,7 @@ extension EVChargerMapViewController: GMSMapViewDelegate {
         }
     }
     
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+    func mapView(_ mapView: MimoMapView, didTap marker: MimoMarker) -> Bool {
 //        if (marker.userData as? String)?.hasPrefix("Parking") != nil {
 //            ScooterRouter.shared.showParkingInfo(self)
 //            return false
@@ -417,7 +417,7 @@ extension EVChargerMapViewController: GMSMapViewDelegate {
             return false
         }
 
-        if marker.userData is GMUCluster {
+        if marker.userData is MimoCluster {
             mapView.animate(toLocation: marker.position)
             mapView.animate(toZoom: 18)
         } else {
@@ -432,16 +432,16 @@ extension EVChargerMapViewController: GMSMapViewDelegate {
         return true
     }
     
-    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+    func mapView(_ mapView: MimoMapView, didChange position: MimoCameraPosition) {
 //        guard let zones = viewModel?.mapZones else { return }
 //        draw(zones: zones, withHoles: position.zoom > 11)
     }
     
-    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+    func mapView(_ mapView: MimoMapView, markerInfoWindow marker: MimoMarker) -> UIView? {
         return nil
     }
     
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+    func mapView(_ mapView: MimoMapView, didTapAt coordinate: CLLocationCoordinate2D) {
 //        let zoneType = PolygonDrawer.shared.zoneType(for: coordinate)
 //        ScooterRouter.shared.showZoneInfo(self, zoneType: zoneType)
     }

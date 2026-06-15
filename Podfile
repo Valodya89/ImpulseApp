@@ -1,12 +1,11 @@
-platform :ios, '15.0'
+platform :ios, '16.0'
 inhibit_all_warnings!
 source 'https://github.com/CocoaPods/Specs.git'
 
 def mimo_pods
   pod 'lottie-ios'
-  pod 'GoogleMaps'
-  pod 'GooglePlaces'
-  pod 'Google-Maps-iOS-Utils'
+  # Maps are provided by the 2GIS Mobile SDK, added via Swift Package Manager
+  # (https://github.com/2gis/mobile-sdk-map-swift-package). Google Maps removed.
   pod 'SwiftMaskTextfield'
   pod 'KeychainAccess'
   pod 'SDWebImage'
@@ -39,7 +38,7 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.0'
       
 #      if target.name == "lottie-ios"
 #        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'

@@ -14,6 +14,11 @@ struct Constant {
     
     struct APIKeys {
         static let GOOGLE_MAPS_API_KEY = "AIzaSyBBnsPKB01veDAEZd0MYs13FFuwJJi7KKo"
+
+        /// 2GIS Mobile SDK access key. Obtain from https://dev.2gis.com (the key is
+        /// bound to this app's bundle id). The map renders blank until a valid key
+        /// is set here.
+        static let TWO_GIS_API_KEY = "0a0add79-3ab9-43bf-ab9b-7e2d548fd73d"
     }
 
     struct Storyboards {

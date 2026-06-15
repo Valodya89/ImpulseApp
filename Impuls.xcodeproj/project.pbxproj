@@ -87,6 +87,8 @@
 		16A628622D53F8BA0043DBA8 /* ChargerStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A628602D53F8B30043DBA8 /* ChargerStationView.swift */; };
 		16A628652D53FF740043DBA8 /* EVColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A628642D53FF740043DBA8 /* EVColor.swift */; };
 		16A628662D53FF740043DBA8 /* EVColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A628642D53FF740043DBA8 /* EVColor.swift */; };
+		3A3EE9E9FABF48787289064C /* MimoMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0516CA83554980A5A7D7B /* MimoMap.swift */; };
+		3B945086A2CC1601BB5BE648 /* MimoClustering.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDBAEC34B90F5816554727C /* MimoClustering.swift */; };
 		43133B77288F3C6E00A147C2 /* BookedScooterResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43133B76288F3C6E00A147C2 /* BookedScooterResult.swift */; };
 		435CCDE4288488CC00228F99 /* ScooterPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435CCDE2288488CC00228F99 /* ScooterPlanViewController.swift */; };
 		435CCDE9288489BB00228F99 /* ScooterPlan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 435CCDE8288489BB00228F99 /* ScooterPlan.storyboard */; };
@@ -115,6 +117,7 @@
 		439C12B52892FD9C00EA0440 /* PauseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439C12B42892FD9C00EA0440 /* PauseViewController.swift */; };
 		439C12B72893046E00EA0440 /* ChangeRideRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439C12B62893046E00EA0440 /* ChangeRideRateViewController.swift */; };
 		439C12BB28935C1D00EA0440 /* TripScooterDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439C12BA28935C1D00EA0440 /* TripScooterDataModel.swift */; };
+		4B25C03FB3D1A61477C385F7 /* MimoGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97909941EB63293105FB96 /* MimoGeometry.swift */; };
 		50183D0C2D7FB9B500AFD003 /* EVSelectionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50183D0B2D7FB9B500AFD003 /* EVSelectionModifier.swift */; };
 		50183D0D2D7FB9B500AFD003 /* EVSelectionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50183D0B2D7FB9B500AFD003 /* EVSelectionModifier.swift */; };
 		5060A57E264D651400C866AC /* BikeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5060A57D264D651400C866AC /* BikeResult.swift */; };
@@ -266,6 +269,8 @@
 		54FDA3682D53F90400B9C45D /* MapNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FDA3662D53F90400B9C45D /* MapNavigationView.swift */; };
 		54FDA36B2D5789E300B9C45D /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FDA36A2D5789E300B9C45D /* BlurView.swift */; };
 		54FDA36C2D5789E300B9C45D /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FDA36A2D5789E300B9C45D /* BlurView.swift */; };
+		5AA5FBE78FC060D6F231965D /* MimoMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0516CA83554980A5A7D7B /* MimoMap.swift */; };
+		64C79395086104AAF93EF7C2 /* MimoMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0C1A168943C14E40477D5D /* MimoMapView.swift */; };
 		667E0E4E2670FA7C00B6CACB /* StudentInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667E0E4D2670FA7C00B6CACB /* StudentInformationViewController.swift */; };
 		668B77C9266E39700055A33F /* OrderCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B77C3266E39700055A33F /* OrderCardViewModel.swift */; };
 		668B77CA266E39700055A33F /* OrderCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 668B77C6266E39700055A33F /* OrderCard.storyboard */; };
@@ -1518,7 +1523,15 @@
 		88C6EE33269F725700A997B3 /* HomeViewController+Zoning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C6EE32269F725700A997B3 /* HomeViewController+Zoning.swift */; };
 		88D950A526923CDA00D96C0A /* ZoningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D950A426923CDA00D96C0A /* ZoningView.swift */; };
 		88D950A726923D7F00D96C0A /* ZoningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D950A626923D7F00D96C0A /* ZoningView.xib */; };
+		8CA79D2690B0F94A6892F026 /* MapSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 4815BC4CFC79D2FAD3AFB822 /* MapSDK */; };
+		90D1922D5E89F2AE5993F1B4 /* MapSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2EE419714608616A01105509 /* MapSDK */; };
 		9385C95D26F0A7C200B28D2B /* MiAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385C95C26F0A7C200B28D2B /* MiAlertView.swift */; };
+		99B44164933A33142DA37D7B /* MimoClustering.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDBAEC34B90F5816554727C /* MimoClustering.swift */; };
+		9E70D5F175F8472F091A6CB1 /* MimoShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC32AB0219B11389909040D4 /* MimoShapes.swift */; };
+		A7D487BD018A910E183A4FA2 /* MimoMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0C1A168943C14E40477D5D /* MimoMapView.swift */; };
+		B194FABB08112CCF2E9B61C9 /* MimoCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6121B29BC13851DA2E4F274D /* MimoCamera.swift */; };
+		B25B8C99BA7BBBECB6312A03 /* MimoMapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE88681E1CB8067D10BB312 /* MimoMapViewDelegate.swift */; };
+		B2DC1D4DE38366EA983770A1 /* MimoMapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE88681E1CB8067D10BB312 /* MimoMapViewDelegate.swift */; };
 		CA001BF1265FD7E40002F844 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA001BF0265FD7E40002F844 /* ViewController.swift */; };
 		CA05372826613A2A00ACD208 /* Transfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA05372726613A2A00ACD208 /* Transfer.storyboard */; };
 		CA0537312661422200ACD208 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA05372F2661422200ACD208 /* ContactsTableViewCell.swift */; };
@@ -1649,8 +1662,11 @@
 		CAEA85932642A7AE0013ACCA /* CompleteProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEA85922642A7AE0013ACCA /* CompleteProfileViewController.swift */; };
 		CAF602FD26317146009DAE28 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF602FC26317146009DAE28 /* OnboardingViewController.swift */; };
 		CAF603002631A917009DAE28 /* UPCaruselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF602FF2631A916009DAE28 /* UPCaruselFlowLayout.swift */; };
+		CC60663BE3397BC698EEAFAC /* MimoMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CD87490AF30D0473C0766C /* MimoMarker.swift */; };
 		D69D38B1B57F1CC0B12F852F /* Pods_Impuls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F098E3794A5031AF7AB71E3 /* Pods_Impuls.framework */; };
 		E1A6BF5E62BD61049DB526FB /* Pods_Impuls_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E545E9D90E774270A8402FD2 /* Pods_Impuls_Dev.framework */; };
+		E29273C723323FDFF945DBAE /* MimoGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB97909941EB63293105FB96 /* MimoGeometry.swift */; };
+		E34D562EB27F69E52B13B4BD /* MimoMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CD87490AF30D0473C0766C /* MimoMarker.swift */; };
 		EA09AAEC266D09E900ED2EB6 /* HomeSingleBikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA09AAEB266D09E900ED2EB6 /* HomeSingleBikeViewModel.swift */; };
 		EA1E898C268E702F009A861A /* TripsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1E898B268E702F009A861A /* TripsNavigationController.swift */; };
 		EA22BA8B267A7A2400212235 /* ImportProblemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA22BA8A267A7A2400212235 /* ImportProblemViewController.swift */; };
@@ -1680,6 +1696,7 @@
 		EA702D2E266EA1A800C3CC00 /* MIPlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA702D2D266EA1A800C3CC00 /* MIPlanViewModel.swift */; };
 		EA702D32266EA1E400C3CC00 /* TariffModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA702D31266EA1E400C3CC00 /* TariffModel.swift */; };
 		EA702D37266EA1F200C3CC00 /* PackageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA702D36266EA1F200C3CC00 /* PackageModel.swift */; };
+		EA7155B14B413056DAE3631C /* MimoGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C12584A9FC7438FDAC18C8 /* MimoGeocoder.swift */; };
 		EA737E9A26ADEB7D00A3C644 /* UILocalizedNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA737E9926ADEB7D00A3C644 /* UILocalizedNavigationItem.swift */; };
 		EA7A69E72667F5D300F5D3D3 /* WalletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7A69E62667F5D300F5D3D3 /* WalletModel.swift */; };
 		EA8E620D2681064500026B8F /* FinancialStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E620C2681064500026B8F /* FinancialStateModel.swift */; };
@@ -1712,6 +1729,9 @@
 		EAEB1BEE26A333EB007D3193 /* img_5.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEB1BE726A333EB007D3193 /* img_5.png */; };
 		EAEB1BEF26A333EB007D3193 /* bicycleAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = EAEB1BE826A333EB007D3193 /* bicycleAnimation.json */; };
 		EAF408B226BEB2E900BBEA5E /* bike_ride.json in Resources */ = {isa = PBXBuildFile; fileRef = EAF408B126BEB2E900BBEA5E /* bike_ride.json */; };
+		F249651D01B507ACA8E50BF5 /* MimoCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6121B29BC13851DA2E4F274D /* MimoCamera.swift */; };
+		F2C9E99A202324B651DD9177 /* MimoShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC32AB0219B11389909040D4 /* MimoShapes.swift */; };
+		F7DAEA4E7807764ED78D7ABE /* MimoGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C12584A9FC7438FDAC18C8 /* MimoGeocoder.swift */; };
 		FE10000000000000000000A2 /* TeamEnergyLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE10000000000000000000A1 /* TeamEnergyLocation.swift */; };
 		FE10000000000000000000A3 /* TeamEnergyLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE10000000000000000000A1 /* TeamEnergyLocation.swift */; };
 		FE10000000000000000000B2 /* TeamEnergyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE10000000000000000000B1 /* TeamEnergyProvider.swift */; };
@@ -1765,6 +1785,7 @@
 		16A628602D53F8B30043DBA8 /* ChargerStationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerStationView.swift; sourceTree = "<group>"; };
 		16A628642D53FF740043DBA8 /* EVColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EVColor.swift; sourceTree = "<group>"; };
 		2B73A855E1CEB0950A7AD4AC /* Pods-Impuls-Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Impuls-Dev.debug.xcconfig"; path = "Target Support Files/Pods-Impuls-Dev/Pods-Impuls-Dev.debug.xcconfig"; sourceTree = "<group>"; };
+		3E0C1A168943C14E40477D5D /* MimoMapView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MimoMapView.swift; path = Impuls/Flow/Common/Maps/MimoMapView.swift; sourceTree = "<group>"; };
 		43133B76288F3C6E00A147C2 /* BookedScooterResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedScooterResult.swift; sourceTree = "<group>"; };
 		435CCDE2288488CC00228F99 /* ScooterPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScooterPlanViewController.swift; sourceTree = "<group>"; };
 		435CCDE8288489BB00228F99 /* ScooterPlan.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScooterPlan.storyboard; sourceTree = "<group>"; };
@@ -1879,6 +1900,8 @@
 		54A0852F2E3DA83400561506 /* EVSuccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EVSuccessViewModel.swift; sourceTree = "<group>"; };
 		54FDA3662D53F90400B9C45D /* MapNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapNavigationView.swift; sourceTree = "<group>"; };
 		54FDA36A2D5789E300B9C45D /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		58C12584A9FC7438FDAC18C8 /* MimoGeocoder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MimoGeocoder.swift; path = Impuls/Flow/Common/Maps/MimoGeocoder.swift; sourceTree = "<group>"; };
+		6121B29BC13851DA2E4F274D /* MimoCamera.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MimoCamera.swift; path = Impuls/Flow/Common/Maps/MimoCamera.swift; sourceTree = "<group>"; };
 		667E0E4D2670FA7C00B6CACB /* StudentInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformationViewController.swift; sourceTree = "<group>"; };
 		668B77C3266E39700055A33F /* OrderCardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderCardViewModel.swift; sourceTree = "<group>"; };
 		668B77C6266E39700055A33F /* OrderCard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OrderCard.storyboard; sourceTree = "<group>"; };
@@ -2382,6 +2405,9 @@
 		88D950A426923CDA00D96C0A /* ZoningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoningView.swift; sourceTree = "<group>"; };
 		88D950A626923D7F00D96C0A /* ZoningView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZoningView.xib; sourceTree = "<group>"; };
 		9385C95C26F0A7C200B28D2B /* MiAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiAlertView.swift; sourceTree = "<group>"; };
+		A9CD87490AF30D0473C0766C /* MimoMarker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MimoMarker.swift; path = Impuls/Flow/Common/Maps/MimoMarker.swift; sourceTree = "<group>"; };
+		AC32AB0219B11389909040D4 /* MimoShapes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MimoShapes.swift; path = Impuls/Flow/Common/Maps/MimoShapes.swift; sourceTree = "<group>"; };
+		BDE88681E1CB8067D10BB312 /* MimoMapViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MimoMapViewDelegate.swift; path = Impuls/Flow/Common/Maps/MimoMapViewDelegate.swift; sourceTree = "<group>"; };
 		CA001BF0265FD7E40002F844 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CA05372726613A2A00ACD208 /* Transfer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transfer.storyboard; sourceTree = "<group>"; };
 		CA05372F2661422200ACD208 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
@@ -2517,6 +2543,8 @@
 		CAEA85922642A7AE0013ACCA /* CompleteProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteProfileViewController.swift; sourceTree = "<group>"; };
 		CAF602FC26317146009DAE28 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		CAF602FF2631A916009DAE28 /* UPCaruselFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPCaruselFlowLayout.swift; sourceTree = "<group>"; };
+		DB97909941EB63293105FB96 /* MimoGeometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MimoGeometry.swift; path = Impuls/Flow/Common/Maps/MimoGeometry.swift; sourceTree = "<group>"; };
+		DDE0516CA83554980A5A7D7B /* MimoMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MimoMap.swift; path = Impuls/Flow/Common/Maps/MimoMap.swift; sourceTree = "<group>"; };
 		E545E9D90E774270A8402FD2 /* Pods_Impuls_Dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Impuls_Dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA09AAEB266D09E900ED2EB6 /* HomeSingleBikeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSingleBikeViewModel.swift; sourceTree = "<group>"; };
 		EA1E898B268E702F009A861A /* TripsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripsNavigationController.swift; sourceTree = "<group>"; };
@@ -2582,6 +2610,7 @@
 		EAEB1BE826A333EB007D3193 /* bicycleAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bicycleAnimation.json; sourceTree = "<group>"; };
 		EAF408B126BEB2E900BBEA5E /* bike_ride.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bike_ride.json; sourceTree = "<group>"; };
 		EBDB67BDEBB1D0389BB3F28F /* Pods-Impuls-Dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Impuls-Dev.release.xcconfig"; path = "Target Support Files/Pods-Impuls-Dev/Pods-Impuls-Dev.release.xcconfig"; sourceTree = "<group>"; };
+		ECDBAEC34B90F5816554727C /* MimoClustering.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MimoClustering.swift; path = Impuls/Flow/Common/Maps/MimoClustering.swift; sourceTree = "<group>"; };
 		F69B76A0FCB1FCE1204726BA /* Pods-Impuls.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Impuls.release.xcconfig"; path = "Target Support Files/Pods-Impuls/Pods-Impuls.release.xcconfig"; sourceTree = "<group>"; };
 		FE10000000000000000000A1 /* TeamEnergyLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamEnergyLocation.swift; sourceTree = "<group>"; };
 		FE10000000000000000000B1 /* TeamEnergyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamEnergyProvider.swift; sourceTree = "<group>"; };
@@ -2608,6 +2637,7 @@
 				6C1878CB2F2FB77E00057261 /* FirebaseCore in Frameworks */,
 				6C1878CF2F2FB77E00057261 /* FirebaseDatabase in Frameworks */,
 				E1A6BF5E62BD61049DB526FB /* Pods_Impuls_Dev.framework in Frameworks */,
+				8CA79D2690B0F94A6892F026 /* MapSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2629,6 +2659,7 @@
 				6C1878F82F2FC17300057261 /* FirebaseFunctions in Frameworks */,
 				6C1878EA2F2FC17300057261 /* FirebaseAnalyticsCore in Frameworks */,
 				D69D38B1B57F1CC0B12F852F /* Pods_Impuls.framework in Frameworks */,
+				90D1922D5E89F2AE5993F1B4 /* MapSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3732,6 +3763,22 @@
 			);
 			path = Bike;
 			sourceTree = "<group>";
+		};
+		6E2836701FCCBB4448650EC2 /* MimoMaps */ = {
+			isa = PBXGroup;
+			children = (
+				6121B29BC13851DA2E4F274D /* MimoCamera.swift */,
+				ECDBAEC34B90F5816554727C /* MimoClustering.swift */,
+				58C12584A9FC7438FDAC18C8 /* MimoGeocoder.swift */,
+				DB97909941EB63293105FB96 /* MimoGeometry.swift */,
+				DDE0516CA83554980A5A7D7B /* MimoMap.swift */,
+				3E0C1A168943C14E40477D5D /* MimoMapView.swift */,
+				BDE88681E1CB8067D10BB312 /* MimoMapViewDelegate.swift */,
+				A9CD87490AF30D0473C0766C /* MimoMarker.swift */,
+				AC32AB0219B11389909040D4 /* MimoShapes.swift */,
+			);
+			name = MimoMaps;
+			sourceTree = SOURCE_ROOT;
 		};
 		750E68072B06AA49004794C3 /* Charger */ = {
 			isa = PBXGroup;
@@ -6841,6 +6888,7 @@
 				CADC286B26205BE200666628 /* Products */,
 				9B0E17E60664A2C91651487A /* Pods */,
 				28D3137A92B1B9BF9A6811B9 /* Frameworks */,
+				6E2836701FCCBB4448650EC2 /* MimoMaps */,
 			);
 			sourceTree = "<group>";
 		};
@@ -7437,7 +7485,6 @@
 				75E511612A000753000D99F0 /* Resources */,
 				75E511BA2A000753000D99F0 /* ShellScript */,
 				6CEEC9FB0D61781C43E52F02 /* [CP] Embed Pods Frameworks */,
-				F203D9E02BD22BF500F3F314 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -7457,6 +7504,7 @@
 				6C1878D42F2FB77E00057261 /* FirebaseRemoteConfig */,
 				6C1878D62F2FB77E00057261 /* FirebaseStorage */,
 				6C1878D92F2FB94800057261 /* KeychainAccess */,
+				4815BC4CFC79D2FAD3AFB822 /* MapSDK */,
 			);
 			productName = Impuls;
 			productReference = 75E511BE2A000753000D99F0 /* Impuls-Dev.app */;
@@ -7472,7 +7520,6 @@
 				CADC286826205BE200666628 /* Resources */,
 				6C1204082873B69000A9C631 /* ShellScript */,
 				532B8A9D236B598FA63D0B89 /* [CP] Embed Pods Frameworks */,
-				1E1EAD81DD7D789290112D64 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -7493,6 +7540,7 @@
 				6C1878F92F2FC17300057261 /* FirebaseMessaging */,
 				6C1878FB2F2FC17300057261 /* FirebaseRemoteConfig */,
 				6C1878FD2F2FC17300057261 /* FirebaseStorage */,
+				2EE419714608616A01105509 /* MapSDK */,
 			);
 			productName = Impuls;
 			productReference = CADC286A26205BE200666628 /* Impuls.app */;
@@ -7525,6 +7573,7 @@
 			packageReferences = (
 				6C1878C12F2FB77E00057261 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				6C1878D82F2FB94800057261 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				CE86C3DEF4074A8CAE4ED3E3 /* XCRemoteSwiftPackageReference "mobile-sdk-map-swift-package" */,
 			);
 			productRefGroup = CADC286B26205BE200666628 /* Products */;
 			projectDirPath = "";
@@ -7838,27 +7887,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1E1EAD81DD7D789290112D64 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Impuls/Pods-Impuls-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Impuls/Pods-Impuls-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Impuls/Pods-Impuls-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2A3CF65BBCA1E1E85A7E0AF3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -7960,27 +7988,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
-		};
-		F203D9E02BD22BF500F3F314 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Impuls-Dev/Pods-Impuls-Dev-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Impuls-Dev/Pods-Impuls-Dev-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Impuls-Dev/Pods-Impuls-Dev-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		FA91780FEE88858C71F968FA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -8713,6 +8720,15 @@
 				50BA3CC62D6B41BF00B61923 /* NotifyMeViewModel.swift in Sources */,
 				75ECCDAA2BCD47BB007DD64D /* ProfileSettingsRows.swift in Sources */,
 				75E5115E2A000753000D99F0 /* ActionButton.swift in Sources */,
+				F249651D01B507ACA8E50BF5 /* MimoCamera.swift in Sources */,
+				3B945086A2CC1601BB5BE648 /* MimoClustering.swift in Sources */,
+				F7DAEA4E7807764ED78D7ABE /* MimoGeocoder.swift in Sources */,
+				E29273C723323FDFF945DBAE /* MimoGeometry.swift in Sources */,
+				3A3EE9E9FABF48787289064C /* MimoMap.swift in Sources */,
+				64C79395086104AAF93EF7C2 /* MimoMapView.swift in Sources */,
+				B25B8C99BA7BBBECB6312A03 /* MimoMapViewDelegate.swift in Sources */,
+				CC60663BE3397BC698EEAFAC /* MimoMarker.swift in Sources */,
+				9E70D5F175F8472F091A6CB1 /* MimoShapes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9422,6 +9438,15 @@
 				50BA3CC52D6B41BF00B61923 /* NotifyMeViewModel.swift in Sources */,
 				75ECCDA92BCD47BB007DD64D /* ProfileSettingsRows.swift in Sources */,
 				88A1613526696FE8001C19D0 /* ActionButton.swift in Sources */,
+				B194FABB08112CCF2E9B61C9 /* MimoCamera.swift in Sources */,
+				99B44164933A33142DA37D7B /* MimoClustering.swift in Sources */,
+				EA7155B14B413056DAE3631C /* MimoGeocoder.swift in Sources */,
+				4B25C03FB3D1A61477C385F7 /* MimoGeometry.swift in Sources */,
+				5AA5FBE78FC060D6F231965D /* MimoMap.swift in Sources */,
+				A7D487BD018A910E183A4FA2 /* MimoMapView.swift in Sources */,
+				B2DC1D4DE38366EA983770A1 /* MimoMapViewDelegate.swift in Sources */,
+				E34D562EB27F69E52B13B4BD /* MimoMarker.swift in Sources */,
+				F2C9E99A202324B651DD9177 /* MimoShapes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9454,7 +9479,7 @@
 				DEVELOPMENT_TEAM = SHG3WMPK3S;
 				INFOPLIST_FILE = Impuls/Resources/Dev/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Mimo Dev";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -9487,7 +9512,7 @@
 				DEVELOPMENT_TEAM = SHG3WMPK3S;
 				INFOPLIST_FILE = Impuls/Resources/Dev/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Mimo Dev";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -9669,7 +9694,7 @@
 				);
 				INFOPLIST_FILE = Impuls/Resources/Prod/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Импульс";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -9735,7 +9760,7 @@
 				);
 				INFOPLIST_FILE = Impuls/Resources/Prod/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Импульс";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -9803,9 +9828,27 @@
 				kind = branch;
 			};
 		};
+		CE86C3DEF4074A8CAE4ED3E3 /* XCRemoteSwiftPackageReference "mobile-sdk-map-swift-package" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/2gis/mobile-sdk-map-swift-package";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2EE419714608616A01105509 /* MapSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE86C3DEF4074A8CAE4ED3E3 /* XCRemoteSwiftPackageReference "mobile-sdk-map-swift-package" */;
+			productName = MapSDK;
+		};
+		4815BC4CFC79D2FAD3AFB822 /* MapSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE86C3DEF4074A8CAE4ED3E3 /* XCRemoteSwiftPackageReference "mobile-sdk-map-swift-package" */;
+			productName = MapSDK;
+		};
 		6C1878C22F2FB77E00057261 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6C1878C12F2FB77E00057261 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import GoogleMaps
-
+import CoreLocation
+import UIKit
 struct ParkingResponse: Codable {
     
     let id: String?
@@ -20,8 +20,8 @@ struct Location: Codable {
 }
 
 extension ParkingResponse {
-    func toGMSMarker() -> GMSMarker {
-        let marker = GMSMarker()
+    func toGMSMarker() -> MimoMarker {
+        let marker = MimoMarker()
         marker.position = CLLocationCoordinate2D(latitude: location?.latitude ?? 0.0, longitude: location?.longitude ?? 0.0)
         marker.icon = #imageLiteral(resourceName: "parking_nim")
 //        marker.title = "Parking\n\(id ?? "")"

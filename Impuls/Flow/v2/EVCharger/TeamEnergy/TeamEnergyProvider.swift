@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
-import GoogleMaps
-
+import CoreLocation
 enum TeamEnergyProvider {
 
     static func loadLocations() -> [TeamEnergyLocation] {
@@ -15,8 +14,8 @@ enum TeamEnergyProvider {
         return []
     }
 
-    static func marker(for location: TeamEnergyLocation, animate: Bool) -> GMSMarker {
-        let marker = GMSMarker()
+    static func marker(for location: TeamEnergyLocation, animate: Bool) -> MimoMarker {
+        let marker = MimoMarker()
         marker.position = location.coordinate
         marker.appearAnimation = animate ? .pop : .none
         marker.icon = markerIcon()

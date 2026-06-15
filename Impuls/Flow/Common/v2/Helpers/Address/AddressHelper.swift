@@ -6,8 +6,7 @@
 //
 
 import Foundation
-import GoogleMaps
-
+import CoreLocation
 class AddressCaching {
     private(set) static var cache: NSCache<AnyObject, AnyObject> = .init()
     
@@ -18,7 +17,7 @@ class AddressCaching {
 
 class AddressHelper: AddressHelperProtocol {
     
-    private let geocoder = GMSGeocoder()
+    private let geocoder = MimoGeocoder()
     
     func getAddress(for coordinate: CLLocationCoordinate2D, fullAddress: Bool) async throws -> String {
         return try await withCheckedThrowingContinuation({ continuation in

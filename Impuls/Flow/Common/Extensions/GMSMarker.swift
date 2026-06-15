@@ -1,15 +1,14 @@
 //
-//  GMSMarker.swift
+//  MimoMarker.swift
 //  MimoBike
 //
 //  Created by Razmik Mkhitaryan on 21.05.23.
 //
 
 import Foundation
-import GoogleMaps
-
-extension GMSMarker {
-    func isVisible(on map: GMSMapView) -> Bool {
+import CoreLocation
+extension MimoMarker {
+    func isVisible(on map: MimoMapView) -> Bool {
         let padding: CGFloat = 0.0
 
         let point: CGPoint = map.projection.point(for: position)

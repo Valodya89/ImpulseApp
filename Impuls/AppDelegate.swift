@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import GoogleMaps
 import Firebase
 import FirebaseCore
 import IQKeyboardManagerSwift
@@ -24,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         DeviceCheckManager.shared.sendEphemeralToken()
-        GMSServices.provideAPIKey(Constant.APIKeys.GOOGLE_MAPS_API_KEY)
+        MimoMap.shared.start()
         KeychainManager().resetIfNeed()
         approvalNavigationToolBarAppearance()
         ApplicationSettings.construct()

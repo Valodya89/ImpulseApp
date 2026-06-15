@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import GoogleMaps
+import CoreLocation
 import Lottie
 import CoreBluetooth
 import CoreLocation
@@ -57,7 +57,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
     @IBOutlet private weak var tripView: UIView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet private weak var userImageView: CircleImageView!
-    @IBOutlet weak var mapView: GMSMapView!
+    @IBOutlet weak var mapView: MimoMapView!
     @IBOutlet private weak var bikesContentView: UIView!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var viewForBlur: UIView!
@@ -135,7 +135,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
     var timerManager: TimerManager?
     var isListeningStateUpdate = false
     var state: HomeViewControllerState = .smallBottomSheet
-    var markers: [String: GMSMarker] = [:]
+    var markers: [String: MimoMarker] = [:]
     var selectedIndex: IndexPath?
     var bookedDevice: BookedDeviceModel?
     var bookedScooterDevice: BookedScooterResult?
@@ -165,7 +165,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
     var scooterPlanMode: String = "MIN_By_MIN"
     var isOpenDebtScreen = true
     var zoneInfoHeight: CGFloat = 480
-    var parkingMarkers: [GMSMarker] = []
+    var parkingMarkers: [MimoMarker] = []
     
     var  zoneVC: AllZoneInfoViewViewController?
     var isZoneInfoOpened: Bool = false
@@ -173,7 +173,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
     
     var parkingInfo: ParkingDetailsViewController?
     
-    var previousMarker: GMSMarker? {
+    var previousMarker: MimoMarker? {
         didSet {
             if let state = (UserDefaults.standard.value(forKey: "BikeState") as? String), state == "scooter" {
                 previousMarker?.icon = #imageLiteral(resourceName: "ic_scooter_marker")
@@ -183,7 +183,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
         }
     }
     
-    var currentMarker: GMSMarker? {
+    var currentMarker: MimoMarker? {
         didSet {
             if let state = (UserDefaults.standard.value(forKey: "BikeState") as? String), state == "scooter" {
                 guard scooters.count > 0 else { return }
@@ -201,10 +201,10 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
         }
     }
     
-    var scannedBikeMarker: GMSMarker?
+    var scannedBikeMarker: MimoMarker?
     
-    var bookedBikeMarker: GMSMarker?
-    var bookedScooterMarker: GMSMarker?
+    var bookedBikeMarker: MimoMarker?
+    var bookedScooterMarker: MimoMarker?
     var groupScooterGroupScrollView = UIScrollView()
     
     //MARK: - Life cycles
@@ -438,7 +438,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
         }
 
         if let currentLocation = locationManager.currentLocation {
-            let camera = GMSCameraPosition(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude, zoom: 15)
+            let camera = MimoCameraPosition(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude, zoom: 15)
             mapView.camera = camera
         }
         if bookedDevice != nil, let lat = bookedDevice?.location.latitude, let long = bookedDevice?.location.longitude {
@@ -835,7 +835,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
         self.bookedBikeMarker?.map = nil
         self.bookedBikeMarker = nil
         self.bookedBikeMarker?.isTappable = false
-        let marker = GMSMarker()
+        let marker = MimoMarker()
         marker.map = mapView
         marker.position = location
         marker.icon = UIImage(named: "ic_markerSelected")
@@ -846,7 +846,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
         self.bookedScooterMarker?.map = nil
         self.bookedScooterMarker = nil
         self.bookedScooterMarker?.isTappable = false
-        let marker = GMSMarker()
+        let marker = MimoMarker()
         marker.map = mapView
         marker.position = location
         guard scooters.count > 0 else { return }
@@ -875,7 +875,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
 //        self.scannedBikeMarker?.map = nil
 //        self.scannedBikeMarker = nil
         self.scannedBikeMarker?.isTappable = false
-        let marker = GMSMarker()
+        let marker = MimoMarker()
         
         marker.position = coordinate
         
@@ -896,7 +896,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
     //        self.scannedScooterMarker?.map = nil
     //        self.scannedScooterMarker = nil
     //        self.scannedScooterMarker?.isTappable = false
-    //        let marker = GMSMarker()
+    //        let marker = MimoMarker()
     //
     //        marker.position = coordinate
     //
@@ -1949,7 +1949,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
     }
     
     private func addMarker(model: BikeResult) {
-        let marker = GMSMarker()
+        let marker = MimoMarker()
         marker.position = CLLocationCoordinate2D(latitude: model.latitude, longitude: model.longitude)
         marker.icon = #imageLiteral(resourceName: "ic_bike_marker")
         
@@ -1971,7 +1971,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
     }
     
     private func addParking(parking: ParkingResponse) {
-        let marker = GMSMarker()
+        let marker = MimoMarker()
         marker.position = CLLocationCoordinate2D(latitude: parking.location?.latitude ?? 0.0, longitude: parking.location?.longitude ?? 0.0)
         marker.icon = #imageLiteral(resourceName: "parking_nim")
         marker.title = "Parking\n\(parking.id ?? "")"
@@ -1986,7 +1986,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
     }
     
     private func createParkingMarkers(parking: ParkingResponse) {
-        let marker = GMSMarker()
+        let marker = MimoMarker()
         marker.position = CLLocationCoordinate2D(latitude: parking.location?.latitude ?? 0.0, longitude: parking.location?.longitude ?? 0.0)
         marker.icon = #imageLiteral(resourceName: "parking_nim")
         marker.title = "Parking\n\(parking.id ?? "")"
@@ -1995,7 +1995,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
     }
     
     private func addMarker(model: ScooterResult) {
-        let marker = GMSMarker()
+        let marker = MimoMarker()
         marker.position = CLLocationCoordinate2D(latitude: model.latitude, longitude: model.longitude)
         switch model.batteryPercent {
         case 0...20: marker.icon = #imageLiteral(resourceName: "ic_scooter_batarey_0")
@@ -2036,26 +2036,26 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
         }
     }
     
-    func centerMapOnLocation(_ location: CLLocation, mapView: GMSMapView, zoom: Float = 10, aniamtable: Bool = true) {
+    func centerMapOnLocation(_ location: CLLocation, mapView: MimoMapView, zoom: Float = 10, aniamtable: Bool = true) {
         //                mapView.animate(toLocation: location.coordinate)
         //                mapView.animate(toZoom: zoom)
         
         delay(seconds: 0.2) { [weak self] () -> () in
             guard let self = self else { return }
-            let zoomOut = GMSCameraUpdate.zoom(to: 16)
+            let zoomOut = MimoCameraUpdate.zoom(to: 16)
             self.mapView.animate(with: zoomOut)
             
             self.delay(seconds: 0.1, closure: { [weak self] () -> () in
                 guard let self = self else { return }
                 
                 let vancouver = location.coordinate
-                let vancouverCam = GMSCameraUpdate.setTarget(vancouver)
+                let vancouverCam = MimoCameraUpdate.setTarget(vancouver)
                 self.mapView.animate(with: vancouverCam)
                 
                 self.delay(seconds: 0.3, closure: { [weak self] () -> () in
                     guard let self = self else { return }
                     
-                    let zoomIn = GMSCameraUpdate.zoom(to: zoom)
+                    let zoomIn = MimoCameraUpdate.zoom(to: zoom)
                     self.mapView.animate(with: zoomIn)
                     
                 })
@@ -2108,10 +2108,10 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
         scrollToPage(page: sender.tag, animated: true)
         DispatchQueue.main.async {
             if let curScooter = self.currentScooterStateModelList?[sender.tag] {
-                let zoomOut = GMSCameraUpdate.zoom(to: 16)
+                let zoomOut = MimoCameraUpdate.zoom(to: 16)
                 self.mapView.animate(with: zoomOut)
                 let vancouver = CLLocationCoordinate2D(latitude: curScooter.scooter?.located?.latitude ?? 0.0, longitude: curScooter.scooter?.located?.longitude ?? 0.0)
-                let vancouverCam = GMSCameraUpdate.setTarget(vancouver)
+                let vancouverCam = MimoCameraUpdate.setTarget(vancouver)
                 self.mapView.animate(with: vancouverCam)
             }
         }
@@ -2173,7 +2173,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
     
     @IBAction func currentLocationTapped(_ sender: UIButton) {
         if locationManager.isAccessed, let location = locationManager.currentLocation {
-            let camera = GMSCameraPosition.camera(withLatitude: (location.coordinate.latitude), longitude: location.coordinate.longitude, zoom: 17.0)
+            let camera = MimoCameraPosition.camera(withLatitude: (location.coordinate.latitude), longitude: location.coordinate.longitude, zoom: 17.0)
             mapView?.animate(to: camera)
         } else {
             locationManager.alertLocationAccess()
@@ -2564,7 +2564,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     
-    func makeSelectedMarker(previousMarker: GMSMarker?, currentMarker: GMSMarker, index: IndexPath? = nil, cell: HomeBikeCollectionViewCell? = nil, scooterCell: HomeScooterCollectionViewCell? = nil) {
+    func makeSelectedMarker(previousMarker: MimoMarker?, currentMarker: MimoMarker, index: IndexPath? = nil, cell: HomeBikeCollectionViewCell? = nil, scooterCell: HomeScooterCollectionViewCell? = nil) {
         
         
         self.selectedIndex = index
@@ -2632,10 +2632,10 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             self.updateMultypleScoterSelect(currentIndex: currentIndex)
             DispatchQueue.main.async {
                 if let curScooter = self.currentScooterStateModelList?[currentIndex] {
-                    let zoomOut = GMSCameraUpdate.zoom(to: 16)
+                    let zoomOut = MimoCameraUpdate.zoom(to: 16)
                     self.mapView.animate(with: zoomOut)
                     let vancouver = CLLocationCoordinate2D(latitude: curScooter.scooter?.located?.latitude ?? 0.0, longitude: curScooter.scooter?.located?.longitude ?? 0.0)
-                    let vancouverCam = GMSCameraUpdate.setTarget(vancouver)
+                    let vancouverCam = MimoCameraUpdate.setTarget(vancouver)
                     self.mapView.animate(with: vancouverCam)
                 }
             }
@@ -3174,9 +3174,9 @@ extension HomeViewController: HomeScooterCollectionViewCellDelegate {
 
 // MARK: - -
 
-extension HomeViewController: GMSMapViewDelegate {
+extension HomeViewController: MimoMapViewDelegate {
     
-    func mapView(_ mapView: GMSMapView, didChange cameraPosition: GMSCameraPosition) {
+    func mapView(_ mapView: MimoMapView, didChange cameraPosition: MimoCameraPosition) {
         let newZoomLevel = cameraPosition.zoom
         if currentZoomLevel != newZoomLevel {
             currentZoomLevel = newZoomLevel
@@ -3197,7 +3197,7 @@ extension HomeViewController: GMSMapViewDelegate {
         }
     }
     
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+    func mapView(_ mapView: MimoMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print("tappedcooordinate = \(coordinate)")
         
         let clickedZone = DrawPolygone.shared.whichZoneClicked(coordinate: coordinate)
@@ -3214,7 +3214,7 @@ extension HomeViewController: GMSMapViewDelegate {
         }
     }
     
-    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+    func mapView(_ mapView: MimoMapView, idleAt position: MimoCameraPosition) {
         drawParkings()
     }
     
@@ -3236,7 +3236,7 @@ extension HomeViewController: GMSMapViewDelegate {
         clseParkingInfo()
     }
     
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+    func mapView(_ mapView: MimoMapView, didTap marker: MimoMarker) -> Bool {
         if ((marker.title?.hasPrefix("Parking")) != nil)
         {
             print("Parking clicked")

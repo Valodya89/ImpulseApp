@@ -1,14 +1,13 @@
 //
-//  GMSMapView+Zoning.swift
+//  MimoMapView+Zoning.swift
 //  MimoBike
 //
 //  Created by Dose on 7/5/21.
 //
 
 import UIKit
-import GoogleMaps
-
-extension GMSMapView {
+import CoreLocation
+extension MimoMapView {
     
     enum PolygonColor {
         case red
@@ -28,13 +27,13 @@ extension GMSMapView {
     func drawPolygons(locations: [([CLLocationCoordinate2D], PolygonColor)]) {
         
         locations.forEach { item in
-            let rect = GMSMutablePath()
+            let rect = MimoMutablePath()
             
             item.0.forEach { coordinate in
                 rect.add(CLLocationCoordinate2D(latitude:coordinate.latitude, longitude: coordinate.longitude))
             }
             
-            let polygon = GMSPolygon(path: rect)
+            let polygon = MimoPolygon(path: rect)
             polygon.fillColor = item.1.color
             polygon.strokeColor = UIColor.init(hue: 210, saturation: 88, brightness: 84, alpha: 1)
             polygon.strokeWidth = 2
@@ -44,7 +43,7 @@ extension GMSMapView {
     
     func drawCyrcle(zoningModels: [ZoningModel]) {
         zoningModels.forEach { model in
-            let circle = GMSCircle(position: CLLocationCoordinate2D(latitude: model.latitude, longitude: model.longitude), radius: CLLocationDistance(model.radius))
+            let circle = MimoCircle(position: CLLocationCoordinate2D(latitude: model.latitude, longitude: model.longitude), radius: CLLocationDistance(model.radius))
             circle.fillColor = UIColor.init(red: CGFloat(model.color.red) / 255, green: CGFloat(model.color.green) / 255, blue: CGFloat(model.color.blue) / 255, alpha: CGFloat(model.color.alpha) / 255)
             circle.strokeColor = UIColor.init(red: CGFloat(model.color.red) / 255, green: CGFloat(model.color.green) / 255, blue: CGFloat(model.color.blue) / 255, alpha: CGFloat(model.color.alpha) / 255)
             circle.strokeWidth = 2
@@ -54,8 +53,8 @@ extension GMSMapView {
     }
 }
 
-extension GMSMapView {
-    func isMarkerVisible(onMap marker: GMSMarker?) -> Bool {
+extension MimoMapView {
+    func isMarkerVisible(onMap marker: MimoMarker?) -> Bool {
         let padding: Float = 0.0
 
         var point: CGPoint? = nil
