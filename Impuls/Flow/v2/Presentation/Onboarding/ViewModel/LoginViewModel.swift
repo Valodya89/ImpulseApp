@@ -207,10 +207,16 @@ class LoginViewModel: MimoBaseViewModel, ObservableObject {
     }
     
     func updatePersonalInfo() {
-        guard let bithday else { return }
-        let birtday = bithday.toString(format: .custom("dd-MM-yyyy"))
-        guard let gender = Gender.allCases.first(where: { $0.title == gender })?.rawValue else { return }
-        worker.updatePersonalInfo(name: name, surename: surname, birthday: birtday, gender: gender, email: email)
+        // Make birthday optional - only include if it has a value
+        var birtday: String? = nil
+        if let bithday {
+            birtday = bithday.toString(format: .custom("dd-MM-yyyy"))
+        }
+        
+        // Make gender optional - only include if it has a value
+        let genderValue = Gender.allCases.first(where: { $0.title == gender })?.rawValue
+        
+        worker.updatePersonalInfo(name: name, surename: surname, birthday: birtday, gender: genderValue, email: email)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] failure in
                 switch failure {
@@ -230,10 +236,16 @@ class LoginViewModel: MimoBaseViewModel, ObservableObject {
     }
     
     func skipEmailVerification() {
-        guard let bithday else { return }
-        let birtday = bithday.toString(format: .custom("dd-MM-yyyy"))
-        guard let gender = Gender.allCases.first(where: { $0.title == gender })?.rawValue else { return }
-        worker.updatePersonalInfo(name: name, surename: surname, birthday: birtday, gender: gender, email: email)
+        // Make birthday optional - only include if it has a value
+        var birtday: String? = nil
+        if let bithday {
+            birtday = bithday.toString(format: .custom("dd-MM-yyyy"))
+        }
+        
+        // Make gender optional - only include if it has a value
+        let genderValue = Gender.allCases.first(where: { $0.title == gender })?.rawValue
+        
+        worker.updatePersonalInfo(name: name, surename: surname, birthday: birtday, gender: genderValue, email: email)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] failure in
                 switch failure {
@@ -364,7 +376,8 @@ class LoginViewModel: MimoBaseViewModel, ObservableObject {
             guard let otpCode else { return false }
             return otpCode.count == 4
         case .personalInfo:
-            return !name.isEmpty && !surname.isEmpty && bithday != nil && !gender.isEmpty
+            // Gender and birthday are now optional, only name and surname are required
+            return !name.isEmpty && !surname.isEmpty
         case .preferedServices:
             return availableProducts.contains(where: { $0.isSelected })
         }

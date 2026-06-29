@@ -160,8 +160,8 @@ enum AuthAPI: APIProtocol {
     case refreshToken(refreshToken: String, deviceID: String)
     case getUser
     case uploadFCM(token: String)
-    case updatePersonalInfo(name: String, surname: String, birthday: String, gender: String)
-    case updateUser(name: String, surname: String, gender: String, email: String, birthday: String, bio: String, settings: [String: Any])
+    case updatePersonalInfo(name: String, surname: String, birthday: String?, gender: String?)
+    case updateUser(name: String, surname: String, gender: String?, email: String, birthday: String?, bio: String, settings: [String: Any])
     case getPhoneCodes(locale: String)
     case tranfer(id: String, amount: Double)
     case checkMimoContact(phoneNumber: String)
@@ -786,22 +786,42 @@ enum AuthAPI: APIProtocol {
             print("param = \(param)")
             return param
         case let .updateUser(name, surname, gender, email, birthday, bio, settings):
-            return [
+            var params: [String: Any] = [
                 "name": name,
                 "surname": surname,
-                "gender": gender,
                 "email": email,
-                "birthday": birthday,
                 "bio": bio,
                 "settings": settings
             ]
+            
+            // Only include gender if it's not nil
+            if let gender = gender {
+                params["gender"] = gender
+            }
+            
+            // Only include birthday if it's not nil
+            if let birthday = birthday {
+                params["birthday"] = birthday
+            }
+            
+            return params
         case let .updatePersonalInfo(name: name, surname: surname, birthday: birthday, gender: gender):
-            return [
+            var params: [String: Any] = [
                 "name": name,
-                "surname": surname,
-                "gender": gender,
-                "birthday": birthday
+                "surname": surname
             ]
+            
+            // Only include gender if it's not nil
+            if let gender = gender {
+                params["gender"] = gender
+            }
+            
+            // Only include birthday if it's not nil
+            if let birthday = birthday {
+                params["birthday"] = birthday
+            }
+            
+            return params
         case .getToken(let username, let password):
             return [
                 "username": username,

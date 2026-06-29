@@ -70,7 +70,7 @@ class LoginWorker: LoginWorkerProtocol {
         .eraseToAnyPublisher()
     }
     
-    func updatePersonalInfo(name: String, surename: String, birthday: String, gender: String, email: String) -> AnyPublisher<UserResponse, MimoError> {
+    func updatePersonalInfo(name: String, surename: String, birthday: String?, gender: String?, email: String) -> AnyPublisher<UserResponse, MimoError> {
         Deferred {
             Future<UserResponse, MimoError> { promise in
                 self.accountRepository.updateUser(

@@ -74,7 +74,7 @@ final class UserManager {
         }
     }
     
-    func updateUser(name: String, surname: String, gender: String, email: String, birthday: String, bio: String, settings: UserResponse.SettingsModel?,completion: @escaping (Result<UserResponse, NetworkError>) -> Void) {
+    func updateUser(name: String, surname: String, gender: String?, email: String, birthday: String?, bio: String, settings: UserResponse.SettingsModel?,completion: @escaping (Result<UserResponse, NetworkError>) -> Void) {
 //        let locale = StorageManager().fetch(key: .language, type: String.self) ?? String(Locale.preferredLanguages[0].prefix(2))
 //        guard let settingsData = try? JSONEncoder().encode(settings ?? UserResponse.SettingsModel(locale: locale, sendPush: true, mode: .light)),
 //              let settingsDict = try? JSONSerialization.jsonObject(with: settingsData, options: .fragmentsAllowed) as? [String: Any] else {
@@ -85,7 +85,10 @@ final class UserManager {
         let settingsData = settings ?? UserResponse.SettingsModel(locale: locale, sendPush: true, mode: .light)
         let settingsDict = settingsData.toDictionary()
         
-        sessionNetwork.request(with: URLBuilder(from: AuthAPI.updateUser(name: name, surname: surname, gender: gender.uppercased(), email: email, birthday: birthday, bio: bio, settings: settingsDict))) { (result) in
+        // Convert gender to uppercased only if it's not nil
+        let genderValue = gender?.uppercased()
+        
+        sessionNetwork.request(with: URLBuilder(from: AuthAPI.updateUser(name: name, surname: surname, gender: genderValue, email: email, birthday: birthday, bio: bio, settings: settingsDict))) { (result) in
             switch result {
             case .success(let data):
                 guard let userResponse = MimoConverter<BaseResponseModel<UserResponse>>.parseJson(data: data as Any) else {

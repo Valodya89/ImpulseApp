@@ -19,30 +19,43 @@ final class DatePickerTextField: UITextField {
         super.init(frame: frame)
         datePicker.datePickerMode = .date
         datePicker.set18YearValidation()
-        datePicker.preferredDatePickerStyle = .wheels
-        inputView = datePicker
+        datePicker.preferredDatePickerStyle = .compact
         datePicker.addTarget(self, action: #selector(datePickerDidSelect(_:)), for: .valueChanged)
-        datePicker.datePickerMode = .date
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissTextField))
-        toolBar.setItems([flexibleSpace, doneButton], animated: false)
-        inputAccessoryView = toolBar
+
+        // A compact picker only responds to taps on its own chip, so we place a
+        // visible, tappable chip inside the field. Its calendar popover anchors
+        // to the chip and therefore opens directly under the date-of-birth field.
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(datePicker)
+        NSLayoutConstraint.activate([
+            datePicker.trailingAnchor.constraint(equalTo: trailingAnchor),
+            datePicker.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+
+        // The visible chip shows the selected date, so don't let the text field
+        // draw its own (now redundant) text over it. Only the field's own text is
+        // hidden — the picker keeps its default tint so the chip stays readable.
+        textColor = .clear
     }
-    
+
+    // Let taps reach the compact picker's chip; the field itself stays inert.
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        let pointInPicker = convert(point, to: datePicker)
+        return datePicker.point(inside: pointInPicker, with: event)
+    }
+
+    override func caretRect(for position: UITextPosition) -> CGRect {
+        .zero
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     @objc private func datePickerDidSelect(_ sender: UIDatePicker) {
         date = sender.date
     }
-    
-    @objc private func dismissTextField() {
-        resignFirstResponder()
-    }
-    
+
 }
 
 struct DatePickerInputView: UIViewRepresentable {

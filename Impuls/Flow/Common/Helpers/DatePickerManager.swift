@@ -49,13 +49,55 @@ class DatePickerManager {
     }
     
     func showDatePicker(mode: UIDatePicker.Mode) {
-        
+
         view.addGestureRecognizer(tapGesture)
         datePickerView.datePickerMode = mode
         textField.inputView = datePickerView
         datePickerView.addTarget(self, action: #selector(handleDatePickerValue(sender:)), for: .valueChanged)
     }
-    
+
+    /// Shows a compact (inline chip) date picker overlaid on the text field.
+    /// The calendar popover is presented by the system next to the chip; with the
+    /// chip pinned near the field it opens above the field when there is no room
+    /// below. The text field keeps its tap handling disabled so only the chip
+    /// reacts to taps and no keyboard appears.
+    func showCompactDatePicker(mode: UIDatePicker.Mode, initialDate: Date? = nil) {
+        datePickerView.datePickerMode = mode
+        datePickerView.preferredDatePickerStyle = .compact
+        if let initialDate = initialDate {
+            datePickerView.date = initialDate
+        }
+
+        // Compact style is shown inline, not via the keyboard input view.
+        textField.inputView = nil
+        textField.inputAccessoryView = nil
+
+        datePickerView.removeFromSuperview()
+        datePickerView.translatesAutoresizingMaskIntoConstraints = false
+        // Add the chip to the text field's container rather than to the text
+        // field itself: UITextField manages its own internal subviews and can
+        // reposition an added subview, which prevents reliable vertical
+        // centering. The inner text field sits in the lower part of the field
+        // box (the title label is above it), so pin the chip to the container's
+        // vertical center to place it in the middle of the visible field box.
+        let container = textField.superview ?? textField
+        container.addSubview(datePickerView)
+        NSLayoutConstraint.activate([
+            datePickerView.trailingAnchor.constraint(equalTo: textField.trailingAnchor),
+            datePickerView.centerYAnchor.constraint(equalTo: container.centerYAnchor)
+        ])
+
+        // The chip itself displays the selected date, so hide the field's own
+        // (redundant) text. Give the picker an explicit, visible tint because the
+        // text field's tint is cleared (which would otherwise hide the chip text).
+        textField.textColor = .clear
+        datePickerView.tintColor = .label
+
+        // Reflect the initial selection in the bound text immediately.
+        textField.text = dateFormatter.string(from: datePickerView.date)
+        datePickerView.addTarget(self, action: #selector(handleDatePickerValue(sender:)), for: .valueChanged)
+    }
+
     
     @objc private func handleDatePickerValue(sender: UIDatePicker) {
 

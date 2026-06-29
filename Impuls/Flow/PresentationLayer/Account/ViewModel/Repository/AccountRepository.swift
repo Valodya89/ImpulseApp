@@ -56,7 +56,7 @@ final class AccountRepository {
         }
     }
     
-    func updateUser(name: String, surname: String, gender: String, email: String, birthday: String,
+    func updateUser(name: String, surname: String, gender: String?, email: String, birthday: String?,
                     bio: String, settings: UserResponse.SettingsModel, completion: @escaping (Result<UserResponse, Error>) -> Void) {
         UserManager.share.updateUser(name: name, surname: surname, gender: gender, email: email, birthday: birthday, bio: bio, settings: settings) { response in
             switch response {
@@ -68,7 +68,7 @@ final class AccountRepository {
         }
     }
     
-    func updatePersonalInfo(name: String, surname: String, gender: String, birthday: String, completion: @escaping (Result<UserResponse, Error>) -> Void) {
+    func updatePersonalInfo(name: String, surname: String, gender: String?, birthday: String?, completion: @escaping (Result<UserResponse, Error>) -> Void) {
         let builder = URLBuilder(from: AuthAPI.updatePersonalInfo(name: name, surname: surname, birthday: birthday, gender: gender))
         network.request(with: builder) { result in
             switch result {

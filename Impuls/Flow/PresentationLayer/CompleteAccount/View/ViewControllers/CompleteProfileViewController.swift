@@ -52,7 +52,15 @@ final class CompleteProfileViewController: UIViewController, StoryboardInitializ
     private var selectedSex: UserGender?
     
     var existingModel: UserResponse?
-    
+
+    /// Parses the stored birthday string (saved as "dd-MM-yyyy") into a Date so
+    /// the compact picker can show the user's existing date of birth.
+    private static let birthdayDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        return formatter
+    }()
+
     //MARK: - Life cycles
 
     override func viewDidLoad() {
@@ -93,6 +101,11 @@ final class CompleteProfileViewController: UIViewController, StoryboardInitializ
         
         imagePicker = ImagePickerManager(presentationController: self, delegate: self)
         datePicker = DatePickerManager(view: view, textField: dateOfBirthTextField.textField, hasDoneButton: true, dateFormat: "dd MMMM yyyy", maxDate: Calendar.current.date(byAdding: .year, value: -18, to: Date()))
+
+        // Edit profile uses a compact, inline date picker whose calendar opens
+        // above the date-of-birth field.
+        let existingBirthDate = existingModel?.birthday.flatMap { Self.birthdayDateFormatter.date(from: $0) }
+        datePicker.showCompactDatePicker(mode: .date, initialDate: existingBirthDate)
         
         pickerManager = PickerViewManager(view: view, textField: sexTextField.textField, hasDoneButton: true)
         pickerManager.delegate = self
@@ -106,7 +119,9 @@ final class CompleteProfileViewController: UIViewController, StoryboardInitializ
             lastNameTextField.fieldText = existingModel.surname ?? ""
             emailTextField.fieldText = existingModel.email ?? ""
             dateOfBirthTextField.fieldText = existingModel.birthday ?? ""
-            sexTextField.fieldText = (existingModel.gender ?? "") == "MALE" ? UserGender.male.rawValue.localized() : UserGender.female.rawValue.localized()
+            if let gender = existingModel.gender {
+                sexTextField.fieldText = gender == "MALE" ? UserGender.male.rawValue.localized() : UserGender.female.rawValue.localized()
+            }
             bioTextView.text = existingModel.bio?.count ?? 0 > 0 ? existingModel.bio : "MOBILE_registartion_bio".localized()
             title = "MOBILE_on_boarding_edit_profile".localized()
 //            doneBarButton.isHidden = false
@@ -265,7 +280,9 @@ extension CompleteProfileViewController: UITextFieldDelegate {
         
         switch textField {
         case dateOfBirthTextField.textField:
-            datePicker.showDatePicker(mode: .date)
+            // The compact chip handles date selection directly; don't begin
+            // editing so no keyboard appears.
+            return false
         case sexTextField.textField:
             pickerManager.showPickerView()
         default:

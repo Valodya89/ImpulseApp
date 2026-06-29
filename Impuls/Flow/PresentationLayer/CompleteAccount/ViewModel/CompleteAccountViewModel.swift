@@ -16,6 +16,7 @@ final class CompleteAccountViewModel {
     
     func validate(firstName: String?, lastName: String?, email: String?, dob: Date?, sex: String?, bio: String?, completion: @escaping  (Result<Any, MimoError>) -> ()) {
         
+        // dob and sex are now optional, so we don't require them for validation
         let dobString = dob?.toString(format: .custom("dd-MM-yyyy"))
         
         let validatorResult = completeAccountValidator.validateCompleteAccount(firstName: firstName, lastName: lastName, email: email, dateOfBirth: dobString, sex: sex, bio: bio)
@@ -32,7 +33,9 @@ final class CompleteAccountViewModel {
                          bio: String?, settings: UserResponse.SettingsModel,
                          completion: @escaping (Result<UserResult, MimoError>) -> ()) {
         
+        // Make dobString and gender optional
         let dobString = dob?.toString(format: .custom("dd-MM-yyyy"))
+        let genderString = sex?.key
         
         let validatorResult = completeAccountValidator.validateCompleteAccount(firstName: firstName, lastName: lastName, email: email, dateOfBirth: dobString, sex: sex?.rawValue.localized(), bio: bio)
         
@@ -41,7 +44,8 @@ final class CompleteAccountViewModel {
             return
         }
         
-        accountRepository.updateUser(name: firstName ?? "", surname: lastName ?? "", gender: (sex ?? UserGender.male).key, email: email ?? "", birthday: dobString ?? "", bio: bio ?? "", settings: settings) { (result) in
+        // Pass optional values to updateUser - it will only send them to backend if they're not nil
+        accountRepository.updateUser(name: firstName ?? "", surname: lastName ?? "", gender: genderString, email: email ?? "", birthday: dobString, bio: bio ?? "", settings: settings) { (result) in
             switch result {
             case .success(let userResponse):
                 let userResult = AccountMapper.toUserResult(from: userResponse)

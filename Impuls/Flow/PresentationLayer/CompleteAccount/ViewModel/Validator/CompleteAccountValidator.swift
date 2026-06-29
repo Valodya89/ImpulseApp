@@ -40,21 +40,21 @@ final class CompleteAccountValidator {
             }
         }
         
-        let dateOfBirthValidator = Validator(data: dateOfBirth)
-            .notEmpty(errorMessage: "Please select date of birth")
-            .validate()
-        
-        if !dateOfBirthValidator.isValid {
-            return dateOfBirthValidator
-        }
-        
-        let sexValidator = Validator(data: sex)
-            .notEmpty(errorMessage: "Please select your sex")
-            .validate()
-        
-        if !sexValidator.isValid {
-            return sexValidator
-        }
+//        let dateOfBirthValidator = Validator(data: dateOfBirth)
+//            .notEmpty(errorMessage: "Please select date of birth")
+//            .validate()
+//        
+//        if !dateOfBirthValidator.isValid {
+//            return dateOfBirthValidator
+//        }
+//        
+//        let sexValidator = Validator(data: sex)
+//            .notEmpty(errorMessage: "Please select your sex")
+//            .validate()
+//        
+//        if !sexValidator.isValid {
+//            return sexValidator
+//        }
         
         return ValidationResultModel(isValid: true, message: "")
     }

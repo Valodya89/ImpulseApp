@@ -18,7 +18,7 @@ final class SupportViewController: UIViewController, StoryboardInitializable {
     }
     
     @IBAction func call(_ sender: UIButton) {
-        supportViewModel.call(phoneNumber: "+79911005639")
+        supportViewModel.call(phoneNumber: "+79165132326")
     }
     
     @IBAction func informProblem(_ sender: UIButton) {

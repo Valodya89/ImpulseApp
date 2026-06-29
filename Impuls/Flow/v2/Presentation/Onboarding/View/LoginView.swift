@@ -432,7 +432,8 @@ struct LoginView: View {
                 
                 MimoDatePickerTextField(title: "MOBILE_registartion_dob".localized(), placeholder: "MOBILE_registartion_dob".localized(), date: $viewModel.bithday)
                     .frame(height: 63)
-                
+                    .padding(.bottom, 5)
+
                 MimoWheelPickerTextField(title: "MOBILE_registartion_sex".localized(), placeholder: "MOBILE_registartion_sex".localized(), items: LoginViewModel.Gender.allCases.map({ $0.title }), selectedItem: $viewModel.gender)
                     .frame(height: 63)
                 
