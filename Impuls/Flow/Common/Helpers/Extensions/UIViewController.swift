@@ -126,28 +126,43 @@ extension UIViewController {
     
     func showErrorPopUp(message: String, service: MimoType) {
         let isReplenishable: Bool = (message == "SHARING_no_minimal_requirements") || (message == "MOBILE_map_minimum_requirments") || (message == "CHARGER_no_minimal_requirements")
-        
-        let vc: UIViewController
-        switch service {
-        case .scooter:
-            vc = ScooterErrorViewController(message: message.localized(), isReplenishable: isReplenishable, onReplenish: { [weak self] in
-                self?.openWallet()
-            })
-        case .bike:
-            vc = BikeErrorViewController(message: message.localized(), isReplenishable: isReplenishable, onReplenish: { [weak self] in
-                self?.openWallet()
-            })
-        case .charger:
-            vc = ChargerErrorViewController(message: message.localized(), isReplenishable: isReplenishable, onReplenish: { [weak self] in
-                self?.openWallet()
-            })
-        case .evCharger:
-            vc = ChargerErrorViewController(message: message.localized(), isReplenishable: isReplenishable, onReplenish: { [weak self] in
-                self?.openWallet()
-            })
-        }
-        
+
+        let displayMessage = UIViewController.userFacingErrorMessage(from: message)
+
+        // A single error screen (powerbank image) is used across the whole app,
+        // regardless of the service that produced the error.
+        let vc = ChargerErrorViewController(message: displayMessage, isReplenishable: isReplenishable, onReplenish: { [weak self] in
+            self?.openWallet()
+        })
+
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
+    }
+
+    /// Converts a raw error string into a user-facing message.
+    /// Localization keys are localized as usual, but raw system/network error
+    /// descriptions (e.g. "The operation couldn't be completed.
+    /// (Impuls.NetworkSessionErrors error 0.)") are replaced with a friendly
+    /// localized message so technical text is never shown to the user.
+    static func userFacingErrorMessage(from message: String) -> String {
+        let localized = message.localized()
+
+        let technicalMarkers = [
+            "NetworkSessionErrors",
+            "operation couldn't be completed",
+            "operation couldn’t be completed",
+            "Impuls.",
+            "Error Domain"
+        ]
+
+        let isTechnical = technicalMarkers.contains { marker in
+            localized.range(of: marker, options: .caseInsensitive) != nil
+        }
+
+        if isTechnical || localized.isEmpty {
+            return "MOBILE_lostConnection_message".localized()
+        }
+
+        return localized
     }
 }

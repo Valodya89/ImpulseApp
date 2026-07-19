@@ -249,9 +249,11 @@ final class ScooterPlanViewController: BaseViewController, StoryboardInitializab
     }
     
     func showErrorMinBalanceVC(message: String, isShowOK: Bool = true) {
-        self.present(ScooterErrorViewController(message: message.localized(), isReplenishable: !isShowOK, onReplenish: { [weak self] in
+        let errorVC = ChargerErrorViewController(message: UIViewController.userFacingErrorMessage(from: message), isReplenishable: !isShowOK, onReplenish: { [weak self] in
             self?.openWallet()
-        }), animated: true)
+        })
+        errorVC.modalPresentationStyle = .fullScreen
+        self.present(errorVC, animated: true)
     }
     
     func openWalletVC() {

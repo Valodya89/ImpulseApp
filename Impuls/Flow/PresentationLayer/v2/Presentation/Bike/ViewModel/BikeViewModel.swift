@@ -45,6 +45,10 @@ class BikeViewModel: MimoBaseViewModel {
     @Published private(set) var selectedBikeMarker: GMSMarker?
     
     @Published private(set) var mapZones: [Zone]?
+
+    /// Errors coming from `loadBalance()`. Presented separately so they render
+    /// with the powerbank (charger) error screen instead of the bike one.
+    @Published private(set) var balanceErrorMessage: String?
     
     @Published private(set) var isUserInvited: Bool?
     @Published private(set) var news: [NewsObject]?
@@ -139,21 +143,34 @@ class BikeViewModel: MimoBaseViewModel {
     }
     
     func loadBalance() {
-        Publishers.Zip3(worker.loadFinancialState(), worker.loadBalance(), worker.getUser())
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] completion in
-                switch completion {
-                case .failure(let error):
-                    self?.mimoError = error
-                default: break
-                }
-            } receiveValue: { [weak self] financialState, wallet, user in
-                self?.financialState = financialState
-                self?.walletState = financialState.state
-                self?.walletInfo = wallet
-                self?.user = user
+        // Each call is made resilient so that a failure in one (e.g. wallet or
+        // user) doesn't discard the financial-state response. The financial
+        // state carries the parsed error the backend wants us to show.
+        Publishers.Zip3(
+            worker.loadFinancialState().map(Optional.some).replaceError(with: nil),
+            worker.loadBalance().map(Optional.some).replaceError(with: nil),
+            worker.getUser().map(Optional.some).replaceError(with: nil)
+        )
+        .receive(on: DispatchQueue.main)
+        .sink { [weak self] financialState, wallet, user in
+            guard let self else { return }
+
+            if let wallet { self.walletInfo = wallet }
+            if let user { self.user = user }
+
+            guard let financialState else { return }
+
+            self.financialState = financialState
+            self.walletState = financialState.state
+
+            // The request itself succeeds (HTTP 200) but the parsed content can
+            // still describe an error state (e.g. PROFILE_INCOMPLETE). Surface
+            // the message that comes back in the response content.
+            if financialState.state == .ProfileIncomplete {
+                self.balanceErrorMessage = financialState.message ?? "ACCOUNTS_user_profile_not_complete"
             }
-            .store(in: &cancellables)
+        }
+        .store(in: &cancellables)
     }
     
     func loadBikes(currentLocation: CLLocationCoordinate2D) {

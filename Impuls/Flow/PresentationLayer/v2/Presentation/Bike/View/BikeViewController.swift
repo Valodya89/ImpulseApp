@@ -29,6 +29,11 @@ class BikeViewController: MimoBaseViewController {
     @IBOutlet private weak var infoButtonBottomConstraint: NSLayoutConstraint!
     
     private var isTransferDebtSelected: Bool = false
+
+    /// Ensures the balance/profile error screen is shown only once per visit,
+    /// so dismissing it (X) doesn't immediately re-present it when
+    /// `viewWillAppear` reloads the balance.
+    private var hasPresentedBalanceError: Bool = false
     
     private var forbiddenMarkers: [GMSMarker] = []
     
@@ -180,6 +185,14 @@ class BikeViewController: MimoBaseViewController {
             guard let errorMessage else { return }
             MILoader.hide()
             self?.showErrorPopUp(message: errorMessage, service: .bike)
+        }
+        .store(in: &cancellables)
+
+        viewModel.$balanceErrorMessage.sink { [weak self] errorMessage in
+            guard let self, let errorMessage, !self.hasPresentedBalanceError else { return }
+            self.hasPresentedBalanceError = true
+            MILoader.hide()
+            self.showErrorPopUp(message: errorMessage, service: .charger)
         }
         .store(in: &cancellables)
         
