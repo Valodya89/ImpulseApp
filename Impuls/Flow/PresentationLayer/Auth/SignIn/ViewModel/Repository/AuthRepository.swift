@@ -81,6 +81,9 @@ final class AuthRepository {
                     return completion(.failure(.init(error: .invalidParse("Can not get financial state"))))
                 }
                 
+                if let content = response.content?.content {
+                    return completion(.failure(.init(error: .invalidParse((content.message ?? "").localized()))))
+                }
                 if let content = response.content, response.statusCode == 200 {
                     print("Debt = \(content)")
                     return completion(.success(content))

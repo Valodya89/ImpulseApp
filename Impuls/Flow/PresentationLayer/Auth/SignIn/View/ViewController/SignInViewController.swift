@@ -221,7 +221,7 @@ final class SignInViewController: BaseViewController, StoryboardInitializable, U
                         }
                     }
                 } else {
-                    UserManager.share.debtState = FinancialStateModel(state: .Success, message: nil, additional: 0.0, wallets: [])
+                    UserManager.share.debtState = FinancialStateModel(state: .Success, message: nil, additional: 0.0, wallets: [], content: nil)
                     
                     self.goToVerifyPhoneCodeVC(phoneNumber: phone)
                 }

@@ -22,9 +22,15 @@ struct FinancialStateModel: Decodable {
     let message: String?
     let additional: Double?
     let wallets: [WalletDebts]?
+    let content: ErrorContent?
 }
 
 struct  WalletDebts: Codable {
     let walletId: String?
     let debtSum: Double?
+}
+
+struct ErrorContent: Codable {
+    let state: String?
+    let message: String?
 }

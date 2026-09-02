@@ -48,7 +48,7 @@ struct HomeRepository {
                 if error.description == "SHARING_no_minimal_requirements" || error.description == "MOBILE_map_minimum_requirments" {
                     completion(.failure(.tooFar(error.localizedDescription)))
                 } else {
-                    completion(.failure(.invalidParse(error.localizedDescription)))
+                    completion(.failure(.invalidParse("MOBILE_incorrect_qr")))
 
                 }
             }

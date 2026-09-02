@@ -204,9 +204,9 @@ class BikeViewController: MimoBaseViewController {
         viewModel.$startLocation.sink { [weak self] coordinate in
             guard let self, let coordinate else { return }
             
-            if (viewModel.bikes ?? []).isEmpty {
-                viewModel.loadBikes(currentLocation: coordinate)
-            }
+//            if (viewModel.bikes ?? []).isEmpty {
+//                viewModel.loadBikes(currentLocation: coordinate)
+//            }
             
             let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 16)
             self.mapView.animate(to: camera)
