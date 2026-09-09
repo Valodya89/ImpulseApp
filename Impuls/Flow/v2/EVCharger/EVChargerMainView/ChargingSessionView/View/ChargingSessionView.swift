@@ -124,7 +124,7 @@ private struct ChargingSessionCard: View {
                 .background(Color.init(hex: "#F2F2F2"))
                 .cornerRadius(12, corners: .allCorners)
                 .onTapGesture {
-                    if let telegramURL = URL(string: "tg://resolve?domain=MimoReview") {
+                    if let telegramURL = URL(string: "tg://resolve?domain=@impulse_power_help") {
                         openURL(telegramURL)
                     }
                 }

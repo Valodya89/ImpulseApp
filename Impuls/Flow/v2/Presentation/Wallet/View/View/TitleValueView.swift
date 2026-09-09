@@ -12,12 +12,18 @@ struct TitleValueView: View {
     let title: String
     let value: String
     let currency: String
+    /// A balance in debt is the one number the user has to act on, so it is the
+    /// only one that leaves the default ink colour.
+    let isNegative: Bool
     
-    init(title: String, value: String, currency: String) {
+    init(title: String, value: String, currency: String, isNegative: Bool = false) {
         self.title = title
         self.value = value
         self.currency = currency
+        self.isNegative = isNegative
     }
+
+    private var valueColor: Color { isNegative ? .red : .evText9 }
     
     var body: some View {
         HStack(spacing: 10) {
@@ -30,12 +36,12 @@ struct TitleValueView: View {
             
             Text(value)
                 .font(.robotoBold20)
-                .foregroundColor(.evText9)
+                .foregroundColor(valueColor)
             
             Text(currency)
                 .font(.robotoLight13)
                 .padding(.trailing, 20)
-                .foregroundColor(.evText9)
+                .foregroundColor(valueColor)
         }
         .frame(maxHeight: .infinity)
         .roundedBorderMedium()

@@ -10,6 +10,8 @@ import GoogleMaps
 
 struct ChargingStation: Decodable, MimoResult {
     let id: String?
+    /// The code printed on the cabinet - what a rider matches the row against.
+    let qr: String?
     let type: String?
     let slotsCount: Int?
     let powerBanksCount: Int?
@@ -41,7 +43,12 @@ struct PowerBank: Decodable {
 }
 
 extension ChargingStation {
-    
+
+    /// Power banks the backend reports as available in the cabinet.
+    var availablePowerBanksCount: Int {
+        max(0, powerBanksCount ?? 0)
+    }
+
     func toGMSMarker() -> GMSMarker {
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: location?.latitude ?? 0, longitude: location?.longitude ?? 0)

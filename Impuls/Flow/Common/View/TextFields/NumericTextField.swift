@@ -15,6 +15,9 @@ final class NumericTextField: UITextField {
    
     weak var numDelegate: UITextFieldDelegate?
     
+    /// Currency printed after the number (e.g. "AMD"). Set through
+    /// `setCurrency(_:)` so the caret offset follows the suffix length.
+    private(set) var currency: String?
     
     var numberText: Double?  {
         get {
@@ -23,8 +26,18 @@ final class NumericTextField: UITextField {
         return Double(numberPart)
         }
         set {
-            self.text = "\(newValue ?? 0.00) ֏"
+            self.text = "\(newValue ?? 0.00) \(currency ?? "֏")"
         }
+    }
+    
+    /// Shows `currency` after the amount and keeps the caret in front of it,
+    /// preserving whatever number is currently typed.
+    func setCurrency(_ currency: String) {
+        self.currency = currency
+        rightOffset = currency.count + 1
+        
+        let numberPart = text?.components(separatedBy: " ").first ?? ""
+        text = "\(numberPart.isEmpty ? removeOnTyping : numberPart) \(currency)"
     }
     
     override func awakeFromNib() {

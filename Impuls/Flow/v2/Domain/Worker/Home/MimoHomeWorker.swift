@@ -17,7 +17,8 @@ class MimoHomeWorker: MimoHomeWorkerProtocol {
     private let storyRepository: StoryRepository = StoryRepository()
     private let accountRepository: AccountRepository = AccountRepository()
     
-    private let chargerSocket = MimoChargerSocketService()
+    private let chargerSocket: MimoChargerSocketServiceProtocol
+    private var socketCancellables = Set<AnyCancellable>()
     
     var chargerDataPublisher: AnyPublisher<RentedCharger?, Never> {
         chargerDataSubject.eraseToAnyPublisher()
@@ -25,8 +26,17 @@ class MimoHomeWorker: MimoHomeWorkerProtocol {
     
     private let chargerDataSubject = PassthroughSubject<RentedCharger?, Never>()
     
-    init() {
-        chargerSocket.delegate = self
+    init(chargerSocketService: MimoChargerSocketServiceProtocol) {
+        self.chargerSocket = chargerSocketService
+
+        // Shared with the power bank map - see `MimoChargerSocketService` - so the
+        // events arrive through the publisher rather than the single delegate.
+        chargerSocket.dataPublisher
+            .sink { [weak self] data in
+                self?.chargerDataSubject.send(data)
+            }
+            .store(in: &socketCancellables)
+
         chargerSocket.connect()
     }
     
@@ -288,24 +298,5 @@ class MimoHomeWorker: MimoHomeWorkerProtocol {
             }
         }
         .eraseToAnyPublisher()
-    }
-}
-
-extension MimoHomeWorker: MimoChargerSocketServiceDelegate {
-    
-    func onConnect() {
-        
-    }
-    
-    func onDisconnect() {
-        
-    }
-    
-    func onDataReceived(_ data: RentedCharger) {
-        chargerDataSubject.send(data)
-    }
-    
-    func socketDataLagging() {
-        
     }
 }

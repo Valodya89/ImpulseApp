@@ -209,11 +209,11 @@ struct EVChargerDetailsView: View {
                         HStack(spacing: 6) {
                             Text(viewModel.balance)
                                 .font(.robotoBold20)
-                                .foregroundColor(Color.evText9)
+                                .foregroundColor(viewModel.isBalanceNegative ? .red : Color.evText9)
                             
                             Text(viewModel.currency)
                                 .font(.robotoLight13)
-                                .foregroundColor(Color.evText9)
+                                .foregroundColor(viewModel.isBalanceNegative ? .red : Color.evText9)
                         }
                     }
 //                    Spacer()

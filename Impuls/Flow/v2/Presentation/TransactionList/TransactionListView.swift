@@ -59,20 +59,22 @@ struct TransactionListView: View {
                 .padding(.trailing, 10)
             
             VStack(spacing: 8) {
-                Text(item.type.isIncomeing ? "Income" : "Outcome")
+                Text(item.type.isIncomeing ? "MOBILE_charger.income".localized() : "MOBILE_charger.outcome".localized())
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.robotoMedium15)
                     .foregroundColor(.evText9)
                 
-                Text(DateFormatter.dayMonthFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(item.date))))
+                Text(DateFormatter.dayMonthFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(item.date) / 1000)))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(Color.evText6)
                     .font(.robotoRegular12)
             }
             
-            Text("\(item.amount.description) \(item.currency)")
+            Text("\(item.amount.description) \(item.currencyTitle)")
                 .font(.robotoMedium15)
                 .foregroundColor(.evText9)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
                 .padding(.trailing, 16)
         }
         .background {
@@ -87,7 +89,7 @@ struct TransactionListView: View {
     func navigationView() -> some View {
         ZStack(alignment: .leading) {
             HStack(spacing: 0) {
-                Text("Transactions")
+                Text("MOBILE_profile_transactions".localized())
                     .font(.robotoBold15)
                     .foregroundColor(.black)
             }

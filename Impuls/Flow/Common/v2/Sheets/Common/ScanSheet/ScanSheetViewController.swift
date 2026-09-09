@@ -160,9 +160,9 @@ extension ScanSheetViewController: UITableViewDelegate {
         
         switch sections[indexPath.row] {
         case .trips:
-            let tripsListViewController = TripsNavigationController.initFromStoryboard(name: Constant.Storyboards.wallet)
-            (tripsListViewController.topViewController as? TripsListViewController)?.mimoType = mimoType
-            self.present(tripsListViewController, animated: true, completion: nil)
+            // Same v2 history screen the profile menu opens, so the map entry
+            // point gets the identical row UI.
+            openHistory()
         case .support:
             let supportController = SupportNavigationViewController.initFromStoryboard(name: Constant.Storyboards.accountCover)
             present(supportController, animated: true, completion: nil)

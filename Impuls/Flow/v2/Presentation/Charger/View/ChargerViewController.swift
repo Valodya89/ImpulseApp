@@ -193,7 +193,6 @@ class ChargerViewController: MimoBaseViewController {
         collectionBackButton.addShadow(color: .black.withAlphaComponent(0.4), offset: .init(width: 0, height: 4), shadowRadius: 12)
         myLocationButton.addShadow(color: .black.withAlphaComponent(0.4), offset: .init(width: 0, height: 4), shadowRadius: 12)
         discountsButton.addShadow(color: .black.withAlphaComponent(0.4), offset: .init(width: 0, height: 4), shadowRadius: 12)
-        discountsButton.isHidden = true
 
         //MARK: - MapView
         mapView.isMyLocationEnabled = true

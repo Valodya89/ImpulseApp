@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -27,7 +27,7 @@
         <!--Scan View Controller-->
         <scene sceneID="3Ws-lU-sc4">
             <objects>
-                <viewController storyboardIdentifier="ScanViewController" id="Sdv-1q-wkN" customClass="ScanViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScanViewController" id="Sdv-1q-wkN" customClass="ScanViewController" customModule="Impuls" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W91-nt-7YR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,10 +37,10 @@
                                 <color key="backgroundColor" systemColor="labelColor"/>
                             </view>
                             <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1dx-z1-lcT">
-                                <rect key="frame" x="0.0" y="94" width="375" height="718"/>
+                                <rect key="frame" x="0.0" y="142" width="375" height="670"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kyt-tx-1i8">
-                                        <rect key="frame" x="0.0" y="-94" width="375" height="812"/>
+                                        <rect key="frame" x="0.0" y="-142" width="375" height="812"/>
                                         <color key="backgroundColor" name="mimoBlackWith05alpha"/>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zM3-NM-MF5" userLabel="contentView">
@@ -59,7 +59,7 @@
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fAw-fc-nXd">
                                                         <rect key="frame" x="0.0" y="0.0" width="285.66666666666669" height="210"/>
                                                         <subviews>
-                                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6mb-7M-WgV" customClass="GradientView" customModule="MimoBike" customModuleProvider="target">
+                                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6mb-7M-WgV" customClass="GradientView" customModule="Impuls" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="-210" width="285.66666666666669" height="210"/>
                                                                 <color key="backgroundColor" red="1" green="0.92156862745098034" blue="0.23137254901960785" alpha="0.41999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                             </view>
@@ -97,12 +97,12 @@
                                                 </constraints>
                                             </view>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A minute for riding is 9.99 dram. Minimal fee is 99.9 dram" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Eft-5A-5ul">
-                                                <rect key="frame" x="20" y="372.33333333333331" width="335" height="35.333333333333314"/>
+                                                <rect key="frame" x="20" y="372.33333333333337" width="335" height="35.333333333333314"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="15"/>
                                                 <color key="textColor" name="mimoWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan the QR code on bike" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6o-x2-uBs" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan the QR code on bike" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6o-x2-uBs" customClass="UILocalizedLabel" customModule="Impuls" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="20" width="335" height="28"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="24"/>
                                                 <color key="textColor" name="mimoWhite"/>
@@ -111,7 +111,7 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_scan_scan_QR"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lnR-D3-Fhb" customClass="CircleButton" customModule="MimoBike" customModuleProvider="target">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lnR-D3-Fhb" customClass="CircleButton" customModule="Impuls" customModuleProvider="target">
                                                 <rect key="frame" x="163.66666666666666" y="447.66666666666663" width="48" height="48"/>
                                                 <color key="backgroundColor" name="mimoWhite"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
@@ -153,8 +153,8 @@
                                     <constraint firstAttribute="trailing" secondItem="kyt-tx-1i8" secondAttribute="trailing" id="pzo-xf-wSh"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cM-tY-qB1" customClass="CircleButton" customModule="MimoBike" customModuleProvider="target">
-                                <rect key="frame" x="163.66666666666666" y="541.66666666666663" width="48" height="48"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cM-tY-qB1" customClass="CircleButton" customModule="Impuls" customModuleProvider="target">
+                                <rect key="frame" x="163.66666666666666" y="589.66666666666663" width="48" height="48"/>
                                 <color key="backgroundColor" name="mimoWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="TAD-0f-SBx"/>
@@ -166,14 +166,14 @@
                                     <action selector="flashLightButtonTapped:" destination="Sdv-1q-wkN" eventType="touchUpInside" id="74A-QW-oiC"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MZE-cc-gIK" customClass="MITextFieldView" customModule="MimoBike" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MZE-cc-gIK" customClass="MITextFieldView" customModule="Impuls" customModuleProvider="target">
                                 <rect key="frame" x="8" y="716" width="359" height="56"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" placeholder="YES" id="iWC-Lz-Zpc"/>
                                 </constraints>
                             </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="itg-4r-n8G" customClass="CircleButton" customModule="MimoBike" customModuleProvider="target">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="itg-4r-n8G" customClass="CircleButton" customModule="Impuls" customModuleProvider="target">
                                 <rect key="frame" x="8" y="812" width="359" height="40"/>
                                 <color key="backgroundColor" name="mimoYellow500"/>
                                 <constraints>
@@ -221,17 +221,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tUb-Rc-4xO">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="WDd-bD-GkC">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="h3J-n0-sox" customClass="UILocalizedButton" customModule="MimoBike" customModuleProvider="target">
-                                <rect key="frame" x="313" y="0.0" width="46" height="44"/>
+                        <barButtonItem key="rightBarButtonItem" image="close_circle_fill" style="plain" id="WDd-bD-GkC">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="h3J-n0-sox" customClass="UILocalizedButton" customModule="Impuls" customModuleProvider="target">
+                                <rect key="frame" x="319" y="7.0000000000000018" width="36" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
-                                <state key="normal" title="Done">
+                                <state key="normal" image="ic_close_white">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_global_done"/>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="doneButtonTapped:" destination="Sdv-1q-wkN" eventType="touchUpInside" id="JBG-hN-WTe"/>
                                 </connections>
@@ -262,13 +258,13 @@
         <!--Scan Ride Bike View Controller-->
         <scene sceneID="ivp-Is-Mnv">
             <objects>
-                <viewController storyboardIdentifier="ScanRideBikeViewController" id="CZ9-G1-8eF" customClass="ScanRideBikeViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScanRideBikeViewController" id="CZ9-G1-8eF" customClass="ScanRideBikeViewController" customModule="Impuls" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qVH-qh-F5g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5N1-3a-JW5" userLabel="CaloriesView">
-                                <rect key="frame" x="0.0" y="98" width="375" height="104"/>
+                                <rect key="frame" x="0.0" y="136" width="375" height="104"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lQL-vu-1Iv">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
@@ -287,7 +283,7 @@
                                         <color key="textColor" name="mimoBlackWith075alpha"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jph-3K-XhM" userLabel="CaloriesView" customClass="GradientView" customModule="MimoBike" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jph-3K-XhM" userLabel="CaloriesView" customClass="GradientView" customModule="Impuls" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="40" width="375" height="64"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="krp-5i-vPd" userLabel="ContentView">
@@ -316,7 +312,7 @@
                                                                 <color key="textColor" name="mimoBlackWith075alpha"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbS-OI-DfB" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbS-OI-DfB" customClass="UILocalizedLabel" customModule="Impuls" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="26.333333333333343" width="105" height="17.666666666666671"/>
                                                                 <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="15"/>
                                                                 <color key="textColor" name="mimoBlackWith05alpha"/>
@@ -369,7 +365,7 @@
                                                                 <color key="textColor" name="mimoBlackWith075alpha"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFB-GN-SWf" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFB-GN-SWf" customClass="UILocalizedLabel" customModule="Impuls" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="26.333333333333343" width="105" height="17.666666666666671"/>
                                                                 <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="15"/>
                                                                 <color key="textColor" name="mimoBlackWith05alpha"/>
@@ -421,7 +417,7 @@
                                                                 <color key="textColor" name="mimoBlackWith075alpha"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carbon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyh-bf-Ent" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carbon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyh-bf-Ent" customClass="UILocalizedLabel" customModule="Impuls" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="26.333333333333343" width="105" height="17.666666666666671"/>
                                                                 <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="15"/>
                                                                 <color key="textColor" name="mimoBlackWith05alpha"/>
@@ -494,7 +490,7 @@
                                     <constraint firstItem="lQL-vu-1Iv" firstAttribute="top" secondItem="5N1-3a-JW5" secondAttribute="top" id="xIC-7p-V2C"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vx8-O6-mGh" customClass="CircleButton" customModule="MimoBike" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vx8-O6-mGh" customClass="CircleButton" customModule="Impuls" customModuleProvider="target">
                                 <rect key="frame" x="18.666666666666657" y="732" width="337.66666666666674" height="48"/>
                                 <color key="backgroundColor" name="mimoYellow500"/>
                                 <constraints>
@@ -538,7 +534,7 @@
         <!--View Controller-->
         <scene sceneID="w4S-cB-BSk">
             <objects>
-                <viewController storyboardIdentifier="ViewController" id="GDS-sO-hkM" customClass="ViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="GDS-sO-hkM" customClass="ViewController" customModule="Impuls" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pZW-Re-7v6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -573,7 +569,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="N1p-Sx-AsE" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LVq-Hv-ble">
-                        <rect key="frame" x="0.0" y="50" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="88" width="375" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -588,7 +584,7 @@
         <!--Mimo Scan Qr View Controller-->
         <scene sceneID="3gJ-yr-2g7">
             <objects>
-                <viewController storyboardIdentifier="MimoScanQrViewController" id="2sU-Mz-W0J" customClass="MimoScanQrViewController" customModule="MimoBike" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MimoScanQrViewController" id="2sU-Mz-W0J" customClass="MimoScanQrViewController" customModule="Impuls" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fMI-61-4o9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -605,8 +601,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" name="mimoBlack"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan the QR code on bike" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTe-DJ-tVQ" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
-                                <rect key="frame" x="32" y="109" width="311" height="30.333333333333343"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan the QR code on bike" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTe-DJ-tVQ" customClass="UILocalizedLabel" customModule="Impuls" customModuleProvider="target">
+                                <rect key="frame" x="32" y="157" width="311" height="30.333333333333343"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -625,7 +621,7 @@
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4q-tn-v6A">
                                                 <rect key="frame" x="0.0" y="0.0" width="241" height="207.33333333333334"/>
                                                 <subviews>
-                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KUy-VU-dUc" customClass="GradientView" customModule="MimoBike" customModuleProvider="target">
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KUy-VU-dUc" customClass="GradientView" customModule="Impuls" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="-207.33333333333334" width="241" height="207.33333333333334"/>
                                                         <color key="backgroundColor" red="1" green="0.92156862750000001" blue="0.23137254900000001" alpha="0.41999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     </view>
@@ -682,15 +678,15 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rHI-tJ-dCR" customClass="MITextFieldView" customModule="MimoBike" customModuleProvider="target">
-                                <rect key="frame" x="18" y="704" width="339" height="56"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rHI-tJ-dCR" customClass="MITextFieldView" customModule="Impuls" customModuleProvider="target">
+                                <rect key="frame" x="18" y="675" width="339" height="56"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" placeholder="YES" id="Dto-vx-hUw"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beP-iQ-rLI">
-                                <rect key="frame" x="163.66666666666666" y="556" width="48" height="48"/>
+                                <rect key="frame" x="163.66666666666666" y="527" width="48" height="48"/>
                                 <color key="backgroundColor" red="0.61960784313725492" green="0.68627450980392157" blue="0.74509803921568629" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="beP-iQ-rLI" secondAttribute="height" id="4av-gV-eCG"/>
@@ -744,7 +740,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="p4A-lI-Dbf">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="hu6-V6-OTX">
+                        <barButtonItem key="rightBarButtonItem" image="ic_close_white" style="plain" id="hu6-V6-OTX">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="doneAction" destination="2sU-Mz-W0J" id="TIh-Jz-PNA"/>
@@ -768,7 +764,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b2h-YD-fej" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wdt-Qc-0zO">
-                        <rect key="frame" x="0.0" y="50" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="88" width="375" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -782,8 +778,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="close_circle_fill" width="18" height="18"/>
         <image name="ic_carbon" width="13.666666984558105" height="18"/>
         <image name="ic_ccal_fire" width="12" height="18"/>
+        <image name="ic_close_white" width="30" height="30"/>
         <image name="ic_distance" width="18" height="18.333333969116211"/>
         <image name="ic_flash_light" width="28" height="28"/>
         <image name="ic_unlocked_lock" width="24" height="24"/>

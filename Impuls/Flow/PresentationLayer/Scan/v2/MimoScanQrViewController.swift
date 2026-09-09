@@ -78,8 +78,8 @@ class MimoScanQrViewController: MimoBaseViewController {
     }
     
     private func setupUI() {
-        doneButton.possibleTitles = ["MOBILE_global_done".localized()]
-        doneButton.title = "MOBILE_global_done".localized()
+        doneButton.title = nil
+        doneButton.image = UIImage(named: "ic_close_white")?.withRenderingMode(.alwaysOriginal)
         qrTextField.text = "MOBILE_scan_bike_code".localized()
         qrTextField.delegate = self
         qrTextField.keyboardType = .numberPad

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftMessages
 
 extension UIViewController {
     
@@ -119,6 +120,32 @@ extension AppDelegate {
     static func redirectSettings() {
     
         UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+    }
+}
+
+extension UIViewController {
+
+    /// Green in-place banner (same style as the wallet screen).
+    func showSuccessMessage(title: String, body: String, dismissed: (() -> Void)? = nil) {
+        showBanner(MessageHostingView(message: SuccessMessage(title: title, body: body)), dismissed: dismissed)
+    }
+
+    /// Red in-place banner (same style as the wallet screen).
+    func showErrorMessage(title: String, body: String, dismissed: (() -> Void)? = nil) {
+        showBanner(MessageHostingView(message: ErrorMessage(title: title, body: body)), dismissed: dismissed)
+    }
+
+    private func showBanner(_ view: UIView, dismissed: (() -> Void)?) {
+        var config = SwiftMessages.defaultConfig
+        // Own window: the banner stays visible even when the presenting screen is dismissed.
+        config.presentationContext = .window(windowLevel: .normal)
+        config.duration = .seconds(seconds: 3)
+        if let dismissed {
+            config.eventListeners.append { event in
+                if case .didHide = event { dismissed() }
+            }
+        }
+        SwiftMessages.show(config: config, view: view)
     }
 }
 

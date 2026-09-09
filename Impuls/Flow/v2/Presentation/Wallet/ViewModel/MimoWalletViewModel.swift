@@ -25,6 +25,7 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
     @Published private(set) var currency: String = ""
     @Published private(set) var balance: String = "0.0"
     @Published private(set) var isBalanceNegative: Bool = false
+    let transactionListViewModel: TransactionListViewModel = TransactionListViewModel(worker: TransactionWorker())
     @Published private(set) var freeMinutes: String = "0"
     
     @Published private(set) var cardPaymentMethods: [PaymentMethodModel] = []
@@ -45,11 +46,23 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
     
     @Published var productItemViewModels: [ProductItemViewModel] = []
 
-    init(worker: WalletWorkerProtocol, productType: MimoProductType? = nil) {
+    /// - Parameter initialAmount: Pre-fills the top-up field, e.g. with an
+    ///   outstanding debt so the user only has to confirm the payment.
+    init(worker: WalletWorkerProtocol, productType: MimoProductType? = nil, initialAmount: Double? = nil) {
         self.worker = worker
         self.productType = productType
         super.init()
         setupUI()
+
+        if let initialAmount, initialAmount > 0 {
+            amount = Self.amountText(initialAmount)
+        }
+    }
+
+    /// The amount field uses a number pad, so a fractional debt is rounded up
+    /// to the next whole unit - rounding down would leave part of it unpaid.
+    static func amountText(_ amount: Double) -> String {
+        String(Int(amount.rounded(.up)))
     }
     
     func setupUI() {

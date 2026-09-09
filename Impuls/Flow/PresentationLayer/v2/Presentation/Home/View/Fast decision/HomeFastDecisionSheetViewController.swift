@@ -26,8 +26,10 @@ class HomeFastDecisionSheetViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.register(FastDecisionTableViewCell.self)
-        tableView.register(EVFastDecisionTableViewCell.self)
-        
+        // Every product now draws the same row, which brings its own inset
+        // hairline - the table's edge-to-edge separator would double it.
+        tableView.separatorStyle = .none
+
         viewModel?.$availableServices.sink { [weak self] services in
             guard let availableServices = services,
                   !availableServices.isEmpty else { return }
@@ -45,7 +47,9 @@ class HomeFastDecisionSheetViewController: UIViewController {
 extension HomeFastDecisionSheetViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0
+        // One height for every product: the row is the same shape whatever it
+        // describes, and a uniform rhythm is easier to scan than three sizes.
+        return FastDecisionTableViewCell.rowHeight
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,9 +67,7 @@ extension HomeFastDecisionSheetViewController: UITableViewDataSource {
         } else if let charger = viewModel.fastDecisions.value[indexPath.row] as? ChargingStation {
             cell.set(charger: charger, currentLocation: viewModel.currentLocation)
         } else if let evCharger = viewModel.fastDecisions.value[indexPath.row] as? EVChargingStation {
-            let chargerCell: EVFastDecisionTableViewCell = tableView.dequeueReusableCell(withIdentifier: "EVFastDecisionTableViewCell")
-            chargerCell.set(evCharger: evCharger, currentLocation: viewModel.currentLocation)
-            return chargerCell
+            cell.set(evCharger: evCharger, currentLocation: viewModel.currentLocation)
         }
         
         return cell

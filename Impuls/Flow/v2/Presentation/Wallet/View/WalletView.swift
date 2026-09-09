@@ -17,6 +17,7 @@ struct WalletView: View {
     @State var attachCardAlertMessage: String = ""
     @State var successMessage: SuccessMessage?
     @State var errorMessage: ErrorMessage?
+    @State var showTransactions: Bool = false
     @ObservedObject private var viewModel: MimoWalletViewModel
     
     init(viewModel: MimoWalletViewModel) {
@@ -64,12 +65,23 @@ struct WalletView: View {
             ScrollView(.vertical) {
                 VStack(spacing: 0) {
                     
-                    TitleValueView(title: "MOBILE_mimo_balance".localized(), value: viewModel.balance, currency: viewModel.currency)
+                    TitleValueView(
+                        title: "MOBILE_mimo_balance".localized(),
+                        value: viewModel.balance,
+                        currency: viewModel.currency,
+                        isNegative: viewModel.isBalanceNegative
+                    )
                         .frame(height: 60)
-                        .sectionTopContent(label: "wallet".uppercased())
+                        .sectionTopContent(label: "")
                         .padding(.top, 20)
                     
-
+                    IconTitleView(title: "MOBILE_profile_transactions".localized())
+                        .frame(height: 60)
+                        .padding(.top, 10)
+                        .onTapGesture {
+                            showTransactions = true
+                        }
+                    
                     PromoCodeView(
                         promoCode: $viewModel.promoCode,
                         submitAction: { promoCode in
@@ -91,7 +103,7 @@ struct WalletView: View {
                         Spacer()
                         
                         HStack(spacing: 4) {
-                            ForEach(["card_master_card", "card_visa", "card_amex", "card_arca"], id: \.self) { card in
+                            ForEach(["card_mir", "card_sbp"], id: \.self) { card in
                                 Image(card)
                                     .resizable()
                                     .frame(width: 32, height: 21)
@@ -131,8 +143,8 @@ struct WalletView: View {
                         }
                     }
                     
-                    HeaderTitleView(title: "MOBILE_wallet_other_payment_methods".localized().uppercased())
-                        .padding(.top, 32)
+//                    HeaderTitleView(title: "MOBILE_wallet_other_payment_methods".localized().uppercased())
+//                        .padding(.top, 32)
                     
                     PaymentMethodGridView(paymentMethods: viewModel.otherPaymentMethods, selectedMethod: $viewModel.selectedPaymentMethod)
                         .padding(.top, 12)
@@ -212,6 +224,9 @@ struct WalletView: View {
                 )
             }
         )
+        .sheet(isPresented: $showTransactions, content: {
+            TransactionListView(viewModel: viewModel.transactionListViewModel)
+        })
         .onReceive(viewModel.$errorMessage) { error in
             if let errorMessage = error {
                 MILoader.hide()

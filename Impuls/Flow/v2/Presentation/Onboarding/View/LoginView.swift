@@ -51,6 +51,13 @@ struct LoginView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationBarHidden(true)
         .navigationViewStyle(.stack)
+        .onChange(of: viewModel.isAccountFullCompleted) { isCompleted in
+            // This branch swaps in HomeView without a root change, so the field that
+            // was being edited disappears with the keyboard still up.
+            if isCompleted {
+                UIApplication.shared.dismissKeyboard()
+            }
+        }
         .onReceive(viewModel.$errorMessage) { errorMessage in
             if let errorMessage {
                 let alert = MiAlertView()

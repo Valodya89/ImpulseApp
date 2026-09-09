@@ -19,7 +19,10 @@ extension Resolver: ResolverRegistering {
         register { MessageService() }.implements(MessageServiceProtocol.self).scope(.application)
         register { MimoScooterSocketService() }.implements(MimoScooterSocketServiceProtocol.self)
         register { MimoBikeSocketService() }.implements(MimoBikeSocketServiceProtocol.self)
-        register { MimoChargerSocketService() }.implements(MimoChargerSocketServiceProtocol.self)
+        // One connection for the whole app: the home screen and the power bank map
+        // both listen, and two connections subscribed to the same user destination
+        // meant a rent event could land on only one of them.
+        register { MimoChargerSocketService() }.implements(MimoChargerSocketServiceProtocol.self).scope(.application)
         register { EVChargerSocketService() }.implements(EVChargerSocketServiceProtocol.self).scope(.application)
         
         //MARK: - Helpers
@@ -31,7 +34,7 @@ extension Resolver: ResolverRegistering {
         register { EmailVerificationWorker() }.implements(EmailVerificationWorkerProtocol.self)
         
         //MARK: - Home
-        register { MimoHomeWorker() }.implements(MimoHomeWorkerProtocol.self)
+        register { MimoHomeWorker(chargerSocketService: resolve()) }.implements(MimoHomeWorkerProtocol.self)
         
         //MARK: - Scooter
         register { ScooterUseCase() }.implements(ScooterUseCaseProtocol.self)

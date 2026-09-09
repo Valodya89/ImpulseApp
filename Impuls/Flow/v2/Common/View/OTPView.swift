@@ -8,238 +8,229 @@
 import UIKit
 import SwiftUI
 
+/// SwiftUI wrapper around `OTPCodeView`.
+///
+/// `otpCode` is set to the full code once every box is filled and back to `nil`
+/// while the code is incomplete, so callers can gate the "continue" button on it.
 struct OTPView: UIViewRepresentable {
-    
+
     @Binding var otpCode: String?
     var isValidCode: Bool?
-    private let otpStackView = OTPStackView()
-    
-    func makeUIView(context: Context) -> OTPStackView {
-        
-        otpStackView.delegate = context.coordinator
-        
-        return otpStackView
+
+    func makeUIView(context: Context) -> OTPCodeView {
+        let view = OTPCodeView()
+        view.delegate = context.coordinator
+        return view
     }
-    
-    func updateUIView(_ uiView: UIViewType, context: Context) {
+
+    func updateUIView(_ uiView: OTPCodeView, context: Context) {
+        context.coordinator.parent = self
         if let isValidCode, !isValidCode {
             uiView.setAllFieldColor(isWarningColor: true, color: uiView.errorColor)
         }
     }
-    
+
     func makeCoordinator() -> Coordinator {
-        return Coordinator(self)
+        Coordinator(self)
     }
-    
-    class Coordinator: OTPDelegate {
-        
+
+    final class Coordinator: OTPDelegate {
+
         var parent: OTPView
-        
+
         init(_ parent: OTPView) {
             self.parent = parent
         }
-        
-        func didChangeValidity(isValid: Bool) {
-            if isValid {
-                parent.otpCode = parent.otpStackView.getOTP()
-            } else {
-                parent.otpCode = nil
-            }
+
+        func otpCodeDidChange(_ code: String, isComplete: Bool) {
+            parent.otpCode = isComplete ? code : nil
         }
     }
-}
-
-class OTPTextField: UITextField {
-    
-    weak var previousTextField: OTPTextField?
-    weak var nextTextField: OTPTextField?
-    
-    override public func deleteBackward(){
-        text = ""
-        previousTextField?.becomeFirstResponder()
-    }
-    
 }
 
 protocol OTPDelegate: AnyObject {
-    //always triggers when the OTP field is valid
-    func didChangeValidity(isValid: Bool)
+    /// Called on every edit. `isComplete` is true when every box holds a digit.
+    func otpCodeDidChange(_ code: String, isComplete: Bool)
 }
 
-class OTPStackView: UIStackView {
-    
-    //Customise the OTPField here
+/// Four digit boxes driven by one invisible `UITextField` that covers the whole
+/// view. A single text field is what iOS expects for SMS one-time-code autofill
+/// (`textContentType = .oneTimeCode`): the "From Messages" suggestion above the
+/// keyboard inserts the whole code at once, and paste works the same way. The
+/// digits are rendered into the boxes, so no text is ever visible in the field
+/// itself.
+final class OTPCodeView: UIView {
+
     let numberOfFields = 4
-    var textFieldsCollection: [OTPTextField] = []
     weak var delegate: OTPDelegate?
-    var showsWarningColor = true
-    
-    //Colors
+    private(set) var showsWarningColor = false
+
+    // Colors
     let inactiveFieldBorderColor = UIColor.black.withAlphaComponent(0.25)
     let textBackgroundColor = UIColor.white
     let activeFieldBorderColor = UIColor.mimoYellow500
-    let errorColor: UIColor = UIColor(red: 0.96, green: 0.26, blue: 0.21, alpha: 1)
-    var remainingStrStack: [String] = []
-    
-    required init(coder: NSCoder) {
+    let errorColor = UIColor(red: 0.96, green: 0.26, blue: 0.21, alpha: 1)
+
+    private let boxesStackView = UIStackView()
+    private var digitLabels: [UILabel] = []
+    private let textField = UITextField()
+    private var hasRequestedFocus = false
+
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupStackView()
-        addOTPFields()
+        setup()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupStackView()
-        addOTPFields()
-    }
-    
-    var isLayouted: Bool = false
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        if !isLayouted {
-            textFieldsCollection.forEach { textField in
-                textField.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-                textField.heightAnchor.constraint(equalToConstant: bounds.height).isActive = true
-                textField.widthAnchor.constraint(equalToConstant: bounds.width/CGFloat(numberOfFields) - (CGFloat(numberOfFields - 1) * 10)/CGFloat(numberOfFields)).isActive = true
-            }
-
-            isLayouted = true
-        }
-    }
-    
-    //Customisation and setting stackView
-    private final func setupStackView() {
-        self.backgroundColor = .clear
-        self.isUserInteractionEnabled = true
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.contentMode = .center
-        self.distribution = .fillEqually
-        self.alignment = .fill
-        self.spacing = 10
-    }
-    
-    //Adding each OTPfield to stack view
-    private final func addOTPFields() {
-        for index in 0..<numberOfFields{
-            let field = OTPTextField()
-            setupTextField(field)
-            textFieldsCollection.append(field)
-            //Adding a marker to previous field
-            index != 0 ? (field.previousTextField = textFieldsCollection[index-1]) : (field.previousTextField = nil)
-            //Adding a marker to next field for the field at index-1
-            index != 0 ? (textFieldsCollection[index-1].nextTextField = field) : ()
-        }
-        textFieldsCollection[0].becomeFirstResponder()
-    }
-    
-    //Customisation and setting OTPTextFields
-    private final func setupTextField(_ textField: OTPTextField){
-        textField.delegate = self
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        self.addArrangedSubview(textField)
-//        textField.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-//        textField.heightAnchor.constraint(equalToConstant: 64).isActive = true
-//        textField.widthAnchor.constraint(equalToConstant: 48).isActive = true
-//        textField.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/6).isActive = true
-        textField.backgroundColor = textBackgroundColor
-        textField.textAlignment = .center
-        textField.adjustsFontSizeToFitWidth = false
-        textField.font = UIFont(name: "Roboto-Regular", size: 24)
-        textField.textColor = .black
-        textField.layer.cornerRadius = 8
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = inactiveFieldBorderColor.cgColor
-        textField.keyboardType = .numberPad
-        textField.autocorrectionType = .yes
-        textField.textContentType = .oneTimeCode
-    }
-    
-    //checks if all the OTPfields are filled
-    private final func checkForValidity() {
-        for fields in textFieldsCollection{
-            if (fields.text?.trimmingCharacters(in: CharacterSet.whitespaces) == ""){
-                delegate?.didChangeValidity(isValid: false)
-                return
-            }
-        }
-        delegate?.didChangeValidity(isValid: true)
-    }
-    
-    //gives the OTP text
-    final func getOTP() -> String {
-        var OTP = ""
-        for textField in textFieldsCollection {
-            OTP += textField.text ?? ""
-        }
-        return OTP
+        setup()
     }
 
-    //set isWarningColor true for using it as a warning color
-    final func setAllFieldColor(isWarningColor: Bool = false, color: UIColor) {
-        for textField in textFieldsCollection{
-            textField.layer.borderColor = color.cgColor
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        // Focus once the view is actually on screen: `becomeFirstResponder()` is a
+        // no-op before that, and the SMS code suggestion only shows while the
+        // field is first responder.
+        guard window != nil, !hasRequestedFocus else { return }
+        hasRequestedFocus = true
+        DispatchQueue.main.async { [weak self] in
+            self?.textField.becomeFirstResponder()
         }
+    }
+
+    // MARK: - Public API
+
+    /// The digits entered so far (may be shorter than `numberOfFields`).
+    func getOTP() -> String {
+        textField.text ?? ""
+    }
+
+    /// Set `isWarningColor` to keep the color until the user edits again.
+    func setAllFieldColor(isWarningColor: Bool = false, color: UIColor) {
+        digitLabels.forEach { $0.layer.borderColor = color.cgColor }
         showsWarningColor = isWarningColor
     }
-    
-    //autofill textfield starting from first
-    private final func autoFillTextField(with string: String) {
-        remainingStrStack = string.reversed().compactMap{String($0)}
-        for textField in textFieldsCollection {
-            if let charToAdd = remainingStrStack.popLast() {
-                textField.text = String(charToAdd)
-            } else {
-                break
-            }
-        }
-        checkForValidity()
-        remainingStrStack = []
+
+    func clear() {
+        textField.text = ""
+        textDidChange()
     }
-    
+
+    // MARK: - Setup
+
+    private func setup() {
+        backgroundColor = .clear
+
+        boxesStackView.axis = .horizontal
+        boxesStackView.distribution = .fillEqually
+        boxesStackView.alignment = .fill
+        boxesStackView.spacing = 10
+        boxesStackView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(boxesStackView)
+
+        for _ in 0..<numberOfFields {
+            let label = UILabel()
+            label.backgroundColor = textBackgroundColor
+            label.textAlignment = .center
+            label.font = UIFont(name: "Roboto-Regular", size: 24)
+            label.textColor = .black
+            label.layer.cornerRadius = 8
+            label.layer.masksToBounds = true
+            label.layer.borderWidth = 1
+            label.layer.borderColor = inactiveFieldBorderColor.cgColor
+            label.isAccessibilityElement = false
+            digitLabels.append(label)
+            boxesStackView.addArrangedSubview(label)
+        }
+
+        // Invisible field on top of the boxes: it owns the keyboard, receives the
+        // autofill / paste, and any tap on a box lands on it.
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.backgroundColor = .clear
+        textField.textColor = .clear
+        textField.tintColor = .clear
+        textField.keyboardType = .numberPad
+        textField.textContentType = .oneTimeCode
+        textField.autocorrectionType = .no
+        textField.spellCheckingType = .no
+        textField.delegate = self
+        textField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        textField.accessibilityLabel = "MOBILE_sign_in_verify_phone_number".localized()
+        addSubview(textField)
+
+        NSLayoutConstraint.activate([
+            boxesStackView.topAnchor.constraint(equalTo: topAnchor),
+            boxesStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            boxesStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            boxesStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            textField.topAnchor.constraint(equalTo: topAnchor),
+            textField.leadingAnchor.constraint(equalTo: leadingAnchor),
+            textField.trailingAnchor.constraint(equalTo: trailingAnchor),
+            textField.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ])
+    }
+
+    // MARK: - Editing
+
+    @objc private func textDidChange() {
+        let digits = String((textField.text ?? "").filter(\.isNumber).prefix(numberOfFields))
+        if textField.text != digits {
+            textField.text = digits
+        }
+        render(digits)
+
+        let isComplete = digits.count == numberOfFields
+        delegate?.otpCodeDidChange(digits, isComplete: isComplete)
+        if isComplete {
+            textField.resignFirstResponder()
+        }
+    }
+
+    private func render(_ digits: String) {
+        let characters = Array(digits)
+        let activeIndex = textField.isFirstResponder ? characters.count : -1
+        for (index, label) in digitLabels.enumerated() {
+            label.text = index < characters.count ? String(characters[index]) : ""
+            guard !showsWarningColor else { continue }
+            label.layer.borderColor = (index == activeIndex ? activeFieldBorderColor : inactiveFieldBorderColor).cgColor
+        }
+    }
 }
 
-//MARK: - TextField Handling
-extension OTPStackView: UITextFieldDelegate {
-        
+// MARK: - UITextFieldDelegate
+
+extension OTPCodeView: UITextFieldDelegate {
+
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if showsWarningColor {
-            setAllFieldColor(color: inactiveFieldBorderColor)
             showsWarningColor = false
         }
-        textField.layer.borderColor = activeFieldBorderColor.cgColor
+        render(getOTP())
     }
-    
+
     func textFieldDidEndEditing(_ textField: UITextField) {
-        checkForValidity()
-        textField.layer.borderColor = inactiveFieldBorderColor.cgColor
+        render(getOTP())
     }
-    
-    //switches between OTPTextfields
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range:NSRange,
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
-        guard let textField = textField as? OTPTextField else { return true }
+        let current = textField.text ?? ""
+
+        // SMS autofill and paste deliver the whole code in one call: take its
+        // digits as the new code regardless of where the caret was.
         if string.count > 1 {
-            textField.resignFirstResponder()
-            autoFillTextField(with: string)
+            textField.text = String(string.filter(\.isNumber).prefix(numberOfFields))
+            textDidChange()
             return false
-        } else {
-            if (range.length == 0 && string == "") {
-                checkForValidity()
-                return false
-            } else if (range.length == 0){
-                if textField.nextTextField == nil {
-                    textField.text? = string
-                    textField.resignFirstResponder()
-                }else{
-                    textField.text? = string
-                    textField.nextTextField?.becomeFirstResponder()
-                }
-                return false
-            }
-            return true
         }
+
+        // Typing a digit into an already complete (e.g. rejected) code starts over.
+        if range.length == 0, !string.isEmpty, current.count >= numberOfFields {
+            textField.text = string
+            textDidChange()
+            return false
+        }
+
+        return true
     }
-    
 }

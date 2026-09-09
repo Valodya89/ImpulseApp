@@ -21,10 +21,13 @@ final class TransferToFriendViewController: BaseViewController, StoryboardInitia
     @IBOutlet weak var transferUserImageView: CircleImageView!
     @IBOutlet weak var freeMinutesLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var currencyLabel: UILabel!
     
     let transferViewModel = TransferToFriendsViewModel()
     private var phoneNumber: String!
     private var accountBalance: Double!
+    /// Currency of the wallet the money is sent from; never a hardcoded code.
+    private var walletCurrency: String = UserManager.walletCurrencyTitle
     private var user: UserResult?
     private var userAvatarUrlStirng: String?
     private var transferUser: ContactsListModel?
@@ -39,6 +42,7 @@ final class TransferToFriendViewController: BaseViewController, StoryboardInitia
         trancferToFriendVC.userAvatarUrlStirng = avatarUrl
         trancferToFriendVC.phoneNumber = phoneNumber
         trancferToFriendVC.accountBalance = wallet?.balance ?? 0.0
+        trancferToFriendVC.walletCurrency = UserManager.currencyTitle(wallet?.currency)
         
         return trancferToFriendVC
     }
@@ -74,6 +78,7 @@ final class TransferToFriendViewController: BaseViewController, StoryboardInitia
         transferUserLabel.text = (transferUser?.receiverName ?? "") + " " + (transferUser?.receiverSurname ?? "")
         freeMinutesLabel.text = user?.minutes.description ?? "0"
         amountLabel.text = accountBalance.description
+        currencyLabel.text = walletCurrency
         
         setNoneEmptyName(label: userNameLabel, noneEmptyText: transferViewModel.getUserPhoneNumber())
         setNoneEmptyName(label: transferUserLabel, noneEmptyText: phoneNumber)
@@ -92,6 +97,7 @@ final class TransferToFriendViewController: BaseViewController, StoryboardInitia
         sendButton.isActive = false
         amountTextField.numDelegate = self
         balanceView.layer.cornerRadius = Constant.CornerRadius.cornerRadius8
+        amountTextField.setCurrency(walletCurrency)
         if let debt = self.debt {
             amountTextField.numberText = debt
             sendButton.isActive = true
@@ -121,13 +127,13 @@ final class TransferToFriendViewController: BaseViewController, StoryboardInitia
 //        }
         if amount < 100 {
             UserManager.share.isOpenDebtScreen = true
-            AlertController.show(title: "MOBILE_transfer_transfer_failed".localized(), message: "MOBILE_min_value_to_transfer".localized(), image: UIImage(named: "ic_cancel_trasnfer")!, in: self, dismissOnTouch: true)
+            showTransferFailed("MOBILE_min_value_to_transfer".localized())
             return
         }
         
         if amount > accountBalance {
             UserManager.share.isOpenDebtScreen = true
-            AlertController.show(title: "MOBILE_transfer_transfer_failed".localized(), message: "MOBILE_transfer_not_enough_money".localized(), image: UIImage(named: "ic_cancel_trasnfer")!, in: self, dismissOnTouch: true)
+            showTransferFailed("MOBILE_transfer_not_enough_money".localized())
             return
         }
         
@@ -141,14 +147,34 @@ final class TransferToFriendViewController: BaseViewController, StoryboardInitia
             case .success:
                 UserManager.share.isOpenDebtScreen = false
                 NotificationCenter.default.post(name: Constant.Notifications.updateUserUI, object: nil)
-                AlertController.show(title: nil, message: nil, image: #imageLiteral(resourceName: "ic_POP_UP_chekmark"), in: self, dismissOnTouch: true) { [weak self] in
-                    self?.dismiss(animated: true, completion: nil)
-                }
+                self.view.endEditing(true)
+                self.showSuccessMessage(title: "MOBILE_global_success_title".localized(),
+                                        body: "MOBILE_global_success".localized())
+                self.dismiss(animated: true, completion: nil)
             case .failure(let err):
                 UserManager.share.isOpenDebtScreen = true
                 print(err.localizedDescription)
-                AlertController.show(title: "MOBILE_transfer_transfer_failed".localized(), message: "MOBILE_transfer_not_enough_money".localized(), image: UIImage(named: "ic_cancel_trasnfer")!, in: self, dismissOnTouch: true)
+                self.showTransferFailed(self.failureMessage(for: err))
             }
+        }
+    }
+    
+    /// Red banner shown in place on this screen; the entered amount stays so the user can fix it.
+    private func showTransferFailed(_ message: String) {
+        view.endEditing(true)
+        showErrorMessage(title: "MOBILE_transfer_transfer_failed".localized(), body: message)
+    }
+    
+    private func failureMessage(for error: TransferMoneyErrors) -> String {
+        switch error {
+        case .notEnoughBalance:
+            return "MOBILE_transfer_not_enough_money".localized()
+        case .wrongAmount:
+            return "MOBILE_min_value_to_transfer".localized()
+        case .sameReceiver:
+            return UIViewController.userFacingErrorMessage(from: error.rawValue)
+        case .other:
+            return "MOBILE_something_wrong".localized()
         }
     }
     

@@ -45,6 +45,11 @@ class MimoHomeViewController: MimoBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Whatever route got us here (login, email verification, splash), the home
+        // screen has no text input - a keyboard left over from the previous screen
+        // would just sit on top of the map.
+        UIApplication.shared.dismissKeyboard()
+        
         viewModel?.loadBalance()
         viewModel?.getActiveTrips()
         loadStories()

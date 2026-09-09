@@ -20,6 +20,14 @@ extension UIApplication {
     var keyWindowInConnectedScenes: UIWindow? {
         return windows.first(where: { $0.isKeyWindow })
     }
+
+    /// Dismisses the keyboard whichever view owns the first responder. `endEditing`
+    /// on a view only reaches responders inside that view, which is not enough when
+    /// the window's root view controller is swapped out from under the text field -
+    /// the field is detached without resigning and the keyboard stays up.
+    func dismissKeyboard() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 }
 
 extension UIViewController {

@@ -580,6 +580,7 @@
                         <outlet property="amountLabel" destination="kG8-H0-p9i" id="IDY-iF-3aS"/>
                         <outlet property="amountTextField" destination="7Ef-kr-YcI" id="iPJ-N0-2ST"/>
                         <outlet property="balanceView" destination="BUJ-SR-kSn" id="eeY-Vu-3vu"/>
+                        <outlet property="currencyLabel" destination="YfA-dc-Qpe" id="Cq7-uR-nc1"/>
                         <outlet property="freeMinutesLabel" destination="GTw-jC-kfZ" id="GzU-UF-bnS"/>
                         <outlet property="sendButton" destination="XpL-pe-Zxo" id="Dpv-pA-dcA"/>
                         <outlet property="transferUserImageView" destination="Lab-RJ-5Qb" id="77r-Qk-DQV"/>

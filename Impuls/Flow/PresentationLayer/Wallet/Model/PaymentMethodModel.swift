@@ -47,4 +47,31 @@ extension String {
     var currencySymbol: String {
         "IPAY_currency_symbol_\(self.lowercased())".localized()
     }
+
+    /// Translated currency name, or the raw code when there is no translation -
+    /// `localized()` hands back the lookup key in that case, which must never
+    /// reach a label. nil for an empty code.
+    var currencyNameOrCode: String? {
+        guard !isEmpty else { return nil }
+
+        let name = currencyName
+        return name == "IPAY_currency_\(lowercased())" ? self : name
+    }
+}
+
+extension UserManager {
+
+    /// Currency to print next to an amount: the signed-in user's wallet currency,
+    /// falling back to the app-wide default when no wallet is loaded yet.
+    static var walletCurrencyTitle: String {
+        UserManager.share.walletModel?.currency.currencyNameOrCode
+            ?? "MOBILE_global_total_currency".localized()
+    }
+
+    /// Currency to print next to an amount the backend may or may not have priced:
+    /// the currency it sent when there is one, the signed-in user's wallet
+    /// currency otherwise. Never returns an empty string, and never assumes AMD.
+    static func currencyTitle(_ currency: String?) -> String {
+        currency?.currencyNameOrCode ?? walletCurrencyTitle
+    }
 }

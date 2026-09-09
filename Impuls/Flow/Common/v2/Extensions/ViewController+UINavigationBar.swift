@@ -88,6 +88,30 @@ extension UIViewController {
         self.present(hostingController, animated: true)
     }
     
+    /// Presents the v2 history screen. Shared by the profile menu and the map's
+    /// scan sheet so both entry points show the same list.
+    func openHistory() {
+        // Called both on a navigation controller (profile) and on a plain
+        // controller inside one (the map's scan sheet).
+        let presentingNavigationController = (self as? UINavigationController) ?? navigationController
+        let coordinator = EVChargerCoordinator(navigationController: presentingNavigationController, provider: EVChargerProvider())
+        let historyView = HistoryView(viewModel: HistoryViewModel(coordinatoor: coordinator, worker: TripWorker()))
+        let hostingController = UIHostingController(rootView: historyView)
+        
+        guard presentingNavigationController != nil else {
+            // Nothing in the chain for the coordinator to dismiss - wrap the
+            // screen so its close button still works.
+            let wrapper = UINavigationController(rootViewController: hostingController)
+            wrapper.isNavigationBarHidden = true
+            coordinator.navigationController = wrapper
+            
+            self.present(wrapper, animated: true)
+            return
+        }
+        
+        self.present(hostingController, animated: true)
+    }
+    
     @objc private func dissmisWallet() {
         dismiss(animated: true)
     }

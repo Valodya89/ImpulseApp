@@ -16,6 +16,17 @@ struct TransactionDTO: Decodable {
     let date: Int
 }
 
+extension TransactionDTO {
+
+    /// Currency to print next to the amount. `GET /api/transactions` returns a
+    /// raw `Currency` code, which is translated here the same way every other
+    /// amount in the app is; when a row carries no currency it falls back to the
+    /// signed-in user's wallet currency, so an amount is never shown bare.
+    var currencyTitle: String {
+        currency.currencyNameOrCode ?? UserManager.walletCurrencyTitle
+    }
+}
+
 enum TransactionProvider: String, Decodable {
     case mimoPay = "MIMO_PAY"
     case mimoWithdrawalLocal = "MIMO_WITHDRAWAL_LOCAL"
