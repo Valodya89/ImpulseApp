@@ -16,7 +16,7 @@ struct MimoWheelPickerTextField: View {
     
     var body: some View {
         ZStack {
-            Color.white
+            Color.appBackground
             
             VStack(alignment: .leading, spacing: 5) {
                 HStack {
@@ -39,7 +39,7 @@ struct MimoWheelPickerTextField: View {
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .background(
             RoundedRectangle(cornerRadius: 8)
-                .stroke(Color.black, lineWidth: 0.5)
+                .stroke(Color.appLabel, lineWidth: 0.5)
         )
         .frame(height: 63)
         .frame(maxWidth: .infinity)

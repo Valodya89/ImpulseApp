@@ -23,7 +23,7 @@ struct StoriesThumbView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.black025, lineWidth: 1)
+                                .stroke(Color.label025, lineWidth: 1)
                         )
                         .onTapGesture {
                             storyViewModel.currentStory = story.id

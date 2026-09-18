@@ -23,7 +23,7 @@
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="bM8-PK-Xae">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="304"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" name="AppBackground"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="304" id="lfy-6Z-AMv"/>
                     </constraints>
@@ -44,7 +44,7 @@
                     <color key="currentPageIndicatorTintColor" name="mimoDarkGray"/>
                 </pageControl>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" name="AppBackground"/>
             <constraints>
                 <constraint firstItem="bM8-PK-Xae" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6kU-ly-RFs"/>
                 <constraint firstItem="bM8-PK-Xae" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="C2f-iJ-foU"/>
@@ -63,5 +63,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

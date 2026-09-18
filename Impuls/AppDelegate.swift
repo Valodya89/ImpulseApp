@@ -23,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        // Saved server texts are used until (and unless) the backend answers.
+        LocalizationStore.shared.restoreCached()
+        MimoSocketLog.start()
         DeviceCheckManager.shared.sendEphemeralToken()
         GMSServices.provideAPIKey(Constant.APIKeys.GOOGLE_MAPS_API_KEY)
         KeychainManager().resetIfNeed()
@@ -52,6 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     /// Set view controller as root
     func setRootViewController(_ vc: UIViewController) {
+        ThemeManager.shared.apply(to: UIApplication.shared.windows.first)
         UIApplication.shared.windows.first?.rootViewController = vc
         UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
@@ -74,11 +78,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         UINavigationBar.appearance().isTranslucent = true
-        UINavigationBar.appearance().tintColor = #colorLiteral(red: 0.2078431373, green: 0.2078431373, blue: 0.2078431373, alpha: 1)
+        UINavigationBar.appearance().tintColor = .mimoDarkGray
         let backImage = UIImage(named: "ic_back")!.withRenderingMode(.alwaysOriginal)
         UINavigationBar.appearance().backIndicatorImage = backImage
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
-        let attributes = [NSAttributedString.Key.font: UIFont(name: "Roboto-Bold", size: 17)!, .foregroundColor: #colorLiteral(red: 0.2078431373, green: 0.2078431373, blue: 0.2078431373, alpha: 1)] as [NSAttributedString.Key : Any]
+        let attributes = [NSAttributedString.Key.font: UIFont(name: "Roboto-Bold", size: 17)!, .foregroundColor: UIColor.mimoDarkGray] as [NSAttributedString.Key : Any]
         UINavigationBar.appearance().titleTextAttributes = attributes
     }
     

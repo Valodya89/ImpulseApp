@@ -28,7 +28,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lea-vr-1xG" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <connections>
                                     <outlet property="delegate" destination="Z65-uH-vdF" id="ouy-l4-Hha"/>
                                 </connections>
@@ -172,7 +172,7 @@ We are many. Just register and enjoy.</string>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstItem="0VB-NA-5Q4" firstAttribute="width" secondItem="OX6-SP-YVU" secondAttribute="width" multiplier="0.578947" id="8ZS-b5-A8d"/>
                                             <constraint firstAttribute="width" secondItem="OX6-SP-YVU" secondAttribute="height" multiplier="1:1" id="tOG-vC-2gx"/>
@@ -227,7 +227,7 @@ We are many. Just register and enjoy.</string>
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="Qt8-Xv-Wgd" firstAttribute="centerY" secondItem="mqf-Ix-VcI" secondAttribute="centerY" id="5xe-U3-GeW"/>
                                     <constraint firstItem="Qt8-Xv-Wgd" firstAttribute="height" secondItem="mqf-Ix-VcI" secondAttribute="height" multiplier="0.578947" id="9KJ-dN-KY6"/>
@@ -330,7 +330,7 @@ We are many. Just register and enjoy.</string>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join Now" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNe-aJ-pNa" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="62" y="15.000000000000002" width="63.333333333333343" height="17.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
-                                                <color key="textColor" name="mimoBlack"/>
+                                                <color key="textColor" name="OnBrandLabel"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_guest_map_join_now"/>
@@ -359,7 +359,7 @@ We are many. Just register and enjoy.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jNL-lG-rGz">
                                                 <rect key="frame" x="4" y="4" width="40" height="40"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bike" translatesAutoresizingMaskIntoConstraints="NO" id="giB-4X-rws">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bike_fixed" translatesAutoresizingMaskIntoConstraints="NO" id="giB-4X-rws">
                                                         <rect key="frame" x="8" y="8" width="24" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="giB-4X-rws" secondAttribute="height" multiplier="1:1" id="lEh-zk-EaX"/>
@@ -376,7 +376,7 @@ We are many. Just register and enjoy.</string>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d4f-SF-kaM">
                                                 <rect key="frame" x="44" y="0.0" width="18" height="48"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bike" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yc-QU-3Nv" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="61.999999999999993" y="15.000000000000002" width="29.666666666666664" height="17.666666666666671"/>
@@ -394,7 +394,7 @@ We are many. Just register and enjoy.</string>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstItem="jNL-lG-rGz" firstAttribute="width" secondItem="Rlf-Qc-2X9" secondAttribute="width" multiplier="0.288" id="Jaj-C2-lb2"/>
                                             <constraint firstItem="d4f-SF-kaM" firstAttribute="top" secondItem="Rlf-Qc-2X9" secondAttribute="top" id="LeP-wg-9DI"/>
@@ -413,7 +413,7 @@ We are many. Just register and enjoy.</string>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Rlf-Qc-2X9" secondAttribute="trailing" id="DPh-ap-8uA"/>
                                     <constraint firstItem="9P3-QB-3wt" firstAttribute="width" secondItem="wc3-cD-TeK" secondAttribute="width" multiplier="0.558209" id="QSb-HY-Szy"/>
@@ -428,7 +428,7 @@ We are many. Just register and enjoy.</string>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="z1l-AF-bTr"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="wc3-cD-TeK" firstAttribute="width" secondItem="9io-m6-DLm" secondAttribute="width" multiplier="0.893333" id="NPJ-sG-62I"/>
                             <constraint firstItem="wc3-cD-TeK" firstAttribute="centerY" secondItem="9io-m6-DLm" secondAttribute="centerY" multiplier="0.91" id="QEJ-qg-p4j"/>
@@ -585,7 +585,7 @@ We are many. Just register and enjoy.</string>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join and book" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Rt-QY-brI" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="119.66666666666666" y="15.000000000000002" width="95.666666666666657" height="17.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
-                                                <color key="textColor" name="mimoBlack"/>
+                                                <color key="textColor" name="OnBrandLabel"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_guest_map_join_and_book"/>
@@ -635,7 +635,7 @@ We are many. Just register and enjoy.</string>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PcD-zy-Rjd"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="Hxk-CB-MLM" firstAttribute="bottom" secondItem="L0h-Iw-VgG" secondAttribute="bottom" id="5Lz-1P-Ytm"/>
                             <constraint firstItem="aEy-rk-cix" firstAttribute="leading" secondItem="W0A-4e-9JO" secondAttribute="trailing" constant="5" id="Cin-0T-XRo"/>
@@ -708,5 +708,11 @@ We are many. Just register and enjoy.</string>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="OnBrandLabel">
+            <color red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

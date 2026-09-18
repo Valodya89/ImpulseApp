@@ -41,7 +41,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.95294117647058818" green="0.96862745098039216" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="mimoGrayLight"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="O95-yX-tgf" secondAttribute="height" id="2fG-TD-0kf"/>
                                     <constraint firstItem="qG7-L3-moJ" firstAttribute="centerX" secondItem="O95-yX-tgf" secondAttribute="centerX" id="HMX-XH-qsd"/>
@@ -131,11 +131,11 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10010342" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCq-0R-agC">
                                                                 <rect key="frame" x="26" y="1" width="63" height="24.666666666666668"/>
                                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                                                <nil key="textColor"/>
+                                                                <color key="textColor" name="AppLabel"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <color key="backgroundColor" name="AppBackground"/>
                                                         <constraints>
                                                             <constraint firstItem="LCq-0R-agC" firstAttribute="top" secondItem="cWJ-qy-8y9" secondAttribute="top" constant="1" id="CbK-S6-4XQ"/>
                                                             <constraint firstItem="jBX-E7-AD4" firstAttribute="leading" secondItem="cWJ-qy-8y9" secondAttribute="leading" constant="8" id="IR8-Fb-bJC"/>
@@ -157,7 +157,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstItem="cWJ-qy-8y9" firstAttribute="top" secondItem="OAy-ad-Voi" secondAttribute="top" constant="-2" id="O2k-8m-5Dj"/>
                                                     <constraint firstAttribute="bottom" secondItem="cWJ-qy-8y9" secondAttribute="bottom" constant="-2" id="QGJ-7N-Fip"/>
@@ -166,7 +166,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstItem="0gc-Sv-sGJ" firstAttribute="leading" secondItem="dUE-uy-RJP" secondAttribute="leading" id="15W-vR-Ugo"/>
                                             <constraint firstAttribute="bottom" secondItem="0gc-Sv-sGJ" secondAttribute="bottom" id="IEO-Pa-evO"/>
@@ -232,7 +232,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="pOd-yp-GfC" firstAttribute="top" secondItem="UqU-73-FBp" secondAttribute="top" constant="8" id="3EZ-2d-hxj"/>
                             <constraint firstItem="O95-yX-tgf" firstAttribute="centerY" secondItem="UqU-73-FBp" secondAttribute="centerY" id="Em2-iu-Nh0"/>
@@ -284,5 +284,14 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoGrayLight">
+            <color red="0.9647" green="0.9725" blue="0.9843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppLabel">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

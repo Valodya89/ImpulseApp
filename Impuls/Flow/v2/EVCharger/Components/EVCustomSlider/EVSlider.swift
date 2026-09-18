@@ -113,7 +113,7 @@ struct CircleSlider: View {
                 .frame(width: SizeSlider.withBottomCircle.rawValue)
             Circle()
                 .frame(width: SizeSlider.withTopCircle.rawValue)
-                .foregroundColor(.white)
+                .foregroundColor(.alwaysWhite)
         }
     }
 }

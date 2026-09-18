@@ -147,7 +147,7 @@ class ChargerRouter {
         
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.tintColor = .black
+        button.tintColor = .appLabel
         button.addAction(UIAction(handler: { _ in
             viewController.dismiss(animated: true)
         }), for: .touchUpInside)

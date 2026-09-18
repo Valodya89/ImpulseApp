@@ -193,8 +193,13 @@ final class MITextFieldView: UIView, MIKeyboardInteractionResponderProtocol {
         UIView.setAnimationsEnabled(true)
         // setup layers boarder and corners.
         layer.borderWidth = 0.5
-        layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        layer.borderColor = UIColor.mimoBlackWith025alpha.cgColor
         layer.cornerRadius = 8
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        layer.borderColor = UIColor.mimoBlackWith025alpha.cgColor
     }
     
     /// Change TextField state ( see `MATextFieldStates` for details)

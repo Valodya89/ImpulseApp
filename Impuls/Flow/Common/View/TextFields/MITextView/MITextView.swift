@@ -48,7 +48,7 @@ final class MITextView: UIView, MIKeyboardInteractionResponderProtocol {
     /// Current attributes for textField. 
     fileprivate let textViewAttributes: [NSAttributedString.Key:Any] = [
         .font: UIFont.init(name: "Roboto-Regular", size: 17)!,
-        .foregroundColor: UIColor.black,
+        .foregroundColor: UIColor.appLabel,
         .paragraphStyle: {
             let paragraph = NSMutableParagraphStyle()
             paragraph.lineSpacing = 0
@@ -173,10 +173,15 @@ final class MITextView: UIView, MIKeyboardInteractionResponderProtocol {
         setFieldState(state: .empty)
         UIView.setAnimationsEnabled(true)
         layer.borderWidth = 0.5
-        layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        layer.borderColor = UIColor.mimoBlackWith025alpha.cgColor
         layer.cornerRadius = 8
         clipsToBounds = true
         
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        layer.borderColor = UIColor.mimoBlackWith025alpha.cgColor
     }
     
     /// Animatable set current editable field state

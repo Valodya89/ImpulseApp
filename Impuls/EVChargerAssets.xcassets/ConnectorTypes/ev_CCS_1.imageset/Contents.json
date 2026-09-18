@@ -1,15 +1,25 @@
 {
-  "images" : [
+  "images": [
     {
-      "filename" : "ev_CCS_1.svg",
-      "idiom" : "universal"
+      "filename": "ev_CCS_1.svg",
+      "idiom": "universal"
+    },
+    {
+      "filename": "dark_ev_CCS_1.svg",
+      "idiom": "universal",
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ]
     }
   ],
-  "info" : {
-    "author" : "xcode",
-    "version" : 1
+  "info": {
+    "author": "xcode",
+    "version": 1
   },
-  "properties" : {
-    "template-rendering-intent" : "template"
+  "properties": {
+    "template-rendering-intent": "template"
   }
 }

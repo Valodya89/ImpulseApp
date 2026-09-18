@@ -206,21 +206,29 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lb5-9a-707">
                                                 <rect key="frame" x="0.0" y="101" width="414" height="61"/>
                                                 <subviews>
-                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EHK-mE-16h">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EHK-mE-16h">
                                                         <rect key="frame" x="10" y="0.0" width="394" height="61"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GaT-Cp-Y7J" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appearance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GaT-Cp-Y7J" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                                                 <rect key="frame" x="15" y="20.5" width="82.5" height="20"/>
                                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_settings_dark_mode"/>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_settings_appearance"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZcN-Hm-OTk">
-                                                                <rect key="frame" x="330" y="15" width="51" height="31"/>
-                                                            </switch>
+                                                            <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZcN-Hm-OTk">
+                                                                <rect key="frame" x="200" y="15" width="181" height="32"/>
+                                                                <segments>
+                                                                    <segment title="System"/>
+                                                                    <segment title="Light"/>
+                                                                    <segment title="Dark"/>
+                                                                </segments>
+                                                                <connections>
+                                                                    <action selector="themeChanged:" destination="chf-DN-ue0" eventType="valueChanged" id="thm-ac-001"/>
+                                                                </connections>
+                                                            </segmentedControl>
                                                         </subviews>
                                                         <color key="backgroundColor" name="mimoWhite"/>
                                                         <constraints>
@@ -277,6 +285,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="switch" destination="M9k-0Q-XCd" id="1ix-Kt-hmv"/>
+                        <outlet property="themeLabel" destination="GaT-Cp-Y7J" id="thm-ol-001"/>
+                        <outlet property="themeSegmentedControl" destination="ZcN-Hm-OTk" id="thm-ol-002"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="snz-X4-2DM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -501,7 +511,7 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kt8-nc-9vg">
                                 <rect key="frame" x="0.0" y="360" width="414" height="210"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="AlwaysBlack"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="210" id="Zp5-K9-gDb"/>
                                 </constraints>
@@ -675,6 +685,9 @@
         </namedColor>
         <namedColor name="mimoWhite">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AlwaysBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

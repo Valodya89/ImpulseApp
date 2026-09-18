@@ -14,6 +14,7 @@ protocol WalletWorkerProtocol {
     func getUser() -> AnyPublisher<UserResponse, MimoError>
     func getAccount() -> AnyPublisher<UserResponse, MimoError>
     func submitPromo(code: String) -> AnyPublisher<EmptyModel, MimoError>
+    func checkPromoStatus() -> AnyPublisher<PromoStatus, MimoError>
     func depositFromUnAttachedCard(amount: Double) -> AnyPublisher<AttachCardModel, MimoError>
     func deleteCard() -> AnyPublisher<EmptyModel, MimoError>
     func attachCard(provider: PaymentMethodProvider) -> AnyPublisher<AttachCardModel, MimoError>
@@ -104,6 +105,22 @@ final class WalletWorker: WalletWorkerProtocol {
                         promise(.success(data))
                     case .failure(let error):
                         promise(.failure(MimoError(error: NetworkError.responseError(error.localizedDescription))))
+                    }
+                }
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func checkPromoStatus() -> AnyPublisher<PromoStatus, MimoError> {
+        Deferred {
+            Future<PromoStatus, MimoError> { promise in
+                self.walletRepository.checkPromoStatus { result in
+                    switch result {
+                    case .success(let data):
+                        promise(.success(data))
+                    case .failure(let error):
+                        promise(.failure(.init(error: .responseError(error.localizedDescription))))
                     }
                 }
             }

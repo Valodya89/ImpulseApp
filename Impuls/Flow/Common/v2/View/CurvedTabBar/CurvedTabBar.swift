@@ -16,7 +16,7 @@ class CurvedTabBar: UITabBar {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = createPath()
 //        shapeLayer.strokeColor = UIColor.mimoYellow500.cgColor
-        shapeLayer.fillColor = UIColor.white.cgColor
+        shapeLayer.fillColor = UIColor.appBackground.resolvedColor(with: traitCollection).cgColor
         shapeLayer.shadowColor = UIColor.black.withAlphaComponent(0.3).cgColor
         shapeLayer.shadowOffset = .init(width: 0, height: 2)
         shapeLayer.shadowRadius = 3.5
@@ -34,6 +34,13 @@ class CurvedTabBar: UITabBar {
 
     override func draw(_ rect: CGRect) {
         self.addShape()
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            setNeedsDisplay()
+        }
     }
 
     func createPath() -> CGPath {

@@ -63,7 +63,7 @@ class PickerViewManager: NSObject {
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let titleButton = UIBarButtonItem(title: title, style: .plain, target: nil, action: nil)
         titleButton.isEnabled = false
-        titleButton.setTitleTextAttributes([.foregroundColor : UIColor.black], for: .disabled)
+        titleButton.setTitleTextAttributes([.foregroundColor : UIColor.appLabel], for: .disabled)
         toolbar.setItems([flexSpace, titleButton, flexSpace, doneButton], animated: true)
         return toolbar
     }

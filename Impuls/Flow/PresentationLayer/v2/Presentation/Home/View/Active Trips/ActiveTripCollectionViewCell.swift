@@ -25,7 +25,7 @@ class ActiveTripCollectionViewCell: BaseCollectionViewCell {
         super.awakeFromNib()
         
         contentView.clipsToBounds = false
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .appBackground
         contentView.cornerRadius = 8
         contentView.addShadow(color: .black.withAlphaComponent(0.25), offset: .init(width: 0, height: 0), shadowRadius: 5)
     }

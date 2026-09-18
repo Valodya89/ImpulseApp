@@ -37,7 +37,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fy-yx-WFL" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="-200" width="393" height="1052"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <connections>
                                     <outlet property="delegate" destination="5nO-7e-lO7" id="XRH-Bc-Ndf"/>
                                 </connections>
@@ -215,7 +215,7 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstItem="OX3-1V-LoB" firstAttribute="centerY" secondItem="VZW-Ig-0g8" secondAttribute="centerY" multiplier="1.18" id="2hw-MR-gSR"/>
                                             <constraint firstAttribute="trailing" secondItem="voZ-1J-4nM" secondAttribute="trailing" constant="10" id="8BQ-eF-pS3"/>
@@ -239,7 +239,7 @@
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BMY-7J-daY" userLabel="SpaceView">
                                         <rect key="frame" x="0.0" y="332.33333333333331" width="355" height="22.333333333333314"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p6d-i1-wj4" userLabel="StopView">
                                         <rect key="frame" x="15.666666666666657" y="354.66666666666669" width="323.66666666666674" height="50"/>
@@ -261,7 +261,7 @@
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                                 <inset key="imageEdgeInsets" minX="-80" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Stop" image="ic_stop">
-                                                    <color key="titleColor" name="mimoBlack"/>
+                                                    <color key="titleColor" name="OnBrandLabel"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_book_stop"/>
@@ -282,7 +282,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="doj-3c-YXm" secondAttribute="bottom" id="6kI-QO-Aao"/>
                                             <constraint firstAttribute="bottom" secondItem="2eK-Kd-5Y5" secondAttribute="bottom" id="AnF-6S-9sA"/>
@@ -305,7 +305,7 @@
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                                 <inset key="imageEdgeInsets" minX="-80" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Start">
-                                                    <color key="titleColor" name="mimoBlack"/>
+                                                    <color key="titleColor" name="OnBrandLabel"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="Start"/>
@@ -316,7 +316,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstItem="40z-bs-VVy" firstAttribute="centerX" secondItem="WPl-7C-z6T" secondAttribute="centerX" id="Mye-2k-tgD"/>
                                             <constraint firstItem="40z-bs-VVy" firstAttribute="width" secondItem="WPl-7C-z6T" secondAttribute="width" multiplier="0.621359" id="NV6-Lb-gSF"/>
@@ -325,7 +325,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="WPl-7C-z6T" firstAttribute="width" secondItem="p6d-i1-wj4" secondAttribute="width" id="00D-JR-seQ"/>
                                     <constraint firstItem="VZW-Ig-0g8" firstAttribute="height" secondItem="e5L-t9-UQF" secondAttribute="height" multiplier="0.483412" id="2VC-zi-ri9"/>
@@ -365,7 +365,7 @@
                                                 </constraints>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstItem="8eZ-oW-cDx" firstAttribute="centerX" secondItem="UU6-Bb-4cH" secondAttribute="centerX" id="PHK-sf-HVf"/>
                                             <constraint firstItem="8eZ-oW-cDx" firstAttribute="width" secondItem="UU6-Bb-4cH" secondAttribute="width" multiplier="0.578947" id="QRB-UY-2MC"/>
@@ -423,7 +423,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstItem="sIS-M0-dhj" firstAttribute="centerY" secondItem="tmX-3I-pmf" secondAttribute="centerY" id="0VO-rm-9IP"/>
                                             <constraint firstAttribute="height" constant="72.666666666666671" id="MIh-x4-vMb"/>
@@ -459,7 +459,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <color key="backgroundColor" name="AppBackground"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="csr-qr-jxI" secondAttribute="bottom" constant="2" id="0PA-I6-DQC"/>
                                                             <constraint firstAttribute="bottom" secondItem="NhI-eI-cKf" secondAttribute="bottom" constant="3" id="2So-JA-dLV"/>
@@ -471,7 +471,7 @@
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="axc-Sc-KD2" secondAttribute="bottom" id="5GF-hW-mi4"/>
                                                     <constraint firstItem="axc-Sc-KD2" firstAttribute="leading" secondItem="u8A-ao-sfW" secondAttribute="leading" id="VHp-x9-2xG"/>
@@ -597,7 +597,7 @@
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Start Ride">
-                                                    <color key="titleColor" name="mimoDarkGray"/>
+                                                    <color key="titleColor" name="OnBrandLabel"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="startRideButtonAction:" destination="00d-8o-3iA" eventType="touchUpInside" id="l1P-hX-vcH"/>
@@ -625,7 +625,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="b8f-nE-Odd" firstAttribute="top" secondItem="FOm-oT-sug" secondAttribute="bottom" constant="5" id="1Ef-2k-CUy"/>
                                     <constraint firstAttribute="bottom" secondItem="b8f-nE-Odd" secondAttribute="bottom" constant="80" id="5Hq-JF-wqG"/>
@@ -665,7 +665,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dow-DT-sqb" secondAttribute="height" id="9t9-Io-nBW"/>
                                     <constraint firstItem="Vv4-KM-afS" firstAttribute="centerY" secondItem="dow-DT-sqb" secondAttribute="centerY" id="FAd-xJ-kmh"/>
@@ -705,7 +705,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstItem="Zly-n4-EZw" firstAttribute="centerY" secondItem="sEO-Jh-q8l" secondAttribute="centerY" multiplier="0.96" id="c6O-jC-lqL"/>
                                                         <constraint firstItem="Zly-n4-EZw" firstAttribute="leading" secondItem="sEO-Jh-q8l" secondAttribute="leading" constant="11" id="nZQ-sw-9ci"/>
@@ -765,7 +765,7 @@
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <color key="backgroundColor" name="AppBackground"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" secondItem="yGi-WP-wmv" secondAttribute="bottom" id="028-No-BFk"/>
                                                                 <constraint firstItem="yGi-WP-wmv" firstAttribute="top" secondItem="14d-cb-S4E" secondAttribute="top" id="1OA-op-uO1"/>
@@ -784,7 +784,7 @@
                                                             </constraints>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstItem="14d-cb-S4E" firstAttribute="height" secondItem="C2G-Xg-ZR2" secondAttribute="height" multiplier="0.777778" id="JMU-YI-QaJ"/>
                                                         <constraint firstItem="14d-cb-S4E" firstAttribute="centerY" secondItem="C2G-Xg-ZR2" secondAttribute="centerY" id="QCy-Ro-uIL"/>
@@ -926,7 +926,7 @@ About problems please contact us Mimo Support</string>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <color key="backgroundColor" name="AppBackground"/>
                                                         <constraints>
                                                             <constraint firstItem="v4g-B1-5LB" firstAttribute="centerY" secondItem="zdW-Zb-Bp5" secondAttribute="centerY" id="7Lw-wx-z9S"/>
                                                             <constraint firstItem="v4g-B1-5LB" firstAttribute="centerX" secondItem="zdW-Zb-Bp5" secondAttribute="centerX" id="9cZ-1g-StR"/>
@@ -951,7 +951,7 @@ About problems please contact us Mimo Support</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <color key="backgroundColor" name="AppBackground"/>
                                                         <constraints>
                                                             <constraint firstItem="pZT-bh-bDi" firstAttribute="width" secondItem="P2M-yW-bOK" secondAttribute="width" multiplier="0.913433" id="LT0-m3-XBi"/>
                                                             <constraint firstItem="pZT-bh-bDi" firstAttribute="centerX" secondItem="P2M-yW-bOK" secondAttribute="centerX" multiplier="0.991" id="Nka-pp-NKc"/>
@@ -1003,11 +1003,11 @@ About problems please contact us Mimo Support</string>
                                                             <constraint firstAttribute="width" constant="70" id="6wX-dE-zaC"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Mardoto-Regular" family="Mardoto" pointSize="14"/>
-                                                        <color key="textColor" red="0.25098039215686274" green="0.25098039215686274" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="textColor" name="mimoDarkGray"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="fAf-v5-Dg6" secondAttribute="bottom" constant="10" id="AcJ-zQ-DxM"/>
                                                     <constraint firstItem="fAf-v5-Dg6" firstAttribute="leading" secondItem="TPV-IU-J2S" secondAttribute="leading" constant="12" id="lDs-df-Bgw"/>
@@ -1053,11 +1053,11 @@ About problems please contact us Mimo Support</string>
                                                             <constraint firstAttribute="width" constant="70" id="Swz-yQ-3iY"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Mardoto-Regular" family="Mardoto" pointSize="14"/>
-                                                        <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="textColor" name="mimoDarkGray"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstItem="KTq-e8-csk" firstAttribute="leading" secondItem="MxZ-Ax-d3v" secondAttribute="leading" constant="12" id="CYJ-14-gMU"/>
                                                     <constraint firstAttribute="bottom" secondItem="KTq-e8-csk" secondAttribute="bottom" constant="10" id="FDw-Tx-Nfo"/>
@@ -1103,11 +1103,11 @@ About problems please contact us Mimo Support</string>
                                                             <constraint firstAttribute="width" constant="70" id="E2t-JH-R0T"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Mardoto-Regular" family="Mardoto" pointSize="14"/>
-                                                        <color key="textColor" red="0.25098039220000001" green="0.25098039220000001" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="textColor" name="mimoDarkGray"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="Puu-wW-Z3d" secondAttribute="bottom" constant="10" id="Kzp-yl-JMu"/>
                                                     <constraint firstAttribute="trailing" secondItem="Puu-wW-Z3d" secondAttribute="trailing" constant="12" id="Nvm-sG-YvY"/>
@@ -1160,7 +1160,7 @@ About problems please contact us Mimo Support</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="CDZ-nK-Y77" secondAttribute="trailing" constant="12" id="9wH-Sb-le5"/>
                                                     <constraint firstAttribute="bottom" secondItem="CDZ-nK-Y77" secondAttribute="bottom" constant="10" id="Ldq-EP-Xs6"/>
@@ -1201,7 +1201,7 @@ About problems please contact us Mimo Support</string>
                                                         <rect key="frame" x="15.666666666666686" y="11.666666666666629" width="13" height="13"/>
                                                     </imageView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="uhQ-VV-Xx3" secondAttribute="trailing" constant="15.33" id="HtW-FM-Uqs"/>
                                                     <constraint firstAttribute="width" constant="44" id="MsJ-oL-qkb"/>
@@ -1482,7 +1482,7 @@ About problems please contact us Mimo Support</string>
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="-60" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Stop Ride" image="ic_unlocked_lock">
-                                    <color key="titleColor" name="mimoBlack"/>
+                                    <color key="titleColor" name="OnBrandLabel"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_map_stop_ride"/>
@@ -1667,14 +1667,14 @@ About problems please contact us Mimo Support</string>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OcZ-Wz-Q3E" userLabel="SpaceView1">
                                 <rect key="frame" x="0.0" y="15" width="414" height="10"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1z9-bo-ZwH" userLabel="ScanQrView">
                                 <rect key="frame" x="16" y="25" width="382" height="188.66666666666666"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K1E-Fc-Jcb" userLabel="spaceView2">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="47"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1lZ-mU-poi" userLabel="ButtonsView">
                                         <rect key="frame" x="0.0" y="47" width="382" height="48.333333333333343"/>
@@ -1682,7 +1682,7 @@ About problems please contact us Mimo Support</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lag-RM-VVw" userLabel="JoinView" customClass="CircleView" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="201.66666666666666" height="48.333333333333336"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_scan" translatesAutoresizingMaskIntoConstraints="NO" id="aHC-R1-wlW">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_scan_fixed" translatesAutoresizingMaskIntoConstraints="NO" id="aHC-R1-wlW">
                                                         <rect key="frame" x="15" y="11.999999999999998" width="24" height="24.333333333333329"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="aHC-R1-wlW" secondAttribute="height" multiplier="1:1" id="Lhh-P0-oOd"/>
@@ -1691,7 +1691,7 @@ About problems please contact us Mimo Support</string>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan QR code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhE-Ym-zUp" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                                         <rect key="frame" x="44" y="15.666666666666671" width="142.66666666666666" height="17"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
-                                                        <color key="textColor" name="mimoBlack"/>
+                                                        <color key="textColor" name="OnBrandLabel"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_global_scan_button"/>
@@ -1789,7 +1789,7 @@ About problems please contact us Mimo Support</string>
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstItem="tL7-Xn-CvS" firstAttribute="leading" secondItem="cQr-wC-DIP" secondAttribute="leading" id="1vu-8S-Kvd"/>
                                                     <constraint firstItem="iOe-fv-TuW" firstAttribute="leading" secondItem="cQr-wC-DIP" secondAttribute="leading" constant="4" id="242-s3-dM1"/>
@@ -1818,7 +1818,7 @@ About problems please contact us Mimo Support</string>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="cQr-wC-DIP" secondAttribute="trailing" id="0mV-HJ-CJ0"/>
                                             <constraint firstAttribute="bottom" secondItem="cQr-wC-DIP" secondAttribute="bottom" id="3t0-92-lLr"/>
@@ -1873,7 +1873,7 @@ About problems please contact us Mimo Support</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstItem="nAz-j7-zXc" firstAttribute="centerY" secondItem="J94-Xs-BId" secondAttribute="centerY" id="D7e-M4-yPq"/>
                                                     <constraint firstItem="jtg-Oa-0MC" firstAttribute="leading" secondItem="J94-Xs-BId" secondAttribute="leading" id="HwD-FO-a5H"/>
@@ -1918,7 +1918,7 @@ About problems please contact us Mimo Support</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstItem="UqW-Xc-fvU" firstAttribute="leading" secondItem="x8y-PE-m4h" secondAttribute="leading" id="KP1-vb-TDW"/>
                                                     <constraint firstItem="d94-ED-mfx" firstAttribute="leading" secondItem="UqW-Xc-fvU" secondAttribute="trailing" constant="5" id="Uqa-RA-sUe"/>
@@ -1935,7 +1935,7 @@ About problems please contact us Mimo Support</string>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="t5b-ED-6ob" secondAttribute="height" id="5un-CE-aND"/>
                                                 </constraints>
-                                                <state key="normal" image="ic_plus"/>
+                                                <state key="normal" image="ic_plus_fixed"/>
                                                 <connections>
                                                     <action selector="plusButtonTapped:" destination="GAK-6B-a2D" eventType="touchUpInside" id="Cw2-fa-WvY"/>
                                                 </connections>
@@ -1945,7 +1945,7 @@ About problems please contact us Mimo Support</string>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Vx2-Wd-M4u" secondAttribute="height" multiplier="335:64" id="0s9-bt-SGv"/>
                                             <constraint firstItem="Of3-Ir-Vau" firstAttribute="width" secondItem="Vx2-Wd-M4u" secondAttribute="width" multiplier="0.0358209" id="0xS-lC-NJw"/>
@@ -1972,7 +1972,7 @@ About problems please contact us Mimo Support</string>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="K1E-Fc-Jcb" secondAttribute="trailing" id="0zA-X6-Lmn"/>
                                     <constraint firstItem="K1E-Fc-Jcb" firstAttribute="leading" secondItem="1z9-bo-ZwH" secondAttribute="leading" id="3mU-R1-FMA"/>
@@ -1989,17 +1989,17 @@ About problems please contact us Mimo Support</string>
                             </view>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VUN-gq-H9i" userLabel="SpaceView">
                                 <rect key="frame" x="0.0" y="213.66666666666666" width="414" height="10"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                             </view>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r9u-Lf-G3c">
                                 <rect key="frame" x="0.0" y="223.66666666666663" width="414" height="244"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtI-GA-Iok">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="244"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="qtI-GA-Iok" firstAttribute="leading" secondItem="r9u-Lf-G3c" secondAttribute="leading" id="GMO-9Y-4Xb"/>
                                     <constraint firstAttribute="bottom" secondItem="qtI-GA-Iok" secondAttribute="bottom" id="Nay-go-lFo"/>
@@ -2009,7 +2009,7 @@ About problems please contact us Mimo Support</string>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UZ5-3f-PPL"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="OcZ-Wz-Q3E" firstAttribute="height" secondItem="WNK-20-SRM" secondAttribute="height" multiplier="0.0235849" id="0cF-TG-Hw1"/>
                             <constraint firstAttribute="trailing" secondItem="OcZ-Wz-Q3E" secondAttribute="trailing" id="1fU-p9-7lG"/>
@@ -2191,7 +2191,7 @@ About problems please contact us Mimo Support</string>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="RhE-Ah-nEh" secondAttribute="height" multiplier="1:1" id="s9B-EA-Y20"/>
                                         </constraints>
-                                        <state key="normal" image="ic_plus"/>
+                                        <state key="normal" image="ic_plus_fixed"/>
                                         <connections>
                                             <action selector="addBalanceTapped:" destination="rza-WM-gos" eventType="touchUpInside" id="11P-7X-xFP"/>
                                         </connections>
@@ -2350,7 +2350,7 @@ About problems please contact us Mimo Support</string>
                                         <color key="backgroundColor" name="mimoYellow500"/>
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                         <state key="normal" title="Book Now">
-                                            <color key="titleColor" name="mimoBlack"/>
+                                            <color key="titleColor" name="OnBrandLabel"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_map_book_now"/>
@@ -2380,7 +2380,7 @@ About problems please contact us Mimo Support</string>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jSh-Hf-UdT"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="okf-74-wSP" firstAttribute="centerY" secondItem="tnS-vG-hhL" secondAttribute="centerY" multiplier="0.413" id="0cE-6v-Tkc"/>
                             <constraint firstItem="pi7-Wz-AHl" firstAttribute="centerY" secondItem="Ryb-jp-zWN" secondAttribute="centerY" id="2VG-p0-z9P"/>
@@ -2445,7 +2445,7 @@ About problems please contact us Mimo Support</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="c8m-Jb-zvg" secondAttribute="bottom" id="8kW-jE-exN"/>
                                     <constraint firstAttribute="trailing" secondItem="c8m-Jb-zvg" secondAttribute="trailing" id="Gsf-gM-Mdj"/>
@@ -2466,7 +2466,7 @@ About problems please contact us Mimo Support</string>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKb-15-YVW">
                                         <rect key="frame" x="0.0" y="0.0" width="20" height="53"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="hlE-5n-OLx"/>
                                         </constraints>
@@ -2478,7 +2478,7 @@ About problems please contact us Mimo Support</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="OKb-15-YVW" firstAttribute="top" secondItem="ZhI-Yi-9Fd" secondAttribute="top" id="9n8-az-fvs"/>
                                     <constraint firstAttribute="bottom" secondItem="FNP-qM-x0Y" secondAttribute="bottom" id="Fy2-ni-bdE"/>
@@ -2498,7 +2498,7 @@ About problems please contact us Mimo Support</string>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uIv-Af-gpn"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="UPa-nE-8bL" secondAttribute="trailing" id="3E8-Do-LpW"/>
                             <constraint firstItem="CX0-9x-JHd" firstAttribute="centerX" secondItem="dYX-s6-tOV" secondAttribute="centerX" id="B94-a9-ieJ"/>
@@ -2534,7 +2534,7 @@ About problems please contact us Mimo Support</string>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27u-xW-mPn">
                                         <rect key="frame" x="43" y="0.0" width="306" height="20"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" name="AppLabel"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aG-Ia-Vbj">
@@ -2543,7 +2543,7 @@ About problems please contact us Mimo Support</string>
                                             <constraint firstAttribute="height" constant="20" id="29v-nT-1UC"/>
                                             <constraint firstAttribute="width" secondItem="4aG-Ia-Vbj" secondAttribute="height" id="hZt-mW-k5l"/>
                                         </constraints>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" name="AppLabel"/>
                                         <state key="normal" image="xmark" catalog="system">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                         </state>
@@ -2566,12 +2566,12 @@ About problems please contact us Mimo Support</string>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNQ-ry-0jm">
                                 <rect key="frame" x="39.333333333333343" y="421" width="314.33333333333326" height="0.0"/>
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="AppLabel"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hqf-iU-6tP">
                                 <rect key="frame" x="0.0" y="50" width="393" height="792"/>
-                                <color key="backgroundColor" red="0.90980392160000001" green="0.93725490199999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="mimoGray100"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NotificationListTableViewCell" rowHeight="142" id="NsC-oO-tg2" customClass="NotificationListTableViewCell" customModule="MimoBike" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="142"/>
@@ -2586,7 +2586,7 @@ About problems please contact us Mimo Support</string>
                                                         <constraint firstAttribute="height" constant="19" id="emF-XN-OqF"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" name="AppLabel"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sRh-6r-avJ">
@@ -2606,7 +2606,7 @@ About problems please contact us Mimo Support</string>
                                                 </textView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x3H-YN-1bu">
                                                     <rect key="frame" x="20" y="140" width="353" height="1"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.25" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" name="mimoBlackWith025alpha"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="pqW-6K-u0L"/>
                                                     </constraints>
@@ -2614,11 +2614,11 @@ About problems please contact us Mimo Support</string>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7Y-r9-UO5">
                                                     <rect key="frame" x="367.33333333333331" y="121.33333333333333" width="5.6666666666666856" height="12.999999999999986"/>
                                                     <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="11"/>
-                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" name="AppLabel"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.90980392160000001" green="0.93725490199999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" name="mimoGray100"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="x3H-YN-1bu" secondAttribute="bottom" constant="1" id="AJD-bf-Mhy"/>
                                                 <constraint firstItem="m7X-ZZ-Xqw" firstAttribute="leading" secondItem="a1Y-qZ-A30" secondAttribute="leading" constant="20" id="Fkr-lo-q9t"/>
@@ -2634,7 +2634,7 @@ About problems please contact us Mimo Support</string>
                                                 <constraint firstItem="sRh-6r-avJ" firstAttribute="leading" secondItem="a1Y-qZ-A30" secondAttribute="leading" constant="20" id="mP2-pd-gvD"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.90980392160000001" green="0.93725490199999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" name="mimoGray100"/>
                                         <connections>
                                             <outlet property="dateLabel" destination="B7Y-r9-UO5" id="OCw-T9-cLK"/>
                                             <outlet property="descriptionLabel" destination="sRh-6r-avJ" id="j9f-0Z-Uac"/>
@@ -2649,7 +2649,7 @@ About problems please contact us Mimo Support</string>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MYo-BK-wdt"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="xB5-cm-4YH" firstAttribute="trailing" secondItem="MYo-BK-wdt" secondAttribute="trailing" id="25Q-tv-7Bg"/>
                             <constraint firstItem="xB5-cm-4YH" firstAttribute="leading" secondItem="MYo-BK-wdt" secondAttribute="leading" id="9J1-Iw-OPB"/>
@@ -2713,7 +2713,7 @@ Place the scooter carefully so it doesn't interfere with anyone</string>
                                         <color key="backgroundColor" name="mimoYellow500"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="OK">
-                                            <color key="titleColor" name="mimoBlack"/>
+                                            <color key="titleColor" name="OnBrandLabel"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_global_ok"/>
@@ -2723,7 +2723,7 @@ Place the scooter carefully so it doesn't interfere with anyone</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="nGe-jc-JmN" firstAttribute="width" secondItem="4ZR-TY-ctG" secondAttribute="width" multiplier="0.700855" id="0hC-oZ-sjb"/>
                                     <constraint firstItem="nGe-jc-JmN" firstAttribute="height" secondItem="4ZR-TY-ctG" secondAttribute="height" multiplier="0.109005" id="1Fg-ey-7Ne"/>
@@ -2895,7 +2895,7 @@ Place the scooter carefully so it doesn't interfere with anyone</string>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ucd-pz-fKA" secondAttribute="height" multiplier="1:1" id="6Ab-cI-JIU"/>
                                         </constraints>
-                                        <state key="normal" image="ic_plus"/>
+                                        <state key="normal" image="ic_plus_fixed"/>
                                         <connections>
                                             <action selector="addBalanceTapped:" destination="00d-8o-3iA" eventType="touchUpInside" id="ZeJ-rv-ixJ"/>
                                         </connections>
@@ -2948,7 +2948,7 @@ Place the scooter carefully so it doesn't interfere with anyone</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="qAj-2a-6Ud" secondAttribute="trailing" constant="8" id="54j-JQ-xwX"/>
                                                     <constraint firstItem="qAj-2a-6Ud" firstAttribute="leading" secondItem="tih-hv-zYP" secondAttribute="trailing" constant="10" id="ImL-6U-2Cn"/>
@@ -2960,7 +2960,7 @@ Place the scooter carefully so it doesn't interfere with anyone</string>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstItem="W4g-Im-l7r" firstAttribute="leading" secondItem="DeN-mD-kIo" secondAttribute="leading" id="aCX-Q3-dhZ"/>
                                             <constraint firstItem="W4g-Im-l7r" firstAttribute="top" secondItem="DeN-mD-kIo" secondAttribute="top" id="dCN-dP-Fbk"/>
@@ -3090,7 +3090,7 @@ Place the scooter carefully so it doesn't interfere with anyone</string>
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Start Ride">
-                                            <color key="titleColor" name="mimoDarkGray"/>
+                                            <color key="titleColor" name="OnBrandLabel"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="SCOOTER_global_start_ride"/>
@@ -3106,7 +3106,7 @@ Place the scooter carefully so it doesn't interfere with anyone</string>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="k3B-mt-HQO"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="JEe-Fw-igx" firstAttribute="centerX" secondItem="sed-cJ-WT4" secondAttribute="centerX" multiplier="0.555" id="8u8-pe-681"/>
                             <constraint firstItem="bVi-Ux-EhJ" firstAttribute="top" secondItem="mgZ-jA-dgm" secondAttribute="bottom" constant="23" id="9O0-Oy-WKv"/>
@@ -3225,5 +3225,14 @@ Place the scooter carefully so it doesn't interfere with anyone</string>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppLabel">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="OnBrandLabel">
+            <color red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

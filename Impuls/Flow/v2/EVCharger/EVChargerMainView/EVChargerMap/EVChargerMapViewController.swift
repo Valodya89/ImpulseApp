@@ -38,6 +38,12 @@ class EVChargerMapViewController: MimoBaseViewController {
     private var hasLoadedInitialStations: Bool = false
     private var teamEnergyMarkers: [GMSMarker] = []
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        guard traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else { return }
+        mapView?.applyAppearanceStyle(for: traitCollection)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -181,9 +187,9 @@ class EVChargerMapViewController: MimoBaseViewController {
         }
         .store(in: &cancellables)
         
-        viewModel.$scooterStateData.sink { [weak self] data in
-            guard let data, !data.isEmpty else { self?.viewModel?.viewState = .initial; return }
-            
+        viewModel.$scooterStateData.sink { _ in
+            // The EV map has no trip state to leave: a state poll with no
+            // data must not close the station list the rider opened.
 //            self?.viewModel?.viewState = .trip(data)
         }
         .store(in: &cancellables)
@@ -290,7 +296,7 @@ extension EVChargerMapViewController {
         makeNavigationBarWithBackButton(productType: .evCharger)
         
         if let balanceTitleView =  navigationItem.titleView?.viewWithTag(999) as? BalanceTitleView {
-            balanceTitleView.plusButton.tintColor = .white
+            balanceTitleView.plusButton.tintColor = .alwaysWhite
             balanceTitleView.plusButton.backgroundColor = UIColor(.evbrandCyan80)
         }
         
@@ -306,6 +312,7 @@ extension EVChargerMapViewController {
         //MARK: - MapView
         mapView.isMyLocationEnabled = true
         mapView.delegate = self
+        mapView.applyAppearanceStyle()
         
         //MARK: - CollectionView
         setupCollectionView()

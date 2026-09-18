@@ -37,7 +37,7 @@
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h6i-Dj-qLc">
                             <rect key="frame" x="10" y="38" width="56" height="1"/>
-                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" name="mimoBlack"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="56" id="axs-go-h1U"/>
                                 <constraint firstAttribute="height" constant="1" id="ys4-Ty-7nP"/>
@@ -78,4 +78,9 @@
             <point key="canvasLocation" x="-17.39130434782609" y="95.758928571428569"/>
         </view>
     </objects>
+    <resources>
+        <namedColor name="mimoBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

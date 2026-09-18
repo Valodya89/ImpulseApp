@@ -22,10 +22,25 @@ class ChargerWorker: ChargerWorkerProtocol {
     
     private let rentedChargerDataSubject = PassthroughSubject<RentedCharger?, Never>()
     private let socketDataLaggingSubject = PassthroughSubject<Void, Never>()
-    
+    private var cancellables = Set<AnyCancellable>()
+
     init(chargerSocketService: MimoChargerSocketServiceProtocol) {
         self.chargerSocketService = chargerSocketService
-        self.chargerSocketService.delegate = self
+
+        // Publisher, not `delegate`: the socket is shared with the home screen and
+        // a single delegate slot would hand every event to whichever worker was
+        // created last.
+        chargerSocketService.dataPublisher
+            .sink { [weak self] data in
+                self?.rentedChargerDataSubject.send(data)
+            }
+            .store(in: &cancellables)
+
+        chargerSocketService.laggingPublisher
+            .sink { [weak self] in
+                self?.socketDataLaggingSubject.send(())
+            }
+            .store(in: &cancellables)
     }
     
     func loadBalance() -> AnyPublisher<WalletModel, MimoError> {
@@ -164,21 +179,4 @@ class ChargerWorker: ChargerWorkerProtocol {
     }
 }
 
-extension ChargerWorker: MimoChargerSocketServiceDelegate {
-    
-    func onConnect() {
-        
-    }
-    
-    func onDisconnect() {
-        
-    }
-    
-    func onDataReceived(_ data: RentedCharger) {
-        rentedChargerDataSubject.send(data)
-    }
-    
-    func socketDataLagging() {
-        socketDataLaggingSubject.send(())
-    }
-}
+

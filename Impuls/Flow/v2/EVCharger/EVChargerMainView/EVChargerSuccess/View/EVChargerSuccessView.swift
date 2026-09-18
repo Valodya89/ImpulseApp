@@ -25,7 +25,7 @@ struct EVChargerSuccessView: View {
                         VStack(spacing: 16) {
                             Text("EV_CHARGER_session_total".localized())
                                 .font(.robotoBold17)
-                                .foregroundColor(Color(hex: "#666666"))
+                                .foregroundColor(Color.evText6)
                             
                             Text(viewModel.totalPrice)
                                 .font(.robotoBold24)
@@ -45,7 +45,7 @@ struct EVChargerSuccessView: View {
                         VStack(spacing: 8) {
                             Text("EV_CHARGER_rate_your_experience".localized())
                                 .font(.robotoRegular15)
-                                .foregroundColor(Color(hex: "#666666"))
+                                .foregroundColor(Color.evText6)
                             
                             HStack(spacing: 16) {
                                 ForEach(0..<5, id: \.self) { index in
@@ -85,7 +85,7 @@ struct EVChargerSuccessView: View {
                         }
                     }
                     .padding(.vertical, 16)
-                    .background(Color.white)
+                    .background(Color.evMainBg1)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                     .padding(.horizontal, 20)
                     .padding(.vertical, 16)
@@ -100,7 +100,7 @@ struct EVChargerSuccessView: View {
             } label: {
                 Text("EV_CHARGER_ok".localized())
                     .font(.robotoBold15)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color.alwaysWhite)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 15)
                     .background(Capsule().fill(Color.evbrandCyan80))
@@ -116,19 +116,19 @@ extension EVChargerSuccessView {
             HStack(spacing: 0) {
                 Text("EV_CHARGER_charging_summary".localized())
                     .font(.robotoBold15)
-                    .foregroundColor(.black)
+                    .foregroundColor(.evText9)
             }
             .frame(maxWidth: .infinity)
             .padding()
         }
-        .background(Color.white)
+        .background(Color.evMainBg1)
     }
     
     func infoCharacterView(title: String, value: String) -> some View {
         HStack(spacing: 0) {
             Text(title)
                 .font(.robotoRegular15)
-                .foregroundColor(Color(hex: "#666666"))
+                .foregroundColor(Color.evText6)
             
             Spacer()
             

@@ -23,6 +23,7 @@ extension Font {
     static var robotoLight36: Font = Font.custom(FontType.robotoLight.rawValue, size: 36)
     
     static var robotoRegular12: Font = Font.custom(FontType.robotoRegular.rawValue, size: 12)
+    static var robotoRegular13: Font = Font.custom(FontType.robotoRegular.rawValue, size: 13)
     static var robotoRegular14: Font = Font.custom(FontType.robotoRegular.rawValue, size: 14)
     static var robotoRegular15: Font = Font.custom(FontType.robotoRegular.rawValue, size: 15)
     static var robotoRegular16: Font = Font.custom(FontType.robotoRegular.rawValue, size: 16)

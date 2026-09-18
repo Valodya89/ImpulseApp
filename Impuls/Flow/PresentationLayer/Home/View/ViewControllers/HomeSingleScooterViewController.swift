@@ -198,16 +198,7 @@ final class HomeSingleScooterViewController: BaseViewController, StoryboardIniti
     
     @IBAction func addBalanceTapped(_ sender: Any) {
         VibrateManager.vibrate()
-        let walletVC = WalletViewController.initFromStoryboard(name: Constant.Storyboards.wallet)
-        self.walletNavigationController = UINavigationController(rootViewController: walletVC)
-        
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_arrow_left"), style: .plain, target: self, action: #selector(backButtonTapped))
-        walletVC.navigationItem.leftBarButtonItem = backButton
-        
-        walletVC.user = userResult
-        walletVC.avataturURLString = avatarUrlStirng
-        
-        self.present(walletNavigationController!, animated: true, completion: nil)
+        self.present(WalletHostingController(productType: .scooter), animated: true, completion: nil)
     }
     
     @objc func backButtonTapped() {

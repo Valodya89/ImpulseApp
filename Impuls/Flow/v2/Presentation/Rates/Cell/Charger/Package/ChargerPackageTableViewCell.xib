@@ -76,7 +76,7 @@
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Activate">
-                                    <color key="titleColor" name="mimoDarkGray"/>
+                                    <color key="titleColor" name="OnBrandLabel"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -100,7 +100,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="EBA-ID-iOX" firstAttribute="top" secondItem="hac-uP-6FI" secondAttribute="top" id="Lrp-Bm-r67"/>
                                     <constraint firstItem="EBA-ID-iOX" firstAttribute="leading" secondItem="hac-uP-6FI" secondAttribute="leading" constant="12" id="eiO-3d-gGj"/>
@@ -125,7 +125,7 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="enj-KH-uUk">
                                         <rect key="frame" x="0.0" y="3.9999999999999982" width="23" height="8.0000000000000018"/>
-                                        <color key="tintColor" name="mimoDarkGray"/>
+                                        <color key="tintColor" name="OnBrandLabel"/>
                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                                     </imageView>
                                 </subviews>
@@ -145,7 +145,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="t6V-pa-6DF" secondAttribute="trailing" id="01Q-kn-pIA"/>
                             <constraint firstItem="1Pi-dq-wJe" firstAttribute="leading" secondItem="mUT-OX-jcq" secondAttribute="leading" constant="12" id="9o8-OE-t48"/>
@@ -207,5 +207,11 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="OnBrandLabel">
+            <color red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

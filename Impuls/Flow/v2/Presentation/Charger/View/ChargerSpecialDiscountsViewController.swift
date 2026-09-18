@@ -29,7 +29,7 @@ final class ChargerSpecialDiscountsViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .appBackground
         
         tableView.register(ChargerDiscountsTableViewCell.self)
         tableView.delegate = self

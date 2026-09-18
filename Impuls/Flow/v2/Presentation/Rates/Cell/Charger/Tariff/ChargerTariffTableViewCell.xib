@@ -46,7 +46,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstItem="9FM-dV-ybq" firstAttribute="leading" secondItem="a7s-c2-add" secondAttribute="leading" id="SY0-bB-h1M"/>
                                             <constraint firstAttribute="width" secondItem="a7s-c2-add" secondAttribute="height" id="aFf-1j-8Ci"/>
@@ -79,7 +79,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="a7s-c2-add" firstAttribute="leading" secondItem="G0G-0S-ytP" secondAttribute="leading" id="6Jq-C5-cyd"/>
                                     <constraint firstItem="Nus-3f-aKe" firstAttribute="centerY" secondItem="a7s-c2-add" secondAttribute="centerY" id="Lv5-9S-UGV"/>
@@ -105,7 +105,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="G0G-0S-ytP" secondAttribute="trailing" constant="12" id="EMB-eg-Smq"/>
                             <constraint firstItem="G0G-0S-ytP" firstAttribute="top" secondItem="Ogp-fg-5EA" secondAttribute="top" constant="12" id="GdM-nG-jM1"/>
@@ -155,5 +155,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

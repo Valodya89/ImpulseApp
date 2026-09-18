@@ -88,7 +88,7 @@ struct LoginView: View {
                             Image(systemName: "chevron.left")
                                 .imageScale(.large)
                                 .font(.system(size: 18, weight: .medium))
-                                .foregroundColor(.black075)
+                                .foregroundColor(.label075)
                         }
                         
                         Spacer()
@@ -96,7 +96,7 @@ struct LoginView: View {
                     
                     Text(viewModel.loginStep.title)
                         .font(.robotoMedium20)
-                        .foregroundColor(.black08)
+                        .foregroundColor(.appLabel.opacity(0.8))
                 }
                 .frame(height: 44)
                 .padding(.horizontal, 20)
@@ -106,7 +106,7 @@ struct LoginView: View {
                     switch viewModel.loginStep {
                     case .phoneNumber:
                         Capsule()
-                            .fill(Color.yellow)
+                            .fill(Color.brandYellow)
                             .frame(maxWidth: .infinity)
                         
                         Spacer()
@@ -116,11 +116,11 @@ struct LoginView: View {
                             .frame(maxWidth: .infinity)
                     case .otp:
                         Capsule()
-                            .fill(Color.yellow)
+                            .fill(Color.brandYellow)
                             .frame(maxWidth: .infinity)
                         
                         Capsule()
-                            .fill(Color.yellow)
+                            .fill(Color.brandYellow)
                             .frame(maxWidth: .infinity)
                             .padding(.leading, -5)
                         
@@ -128,16 +128,16 @@ struct LoginView: View {
                             .frame(maxWidth: .infinity)
                     case .personalInfo:
                         Capsule()
-                            .fill(Color.yellow)
+                            .fill(Color.brandYellow)
                             .frame(maxWidth: .infinity)
                         
                         Capsule()
-                            .fill(Color.yellow)
+                            .fill(Color.brandYellow)
                             .frame(maxWidth: .infinity)
                             .padding(.leading, -5)
                         
                         Capsule()
-                            .fill(Color.yellow)
+                            .fill(Color.brandYellow)
                             .frame(maxWidth: .infinity)
                             .padding(.leading, -5)
                         
@@ -145,7 +145,7 @@ struct LoginView: View {
                             .frame(maxWidth: .infinity)
                     case .preferedServices:
                         Capsule()
-                            .fill(Color.yellow)
+                            .fill(Color.brandYellow)
                             .frame(maxWidth: .infinity)
                     }
                 }
@@ -196,7 +196,7 @@ struct LoginView: View {
     private var phoneNumberView: some View {
         VStack(spacing: 24) {
             ZStack {
-                Color.white
+                Color.appBackground
                 
                 VStack(alignment: .leading, spacing: 5) {
                     HStack {
@@ -215,7 +215,7 @@ struct LoginView: View {
                             
                             Image(systemName: "chevron.down")
                                 .resizable()
-                                .foregroundColor(.black05)
+                                .foregroundColor(.label05)
                                 .frame(width: 12, height: 7)
                                 .fixedSize()
                         }
@@ -225,12 +225,12 @@ struct LoginView: View {
                         
                         Text(viewModel.selectedCountry?.dial_code ?? "")
                             .font(.robotoBold17)
-                            .foregroundColor(.black075)
+                            .foregroundColor(.label075)
                             .padding(.leading, 10)
                         
                         TextField(viewModel.exampleNumber ?? "", text: $viewModel.phoneNumber)
                             .font(.robotoRegular17)
-                            .foregroundColor(.black075)
+                            .foregroundColor(.label075)
                             .padding(.leading, 5)
                             .keyboardType(.numberPad)
                         
@@ -243,7 +243,7 @@ struct LoginView: View {
             .clipShape(RoundedRectangle(cornerRadius: 8))
             .background(
                 RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.black, lineWidth: 0.5)
+                    .stroke(Color.appLabel, lineWidth: 0.5)
             )
             .frame(height: 63)
             .frame(maxWidth: .infinity)
@@ -255,13 +255,13 @@ struct LoginView: View {
                     Image("ic_checkBox_\(viewModel.isTermsAccepted ? "filled" : "empty")")
                         .resizable()
                         .frame(width: 18, height: 18)
-                        .foregroundColor(.black05)
+                        .foregroundColor(.label05)
                 }
                 
                 HStack(spacing: 0) {
                     Text("MOBILE_agree_Mimo_Agreement ".localized())
                         .font(.robotoLight13)
-                        .foregroundColor(.black)
+                        .foregroundColor(.appLabel)
                         .underline()
                         .onTapGesture {
                             let language = viewModel.getLanguage()
@@ -288,13 +288,13 @@ struct LoginView: View {
                     Image("ic_checkBox_\(viewModel.isPrivacyPoliceAccepted ? "filled" : "empty")")
                         .resizable()
                         .frame(width: 18, height: 18)
-                        .foregroundColor(.black05)
+                        .foregroundColor(.label05)
                 }
                 
                 HStack(spacing: 0) {
                     Text("MOBILE_agree_Mimo_Privacy_Policy".localized())
                         .font(.robotoLight13)
-                        .foregroundColor(.black)
+                        .foregroundColor(.appLabel)
                         .underline()
                         .onTapGesture {
                             let language = viewModel.getLanguage()
@@ -352,10 +352,10 @@ struct LoginView: View {
             HStack(spacing: 3) {
                 Text("MOBILE_sign_in_phone_number_which_received_code".localized().replacingOccurrences(of: " [phone num]", with: ""))
                     .font(.robotoRegular17)
-                    .foregroundColor(.black025)
+                    .foregroundColor(.label025)
                 Text(viewModel.formattedPhoneNumber)
                     .font(.robotoRegular17)
-                    .foregroundColor(.black05)
+                    .foregroundColor(.label05)
             }
             .padding(.top, 10)
             
@@ -377,7 +377,7 @@ struct LoginView: View {
             if timeRemaining > 0 {
                 HStack(spacing: 5) {
                     Text("MOBILE_sign_in_\(viewModel.otpMethod.rawValue)_duration".localized())
-                        .foregroundColor(.black05)
+                        .foregroundColor(.label05)
                     Text("\(timeRemaining.timeString())")
                         .foregroundColor(.mimoRed500)
                 }
@@ -394,7 +394,7 @@ struct LoginView: View {
             Text(viewModel.otpMethod == .CALL ? ("\("MOBILE_fill_last_four_digit".localized())\n+7 (***) ***-12-34") : "MOBILE_sign_in_SMS_hint".localized())
                 .lineLimit(nil)
                 .font(.robotoRegular17)
-                .foregroundColor(.black025)
+                .foregroundColor(.label025)
                 .multilineTextAlignment(.center)
             
             Spacer()
@@ -403,7 +403,7 @@ struct LoginView: View {
                 HStack {
                     Text("MOBILE_sign_in_didn't_get_the_code".localized())
                         .font(.robotoRegular17)
-                        .foregroundColor(.black025)
+                        .foregroundColor(.label025)
                     
                     Spacer()
                     
@@ -414,7 +414,7 @@ struct LoginView: View {
                         Text("MOBILE_sign_in_request_again".localized())
                             .underline()
                             .font(.robotoRegular17)
-                            .foregroundColor(.black)
+                            .foregroundColor(.appLabel)
                     }
                 }
                 .padding(.bottom, 20)
@@ -446,12 +446,12 @@ struct LoginView: View {
                 
                 HStack(alignment: .top) {
                     Image(systemName: "info.circle.fill")
-                        .foregroundColor(.black025)
+                        .foregroundColor(.label025)
                     
                     Text("MOBILE_sign_in_personal_info_hint".localized())
                         .lineLimit(nil)
                         .multilineTextAlignment(.leading)
-                        .foregroundColor(.black08)
+                        .foregroundColor(.appLabel.opacity(0.8))
                         .font(.robotoLight14)
                 }
             }
@@ -477,12 +477,12 @@ struct LoginView: View {
                 
                 HStack(alignment: .top) {
                     Image(systemName: "info.circle.fill")
-                        .foregroundColor(.black025)
+                        .foregroundColor(.label025)
                     
                     Text("MOBILE_sign_in_onboarding_service_description".localized())
                         .lineLimit(nil)
                         .multilineTextAlignment(.leading)
-                        .foregroundColor(.black08)
+                        .foregroundColor(.appLabel.opacity(0.8))
                         .font(.robotoLight14)
                 }
             }
@@ -498,12 +498,12 @@ struct LoginView: View {
             
             HStack(alignment: .top) {
                 Image(systemName: "info.circle.fill")
-                    .foregroundColor(.black025)
+                    .foregroundColor(.label025)
                 
                 Text("MOBILE_sign_in_verify_email_hint_1".localized())
                     .lineLimit(nil)
                     .multilineTextAlignment(.leading)
-                    .foregroundColor(.black08)
+                    .foregroundColor(.appLabel.opacity(0.8))
                     .font(.robotoLight14)
                 
                 Spacer()
@@ -511,12 +511,12 @@ struct LoginView: View {
             
             HStack(alignment: .top) {
                 Image(systemName: "info.circle.fill")
-                    .foregroundColor(.black025)
+                    .foregroundColor(.label025)
                 
                 Text("MOBILE_sign_in_verify_email_hint_2".localized())
                     .lineLimit(nil)
                     .multilineTextAlignment(.leading)
-                    .foregroundColor(.black08)
+                    .foregroundColor(.appLabel.opacity(0.8))
                     .font(.robotoLight14)
                 
                 Spacer()

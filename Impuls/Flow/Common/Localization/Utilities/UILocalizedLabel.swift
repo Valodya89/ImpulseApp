@@ -56,6 +56,7 @@ extension LocalizableLabel {
     /// Setup observe for listening language update
     func setupListener() {
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateLanguage), name: Constant.Notifications.LanguageUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didUpdateLanguage), name: Constant.Notifications.TranslationsUpdate, object: nil)
     }
 }
 

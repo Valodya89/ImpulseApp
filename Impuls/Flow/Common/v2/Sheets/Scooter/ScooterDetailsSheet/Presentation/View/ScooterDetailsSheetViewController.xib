@@ -61,7 +61,7 @@
                                 <constraint firstAttribute="width" constant="38" id="neM-jK-Fn3"/>
                             </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" image="ic_plus"/>
+                            <state key="normal" image="ic_plus_fixed"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                     <real key="value" value="19"/>
@@ -115,7 +115,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="iAg-jZ-FWP" secondAttribute="bottom" constant="4" id="6rQ-uA-qtE"/>
                                                         <constraint firstItem="KUF-ts-9oU" firstAttribute="top" secondItem="87l-a9-rio" secondAttribute="top" id="KFC-e3-aiE"/>
@@ -128,7 +128,7 @@
                                             </subviews>
                                         </stackView>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" name="AppBackground"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="OI3-Mc-6LC" secondAttribute="bottom" id="6cR-CD-4DL"/>
                                         <constraint firstItem="OI3-Mc-6LC" firstAttribute="top" secondItem="wOE-p3-3ow" secondAttribute="top" constant="4" id="a8d-U2-HDj"/>
@@ -170,7 +170,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstItem="py4-LZ-GIQ" firstAttribute="top" secondItem="cMB-mP-yez" secondAttribute="top" id="6IO-Ns-VsF"/>
                                                         <constraint firstAttribute="bottom" secondItem="py4-LZ-GIQ" secondAttribute="bottom" id="QJx-yT-yzw"/>
@@ -183,7 +183,7 @@
                                             </subviews>
                                         </stackView>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" name="AppBackground"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="wBU-80-JID" secondAttribute="bottom" id="6Jv-LE-niy"/>
                                         <constraint firstItem="wBU-80-JID" firstAttribute="leading" secondItem="bTj-KY-E6Z" secondAttribute="leading" constant="16" id="7yE-kc-2VC"/>
@@ -273,7 +273,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <color key="backgroundColor" name="AppBackground"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="3cf-xr-Ld8" secondAttribute="bottom" id="Noc-Z6-qii"/>
                                                 <constraint firstItem="WR1-7L-tCs" firstAttribute="leading" secondItem="3cf-xr-Ld8" secondAttribute="trailing" constant="5" id="e0A-WX-4ag"/>
@@ -300,7 +300,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <color key="backgroundColor" name="AppBackground"/>
                                             <constraints>
                                                 <constraint firstItem="Df2-4c-6E8" firstAttribute="leading" secondItem="1uR-YS-tOj" secondAttribute="trailing" constant="5" id="2sY-YD-0Ap"/>
                                                 <constraint firstAttribute="height" constant="24" id="Htz-zL-Of2"/>
@@ -336,7 +336,7 @@
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wg-4e-CYj">
                     <rect key="frame" x="32.000000000000007" y="275" width="86.666666666666686" height="36"/>
-                    <color key="backgroundColor" red="0.94117647058823528" green="0.95686274509803915" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" name="mimoGrayLight"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="36" id="7NV-e3-VCg"/>
                     </constraints>
@@ -356,7 +356,7 @@
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A3e-Gc-nYz">
                     <rect key="frame" x="142.66666666666669" y="275" width="133.66666666666669" height="36"/>
-                    <color key="backgroundColor" red="0.94117647059999998" green="0.95686274510000002" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" name="mimoGrayLight"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="36" id="YWp-9G-OTK"/>
                     </constraints>
@@ -432,7 +432,7 @@
                             <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Tariffs">
-                                <color key="titleColor" name="mimoDarkGray"/>
+                                <color key="titleColor" name="OnBrandLabel"/>
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -536,7 +536,7 @@
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" name="AppBackground"/>
                     <constraints>
                         <constraint firstItem="cfr-5p-iEa" firstAttribute="leading" secondItem="5VR-EF-C9L" secondAttribute="leading" constant="8" id="1yQ-cf-z81"/>
                         <constraint firstAttribute="trailing" secondItem="Mu7-rw-CgG" secondAttribute="trailing" constant="8" id="26c-a9-NdC"/>
@@ -567,7 +567,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" name="AppBackground"/>
             <constraints>
                 <constraint firstItem="Sgk-jq-USL" firstAttribute="top" secondItem="1wg-4e-CYj" secondAttribute="bottom" constant="20" id="13G-o2-mlF"/>
                 <constraint firstAttribute="trailing" secondItem="FQm-jP-qGd" secondAttribute="trailing" constant="20" id="34m-WB-2Sy"/>
@@ -631,5 +631,14 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="OnBrandLabel">
+            <color red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoGrayLight">
+            <color red="0.9647" green="0.9725" blue="0.9843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

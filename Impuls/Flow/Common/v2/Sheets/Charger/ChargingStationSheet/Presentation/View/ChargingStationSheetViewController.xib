@@ -95,7 +95,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstItem="K3a-XG-UKH" firstAttribute="leading" secondItem="FJQ-3a-b3o" secondAttribute="trailing" constant="5" id="KVQ-uz-uf5"/>
                                                         <constraint firstItem="FJQ-3a-b3o" firstAttribute="top" secondItem="Lhm-h7-W4X" secondAttribute="top" id="Mo0-Rf-y9o"/>
@@ -108,7 +108,7 @@
                                             </subviews>
                                         </stackView>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" name="AppBackground"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="Kho-s7-Ysg" secondAttribute="bottom" id="8t6-e8-pCe"/>
                                         <constraint firstAttribute="trailing" secondItem="Kho-s7-Ysg" secondAttribute="trailing" id="FYw-mh-V25"/>
@@ -150,7 +150,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstItem="dog-Tc-w3e" firstAttribute="leading" secondItem="itD-Ey-Fpj" secondAttribute="leading" id="4aP-Sj-EM9"/>
                                                         <constraint firstAttribute="bottom" secondItem="dog-Tc-w3e" secondAttribute="bottom" id="HmQ-LO-NM8"/>
@@ -163,7 +163,7 @@
                                             </subviews>
                                         </stackView>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" name="AppBackground"/>
                                     <constraints>
                                         <constraint firstItem="0jr-qi-fBh" firstAttribute="top" secondItem="60k-dD-dsb" secondAttribute="top" constant="4" id="ZdX-YH-ck9"/>
                                         <constraint firstItem="0jr-qi-fBh" firstAttribute="leading" secondItem="60k-dD-dsb" secondAttribute="leading" constant="16" id="c16-0j-bAQ"/>
@@ -181,7 +181,7 @@
                                 <constraint firstAttribute="width" constant="38" id="RSx-Mp-nld"/>
                             </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" image="ic_plus"/>
+                            <state key="normal" image="ic_plus_fixed"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                     <real key="value" value="19"/>
@@ -230,7 +230,7 @@
                                                             <color key="tintColor" name="mimoAmber500"/>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstItem="xnf-68-qs4" firstAttribute="leading" secondItem="xKu-DZ-4po" secondAttribute="leading" constant="24" id="cyc-6a-xtr"/>
                                                         <constraint firstAttribute="trailing" secondItem="xnf-68-qs4" secondAttribute="trailing" constant="24" id="gD8-0G-dMk"/>
@@ -608,7 +608,7 @@
                             <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Tariffs">
-                                <color key="titleColor" name="mimoDarkGray"/>
+                                <color key="titleColor" name="OnBrandLabel"/>
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -688,5 +688,11 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="OnBrandLabel">
+            <color red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -82,7 +82,7 @@ public class SheetViewController: UIViewController {
     }
     
     public static var blurEffect: UIBlurEffect = {
-        return UIBlurEffect(style: .prominent)
+        return UIBlurEffect(style: .systemMaterial)
     }()
     
     public var blurEffect = SheetViewController.blurEffect {
@@ -159,7 +159,7 @@ public class SheetViewController: UIViewController {
     public init(controller: UIViewController, sizes: [SheetSize] = [.intrinsic], options: SheetOptions? = nil) {
         let options = options ?? SheetOptions.default
         self.contentViewController = SheetContentViewController(childViewController: controller, options: options)
-        self.contentViewController.contentBackgroundColor = UIColor.systemBackground
+        self.contentViewController.contentBackgroundColor = UIColor.appBackground
         self.sizes = sizes.count > 0 ? sizes : [.intrinsic]
         self.options = options
         self.transition = SheetTransition(options: options)

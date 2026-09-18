@@ -14,6 +14,10 @@ struct NotificationListResponse: Codable {
     var metadata: Metadata?
     var content: NotificationContent?
     var date: Double?
+    /// Notification domain - `general`, `wallet`, `accounts`, `evup`, `scooter`,
+    /// `sharing`, `powerbank`. Omitted on documents that predate the field, so
+    /// it is optional. Used only to pick the row's badge, never for routing.
+    var context: String?
 }
 
 

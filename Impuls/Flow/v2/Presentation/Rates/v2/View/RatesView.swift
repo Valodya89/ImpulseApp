@@ -43,13 +43,13 @@ extension RatesView {
                     VStack(spacing: 0) {
                         Text(item.rawValue)
                             .font(.robotoBold12)
-                            .foregroundColor(viewModel.pageSelectedItem == item ? .black : .black.opacity(0.5))
+                            .foregroundColor(viewModel.pageSelectedItem == item ? .appLabel : .label05)
                             .padding(.all, 10)
                         
                         if viewModel.pageSelectedItem == item {
                             RoundedRectangle(cornerRadius: 16)
                                 .frame(height: 2)
-                                .foregroundColor(Color.black)
+                                .foregroundColor(Color.appLabel)
                         }
                     }
                     .onTapGesture { viewModel.pageItemTapAction(item: item) }
@@ -64,7 +64,7 @@ extension RatesView {
             HStack(spacing: 0) {
                 Text("Mimo Rates")
                     .font(.robotoBold15)
-                    .foregroundColor(.black)
+                    .foregroundColor(.appLabel)
             }
             .frame(maxWidth: .infinity)
             .padding()
@@ -76,7 +76,7 @@ extension RatesView {
                 .padding(.leading, 18.5)
                 .onTapGesture { viewModel.back() }
         }
-        .background(Color.white)
+        .background(Color.appBackground)
     }
     
     func scooterPage() -> some View {
@@ -140,13 +140,13 @@ extension RatesView {
                 
                 Text(title)
                     .font(.robotoBold16)
-                    .foregroundColor(.black)
+                    .foregroundColor(.appLabel)
                 
                 Spacer()
                 
                 Text(subtitle)
                     .font(.robotoBold16)
-                    .foregroundColor(.black)
+                    .foregroundColor(.appLabel)
             }
             .padding(.top, 17)
             
@@ -154,14 +154,14 @@ extension RatesView {
             
             Text(description)
                 .font(.robotoSemibold14)
-                .foregroundColor(.black)
+                .foregroundColor(.appLabel)
             
             if let action = action {
                 Button {
                     action()
                 } label: {
                     Text("Activate")
-                        .foregroundColor(.black)
+                        .foregroundColor(.onBrandLabel)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.vertical, 10)
                         .background(Color.brandYellow)
@@ -173,7 +173,7 @@ extension RatesView {
         }
         .padding(.bottom, action != nil ? 11 : 19)
         .padding(.horizontal, 14)
-        .background(Color.white)
+        .background(Color.appBackground)
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .shadow(radius: 8)
         .padding(.top, 23)
@@ -184,7 +184,7 @@ extension RatesView {
         VStack(spacing: 0) {
             Text("Once your tariff time is up, it switches to the next tariff.")
                 .font(.robotoMedium13)
-                .foregroundColor(Color(hex: "#404040"))
+                .foregroundColor(Color.mimoDarkGray)
                 .padding(.top, 24)
             
             bookingTabView(
@@ -206,7 +206,7 @@ extension RatesView {
                 
                 Text("$10/kwh - $20/kwh")
                     .font(.robotoBold20)
-                    .foregroundColor(.black)
+                    .foregroundColor(.appLabel)
                     .padding(.top, 16)
                     .padding(.bottom, 8)
                 
@@ -215,12 +215,12 @@ extension RatesView {
                     Text("Each station has unique pricing.")
                 }
                 .font(.robotoRegular12)
-                .foregroundColor(Color(hex: "#808080"))
+                .foregroundColor(Color.appSecondaryLabel)
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 32)
             .padding(.horizontal, 16)
-            .background(Color.white)
+            .background(Color.appBackground)
             .clipShape(RoundedRectangle(cornerRadius: 16))
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
@@ -259,11 +259,11 @@ extension RatesView {
                 .frame(width: 30, height: 24)
             
             Text(scooter.name)
-                .foregroundColor(.black)
+                .foregroundColor(.appLabel)
                 .font(.robotoBold16)
         }
         .padding(.all, 12)
-        .background(Color.white)
+        .background(Color.appBackground)
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .overlay(
             RoundedRectangle(cornerRadius: 8)
@@ -310,7 +310,7 @@ extension RatesView {
         }
         .padding(.top, 20)
         .padding(.bottom, 24)
-        .background(Color.white)
+        .background(Color.appBackground)
     }
     
     func tariffsItemView(image: String, title: String, subTitle: String) -> some View {
@@ -323,7 +323,7 @@ extension RatesView {
                 
                 Text(title)
                     .font(.robotoBold15)
-                    .foregroundColor(.black)
+                    .foregroundColor(.appLabel)
             }
             
             Text(subTitle)
@@ -338,7 +338,7 @@ extension RatesView {
                 .font(.robotoMedium14)
             
             Text("\(subTitle) ֏")
-                .foregroundColor(Color.black)
+                .foregroundColor(Color.appLabel)
                 .font(.robotoMedium15)
         }
     }
@@ -348,11 +348,11 @@ extension RatesView {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Challenges 💪")
                     .font(.robotoLight14)
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color.appLabel)
                 
                 Text("Endurance Challenge")
                     .font(.robotoLight14)
-                    .foregroundColor(Color(hex: "#404040"))
+                    .foregroundColor(Color.mimoDarkGray)
             }
             
             Spacer()
@@ -361,12 +361,12 @@ extension RatesView {
                 .renderingMode(.template)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .foregroundColor(.black)
+                .foregroundColor(.appLabel)
                 .frame(width: 10, height: 10)
         }
         .padding([.horizontal, .top], 12)
         .padding(.bottom, 14)
-        .background(Color.white)
+        .background(Color.appBackground)
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .overlay(
             RoundedRectangle(cornerRadius: 8)

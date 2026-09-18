@@ -22,7 +22,7 @@ struct InAppWebView: View {
                     } label: {
                         Image(systemName: "xmark")
                             .resizable()
-                            .foregroundColor(.black)
+                            .foregroundColor(.appLabel)
                             .frame(width: 18, height: 18)
                             .padding(8)
                     }

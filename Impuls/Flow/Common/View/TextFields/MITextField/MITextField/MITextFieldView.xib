@@ -73,7 +73,7 @@
                             </connections>
                         </textField>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="AppBackground"/>
                     <constraints>
                         <constraint firstItem="Bj3-nH-M9f" firstAttribute="leading" secondItem="BHR-E0-9Nc" secondAttribute="leading" constant="20" id="7cv-j5-6Ch"/>
                         <constraint firstAttribute="height" constant="38" id="Dzl-OC-oPe"/>
@@ -129,6 +129,9 @@
         </namedColor>
         <namedColor name="red">
             <color red="1" green="0.31000000238418579" blue="0.31000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

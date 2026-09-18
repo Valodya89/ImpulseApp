@@ -27,7 +27,7 @@ class ScooterErrorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = .appBackground
 
         let leftYellowView = UIImageView(image: "ic_left_green".image)
         leftYellowView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +67,7 @@ class ScooterErrorViewController: UIViewController {
         
         let closeButton = UIButton()
         closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
-        closeButton.tintColor = .black
+        closeButton.tintColor = .appLabel
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.addAction(UIAction(handler: { [weak self] _ in
             self?.dismiss(animated: true)
@@ -114,7 +114,7 @@ class ScooterErrorViewController: UIViewController {
             replenishButton.translatesAutoresizingMaskIntoConstraints = false
             replenishButton.cornerRadius = 24
             replenishButton.backgroundColor = .mimoYellow500
-            replenishButton.setTitleColor(.mimoBlack, for: .normal)
+            replenishButton.setTitleColor(.onBrandLabel, for: .normal)
             replenishButton.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
             replenishButton.setTitle("SCOOTER_replenish_balance".localized(), for: .normal)
             replenishButton.addAction(UIAction(handler: { [weak self] _ in

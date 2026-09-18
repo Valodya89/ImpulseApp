@@ -21,13 +21,13 @@ struct ParkingPhotoView: View {
                 ZStack {
                     CameraView(image: $viewModel.viewfinderImage)
                     
-                    LinearGradient(colors: [.black.opacity(0.45), .black2.opacity(0.25)], startPoint: .top, endPoint: .bottom)
+                    LinearGradient(colors: [.alwaysBlack.opacity(0.45), .alwaysBlack.opacity(0.25)], startPoint: .top, endPoint: .bottom)
                     
                     if !viewModel.isAuthorized {
                         VStack(spacing: 30) {
                             Text("MOBILE__global_camera_access".localized())
                                 .font(.system(size: 18))
-                                .foregroundColor(.white)
+                                .foregroundColor(.alwaysWhite)
                                 .multilineTextAlignment(.center)
                             
                             Button {
@@ -47,7 +47,7 @@ struct ParkingPhotoView: View {
                         .lineLimit(2)
                         .multilineTextAlignment(.center)
                         .font(.system(size: 18, weight: .medium))
-                        .foregroundColor(.white)
+                        .foregroundColor(.alwaysWhite)
                         .padding(.horizontal, 48)
                         .padding(.top, 48)
                     , alignment: .top
@@ -57,7 +57,7 @@ struct ParkingPhotoView: View {
                     VStack(spacing: 24) {
                         Text("SCOOTER_global_send_photo_info".localized() + " " + "SCOOTER_global_correct_photo".localized())
                             .font(.system(size: 15))
-                            .foregroundColor(.white)
+                            .foregroundColor(.alwaysWhite)
                             .multilineTextAlignment(.center)
                             .lineLimit(10)
                             .padding(.top, 20)
@@ -74,12 +74,12 @@ struct ParkingPhotoView: View {
                                         if viewModel.isFlashOn {
                                             Image(systemName: "flashlight.on.circle.fill")
                                                 .resizable()
-                                                .foregroundColor(.white)
+                                                .foregroundColor(.alwaysWhite)
                                                 .frame(width: 42, height: 42)
                                         } else {
                                             Image(systemName: "flashlight.off.circle.fill")
                                                 .resizable()
-                                                .foregroundColor(.white)
+                                                .foregroundColor(.alwaysWhite)
                                                 .frame(width: 42, height: 42)
                                         }
                                     }
@@ -95,7 +95,7 @@ struct ParkingPhotoView: View {
                                     } label: {
                                         ZStack {
                                             Circle()
-                                                .fill(Color.white)
+                                                .fill(Color.alwaysWhite)
                                                 .padding(4)
                                         }
                                     }
@@ -105,7 +105,7 @@ struct ParkingPhotoView: View {
                                 .clipShape(Circle())
                                 .overlay(
                                     Circle()
-                                        .stroke(Color.white.opacity(0.9), lineWidth: 3)
+                                        .stroke(Color.alwaysWhite.opacity(0.9), lineWidth: 3)
                                 )
                                 .opacity(viewModel.isAuthorized ? 1 : 0.6)
                             }
@@ -117,19 +117,19 @@ struct ParkingPhotoView: View {
                                         viewModel.start()
                                     } label: {
                                         ZStack {
-                                            Color.white
+                                            Color.alwaysWhite
                                             HStack(spacing: 12) {
                                                 Image(systemName: "return")
                                                     .resizable()
                                                     .frame(width: 18, height: 14)
-                                                    .foregroundColor(.gray9)
+                                                    .foregroundColor(.alwaysBlack)
                                                     .font(Font.title.weight(.medium))
                                                 
                                                 Text("SCOOTER_global_retake_photo".localized())
                                                     .lineLimit(2)
                                                     .minimumScaleFactor(0.5)
                                                     .font(.system(size: 17, weight: .medium))
-                                                    .foregroundColor(.gray9)
+                                                    .foregroundColor(.alwaysBlack)
                                                     .multilineTextAlignment(.leading)
                                                 
                                                 Spacer()
@@ -147,19 +147,19 @@ struct ParkingPhotoView: View {
                                         viewModel.finishTrip()
                                     } label: {
                                         ZStack {
-                                            Color.white
+                                            Color.alwaysWhite
                                             HStack(spacing: 12) {
                                                 Image(systemName: "camera")
                                                     .resizable()
                                                     .frame(width: 20, height: 16)
-                                                    .foregroundColor(.gray9)
+                                                    .foregroundColor(.alwaysBlack)
                                                     .font(Font.title.weight(.medium))
                                                 
                                                 Text("SCOOTER_global_send_a_photo".localized())
                                                     .lineLimit(2)
                                                     .minimumScaleFactor(0.5)
                                                     .font(.system(size: 17, weight: .medium))
-                                                    .foregroundColor(.gray9)
+                                                    .foregroundColor(.alwaysBlack)
                                                     .multilineTextAlignment(.leading)
                                                 
                                                 Spacer()
@@ -180,11 +180,11 @@ struct ParkingPhotoView: View {
                         }
                     }
                 }
-                .background(Color.black2)
+                .background(Color.alwaysBlack)
                 .cornerRadius(20, corners: [.topLeft, .topRight])
             }
         }
-        .background(Color.black2.ignoresSafeArea(edges: .bottom))
+        .background(Color.alwaysBlack.ignoresSafeArea(edges: .bottom))
         .overlay(
             Button(action: {
                 presentationMode.wrappedValue.dismiss()
@@ -192,7 +192,7 @@ struct ParkingPhotoView: View {
                 ZStack {
                     Image(systemName: "xmark")
                         .resizable()
-                        .foregroundColor(.white)
+                        .foregroundColor(.alwaysWhite)
                         .frame(width: 18, height: 18)
                 }
                 .frame(width: 24, height: 24)
@@ -242,7 +242,7 @@ struct ParkingPhotoView: View {
                 )
                 
                 vc.tripEndData = model
-                vc.view.backgroundColor = .white
+                vc.view.backgroundColor = .appBackground
                 vc.updateUI(data: model)
                 UIApplication.topController()?.present(vc, animated: true)
             }

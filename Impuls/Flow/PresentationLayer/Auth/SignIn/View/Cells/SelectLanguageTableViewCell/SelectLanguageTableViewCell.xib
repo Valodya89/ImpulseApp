@@ -35,7 +35,7 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2P-IU-Nc7" userLabel="spaceView">
                                 <rect key="frame" x="34" y="0.0" width="16" height="54"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Armenian" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhp-fb-S0N">
                                 <rect key="frame" x="50" y="17" width="72.5" height="20"/>
@@ -50,7 +50,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="4ns-WU-guN" firstAttribute="width" secondItem="8bj-J0-tnP" secondAttribute="width" multiplier="0.104615" id="0j6-je-5eN"/>
                             <constraint firstItem="U2P-IU-Nc7" firstAttribute="width" secondItem="8bj-J0-tnP" secondAttribute="width" multiplier="0.0492308" id="385-Dm-wJD"/>
@@ -91,5 +91,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

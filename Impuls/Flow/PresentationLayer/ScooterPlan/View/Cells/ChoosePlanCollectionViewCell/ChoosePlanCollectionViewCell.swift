@@ -28,7 +28,7 @@ final public class ChoosePlanCollectionViewCell: UICollectionViewCell {
     // MARK: Methods
     func setData(billingTarif: BillingTarif, price: String) {
         print("billingTarif = \(billingTarif)")
-        selectedView.backgroundColor = billingTarif.isSelected ? .white : UIColor(named: "mimoGrayLight")
+        selectedView.backgroundColor = billingTarif.isSelected ? .appBackground : UIColor(named: "mimoGrayLight")
         selectedView.layer.cornerRadius = 16
         selectedView.layer.borderColor = UIColor(named: "mimoYellow500")?.cgColor
         selectedView.layer.borderWidth = billingTarif.isSelected ? 1 : 0

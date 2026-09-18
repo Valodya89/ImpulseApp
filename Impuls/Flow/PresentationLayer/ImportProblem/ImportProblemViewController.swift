@@ -23,7 +23,7 @@ final class ImportProblemViewController: UIViewController, StoryboardInitializab
         
         textView.text = textViewPlaceHolder
         textView.textContainerInset.left = 15
-        textView.textColor = UIColor.lightGray
+        textView.textColor = UIColor.appSecondaryLabel
         start()
     }
     
@@ -75,16 +75,16 @@ final class ImportProblemViewController: UIViewController, StoryboardInitializab
 extension ImportProblemViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
+        if textView.textColor == UIColor.appSecondaryLabel {
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textColor = UIColor.appLabel
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = textViewPlaceHolder
-            textView.textColor = UIColor.lightGray
+            textView.textColor = UIColor.appSecondaryLabel
         }
     }
 }

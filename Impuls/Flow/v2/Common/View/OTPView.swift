@@ -66,10 +66,10 @@ final class OTPCodeView: UIView {
     private(set) var showsWarningColor = false
 
     // Colors
-    let inactiveFieldBorderColor = UIColor.black.withAlphaComponent(0.25)
-    let textBackgroundColor = UIColor.white
+    let inactiveFieldBorderColor = UIColor.appLabel.withAlphaComponent(0.25)
+    let textBackgroundColor = UIColor.appBackground
     let activeFieldBorderColor = UIColor.mimoYellow500
-    let errorColor = UIColor(red: 0.96, green: 0.26, blue: 0.21, alpha: 1)
+    let errorColor = UIColor.mimoRed500
 
     private let boxesStackView = UIStackView()
     private var digitLabels: [UILabel] = []
@@ -95,6 +95,17 @@ final class OTPCodeView: UIView {
         hasRequestedFocus = true
         DispatchQueue.main.async { [weak self] in
             self?.textField.becomeFirstResponder()
+        }
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        // Layer border colors resolve once; refresh them when light/dark changes.
+        guard traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else { return }
+        if showsWarningColor {
+            digitLabels.forEach { $0.layer.borderColor = errorColor.resolvedColor(with: traitCollection).cgColor }
+        } else {
+            render(getOTP())
         }
     }
 
@@ -133,7 +144,7 @@ final class OTPCodeView: UIView {
             label.backgroundColor = textBackgroundColor
             label.textAlignment = .center
             label.font = UIFont(name: "Roboto-Regular", size: 24)
-            label.textColor = .black
+            label.textColor = .appLabel
             label.layer.cornerRadius = 8
             label.layer.masksToBounds = true
             label.layer.borderWidth = 1

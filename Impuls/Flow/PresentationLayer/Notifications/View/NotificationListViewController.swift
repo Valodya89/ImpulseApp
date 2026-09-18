@@ -53,6 +53,12 @@ final class NotificationListViewController: BaseViewController, StoryboardInitia
         })
     }
     
+    /// Link color inside notification bodies: unchanged pure blue in light mode, system blue in dark
+    /// mode where pure blue is unreadable on the dark cell background.
+    private static let linkColor = UIColor { traits in
+        traits.userInterfaceStyle == .dark ? UIColor.systemBlue : UIColor.blue
+    }
+
     @IBAction func closeTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -82,7 +88,8 @@ extension NotificationListViewController: UITableViewDataSource, UITableViewDele
         }
         cell?.descriptionLabel.delegate = self
         cell?.descriptionLabel.isUserInteractionEnabled = true
-        UITextView.appearance().linkTextAttributes = [ .foregroundColor: UIColor.blue ]
+        cell?.descriptionLabel.linkTextAttributes = [ .foregroundColor: Self.linkColor ]
+        UITextView.appearance().linkTextAttributes = [ .foregroundColor: Self.linkColor ]
 
         let date = Date(timeIntervalSince1970: (tableData[indexPath.row].date ?? 0.0) / 1000)
         let dayTimePeriodFormatter = DateFormatter()
@@ -122,7 +129,12 @@ extension NotificationListViewController: UITableViewDataSource, UITableViewDele
         }
     func convertStringToAttributedString(text: String) -> NSAttributedString {
         
-        let attributedString = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 16)])
+        // UITextView draws attributed text without a foreground color as black regardless of the
+        // interface style, so the body text must carry an adapting color explicitly.
+        let attributedString = NSMutableAttributedString(string: text, attributes: [
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
+            NSAttributedString.Key.foregroundColor: UIColor.appLabel
+        ])
         
         for link in checkForUrls(text: text) {
             let str = link.absoluteString

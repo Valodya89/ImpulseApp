@@ -48,7 +48,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CW5-QJ-aG5">
                                         <rect key="frame" x="20" y="10" width="335" height="382"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="labelColor"/>
@@ -101,13 +101,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a photo of Mimo to end youre ride." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="ptW-z5-nuq">
                                                 <rect key="frame" x="49" y="2.6666666666667425" width="306" height="19"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" name="AlwaysWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are requiuired to take a photo of your properly parked vehicle to end youre ride." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="S13-4W-Xz0">
                                                 <rect key="frame" x="49" y="29.333333333333368" width="306" height="37.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="16"/>
-                                                <color key="textColor" red="0.87450980392156863" green="0.87450980392156863" blue="0.87450980392156863" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" name="AlwaysWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -201,13 +201,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send a photo of Mimo to end youre ride." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="lJ7-co-P7l">
                                                 <rect key="frame" x="49" y="2.6666666666667425" width="306" height="19"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" name="AlwaysWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make sure that the photo shows exactly youre scooter and the shot is clear" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="VH3-SR-m8W">
                                                 <rect key="frame" x="49" y="29.333333333333368" width="306" height="37.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="16"/>
-                                                <color key="textColor" red="0.87450980389999999" green="0.87450980389999999" blue="0.87450980389999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" name="AlwaysWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -250,7 +250,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="wUm-0c-I9F" secondAttribute="trailing" id="1Er-2q-c9Y"/>
                                                     <constraint firstItem="ZFY-de-ut8" firstAttribute="centerY" secondItem="RWR-G0-PZo" secondAttribute="centerY" id="3Cl-9N-Scd"/>
@@ -287,7 +287,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstItem="6HT-q5-zEh" firstAttribute="leading" secondItem="Xvm-Pa-cZ3" secondAttribute="leading" constant="13" id="67z-51-6z8"/>
                                                     <constraint firstItem="F7v-yG-rsB" firstAttribute="centerY" secondItem="6HT-q5-zEh" secondAttribute="centerY" id="JqE-KB-KlP"/>
@@ -328,7 +328,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JFA-Zs-HQS"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="AlwaysBlack"/>
                         <constraints>
                             <constraint firstItem="DAM-Ef-OWC" firstAttribute="width" secondItem="z4n-g7-B6I" secondAttribute="width" id="2Ea-IV-9Qr"/>
                             <constraint firstItem="Q44-wz-U9s" firstAttribute="leading" secondItem="Erc-tg-v1e" secondAttribute="leading" id="9LI-4H-Rcc"/>
@@ -362,7 +362,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="X">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="22"/>
-                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseForegroundColor" name="AlwaysWhite"/>
                                 </buttonConfiguration>
                             </button>
                         </barButtonItem>
@@ -417,5 +417,20 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AlwaysWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="stateUnAvailable">
+            <color red="0.8784" green="0.8784" blue="0.8784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AlwaysBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

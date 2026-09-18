@@ -116,18 +116,18 @@ struct HistoryView: View {
             } label: {
                 Text("MOBILE_pay_debt".localized())
                     .font(.robotoBold14)
-                    .foregroundColor(.black)
+                    .foregroundColor(.onBrandLabel)
                     .lineLimit(1)
                     .padding(.horizontal, 18)
                     .frame(height: 38)
-                    .background(Capsule().fill(viewModel.isPayingDebt ? Color.black025 : Color.mimoYellow500))
+                    .background(Capsule().fill(viewModel.isPayingDebt ? Color.label025 : Color.mimoYellow500))
             }
             .disabled(viewModel.isPayingDebt)
         }
         .padding(14)
         .background {
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white)
+                .fill(Color.evBgColor4)
         }
         .overlay {
             RoundedRectangle(cornerRadius: 16)
@@ -161,7 +161,7 @@ struct HistoryView: View {
     func scooterTripsListView() -> some View {
         Group {
             if viewModel.scooterTrips.isEmpty {
-                emptyDataView
+                refreshableEmptyView
             } else {
                 ScrollView(showsIndicators: false) {
                     LazyVStack(spacing: 8, pinnedViews: .sectionHeaders) {
@@ -183,6 +183,7 @@ struct HistoryView: View {
                         }
                     }
                     .padding(.bottom, 24)
+                    .mimoRefreshable { done in viewModel.reload(completion: done) }
                 }
             }
         }
@@ -217,7 +218,7 @@ struct HistoryView: View {
     func bikeTripsListView() -> some View {
         Group {
             if viewModel.bikeTrips.isEmpty {
-                emptyDataView
+                refreshableEmptyView
             } else {
                 ScrollView(showsIndicators: false) {
                     LazyVStack(spacing: 8, pinnedViews: .sectionHeaders) {
@@ -239,6 +240,7 @@ struct HistoryView: View {
                         }
                     }
                     .padding(.bottom, 24)
+                    .mimoRefreshable { done in viewModel.reload(completion: done) }
                 }
             }
         }
@@ -278,7 +280,7 @@ struct HistoryView: View {
     func chargerRentsListView() -> some View {
         Group {
             if viewModel.chargerRents.isEmpty {
-                emptyDataView
+                refreshableEmptyView
             } else {
                 ScrollView(showsIndicators: false) {
                     LazyVStack(spacing: 8, pinnedViews: .sectionHeaders) {
@@ -300,6 +302,7 @@ struct HistoryView: View {
                         }
                     }
                     .padding(.bottom, 24)
+                    .mimoRefreshable { done in viewModel.reload(completion: done) }
                 }
             }
         }
@@ -333,7 +336,7 @@ struct HistoryView: View {
     func evChargerRentsListView() -> some View {
         Group {
             if viewModel.evChargerRents.isEmpty {
-                emptyDataView
+                refreshableEmptyView
             } else {
                 ScrollView(showsIndicators: false) {
                     LazyVStack(spacing: 8, pinnedViews: .sectionHeaders) {
@@ -352,6 +355,7 @@ struct HistoryView: View {
                         }
                     }
                     .padding(.bottom, 24)
+                    .mimoRefreshable { done in viewModel.reload(completion: done) }
                 }
             }
         }
@@ -495,7 +499,7 @@ struct HistoryView: View {
         .padding(14)
         .background {
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white)
+                .fill(Color.evBgColor4)
         }
         .shadow(color: Color.black.opacity(0.04), radius: 6, x: 0, y: 2)
     }
@@ -503,9 +507,11 @@ struct HistoryView: View {
     private func codeChip(_ code: String) -> some View {
         HStack(spacing: 6) {
             Image(.qrIcon)
+                .renderingMode(.template)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 14, height: 14)
+                .foregroundColor(.appLabel)
 
             Text(code)
                 .font(.robotoMedium14)
@@ -582,19 +588,21 @@ struct HistoryView: View {
             HStack(spacing: 0) {
                 Text("MOBILE_profile_history".localized())
                     .font(.robotoBold15)
-                    .foregroundColor(.black)
+                    .foregroundColor(.appLabel)
             }
             .frame(maxWidth: .infinity)
             .padding()
 
             Image(.icCloseBig)
+                .renderingMode(.template)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+                .foregroundColor(.appLabel)
                 .frame(width: 24, height: 24)
                 .padding(.leading, 18.5)
                 .onTapGesture { viewModel.back() }
         }
-        .background(Color.white)
+        .background(Color.appBackground)
     }
 
     var emptyDataView: some View {
@@ -603,7 +611,7 @@ struct HistoryView: View {
 
             Text("EV_CHARGER_history_empty_title".localized())
                 .font(.robotoSemibold16)
-                .foregroundColor(Color.black08)
+                .foregroundColor(Color.appLabel.opacity(0.8))
 
             Text("EV_CHARGER_history_empty_description".localized())
                 .font(.robotoRegular15)
@@ -612,6 +620,18 @@ struct HistoryView: View {
         }
         .frame(maxHeight: .infinity)
         .padding(.horizontal, 16)
+    }
+
+    /// The empty state still has to be pullable, otherwise a rider whose first
+    /// ride just ended has no way to see it appear.
+    private var refreshableEmptyView: some View {
+        GeometryReader { proxy in
+            ScrollView(showsIndicators: false) {
+                emptyDataView
+                    .frame(width: proxy.size.width, height: proxy.size.height)
+                    .mimoRefreshable { done in viewModel.reload(completion: done) }
+            }
+        }
     }
 }
 

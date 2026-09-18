@@ -19,7 +19,7 @@ class MimoToggleButton: UILocalizedButton {
     }
     
     @IBInspectable
-    var selectedBackgroundColor: UIColor = .black {
+    var selectedBackgroundColor: UIColor = .mimoBlack {
         didSet {
             setNeedsLayout()
             layoutIfNeeded()

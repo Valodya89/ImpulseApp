@@ -84,7 +84,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.90980392156862744" green="0.93725490196078431" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="mimoGray100"/>
                                 <constraints>
                                     <constraint firstItem="Icf-Z5-TPW" firstAttribute="leading" secondItem="9ha-We-7So" secondAttribute="leading" id="922-vl-KUH"/>
                                     <constraint firstAttribute="bottom" secondItem="Icf-Z5-TPW" secondAttribute="bottom" id="XGj-SK-psf"/>
@@ -94,7 +94,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="9ha-We-7So" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="9XI-H3-qXM"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="9ha-We-7So" secondAttribute="trailing" id="hkI-9w-Dc3"/>
@@ -145,14 +145,14 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XOG-GG-CLn" customClass="MIPhonePicker" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="25" y="19" width="374" height="63"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="63" id="9P1-Ni-vug"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d3Y-UH-2ju" customClass="MITextFieldView" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="25" y="92" width="374" height="63"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="63" placeholder="YES" id="kt2-Xs-NvB"/>
                                                 </constraints>
@@ -162,7 +162,7 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Oc-uy-DKF" customClass="MITextFieldView" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="25" y="165" width="374" height="63"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="63" placeholder="YES" id="3gR-KJ-IWY"/>
                                                 </constraints>
@@ -172,7 +172,7 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G2N-wm-ouu" customClass="MITextFieldView" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="25" y="238" width="374" height="63"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="63" placeholder="YES" id="krA-NZ-Kw2"/>
                                                 </constraints>
@@ -183,7 +183,7 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z2h-LS-ZFI" userLabel="second image field" customClass="ImageField" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="25" y="457" width="374" height="63"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="63" placeholder="YES" id="8Qw-8A-c7y"/>
                                                 </constraints>
@@ -193,7 +193,7 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2T7-O9-mw8" userLabel="first image field" customClass="ImageField" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="25" y="384" width="374" height="63"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="63" placeholder="YES" id="7Cy-wk-fjC"/>
                                                 </constraints>
@@ -203,7 +203,7 @@
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vy2-Yj-MbZ" customClass="MITextFieldView" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="25" y="311" width="374" height="63"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="63" placeholder="YES" id="9El-Zp-2U0"/>
                                                 </constraints>
@@ -246,7 +246,7 @@
                                         <color key="backgroundColor" name="mimoYellow500"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="15" maxX="0.0" maxY="15"/>
                                         <state key="normal" title="Activate">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" name="OnBrandLabel"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isActive" value="NO"/>
@@ -257,7 +257,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.90980392160000001" green="0.93725490199999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="mimoGray100"/>
                                 <constraints>
                                     <constraint firstItem="jHo-qW-Wou" firstAttribute="top" secondItem="L6i-uF-4EA" secondAttribute="top" id="CBZ-Pz-wIm"/>
                                     <constraint firstItem="sfp-f1-uT9" firstAttribute="leading" secondItem="L6i-uF-4EA" secondAttribute="leading" constant="20" id="Xjp-he-Jbg"/>
@@ -269,7 +269,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="lyx-Tb-qLL"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="L6i-uF-4EA" secondAttribute="bottom" id="0QA-6v-Wpf"/>
                             <constraint firstItem="L6i-uF-4EA" firstAttribute="leading" secondItem="lyx-Tb-qLL" secondAttribute="leading" id="Pc9-Iv-Phu"/>
@@ -313,7 +313,7 @@
                                         <rect key="frame" x="15" y="722" width="384" height="48"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="15" maxX="0.0" maxY="15"/>
                                         <state key="normal" title="Activate">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" name="AppLabel"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_plans_rates_packages_yearly_activate_button"/>
@@ -323,7 +323,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.90980392156862744" green="0.93725490196078431" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="mimoGray100"/>
                                 <constraints>
                                     <constraint firstItem="gYc-QF-4zf" firstAttribute="leading" secondItem="WCF-eK-EKj" secondAttribute="leading" constant="15" id="5BC-Fk-Raz"/>
                                     <constraint firstAttribute="trailing" secondItem="gYc-QF-4zf" secondAttribute="trailing" constant="15" id="daG-zT-Fgl"/>
@@ -354,7 +354,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rides" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRK-R2-54Q" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="53" y="113" width="34.5" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="14"/>
-                                                <color key="textColor" red="0.63921568630000003" green="0.63921568630000003" blue="0.63921568630000003" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" name="Gray5"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_plans_rates_rides"/>
@@ -363,7 +363,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yearly Fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZP-Jc-ubZ">
                                                 <rect key="frame" x="51" y="78" width="63" height="16.5"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="14"/>
-                                                <color key="textColor" red="0.63921568630000003" green="0.63921568630000003" blue="0.63921568630000003" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" name="Gray5"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_tag_package" translatesAutoresizingMaskIntoConstraints="NO" id="AjG-jo-KVm">
@@ -382,7 +382,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.90980392160000001" green="0.93725490199999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="mimoGray100"/>
                                                 <constraints>
                                                     <constraint firstItem="CoD-0Y-vsm" firstAttribute="leading" secondItem="YZP-Kb-lY8" secondAttribute="leading" constant="8" id="3Pc-YL-f2t"/>
                                                     <constraint firstItem="CoD-0Y-vsm" firstAttribute="top" secondItem="YZP-Kb-lY8" secondAttribute="top" constant="2" id="3mW-8B-d6Y"/>
@@ -392,7 +392,7 @@
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bike_package" translatesAutoresizingMaskIntoConstraints="NO" id="STf-Sp-V6b">
                                                 <rect key="frame" x="20" y="113.5" width="25" height="15"/>
-                                                <color key="tintColor" red="0.63921568630000003" green="0.63921568630000003" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="tintColor" name="Gray5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="cQf-Jf-5bk"/>
                                                 </constraints>
@@ -461,7 +461,7 @@ from your wallet for package activation</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="xoR-4r-ukh" firstAttribute="top" secondItem="iu8-zb-nc6" secondAttribute="top" constant="28" id="2xY-m4-paw"/>
                                     <constraint firstItem="R0n-tp-ov5" firstAttribute="leading" secondItem="iu8-zb-nc6" secondAttribute="leading" constant="20" id="36u-Nr-Sxm"/>
@@ -480,10 +480,10 @@ from your wallet for package activation</string>
                                         <integer key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="value" name="AppBackground"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="value" name="AppBackground"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
                                         <real key="value" value="8"/>
@@ -498,7 +498,7 @@ from your wallet for package activation</string>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ap0-L8-krj"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="ap0-L8-krj" firstAttribute="trailing" secondItem="iu8-zb-nc6" secondAttribute="trailing" constant="20" id="072-o2-HK2"/>
                             <constraint firstItem="gYc-QF-4zf" firstAttribute="bottom" secondItem="ap0-L8-krj" secondAttribute="bottom" id="3xf-pM-KXV"/>
@@ -572,5 +572,20 @@ from your wallet for package activation</string>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppLabel">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Gray5">
+            <color red="0.6118" green="0.6118" blue="0.6118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="OnBrandLabel">
+            <color red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoGray100">
+            <color red="0.9098" green="0.9373" blue="0.9608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

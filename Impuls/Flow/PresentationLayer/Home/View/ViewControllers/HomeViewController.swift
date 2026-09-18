@@ -8,7 +8,6 @@
 import UIKit
 import GoogleMaps
 import Lottie
-import CoreBluetooth
 import CoreLocation
 
 enum HomeViewControllerState {
@@ -209,6 +208,17 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
     
     //MARK: - Life cycles
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        guard traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else { return }
+        // CALayer colors resolve once; refresh the dynamic border colors on theme change.
+        bookedScooterStopBtn?.layer.borderColor = UIColor.mimoBlack.cgColor
+        scooter1CoontentView?.layer.borderColor = UIColor.appLabel.cgColor
+        scooter2CoontentView?.layer.borderColor = UIColor.appLabel.cgColor
+        scooter3CoontentView?.layer.borderColor = UIColor.appLabel.cgColor
+        mapView?.applyAppearanceStyle(for: traitCollection)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         MALocation.startLocationHeading()
@@ -279,7 +289,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
             print(data)
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.currentScooterTrip?.view.backgroundColor = .white
+                self.currentScooterTrip?.view.backgroundColor = .appBackground
                 self.scooterPlanMode = data.data?.billingModeTariff?.mode ?? ""
                 if let scooter = data.scooter {
                     self.updateMarker(model: scooter)
@@ -363,7 +373,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
                         if !UserManager.share.isOpenDebtScreen { return }
                         self.showDebtVc = ShowDebtViewController.initFromStoryboard(name: Constant.Storyboards.scooterPlan)
                         self.showDebtVc?.modalPresentationStyle = .fullScreen
-                        self.showDebtVc?.view.backgroundColor = .white
+                        self.showDebtVc?.view.backgroundColor = .appBackground
                         self.showDebtVc?.updateUI(amount: state.additional ?? 0.0, wallets: state.wallets ?? [])
                         self.showDebtVc?.delegate = self
                         self.usertDebt = state.additional ?? 0.0
@@ -400,10 +410,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
     }
     
     @objc func openNotList() {
-        let notListVC = NotificationListViewController.initFromStoryboard(name: Constant.Storyboards.home)
-        let navVC = UINavigationController(rootViewController: notListVC)
-        navVC.modalPresentationStyle = .pageSheet
-        self.present(navVC, animated: true)
+        self.present(NotificationsView.makeSheet(), animated: true)
     }
     
     @objc func updateUI() {
@@ -666,7 +673,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
                 
                 let dataStarted = 300 - abs(Date().timeIntervalSince1970 - Double(Int(data) ?? 0) / 1000)
                 // TODO: change for scooter
-                self.view.backgroundColor = .white
+                self.view.backgroundColor = .appBackground
                 self.tripTime = dataStarted
                 self.updateControllerState(state: .bookedScooter)
                 self.stateBookedBike(bikeID: bookID, reminedTime: dataStarted, location: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
@@ -681,7 +688,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
                 let dd = Int(data)
                 let dataStarted = abs((Date().timeIntervalSince1970 - Double(dd)) / 1000)
                 // TODO: change for scooter
-                self.view.backgroundColor = .white
+                self.view.backgroundColor = .appBackground
                 //TODO: need to chenge time coounting
                 self.stateScanScooter(trips: trip_Paused_List, time: dataStarted + self.getPausedTime(pauses: trip_Paused_List.first?.data?.pauses))
             }
@@ -723,13 +730,13 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
         groupScooterGroupScrollView.alwaysBounceVertical = false
         groupScooterGroupScrollView.alwaysBounceHorizontal = true
         self.view.addSubview(groupScooterGroupScrollView)
-        groupScooterGroupScrollView.backgroundColor = .white
+        groupScooterGroupScrollView.backgroundColor = .appBackground
         groupScooterGroupScrollView.delegate = self
         groupScooterGroupScrollView.isHidden = true
         groupScooterGroupScrollView.tag = 999
         groupScooterGroupScrollView.isPagingEnabled = true
         zoneInfoBGView.layer.cornerRadius = zoneInfoButton.frame.height / 2
-        zoneInfoBGView.layer.borderColor = UIColor.white.cgColor
+        zoneInfoBGView.layer.borderColor = UIColor.alwaysWhite.cgColor
         zoneInfoBGView.layer.borderWidth = 2
         pauseVC = PauseViewController.initFromStoryboard(name: Constant.Storyboards.scooterPlan)
         pauseVC?.delegate = self
@@ -805,12 +812,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
     }
     
     func openWalletVC() {
-        var walletNavigationController: UINavigationController?
-        let walletVC = WalletViewController.initFromStoryboard(name: Constant.Storyboards.wallet)
-        walletNavigationController = UINavigationController(rootViewController: walletVC)
-        walletNavigationController?.navigationBar.barTintColor = .white
-        walletNavigationController?.navigationBar.backgroundColor = .white
-        self.present(walletNavigationController!, animated: true, completion: nil)
+        self.present(WalletHostingController(), animated: true, completion: nil)
     }
     
     func setupScooterTimer(time: Double, view: UILabel) {
@@ -928,18 +930,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
     private func configureMapView() {
         mapView.isMyLocationEnabled = true
         mapView.delegate = self
-        
-        //        do {
-        //              // Set the map style by passing the URL of the local file.
-        //              if let styleURL = Bundle.main.url(forResource: "MapStyle", withExtension: "json") {
-        //                mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
-        //              } else {
-        //                NSLog("Unable to find style.json")
-        //              }
-        //            } catch {
-        //              NSLog("One or more of the map styles failed to load. \(error)")
-        //            }
-        
+        mapView.applyAppearanceStyle()
     }
     
     /// configure user interface
@@ -958,7 +949,6 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
     private func configureDelegates() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        BLEManager.shareInstance.delegate = self
     }
     
     /// register collectionView cell
@@ -1161,11 +1151,10 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
             }
         case .scan(let bike):
             UserManager.share.isHaveBikeTrip = true
-            if let data = bike.data?.start, let id = bike.bikeDto?.id, let mac = bike.bikeDto?.mac {
+            if let data = bike.data?.start, bike.bikeDto?.id != nil {
                 var stringDate = String(data)
                 stringDate.removeLast(3)
                 let dataStarted = abs(Date().timeIntervalSince1970 - Double(Int(stringDate) ?? 0))
-                BLEManager.shareInstance.scan(for: mac, bikeID: id, workOption: BLEOption(afterConnectOption: BLEOption.AfterConnect(unlockDevice: false, updateDeviceState: true)))
                 setupScanTimer(time: dataStarted)
                 self.timerManager?.startTimer()
             } else {
@@ -1200,7 +1189,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
                 multyScoooterStackBottom.constant = 293
                 currentLocationBottomConstraint.constant = 320
                 multyScooterSStackView.isHidden = false
-                scooter1CoontentView.layer.borderColor = UIColor.black.cgColor
+                scooter1CoontentView.layer.borderColor = UIColor.appLabel.cgColor
                 scooter1CoontentView.layer.borderWidth = 1.0
             } else {
                 groupScooterGroupScrollView.isHidden = true
@@ -1280,7 +1269,7 @@ final class HomeViewController: BaseViewController, StoryboardInitializable {
                 
                 scooterTrips!.startPrise = item.data?.amount ?? 0.0
                 scooterTrips!.startDistance = item.data?.distance ?? 0.0
-                scooterTrips!.view.backgroundColor = .white
+                scooterTrips!.view.backgroundColor = .appBackground
                 scooterTrips!.view.isHidden = false
                 
                 
@@ -2599,25 +2588,25 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     func updateMultypleScoterSelect(currentIndex: Int) {
         switch currentIndex {
         case 0:
-            scooter1CoontentView.layer.borderColor = UIColor.black.cgColor
+            scooter1CoontentView.layer.borderColor = UIColor.appLabel.cgColor
             scooter1CoontentView.layer.borderWidth = 1.0
-            scooter2CoontentView.layer.borderColor = UIColor.black.cgColor
+            scooter2CoontentView.layer.borderColor = UIColor.appLabel.cgColor
             scooter2CoontentView.layer.borderWidth = 0.0
-            scooter3CoontentView.layer.borderColor = UIColor.black.cgColor
+            scooter3CoontentView.layer.borderColor = UIColor.appLabel.cgColor
             scooter3CoontentView.layer.borderWidth = 0.0
         case 1:
-            scooter1CoontentView.layer.borderColor = UIColor.black.cgColor
+            scooter1CoontentView.layer.borderColor = UIColor.appLabel.cgColor
             scooter1CoontentView.layer.borderWidth = 0.0
-            scooter2CoontentView.layer.borderColor = UIColor.black.cgColor
+            scooter2CoontentView.layer.borderColor = UIColor.appLabel.cgColor
             scooter2CoontentView.layer.borderWidth = 1.0
-            scooter3CoontentView.layer.borderColor = UIColor.black.cgColor
+            scooter3CoontentView.layer.borderColor = UIColor.appLabel.cgColor
             scooter3CoontentView.layer.borderWidth = 0.0
         case 2:
-            scooter1CoontentView.layer.borderColor = UIColor.black.cgColor
+            scooter1CoontentView.layer.borderColor = UIColor.appLabel.cgColor
             scooter1CoontentView.layer.borderWidth = 0.0
-            scooter2CoontentView.layer.borderColor = UIColor.black.cgColor
+            scooter2CoontentView.layer.borderColor = UIColor.appLabel.cgColor
             scooter2CoontentView.layer.borderWidth = 0.0
-            scooter3CoontentView.layer.borderColor = UIColor.black.cgColor
+            scooter3CoontentView.layer.borderColor = UIColor.appLabel.cgColor
             scooter3CoontentView.layer.borderWidth = 1.0
         default: break
         }
@@ -2677,7 +2666,7 @@ extension HomeViewController: HomeScanQrSheetViewControllerDelegate {
     func openShowDebt(amount: Double, wallets: [WalletDebts]) {
         self.showDebtVc = ShowDebtViewController.initFromStoryboard(name: Constant.Storyboards.scooterPlan)
         self.showDebtVc?.modalPresentationStyle = .fullScreen
-        self.showDebtVc?.view.backgroundColor = .white
+        self.showDebtVc?.view.backgroundColor = .appBackground
         self.showDebtVc?.updateUI(amount: amount, wallets: wallets)
         self.showDebtVc?.delegate = self
         self.present(self.showDebtVc!, animated: true)
@@ -2728,38 +2717,7 @@ extension HomeViewController: HomeScanQrSheetViewControllerDelegate {
     func didTappedButton(state: HomeScanQrSheetButtonsState, isShowList isShowlist: Bool = false) {
         switch state {
         case .scanQR:
-            var statusMessage = ""
-            BLEManager.shareInstance.checkBluetoothConnectionState = { [weak self] state in
-                guard let self = self else { return }
-                switch state {
-                case .poweredOn:
-                    statusMessage = "Bluetooth Status: Turned On"
-                    self.presentScanVC()
-                case .poweredOff:
-                    statusMessage = "Bluetooth Status: Turned Off"
-                    self.openAppOrSystemSettingsAlert(title: "MimoBike would like to use Bluetooth for new conection", message: "You can allow connection in Settings")
-                case .resetting:
-                    statusMessage = "Bluetooth Status: Resetting"
-                    self.openAppOrSystemSettingsAlert(title: "MimoBike would like to use Bluetooth for new conection", message: "You can allow connection in Settings")
-                case .unauthorized:
-                    statusMessage = "Bluetooth Status: Not Authorized"
-                    self.openAppOrSystemSettingsAlert(title: "MimoBike would like to use Bluetooth for new conection", message: "You can allow connection in Settings")
-                case .unsupported:
-                    statusMessage = "Bluetooth Status: Not Supported"
-                    self.openAppOrSystemSettingsAlert(title: "MimoBike would like to use Bluetooth for new conection", message: "You can allow connection in Settings")
-                case .unknown:
-                    statusMessage = "Bluetooth Status: Unknown"
-                    self.openAppOrSystemSettingsAlert(title: "MimoBike would like to use Bluetooth for new conection", message: "You can allow connection in Settings")
-                }
-                
-                print(statusMessage)
-                
-                if state == .poweredOff {
-                    //TODO: Update this property in an App Manager class
-                    
-                }
-            }
-            BLEManager.shareInstance.configBLE()
+            self.presentScanVC()
             
         case .bike:
             
@@ -2930,7 +2888,7 @@ extension HomeViewController: HomeSingleBikeViewControllerDelegate {
                 self.pauseVC!.view.backgroundColor = .black.withAlphaComponent(0.3)
                 self.pauseVC?.pausStarted = dataStarted
                 self.pauseVC!.updateTime()
-                self.currentScooterTrip?.view.backgroundColor = .white
+                self.currentScooterTrip?.view.backgroundColor = .appBackground
                 self.currentScooterTrip?.blureViewe.backgroundColor = .black.withAlphaComponent(0.1)
                 self.currentScooterTrip?.blureViewe.isHidden = false
                 self.currentScooterTrip?.updateDurationData()
@@ -3323,46 +3281,6 @@ extension HomeViewController: GMSMapViewDelegate {
     }
 }
 
-
-// MARK: - BLEManagerDelegate -
-
-extension HomeViewController: BLEManagerDelegate {
-    
-    func changeBleState(bleState: BleDeviceState) {
-        switch bleState {
-        case .locked:
-            //self.stopTrip()
-            print("GET STATE FROM LOCK BIKE BLE")
-            self.perform(#selector(updateRideState), with: nil, afterDelay: 3)
-            BLEManager.shareInstance.dinsconnect()
-        case .unLocked:
-            print("GET STATE FROM UNLOCK BIKE BLE")
-            self.perform(#selector(updateRideState), with: nil, afterDelay: 3)
-            
-            break
-        case .connectionLost:
-            if case .scan = self.state {
-                sendNotification()
-            }
-        }
-        self.perform(#selector(updateRideState), with: nil, afterDelay: 3)
-    }
-    
-    private func sendNotification() {
-        let notificationContent = UNMutableNotificationContent()
-        notificationContent.title = "Mimo"
-        notificationContent.body = "Test body"
-        notificationContent.sound = UNNotificationSound.defaultCritical
-        
-        if let url = Bundle.main.url(forResource: "dune", withExtension: "png") {
-            if let attachment = try? UNNotificationAttachment(identifier: "dune", url: url) {
-                notificationContent.attachments = [attachment]
-            }
-        }
-        let request = UNNotificationRequest(identifier: "testNotification", content: notificationContent, trigger: nil)
-        UNUserNotificationCenter.current().add(request)
-    }
-}
 
 extension HomeViewController: TimerManagerDelegate {
     func didChanchTimeSeconds(seconds: Double) {

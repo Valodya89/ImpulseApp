@@ -43,7 +43,7 @@
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oqb-PC-8NW">
                     <rect key="frame" x="0.0" y="62" width="393" height="790"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" name="AppBackground"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Ufx-Ka-jtW"/>
                         <outlet property="delegate" destination="-1" id="68b-SB-kvc"/>
@@ -51,7 +51,7 @@
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" name="AppBackground"/>
             <constraints>
                 <constraint firstItem="qab-SP-SBV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="7zD-c5-WT6"/>
                 <constraint firstItem="oqb-PC-8NW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="9Xz-AW-lci"/>
@@ -77,5 +77,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

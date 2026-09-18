@@ -216,7 +216,7 @@ open class MiAlertView: UIViewController {
         // Activity indicator
         var activityIndicatorStyle: UIActivityIndicatorView.Style
         
-        public init(kDefaultShadowOpacity: CGFloat = 0.7, kCircleTopPosition: CGFloat = 0.0, kCircleBackgroundTopPosition: CGFloat = 6.0, kCircleHeight: CGFloat = 56.0, kCircleIconHeight: CGFloat = 20.0, kTitleHeight:CGFloat = 25.0,  kWindowWidth: CGFloat = 240.0, kWindowHeight: CGFloat = 178.0, kTextHeight: CGFloat = 90.0, kTextFieldHeight: CGFloat = 30.0, kTextViewdHeight: CGFloat = 80.0, kButtonHeight: CGFloat = 35.0, kTitleFont: UIFont = UIFont.systemFont(ofSize: 20), kTitleMinimumScaleFactor: CGFloat = 1.0, kTextFont: UIFont = UIFont.systemFont(ofSize: 14), kButtonFont: UIFont = UIFont.boldSystemFont(ofSize: 14), showCloseButton: Bool = false, showCircularIcon: Bool = true, shouldAutoDismiss: Bool = true, contentViewCornerRadius: CGFloat = 5.0, fieldCornerRadius: CGFloat = 3.0, buttonCornerRadius: CGFloat = 3.0, hideWhenBackgroundViewIsTapped: Bool = false, circleBackgroundColor: UIColor = UIColor.white, contentViewColor: UIColor = UIColorFromRGB(0xFFFFFF), contentViewBorderColor: UIColor = UIColorFromRGB(0xCCCCCC), titleColor: UIColor = UIColorFromRGB(0x4D4D4D), subTitleColor: UIColor = UIColorFromRGB(0x4D4D4D), margin: Margin = Margin(), dynamicAnimatorActive: Bool = false, disableTapGesture: Bool = false, buttonsLayout: SCLAlertButtonLayout = .vertical, activityIndicatorStyle: UIActivityIndicatorView.Style = UIActivityIndicatorView.Style.medium, textViewAlignment: NSTextAlignment = .center) {
+        init(kDefaultShadowOpacity: CGFloat = 0.7, kCircleTopPosition: CGFloat = 0.0, kCircleBackgroundTopPosition: CGFloat = 6.0, kCircleHeight: CGFloat = 56.0, kCircleIconHeight: CGFloat = 20.0, kTitleHeight:CGFloat = 25.0,  kWindowWidth: CGFloat = 240.0, kWindowHeight: CGFloat = 178.0, kTextHeight: CGFloat = 90.0, kTextFieldHeight: CGFloat = 30.0, kTextViewdHeight: CGFloat = 80.0, kButtonHeight: CGFloat = 35.0, kTitleFont: UIFont = UIFont.systemFont(ofSize: 20), kTitleMinimumScaleFactor: CGFloat = 1.0, kTextFont: UIFont = UIFont.systemFont(ofSize: 14), kButtonFont: UIFont = UIFont.boldSystemFont(ofSize: 14), showCloseButton: Bool = false, showCircularIcon: Bool = true, shouldAutoDismiss: Bool = true, contentViewCornerRadius: CGFloat = 5.0, fieldCornerRadius: CGFloat = 3.0, buttonCornerRadius: CGFloat = 3.0, hideWhenBackgroundViewIsTapped: Bool = false, circleBackgroundColor: UIColor = UIColor.appBackground, contentViewColor: UIColor = UIColor.appBackground, contentViewBorderColor: UIColor = UIColor.appSeparator, titleColor: UIColor = UIColor.appLabel, subTitleColor: UIColor = UIColor.mimoDarkGray, margin: Margin = Margin(), dynamicAnimatorActive: Bool = false, disableTapGesture: Bool = false, buttonsLayout: SCLAlertButtonLayout = .vertical, activityIndicatorStyle: UIActivityIndicatorView.Style = UIActivityIndicatorView.Style.medium, textViewAlignment: NSTextAlignment = .center) {
             
             self.kDefaultShadowOpacity = kDefaultShadowOpacity
             self.kCircleTopPosition = kCircleTopPosition
@@ -341,7 +341,7 @@ open class MiAlertView: UIViewController {
         // Set up main view
         view.frame = UIScreen.main.bounds
         view.autoresizingMask = [UIView.AutoresizingMask.flexibleHeight, UIView.AutoresizingMask.flexibleWidth]
-        view.backgroundColor = UIColor(red:0, green:0, blue:0, alpha:appearance.kDefaultShadowOpacity)
+        view.backgroundColor = UIColor.alwaysBlack.withAlphaComponent(appearance.kDefaultShadowOpacity)
         view.addSubview(baseView)
         // Base View
         baseView.frame = view.frame
@@ -390,6 +390,11 @@ open class MiAlertView: UIViewController {
         }
     }
     
+    override open func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        contentView.layer.borderColor = appearance.contentViewBorderColor.cgColor
+    }
+
     override open func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
@@ -1104,7 +1109,7 @@ class SCLAlertViewStyleKit : NSObject {
         checkmarkShapePath.close()
         checkmarkShapePath.miterLimit = 4;
         
-        UIColor.white.setFill()
+        UIColor.alwaysWhite.setFill()
         checkmarkShapePath.fill()
     }
     
@@ -1117,7 +1122,7 @@ class SCLAlertViewStyleKit : NSObject {
         crossShapePath.addLine(to: CGPoint(x: 70, y: 70))
         crossShapePath.lineCapStyle = CGLineCap.round;
         crossShapePath.lineJoinStyle = CGLineJoin.round;
-        UIColor.white.setStroke()
+        UIColor.alwaysWhite.setStroke()
         crossShapePath.lineWidth = 14
         crossShapePath.stroke()
     }
@@ -1155,7 +1160,7 @@ class SCLAlertViewStyleKit : NSObject {
         noticeShapePath.close()
         noticeShapePath.miterLimit = 4;
         
-        UIColor.white.setFill()
+        UIColor.alwaysWhite.setFill()
         noticeShapePath.fill()
     }
     
@@ -1204,7 +1209,7 @@ class SCLAlertViewStyleKit : NSObject {
     
     class func drawInfo() {
         // Color Declarations
-        let color0 = UIColor(red: 1.000, green: 1.000, blue: 1.000, alpha: 1.000)
+        let color0 = UIColor.alwaysWhite
         
         // Info Shape Drawing
         let infoShapePath = UIBezierPath()
@@ -1230,7 +1235,7 @@ class SCLAlertViewStyleKit : NSObject {
     
     class func drawEdit() {
         // Color Declarations
-        let color = UIColor(red:1.0, green:1.0, blue:1.0, alpha:1.0)
+        let color = UIColor.alwaysWhite
         
         // Edit shape Drawing
         let editPathPath = UIBezierPath()
@@ -1277,7 +1282,7 @@ class SCLAlertViewStyleKit : NSObject {
     
     class func drawQuestion() {
         // Color Declarations
-        let color = UIColor(red: CGFloat(1.0), green: CGFloat(1.0), blue: CGFloat(1.0), alpha: CGFloat(1.0))
+        let color = UIColor.alwaysWhite
         // Questionmark Shape Drawing
         let questionShapePath = UIBezierPath()
         questionShapePath.move(to: CGPoint(x: CGFloat(33.75), y: CGFloat(54.1)))

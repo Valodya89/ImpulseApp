@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 import CoreLocation
 
 protocol ChargingStationSheetViewControllerDelegate: AnyObject {
@@ -32,6 +33,10 @@ class ChargingStationSheetViewController: MimoBaseViewController {
     
     var viewModel: ChargingStationDetailsViewModel?
     weak var delegate: ChargingStationSheetViewControllerDelegate?
+    
+    /// Scrolls a long address sideways (same marquee as the home screen rows)
+    /// instead of truncating it. The label underneath keeps the layout.
+    private var addressMarquee: UIHostingController<MarqueeText>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +57,7 @@ class ChargingStationSheetViewController: MimoBaseViewController {
     
     private func setupData() {
         titleLabel.text = viewModel?.chargingStation?.destinationName
-        addressLabel.text = viewModel?.chargingStation?.destinationAddress
+        showAddress(viewModel?.chargingStation?.destinationAddress)
         
         let slotsCount = viewModel?.chargingStation?.slotsCount ?? 0
         let availableSlotsCount = viewModel?.chargingStation?.powerBanksCount ?? 0
@@ -67,6 +72,41 @@ class ChargingStationSheetViewController: MimoBaseViewController {
         facebookButton.isHidden = viewModel?.chargingStation?.facebookUrl?.isEmpty ?? true
         linkedinButton.alpha = (viewModel?.chargingStation?.linkedinUrl?.isEmpty ?? true) ? 0 : 1
         websiteButton.alpha = (viewModel?.chargingStation?.websiteUrl?.isEmpty ?? true) ? 0 : 1
+    }
+    
+    private func showAddress(_ address: String?) {
+        let text = address ?? ""
+        addressLabel.text = text
+        
+        let marquee = MarqueeText(
+            text: text,
+            font: Font(addressLabel.font),
+            color: Color(uiColor: addressLabel.textColor)
+        )
+        
+        if let addressMarquee {
+            addressMarquee.rootView = marquee
+            return
+        }
+        
+        guard let container = addressLabel.superview else { return }
+        
+        let hosting = UIHostingController(rootView: marquee)
+        hosting.view.backgroundColor = .clear
+        hosting.view.translatesAutoresizingMaskIntoConstraints = false
+        addChild(hosting)
+        container.addSubview(hosting.view)
+        NSLayoutConstraint.activate([
+            hosting.view.leadingAnchor.constraint(equalTo: addressLabel.leadingAnchor),
+            hosting.view.trailingAnchor.constraint(equalTo: addressLabel.trailingAnchor),
+            hosting.view.topAnchor.constraint(equalTo: addressLabel.topAnchor),
+            hosting.view.bottomAnchor.constraint(equalTo: addressLabel.bottomAnchor)
+        ])
+        hosting.didMove(toParent: self)
+        
+        // The label still sizes the row; only the marquee is visible.
+        addressLabel.alpha = 0
+        addressMarquee = hosting
     }
     
     private func setupBalance() {
@@ -226,7 +266,7 @@ final class ImagePreviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .black
+        view.backgroundColor = .alwaysBlack
         
         setupCollectionView()
         setupCloseButton()
@@ -269,8 +309,8 @@ final class ImagePreviewViewController: UIViewController {
     private func setupCloseButton() {
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
-        closeButton.tintColor = .white
-        closeButton.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        closeButton.tintColor = .alwaysWhite
+        closeButton.backgroundColor = UIColor.alwaysBlack.withAlphaComponent(0.4)
         closeButton.layer.cornerRadius = 18
         closeButton.addTarget(self, action: #selector(closePreview), for: .touchUpInside)
         view.addSubview(closeButton)
@@ -285,7 +325,7 @@ final class ImagePreviewViewController: UIViewController {
     
     private func setupCounterLabel() {
         counterLabel.translatesAutoresizingMaskIntoConstraints = false
-        counterLabel.textColor = .white
+        counterLabel.textColor = .alwaysWhite
         counterLabel.textAlignment = .center
         counterLabel.font = UIFont(name: "Roboto-Regular", size: 15) ?? .systemFont(ofSize: 15)
         counterLabel.isHidden = images.count < 2

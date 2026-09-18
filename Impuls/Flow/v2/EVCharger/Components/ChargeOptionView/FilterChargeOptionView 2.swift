@@ -41,7 +41,7 @@ struct RoundedStateView: View {
                     .clipShape(EVTriangle(radius: 8, angleShape: .rightTrianglelTopTrailing))
                     .frame(width: 23, height: 20)
                 
-                Image("chackMark")
+                Image("chackMark_fixed")
                     .resizable()
                     .frame(width: 7, height: 7)
                     .padding(.trailing, 3)

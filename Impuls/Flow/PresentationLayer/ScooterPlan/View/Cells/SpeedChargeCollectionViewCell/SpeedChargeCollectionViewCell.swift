@@ -26,7 +26,7 @@ final public class SpeedChargeCollectionViewCell: UICollectionViewCell {
 
     // MARK: Methods
     func setData(speedTariff: SpeedTariff) {
-        selectedView.backgroundColor = speedTariff.isSelected ? .white : UIColor(named: "mimoGrayLight")
+        selectedView.backgroundColor = speedTariff.isSelected ? .appBackground : UIColor(named: "mimoGrayLight")
         selectedView.layer.cornerRadius = 6
         selectedView.layer.borderColor = UIColor(named: "mimoYellow500")?.cgColor
         selectedView.layer.borderWidth = speedTariff.isSelected ? 1 : 0

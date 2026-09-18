@@ -148,7 +148,7 @@ struct EVChargerDetailsView: View {
                     Image(systemName: "xmark")
                         .resizable()
                         .frame(width: 20, height: 20)
-                        .foregroundColor(.white)
+                        .foregroundColor(.alwaysWhite)
                         .padding()
                         .onTapGesture {
                             viewModel.selectedMediaIcon = nil
@@ -210,7 +210,7 @@ struct EVChargerDetailsView: View {
                         showWalletScreen = true
                     } label: {
                         Image(systemName: "plus")
-                            .foregroundColor(Color.white)
+                            .foregroundColor(Color.alwaysWhite)
                             .frame(width: 40, height: 40)
                     }
                     .background(Color.evbrandCyan80)
@@ -467,7 +467,7 @@ struct EVConnectorCardView: View {
         .padding(.horizontal, 16)
         .background {
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white)
+                .fill(Color.evMainBg1)
                 .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
         }
         .frame(maxWidth: .infinity)
@@ -547,8 +547,8 @@ struct EVConnectorCardView: View {
             textColor = Color(hex: "682D03")
         case .reserved, .unavailable, .faulted:
             state = "EV_CHARGER_connector_state_unavailable".localized()
-            bgColor = Color(hex: "E0E0E0")
-            textColor = Color(hex: "404040")
+            bgColor = Color("stateUnAvailable")
+            textColor = Color("stateUnAvailableTitle")
         }
         
         return Text(state)

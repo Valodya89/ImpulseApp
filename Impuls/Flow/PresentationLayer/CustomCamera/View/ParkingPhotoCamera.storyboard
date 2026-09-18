@@ -34,7 +34,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CW5-QJ-aG5">
                                         <rect key="frame" x="20" y="134.66666666666666" width="388" height="440.33333333333337"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="labelColor"/>
@@ -70,7 +70,7 @@
                                     <constraint firstAttribute="height" constant="40" id="xBm-MK-pqJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" name="AlwaysWhite"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="SCOOTER_global_parking_photo"/>
@@ -106,7 +106,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a photo of Mimo to end youre ride." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="ptW-z5-nuq" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="49" y="2.6666666666666288" width="359" height="19"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" name="AlwaysWhite"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="SCOOTER_global_take_photo"/>
@@ -115,7 +115,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are requiuired to take a photo of your properly parked vehicle to end youre ride." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="S13-4W-Xz0" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="49" y="29.333333333333368" width="359" height="37.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="16"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" name="AlwaysWhite"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="SCOOTER_global_take_photo_requiared"/>
@@ -212,7 +212,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send a photo of Mimo to end youre ride." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="lJ7-co-P7l" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="49" y="2.6666666666666288" width="359" height="19"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" name="AlwaysWhite"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="SCOOTER_global_send_photo_info"/>
@@ -221,7 +221,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make sure that the photo shows exactly youre scooter and the shot is clear" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="VH3-SR-m8W" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="49" y="29.333333333333368" width="359" height="37.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="16"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" name="AlwaysWhite"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="SCOOTER_global_correct_photo"/>
@@ -270,7 +270,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="wUm-0c-I9F" secondAttribute="trailing" id="1Er-2q-c9Y"/>
                                                     <constraint firstItem="ZFY-de-ut8" firstAttribute="centerY" secondItem="RWR-G0-PZo" secondAttribute="centerY" id="3Cl-9N-Scd"/>
@@ -310,7 +310,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstItem="6HT-q5-zEh" firstAttribute="leading" secondItem="Xvm-Pa-cZ3" secondAttribute="leading" constant="13" id="67z-51-6z8"/>
                                                     <constraint firstItem="F7v-yG-rsB" firstAttribute="centerY" secondItem="6HT-q5-zEh" secondAttribute="centerY" id="JqE-KB-KlP"/>
@@ -351,7 +351,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JFA-Zs-HQS"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="mimoBlack"/>
                         <constraints>
                             <constraint firstItem="Q44-wz-U9s" firstAttribute="leading" secondItem="Erc-tg-v1e" secondAttribute="leading" id="9LI-4H-Rcc"/>
                             <constraint firstItem="Q44-wz-U9s" firstAttribute="height" secondItem="Erc-tg-v1e" secondAttribute="height" multiplier="0.357451" id="9kC-OE-M4y"/>
@@ -414,7 +414,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="opI-j9-TBQ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FTU-Jj-2bk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -456,5 +456,14 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AlwaysWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

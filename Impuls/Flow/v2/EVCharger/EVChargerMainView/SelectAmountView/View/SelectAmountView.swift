@@ -150,7 +150,7 @@ struct EVSelectedConnectorCardView: View {
         .padding()
         .background {
             RoundedRectangle(cornerRadius: 8)
-                .fill(Color.white)
+                .fill(Color.evMainBg1)
                 .shadow(color: .black.opacity(0.1), radius: 8, x: 0, y: 4)
         }
         .frame(maxWidth: .infinity)

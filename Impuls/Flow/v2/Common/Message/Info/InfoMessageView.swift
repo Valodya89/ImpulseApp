@@ -52,7 +52,7 @@ struct InfoMessageView: View {
                 }
                 .padding(.horizontal, 20)
             }
-            .background(Color.white)
+            .background(Color.appBackground)
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .shadow(color: .black.opacity(0.1), radius: 8, y: 2)
             .padding(.horizontal, 48)

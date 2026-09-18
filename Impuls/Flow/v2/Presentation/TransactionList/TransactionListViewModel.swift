@@ -4,69 +4,175 @@
 //
 //  Created by Albert Mnatsakanyan on 7/26/25.
 //
+//  State for the wallet's transaction history: the flat list the backend
+//  returns, the income/outcome totals over it, an income/outcome filter, and
+//  the filtered list grouped by day for the screen. The wallet's inline
+//  preview reads `transactions` straight.
+//
 
 import Combine
+import Foundation
 
 final class TransactionListViewModel: MimoBaseViewModel, ObservableObject {
+
+    enum Filter: SegmentedCapsuleOption {
+        case all
+        case income
+        case outcome
+
+        var title: String {
+            switch self {
+            case .all: return "MOBILE_transactions_filter_all".localized(fallback: "All")
+            case .income: return "MOBILE_charger.income".localized(fallback: "Income")
+            case .outcome: return "MOBILE_charger.outcome".localized(fallback: "Outcome")
+            }
+        }
+    }
+
+    /// One day of transactions, newest first, with the day's net movement.
+    struct DaySection: Identifiable {
+        let id: Date
+        let title: String
+        let items: [TransactionDTO]
+        let netAmount: Double
+    }
+
     private var cancellables = Set<AnyCancellable>()
-//    private let coordinatoor: EVChargerCoordinator
     private let worker: TransactionWorkerProtocol
-    
-    @Published private(set) var transactions: [ItemSection<TransactionDTO>] = []
+
+    /// Every transaction, newest first.
+    @Published private(set) var transactions: [TransactionDTO] = []
+    /// The filtered list grouped by day, newest day first.
+    @Published private(set) var sections: [DaySection] = []
+    @Published var filter: Filter = .all {
+        didSet { rebuildSections() }
+    }
+
+    /// True until the first response lands (or while reloading with nothing
+    /// shown yet), so the screen draws placeholders.
+    @Published private(set) var isLoading: Bool = false
+    /// A failed first load; the screen offers a retry.
+    @Published private(set) var loadFailed: Bool = false
+    private var hasLoaded = false
 
     init(
-//        coordinatoor: EVChargerCoordinator,
         worker: TransactionWorkerProtocol
     ) {
-//        self.coordinatoor = coordinatoor
         self.worker = worker
         super.init()
-        
+
         getTransactionList()
     }
-    
-    func back() {
-//        coordinatoor.dissmiss()
+
+    // MARK: - Derived
+
+    var totalIncome: Double {
+        transactions.filter { $0.isIncome }.reduce(0) { $0 + abs($1.amount) }
     }
-    
+
+    var totalOutcome: Double {
+        transactions.filter { !$0.isIncome }.reduce(0) { $0 + abs($1.amount) }
+    }
+
+    /// Currency for the totals: the rows' own, falling back to the wallet's.
+    var currencyTitle: String {
+        transactions.first?.currencyTitle ?? UserManager.walletCurrencyTitle
+    }
+
+    var isEmpty: Bool {
+        hasLoaded && transactions.isEmpty
+    }
+
+    /// Transactions exist but none match the current filter.
+    var isFilterEmpty: Bool {
+        hasLoaded && !transactions.isEmpty && sections.isEmpty
+    }
+
+    func back() {
+    }
+
+    // MARK: - Loading
+
+    /// Re-reads the list. The wallet calls this after a top-up so its inline
+    /// preview shows the new transaction without reopening the screen.
+    func reload() {
+        getTransactionList()
+    }
+
+    /// Pull-to-refresh: reports back once the list (or an error) arrives.
+    func reload(completion: @escaping (Bool) -> Void) {
+        var delivered = false
+        let loaded = $transactions.dropFirst().map { _ in true }
+        let failed = $errorMessage.dropFirst().compactMap { $0 }.map { _ in false }
+
+        loaded.merge(with: failed)
+            .first()
+            .timeout(.seconds(15), scheduler: DispatchQueue.main)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { result in
+                if case .finished = result, !delivered { completion(false) }
+            }, receiveValue: { success in
+                delivered = true
+                completion(success)
+            })
+            .store(in: &cancellables)
+
+        getTransactionList()
+    }
+
     private func getTransactionList() {
+        if !hasLoaded {
+            isLoading = true
+            loadFailed = false
+        }
+
         worker.getTransactionList()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
-                switch completion {
-                case .failure(let error):
-                    self?.errorMessage = error.message
-                default: break
+                guard let self else { return }
+                self.isLoading = false
+                if case .failure(let error) = completion {
+                    self.loadFailed = !self.hasLoaded
+                    self.errorMessage = error.message
                 }
             } receiveValue: { [weak self] transactions in
-                let grouped = Dictionary(grouping: transactions) { item in
-                    let date = Date(timeIntervalSince1970: TimeInterval((item.date) / 1000))
-                    return Calendar.current.startOfDay(for: date)
-                }
-
-                let sorted = grouped.sorted { $0.key > $1.key }
-                var locale: Locale = Locale.current
-                if let language = StorageManager().fetch(key: .language, type: String.self) {
-                    locale = Locale(identifier: language)
-                }
-
-                self?.transactions = sorted.map { (date, items) in
-                    ItemSection(
-                        title: date.toString(dateStyle: .medium, timeStyle: .none, locale: locale),
-                        items: items
-                    )
-                }
-                
-                print("transactions: \(transactions)")
+                guard let self else { return }
+                self.hasLoaded = true
+                self.transactions = transactions.sorted { $0.date > $1.date }
+                self.rebuildSections()
             }
             .store(in: &cancellables)
     }
-}
 
-extension TransactionListViewModel {
-    struct ItemSection<T>: Identifiable {
-        let id = UUID()
-        let title: String
-        let items: [T]
+    // MARK: - Grouping
+
+    private func rebuildSections() {
+        let visible: [TransactionDTO]
+        switch filter {
+        case .all: visible = transactions
+        case .income: visible = transactions.filter { $0.isIncome }
+        case .outcome: visible = transactions.filter { !$0.isIncome }
+        }
+
+        let calendar = Calendar.current
+        let grouped = Dictionary(grouping: visible) { calendar.startOfDay(for: $0.dateValue) }
+
+        var locale: Locale = Locale.current
+        if let language = StorageManager().fetch(key: .language, type: String.self) {
+            locale = Locale(identifier: language)
+        }
+
+        sections = grouped
+            .sorted { $0.key > $1.key }
+            .map { day, items in
+                DaySection(
+                    id: day,
+                    // Relative formatting gives "Today" / "Yesterday" in the
+                    // rider's language and a plain date otherwise.
+                    title: day.toString(dateStyle: .medium, timeStyle: .none, isRelative: true, locale: locale),
+                    items: items.sorted { $0.date > $1.date },
+                    netAmount: items.reduce(0) { $0 + ($1.isIncome ? abs($1.amount) : -abs($1.amount)) }
+                )
+            }
     }
 }

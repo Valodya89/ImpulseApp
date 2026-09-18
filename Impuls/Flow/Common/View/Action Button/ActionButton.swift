@@ -29,7 +29,7 @@ final class ActionButton: CircleButton {
         layer.backgroundColor = UIColor.mimoGray100.cgColor
         layer.insertSublayer(backgroundLayer, at: 0)
         titleLabel?.font = UIFont(name: "Roboto-bold", size: 15)
-        setTitleColor(.black, for: .normal)
+        setTitleColor(.onBrandLabel, for: .normal)
         setTitle(localizedTitle?.localized(), for: .normal)
         setTitle(localizedTitle?.localized(), for: .disabled)
 

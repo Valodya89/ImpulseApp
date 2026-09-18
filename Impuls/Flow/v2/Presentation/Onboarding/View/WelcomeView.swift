@@ -27,10 +27,10 @@ struct WelcomeView: View {
                     VStack(alignment: .leading, spacing: 0) {
                         Text("MOBILE_global_welcome_title".localized())
                             .font(.robotoLight36)
-                            .foregroundColor(.white)
+                            .foregroundColor(.alwaysWhite)
                         Text("Импульс")
                             .font(.robotoBold36)
-                            .foregroundColor(.white)
+                            .foregroundColor(.alwaysWhite)
                     }
                     .padding(.leading, 20)
                     .padding(.top, 20)
@@ -44,7 +44,7 @@ struct WelcomeView: View {
                             HStack {
                                 Text(selectedLanguage.name)
                                     .font(.robotoBold15)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.alwaysBlack)
                                 
                                 Spacer()
                                 
@@ -57,14 +57,14 @@ struct WelcomeView: View {
                                     Image(systemName: "chevron.down")
                                         .resizable()
                                         .frame(width: 12, height: 6)
-                                        .foregroundColor(.black025)
+                                        .foregroundColor(.alwaysBlack.opacity(0.25))
                                 }
                             }
                             .padding(.horizontal, 22)
                         }
                         .frame(maxWidth: .infinity)
                         .frame(height: 48)
-                        .background(Color.white)
+                        .background(Color.alwaysWhite)
                         .clipShape(Capsule())
                     }
                     .padding(.horizontal, 20)

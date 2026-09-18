@@ -17,7 +17,7 @@ extension SheetViewController {
         dismissOnOverlayTap = false
         gripSize = .init(width: 38, height: 4)
         gripColor = .mimoBlackWith025alpha
-        overlayColor = .mimoBlackWith025alpha
-        view.addShadow(color: .mimoBlackWith025alpha)
+        overlayColor = UIColor.alwaysBlack.withAlphaComponent(0.25)
+        view.addShadow(color: UIColor.alwaysBlack.withAlphaComponent(0.25))
     }
 }

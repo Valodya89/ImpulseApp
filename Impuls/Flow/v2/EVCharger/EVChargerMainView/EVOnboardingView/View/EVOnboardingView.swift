@@ -54,7 +54,7 @@ struct EVOnboardingView: View {
             } label: {
                 Text("MOBILE_global_next".localized())
                     .font(.robotoBold15)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color.alwaysWhite)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 15)
                     .background(Color.evbrandCyan80)
@@ -81,7 +81,7 @@ struct EVOnboardingView: View {
             backAction: { viewModel.back() }
         )
         .onAppear {
-            UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.black
+            UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.appLabel
             UIPageControl.appearance().pageIndicatorTintColor = UIColor.gray
         }
     }

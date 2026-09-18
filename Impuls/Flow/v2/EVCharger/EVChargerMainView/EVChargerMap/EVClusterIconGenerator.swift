@@ -46,7 +46,7 @@ class EVClusterIconGenerator: NSObject, GMUClusterIconGenerator {
         
         let label = UILabel(frame: frame)
         label.text = iconSize.designedTitle
-        label.textColor = .white
+        label.textColor = .alwaysWhite
         label.font = UIFont(name: Constant.Font.robotoBold, size: 12)
         label.textAlignment = .center
         imageView.addSubview(label)

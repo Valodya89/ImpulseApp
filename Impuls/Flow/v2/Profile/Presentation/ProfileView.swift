@@ -51,7 +51,7 @@ struct ProfileView: View {
                 } label: {
                     Image(systemName: "pencil.line")
                         .resizable()
-                        .foregroundColor(Color.black075)
+                        .foregroundColor(Color.label075)
                 }
                 .frame(width: 24, height: 24)
             }
@@ -61,7 +61,7 @@ struct ProfileView: View {
             .alert(isPresented: $showActiveTripAlert) {
                 Alert(
                     title: Text("MOBILE_you_have_active_trip".localized()).foregroundColor(.mimoDarkGray),
-                    dismissButton: .cancel(Text("Ok").foregroundColor(.black)))
+                    dismissButton: .cancel(Text("Ok").foregroundColor(.appLabel)))
             }
             
             ScrollView(.vertical, showsIndicators: true) {
@@ -75,7 +75,7 @@ struct ProfileView: View {
                                 .clipShape(Circle())
                                 .overlay(
                                     Circle()
-                                        .stroke(Color.black075, lineWidth: 1)
+                                        .stroke(Color.label075, lineWidth: 1)
                                 )
                         } else {
                             ZStack {
@@ -83,25 +83,25 @@ struct ProfileView: View {
                                     .resizable()
                                     .font(.title.weight(.ultraLight))
                                     .frame(width: 58, height: 58)
-                                    .foregroundColor(.black075)
+                                    .foregroundColor(.label075)
                             }
                             .frame(width: 106, height: 106)
                             .background(Color.gray.opacity(0.2))
                             .clipShape(Circle())
                             .overlay(
                                 Circle()
-                                    .stroke(Color.black075, lineWidth: 1.5)
+                                    .stroke(Color.label075, lineWidth: 1.5)
                             )
                         }
                         
                         Text(viewModel.name)
                             .font(.system(size: 17, weight: .bold))
-                            .foregroundColor(.black)
+                            .foregroundColor(.appLabel)
                             .padding(.top, 20)
                         
                         Text(viewModel.phoneNumber)
                             .font(.system(size: 15, weight: .regular))
-                            .foregroundColor(.black05)
+                            .foregroundColor(.label05)
                             .padding(.top, 6)
                     }
 //
@@ -116,7 +116,7 @@ struct ProfileView: View {
 //                                
 //                                Text("MOBILE_global_distance".localized())
 //                                    .font(.system(size: 15, weight: .light))
-//                                    .foregroundColor(.black05)
+//                                    .foregroundColor(.label05)
 //                            }
 //                        }
 //                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
@@ -131,7 +131,7 @@ struct ProfileView: View {
 //                                
 //                                Text("MOBILE_global_calories".localized())
 //                                    .font(.system(size: 15, weight: .light))
-//                                    .foregroundColor(.black05)
+//                                    .foregroundColor(.label05)
 //                            }
 //                        }
 //                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
@@ -146,7 +146,7 @@ struct ProfileView: View {
 //                                
 //                                Text("MOBILE_global_carbon".localized())
 //                                    .font(.system(size: 15, weight: .light))
-//                                    .foregroundColor(.black05)
+//                                    .foregroundColor(.label05)
 //                            }
 //                        }
 //                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
@@ -211,7 +211,7 @@ struct ProfileView: View {
 //                            }
 //                        }
 //                    }
-//                    .background(Color.white)
+//                    .background(Color.appBackground)
 //                    .clipShape(RoundedRectangle(cornerRadius: 8))
 //                    .shadow(color: .black.opacity(0.1), radius: 8, y: 2)
 //                    .padding(.top, 12)
@@ -233,14 +233,14 @@ struct ProfileView: View {
                             }
                         }
                     }
-                    .background(Color.white)
+                    .background(Color.appBackground)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .shadow(color: .black.opacity(0.1), radius: 8, y: 2)
                     .padding(.top, 6)
                     
                     Text(appVersion)
                         .font(.subheadline)
-                        .foregroundColor(.black05)
+                        .foregroundColor(.label05)
                         .padding(.top, 8)
                     
                     Spacer()
@@ -261,7 +261,7 @@ struct ProfileView: View {
                                             MILoader.show()
                                             viewModel.logout()
                                         }),
-                                     secondaryButton: .cancel(Text("MOBILE__confirmation_no".localized()).foregroundColor(.black))
+                                     secondaryButton: .cancel(Text("MOBILE__confirmation_no".localized()).foregroundColor(.appLabel))
                         )
                     case .deleteAccount:
                         return Alert(title: Text("MOBILE_profice_deleete_confirm".localized()).foregroundColor(.mimoDarkGray),
@@ -271,7 +271,7 @@ struct ProfileView: View {
                                             MILoader.show()
                                             viewModel.deleteAccount()
                                         }),
-                                     secondaryButton: .cancel(Text("MOBILE__confirmation_no".localized()).foregroundColor(.black))
+                                     secondaryButton: .cancel(Text("MOBILE__confirmation_no".localized()).foregroundColor(.appLabel))
                         )
                     }
                 }

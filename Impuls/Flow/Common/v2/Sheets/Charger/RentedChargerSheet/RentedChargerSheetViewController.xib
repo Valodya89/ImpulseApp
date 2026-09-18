@@ -24,7 +24,7 @@
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="X8c-wQ-Q8x">
                     <rect key="frame" x="0.0" y="0.0" width="393" height="193"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" name="AppBackground"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="193" id="ecY-gk-DEQ"/>
                     </constraints>
@@ -46,7 +46,7 @@
                 </pageControl>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" name="AppBackground"/>
             <constraints>
                 <constraint firstItem="6S7-J1-IBF" firstAttribute="top" secondItem="X8c-wQ-Q8x" secondAttribute="bottom" constant="6" id="a33-rB-hA1"/>
                 <constraint firstAttribute="trailing" secondItem="X8c-wQ-Q8x" secondAttribute="trailing" id="igd-iu-5an"/>
@@ -65,5 +65,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

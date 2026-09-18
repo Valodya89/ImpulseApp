@@ -26,6 +26,6 @@ struct ChooseConnectorChargeOptionView: View {
         .padding(.vertical, 15)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .borderRoundedStateView(isSelected: isSelected)
-        .background(Color.white.cornerRadius(8, corners: .allCorners))
+        .background(Color.evMainBg1.cornerRadius(8, corners: .allCorners))
     }
 }   

@@ -26,7 +26,7 @@ struct EVSelectionModifier: ViewModifier {
                         Image("chackMark")
                             .resizable()
                             .renderingMode(.template)
-                            .foregroundColor(Color.white)
+                            .foregroundColor(Color.alwaysWhite)
                             .frame(width: 7, height: 7)
                             .padding(.trailing, 3)
                             .padding(.top, 3)

@@ -50,6 +50,12 @@ final class MapViewController: BaseViewController, StoryboardInitializable {
     
     //MARK: - Life cycles
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        guard traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else { return }
+        mapView?.applyAppearanceStyle(for: traitCollection)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -88,6 +94,7 @@ final class MapViewController: BaseViewController, StoryboardInitializable {
                                                   longitude: 87.0,
                                                   zoom: 18)
             let mapView = GMSMapView.map(withFrame: .zero, camera: camera)
+            mapView.applyAppearanceStyle()
 
             //Add vertex's to Path like as shown bellow
             //get vertices from map
@@ -122,6 +129,7 @@ final class MapViewController: BaseViewController, StoryboardInitializable {
     /// configure map view
     private func configureMapView() {
         mapView.isMyLocationEnabled = true
+        mapView.applyAppearanceStyle()
     }
     
     /// configure user interface

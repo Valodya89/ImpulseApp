@@ -25,7 +25,7 @@ struct InsuranceView: View {
                 insuranceIconView
                 
                 Text("SCOOTER_insurance_name".localized())
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color.appLabel)
                     .font(.robotoBold17)
             }
             .padding(.top, 12)
@@ -40,7 +40,7 @@ struct InsuranceView: View {
                 
                 VStack(alignment: .leading, spacing: 10) {
                     Text("SCOOTER_insurance_terms_title".localized())
-                        .foregroundColor(Color.black)
+                        .foregroundColor(Color.appLabel)
                         .font(.robotoBold14)
                     
                     HStack(spacing: 10) {
@@ -75,7 +75,7 @@ struct InsuranceView: View {
             } label: {
                 Text("OK")
                     .font(.robotoBold14)
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color.onBrandLabel)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
                     .background(viewModel.termsCheckIsSelected ? Color.mimoYellow500 : Color.gray4.opacity(0.5))
@@ -95,7 +95,7 @@ struct InsuranceView: View {
     func atriputedLinkTextView(attribute: AttributedString) -> some View {
         HStack(spacing: 16) {
             Circle()
-                .foregroundColor(Color.black)
+                .foregroundColor(Color.appLabel)
                 .frame(width: 7, height: 7)
             
             Text(attribute)

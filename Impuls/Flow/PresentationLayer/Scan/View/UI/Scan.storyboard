@@ -41,14 +41,14 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kyt-tx-1i8">
                                         <rect key="frame" x="0.0" y="-142" width="375" height="812"/>
-                                        <color key="backgroundColor" name="mimoBlackWith05alpha"/>
+                                        <color key="backgroundColor" name="Overlay"/>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zM3-NM-MF5" userLabel="contentView">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="725.33333333333337"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aaq-aJ-W5M">
                                                 <rect key="frame" x="0.0" y="68" width="375" height="290"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="290" id="u8Y-kl-fWd"/>
                                                 </constraints>
@@ -168,7 +168,7 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MZE-cc-gIK" customClass="MITextFieldView" customModule="Impuls" customModuleProvider="target">
                                 <rect key="frame" x="8" y="716" width="359" height="56"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" placeholder="YES" id="iWC-Lz-Zpc"/>
                                 </constraints>
@@ -183,7 +183,7 @@
                                 <inset key="contentEdgeInsets" minX="20" minY="10" maxX="20" maxY="10"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="CONTINUE">
-                                    <color key="titleColor" name="mimoBlackWith075alpha"/>
+                                    <color key="titleColor" name="OnBrandSecondaryLabel"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_global_continue"/>
@@ -194,7 +194,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="F6T-Bb-km2"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="itg-4r-n8G" firstAttribute="leading" secondItem="MZE-cc-gIK" secondAttribute="leading" id="1C2-yH-gkS"/>
                             <constraint firstAttribute="bottom" secondItem="e1e-we-rFO" secondAttribute="bottom" id="DAn-jk-FvG"/>
@@ -226,7 +226,7 @@
                                 <rect key="frame" x="319" y="7.0000000000000018" width="36" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="ic_close_white">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" name="AlwaysWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="doneButtonTapped:" destination="Sdv-1q-wkN" eventType="touchUpInside" id="JBG-hN-WTe"/>
@@ -499,7 +499,7 @@
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="-60" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Stop Ride" image="ic_unlocked_lock">
-                                    <color key="titleColor" name="mimoBlack"/>
+                                    <color key="titleColor" name="OnBrandLabel"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_map_stop_ride"/>
@@ -541,7 +541,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="opG-8x-zmv" customClass="iCarousel">
                                 <rect key="frame" x="67.666666666666686" y="342" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="4zP-AH-3rK"/>
                                     <constraint firstAttribute="height" constant="128" id="ig1-pt-c8j"/>
@@ -549,7 +549,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="00n-Ti-udt"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="opG-8x-zmv" firstAttribute="centerY" secondItem="pZW-Re-7v6" secondAttribute="centerY" id="WbC-Sm-47Z"/>
                             <constraint firstItem="opG-8x-zmv" firstAttribute="centerX" secondItem="pZW-Re-7v6" secondAttribute="centerX" id="knq-ob-CyG"/>
@@ -604,7 +604,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan the QR code on bike" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTe-DJ-tVQ" customClass="UILocalizedLabel" customModule="Impuls" customModuleProvider="target">
                                 <rect key="frame" x="32" y="157" width="311" height="30.333333333333343"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" name="AlwaysWhite"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" name="mimoBlackWith05alpha"/>
                                 <size key="shadowOffset" width="2" height="2"/>
@@ -680,7 +680,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rHI-tJ-dCR" customClass="MITextFieldView" customModule="Impuls" customModuleProvider="target">
                                 <rect key="frame" x="18" y="675" width="339" height="56"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" placeholder="YES" id="Dto-vx-hUw"/>
                                 </constraints>
@@ -705,7 +705,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IWq-Eq-Sbe"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="AlwaysBlack"/>
                         <constraints>
                             <constraint firstItem="oAi-KK-jYx" firstAttribute="top" secondItem="TTe-DJ-tVQ" secondAttribute="bottom" constant="80" id="1Xl-re-cD7"/>
                             <constraint firstItem="IWq-Eq-Sbe" firstAttribute="trailing" secondItem="m3t-KG-IEF" secondAttribute="trailing" id="4MO-wQ-fKe"/>
@@ -741,7 +741,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="p4A-lI-Dbf">
                         <barButtonItem key="rightBarButtonItem" image="ic_close_white" style="plain" id="hu6-V6-OTX">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" name="AlwaysWhite"/>
                             <connections>
                                 <action selector="doneAction" destination="2sU-Mz-W0J" id="TIh-Jz-PNA"/>
                             </connections>
@@ -806,5 +806,23 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AlwaysWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="OnBrandLabel">
+            <color red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="OnBrandSecondaryLabel">
+            <color red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Overlay">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AlwaysBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -25,6 +25,12 @@ final class ScanRideBikeViewController: BaseViewController, StoryboardInitializa
     
     //MARK: - Life cycles
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        guard traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else { return }
+        mapView?.applyAppearanceStyle(for: traitCollection)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -54,6 +60,7 @@ final class ScanRideBikeViewController: BaseViewController, StoryboardInitializa
     /// configure map view
     private func configureMapView() {
         mapView.isMyLocationEnabled = true
+        mapView.applyAppearanceStyle()
     }
     
     

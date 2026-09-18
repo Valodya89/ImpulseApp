@@ -66,13 +66,13 @@ final class MIPlansViewController: UIViewController, StoryboardInitializable {
         activePackageContent.commonInit(type: .package)
         if let packageView = activePackageContent.contentView as? PackageCell {
             packageView.backgroundColor = .mimoYellow500
-            packageView.ridesLabel.textColor = .black
-            packageView.feeTitleLabel.textColor = .black
+            packageView.ridesLabel.textColor = .onBrandLabel
+            packageView.feeTitleLabel.textColor = .onBrandLabel
             packageView.feeIcon.image = packageView.feeIcon.image?.withRenderingMode(.alwaysTemplate)
-            packageView.feeIcon.tintColor = .black
-            packageView.ridesLabel.textColor = .black
+            packageView.feeIcon.tintColor = .onBrandLabel
+            packageView.ridesLabel.textColor = .onBrandLabel
             packageView.ridesIcon.image = packageView.ridesIcon.image?.withRenderingMode(.alwaysTemplate)
-            packageView.ridesIcon.tintColor = .black
+            packageView.ridesIcon.tintColor = .onBrandLabel
             packageView.hideActionButton()
             
         }

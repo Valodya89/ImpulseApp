@@ -17,7 +17,7 @@ struct FooterButton: View {
         } label: {
             Text("MOBILE_global_continue".localized())
                 .font(.robotoBold15)
-                .foregroundColor(Color.white)
+                .foregroundColor(Color.alwaysWhite)
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 15)
                 .background(Capsule().fill(Color.evbrandCyan80))

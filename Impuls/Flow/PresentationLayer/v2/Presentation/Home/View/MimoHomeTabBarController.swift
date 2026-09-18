@@ -16,7 +16,7 @@ class MimoHomeTabBarController: UITabBarController {
         super.viewDidLoad()
         
         let appearance = UITabBarAppearance()
-        appearance.backgroundColor = .white
+        appearance.backgroundColor = .appBackground
         
         setTabBarItemColors(appearance.stackedLayoutAppearance)
         setTabBarItemColors(appearance.inlineLayoutAppearance)
@@ -37,7 +37,7 @@ class MimoHomeTabBarController: UITabBarController {
         profileNavigationController.tabBarItem.selectedImage = UIImage(named: "tab_profile_selected")
         profileNavigationController.tabBarItem.title = "MOBILE_global_profile".localized()
         
-        profileViewController.view.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+        profileViewController.view.backgroundColor = .appSecondaryBackground
         
         viewControllers = [homeViewController, profileNavigationController]
         
@@ -47,8 +47,8 @@ class MimoHomeTabBarController: UITabBarController {
     }
     
     private func setTabBarItemColors(_ itemAppearance: UITabBarItemAppearance) {
-        itemAppearance.normal.iconColor = UIColor.black.withAlphaComponent(0.8)
-        itemAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.8)]
+        itemAppearance.normal.iconColor = UIColor.appLabel.withAlphaComponent(0.8)
+        itemAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.appLabel.withAlphaComponent(0.8)]
          
         itemAppearance.selected.iconColor = .mimoDarkGray
         itemAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.mimoDarkGray]

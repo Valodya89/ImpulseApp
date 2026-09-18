@@ -38,7 +38,7 @@ struct ProfileRowView: View {
                 if isArrowVisible {
                     Image(systemName: "chevron.right")
                         .resizable()
-                        .foregroundColor(.black025)
+                        .foregroundColor(.label025)
                         .frame(width: 8, height: 14)
                         .font(.title.weight(.light))
                         .padding(.trailing, 2)
@@ -46,7 +46,7 @@ struct ProfileRowView: View {
             }
             .padding(12)
         }
-        .background(Color.white)
+        .background(Color.appBackground)
     }
 }
 
@@ -58,7 +58,7 @@ extension ProfileRowView {
         var titleColor: Color {
             switch self {
             case .standard:
-                return .black075
+                return .label075
             case .destructive:
                 return .red500
             }

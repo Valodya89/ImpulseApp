@@ -92,7 +92,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="Nx5-he-hOa" firstAttribute="top" secondItem="Hhi-Zp-YAK" secondAttribute="top" constant="5" id="JSd-lZ-Qu9"/>
                             <constraint firstItem="LJz-hP-854" firstAttribute="leading" secondItem="Nx5-he-hOa" secondAttribute="trailing" constant="10" id="eE3-u6-pMi"/>
@@ -156,5 +156,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

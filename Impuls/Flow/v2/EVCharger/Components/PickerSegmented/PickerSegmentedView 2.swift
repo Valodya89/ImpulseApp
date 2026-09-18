@@ -40,7 +40,7 @@ struct PickerSegmentedView: View {
                 }
         }
         .padding(4)
-        .background(Color.white)
+        .background(Color.evMainBg1)
         .clipShape(Capsule())
     }
 }

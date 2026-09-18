@@ -46,7 +46,7 @@
                                 <constraint firstAttribute="width" constant="38" id="WdG-31-Bgg"/>
                             </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" image="ic_plus"/>
+                            <state key="normal" image="ic_plus_fixed"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                     <real key="value" value="19"/>
@@ -100,7 +100,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9YT-pq-uGW" secondAttribute="trailing" constant="5" id="5aZ-QZ-c8Z"/>
                                                         <constraint firstItem="P3U-DJ-J1b" firstAttribute="top" secondItem="OTX-E0-cY3" secondAttribute="top" id="5sm-1D-GFG"/>
@@ -113,7 +113,7 @@
                                             </subviews>
                                         </stackView>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" name="AppBackground"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="ttJ-js-pxp" secondAttribute="bottom" id="MdT-wG-D4J"/>
                                         <constraint firstItem="ttJ-js-pxp" firstAttribute="top" secondItem="j8l-Ls-WGt" secondAttribute="top" constant="4" id="Q5n-NY-Gpn"/>
@@ -155,7 +155,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstItem="Kjo-Yy-cbA" firstAttribute="leading" secondItem="HrF-Wf-acI" secondAttribute="trailing" constant="5" id="1V3-6t-BdL"/>
                                                         <constraint firstItem="HrF-Wf-acI" firstAttribute="top" secondItem="fks-qG-sTX" secondAttribute="top" id="Ljc-HK-jg8"/>
@@ -168,7 +168,7 @@
                                             </subviews>
                                         </stackView>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" name="AppBackground"/>
                                     <constraints>
                                         <constraint firstItem="Slv-ce-5zQ" firstAttribute="top" secondItem="zBb-Ra-Zhj" secondAttribute="top" constant="4" id="2Hh-gU-EU9"/>
                                         <constraint firstAttribute="bottom" secondItem="Slv-ce-5zQ" secondAttribute="bottom" id="5XW-8O-7aX"/>
@@ -179,7 +179,7 @@
                             </subviews>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" name="AppBackground"/>
                     <constraints>
                         <constraint firstItem="kFp-q4-7DT" firstAttribute="leading" secondItem="I8p-u6-369" secondAttribute="trailing" constant="12" id="1Wh-pg-bte"/>
                         <constraint firstItem="I8p-u6-369" firstAttribute="top" secondItem="e5s-wa-Dyi" secondAttribute="top" constant="8" id="1Y6-MO-npF"/>
@@ -206,7 +206,7 @@
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xtI-Ze-c2Z">
                     <rect key="frame" x="20" y="167" width="353" height="140"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" name="AppBackground"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="140" id="Lbl-5b-AUC"/>
                     </constraints>
@@ -242,7 +242,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oxq-dq-qum">
                             <rect key="frame" x="111.66666666666666" y="12" width="130" height="24"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_scan" translatesAutoresizingMaskIntoConstraints="NO" id="fZM-FY-3Mr">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_scan_fixed" translatesAutoresizingMaskIntoConstraints="NO" id="fZM-FY-3Mr">
                                     <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="24" id="0T0-Xl-u2N"/>
@@ -252,7 +252,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan QR code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pmh-bg-Dke" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                     <rect key="frame" x="36" y="0.0" width="94" height="24"/>
                                     <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
-                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="textColor" name="OnBrandLabel"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_global_scan_button"/>
@@ -274,7 +274,7 @@
                             <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal">
-                                <color key="titleColor" name="mimoBlack"/>
+                                <color key="titleColor" name="OnBrandLabel"/>
                             </state>
                             <connections>
                                 <action selector="action:" destination="-1" eventType="touchUpInside" id="ACH-Pw-Lw6"/>
@@ -299,7 +299,7 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" name="AppBackground"/>
             <constraints>
                 <constraint firstItem="nCv-of-Bx7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="7OB-xg-e4T"/>
                 <constraint firstItem="xtI-Ze-c2Z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="BOj-b6-vdD"/>
@@ -339,5 +339,11 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="OnBrandLabel">
+            <color red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

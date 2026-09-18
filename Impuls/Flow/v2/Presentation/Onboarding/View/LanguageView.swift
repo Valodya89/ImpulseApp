@@ -28,7 +28,7 @@ struct LanguageView: View {
                     } label: {
                         Image(systemName: "xmark")
                             .resizable()
-                            .foregroundColor(.black)
+                            .foregroundColor(.appLabel)
                             .frame(width: 18, height: 18)
                             .padding(8)
                     }
@@ -39,7 +39,7 @@ struct LanguageView: View {
                 
                 Text("Language")
                     .font(.robotoBold17)
-                    .foregroundColor(.black)
+                    .foregroundColor(.appLabel)
             }
             .frame(height: 54)
             
@@ -57,7 +57,7 @@ struct LanguageView: View {
                                 
                                 Text(language.name)
                                     .font(.robotoMedium17)
-                                    .foregroundColor(language.isSelected ? selectedColor : .black075)
+                                    .foregroundColor(language.isSelected ? selectedColor : .label075)
                                 
                                 Spacer()
                                 
@@ -72,7 +72,7 @@ struct LanguageView: View {
                             
                             Divider()
                         }
-                        .background(Color.white)
+                        .background(Color.appBackground)
                         .onTapGesture {
                             StorageManager().store(language.id, key: .language)
                             BaseRouter.shared.showSplashView()

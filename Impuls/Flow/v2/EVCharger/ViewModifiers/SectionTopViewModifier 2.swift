@@ -30,7 +30,7 @@ struct SectionTopViewModifier: ViewModifier {
                             .font(.robotoRegular12)
                     }
                 }
-                .foregroundColor(Color(hex: "#9EAFBE"))
+                .foregroundColor(Color.iconGray)
             }
             content
         }

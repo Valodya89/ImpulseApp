@@ -31,7 +31,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uTd-mE-EWS">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                    <color key="backgroundColor" name="mimoBlackWith05alpha"/>
+                    <color key="backgroundColor" name="Overlay"/>
                     <gestureRecognizers/>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="Aph-IA-BKy" appends="YES" id="gPe-fI-5YE"/>
@@ -86,7 +86,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" name="AppBackground"/>
                     <constraints>
                         <constraint firstItem="2L6-Wn-2jn" firstAttribute="leading" secondItem="vOJ-0X-QcT" secondAttribute="leading" id="2wo-k4-y6T"/>
                         <constraint firstItem="2L6-Wn-2jn" firstAttribute="top" secondItem="vOJ-0X-QcT" secondAttribute="bottom" constant="10" id="7oc-br-3n4"/>
@@ -144,5 +144,11 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Overlay">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

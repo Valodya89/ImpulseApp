@@ -307,28 +307,12 @@ final class TripsDetailsViewController: UIViewController, StoryboardInitializabl
     }
     
     @IBAction func payDebtTapped(_ sender: UIButton) {
-        guard let unwrapUserResult = userResult else {
+        guard userResult != nil else {
             return UIAlertController.showError(message: "Can not show wallet page")
         }
-        self.viewModel.getAvatar { [weak self] (avatarUrlStirng) in
-            guard let unwrapSelf = self else { return }
-            
-            let walletVC = WalletViewController.initFromStoryboard(name: Constant.Storyboards.wallet)
-            unwrapSelf.walletNavigationController = UINavigationController(rootViewController: walletVC)
-            unwrapSelf.walletNavigationController?.navigationBar.barTintColor = .white
-            unwrapSelf.walletNavigationController?.navigationBar.backgroundColor = .white
-
-            
-            let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_arrow_left"), style: .plain, target: self, action: #selector(unwrapSelf.backButtonTapped))
-            walletVC.navigationItem.leftBarButtonItem = backButton
-            walletVC.amount = unwrapSelf.amount
-            walletVC.user = unwrapUserResult
-            unwrapSelf.viewModel.getAvatar { (avatarUrlStirng) in
-                walletVC.avataturURLString = avatarUrlStirng
-            }
-            
-            unwrapSelf.present(unwrapSelf.walletNavigationController!, animated: true, completion: nil)
-        }
+        // The SwiftUI wallet needs neither the user nor the avatar; the debt is
+        // handed over so the top-up field opens on the amount that clears it.
+        self.present(WalletHostingController(initialAmount: Double(amount)), animated: true, completion: nil)
     }
     
     @objc func backButtonTapped() {

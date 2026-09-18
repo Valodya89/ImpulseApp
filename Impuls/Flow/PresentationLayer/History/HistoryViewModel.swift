@@ -69,6 +69,36 @@ final class HistoryViewModel: MimoBaseViewModel, ObservableObject {
     func back() {
         coordinatoor.dissmiss()
     }
+
+    /// Pull-to-refresh: re-reads the selected tab and the debt, and reports
+    /// back once the list (or an error) arrives.
+    func reload(completion: @escaping (Bool) -> Void) {
+        let loaded: AnyPublisher<Bool, Never>
+        switch selectedItem {
+        case .scooter: loaded = $scooterTrips.dropFirst().map { _ in true }.eraseToAnyPublisher()
+        case .bike: loaded = $bikeTrips.dropFirst().map { _ in true }.eraseToAnyPublisher()
+        case .charger: loaded = $chargerRents.dropFirst().map { _ in true }.eraseToAnyPublisher()
+        case .evup: loaded = $evChargerRents.dropFirst().map { _ in true }.eraseToAnyPublisher()
+        }
+        let failed = $errorMessage.dropFirst().compactMap { $0 }.map { _ in false }
+
+        var delivered = false
+        loaded.merge(with: failed)
+            .first()
+            .timeout(.seconds(15), scheduler: DispatchQueue.main)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { result in
+                // Timed out without a value: end the indicator, no success chime.
+                if case .finished = result, !delivered { completion(false) }
+            }, receiveValue: { success in
+                delivered = true
+                completion(success)
+            })
+            .store(in: &cancellables)
+
+        itemTapAction(item: selectedItem)
+        loadDebt()
+    }
     
     // MARK: - Debt
     

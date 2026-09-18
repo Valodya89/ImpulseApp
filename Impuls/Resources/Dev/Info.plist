@@ -77,22 +77,18 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Uses bluetooth to connect bike</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>Uses bluetooth to connect bike</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Your camera will be used to add photos to your profile. It can also be used to scan QR for booking bike !</string>
+	<string>Камера используется для добавления фото в ваш профиль, а также для сканирования QR-кода при аренде велосипеда.</string>
 	<key>NSContactsUsageDescription</key>
-	<string>Access is needed to save your Mimo friends information to your Contacts list. </string>
+	<string>Доступ нужен, чтобы сохранять контакты ваших друзей из Mimo в список контактов.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Mimo uses you location to show bikes near to you</string>
+	<string>Mimo использует вашу геопозицию, чтобы показывать ближайшие велосипеды.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Mimo uses you location to show bikes near to you!</string>
+	<string>Mimo использует вашу геопозицию, чтобы показывать ближайшие велосипеды.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Your photo library will be used to add photos to your profile!</string>
+	<string>Фотогалерея используется для добавления фото в ваш профиль.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Your photo library will be used to add photos to your profile!</string>
+	<string>Фотогалерея используется для добавления фото в ваш профиль.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -112,8 +108,6 @@
 	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>bluetooth-central</string>
-		<string>bluetooth-peripheral</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UIDesignRequiresCompatibility</key>
@@ -135,7 +129,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 </dict>
 </plist>

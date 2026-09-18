@@ -65,7 +65,7 @@
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="16"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="15" maxX="0.0" maxY="15"/>
                                         <state key="normal" title="Resend Email">
-                                            <color key="titleColor" name="mimoBlack"/>
+                                            <color key="titleColor" name="OnBrandLabel"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isActive" value="YES"/>
@@ -81,7 +81,7 @@
                                             <attributedString key="attributedTitle">
                                                 <fragment content="Edit Email Address">
                                                     <attributes>
-                                                        <color key="NSBackgroundColor" red="0.90980392156862744" green="0.93725490196078431" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="NSBackgroundColor" name="mimoGray100"/>
                                                         <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <font key="NSFont" metaFont="system" size="17"/>
                                                         <integer key="NSUnderline" value="1"/>
@@ -97,7 +97,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.90980392156862744" green="0.93725490196078431" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="mimoGray100"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="uoD-uF-PVL" secondAttribute="trailing" constant="30" id="0hs-8t-pZ7"/>
                                     <constraint firstItem="Qj1-fL-lE0" firstAttribute="top" secondItem="Ijm-qj-d4x" secondAttribute="bottom" id="1aB-W7-BXx"/>
@@ -124,7 +124,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="mew-mA-Ls0" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="9dU-qV-L7K"/>
                             <constraint firstItem="mew-mA-Ls0" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="LSv-1E-L8O"/>
@@ -184,7 +184,7 @@
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tuj-s1-se0" customClass="MITextFieldView" customModule="MimoBike" customModuleProvider="target">
                                         <rect key="frame" x="19" y="64.5" width="376" height="56"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" placeholder="YES" id="CgS-FX-dDy"/>
                                         </constraints>
@@ -198,7 +198,7 @@
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="16"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="15" maxX="0.0" maxY="15"/>
                                         <state key="normal" title="Verify Email">
-                                            <color key="titleColor" name="mimoBlack"/>
+                                            <color key="titleColor" name="OnBrandLabel"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isActive" value="NO"/>
@@ -209,7 +209,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.90980392160000001" green="0.93725490199999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="mimoGray100"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Ulb-PF-SEX" secondAttribute="trailing" constant="19" id="2gI-Ce-YnU"/>
@@ -228,7 +228,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VL7-Sf-p1p"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="XYh-aM-PbN" secondAttribute="bottom" id="7Y0-Ly-NVM"/>
                             <constraint firstItem="XYh-aM-PbN" firstAttribute="leading" secondItem="VL7-Sf-p1p" secondAttribute="leading" id="C3m-5h-kMe"/>
@@ -405,7 +405,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yii-wS-iet"/>
-                        <color key="backgroundColor" red="0.90980392156862744" green="0.93725490196078431" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="mimoGray100"/>
                         <constraints>
                             <constraint firstItem="muP-h3-cM4" firstAttribute="centerY" secondItem="ogz-u1-leR" secondAttribute="centerY" id="4WB-zn-L6d"/>
                             <constraint firstItem="5U5-lf-jAs" firstAttribute="centerX" secondItem="ULL-7K-EsJ" secondAttribute="centerX" id="6Dr-OQ-tW5"/>
@@ -483,5 +483,11 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="OnBrandLabel">
+            <color red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

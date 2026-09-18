@@ -71,7 +71,7 @@ final class ChargerSelectedMarkerView: UIView {
         ])
         
         let lineView = UIView()
-        lineView.backgroundColor = .black
+        lineView.backgroundColor = .alwaysBlack
         lineView.translatesAutoresizingMaskIntoConstraints = false
         
         circleView.addSubview(lineView)
@@ -113,14 +113,14 @@ final class ChargerSelectedMarkerView: UIView {
         let slotsCountAttrString = NSMutableAttributedString(
             string: "\(slotsCount)",
             attributes: [
-                NSAttributedString.Key.foregroundColor: UIColor.mimoBlack,
+                NSAttributedString.Key.foregroundColor: UIColor.alwaysBlack,
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .semibold)
             ]
         )
         let slAttrString = NSMutableAttributedString(
             string: "SL",
             attributes: [
-                NSAttributedString.Key.foregroundColor: UIColor.mimoBlack,
+                NSAttributedString.Key.foregroundColor: UIColor.alwaysBlack,
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 8, weight: .medium)
             ]
         )
@@ -166,7 +166,7 @@ final class ChargerSelectedMarkerView: UIView {
         
         let discountLabel = UILabel()
         discountLabel.translatesAutoresizingMaskIntoConstraints = false
-        discountLabel.textColor = .white
+        discountLabel.textColor = .alwaysWhite
         discountLabel.font = .systemFont(ofSize: 9, weight: .bold)
         discountLabel.text = discount == 100 ? "Free" : "\(discount)%"
         discountView.addSubview(discountLabel)

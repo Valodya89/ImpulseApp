@@ -127,5 +127,8 @@ struct Constant {
         static let updateBlureState = NSNotification.Name(rawValue: "Mimo.Notification.updateBlureState")
         static let emailVerificationCode = NSNotification.Name(rawValue: "Mimo.Notification.emailVerificationCode")
         static let paymentCallback = NSNotification.Name(rawValue: "Mimo.Notification.paymentCallback")
+        static let ThemeUpdate = NSNotification.Name(rawValue: "Mimo.Notification.Theme")
+        /// Fresh backend translations were merged into the in-memory dictionary.
+        static let TranslationsUpdate = NSNotification.Name(rawValue: "Mimo.Notification.Translations")
     }
 }

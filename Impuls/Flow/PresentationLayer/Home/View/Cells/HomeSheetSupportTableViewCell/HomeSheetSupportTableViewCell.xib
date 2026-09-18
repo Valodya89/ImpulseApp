@@ -52,7 +52,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="BR3-cN-zec" firstAttribute="centerY" secondItem="chb-o8-9BV" secondAttribute="centerY" id="2Bl-Dk-8Xp"/>
                                     <constraint firstItem="8V3-b3-ieG" firstAttribute="top" secondItem="chb-o8-9BV" secondAttribute="top" id="ARY-l9-2Q1"/>
@@ -67,7 +67,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="chb-o8-9BV" firstAttribute="centerY" secondItem="5NN-EC-mn0" secondAttribute="centerY" id="47g-JH-N9D"/>
                             <constraint firstItem="chb-o8-9BV" firstAttribute="height" secondItem="5NN-EC-mn0" secondAttribute="height" multiplier="0.4" id="NNU-yc-5jl"/>
@@ -102,5 +102,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

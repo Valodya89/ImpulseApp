@@ -30,7 +30,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="114" height="114"/>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" name="AppBackground"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="ioN-nP-dwj" secondAttribute="trailing" id="9kM-hR-prl"/>
                         <constraint firstItem="ioN-nP-dwj" firstAttribute="leading" secondItem="mbU-TV-xkr" secondAttribute="leading" id="QQR-hm-wWL"/>
@@ -58,7 +58,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" name="AppBackground"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="liB-iy-fBa" secondAttribute="bottom" constant="68" id="M47-F6-xVb"/>
                 <constraint firstItem="SEX-ZX-lqJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="R9s-B9-Sec"/>
@@ -93,5 +93,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

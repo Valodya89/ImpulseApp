@@ -26,8 +26,8 @@ final class PackageCell: UITableViewCell {
     override var backgroundColor: UIColor? {
         didSet {
             guard contextView != nil else { return }
-            contextView.topColor = backgroundColor ?? .white
-            contextView.bottomColor = backgroundColor ?? .white
+            contextView.topColor = backgroundColor ?? .appBackground
+            contextView.bottomColor = backgroundColor ?? .appBackground
             layer.backgroundColor = UIColor.clear.cgColor
         }
     }

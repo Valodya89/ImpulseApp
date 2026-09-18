@@ -80,7 +80,7 @@ struct TransactionListView: View {
                 .fill(item.type.isIncomeing ? Color(hex: "#08BC05") : Color.evText6)
                 .offset(x: -2)
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white)
+                .fill(Color.appBackground)
         }
     }
     
@@ -89,7 +89,7 @@ struct TransactionListView: View {
             HStack(spacing: 0) {
                 Text("Transactions")
                     .font(.robotoBold15)
-                    .foregroundColor(.black)
+                    .foregroundColor(.appLabel)
             }
             .frame(maxWidth: .infinity)
             .padding()
@@ -101,7 +101,7 @@ struct TransactionListView: View {
                 .padding(.leading, 18.5)
                 .onTapGesture { dismiss() }
         }
-        .background(Color.white)
+        .background(Color.appBackground)
     }
     
     var emptyDataView: some View {
@@ -110,7 +110,7 @@ struct TransactionListView: View {
             
             Text("Begin your adventure!")
                 .font(.robotoSemibold16)
-                .foregroundColor(Color.black08)
+                .foregroundColor(Color.appLabel.opacity(0.8))
             
             Text("Your History will show here once you’ve made your first Trip")
                 .font(.robotoRegular15)

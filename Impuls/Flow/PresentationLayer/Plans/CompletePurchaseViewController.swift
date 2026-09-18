@@ -83,9 +83,7 @@ final class CompletePurchaseViewController: UIViewController, StoryboardInitiali
     }
     
     private func fillBalance() {
-        let walletController = WalletViewController.initFromStoryboard(name: "Wallet")
-        
-        present(UINavigationController(rootViewController: walletController), animated: true, completion: nil)
+        present(WalletHostingController(), animated: true, completion: nil)
     }
     
     private func activatePackage(packageID: String) {

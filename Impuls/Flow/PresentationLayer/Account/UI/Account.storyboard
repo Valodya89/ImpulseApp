@@ -97,7 +97,7 @@
                                                             </constraints>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstItem="HwH-Li-1B1" firstAttribute="leading" secondItem="9mO-iu-mDm" secondAttribute="leading" constant="12" id="1ei-4F-BOS"/>
                                                         <constraint firstAttribute="trailing" secondItem="TFl-B6-pz5" secondAttribute="trailing" constant="20" id="2Ow-io-4en"/>
@@ -114,10 +114,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                             <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.098880370709999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -183,7 +183,7 @@
                                                             </constraints>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstItem="vtP-fu-Nca" firstAttribute="leading" secondItem="gyF-OC-t3J" secondAttribute="leading" id="5Fc-Ua-BSW"/>
                                                         <constraint firstItem="pcm-F9-xI4" firstAttribute="leading" secondItem="gyF-OC-t3J" secondAttribute="leading" constant="12" id="6Vw-4W-cED"/>
@@ -200,10 +200,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                             <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.098880370709999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -269,7 +269,7 @@
                                                             <imageReference key="image" image="ic_arrow_right_light"/>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstItem="jZ8-Op-tlL" firstAttribute="top" secondItem="Wwz-qo-8lE" secondAttribute="top" constant="13" id="3RP-JI-ZRU"/>
                                                         <constraint firstAttribute="bottom" secondItem="jZ8-Op-tlL" secondAttribute="bottom" constant="13" id="Dvn-pp-d4H"/>
@@ -286,10 +286,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                             <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.098880370709999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -341,7 +341,7 @@
                                                             </constraints>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="Yie-2u-RNb" secondAttribute="bottom" id="O3N-Rm-Pq6"/>
                                                         <constraint firstAttribute="height" constant="56" id="X5E-2x-3Jx"/>
@@ -358,10 +358,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                             <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.098880370709999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -413,7 +413,7 @@
                                                             </constraints>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstItem="jcJ-Ao-Wkf" firstAttribute="centerY" secondItem="xld-EG-6Cp" secondAttribute="centerY" id="0nd-Mq-G7o"/>
                                                         <constraint firstItem="UEU-HY-zN2" firstAttribute="top" secondItem="xld-EG-6Cp" secondAttribute="top" constant="13" id="BfT-Rd-oTk"/>
@@ -430,10 +430,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                             <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.098880370709999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -485,7 +485,7 @@
                                                             </constraints>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstItem="W9F-Lm-slv" firstAttribute="leading" secondItem="mQt-Sr-eNF" secondAttribute="trailing" constant="8" symbolic="YES" id="6Jx-lP-Mqr"/>
                                                         <constraint firstItem="QC2-Pb-hRT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="W9F-Lm-slv" secondAttribute="trailing" constant="20" id="7p2-Tk-LHS"/>
@@ -502,10 +502,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                             <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.098880370709999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -557,7 +557,7 @@
                                                             </constraints>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="56" id="2X1-fp-ezV"/>
                                                         <constraint firstItem="too-Tc-JVy" firstAttribute="centerY" secondItem="TPm-Ul-36E" secondAttribute="centerY" id="723-Hu-2zg"/>
@@ -574,10 +574,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                             <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.098880370709999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -618,7 +618,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="n98-Ha-2uB" secondAttribute="bottom" constant="13" id="1ae-Mf-slW"/>
                                                         <constraint firstItem="Vbr-B6-2UI" firstAttribute="leading" secondItem="n98-Ha-2uB" secondAttribute="trailing" constant="8" symbolic="YES" id="304-Nq-v5n"/>
@@ -630,10 +630,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                             <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.098880370709999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -684,7 +684,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstItem="JCJ-QN-TKO" firstAttribute="top" secondItem="QK3-QP-Ycg" secondAttribute="top" constant="13" id="9m2-F4-xJh"/>
                                                         <constraint firstItem="LT3-KY-uMj" firstAttribute="centerY" secondItem="JCJ-QN-TKO" secondAttribute="centerY" id="AbH-WD-39f"/>
@@ -696,10 +696,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                             <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.098880370709999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -787,7 +787,7 @@
                                         </connections>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="TmF-Uj-qW2" secondAttribute="trailing" constant="20" id="0Rl-yV-bSG"/>
                                     <constraint firstAttribute="width" constant="78" id="CcL-gn-fyn"/>
@@ -826,7 +826,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="396-d0-G2F" secondAttribute="bottom" constant="12" id="1qT-L4-fy0"/>
                                     <constraint firstItem="396-d0-G2F" firstAttribute="top" secondItem="j8A-LB-9lk" secondAttribute="top" constant="12" id="CeY-rq-LUD"/>
@@ -841,7 +841,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Xl0-gn-ekC"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="GCM-2M-bIB" firstAttribute="leading" secondItem="iah-nn-tby" secondAttribute="leading" id="AxI-gf-kO8"/>
                             <constraint firstItem="GCM-2M-bIB" firstAttribute="top" secondItem="iah-nn-tby" secondAttribute="top" id="KP8-5z-HM0"/>
@@ -909,7 +909,7 @@
                                                             <imageReference key="image" image="ic_arrow_right_light"/>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstItem="Fpb-dL-cbf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pft-Yi-w1C" secondAttribute="trailing" constant="20" id="4XC-WB-9KY"/>
                                                         <constraint firstItem="pft-Yi-w1C" firstAttribute="leading" secondItem="ja0-3H-kXv" secondAttribute="trailing" constant="8" symbolic="YES" id="ChI-Qx-Whg"/>
@@ -924,10 +924,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                             <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.098880370708670146" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -1042,7 +1042,7 @@
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ego-fd-Vgw" customClass="AnimatedButton" customModule="MimoBike" customModuleProvider="target">
                                                             <rect key="frame" x="285" y="21.5" width="38" height="38"/>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <color key="backgroundColor" name="AppBackground"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="38" id="AcF-3F-Kfs"/>
                                                                 <constraint firstAttribute="height" constant="38" id="hYu-ad-7Rc"/>
@@ -1084,7 +1084,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <color key="backgroundColor" name="AppBackground"/>
                                                     <constraints>
                                                         <constraint firstItem="Cx7-A9-xXa" firstAttribute="leading" secondItem="ZoC-23-zhD" secondAttribute="leading" id="03H-TK-Gpg"/>
                                                         <constraint firstItem="Ego-fd-Vgw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZoC-23-zhD" secondAttribute="trailing" constant="10" id="34K-tm-kcv"/>
@@ -1106,10 +1106,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="value" name="AppBackground"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                             <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.098880370709999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -1168,7 +1168,7 @@
                                                                         </label>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cFZ-Dt-CN1">
                                                                             <rect key="frame" x="-23" y="25.5" width="8" height="14"/>
-                                                                            <imageReference key="image" image="ic_arrow_right_light"/>
+                                                                            <imageReference key="image" image="ic_arrow_right_light_fixed"/>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Monthly 9900" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nVs-D5-eUN">
                                                                             <rect key="frame" x="12" y="33.5" width="80" height="15.5"/>
@@ -1246,7 +1246,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <color key="backgroundColor" name="AppBackground"/>
                                                             <constraints>
                                                                 <constraint firstItem="lHH-7A-L71" firstAttribute="top" secondItem="VSj-QZ-727" secondAttribute="top" id="2yZ-JD-dyc"/>
                                                                 <constraint firstItem="lHH-7A-L71" firstAttribute="leading" secondItem="VSj-QZ-727" secondAttribute="leading" id="3xV-B0-Z08"/>
@@ -1278,10 +1278,10 @@
                                                                     <real key="value" value="2"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="value" name="AppBackground"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="value" name="AppBackground"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
@@ -1305,7 +1305,7 @@
                                                                         </label>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7al-s5-gRX">
                                                                             <rect key="frame" x="-23" y="25.5" width="8" height="14"/>
-                                                                            <imageReference key="image" image="ic_arrow_right_light"/>
+                                                                            <imageReference key="image" image="ic_arrow_right_light_fixed"/>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9X-4w-ylq">
                                                                             <rect key="frame" x="12" y="33.5" width="45.5" height="15.5"/>
@@ -1383,7 +1383,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            <color key="backgroundColor" name="AppBackground"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="nhz-N6-hhh" secondAttribute="trailing" id="1GQ-8k-400"/>
                                                                 <constraint firstItem="7b7-i8-RHx" firstAttribute="top" secondItem="nhz-N6-hhh" secondAttribute="bottom" constant="15" id="1TH-u2-ksW"/>
@@ -1415,10 +1415,10 @@
                                                                     <real key="value" value="2"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="value" name="AppBackground"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="value" name="AppBackground"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
@@ -1607,7 +1607,7 @@
                                     <constraint firstAttribute="width" constant="60" id="myD-1Z-GIu"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="ic_scan"/>
+                                <state key="normal" image="ic_scan_fixed"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="30"/>
@@ -1739,7 +1739,7 @@
                                             </view>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="drD-Ze-QQ9">
                                                 <rect key="frame" x="25" y="503" width="364" height="100"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="myU-OO-Hrm"/>
                                                 </constraints>
@@ -1758,7 +1758,7 @@
                                                 </constraints>
                                                 <inset key="contentEdgeInsets" minX="0.0" minY="15" maxX="0.0" maxY="15"/>
                                                 <state key="normal" title="Send">
-                                                    <color key="titleColor" name="mimoBlack"/>
+                                                    <color key="titleColor" name="OnBrandLabel"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isActive" value="NO"/>
@@ -1893,5 +1893,11 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="OnBrandLabel">
+            <color red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

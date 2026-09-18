@@ -32,7 +32,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crypto" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSi-2F-pi1">
                         <rect key="frame" x="201.33333333333334" y="129.66666666666666" width="49.666666666666657" height="20"/>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" name="AlwaysWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -56,5 +56,8 @@
     </objects>
     <resources>
         <image name="ic_crypto" width="64" height="64"/>
+        <namedColor name="AlwaysWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

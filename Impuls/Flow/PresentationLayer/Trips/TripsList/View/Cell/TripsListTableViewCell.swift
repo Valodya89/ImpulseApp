@@ -40,7 +40,7 @@ final class TripsListTableViewCell: UITableViewCell {
         iconImageView.image = UIImage(named: "ic_bicycleTrips")
 
         amountButton.backgroundColor = tripModel.payment?.status?.backgroundColor ?? .mimoRed500
-        amountButton.setTitleColor(tripModel.payment?.status?.fillColor ?? .mimoWhite, for: .normal)
+        amountButton.setTitleColor(tripModel.payment?.status?.fillColor ?? .alwaysWhite, for: .normal)
         tripModel.startPosition?.getLocationName(completed: { [weak self] (destination) in
             self?.fromDestinationLabel.text = destination
         })
@@ -55,7 +55,7 @@ final class TripsListTableViewCell: UITableViewCell {
         amountButton.setTitle(amount.description + " " + "MOBILE_global_total_currency".localized(), for: .normal)
         iconImageView.image = UIImage(named: "ic_scooter")
         amountButton.backgroundColor = tripModel.payment?.status?.backgroundColor ?? .mimoRed500
-        amountButton.setTitleColor(tripModel.payment?.status?.fillColor ?? .mimoWhite, for: .normal)
+        amountButton.setTitleColor(tripModel.payment?.status?.fillColor ?? .alwaysWhite, for: .normal)
         tripModel.startPosition?.getLocationName(completed: { [weak self] (destination) in
             self?.fromDestinationLabel.text = destination
         })
@@ -78,7 +78,7 @@ final class TripsListTableViewCell: UITableViewCell {
         amountButton.setTitle(amount + " " + "MOBILE_global_total_currency".localized(), for: .normal)
         iconImageView.image = UIImage(named: "mimo_charger_station")
         amountButton.backgroundColor = data.payment.status?.backgroundColor ?? .mimoRed500
-        amountButton.setTitleColor(data.payment.status?.fillColor ?? .mimoWhite, for: .normal)
+        amountButton.setTitleColor(data.payment.status?.fillColor ?? .alwaysWhite, for: .normal)
         fromDestinationLabel.text = data.startStation
         toDestinationLabel.text = data.endStation
         viewForQR.isHidden = true

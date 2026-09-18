@@ -210,7 +210,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstItem="w9a-jf-tnN" firstAttribute="leading" secondItem="4qA-bs-9xq" secondAttribute="leading" id="3hd-Ir-MEg"/>
                                             <constraint firstItem="w9a-jf-tnN" firstAttribute="top" secondItem="4qA-bs-9xq" secondAttribute="top" id="AwI-Sj-rgC"/>
@@ -240,7 +240,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="Ues-my-OpA" secondAttribute="trailing" id="0hs-5k-ON3"/>
                                             <constraint firstItem="tQZ-EX-gs1" firstAttribute="top" secondItem="Ues-my-OpA" secondAttribute="bottom" constant="4" id="9KB-wG-lai"/>
@@ -270,7 +270,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstItem="A11-gz-VXW" firstAttribute="leading" secondItem="jax-Wh-CGR" secondAttribute="leading" id="GhE-qZ-jAM"/>
                                             <constraint firstAttribute="trailing" secondItem="wG7-4M-dyX" secondAttribute="trailing" id="Mmz-Rh-dz5"/>
@@ -284,7 +284,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="stateUnAvailable"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="xhL-S0-aTP" secondAttribute="bottom" id="3Mc-wk-u6z"/>
                             <constraint firstItem="xhL-S0-aTP" firstAttribute="leading" secondItem="ohK-BJ-yFf" secondAttribute="leading" id="7FB-dI-dyV"/>
@@ -304,7 +304,7 @@
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pause.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aVC-qO-OA5">
                                                 <rect key="frame" x="0.0" y="2.00000000000004" width="12" height="14"/>
-                                                <color key="tintColor" name="mimoDarkGray"/>
+                                                <color key="tintColor" name="OnBrandLabel"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="12" id="KdF-Tp-lsJ"/>
                                                     <constraint firstAttribute="height" constant="13" id="XmI-xs-1Uo"/>
@@ -314,7 +314,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pause" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Leq-5O-vPJ" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="0.0" width="42" height="17.666666666666668"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
-                                                <color key="textColor" name="mimoDarkGray"/>
+                                                <color key="textColor" name="OnBrandLabel"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="SCOOTER_global_pause"/>
@@ -359,7 +359,7 @@
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="End Ride">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" name="AlwaysWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -407,7 +407,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="SWu-Tj-teX" firstAttribute="centerY" secondItem="3nI-jh-IaE" secondAttribute="centerY" id="9L2-O0-iDZ"/>
                             <constraint firstAttribute="height" constant="24" id="PYF-bF-9ts"/>
@@ -431,7 +431,7 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" name="AppBackground"/>
             <constraints>
                 <constraint firstItem="tix-EB-DJl" firstAttribute="leading" secondItem="vq4-97-Fb2" secondAttribute="trailing" constant="20" id="0Kk-Uu-0nc"/>
                 <constraint firstAttribute="trailing" secondItem="ohK-BJ-yFf" secondAttribute="trailing" constant="22" id="2ii-XG-64s"/>
@@ -500,5 +500,17 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AlwaysWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="OnBrandLabel">
+            <color red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="stateUnAvailable">
+            <color red="0.8784" green="0.8784" blue="0.8784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

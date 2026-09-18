@@ -46,8 +46,8 @@ class HomeScooterCollectionViewCell: UICollectionViewCell {
         self.scooterName.text = ""
         self.timeKMLabel.text = ""
         setImage()
-        buttonContentView.backgroundColor = .white
-        bokkeButtone.backgroundColor = .white
+        buttonContentView.backgroundColor = .appBackground
+        bokkeButtone.backgroundColor = .appBackground
         takeScooterButton.backgroundColor = .mimoBlackWith025alpha
         self.scoterResult = nil
         super.prepareForReuse()

@@ -138,7 +138,7 @@ struct MapFiltersView: View {
         } label: {
             Text("EV_CHARGER_show_locations".localized())
                 .font(.robotoBold15)
-                .foregroundColor(Color.white)
+                .foregroundColor(Color.alwaysWhite)
                 .frame(maxWidth: .infinity)
                 .frame(height: 48)
                 .background(Color.evbrandCyan80)

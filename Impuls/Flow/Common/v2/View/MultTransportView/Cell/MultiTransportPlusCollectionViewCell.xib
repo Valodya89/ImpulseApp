@@ -22,14 +22,14 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LrJ-s5-ZZy">
                                 <rect key="frame" x="8" y="10.33333333333333" width="20" height="15.66666666666667"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="AppLabel"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="LrJ-s5-ZZy" secondAttribute="height" id="73v-pF-9eE"/>
                                     <constraint firstAttribute="width" constant="20" id="Vt8-GZ-cyA"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="LrJ-s5-ZZy" firstAttribute="centerY" secondItem="7Dq-sn-yG0" secondAttribute="centerY" id="98W-96-Vva"/>
                             <constraint firstItem="LrJ-s5-ZZy" firstAttribute="centerX" secondItem="7Dq-sn-yG0" secondAttribute="centerX" id="xRJ-A4-4Cg"/>
@@ -62,5 +62,11 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppLabel">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

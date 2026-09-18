@@ -257,13 +257,7 @@ final class ScooterPlanViewController: BaseViewController, StoryboardInitializab
     }
     
     func openWalletVC() {
-        var walletNavigationController: UINavigationController?
-        let walletVC = WalletViewController.initFromStoryboard(name: Constant.Storyboards.wallet)
-        walletNavigationController = UINavigationController(rootViewController: walletVC)
-        walletNavigationController?.navigationBar.barTintColor = .white
-        walletNavigationController?.navigationBar.backgroundColor = .white
-        
-        self.present(walletNavigationController!, animated: true, completion: nil)
+        self.present(WalletHostingController(productType: .scooter), animated: true, completion: nil)
     }
     
     // MARK: Actions
@@ -289,7 +283,7 @@ final class ScooterPlanViewController: BaseViewController, StoryboardInitializab
                     } else if state.state == FinancialState.Debt {
                         self.showDebtVc = ShowDebtViewController.initFromStoryboard(name: Constant.Storyboards.scooterPlan)
                         self.showDebtVc?.modalPresentationStyle = .fullScreen
-                        self.showDebtVc?.view.backgroundColor = .white
+                        self.showDebtVc?.view.backgroundColor = .appBackground
                         self.showDebtVc?.updateUI(amount: state.additional ?? 0.0, wallets: state.wallets ?? [])
                         self.showDebtVc?.delegate = self
                         self.present(self.showDebtVc!, animated: true)

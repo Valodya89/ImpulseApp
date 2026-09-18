@@ -37,6 +37,12 @@ class BikeViewController: MimoBaseViewController {
     
     private var forbiddenMarkers: [GMSMarker] = []
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        guard traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else { return }
+        mapView?.applyAppearanceStyle(for: traitCollection)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -73,6 +79,7 @@ class BikeViewController: MimoBaseViewController {
         //MARK: - MapView
         mapView.isMyLocationEnabled = true
         mapView.delegate = self
+        mapView.applyAppearanceStyle()
         
         //MARK: - CollectionView
         setupCollectionView()
@@ -175,7 +182,6 @@ class BikeViewController: MimoBaseViewController {
     }
     
     private func configureDelegates() {
-        BLEManager.shareInstance.delegate = self
     }
     
     private func setupPublishers() {
@@ -284,15 +290,9 @@ class BikeViewController: MimoBaseViewController {
         viewModel.$scanData.sink { [weak self] tripData in
             guard let self, let tripData else { return }
             
-            guard let mac = tripData.bikeDto?.mac, let bikeID = tripData.bikeDto?.id else {
+            guard tripData.bikeDto?.id != nil else {
                 self.showAlertMessage("Failed to scan qr", actionText: "Ok", action: { })
                 return
-            }
-            
-            if tripData.action == .TripScanned || tripData.action == .TripStarted {
-                BLEManager.shareInstance.scan(for: mac,
-                                              bikeID: bikeID,
-                                              workOption: BLEOption(afterConnectOption: BLEOption.AfterConnect(unlockDevice: true, updateDeviceState: false)))
             }
             
             MILoader.hide()
@@ -409,28 +409,7 @@ extension BikeViewController {
 
 extension BikeViewController: ScanSheetViewControllerDelegate {
     func scanSheetAction(actionType: ScanSheetAction) {
-        BLEManager.shareInstance.checkBluetoothConnectionState = { [weak self] state in
-            guard let self = self else { return }
-            
-            switch state {
-            case .poweredOn:
-                ScanRouter.shared.showQrScanViewController(self, type: .bike, delegate: self)
-            case .poweredOff, .resetting, .unauthorized, .unsupported, .unknown:
-                self.openAppOrSystemSettingsAlert(title: "MimoBike would like to use Bluetooth for new conection",
-                                                  message: "You can allow connection in Settings")
-            @unknown default:
-                print("")
-            }
-            
-            print(state)
-            
-            if state == .poweredOff {
-                //TODO: Update this property in an App Manager class
-                
-            }
-        }
-        
-        BLEManager.shareInstance.configBLE()
+        ScanRouter.shared.showQrScanViewController(self, type: .bike, delegate: self)
     }
 }
 
@@ -571,23 +550,5 @@ extension BikeViewController: BikeDetailsSheetViewControllerDelegate {
     
     func tariffsAction() {
         BikeRouter.shared.showTariffsViewController(self)
-    }
-}
-
-extension BikeViewController: BLEManagerDelegate {
-    
-    func changeBleState(bleState: BleDeviceState) {
-        
-        switch bleState {
-        case .locked:
-            BLEManager.shareInstance.dinsconnect()
-        case .unLocked:
-            break
-        case .connectionLost:
-//            if case .scan = self.state {
-//                sendNotification()
-//            }
-            break
-        }
     }
 }

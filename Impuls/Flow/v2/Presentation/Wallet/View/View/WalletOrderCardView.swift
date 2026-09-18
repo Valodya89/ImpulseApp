@@ -19,23 +19,23 @@ struct WalletOrderCardView: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text("MOBILE_wallet_Mimo_Card".localized())
                     .font(.system(size: 15))
-                    .foregroundColor(.black)
+                    .foregroundColor(.appLabel)
                 
                 Text("MOBILE_wallet_order_card_for_free".localized())
                     .font(.system(size: 13))
-                    .foregroundColor(.black05)
+                    .foregroundColor(.label05)
             }
             
             Spacer()
             
             Image(systemName: "chevron.right")
                 .resizable()
-                .foregroundColor(.black)
+                .foregroundColor(.appLabel)
                 .frame(width: 8, height: 12)
                 .padding(.trailing, 20)
         }
         .frame(maxHeight: .infinity)
-        .background(Color.white)
+        .background(Color.appBackground)
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .overlay(
             RoundedRectangle(cornerRadius: 8)

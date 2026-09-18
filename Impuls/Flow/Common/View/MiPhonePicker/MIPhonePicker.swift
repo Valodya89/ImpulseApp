@@ -70,8 +70,13 @@ final class MIPhonePicker: UIView {
         super.layoutSubviews()
         layer.cornerRadius = 8
         layer.borderWidth = 0.5
-        layer.borderColor = UIColor.black.cgColor
+        layer.borderColor = UIColor.appLabel.resolvedColor(with: traitCollection).cgColor
         clipsToBounds = true
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        setNeedsLayout()
     }
     
     private func getISOCodes() {

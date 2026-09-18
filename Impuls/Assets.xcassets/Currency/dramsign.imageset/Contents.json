@@ -1,15 +1,25 @@
 {
-  "images" : [
+  "images": [
     {
-      "filename" : "dramsign.pdf",
-      "idiom" : "universal"
+      "filename": "dramsign.pdf",
+      "idiom": "universal"
+    },
+    {
+      "filename": "dark_dramsign.pdf",
+      "idiom": "universal",
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ]
     }
   ],
-  "info" : {
-    "author" : "xcode",
-    "version" : 1
+  "info": {
+    "author": "xcode",
+    "version": 1
   },
-  "properties" : {
-    "template-rendering-intent" : "template"
+  "properties": {
+    "template-rendering-intent": "template"
   }
 }

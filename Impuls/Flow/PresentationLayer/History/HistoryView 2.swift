@@ -104,7 +104,7 @@ struct HistoryView: View {
                     if let amount = item.payment?.amount {
                         Text(amount.description + " " + "MOBILE_global_total_currency".localized())
                             .font(.robotoBold14)
-                            .foregroundColor(.white)
+                            .foregroundColor(.alwaysWhite)
                             .padding(.horizontal, 8)
                             .padding(.vertical, 4)
                             .background(
@@ -120,7 +120,7 @@ struct HistoryView: View {
         .padding(.vertical, 16)
         .background {
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white)
+                .fill(Color.evBgColor4)
         }
     }
     
@@ -186,7 +186,7 @@ struct HistoryView: View {
                     if let amount = item.payment?.amount {
                         Text(amount.description + " " + "MOBILE_global_total_currency".localized())
                             .font(.robotoBold14)
-                            .foregroundColor(.white)
+                            .foregroundColor(.alwaysWhite)
                             .padding(.horizontal, 8)
                             .padding(.vertical, 4)
                             .background(
@@ -202,7 +202,7 @@ struct HistoryView: View {
         .padding(.vertical, 16)
         .background {
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white)
+                .fill(Color.evBgColor4)
         }
     }
     
@@ -259,7 +259,7 @@ struct HistoryView: View {
                 
                 Text("\(item.payment.amount ?? 0)" + " " + "MOBILE_global_total_currency".localized())
                     .font(.robotoBold14)
-                    .foregroundColor(.white)
+                    .foregroundColor(.alwaysWhite)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
                     .background(
@@ -273,7 +273,7 @@ struct HistoryView: View {
         .padding(.vertical, 16)
         .background {
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white)
+                .fill(Color.evBgColor4)
         }
     }
     
@@ -375,7 +375,7 @@ struct HistoryView: View {
         .padding(.vertical, 16)
         .background {
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white)
+                .fill(Color.evBgColor4)
         }
     }
     
@@ -384,19 +384,21 @@ struct HistoryView: View {
             HStack(spacing: 0) {
                 Text("MOBILE_profile_history".localized())
                     .font(.robotoBold15)
-                    .foregroundColor(.black)
+                    .foregroundColor(.appLabel)
             }
             .frame(maxWidth: .infinity)
             .padding()
             
             Image(.icCloseBig)
+                .renderingMode(.template)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+                .foregroundColor(.appLabel)
                 .frame(width: 24, height: 24)
                 .padding(.leading, 18.5)
                 .onTapGesture { viewModel.back() }
         }
-        .background(Color.white)
+        .background(Color.appBackground)
     }
     
     func receiptView(receipt: EVChargerRentModel) -> some View {
@@ -437,7 +439,7 @@ struct HistoryView: View {
             
             Text("EV_CHARGER_history_empty_title".localized())
                 .font(.robotoSemibold16)
-                .foregroundColor(Color.black08)
+                .foregroundColor(Color.appLabel.opacity(0.8))
             
             Text("EV_CHARGER_history_empty_description".localized())
                 .font(.robotoRegular15)

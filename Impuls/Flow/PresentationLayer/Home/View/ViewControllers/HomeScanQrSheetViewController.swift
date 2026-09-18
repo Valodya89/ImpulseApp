@@ -340,17 +340,7 @@ class HomeScanQrSheetViewController: BaseViewController, StoryboardInitializable
             UIAlertController.showAction(title: "MOBILE__global_attention".localized(), message: finansialModel.message?.localized() ?? "", actions: ("OK", .default, { [weak self] _ in
                 guard let unwrapSelf = self else { return }
 
-                let walletVC = WalletViewController.initFromStoryboard(name: Constant.Storyboards.wallet)
-                unwrapSelf.walletNavigationController = UINavigationController(rootViewController: walletVC)
-
-                let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_arrow_left"), style: .plain, target: self, action: #selector(unwrapSelf.backButtonTapped))
-                walletVC.navigationItem.leftBarButtonItem = backButton
-
-                walletVC.user = unwrapSelf.userResult
-                walletVC.account = unwrapSelf.userAccountResult
-                walletVC.avataturURLString = unwrapSelf.avatarUrlStirng
-
-                unwrapSelf.present(unwrapSelf.walletNavigationController!, animated: true, completion: nil)
+                unwrapSelf.present(WalletHostingController(), animated: true, completion: nil)
             }))
 
             return
@@ -360,17 +350,7 @@ class HomeScanQrSheetViewController: BaseViewController, StoryboardInitializable
     
     @IBAction func plusButtonTapped(_ sender: UIButton) {
         VibrateManager.vibrate()
-        let walletVC = WalletViewController.initFromStoryboard(name: Constant.Storyboards.wallet)
-        self.walletNavigationController = UINavigationController(rootViewController: walletVC)
-        
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_arrow_left"), style: .plain, target: self, action: #selector(backButtonTapped))
-        walletVC.navigationItem.leftBarButtonItem = backButton
-        
-        walletVC.user = userResult
-        walletVC.account = userAccountResult
-        walletVC.avataturURLString = avatarUrlStirng
-        
-        self.present(walletNavigationController!, animated: true, completion: nil)
+        self.present(WalletHostingController(), animated: true, completion: nil)
     }
     
     @objc func backButtonTapped() {

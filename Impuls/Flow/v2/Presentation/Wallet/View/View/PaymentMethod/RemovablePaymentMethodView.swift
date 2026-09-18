@@ -29,13 +29,13 @@ struct RemovablePaymentMethodView: View {
             
             Text(card.cardMask)
                 .font(.system(size: 15))
-                .foregroundColor(.black)
+                .foregroundColor(.appLabel)
             
             Spacer()
             
             Image(systemName: "xmark")
                 .resizable()
-                .foregroundColor(.black)
+                .foregroundColor(.appLabel)
                 .frame(width: 10, height: 10)
                 .padding(.trailing, 20)
                 .onTapGesture {
@@ -43,7 +43,7 @@ struct RemovablePaymentMethodView: View {
                 }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.white)
+        .background(Color.appBackground)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
                 .stroke(isSelected ? Color.brandYellow : Color.gray4, lineWidth: isSelected ? 4 : 0.5)
@@ -60,7 +60,7 @@ struct RemovablePaymentMethodView: View {
                         Image(systemName: "checkmark")
                             .resizable()
                             .font(.title.bold())
-                            .foregroundColor(.black)
+                            .foregroundColor(.onBrandLabel)
                             .frame(width: 7.7, height: 7)
                             .padding(.bottom, 3)
                     )

@@ -1,0 +1,157 @@
+{
+  "MOBILE_settings_appearance": {
+    "en": "Appearance",
+    "ru": "Оформление",
+    "module": "mobile"
+  },
+  "MOBILE_settings_theme_dark": {
+    "en": "Dark",
+    "ru": "Тёмная",
+    "module": "mobile"
+  },
+  "MOBILE_settings_theme_light": {
+    "en": "Light",
+    "ru": "Светлая",
+    "module": "mobile"
+  },
+  "MOBILE_settings_theme_system": {
+    "en": "System",
+    "ru": "Системная",
+    "module": "mobile"
+  },
+  "MOBILE_transactions_empty_description": {
+    "en": "Your transactions will show here once you’ve made your first top-up or trip",
+    "ru": "Ваши операции появятся здесь после первого пополнения или поездки",
+    "module": "mobile"
+  },
+  "MOBILE_transactions_empty_title": {
+    "en": "Begin your adventure!",
+    "ru": "Начните своё приключение!",
+    "module": "mobile"
+  },
+  "MOBILE_transactions_filter_all": {
+    "en": "All",
+    "ru": "Все",
+    "module": "mobile"
+  },
+  "MOBILE_transactions_filter_empty": {
+    "en": "Nothing here yet",
+    "ru": "Здесь пока ничего нет",
+    "module": "mobile"
+  },
+  "MOBILE_transactions_kind_bonus": {
+    "en": "Bonus",
+    "ru": "Бонус",
+    "module": "mobile"
+  },
+  "MOBILE_transactions_kind_card": {
+    "en": "Bank card",
+    "ru": "Банковская карта",
+    "module": "mobile"
+  },
+  "MOBILE_transactions_kind_card_attached": {
+    "en": "Card attached",
+    "ru": "Карта привязана",
+    "module": "mobile"
+  },
+  "MOBILE_transactions_kind_crypto": {
+    "en": "Crypto",
+    "ru": "Криптовалюта",
+    "module": "mobile"
+  },
+  "MOBILE_transactions_kind_ride": {
+    "en": "Ride",
+    "ru": "Поездка",
+    "module": "mobile"
+  },
+  "MOBILE_transactions_kind_terminal": {
+    "en": "terminal",
+    "ru": "терминал",
+    "module": "mobile"
+  },
+  "MOBILE_transactions_kind_transfer_received": {
+    "en": "Transfer received",
+    "ru": "Перевод получен",
+    "module": "mobile"
+  },
+  "MOBILE_transactions_kind_transfer_sent": {
+    "en": "Transfer sent",
+    "ru": "Перевод отправлен",
+    "module": "mobile"
+  },
+  "MOBILE_transactions_status_failed": {
+    "en": "Failed",
+    "ru": "Не удалось",
+    "module": "mobile"
+  },
+  "MOBILE_transactions_status_pending": {
+    "en": "Pending",
+    "ru": "В обработке",
+    "module": "mobile"
+  },
+  "MOBILE_try_again": {
+    "en": "Try again",
+    "ru": "Попробовать ещё раз",
+    "module": "mobile"
+  },
+  "MOBILE_wallet_add_card_hint": {
+    "en": "Visa, Mastercard, ArCa, Amex",
+    "ru": "Visa, Mastercard, ArCa, Amex",
+    "module": "mobile"
+  },
+  "MOBILE_wallet_debt_badge": {
+    "en": "Debt",
+    "ru": "Долг",
+    "module": "mobile"
+  },
+  "MOBILE_wallet_debt_hero_hint": {
+    "en": "Top up to clear the debt and keep riding.",
+    "ru": "Пополните баланс, чтобы погасить долг и продолжить поездки.",
+    "module": "mobile"
+  },
+  "MOBILE_wallet_have_promo_code": {
+    "en": "Have a promo code?",
+    "ru": "Есть промокод?",
+    "module": "mobile"
+  },
+  "MOBILE_wallet_more": {
+    "en": "More",
+    "ru": "Ещё",
+    "module": "mobile"
+  },
+  "MOBILE_wallet_my_card": {
+    "en": "Bank card",
+    "ru": "Банковская карта",
+    "module": "mobile"
+  },
+  "MOBILE_wallet_pay_with": {
+    "en": "Pay with",
+    "ru": "Способ оплаты",
+    "module": "mobile"
+  },
+  "MOBILE_wallet_promo_code_hint": {
+    "en": "Apply it to get a bonus on your balance",
+    "ru": "Примените его и получите бонус на баланс",
+    "module": "mobile"
+  },
+  "MOBILE_wallet_recent_activity": {
+    "en": "Recent activity",
+    "ru": "Последние операции",
+    "module": "mobile"
+  },
+  "MOBILE_wallet_see_all": {
+    "en": "See all",
+    "ru": "Все",
+    "module": "mobile"
+  },
+  "MOBILE_wallet_send": {
+    "en": "Send",
+    "ru": "Отправить",
+    "module": "mobile"
+  },
+  "MOBILE_wallet_top_up": {
+    "en": "Top up",
+    "ru": "Пополнить",
+    "module": "mobile"
+  }
+}

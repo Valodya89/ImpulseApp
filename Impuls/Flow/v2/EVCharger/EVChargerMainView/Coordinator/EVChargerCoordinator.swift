@@ -54,10 +54,7 @@ class EVChargerCoordinator: BaseCoordinator {
     }
     
     func routeNotificationsView() {
-        let notListVC = NotificationListViewController.initFromStoryboard(name: Constant.Storyboards.home)
-        let navVC = UINavigationController(rootViewController: notListVC)
-        
-        presentViewController(navVC)
+        presentViewController(NotificationsView.makeSheet(), presentationStyle: .pageSheet)
     }
     
     func routeEVChargerDetailView(id: String, byStationId: Bool = false) {

@@ -20,11 +20,11 @@ struct ProfilePackageView: View {
                     VStack(alignment: .leading, spacing: 8) {
                         Text("MOBILE_rates_plans".localized())
                             .font(.system(size: 12, weight: .light))
-                            .foregroundColor(.black)
+                            .foregroundColor(.onBrandLabel)
                         
                         Text(title.uppercased())
                             .font(.system(size: 13, weight: .medium))
-                            .foregroundColor(.black)
+                            .foregroundColor(.onBrandLabel)
                     }
                     .padding(.horizontal, 14)
                     .padding(.vertical, 11)
@@ -33,7 +33,7 @@ struct ProfilePackageView: View {
                     
                     Image(systemName: "chevron.right")
                         .resizable()
-                        .foregroundColor(.black025)
+                        .foregroundColor(.onBrandSecondaryLabel)
                         .frame(width: 8, height: 14)
                         .font(.title.weight(.light))
                         .padding(.trailing, 12)
@@ -46,13 +46,13 @@ struct ProfilePackageView: View {
                         VStack(alignment: .leading, spacing: 6) {
                             Text("MOBILE_global_start_date".localized())
                                 .font(.system(size: 12, weight: .regular))
-                                .foregroundColor(.black)
+                                .foregroundColor(.appLabel)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             
                             Text(startDate)
                                 .font(.system(size: 12, weight: .light))
                                 .minimumScaleFactor(0.5)
-                                .foregroundColor(.black)
+                                .foregroundColor(.appLabel)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .frame(minWidth: 0, maxWidth: .infinity)
@@ -60,13 +60,13 @@ struct ProfilePackageView: View {
                         VStack(alignment: .leading, spacing: 6) {
                             Text("MOBILE_global_end_date".localized())
                                 .font(.system(size: 12, weight: .regular))
-                                .foregroundColor(.black)
+                                .foregroundColor(.appLabel)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             
                             Text(endDate)
                                 .font(.system(size: 12, weight: .light))
                                 .minimumScaleFactor(0.5)
-                                .foregroundColor(.black)
+                                .foregroundColor(.appLabel)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .frame(minWidth: 0, maxWidth: .infinity)
@@ -79,7 +79,7 @@ struct ProfilePackageView: View {
                 .frame(minHeight: 0, maxHeight: .infinity)
             }
         }
-        .background(Color.white)
+        .background(Color.appBackground)
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .shadow(color: .black.opacity(0.1), radius: 8, y: 2)
     }

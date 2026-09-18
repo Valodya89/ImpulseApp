@@ -20,7 +20,7 @@ struct EVTextField<RightView: View>: View {
                 .frame(width: 24, height: 24)
             TextField(placeholder, text: $text)
                 .font(.robotoRegular17)
-                .foregroundColor(.black075)
+                .foregroundColor(.label075)
             
             Spacer()
             

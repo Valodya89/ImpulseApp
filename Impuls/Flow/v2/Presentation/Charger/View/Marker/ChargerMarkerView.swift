@@ -61,9 +61,9 @@ final class ChargerMarkerView: UIView {
         
         let bgWhiteView = UIView()
         bgWhiteView.cornerRadius = (size - 4)/2
-        bgWhiteView.backgroundColor = .mimoWhite
+        bgWhiteView.backgroundColor = .alwaysWhite
         bgWhiteView.borderWidth = 1
-        bgWhiteView.borderColor = .mimoBlack
+        bgWhiteView.borderColor = .alwaysBlack
         bgWhiteView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(bgWhiteView)
         
@@ -75,7 +75,7 @@ final class ChargerMarkerView: UIView {
         ])
         
         let middleLineView = UIView()
-        middleLineView.backgroundColor = .mimoBlack
+        middleLineView.backgroundColor = .alwaysBlack
         middleLineView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(middleLineView)
         
@@ -117,14 +117,14 @@ final class ChargerMarkerView: UIView {
         let slotsCountAttrString = NSMutableAttributedString(
             string: "\(slotsCount)",
             attributes: [
-                NSAttributedString.Key.foregroundColor: UIColor.mimoBlack,
+                NSAttributedString.Key.foregroundColor: UIColor.alwaysBlack,
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: size/4, weight: .semibold)
             ]
         )
         let slAttrString = NSMutableAttributedString(
             string: "SL",
             attributes: [
-                NSAttributedString.Key.foregroundColor: UIColor.mimoBlack,
+                NSAttributedString.Key.foregroundColor: UIColor.alwaysBlack,
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: size/6, weight: .semibold)
             ]
         )
@@ -159,7 +159,7 @@ final class ChargerMarkerView: UIView {
         
         let discountLabel = UILabel()
         discountLabel.translatesAutoresizingMaskIntoConstraints = false
-        discountLabel.textColor = .white
+        discountLabel.textColor = .alwaysWhite
         discountLabel.font = .systemFont(ofSize: 9, weight: .bold)
         discountLabel.text = discount == 100 ? "Free" : "\(discount)%"
         discountView.addSubview(discountLabel)

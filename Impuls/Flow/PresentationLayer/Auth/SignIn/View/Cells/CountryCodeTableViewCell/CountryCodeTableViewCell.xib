@@ -36,7 +36,7 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q2E-qE-1qw" userLabel="spaceView">
                                 <rect key="frame" x="32" y="0.0" width="16.5" height="54"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Armenian" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbP-O4-z2p">
                                 <rect key="frame" x="48.5" y="17" width="74" height="20"/>
@@ -51,7 +51,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="bsL-y7-T3d" secondAttribute="trailing" id="1JT-zM-u2T"/>
                             <constraint firstItem="q2E-qE-1qw" firstAttribute="top" secondItem="zjs-pj-BB9" secondAttribute="top" id="658-ri-aOf"/>
@@ -91,5 +91,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

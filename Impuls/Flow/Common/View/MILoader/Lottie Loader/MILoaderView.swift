@@ -68,7 +68,7 @@ class MILoaderView: UIView {
         self.setupLottie()
         self.waiter.stopAnimating()
         self.waiter.hidesWhenStopped = true
-        self.progress.trackTintColor = .white
+        self.progress.trackTintColor = .appBackground
         self.clipsToBounds = true
         self.invisible()
     }

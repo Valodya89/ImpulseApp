@@ -29,7 +29,7 @@
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHy-FA-OiE">
                                 <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                                 <color key="backgroundColor" name="mimoWhite"/>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="barTintColor" name="AppBackground"/>
                                 <items>
                                     <navigationItem title="Mimo Rates" id="Pvn-bt-xOF">
                                         <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="ReY-yf-9IF">
@@ -271,7 +271,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" red="0.96862745100000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="mimoGrayLight"/>
                         <constraints>
                             <constraint firstItem="C4s-xk-sPS" firstAttribute="top" secondItem="LHy-FA-OiE" secondAttribute="bottom" constant="32" id="2rX-xE-lss"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8kQ-GM-lcf" secondAttribute="trailing" id="4H6-Sp-EOq"/>
@@ -335,6 +335,12 @@
         </namedColor>
         <namedColor name="mimoYellow500">
             <color red="1" green="0.92156862745098034" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoGrayLight">
+            <color red="0.9647" green="0.9725" blue="0.9843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

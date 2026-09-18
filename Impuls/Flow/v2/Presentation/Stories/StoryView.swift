@@ -24,7 +24,6 @@ struct StoryView: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.black.ignoresSafeArea(edges: .all))
         }
     }
 }
@@ -93,7 +92,7 @@ struct StoryCardView: View {
                 }, label: {
                     Image(systemName: "xmark")
                         .font(.title2)
-                        .foregroundColor(.white)
+                        .foregroundColor(.alwaysWhite)
                         .shadow(color: .black, radius: 2, x: 1, y: 1)
                 })
                 .padding()
@@ -129,7 +128,7 @@ struct StoryCardView: View {
                 VStack(spacing: 0) {
                     Divider()
                         .frame(minHeight: 1)
-                        .background(Color.white.opacity(0.2))
+                        .background(Color.alwaysWhite.opacity(0.2))
                         .padding(.bottom, 16)
                         .padding(.horizontal, 20)
                     
@@ -139,14 +138,14 @@ struct StoryCardView: View {
                         HStack(spacing: 10) {
                             
                             Button {
-                                shareURL = URL(string: "https://mimometasharing.com/")
+                                shareURL = URL(string: "https://impulsepower.ru/")
                             } label: {
                                 ZStack {
-                                    Color.white.opacity(0.1)
+                                    Color.alwaysWhite.opacity(0.1)
                                     
                                     Image(systemName: "arrowshape.turn.up.right")
                                         .resizable()
-                                        .foregroundColor(Color.white)
+                                        .foregroundColor(Color.alwaysWhite)
                                         .frame(width: 24, height: 24)
                                 }
                                 .frame(width: 40, height: 40)
@@ -157,11 +156,11 @@ struct StoryCardView: View {
                                 storyViewModel.like()
                             } label: {
                                 ZStack {
-                                    Color.white.opacity(0.1)
+                                    Color.alwaysWhite.opacity(0.1)
 
                                     Image(systemName: storyViewModel.isLiked() ? "heart.fill" : "heart")
                                         .resizable()
-                                        .foregroundColor(storyViewModel.isLiked() ? Color.mimoYellow500 : Color.white)
+                                        .foregroundColor(storyViewModel.isLiked() ? Color.mimoYellow500 : Color.alwaysWhite)
                                         .frame(width: 20, height: 20)
                                 }
                                 .frame(width: 40, height: 40)

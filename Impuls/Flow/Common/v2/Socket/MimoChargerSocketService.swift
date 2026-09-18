@@ -47,11 +47,20 @@ final class MimoChargerSocketService: MimoChargerSocketServiceProtocol {
     /// subscription belongs to.
     private var subscribedUserId: String?
     
+    /// When the STOMP session last came up; nil while down. Logged on every
+    /// close so an "automatic" disconnect can be read as "after N seconds".
+    private var connectedAt: Date?
+    
     init() {
         socketManager = SwiftStomp(host: URL(string: MimoBaseURLs.chargerSoket.rawValue)!)
         socketManager.autoReconnect = true
         socketManager.enableLogging = true
         socketManager.delegate = self
+        MimoSocketLog.info(.charger, "init", "host=\(MimoBaseURLs.chargerSoket.rawValue) autoReconnect=true")
+    }
+    
+    deinit {
+        MimoSocketLog.info(.charger, "deinit", "isConnected=\(socketManager.isConnected)")
     }
     
     /// The backend pushes rent state to a destination named after the signed-in
@@ -59,6 +68,7 @@ final class MimoChargerSocketService: MimoChargerSocketServiceProtocol {
     /// subscription has to follow whoever is signed in right now.
     func setupInitialSubscribers() {
         guard let phoneNumber = StorageManager().fetch(key: .phoneNumber, type: String.self) else {
+            MimoSocketLog.error(.charger, "subscribe skipped", "no phone number stored")
             return
         }
 
@@ -68,11 +78,21 @@ final class MimoChargerSocketService: MimoChargerSocketServiceProtocol {
         // somebody else would otherwise leave it listening on the previous
         // rider's destination and receiving nothing.
         if let subscribedUserId {
+            MimoSocketLog.info(.charger, "unsubscribe", "destination=\(MimoSocketLog.masked(subscribedUserId))")
             socketManager.unsubscribe(from: subscribedUserId)
         }
 
+        MimoSocketLog.info(.charger, "subscribe", "destination=\(MimoSocketLog.masked(phoneNumber))")
         socketManager.subscribe(to: phoneNumber)
         subscribedUserId = phoneNumber
+
+        // The silence watchdog compares against the last message; with no
+        // message ever received it had nothing to compare against and never
+        // fired, so a subscription that delivered nothing also had no polling
+        // fallback. Count from the subscription instead.
+        if messageReceiveDate == nil {
+            messageReceiveDate = Date()
+        }
 
         // Start watching for silence as soon as there is something to listen to -
         // the screens use it to re-read state when the socket goes quiet. It used
@@ -82,8 +102,13 @@ final class MimoChargerSocketService: MimoChargerSocketServiceProtocol {
     }
 
     func connect() {
+        MimoSocketLog.info(.charger, "connect() requested", "isConnected=\(socketManager.isConnected) status=\(socketManager.connectionStatus)")
         if !self.socketManager.isConnected {
-            self.socketManager.connect()
+            // `SwiftStomp.connect()` overwrites `autoReconnect` with its own
+            // parameter (default false), so the flag set in `init` was lost on
+            // the first connect and a dropped socket - the app backgrounded
+            // while the rider walked to the cabinet - never came back.
+            self.socketManager.connect(autoReconnect: true)
         } else {
             // Already connected - `onConnect` will not fire again, so this is the
             // only chance to notice that the signed-in user changed.
@@ -97,11 +122,10 @@ final class MimoChargerSocketService: MimoChargerSocketServiceProtocol {
         timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { [weak self] _ in
             if let messageReceiveDate = self?.messageReceiveDate {
                 let differenceInSeconds = Int(Date().timeIntervalSince(messageReceiveDate))
-                print("\(Date()): \(differenceInSeconds)")
                 if differenceInSeconds >= 10 {
                     self?.delegate?.socketDataLagging()
                     self?.laggingSubject.send(())
-                    print("SOCKET: SOCKET DATA LOGGING")
+                    MimoSocketLog.info(.charger, "data lagging", "lastMessage=\(differenceInSeconds)s ago isConnected=\(self?.socketManager.isConnected ?? false)")
                 }
             }
         }
@@ -111,13 +135,21 @@ final class MimoChargerSocketService: MimoChargerSocketServiceProtocol {
 extension MimoChargerSocketService: SwiftStompDelegate {
     
     func onConnect(swiftStomp: SwiftStomp, connectType: StompConnectType) {
+        MimoSocketLog.info(.charger, "onConnect", "type=\(connectType)")
         if connectType == .toStomp {
+            connectedAt = Date()
             delegate?.onConnect()
             setupInitialSubscribers()
         }
     }
     
     func onDisconnect(swiftStomp: SwiftStomp, disconnectType: StompDisconnectType) {
+        // `.fromSocket` = the WebSocket itself closed (server, network, iOS
+        // suspension); `.fromStomp` = a STOMP-level disconnect. SwiftStomp's own
+        // log line just before this one carries the close code and reason.
+        MimoSocketLog.error(.charger, "onDisconnect", "type=\(disconnectType) up=\(MimoSocketLog.age(since: connectedAt)) lastMessage=\(MimoSocketLog.age(since: messageReceiveDate)) ago destination=\(MimoSocketLog.masked(subscribedUserId)) autoReconnect=\(swiftStomp.autoReconnect)")
+        connectedAt = nil
+
         // The subscription dies with the connection; forgetting it here is what
         // lets `onConnect` re-subscribe instead of skipping it as a duplicate.
         subscribedUserId = nil
@@ -127,6 +159,7 @@ extension MimoChargerSocketService: SwiftStompDelegate {
     
     func onMessageReceived(swiftStomp: SwiftStomp, message: Any?, messageId: String, destination: String, headers: [String : String]) {
         guard let message = message as? String else { return }
+        MimoSocketLog.info(.charger, "message", "id=\(messageId) destination=\(MimoSocketLog.masked(destination)) bytes=\(message.utf8.count)")
         
         do {
             let jsonData = Data(message.utf8)
@@ -140,19 +173,19 @@ extension MimoChargerSocketService: SwiftStompDelegate {
             messageReceiveDate = Date()
             setupTimer()
         } catch {
-            print(error.localizedDescription)
+            MimoSocketLog.error(.charger, "message decode failed", "\(error)")
         }
     }
     
     func onReceipt(swiftStomp: SwiftStomp, receiptId: String) {
-        
+        MimoSocketLog.info(.charger, "onReceipt", "receiptId=\(receiptId)")
     }
     
     func onError(swiftStomp: SwiftStomp, briefDescription: String, fullDescription: String?, receiptId: String?, type: StompErrorType) {
-        
+        MimoSocketLog.error(.charger, "onError", "type=\(type) \(briefDescription): \(fullDescription ?? "-") receiptId=\(receiptId ?? "-") up=\(MimoSocketLog.age(since: connectedAt))")
     }
     
     func onSocketEvent(eventName: String, description: String) {
-        
+        MimoSocketLog.info(.charger, "onSocketEvent", "\(eventName): \(description)")
     }
 }

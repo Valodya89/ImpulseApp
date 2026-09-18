@@ -13,6 +13,10 @@ import Combine
 class ChargerViewController: MimoBaseViewController {
     
     private var cancellables = Set<AnyCancellable>()
+    /// Rents whose end-of-rent summary has already been presented. `getState()`
+    /// keeps reporting a finished rent for a while, and every re-read used to
+    /// try to present the summary again on top of the one already up.
+    private var shownSummaryRentIds = Set<String>()
 //    private var clusterManager: GMUClusterManager?
     
     //MARK: - Outlets
@@ -28,6 +32,12 @@ class ChargerViewController: MimoBaseViewController {
     
     var viewModel: ChargerViewModel?
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        guard traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else { return }
+        mapView?.applyAppearanceStyle(for: traitCollection)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,6 +47,21 @@ class ChargerViewController: MimoBaseViewController {
         
         viewModel?.socketConnect()
         viewModel?.getState()
+        
+        // Putting the bank back happens with the phone in a pocket. When the
+        // app comes back to the foreground on this screen no appearance
+        // callback fires, so the socket is reconnected and the rents re-read
+        // here - a RENT_ENDED sent while the socket was down would otherwise
+        // wait for the next visit.
+        NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self, self.viewIfLoaded?.window != nil else { return }
+                MimoSocketLog.info(.charger, "power-bank map resume from background")
+                self.viewModel?.socketConnect()
+                self.viewModel?.getState()
+            }
+            .store(in: &cancellables)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -154,10 +179,21 @@ class ChargerViewController: MimoBaseViewController {
             }
             
             if !_rentEndedChargers.isEmpty {
-                ChargerRouter.shared.showChargerSuccessViewController(self, currency: viewModel.walletInfo?.currency, rentedCharger: _rentEndedChargers.first)
+                // One summary per finished rent, however many times the state
+                // still reports it; and never on top of another modal.
+                if let ended = _rentEndedChargers.first(where: { rent in
+                       guard let id = rent.data?.id else { return false }
+                       return !self.shownSummaryRentIds.contains(id)
+                   }),
+                   let id = ended.data?.id,
+                   self.presentedViewController == nil {
+                    self.shownSummaryRentIds.insert(id)
+                    MimoSocketLog.info(.charger, "summary shown on power-bank map", "rent=\(id)")
+                    ChargerRouter.shared.showChargerSuccessViewController(self, currency: viewModel.walletInfo?.currency, rentedCharger: ended)
+                }
                 
                 if _rentedChargers.isEmpty && _rentScannedChargers.isEmpty {
-                    self.viewModel?.viewState = .initial
+                    self.leaveRentStateIfNeeded()
                 }
             }
             
@@ -167,8 +203,12 @@ class ChargerViewController: MimoBaseViewController {
                 }
             }
             
+            // `GET /api/state` is polled every 15 s. With no rent running it
+            // must not touch the screen - the station list or a details sheet
+            // the rider opened stays open. Only a rent that just ended needs
+            // the rent sheet taken down.
             if rentedChargers.isEmpty {
-                self.viewModel?.viewState = .initial
+                self.leaveRentStateIfNeeded()
             }
         }
         .store(in: &cancellables)
@@ -197,6 +237,7 @@ class ChargerViewController: MimoBaseViewController {
         //MARK: - MapView
         mapView.isMyLocationEnabled = true
         mapView.delegate = self
+        mapView.applyAppearanceStyle()
         
         //MARK: - CollectionView
         setupCollectionView()
@@ -223,6 +264,13 @@ class ChargerViewController: MimoBaseViewController {
 
 //MARK: - UI
 extension ChargerViewController {
+    
+    /// Back to the scan sheet only when the rent sheet is showing; any other
+    /// state (station list, details) was chosen by the rider and is kept.
+    private func leaveRentStateIfNeeded() {
+        guard let viewModel, case .rent = viewModel.viewState else { return }
+        viewModel.viewState = .initial
+    }
     
     private func updateUI(for state: MimoChargerViewState) {
         switch state {

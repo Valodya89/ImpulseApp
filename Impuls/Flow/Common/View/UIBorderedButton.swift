@@ -26,12 +26,18 @@ final class UIBorderedButton: UIButton {
     
     private func commonInit() {
         borderWidth = 1.5
-        borderColor = #colorLiteral(red: 0.2078431373, green: 0.2078431373, blue: 0.2078431373, alpha: 1)
+        borderColor = .mimoDarkGray
         cornerRadius = 5
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        addBorder()
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        borderColor = .mimoDarkGray
         addBorder()
     }
     
@@ -58,12 +64,18 @@ final class UIBorderedView: UIView {
     
     private func commonInit() {
         borderWidth = 1.5
-        borderColor = #colorLiteral(red: 0.2078431373, green: 0.2078431373, blue: 0.2078431373, alpha: 1)
+        borderColor = .mimoDarkGray
         cornerRadius = 5
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        addBorder()
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        borderColor = .mimoDarkGray
         addBorder()
     }
     

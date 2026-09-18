@@ -37,6 +37,10 @@ class MimoHomeViewModel: MimoBaseViewModel {
     /// caught up yet, so the refresh that follows would put the row straight back.
     private var endedRentIds: Set<String> = []
 
+    /// Coalesces the socket-driven re-reads: a rent start arrives as several
+    /// messages in a row, and each one must not be its own HTTP round trip.
+    private let activeTripsRefresh = PassthroughSubject<Void, Never>()
+
     private var bikes: [BikeResult] = []
     private var scooters: [ScooterResult] = []
     private var chargers: [ChargingStation] = []
@@ -101,6 +105,24 @@ class MimoHomeViewModel: MimoBaseViewModel {
 
                 self.handleRentedChargerStateChange(rentedCharger)
             })
+            .store(in: &cancellables)
+
+        // A quiet rent socket is re-read over HTTP, the way the power-bank map
+        // does, so a RENT_ENDED lost to a dropped socket still reaches the strip.
+        // Only while a rent is on the strip: with nothing rented there is
+        // nothing to lose, and the watchdog ticks every 15 seconds for the
+        // whole session.
+        worker.chargerLaggingPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                guard let self, self.activeTrips.contains(where: { $0 is RentedCharger }) else { return }
+                self.scheduleActiveTripsRefresh()
+            }
+            .store(in: &cancellables)
+
+        activeTripsRefresh
+            .debounce(for: .milliseconds(600), scheduler: DispatchQueue.main)
+            .sink { [weak self] in self?.getActiveTrips() }
             .store(in: &cancellables)
         
         worker.getLeasedScooters()
@@ -215,15 +237,35 @@ class MimoHomeViewModel: MimoBaseViewModel {
     }
     
     func getActiveTrips(simulate: Bool = false) {
-        worker.getActiveScooters().zip(worker.getActiveBikes(), worker.getActiveChargers(), worker.getActiveEvChargers())
+        // One product's state call failing must not blank the whole strip: a
+        // market without that product, or one server being down, used to fail
+        // the whole zip and the power-bank rent never appeared on home. Each
+        // product falls back to the rows it already shows.
+        let current = activeTripsSnapshot()
+        let scooters = worker.getActiveScooters()
+            .catch { error -> Just<[ScooterStateModel]> in
+                MimoSocketLog.error(.scooter, "active state failed", error.message)
+                return Just(current.scooters)
+            }
+        let bikes = worker.getActiveBikes()
+            .catch { error -> Just<TripActionModel?> in
+                MimoSocketLog.error(.bike, "active state failed", error.message)
+                return Just(current.bike)
+            }
+        let chargers = worker.getActiveChargers()
+            .catch { error -> Just<[RentedCharger]> in
+                MimoSocketLog.error(.charger, "active state failed", error.message)
+                return Just(current.chargers)
+            }
+        let evChargers = worker.getActiveEvChargers()
+            .catch { error -> Just<[EVStateMessagedDTO]> in
+                MimoSocketLog.error(.evCharger, "active state failed", error.message)
+                return Just(current.evChargers)
+            }
+
+        scooters.zip(bikes, chargers, evChargers)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] failure in
-                switch failure {
-                case .failure(let error):
-                    self?.errorMessage = error.message
-                default: break
-                }
-            } receiveValue: { [weak self] scooters, bikes, chargers, evChargers in
+            .sink { _ in } receiveValue: { [weak self] scooters, bikes, chargers, evChargers in
                 guard let self else { return }
 
                 // Only rents that are really still running belong on the strip: the
@@ -257,8 +299,31 @@ class MimoHomeViewModel: MimoBaseViewModel {
             .store(in: &cancellables)
     }
     
+    private func activeTripsSnapshot() -> (scooters: [ScooterStateModel], bike: TripActionModel?, chargers: [RentedCharger], evChargers: [EVStateMessagedDTO]) {
+        (
+            scooters: activeTrips.compactMap { $0 as? ScooterStateModel },
+            bike: activeTrips.compactMap { $0 as? TripActionModel }.first,
+            chargers: activeTrips.compactMap { $0 as? RentedCharger },
+            evChargers: activeTrips.compactMap { $0 as? EVStateMessagedDTO }
+        )
+    }
+
+    func scheduleActiveTripsRefresh() {
+        activeTripsRefresh.send(())
+    }
+
+    /// Reconnects the sockets and re-reads the strip: called when the app
+    /// returns to the foreground on home, where no appearance callback fires.
+    func resumeFromBackground() {
+        MimoSocketLog.info(.charger, "home resume from background")
+        worker.connectSockets()
+        getActiveTrips()
+        loadBalance()
+    }
+
     /// Keeps the home active-trips strip in step with the rent socket.
     private func handleRentedChargerStateChange(_ charger: RentedCharger) {
+        MimoSocketLog.info(.charger, "home rent state", "state=\(charger.state?.rawValue ?? "-") rent=\(charger.data?.id ?? "-") bank=\(charger.data?.powerBank ?? "-")")
         switch charger.state {
         case .rentEnded:
             // Drop the finished rent right away: waiting for the round trip leaves
@@ -274,7 +339,7 @@ class MimoHomeViewModel: MimoBaseViewModel {
 
         case .rentScanned, .rentStarted:
             // A rent that started on this device or another one - pull the strip in.
-            getActiveTrips()
+            scheduleActiveTripsRefresh()
 
         case .none:
             break

@@ -33,4 +33,7 @@ enum UserDefaultsNames: String {
     case activeInsuranceStart
     case activeInsuranceEnd
     case insurancePrice
+    case appTheme
+    case hapticsEnabled
+    case soundsEnabled
 }

@@ -23,6 +23,10 @@ class MimoHomeWorker: MimoHomeWorkerProtocol {
     var chargerDataPublisher: AnyPublisher<RentedCharger?, Never> {
         chargerDataSubject.eraseToAnyPublisher()
     }
+
+    var chargerLaggingPublisher: AnyPublisher<Void, Never> {
+        chargerSocket.laggingPublisher
+    }
     
     private let chargerDataSubject = PassthroughSubject<RentedCharger?, Never>()
     
@@ -37,6 +41,13 @@ class MimoHomeWorker: MimoHomeWorkerProtocol {
             }
             .store(in: &socketCancellables)
 
+        connectSockets()
+    }
+
+    /// The home screen is the first screen with a signed-in user, so it opens
+    /// the rent socket: a bank put back while the rider is on home has to
+    /// move the active-trips strip and show the summary, not wait for the map.
+    func connectSockets() {
         chargerSocket.connect()
     }
     

@@ -15,7 +15,7 @@ struct RoundedBorder: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .background(Color.white)
+            .background(Color.evMainBg1)
             .cornerRadius(radius)
             .overlay(
                 RoundedRectangle(cornerRadius: radius)

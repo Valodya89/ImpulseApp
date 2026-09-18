@@ -34,13 +34,13 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="r0A-kV-X9H">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="44"/>
                                         <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="36"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" name="AlwaysWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MimoBike" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daQ-21-8Rm">
                                         <rect key="frame" x="0.0" y="44" width="355" height="44"/>
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="36"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" name="AlwaysWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -66,7 +66,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFu-uO-eId" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="351" height="28"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="24"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" name="AlwaysWhite"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_welcome_choose_language"/>
@@ -126,7 +126,7 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="enu-ay-Von" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                                                 <rect key="frame" x="159.66666666666666" y="16.333333333333371" width="32" height="18"/>
                                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
-                                                                <color key="textColor" name="mimoBlack"/>
+                                                                <color key="textColor" name="OnBrandLabel"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_global_next"/>
@@ -248,10 +248,10 @@
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bmN-7Z-oc8">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="789.33333333333337"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="bmN-7Z-oc8" firstAttribute="top" secondItem="xsH-1e-WzE" secondAttribute="top" id="3hj-pq-dcw"/>
                                     <constraint firstAttribute="trailing" secondItem="bmN-7Z-oc8" secondAttribute="trailing" id="9tK-2W-Wiq"/>
@@ -261,7 +261,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Oe2-Y6-5l4"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="xsH-1e-WzE" secondAttribute="bottom" id="3g5-6M-1TT"/>
                             <constraint firstItem="pry-AY-Hs1" firstAttribute="centerY" secondItem="zOW-Wv-HLD" secondAttribute="centerY" id="6Ug-4y-hI5"/>
@@ -332,7 +332,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join us " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="eVq-2c-YcW" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="149" y="15" width="53" height="18"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
-                                                <color key="textColor" name="mimoBlack"/>
+                                                <color key="textColor" name="OnBrandLabel"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_welcome_join_us"/>
@@ -373,13 +373,13 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="cVC-pp-7PD">
                                         <rect key="frame" x="0.0" y="0.0" width="355" height="44"/>
                                         <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="36"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" name="AlwaysWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MimoBike" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfy-5e-9EJ">
                                         <rect key="frame" x="0.0" y="44" width="355" height="44.333333333333343"/>
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="36"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" name="AlwaysWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -399,7 +399,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_white_back" translatesAutoresizingMaskIntoConstraints="NO" id="yAi-fs-vzx">
                                 <rect key="frame" x="19" y="55.666666666666657" width="15.333333333333336" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="AlwaysWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yAi-fs-vzx" secondAttribute="height" multiplier="17:22" id="2yH-pm-VYB"/>
                                 </constraints>
@@ -526,7 +526,7 @@
                             </button>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cV8-do-bcB" customClass="MIPhonePicker" customModule="MimoBike" customModuleProvider="target">
                                 <rect key="frame" x="20" y="124.5" width="353" height="48"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cV8-do-bcB" secondAttribute="height" multiplier="187:32" id="qEv-88-BfV"/>
                                 </constraints>
@@ -563,7 +563,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_back" translatesAutoresizingMaskIntoConstraints="NO" id="p4A-Fw-oYE">
                                 <rect key="frame" x="19" y="54.666666666666657" width="16" height="21"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="AlwaysWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="p4A-Fw-oYE" secondAttribute="height" multiplier="17:22" id="edx-KX-iua"/>
                                 </constraints>
@@ -652,7 +652,7 @@ And of course, it is important to follow the rules of the road and respect other
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rbH-cX-xc7"/>
-                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="mimoGrayLight"/>
                         <constraints>
                             <constraint firstItem="cV8-do-bcB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WL2-cW-vfy" secondAttribute="bottom" constant="10" id="1cl-Kl-9wo"/>
                             <constraint firstItem="Ekq-5e-zDs" firstAttribute="top" secondItem="VJu-Iu-Mbc" secondAttribute="top" constant="5" id="24a-sY-URK"/>
@@ -788,7 +788,7 @@ And of course, it is important to follow the rules of the road and respect other
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="wlb-cY-ngi" firstAttribute="width" secondItem="0g4-tB-PUB" secondAttribute="width" multiplier="0.84" id="1vo-ke-YZl"/>
                                     <constraint firstItem="wlb-cY-ngi" firstAttribute="height" secondItem="0g4-tB-PUB" secondAttribute="height" multiplier="0.736842" id="8WO-e0-cE1"/>
@@ -801,11 +801,11 @@ And of course, it is important to follow the rules of the road and respect other
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="S8e-FS-Lzb">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="757.33333333333337"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <inset key="scrollIndicatorInsets" minX="0.0" minY="3" maxX="0.0" maxY="0.0"/>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="S8e-FS-Lzb" firstAttribute="top" secondItem="nOJ-c8-lED" secondAttribute="top" id="ATa-XW-7jo"/>
                                     <constraint firstAttribute="trailing" secondItem="S8e-FS-Lzb" secondAttribute="trailing" id="DJU-U6-f7R"/>
@@ -815,7 +815,7 @@ And of course, it is important to follow the rules of the road and respect other
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DjR-O3-llP"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="0g4-tB-PUB" firstAttribute="leading" secondItem="DjR-O3-llP" secondAttribute="leading" id="1ZD-3T-Y3h"/>
                             <constraint firstItem="nOJ-c8-lED" firstAttribute="leading" secondItem="DjR-O3-llP" secondAttribute="leading" id="5ys-sb-YE8"/>
@@ -1338,7 +1338,7 @@ the British Prime Minister prefers a bicycle.</string>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstItem="9qd-we-2QC" firstAttribute="top" secondItem="SXx-lK-PoD" secondAttribute="top" id="1Vd-OD-gng"/>
                                             <constraint firstAttribute="bottom" secondItem="Jrr-Tb-fbg" secondAttribute="bottom" id="5iw-GR-8B2"/>
@@ -1387,7 +1387,7 @@ the British Prime Minister prefers a bicycle.</string>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="wWD-d2-hAz" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="159.66666666666666" y="16" width="32" height="18"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
-                                                <color key="textColor" name="mimoBlack"/>
+                                                <color key="textColor" name="OnBrandLabel"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_global_next"/>
@@ -1454,7 +1454,7 @@ the British Prime Minister prefers a bicycle.</string>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="HCe-C9-fWf" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="159.66666666666666" y="16" width="32" height="18"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
-                                                <color key="textColor" name="mimoBlack"/>
+                                                <color key="textColor" name="OnBrandLabel"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_global_next"/>
@@ -1493,7 +1493,7 @@ the British Prime Minister prefers a bicycle.</string>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" backgroundImage="ic_close_white">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" name="mimoWhite"/>
                                             <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -1522,7 +1522,7 @@ the British Prime Minister prefers a bicycle.</string>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rzf-8a-8yy"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="I65-4A-e67" secondAttribute="trailing" id="19b-GC-8sP"/>
                             <constraint firstItem="8Td-JE-Jb7" firstAttribute="top" secondItem="g9H-Dg-Unw" secondAttribute="bottom" constant="10" id="2Td-1g-IMr"/>
@@ -1634,5 +1634,17 @@ the British Prime Minister prefers a bicycle.</string>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AlwaysWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="OnBrandLabel">
+            <color red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoGrayLight">
+            <color red="0.9647" green="0.9725" blue="0.9843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

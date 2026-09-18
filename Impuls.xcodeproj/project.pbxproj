@@ -949,12 +949,10 @@
 		75E510462A000753000D99F0 /* HomeViewController+Zoning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C6EE32269F725700A997B3 /* HomeViewController+Zoning.swift */; };
 		75E510472A000753000D99F0 /* SignInReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B5B055264E62E100E28D24 /* SignInReponse.swift */; };
 		75E510482A000753000D99F0 /* HomeScooterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB607C2288B465300D99F09 /* HomeScooterCollectionViewCell.swift */; };
-		75E510492A000753000D99F0 /* Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D745268D1B3F008D1B22 /* Hex.swift */; };
 		75E5104A2A000753000D99F0 /* TripScooterDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439C12BA28935C1D00EA0440 /* TripScooterDataModel.swift */; };
 		75E5104B2A000753000D99F0 /* PlanTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88163C0B266B829500A57D9D /* PlanTableView.swift */; };
 		75E5104C2A000753000D99F0 /* MIPlansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88163C05266AC6D300A57D9D /* MIPlansViewController.swift */; };
 		75E5104D2A000753000D99F0 /* ScooterSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A74D12894669400DCDBEA /* ScooterSocketManager.swift */; };
-		75E5104E2A000753000D99F0 /* CryptoCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816ED5126873083008A3762 /* CryptoCommon.swift */; };
 		75E5104F2A000753000D99F0 /* ParkingPhotoCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E9C7C288F7D0F004E7EED /* ParkingPhotoCameraViewController.swift */; };
 		75E510502A000753000D99F0 /* HomeSingleScooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5D521A288C540A0028F630 /* HomeSingleScooterViewController.swift */; };
 		75E510512A000753000D99F0 /* NumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8815079426681D6500C5CCAE /* NumericTextField.swift */; };
@@ -976,12 +974,9 @@
 		75E510612A000753000D99F0 /* SessionExpiredAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB17A6926768646003261DD /* SessionExpiredAlert.swift */; };
 		75E510622A000753000D99F0 /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0687E429D9FE2C00837D2E /* AppVersion.swift */; };
 		75E510632A000753000D99F0 /* PauseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439C12B42892FD9C00EA0440 /* PauseViewController.swift */; };
-		75E510642A000753000D99F0 /* Binary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D74B268D1B3F008D1B22 /* Binary.swift */; };
 		75E510652A000753000D99F0 /* DebtInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73453D28B186E300CD7093 /* DebtInfoViewController.swift */; };
 		75E510662A000753000D99F0 /* MapBikeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA94EB35262F6BD100797263 /* MapBikeCollectionViewCell.swift */; };
 		75E510672A000753000D99F0 /* StoriNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA6F07B296843F40051FE79 /* StoriNewsViewController.swift */; };
-		75E510682A000753000D99F0 /* Radix Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D748268D1B3F008D1B22 /* Radix Operators.swift */; };
-		75E510692A000753000D99F0 /* RadixProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D74E268D1B3F008D1B22 /* RadixProtocol.swift */; };
 		75E5106A2A000753000D99F0 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA22BA8F267A864C00212235 /* ScannerViewController.swift */; };
 		75E5106B2A000753000D99F0 /* MILoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C3C7C82674C347003BE662 /* MILoaderView.swift */; };
 		75E5106C2A000753000D99F0 /* NewsObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA6F074296842490051FE79 /* NewsObject.swift */; };
@@ -992,8 +987,6 @@
 		75E510712A000753000D99F0 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC45CDE262F61F7005D1D52 /* UIView.swift */; };
 		75E510722A000753000D99F0 /* ScooterPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435CCDE2288488CC00228F99 /* ScooterPlanViewController.swift */; };
 		75E510732A000753000D99F0 /* SplashMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA91E4BC2636EB7000F5EAA2 /* SplashMapper.swift */; };
-		75E510742A000753000D99F0 /* Radix Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D752268D1B3F008D1B22 /* Radix Strings.swift */; };
-		75E510752A000753000D99F0 /* Radix Collection Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D74D268D1B3F008D1B22 /* Radix Collection Methods.swift */; };
 		75E510762A000753000D99F0 /* OrderCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B77C3266E39700055A33F /* OrderCardViewModel.swift */; };
 		75E510772A000753000D99F0 /* SizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88163C26266BA5F600A57D9D /* SizedTableView.swift */; };
 		75E510782A000753000D99F0 /* ChoosePlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435CCE0228855BF100228F99 /* ChoosePlanTableViewCell.swift */; };
@@ -1014,7 +1007,6 @@
 		75E510872A000753000D99F0 /* ScooterResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435CCE1D2885EF8400228F99 /* ScooterResult.swift */; };
 		75E510882A000753000D99F0 /* UIColor+Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA43D29026282F0C001F0F54 /* UIColor+Assets.swift */; };
 		75E510892A000753000D99F0 /* AgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA62DDC2266AB042006CF5FB /* AgreementViewController.swift */; };
-		75E5108A2A000753000D99F0 /* Binary Type Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D74C268D1B3F008D1B22 /* Binary Type Extensions.swift */; };
 		75E5108B2A000753000D99F0 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3A2A50265E2E7900D52EB3 /* UICollectionView.swift */; };
 		75E5108D2A000753000D99F0 /* CreditCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD17945265BACC6003F2F24 /* CreditCardCollectionViewCell.swift */; };
 		75E5108E2A000753000D99F0 /* EmptyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E77339265651FE00B3BC67 /* EmptyResponse.swift */; };
@@ -1052,7 +1044,6 @@
 		75E510AE2A000753000D99F0 /* MimoImportantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1BFDD626640F4D0015B84C /* MimoImportantView.swift */; };
 		75E510AF2A000753000D99F0 /* BikeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE3C7DC264853E1009B7C86 /* BikeResponse.swift */; };
 		75E510B02A000753000D99F0 /* BatteryLvl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435CCE1B2885ED0A00228F99 /* BatteryLvl.swift */; };
-		75E510B12A000753000D99F0 /* Octal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D750268D1B3F008D1B22 /* Octal.swift */; };
 		75E510B22A000753000D99F0 /* TransferToFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CD0D272668B7D100A8A9D6 /* TransferToFriendViewController.swift */; };
 		75E510B42A000753000D99F0 /* LanguageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA91E4AF2636E90A00F5EAA2 /* LanguageResponse.swift */; };
 		75E510B52A000753000D99F0 /* WalletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7A69E62667F5D300F5D3D3 /* WalletModel.swift */; };
@@ -1093,7 +1084,6 @@
 		75E510D82A000753000D99F0 /* GlobalSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB17A6F2677D56E003261DD /* GlobalSettings.swift */; };
 		75E510D92A000753000D99F0 /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB7BE7264F1952004A6D13 /* URLBuilder.swift */; };
 		75E510DA2A000753000D99F0 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4CA2D0265FDC66000CD1CE /* iCarousel.m */; };
-		75E510DB2A000753000D99F0 /* Radix Protocol Adoptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D741268D1B3F008D1B22 /* Radix Protocol Adoptions.swift */; };
 		75E510DC2A000753000D99F0 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA62DDA7266AA184006CF5FB /* SupportViewController.swift */; };
 		75E510DD2A000753000D99F0 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC45CCC262F6196005D1D52 /* SheetView.swift */; };
 		75E510DE2A000753000D99F0 /* ZoneInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5E8AD5297C01C100C02D16 /* ZoneInfo.swift */; };
@@ -1107,9 +1097,7 @@
 		75E510E62A000753000D99F0 /* HomeScanQRViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA702D21266D161F00C3CC00 /* HomeScanQRViewModel.swift */; };
 		75E510E72A000753000D99F0 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDD57F266786E0000BF23F /* WalletViewModel.swift */; };
 		75E510E82A000753000D99F0 /* ContactsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC39F252657D4B700F055A0 /* ContactsModel.swift */; };
-		75E510E92A000753000D99F0 /* Radix Nibble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D747268D1B3F008D1B22 /* Radix Nibble.swift */; };
 		75E510EA2A000753000D99F0 /* Located.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435CCE172885EC7600228F99 /* Located.swift */; };
-		75E510EB2A000753000D99F0 /* Radix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D742268D1B3F008D1B22 /* Radix.swift */; };
 		75E510EC2A000753000D99F0 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADDA76F2636B92F00D2F789 /* Validator.swift */; };
 		75E510ED2A000753000D99F0 /* UIImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E7733D265689A800B3BC67 /* UIImageView+Kingfisher.swift */; };
 		75E510EE2A000753000D99F0 /* SheetContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC45CCA262F6196005D1D52 /* SheetContentViewController.swift */; };
@@ -1139,7 +1127,6 @@
 		75E511072A000753000D99F0 /* Validator+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADDA76C2636B92F00D2F789 /* Validator+String.swift */; };
 		75E511082A000753000D99F0 /* UITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADE200526332CCC00D5AF47 /* UITapGestureRecognizer.swift */; };
 		75E511092A000753000D99F0 /* ChangeRideRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439C12B62893046E00EA0440 /* ChangeRideRateViewController.swift */; };
-		75E5110A2A000753000D99F0 /* Radix Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D753268D1B3F008D1B22 /* Radix Bytes.swift */; };
 		75E5110B2A000753000D99F0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC45C9E262F5A81005D1D52 /* BaseViewController.swift */; };
 		75E5110C2A000753000D99F0 /* TarrifAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B598A2679502200D60F2F /* TarrifAPI.swift */; };
 		75E5110D2A000753000D99F0 /* CountryCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD73845263069CA004460E8 /* CountryCodeViewController.swift */; };
@@ -1152,13 +1139,10 @@
 		75E511142A000753000D99F0 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A74CF28942E0E00DCDBEA /* UIImage+Extension.swift */; };
 		75E511152A000753000D99F0 /* SingleScooterResultl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6D9DD128923D930081CC90 /* SingleScooterResultl.swift */; };
 		75E511162A000753000D99F0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA62DD9D266A8258006CF5FB /* SettingsViewController.swift */; };
-		75E511172A000753000D99F0 /* Hex Type Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D744268D1B3F008D1B22 /* Hex Type Extensions.swift */; };
 		75E511182A000753000D99F0 /* UserGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B25747265860F6000F9002 /* UserGender.swift */; };
 		75E511192A000753000D99F0 /* UIBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88527CC5268F98990040A770 /* UIBorderedButton.swift */; };
 		75E5111A2A000753000D99F0 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADDA77A2636E7A400D2F789 /* SplashViewModel.swift */; };
 		75E5111B2A000753000D99F0 /* SettingsBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6EACF2673C5AC00E1B823 /* SettingsBoardController.swift */; };
-		75E5111C2A000753000D99F0 /* CoreBluetoothCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816ED4D26872DEF008A3762 /* CoreBluetoothCommand.swift */; };
-		75E5111D2A000753000D99F0 /* Radix Bit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D746268D1B3F008D1B22 /* Radix Bit.swift */; };
 		75E5111E2A000753000D99F0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA001BF0265FD7E40002F844 /* ViewController.swift */; };
 		75E5111F2A000753000D99F0 /* PackageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA702D36266EA1F200C3CC00 /* PackageModel.swift */; };
 		75E511202A000753000D99F0 /* DrawPolygone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC910FA28952982006302DB /* DrawPolygone.swift */; };
@@ -1198,8 +1182,6 @@
 		75E511422A000753000D99F0 /* MITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AE1462648131900D7577B /* MITextView.swift */; };
 		75E511432A000753000D99F0 /* HomeSingleBikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA83B5852647206400CD775D /* HomeSingleBikeViewController.swift */; };
 		75E511442A000753000D99F0 /* ImageField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88163C31266BEEEF00A57D9D /* ImageField.swift */; };
-		75E511452A000753000D99F0 /* Radix Type Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D749268D1B3F008D1B22 /* Radix Type Extensions.swift */; };
-		75E511462A000753000D99F0 /* HexUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D754268D1B3F008D1B22 /* HexUtilities.swift */; };
 		75E511472A000753000D99F0 /* AccountBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6EACD2673C5A200E1B823 /* AccountBoardController.swift */; };
 		75E511482A000753000D99F0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA45ED9F263FDEE2007A1A50 /* HomeViewController.swift */; };
 		75E511492A000753000D99F0 /* ForceUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA6F079296843BE0051FE79 /* ForceUpdateViewController.swift */; };
@@ -1208,13 +1190,11 @@
 		75E5114C2A000753000D99F0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC45CBB262F5CF6005D1D52 /* MapViewController.swift */; };
 		75E5114D2A000753000D99F0 /* EmptyResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CD0D2D2668BED800A8A9D6 /* EmptyResponseModel.swift */; };
 		75E5114E2A000753000D99F0 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA62DDB8266AAFFA006CF5FB /* PrivacyPolicyViewController.swift */; };
-		75E5114F2A000753000D99F0 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816ED4F26872E71008A3762 /* BluetoothManager.swift */; };
 		75E511502A000753000D99F0 /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE3C7D226485013009B7C86 /* HomeRepository.swift */; };
 		75E511512A000753000D99F0 /* ScooterStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6D9DCC289058050081CC90 /* ScooterStateModel.swift */; };
 		75E511522A000753000D99F0 /* SplashRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA91E4B82636EB5D00F5EAA2 /* SplashRepository.swift */; };
 		75E511532A000753000D99F0 /* WalletConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA702D1E266D127100C3CC00 /* WalletConfigurator.swift */; };
 		75E511542A000753000D99F0 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0537342661439600ACD208 /* TransferViewController.swift */; };
-		75E511552A000753000D99F0 /* Octal Type Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D751268D1B3F008D1B22 /* Octal Type Extensions.swift */; };
 		75E511562A000753000D99F0 /* ScooterScanResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A74CD289339C800DCDBEA /* ScooterScanResponse.swift */; };
 		75E511572A000753000D99F0 /* SheetContentViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC45CC5262F6196005D1D52 /* SheetContentViewDelegate.swift */; };
 		75E511582A000753000D99F0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE3C7E02648550A009B7C86 /* HomeViewModel.swift */; };
@@ -1425,6 +1405,64 @@
 		75FDB0722B62DB9A00FBE124 /* CryptoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FDB06F2B62DB9A00FBE124 /* CryptoCollectionViewCell.swift */; };
 		75FDB0732B62DB9A00FBE124 /* CryptoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75FDB0702B62DB9A00FBE124 /* CryptoCollectionViewCell.xib */; };
 		75FDB0742B62DB9A00FBE124 /* CryptoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75FDB0702B62DB9A00FBE124 /* CryptoCollectionViewCell.xib */; };
+		7A11E0A1000000000000C002 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0A1000000000000C001 /* ThemeManager.swift */; };
+		7A11E0A1000000000000C003 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0A1000000000000C001 /* ThemeManager.swift */; };
+		7A11E0B2000000000000C002 /* GMSMapView+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0B2000000000000C001 /* GMSMapView+Theme.swift */; };
+		7A11E0B2000000000000C003 /* GMSMapView+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0B2000000000000C001 /* GMSMapView+Theme.swift */; };
+		7A11E0C5000000000000D012 /* MimoListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C5000000000000D011 /* MimoListRow.swift */; };
+		7A11E0C5000000000000D013 /* MimoListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C5000000000000D011 /* MimoListRow.swift */; };
+		7A11E0C5000000000000D022 /* MimoCardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C5000000000000D021 /* MimoCardModifier.swift */; };
+		7A11E0C5000000000000D023 /* MimoCardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C5000000000000D021 /* MimoCardModifier.swift */; };
+		7A11E0C5000000000000D032 /* WalletBalanceHeroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C5000000000000D031 /* WalletBalanceHeroView.swift */; };
+		7A11E0C5000000000000D033 /* WalletBalanceHeroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C5000000000000D031 /* WalletBalanceHeroView.swift */; };
+		7A11E0C5000000000000D042 /* WalletTopUpAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C5000000000000D041 /* WalletTopUpAmountView.swift */; };
+		7A11E0C5000000000000D043 /* WalletTopUpAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C5000000000000D041 /* WalletTopUpAmountView.swift */; };
+		7A11E0C5000000000000D052 /* WalletPaymentMethodRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C5000000000000D051 /* WalletPaymentMethodRow.swift */; };
+		7A11E0C5000000000000D053 /* WalletPaymentMethodRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C5000000000000D051 /* WalletPaymentMethodRow.swift */; };
+		7A11E0C5000000000000D062 /* WalletPromoCodeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C5000000000000D061 /* WalletPromoCodeCard.swift */; };
+		7A11E0C5000000000000D063 /* WalletPromoCodeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C5000000000000D061 /* WalletPromoCodeCard.swift */; };
+		7A11E0C5000000000000D072 /* WalletRecentActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C5000000000000D071 /* WalletRecentActivityView.swift */; };
+		7A11E0C5000000000000D073 /* WalletRecentActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C5000000000000D071 /* WalletRecentActivityView.swift */; };
+		7A11E0C5000000000000D082 /* WalletHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C5000000000000D081 /* WalletHostingController.swift */; };
+		7A11E0C5000000000000D083 /* WalletHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C5000000000000D081 /* WalletHostingController.swift */; };
+		7A11E0C5000000000000D092 /* TransactionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C5000000000000D091 /* TransactionRowView.swift */; };
+		7A11E0C5000000000000D093 /* TransactionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C5000000000000D091 /* TransactionRowView.swift */; };
+		7A11E0C6000000000000D002 /* MimoRefreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C6000000000000D001 /* MimoRefreshable.swift */; };
+		7A11E0C6000000000000D003 /* MimoRefreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C6000000000000D001 /* MimoRefreshable.swift */; };
+		7A11E0C7000000000000D012 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C7000000000000D011 /* NotificationsView.swift */; };
+		7A11E0C7000000000000D013 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C7000000000000D011 /* NotificationsView.swift */; };
+		7A11E0C7000000000000D022 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C7000000000000D021 /* NotificationsViewModel.swift */; };
+		7A11E0C7000000000000D023 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C7000000000000D021 /* NotificationsViewModel.swift */; };
+		7A11E0C7000000000000D032 /* NotificationsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C7000000000000D031 /* NotificationsWorker.swift */; };
+		7A11E0C7000000000000D033 /* NotificationsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0C7000000000000D031 /* NotificationsWorker.swift */; };
+		7A11E0D1000000000000E002 /* LocalizationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0D1000000000000E001 /* LocalizationStore.swift */; };
+		7A11E0D1000000000000E003 /* LocalizationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A11E0D1000000000000E001 /* LocalizationStore.swift */; };
+		7A5E4E020000000000000001 /* HomeServiceHeroStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E010000000000000001 /* HomeServiceHeroStyle.swift */; };
+		7A5E4E020000000000000002 /* HomeServiceHeroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E010000000000000002 /* HomeServiceHeroView.swift */; };
+		7A5E4E020000000000000003 /* HomeServiceHeroCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E010000000000000003 /* HomeServiceHeroCardViewModel.swift */; };
+		7A5E4E020000000000000004 /* HomeServicesCarouselViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E010000000000000004 /* HomeServicesCarouselViewModel.swift */; };
+		7A5E4E020000000000000005 /* HomeMapSnapshotRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E010000000000000005 /* HomeMapSnapshotRenderer.swift */; };
+		7A5E4E020000000000000006 /* HomeServiceCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E010000000000000006 /* HomeServiceCarouselCell.swift */; };
+		7A5E4E020000000000000008 /* MimoRefreshIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E010000000000000008 /* MimoRefreshIndicatorView.swift */; };
+		7A5E4E020000000000000009 /* MimoRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E010000000000000009 /* MimoRefreshControl.swift */; };
+		7A5E4E02000000000000000A /* MimoPullToRefreshGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E01000000000000000A /* MimoPullToRefreshGesture.swift */; };
+		7A5E4E02000000000000000B /* MimoFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E01000000000000000B /* MimoFeedback.swift */; };
+		7A5E4E02000000000000000C /* refresh_tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7A5E4E01000000000000000C /* refresh_tick.wav */; };
+		7A5E4E02000000000000000D /* refresh_pop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7A5E4E01000000000000000D /* refresh_pop.wav */; };
+		7A5E4E0200000000000007 /* MimoSocketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E0100000000000007 /* MimoSocketLog.swift */; };
+		7A5E4E030000000000000001 /* HomeServiceHeroStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E010000000000000001 /* HomeServiceHeroStyle.swift */; };
+		7A5E4E030000000000000002 /* HomeServiceHeroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E010000000000000002 /* HomeServiceHeroView.swift */; };
+		7A5E4E030000000000000003 /* HomeServiceHeroCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E010000000000000003 /* HomeServiceHeroCardViewModel.swift */; };
+		7A5E4E030000000000000004 /* HomeServicesCarouselViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E010000000000000004 /* HomeServicesCarouselViewModel.swift */; };
+		7A5E4E030000000000000005 /* HomeMapSnapshotRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E010000000000000005 /* HomeMapSnapshotRenderer.swift */; };
+		7A5E4E030000000000000006 /* HomeServiceCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E010000000000000006 /* HomeServiceCarouselCell.swift */; };
+		7A5E4E030000000000000008 /* MimoRefreshIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E010000000000000008 /* MimoRefreshIndicatorView.swift */; };
+		7A5E4E030000000000000009 /* MimoRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E010000000000000009 /* MimoRefreshControl.swift */; };
+		7A5E4E03000000000000000A /* MimoPullToRefreshGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E01000000000000000A /* MimoPullToRefreshGesture.swift */; };
+		7A5E4E03000000000000000B /* MimoFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E01000000000000000B /* MimoFeedback.swift */; };
+		7A5E4E03000000000000000C /* refresh_tick.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7A5E4E01000000000000000C /* refresh_tick.wav */; };
+		7A5E4E03000000000000000D /* refresh_pop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7A5E4E01000000000000000D /* refresh_pop.wav */; };
+		7A5E4E0300000000000007 /* MimoSocketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E0100000000000007 /* MimoSocketLog.swift */; };
 		8815079526681D6500C5CCAE /* NumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8815079426681D6500C5CCAE /* NumericTextField.swift */; };
 		88163C06266AC6D300A57D9D /* MIPlansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88163C05266AC6D300A57D9D /* MIPlansViewController.swift */; };
 		88163C09266AC6DC00A57D9D /* MIPlan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88163C08266AC6DC00A57D9D /* MIPlan.storyboard */; };
@@ -1444,9 +1482,6 @@
 		88163C2F266BC43400A57D9D /* StudentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88163C2E266BC43400A57D9D /* StudentCell.xib */; };
 		88163C32266BEEEF00A57D9D /* ImageField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88163C31266BEEEF00A57D9D /* ImageField.swift */; };
 		88163C34266BEF0A00A57D9D /* ImageField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88163C33266BEF0A00A57D9D /* ImageField.xib */; };
-		8816ED4E26872DEF008A3762 /* CoreBluetoothCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816ED4D26872DEF008A3762 /* CoreBluetoothCommand.swift */; };
-		8816ED5026872E71008A3762 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816ED4F26872E71008A3762 /* BluetoothManager.swift */; };
-		8816ED5226873083008A3762 /* CryptoCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8816ED5126873083008A3762 /* CryptoCommon.swift */; };
 		881B598B2679502200D60F2F /* TarrifAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B598A2679502200D60F2F /* TarrifAPI.swift */; };
 		884AE1332647F29E00D7577B /* MIKeyboardInteractionResponderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AE12B2647F29E00D7577B /* MIKeyboardInteractionResponderProtocol.swift */; };
 		884AE1342647F29E00D7577B /* MITextFieldStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AE12C2647F29E00D7577B /* MITextFieldStates.swift */; };
@@ -1469,23 +1504,6 @@
 		8862DA8D266ECF5900241DDC /* CountryCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8862DA8C266ECF5900241DDC /* CountryCode.storyboard */; };
 		8862DA91266ED07C00241DDC /* ApplicationSttings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8862DA90266ED07C00241DDC /* ApplicationSttings.swift */; };
 		8862DA98266ED27400241DDC /* CountryCodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8862DA97266ED27400241DDC /* CountryCodeResponse.swift */; };
-		8864D755268D1B3F008D1B22 /* Radix Protocol Adoptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D741268D1B3F008D1B22 /* Radix Protocol Adoptions.swift */; };
-		8864D756268D1B3F008D1B22 /* Radix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D742268D1B3F008D1B22 /* Radix.swift */; };
-		8864D757268D1B3F008D1B22 /* Hex Type Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D744268D1B3F008D1B22 /* Hex Type Extensions.swift */; };
-		8864D758268D1B3F008D1B22 /* Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D745268D1B3F008D1B22 /* Hex.swift */; };
-		8864D759268D1B3F008D1B22 /* Radix Bit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D746268D1B3F008D1B22 /* Radix Bit.swift */; };
-		8864D75A268D1B3F008D1B22 /* Radix Nibble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D747268D1B3F008D1B22 /* Radix Nibble.swift */; };
-		8864D75B268D1B3F008D1B22 /* Radix Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D748268D1B3F008D1B22 /* Radix Operators.swift */; };
-		8864D75C268D1B3F008D1B22 /* Radix Type Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D749268D1B3F008D1B22 /* Radix Type Extensions.swift */; };
-		8864D75D268D1B3F008D1B22 /* Binary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D74B268D1B3F008D1B22 /* Binary.swift */; };
-		8864D75E268D1B40008D1B22 /* Binary Type Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D74C268D1B3F008D1B22 /* Binary Type Extensions.swift */; };
-		8864D75F268D1B40008D1B22 /* Radix Collection Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D74D268D1B3F008D1B22 /* Radix Collection Methods.swift */; };
-		8864D760268D1B40008D1B22 /* RadixProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D74E268D1B3F008D1B22 /* RadixProtocol.swift */; };
-		8864D761268D1B40008D1B22 /* Octal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D750268D1B3F008D1B22 /* Octal.swift */; };
-		8864D762268D1B40008D1B22 /* Octal Type Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D751268D1B3F008D1B22 /* Octal Type Extensions.swift */; };
-		8864D763268D1B40008D1B22 /* Radix Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D752268D1B3F008D1B22 /* Radix Strings.swift */; };
-		8864D764268D1B40008D1B22 /* Radix Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D753268D1B3F008D1B22 /* Radix Bytes.swift */; };
-		8864D765268D1B40008D1B22 /* HexUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864D754268D1B3F008D1B22 /* HexUtilities.swift */; };
 		887F3FFB2692708E00F0D309 /* GMSMapView+Zoning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F3FFA2692708E00F0D309 /* GMSMapView+Zoning.swift */; };
 		88893BC226583A10009E17DB /* ImageUploadAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88893BC126583A10009E17DB /* ImageUploadAPI.swift */; };
 		88A16124266918E5001C19D0 /* AlertController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A16123266918E5001C19D0 /* AlertController.xib */; };
@@ -2286,6 +2304,35 @@
 		75FDB06B2B61A32300FBE124 /* CustomGestureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGestureView.swift; sourceTree = "<group>"; };
 		75FDB06F2B62DB9A00FBE124 /* CryptoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCollectionViewCell.swift; sourceTree = "<group>"; };
 		75FDB0702B62DB9A00FBE124 /* CryptoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CryptoCollectionViewCell.xib; sourceTree = "<group>"; };
+		7A11E0A1000000000000C001 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		7A11E0B2000000000000C001 /* GMSMapView+Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GMSMapView+Theme.swift"; sourceTree = "<group>"; };
+		7A11E0C5000000000000D011 /* MimoListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimoListRow.swift; sourceTree = "<group>"; };
+		7A11E0C5000000000000D021 /* MimoCardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimoCardModifier.swift; sourceTree = "<group>"; };
+		7A11E0C5000000000000D031 /* WalletBalanceHeroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletBalanceHeroView.swift; sourceTree = "<group>"; };
+		7A11E0C5000000000000D041 /* WalletTopUpAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTopUpAmountView.swift; sourceTree = "<group>"; };
+		7A11E0C5000000000000D051 /* WalletPaymentMethodRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletPaymentMethodRow.swift; sourceTree = "<group>"; };
+		7A11E0C5000000000000D061 /* WalletPromoCodeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletPromoCodeCard.swift; sourceTree = "<group>"; };
+		7A11E0C5000000000000D071 /* WalletRecentActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletRecentActivityView.swift; sourceTree = "<group>"; };
+		7A11E0C5000000000000D081 /* WalletHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletHostingController.swift; sourceTree = "<group>"; };
+		7A11E0C5000000000000D091 /* TransactionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRowView.swift; sourceTree = "<group>"; };
+		7A11E0C6000000000000D001 /* MimoRefreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimoRefreshable.swift; sourceTree = "<group>"; };
+		7A11E0C7000000000000D011 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		7A11E0C7000000000000D021 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
+		7A11E0C7000000000000D031 /* NotificationsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsWorker.swift; sourceTree = "<group>"; };
+		7A11E0D1000000000000E001 /* LocalizationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationStore.swift; sourceTree = "<group>"; };
+		7A5E4E010000000000000001 /* HomeServiceHeroStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServiceHeroStyle.swift; sourceTree = "<group>"; };
+		7A5E4E010000000000000002 /* HomeServiceHeroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServiceHeroView.swift; sourceTree = "<group>"; };
+		7A5E4E010000000000000003 /* HomeServiceHeroCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServiceHeroCardViewModel.swift; sourceTree = "<group>"; };
+		7A5E4E010000000000000004 /* HomeServicesCarouselViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServicesCarouselViewModel.swift; sourceTree = "<group>"; };
+		7A5E4E010000000000000005 /* HomeMapSnapshotRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapSnapshotRenderer.swift; sourceTree = "<group>"; };
+		7A5E4E010000000000000006 /* HomeServiceCarouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServiceCarouselCell.swift; sourceTree = "<group>"; };
+		7A5E4E010000000000000008 /* MimoRefreshIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimoRefreshIndicatorView.swift; sourceTree = "<group>"; };
+		7A5E4E010000000000000009 /* MimoRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimoRefreshControl.swift; sourceTree = "<group>"; };
+		7A5E4E01000000000000000A /* MimoPullToRefreshGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimoPullToRefreshGesture.swift; sourceTree = "<group>"; };
+		7A5E4E01000000000000000B /* MimoFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimoFeedback.swift; sourceTree = "<group>"; };
+		7A5E4E01000000000000000C /* refresh_tick.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = refresh_tick.wav; sourceTree = "<group>"; };
+		7A5E4E01000000000000000D /* refresh_pop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = refresh_pop.wav; sourceTree = "<group>"; };
+		7A5E4E0100000000000007 /* MimoSocketLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MimoSocketLog.swift; sourceTree = "<group>"; };
 		8815079426681D6500C5CCAE /* NumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTextField.swift; sourceTree = "<group>"; };
 		88163C05266AC6D300A57D9D /* MIPlansViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPlansViewController.swift; sourceTree = "<group>"; };
 		88163C08266AC6DC00A57D9D /* MIPlan.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MIPlan.storyboard; sourceTree = "<group>"; };
@@ -2305,9 +2352,6 @@
 		88163C2E266BC43400A57D9D /* StudentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StudentCell.xib; sourceTree = "<group>"; };
 		88163C31266BEEEF00A57D9D /* ImageField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageField.swift; sourceTree = "<group>"; };
 		88163C33266BEF0A00A57D9D /* ImageField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageField.xib; sourceTree = "<group>"; };
-		8816ED4D26872DEF008A3762 /* CoreBluetoothCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreBluetoothCommand.swift; sourceTree = "<group>"; };
-		8816ED4F26872E71008A3762 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
-		8816ED5126873083008A3762 /* CryptoCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCommon.swift; sourceTree = "<group>"; };
 		881B598A2679502200D60F2F /* TarrifAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TarrifAPI.swift; sourceTree = "<group>"; };
 		884AE12B2647F29E00D7577B /* MIKeyboardInteractionResponderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIKeyboardInteractionResponderProtocol.swift; sourceTree = "<group>"; };
 		884AE12C2647F29E00D7577B /* MITextFieldStates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MITextFieldStates.swift; sourceTree = "<group>"; };
@@ -2330,23 +2374,6 @@
 		8862DA8C266ECF5900241DDC /* CountryCode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CountryCode.storyboard; sourceTree = "<group>"; };
 		8862DA90266ED07C00241DDC /* ApplicationSttings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationSttings.swift; sourceTree = "<group>"; };
 		8862DA97266ED27400241DDC /* CountryCodeResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCodeResponse.swift; sourceTree = "<group>"; };
-		8864D741268D1B3F008D1B22 /* Radix Protocol Adoptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Radix Protocol Adoptions.swift"; sourceTree = "<group>"; };
-		8864D742268D1B3F008D1B22 /* Radix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Radix.swift; sourceTree = "<group>"; };
-		8864D744268D1B3F008D1B22 /* Hex Type Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Hex Type Extensions.swift"; sourceTree = "<group>"; };
-		8864D745268D1B3F008D1B22 /* Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hex.swift; sourceTree = "<group>"; };
-		8864D746268D1B3F008D1B22 /* Radix Bit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Radix Bit.swift"; sourceTree = "<group>"; };
-		8864D747268D1B3F008D1B22 /* Radix Nibble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Radix Nibble.swift"; sourceTree = "<group>"; };
-		8864D748268D1B3F008D1B22 /* Radix Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Radix Operators.swift"; sourceTree = "<group>"; };
-		8864D749268D1B3F008D1B22 /* Radix Type Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Radix Type Extensions.swift"; sourceTree = "<group>"; };
-		8864D74B268D1B3F008D1B22 /* Binary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binary.swift; sourceTree = "<group>"; };
-		8864D74C268D1B3F008D1B22 /* Binary Type Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Binary Type Extensions.swift"; sourceTree = "<group>"; };
-		8864D74D268D1B3F008D1B22 /* Radix Collection Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Radix Collection Methods.swift"; sourceTree = "<group>"; };
-		8864D74E268D1B3F008D1B22 /* RadixProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadixProtocol.swift; sourceTree = "<group>"; };
-		8864D750268D1B3F008D1B22 /* Octal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Octal.swift; sourceTree = "<group>"; };
-		8864D751268D1B3F008D1B22 /* Octal Type Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Octal Type Extensions.swift"; sourceTree = "<group>"; };
-		8864D752268D1B3F008D1B22 /* Radix Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Radix Strings.swift"; sourceTree = "<group>"; };
-		8864D753268D1B3F008D1B22 /* Radix Bytes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Radix Bytes.swift"; sourceTree = "<group>"; };
-		8864D754268D1B3F008D1B22 /* HexUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexUtilities.swift; sourceTree = "<group>"; };
 		887F3FFA2692708E00F0D309 /* GMSMapView+Zoning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GMSMapView+Zoning.swift"; sourceTree = "<group>"; };
 		88893BC126583A10009E17DB /* ImageUploadAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadAPI.swift; sourceTree = "<group>"; };
 		88A16123266918E5001C19D0 /* AlertController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertController.xib; sourceTree = "<group>"; };
@@ -3153,6 +3180,7 @@
 			children = (
 				506671B82E34257F00BA430A /* TransactionListView.swift */,
 				506671BB2E34258E00BA430A /* TransactionListViewModel.swift */,
+				7A11E0C5000000000000D091 /* TransactionRowView.swift */,
 			);
 			path = TransactionList;
 			sourceTree = "<group>";
@@ -3233,11 +3261,11 @@
 			isa = PBXGroup;
 			children = (
 				6C38A21A2F5C583600CF21B0 /* VibrateEffectManager.swift */,
-				8816ED4C26872DD5008A3762 /* CoreBluetooth */,
 				88C3C7BF2673E5FF003BE662 /* User */,
 				8862DA92266ED0BC00241DDC /* AccountSettings */,
 				50AB7BE5264ECD6C004A6D13 /* KeychainManager.swift */,
 				50E7733B2656715800B3BC67 /* StorageManager.swift */,
+				7A11E0A1000000000000C001 /* ThemeManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -4081,6 +4109,7 @@
 				169CB2592E186B2900516DF6 /* Mapper */,
 				752C55AA2BD6A91F001A577A /* ViewModel */,
 				752C55A92BD6A91A001A577A /* View */,
+				7A11E0C5000000000000D003 /* HostingController */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -4223,6 +4252,7 @@
 				755F9B502A2CB21000220319 /* MimoScooterSocketService.swift */,
 				754BBD162A7301A20067956B /* MimoBikeSocketService.swift */,
 				75E7DEBE2B124B2D00B8E853 /* MimoChargerSocketService.swift */,
+				7A5E4E0100000000000007 /* MimoSocketLog.swift */,
 			);
 			path = Socket;
 			sourceTree = "<group>";
@@ -4316,6 +4346,11 @@
 				75818FBA2BDE66F700A3AB49 /* WalletOrderCardView.swift */,
 				75E4FFB62BEA5CC500CB722B /* IconTitleView.swift */,
 				169CB2682E194E0100516DF6 /* TitleValueView.swift */,
+				7A11E0C5000000000000D031 /* WalletBalanceHeroView.swift */,
+				7A11E0C5000000000000D041 /* WalletTopUpAmountView.swift */,
+				7A11E0C5000000000000D051 /* WalletPaymentMethodRow.swift */,
+				7A11E0C5000000000000D061 /* WalletPromoCodeCard.swift */,
+				7A11E0C5000000000000D071 /* WalletRecentActivityView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4986,6 +5021,7 @@
 		759FDEB82AB62C86009B7E74 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				7A5E4E040000000000000003 /* Feedback */,
 				75D89B552BFF8D57003C2094 /* Camera */,
 				75E4FFBC2BEBBCB600CB722B /* Message */,
 				75FDB0692B61A30A00FBE124 /* UIKIt */,
@@ -4996,6 +5032,7 @@
 				75AD90B52AD891B400C2F69C /* OpenMapDirections.swift */,
 				755B821B2BA083FB005F6AB1 /* CountryUtilities.swift */,
 				75CD59F32BE27FE8004B9759 /* IdentifiableURL.swift */,
+				7A11E0C5000000000000D002 /* ViewModifiers */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -5007,12 +5044,15 @@
 				759FDEBA2AB62C9E009B7E74 /* WelcomePlayerUIView.swift */,
 				759FDEC82AB63B9D009B7E74 /* LogoAnimationView.swift */,
 				759FDECB2AB6506B009B7E74 /* MimoButtonView.swift */,
+				7A11E0C6000000000000D001 /* MimoRefreshable.swift */,
+				7A5E4E040000000000000002 /* Refresh */,
 				75F852882AC2CE9600606A81 /* OTPView.swift */,
 				75465C712AFA77DB008C2A6C /* BeepView.swift */,
 				75AAA8C82B13B48E007EAC8A /* MimoToggleButton.swift */,
 				75CD59F02BE27DE9004B9759 /* WebView.swift */,
 				75CD59F62BE28288004B9759 /* InAppWebView.swift */,
 				75CB343C2C15FAC70066722E /* PagingScrollView.swift */,
+				7A11E0C5000000000000D001 /* List */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5029,6 +5069,7 @@
 				750E68072B06AA49004794C3 /* Charger */,
 				752C55A82BD6A905001A577A /* Wallet */,
 				506671B72E34255800BA430A /* TransactionList */,
+				7A11E0C7000000000000D001 /* Notifications */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -5099,6 +5140,7 @@
 				75E8865E2AED9251008903BB /* Partnership */,
 				75FA725E2ACC93E5005A9FF1 /* EmailVerification */,
 				759FDEF12AB77C11009B7E74 /* Login */,
+				7A11E0C7000000000000D004 /* Notifications */,
 			);
 			path = Worker;
 			sourceTree = "<group>";
@@ -5701,6 +5743,7 @@
 			isa = PBXGroup;
 			children = (
 				75F8527C2AC2028F00606A81 /* HomeView.swift */,
+				7A5E4E0400000000000001 /* ServiceHero */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -5786,6 +5829,94 @@
 			path = CryptoCollectionViewCell;
 			sourceTree = "<group>";
 		};
+		7A11E0C5000000000000D001 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				7A11E0C5000000000000D011 /* MimoListRow.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		7A11E0C5000000000000D002 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				7A11E0C5000000000000D021 /* MimoCardModifier.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
+		7A11E0C5000000000000D003 /* HostingController */ = {
+			isa = PBXGroup;
+			children = (
+				7A11E0C5000000000000D081 /* WalletHostingController.swift */,
+			);
+			path = HostingController;
+			sourceTree = "<group>";
+		};
+		7A11E0C7000000000000D001 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				7A11E0C7000000000000D002 /* View */,
+				7A11E0C7000000000000D003 /* ViewModel */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		7A11E0C7000000000000D002 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7A11E0C7000000000000D011 /* NotificationsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7A11E0C7000000000000D003 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7A11E0C7000000000000D021 /* NotificationsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7A11E0C7000000000000D004 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				7A11E0C7000000000000D031 /* NotificationsWorker.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		7A5E4E040000000000000002 /* Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				7A5E4E010000000000000008 /* MimoRefreshIndicatorView.swift */,
+				7A5E4E010000000000000009 /* MimoRefreshControl.swift */,
+				7A5E4E01000000000000000A /* MimoPullToRefreshGesture.swift */,
+			);
+			path = Refresh;
+			sourceTree = "<group>";
+		};
+		7A5E4E040000000000000003 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				7A5E4E01000000000000000B /* MimoFeedback.swift */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
+		7A5E4E0400000000000001 /* ServiceHero */ = {
+			isa = PBXGroup;
+			children = (
+				7A5E4E010000000000000001 /* HomeServiceHeroStyle.swift */,
+				7A5E4E010000000000000002 /* HomeServiceHeroView.swift */,
+				7A5E4E010000000000000003 /* HomeServiceHeroCardViewModel.swift */,
+				7A5E4E010000000000000004 /* HomeServicesCarouselViewModel.swift */,
+				7A5E4E010000000000000005 /* HomeMapSnapshotRenderer.swift */,
+				7A5E4E010000000000000006 /* HomeServiceCarouselCell.swift */,
+			);
+			path = ServiceHero;
+			sourceTree = "<group>";
+		};
 		88163C04266AC6C700A57D9D /* Plans */ = {
 			isa = PBXGroup;
 			children = (
@@ -5855,18 +5986,6 @@
 			path = ImageField;
 			sourceTree = "<group>";
 		};
-		8816ED4C26872DD5008A3762 /* CoreBluetooth */ = {
-			isa = PBXGroup;
-			children = (
-				8864D754268D1B3F008D1B22 /* HexUtilities.swift */,
-				8864D740268D1B3F008D1B22 /* Radix */,
-				8816ED4D26872DEF008A3762 /* CoreBluetoothCommand.swift */,
-				8816ED4F26872E71008A3762 /* BluetoothManager.swift */,
-				8816ED5126873083008A3762 /* CryptoCommon.swift */,
-			);
-			path = CoreBluetooth;
-			sourceTree = "<group>";
-		};
 		884AE1292647F1D700D7577B /* UI Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -5874,6 +5993,7 @@
 				6C0A74CF28942E0E00DCDBEA /* UIImage+Extension.swift */,
 				88A81405267572A3009548AF /* UIViewFrameConverter.swift */,
 				887F3FFA2692708E00F0D309 /* GMSMapView+Zoning.swift */,
+				7A11E0B2000000000000C001 /* GMSMapView+Theme.swift */,
 				6C4B6D8E28B419E400A40210 /* VibrateManager.swift */,
 			);
 			path = "UI Extensions";
@@ -5978,53 +6098,6 @@
 				88C6EE30269F6EE700A997B3 /* ZoningModel.swift */,
 			);
 			path = AccountSettings;
-			sourceTree = "<group>";
-		};
-		8864D740268D1B3F008D1B22 /* Radix */ = {
-			isa = PBXGroup;
-			children = (
-				8864D741268D1B3F008D1B22 /* Radix Protocol Adoptions.swift */,
-				8864D742268D1B3F008D1B22 /* Radix.swift */,
-				8864D743268D1B3F008D1B22 /* Hex */,
-				8864D746268D1B3F008D1B22 /* Radix Bit.swift */,
-				8864D747268D1B3F008D1B22 /* Radix Nibble.swift */,
-				8864D748268D1B3F008D1B22 /* Radix Operators.swift */,
-				8864D749268D1B3F008D1B22 /* Radix Type Extensions.swift */,
-				8864D74A268D1B3F008D1B22 /* Binary */,
-				8864D74D268D1B3F008D1B22 /* Radix Collection Methods.swift */,
-				8864D74E268D1B3F008D1B22 /* RadixProtocol.swift */,
-				8864D74F268D1B3F008D1B22 /* Octal */,
-				8864D752268D1B3F008D1B22 /* Radix Strings.swift */,
-				8864D753268D1B3F008D1B22 /* Radix Bytes.swift */,
-			);
-			path = Radix;
-			sourceTree = "<group>";
-		};
-		8864D743268D1B3F008D1B22 /* Hex */ = {
-			isa = PBXGroup;
-			children = (
-				8864D744268D1B3F008D1B22 /* Hex Type Extensions.swift */,
-				8864D745268D1B3F008D1B22 /* Hex.swift */,
-			);
-			path = Hex;
-			sourceTree = "<group>";
-		};
-		8864D74A268D1B3F008D1B22 /* Binary */ = {
-			isa = PBXGroup;
-			children = (
-				8864D74B268D1B3F008D1B22 /* Binary.swift */,
-				8864D74C268D1B3F008D1B22 /* Binary Type Extensions.swift */,
-			);
-			path = Binary;
-			sourceTree = "<group>";
-		};
-		8864D74F268D1B3F008D1B22 /* Octal */ = {
-			isa = PBXGroup;
-			children = (
-				8864D750268D1B3F008D1B22 /* Octal.swift */,
-				8864D751268D1B3F008D1B22 /* Octal Type Extensions.swift */,
-			);
-			path = Octal;
 			sourceTree = "<group>";
 		};
 		88A16122266918D7001C19D0 /* AlertController */ = {
@@ -6961,6 +7034,8 @@
 				EAF408B126BEB2E900BBEA5E /* bike_ride.json */,
 				CA0E3F722653B9A7005AA436 /* plus.json */,
 				CAE2A52B2628C08200B4BDF4 /* logo.json */,
+				7A5E4E01000000000000000C /* refresh_tick.wav */,
+				7A5E4E01000000000000000D /* refresh_pop.wav */,
 				FE10000000000000000000F2 /* TeamEnergy */,
 			);
 			path = Resources;
@@ -7102,6 +7177,7 @@
 				EA62DD7226694215006CF5FB /* Extensions */,
 				EA62DD7526694215006CF5FB /* Utilities */,
 				EA62DD7F26694261006CF5FB /* LocalizationModel.swift */,
+				7A11E0D1000000000000E001 /* LocalizationStore.swift */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -7642,6 +7718,8 @@
 				757E3FB72A6B0CFD0038A751 /* BikeDetailsSheetViewController.xib in Resources */,
 				751D8C552A2D1ED200BD426E /* MimoPauseViewController.xib in Resources */,
 				75E511A02A000753000D99F0 /* logo.json in Resources */,
+				7A5E4E02000000000000000C /* refresh_tick.wav in Resources */,
+				7A5E4E02000000000000000D /* refresh_pop.wav in Resources */,
 				75FDB0742B62DB9A00FBE124 /* CryptoCollectionViewCell.xib in Resources */,
 				75BD98F12A69D4B400EDE695 /* BikeCollectionViewCell.xib in Resources */,
 				756BE60D2AE5A405005CAD4F /* BikeEndRideAlertView.xib in Resources */,
@@ -7789,6 +7867,8 @@
 				757E3FB62A6B0CFD0038A751 /* BikeDetailsSheetViewController.xib in Resources */,
 				751D8C542A2D1ED200BD426E /* MimoPauseViewController.xib in Resources */,
 				CAE2A52C2628C08200B4BDF4 /* logo.json in Resources */,
+				7A5E4E03000000000000000C /* refresh_tick.wav in Resources */,
+				7A5E4E03000000000000000D /* refresh_pop.wav in Resources */,
 				75FDB0732B62DB9A00FBE124 /* CryptoCollectionViewCell.xib in Resources */,
 				75BD98F02A69D4B400EDE695 /* BikeCollectionViewCell.xib in Resources */,
 				756BE60C2AE5A405005CAD4F /* BikeEndRideAlertView.xib in Resources */,
@@ -8050,6 +8130,25 @@
 				75E5103F2A000753000D99F0 /* BikeResult.swift in Sources */,
 				75F852872AC216F200606A81 /* MimoWheelPickerTextField.swift in Sources */,
 				75E510402A000753000D99F0 /* StorageManager.swift in Sources */,
+				7A11E0A1000000000000C002 /* ThemeManager.swift in Sources */,
+				7A11E0C5000000000000D012 /* MimoListRow.swift in Sources */,
+				7A11E0C5000000000000D022 /* MimoCardModifier.swift in Sources */,
+				7A11E0C5000000000000D032 /* WalletBalanceHeroView.swift in Sources */,
+				7A11E0C5000000000000D042 /* WalletTopUpAmountView.swift in Sources */,
+				7A11E0C5000000000000D052 /* WalletPaymentMethodRow.swift in Sources */,
+				7A11E0C5000000000000D062 /* WalletPromoCodeCard.swift in Sources */,
+				7A11E0C5000000000000D072 /* WalletRecentActivityView.swift in Sources */,
+				7A11E0C5000000000000D082 /* WalletHostingController.swift in Sources */,
+				7A11E0C5000000000000D092 /* TransactionRowView.swift in Sources */,
+				7A11E0C6000000000000D002 /* MimoRefreshable.swift in Sources */,
+				7A11E0C7000000000000D012 /* NotificationsView.swift in Sources */,
+				7A11E0C7000000000000D022 /* NotificationsViewModel.swift in Sources */,
+				7A11E0C7000000000000D032 /* NotificationsWorker.swift in Sources */,
+				7A5E4E020000000000000008 /* MimoRefreshIndicatorView.swift in Sources */,
+				7A5E4E020000000000000009 /* MimoRefreshControl.swift in Sources */,
+				7A5E4E02000000000000000A /* MimoPullToRefreshGesture.swift in Sources */,
+				7A5E4E02000000000000000B /* MimoFeedback.swift in Sources */,
+				7A11E0B2000000000000C002 /* GMSMapView+Theme.swift in Sources */,
 				75E510412A000753000D99F0 /* VerifyRepository.swift in Sources */,
 				75E510422A000753000D99F0 /* APIProtocol.swift in Sources */,
 				75CB34442C16246C0066722E /* SubscriptionPlansView.swift in Sources */,
@@ -8070,7 +8169,6 @@
 				751B15272C2D9D9600315770 /* NetworkService.swift in Sources */,
 				75E510482A000753000D99F0 /* HomeScooterCollectionViewCell.swift in Sources */,
 				75C5B62B2A8197E100649D6C /* BikeTripWorker.swift in Sources */,
-				75E510492A000753000D99F0 /* Hex.swift in Sources */,
 				7575638B2A223F650013658E /* BatteryPercent.swift in Sources */,
 				75E5104A2A000753000D99F0 /* TripScooterDataModel.swift in Sources */,
 				506671CC2E3BD5E300BA430A /* TransactionDTO.swift in Sources */,
@@ -8084,7 +8182,6 @@
 				75B269552BBEDBF4008C64EC /* ScooterErrorViewController.swift in Sources */,
 				6C1878BD2F2FB44700057261 /* AppConfig.swift in Sources */,
 				50BA3CC32D6B123900B61923 /* NotifyNewsWorker.swift in Sources */,
-				75E5104E2A000753000D99F0 /* CryptoCommon.swift in Sources */,
 				7588F4582A27E5EE00C1EED2 /* ScanRouter.swift in Sources */,
 				75E5104F2A000753000D99F0 /* ParkingPhotoCameraViewController.swift in Sources */,
 				75FA72742AD1EEE7005A9FF1 /* StoryPartnershipCollectionViewCell.swift in Sources */,
@@ -8127,7 +8224,6 @@
 				752961DC2B39F6BC005839EF /* Story.swift in Sources */,
 				75E510622A000753000D99F0 /* AppVersion.swift in Sources */,
 				75E510632A000753000D99F0 /* PauseViewController.swift in Sources */,
-				75E510642A000753000D99F0 /* Binary.swift in Sources */,
 				75E510652A000753000D99F0 /* DebtInfoViewController.swift in Sources */,
 				75E510662A000753000D99F0 /* MapBikeCollectionViewCell.swift in Sources */,
 				75E510672A000753000D99F0 /* StoriNewsViewController.swift in Sources */,
@@ -8138,9 +8234,7 @@
 				7588F4552A27E34600C1EED2 /* MimoScanQrViewController.swift in Sources */,
 				75570F9B2A6841D500580918 /* ZoneInfoTableViewCell.swift in Sources */,
 				75E781F62A0D83A400710148 /* Startup.swift in Sources */,
-				75E510682A000753000D99F0 /* Radix Operators.swift in Sources */,
 				7575638F2A224BCB0013658E /* AddressHelper.swift in Sources */,
-				75E510692A000753000D99F0 /* RadixProtocol.swift in Sources */,
 				75C3136A2A4DF40B0079595C /* Zone.swift in Sources */,
 				50C677F82D7DBCF2005E79BB /* EVRangedSliderView.swift in Sources */,
 				757563982A22511E0013658E /* ScooterDetailsUseCaseProtocol.swift in Sources */,
@@ -8162,8 +8256,6 @@
 				75E510712A000753000D99F0 /* UIView.swift in Sources */,
 				75E510722A000753000D99F0 /* ScooterPlanViewController.swift in Sources */,
 				75E510732A000753000D99F0 /* SplashMapper.swift in Sources */,
-				75E510742A000753000D99F0 /* Radix Strings.swift in Sources */,
-				75E510752A000753000D99F0 /* Radix Collection Methods.swift in Sources */,
 				75CB34412C15FC0B0066722E /* SubscriptionPlanItemView.swift in Sources */,
 				75E510762A000753000D99F0 /* OrderCardViewModel.swift in Sources */,
 				75E510772A000753000D99F0 /* SizedTableView.swift in Sources */,
@@ -8213,7 +8305,6 @@
 				75E7DEC52B126C3C00B8E853 /* RentedCharger.swift in Sources */,
 				751B152B2C2D9DDA00315770 /* APIError.swift in Sources */,
 				75E510892A000753000D99F0 /* AgreementViewController.swift in Sources */,
-				75E5108A2A000753000D99F0 /* Binary Type Extensions.swift in Sources */,
 				75E5108B2A000753000D99F0 /* UICollectionView.swift in Sources */,
 				75E5108D2A000753000D99F0 /* CreditCardCollectionViewCell.swift in Sources */,
 				7554021D2B0BD445008C2B74 /* ChargingStation.swift in Sources */,
@@ -8326,7 +8417,6 @@
 				75E510B02A000753000D99F0 /* BatteryLvl.swift in Sources */,
 				50AD36852D84A67100592139 /* EVConnectorType.swift in Sources */,
 				7568AD8A2BCD8A270090286D /* ProfileWorker.swift in Sources */,
-				75E510B12A000753000D99F0 /* Octal.swift in Sources */,
 				75E510B22A000753000D99F0 /* TransferToFriendViewController.swift in Sources */,
 				751B15752C3043A000315770 /* SubscriptionCancelView.swift in Sources */,
 				751B15722C30418800315770 /* SubscriptionCancelEndpoint.swift in Sources */,
@@ -8423,7 +8513,6 @@
 				759FDEEB2AB7343C009B7E74 /* MimoTextField.swift in Sources */,
 				75FA72612ACC93F9005A9FF1 /* EmailVerificationWorkerProtocol.swift in Sources */,
 				75E510DA2A000753000D99F0 /* iCarousel.m in Sources */,
-				75E510DB2A000753000D99F0 /* Radix Protocol Adoptions.swift in Sources */,
 				75E510DC2A000753000D99F0 /* SupportViewController.swift in Sources */,
 				7568AD902BD69EA00090286D /* DateFormatter.swift in Sources */,
 				7588F45F2A29009600C1EED2 /* MimoBaseViewController.swift in Sources */,
@@ -8464,9 +8553,7 @@
 				75E510E72A000753000D99F0 /* WalletViewModel.swift in Sources */,
 				7556EC122BDD732C00908B25 /* PaymentMethodView.swift in Sources */,
 				75E510E82A000753000D99F0 /* ContactsModel.swift in Sources */,
-				75E510E92A000753000D99F0 /* Radix Nibble.swift in Sources */,
 				75E510EA2A000753000D99F0 /* Located.swift in Sources */,
-				75E510EB2A000753000D99F0 /* Radix.swift in Sources */,
 				75E886632AED9D5F008903BB /* SceneDelegate.swift in Sources */,
 				75E510EC2A000753000D99F0 /* Validator.swift in Sources */,
 				757E3FC52A6B1DC30038A751 /* BikeDetailsWorkerProtocol.swift in Sources */,
@@ -8528,7 +8615,6 @@
 				75E511082A000753000D99F0 /* UITapGestureRecognizer.swift in Sources */,
 				75E511092A000753000D99F0 /* ChangeRideRateViewController.swift in Sources */,
 				50C677BA2D727A9A005E79BB /* View+Extensions.swift in Sources */,
-				75E5110A2A000753000D99F0 /* Radix Bytes.swift in Sources */,
 				75B269622BCBF1FD008C64EC /* ProfileView.swift in Sources */,
 				75E5110B2A000753000D99F0 /* BaseViewController.swift in Sources */,
 				75EB6D592A07B64600289697 /* MimoLocationManagerProtocol.swift in Sources */,
@@ -8550,7 +8636,6 @@
 				75E511142A000753000D99F0 /* UIImage+Extension.swift in Sources */,
 				75E511152A000753000D99F0 /* SingleScooterResultl.swift in Sources */,
 				75E511162A000753000D99F0 /* SettingsViewController.swift in Sources */,
-				75E511172A000753000D99F0 /* Hex Type Extensions.swift in Sources */,
 				7529359B2A1D414900772DEB /* String.swift in Sources */,
 				75E4BF672A54859A0049315E /* MimoClusterIconGenerator.swift in Sources */,
 				759FDEC22AB62FB9009B7E74 /* WelcomeView.swift in Sources */,
@@ -8562,8 +8647,6 @@
 				169CB2672E18774500516DF6 /* SectionTopViewModifier.swift in Sources */,
 				75E5111A2A000753000D99F0 /* SplashViewModel.swift in Sources */,
 				75E5111B2A000753000D99F0 /* SettingsBoardController.swift in Sources */,
-				75E5111C2A000753000D99F0 /* CoreBluetoothCommand.swift in Sources */,
-				75E5111D2A000753000D99F0 /* Radix Bit.swift in Sources */,
 				169CB2712E3D73F200516DF6 /* PagingView.swift in Sources */,
 				75E5111E2A000753000D99F0 /* ViewController.swift in Sources */,
 				751B15622C2EEA3200315770 /* UserService.swift in Sources */,
@@ -8607,10 +8690,17 @@
 				756EAECA2A1A8F6D0095139F /* BaseCollectionViewCell.swift in Sources */,
 				751B15352C2DA2BB00315770 /* SubscriptionPlansEndpoint.swift in Sources */,
 				75E5112C2A000753000D99F0 /* LocalizationModel.swift in Sources */,
+				7A11E0D1000000000000E002 /* LocalizationStore.swift in Sources */,
 				75E5112D2A000753000D99F0 /* ImportProblemViewController.swift in Sources */,
 				75E5112E2A000753000D99F0 /* AllZoneInfoViewViewController.swift in Sources */,
 				7588F4782A2944BB00C1EED2 /* ScooterTripCollectionViewCell.swift in Sources */,
 				75E886622AED9D44008903BB /* HomeView.swift in Sources */,
+				7A5E4E020000000000000001 /* HomeServiceHeroStyle.swift in Sources */,
+				7A5E4E020000000000000002 /* HomeServiceHeroView.swift in Sources */,
+				7A5E4E020000000000000003 /* HomeServiceHeroCardViewModel.swift in Sources */,
+				7A5E4E020000000000000004 /* HomeServicesCarouselViewModel.swift in Sources */,
+				7A5E4E020000000000000005 /* HomeMapSnapshotRenderer.swift in Sources */,
+				7A5E4E020000000000000006 /* HomeServiceCarouselCell.swift in Sources */,
 				75ECCD982BCC0BD4007DD64D /* ProfileRowView.swift in Sources */,
 				75E5112F2A000753000D99F0 /* AccountMapper.swift in Sources */,
 				75E511302A000753000D99F0 /* Validator+Int.swift in Sources */,
@@ -8653,10 +8743,8 @@
 				751D8C4B2A2CF0FC00BD426E /* ScooterTripViewModel.swift in Sources */,
 				75E511442A000753000D99F0 /* ImageField.swift in Sources */,
 				756EAEC52A1A8F1A0095139F /* ReusableView.swift in Sources */,
-				75E511452A000753000D99F0 /* Radix Type Extensions.swift in Sources */,
 				756EAEA72A1A3A230095139F /* ScanSheetViewController.swift in Sources */,
 				50B4E0C02D6FA5F500265F94 /* TabSegmentedControl.swift in Sources */,
-				75E511462A000753000D99F0 /* HexUtilities.swift in Sources */,
 				75E511472A000753000D99F0 /* AccountBoardController.swift in Sources */,
 				752C55AD2BD6A932001A577A /* WalletView.swift in Sources */,
 				75E511482A000753000D99F0 /* HomeViewController.swift in Sources */,
@@ -8671,7 +8759,6 @@
 				75E5114D2A000753000D99F0 /* EmptyResponseModel.swift in Sources */,
 				169CB2642E18738E00516DF6 /* RoundedBorder.swift in Sources */,
 				75E5114E2A000753000D99F0 /* PrivacyPolicyViewController.swift in Sources */,
-				75E5114F2A000753000D99F0 /* BluetoothManager.swift in Sources */,
 				75E511502A000753000D99F0 /* HomeRepository.swift in Sources */,
 				75E511512A000753000D99F0 /* ScooterStateModel.swift in Sources */,
 				75E7DECA2B12735500B8E853 /* RentedChargerSheetViewController.swift in Sources */,
@@ -8685,7 +8772,6 @@
 				75E511542A000753000D99F0 /* TransferViewController.swift in Sources */,
 				7575639B2A22512A0013658E /* ScooterDetailsUseCase.swift in Sources */,
 				75AAA8CA2B13B48E007EAC8A /* MimoToggleButton.swift in Sources */,
-				75E511552A000753000D99F0 /* Octal Type Extensions.swift in Sources */,
 				756EAEA12A1A34750095139F /* MimoSheetViewController.swift in Sources */,
 				75E511562A000753000D99F0 /* ScooterScanResponse.swift in Sources */,
 				160886B12D933F1900419981 /* SelectAmountView.swift in Sources */,
@@ -8694,6 +8780,7 @@
 				75E511582A000753000D99F0 /* HomeViewModel.swift in Sources */,
 				75E511592A000753000D99F0 /* ScooterResponse.swift in Sources */,
 				75E7DEC02B124B2D00B8E853 /* MimoChargerSocketService.swift in Sources */,
+				7A5E4E0200000000000007 /* MimoSocketLog.swift in Sources */,
 				75E7DED32B13A3BE00B8E853 /* ChargerSuccessViewController.swift in Sources */,
 				16A628622D53F8BA0043DBA8 /* ChargerStationView.swift in Sources */,
 				75E5115A2A000753000D99F0 /* CompleteProfileViewController.swift in Sources */,
@@ -8758,6 +8845,25 @@
 				CAE1B04C264BE58E00C93458 /* DateHelper.swift in Sources */,
 				5060A57E264D651400C866AC /* BikeResult.swift in Sources */,
 				50E7733C2656715800B3BC67 /* StorageManager.swift in Sources */,
+				7A11E0A1000000000000C003 /* ThemeManager.swift in Sources */,
+				7A11E0C5000000000000D013 /* MimoListRow.swift in Sources */,
+				7A11E0C5000000000000D023 /* MimoCardModifier.swift in Sources */,
+				7A11E0C5000000000000D033 /* WalletBalanceHeroView.swift in Sources */,
+				7A11E0C5000000000000D043 /* WalletTopUpAmountView.swift in Sources */,
+				7A11E0C5000000000000D053 /* WalletPaymentMethodRow.swift in Sources */,
+				7A11E0C5000000000000D063 /* WalletPromoCodeCard.swift in Sources */,
+				7A11E0C5000000000000D073 /* WalletRecentActivityView.swift in Sources */,
+				7A11E0C5000000000000D083 /* WalletHostingController.swift in Sources */,
+				7A11E0C5000000000000D093 /* TransactionRowView.swift in Sources */,
+				7A11E0C6000000000000D003 /* MimoRefreshable.swift in Sources */,
+				7A11E0C7000000000000D013 /* NotificationsView.swift in Sources */,
+				7A11E0C7000000000000D023 /* NotificationsViewModel.swift in Sources */,
+				7A11E0C7000000000000D033 /* NotificationsWorker.swift in Sources */,
+				7A5E4E030000000000000008 /* MimoRefreshIndicatorView.swift in Sources */,
+				7A5E4E030000000000000009 /* MimoRefreshControl.swift in Sources */,
+				7A5E4E03000000000000000A /* MimoPullToRefreshGesture.swift in Sources */,
+				7A5E4E03000000000000000B /* MimoFeedback.swift in Sources */,
+				7A11E0B2000000000000C003 /* GMSMapView+Theme.swift in Sources */,
 				88C3C7D226750788003BE662 /* VerifyRepository.swift in Sources */,
 				50AB7BF2264F1AC8004A6D13 /* APIProtocol.swift in Sources */,
 				6CF4ECDD2870A7A400AF9D38 /* NoInternetViewController.swift in Sources */,
@@ -8776,7 +8882,6 @@
 				751B154F2C2DF91D00315770 /* SubscriptionPlansViewModel.swift in Sources */,
 				6CB607C5288B466E00D99F09 /* HomeScooterCollectionViewCell.swift in Sources */,
 				75C5B62A2A8197E100649D6C /* BikeTripWorker.swift in Sources */,
-				8864D758268D1B3F008D1B22 /* Hex.swift in Sources */,
 				751B15262C2D9D9600315770 /* NetworkService.swift in Sources */,
 				7575638A2A223F650013658E /* BatteryPercent.swift in Sources */,
 				439C12BB28935C1D00EA0440 /* TripScooterDataModel.swift in Sources */,
@@ -8789,7 +8894,6 @@
 				75E4FFC62BEC170300CB722B /* ErrorMessage.swift in Sources */,
 				6C0A74D22894669400DCDBEA /* ScooterSocketManager.swift in Sources */,
 				759FDECC2AB6506B009B7E74 /* MimoButtonView.swift in Sources */,
-				8816ED5226873083008A3762 /* CryptoCommon.swift in Sources */,
 				7588F4572A27E5EE00C1EED2 /* ScanRouter.swift in Sources */,
 				75B269542BBEDBF4008C64EC /* ScooterErrorViewController.swift in Sources */,
 				6C1878BC2F2FB44700057261 /* AppConfig.swift in Sources */,
@@ -8834,7 +8938,6 @@
 				6C0687E529D9FE2C00837D2E /* AppVersion.swift in Sources */,
 				439C12B52892FD9C00EA0440 /* PauseViewController.swift in Sources */,
 				164473BA2D6D053D00803E10 /* (null) in Sources */,
-				8864D75D268D1B3F008D1B22 /* Binary.swift in Sources */,
 				752961DB2B39F6BC005839EF /* Story.swift in Sources */,
 				6C73453E28B186E300CD7093 /* DebtInfoViewController.swift in Sources */,
 				CA94EB37262F6BD100797263 /* MapBikeCollectionViewCell.swift in Sources */,
@@ -8845,9 +8948,7 @@
 				506E8B972D6DAFB9000B663E /* EVChargerDetailsViewModel.swift in Sources */,
 				751B15522C2DFCC900315770 /* SubscriptionActivateEndpoint.swift in Sources */,
 				75E781F52A0D83A400710148 /* Startup.swift in Sources */,
-				8864D75B268D1B3F008D1B22 /* Radix Operators.swift in Sources */,
 				7575638E2A224BCB0013658E /* AddressHelper.swift in Sources */,
-				8864D760268D1B40008D1B22 /* RadixProtocol.swift in Sources */,
 				75C313692A4DF40B0079595C /* Zone.swift in Sources */,
 				757563972A22511E0013658E /* ScooterDetailsUseCaseProtocol.swift in Sources */,
 				EA22BA90267A864C00212235 /* ScannerViewController.swift in Sources */,
@@ -8869,8 +8970,6 @@
 				435CCDE4288488CC00228F99 /* ScooterPlanViewController.swift in Sources */,
 				CA91E4BD2636EB7000F5EAA2 /* SplashMapper.swift in Sources */,
 				6C1878E02F2FBAE200057261 /* MimoMeta.swift in Sources */,
-				8864D763268D1B40008D1B22 /* Radix Strings.swift in Sources */,
-				8864D75F268D1B40008D1B22 /* Radix Collection Methods.swift in Sources */,
 				668B77C9266E39700055A33F /* OrderCardViewModel.swift in Sources */,
 				88163C27266BA5F600A57D9D /* SizedTableView.swift in Sources */,
 				435CCE0428855BF100228F99 /* ChoosePlanTableViewCell.swift in Sources */,
@@ -8919,7 +9018,6 @@
 				435CCE1E2885EF8400228F99 /* ScooterResult.swift in Sources */,
 				CA43D29126282F0C001F0F54 /* UIColor+Assets.swift in Sources */,
 				EA62DDC3266AB042006CF5FB /* AgreementViewController.swift in Sources */,
-				8864D75E268D1B40008D1B22 /* Binary Type Extensions.swift in Sources */,
 				751B15552C2EE6F700315770 /* ActiveSubscriptionPlan.swift in Sources */,
 				75E7DEC42B126C3C00B8E853 /* RentedCharger.swift in Sources */,
 				751B152A2C2D9DDA00315770 /* APIError.swift in Sources */,
@@ -8974,6 +9072,12 @@
 				884AE1402647F3DA00D7577B /* UIView+AddSubviewWithConstraints.swift in Sources */,
 				755B821F2BA08C83005F6AB1 /* AvailableService.swift in Sources */,
 				75F8527D2AC2028F00606A81 /* HomeView.swift in Sources */,
+				7A5E4E030000000000000001 /* HomeServiceHeroStyle.swift in Sources */,
+				7A5E4E030000000000000002 /* HomeServiceHeroView.swift in Sources */,
+				7A5E4E030000000000000003 /* HomeServiceHeroCardViewModel.swift in Sources */,
+				7A5E4E030000000000000004 /* HomeServicesCarouselViewModel.swift in Sources */,
+				7A5E4E030000000000000005 /* HomeMapSnapshotRenderer.swift in Sources */,
+				7A5E4E030000000000000006 /* HomeServiceCarouselCell.swift in Sources */,
 				CACBA0AC26300D20003CF194 /* SingleBikeSheetViewController.swift in Sources */,
 				750E680C2B06AB89004794C3 /* ChargerViewController.swift in Sources */,
 				CA9E14BA26564ACB002F17AF /* AddCreditCardViewController.swift in Sources */,
@@ -9038,7 +9142,6 @@
 				50AD36862D84A67100592139 /* EVConnectorType.swift in Sources */,
 				7568AD892BCD8A270090286D /* ProfileWorker.swift in Sources */,
 				435CCE1C2885ED0A00228F99 /* BatteryLvl.swift in Sources */,
-				8864D761268D1B40008D1B22 /* Octal.swift in Sources */,
 				751B15742C3043A000315770 /* SubscriptionCancelView.swift in Sources */,
 				751B15712C30418800315770 /* SubscriptionCancelEndpoint.swift in Sources */,
 				75F1F3A12B163511006A6A9D /* BikePackageTableViewCell.swift in Sources */,
@@ -9137,7 +9240,6 @@
 				50AB7BE8264F1952004A6D13 /* URLBuilder.swift in Sources */,
 				CA4CA2D1265FDC66000CD1CE /* iCarousel.m in Sources */,
 				7568AD8F2BD69EA00090286D /* DateFormatter.swift in Sources */,
-				8864D755268D1B3F008D1B22 /* Radix Protocol Adoptions.swift in Sources */,
 				50B4E0C82D6FAE1900265F94 /* EVContactSupportButton.swift in Sources */,
 				7588F45E2A29009600C1EED2 /* MimoBaseViewController.swift in Sources */,
 				759FDEED2AB75CF2009B7E74 /* CountryCodeView.swift in Sources */,
@@ -9177,9 +9279,7 @@
 				EA702D22266D161F00C3CC00 /* HomeScanQRViewModel.swift in Sources */,
 				66DDD580266786E0000BF23F /* WalletViewModel.swift in Sources */,
 				CAC39F262657D4B700F055A0 /* ContactsModel.swift in Sources */,
-				8864D75A268D1B3F008D1B22 /* Radix Nibble.swift in Sources */,
 				435CCE182885EC7600228F99 /* Located.swift in Sources */,
-				8864D756268D1B3F008D1B22 /* Radix.swift in Sources */,
 				757E3FC42A6B1DC30038A751 /* BikeDetailsWorkerProtocol.swift in Sources */,
 				759FDED32AB65754009B7E74 /* LoginView.swift in Sources */,
 				CADDA7752636B93000D2F789 /* Validator.swift in Sources */,
@@ -9241,7 +9341,6 @@
 				50C677BB2D727A9A005E79BB /* View+Extensions.swift in Sources */,
 				439C12B72893046E00EA0440 /* ChangeRideRateViewController.swift in Sources */,
 				75B269612BCBF1FD008C64EC /* ProfileView.swift in Sources */,
-				8864D764268D1B40008D1B22 /* Radix Bytes.swift in Sources */,
 				75EB6D582A07B64600289697 /* MimoLocationManagerProtocol.swift in Sources */,
 				50AD368C2D85B8F400592139 /* SelectedFilters.swift in Sources */,
 				CAC45C9F262F5A81005D1D52 /* BaseViewController.swift in Sources */,
@@ -9261,7 +9360,6 @@
 				6C0A74D028942E0E00DCDBEA /* UIImage+Extension.swift in Sources */,
 				6C6D9DD228923D930081CC90 /* SingleScooterResultl.swift in Sources */,
 				EA62DD9E266A8258006CF5FB /* SettingsViewController.swift in Sources */,
-				8864D757268D1B3F008D1B22 /* Hex Type Extensions.swift in Sources */,
 				7529359A2A1D414900772DEB /* String.swift in Sources */,
 				75E4BF662A54859A0049315E /* MimoClusterIconGenerator.swift in Sources */,
 				759FDEC12AB62FB9009B7E74 /* WelcomeView.swift in Sources */,
@@ -9273,9 +9371,7 @@
 				88527CC6268F98990040A770 /* UIBorderedButton.swift in Sources */,
 				CADDA77B2636E7A400D2F789 /* SplashViewModel.swift in Sources */,
 				88B6EAD02673C5AC00E1B823 /* SettingsBoardController.swift in Sources */,
-				8816ED4E26872DEF008A3762 /* CoreBluetoothCommand.swift in Sources */,
 				169CB2702E3D73F200516DF6 /* PagingView.swift in Sources */,
-				8864D759268D1B3F008D1B22 /* Radix Bit.swift in Sources */,
 				CA001BF1265FD7E40002F844 /* ViewController.swift in Sources */,
 				751B15612C2EEA3200315770 /* UserService.swift in Sources */,
 				755F9B512A2CB21000220319 /* MimoScooterSocketService.swift in Sources */,
@@ -9319,6 +9415,7 @@
 				751B15342C2DA2BB00315770 /* SubscriptionPlansEndpoint.swift in Sources */,
 				756EAEC92A1A8F6D0095139F /* BaseCollectionViewCell.swift in Sources */,
 				EA62DD8026694261006CF5FB /* LocalizationModel.swift in Sources */,
+				7A11E0D1000000000000E003 /* LocalizationStore.swift in Sources */,
 				EA22BA8B267A7A2400212235 /* ImportProblemViewController.swift in Sources */,
 				6C5E8ACC297BFBEF00C02D16 /* AllZoneInfoViewViewController.swift in Sources */,
 				7588F4772A2944BB00C1EED2 /* ScooterTripCollectionViewCell.swift in Sources */,
@@ -9365,10 +9462,8 @@
 				751D8C4A2A2CF0FC00BD426E /* ScooterTripViewModel.swift in Sources */,
 				88163C32266BEEEF00A57D9D /* ImageField.swift in Sources */,
 				756EAEC42A1A8F1A0095139F /* ReusableView.swift in Sources */,
-				8864D75C268D1B3F008D1B22 /* Radix Type Extensions.swift in Sources */,
 				50B4E0BF2D6FA5F500265F94 /* TabSegmentedControl.swift in Sources */,
 				756EAEA62A1A3A230095139F /* ScanSheetViewController.swift in Sources */,
-				8864D765268D1B40008D1B22 /* HexUtilities.swift in Sources */,
 				752C55AC2BD6A932001A577A /* WalletView.swift in Sources */,
 				88B6EACE2673C5A200E1B823 /* AccountBoardController.swift in Sources */,
 				CA45EDA0263FDEE2007A1A50 /* HomeViewController.swift in Sources */,
@@ -9383,7 +9478,6 @@
 				7588F4722A29427900C1EED2 /* SelectableButton.swift in Sources */,
 				66CD0D2E2668BED800A8A9D6 /* EmptyResponseModel.swift in Sources */,
 				EA62DDB9266AAFFA006CF5FB /* PrivacyPolicyViewController.swift in Sources */,
-				8816ED5026872E71008A3762 /* BluetoothManager.swift in Sources */,
 				6CE3C7D326485013009B7C86 /* HomeRepository.swift in Sources */,
 				75E7DEC92B12735500B8E853 /* RentedChargerSheetViewController.swift in Sources */,
 				6C6D9DCD289058050081CC90 /* ScooterStateModel.swift in Sources */,
@@ -9396,7 +9490,6 @@
 				CA0537352661439700ACD208 /* TransferViewController.swift in Sources */,
 				75AAA8C92B13B48E007EAC8A /* MimoToggleButton.swift in Sources */,
 				7575639A2A22512A0013658E /* ScooterDetailsUseCase.swift in Sources */,
-				8864D762268D1B40008D1B22 /* Octal Type Extensions.swift in Sources */,
 				756EAEA02A1A34750095139F /* MimoSheetViewController.swift in Sources */,
 				160886B02D933F1900419981 /* SelectAmountView.swift in Sources */,
 				75CB343D2C15FAC70066722E /* PagingScrollView.swift in Sources */,
@@ -9404,6 +9497,7 @@
 				CAC45CD2262F6196005D1D52 /* SheetContentViewDelegate.swift in Sources */,
 				6CE3C7E12648550A009B7C86 /* HomeViewModel.swift in Sources */,
 				75E7DEBF2B124B2D00B8E853 /* MimoChargerSocketService.swift in Sources */,
+				7A5E4E0300000000000007 /* MimoSocketLog.swift in Sources */,
 				75E7DED22B13A3BE00B8E853 /* ChargerSuccessViewController.swift in Sources */,
 				16A628612D53F8B30043DBA8 /* ChargerStationView.swift in Sources */,
 				435CCE162885EC0B00228F99 /* ScooterResponse.swift in Sources */,
@@ -9626,7 +9720,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = SHG3WMPK3S;
@@ -9694,7 +9788,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = SHG3WMPK3S;
 				FRAMEWORK_SEARCH_PATHS = (

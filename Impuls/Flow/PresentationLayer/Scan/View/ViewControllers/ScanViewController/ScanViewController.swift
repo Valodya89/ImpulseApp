@@ -276,14 +276,11 @@ extension ScanViewController: QRScanManagerDelegate {
                 switch result {
                 case .success(let model):
                     QRStore.sharedInstance.qr = scanedCode
-                    guard let mac = model.bikeDto?.mac, let bikeID = model.bikeDto?.id else {
+                    guard model.bikeDto?.id != nil else {
                         self?.showAlertMessage("Failed to scan qr", actionText: "Ok", action: {
 
                         })
                         return
-                    }
-                    if model.action == .TripScanned || model.action == .TripStarted {
-                        BLEManager.shareInstance.scan(for: mac, bikeID: bikeID, workOption: BLEOption(afterConnectOption: BLEOption.AfterConnect(unlockDevice: true, updateDeviceState: false)))
                     }
                     print("=============== Scan QR SUccess =================")
                     self?.scannedTrip?(model)
@@ -330,7 +327,7 @@ extension ScanViewController: QRScanManagerDelegate {
     
     func showErrorMinBalanceVC(message: String, isShowOK: Bool = true) {
         minBalanceVC = DebtInfoViewController.initFromStoryboard(name: Constant.Storyboards.scooterPlan)
-        minBalanceVC.view.backgroundColor = .white
+        minBalanceVC.view.backgroundColor = .appBackground
         minBalanceVC.delegate = self
         minBalanceVC.errorDescription = message
         minBalanceVC.isBike = true
@@ -356,12 +353,6 @@ extension ScanViewController: DebtInfoViewControllerDelegate {
     }
     
     func openWalletVC() {
-        var walletNavigationController: UINavigationController?
-        let walletVC = WalletViewController.initFromStoryboard(name: Constant.Storyboards.wallet)
-        walletNavigationController = UINavigationController(rootViewController: walletVC)
-        walletNavigationController?.navigationBar.barTintColor = .white
-        walletNavigationController?.navigationBar.backgroundColor = .white
-        
-        self.present(walletNavigationController!, animated: true, completion: nil)
+        self.present(WalletHostingController(), animated: true, completion: nil)
     }
 }

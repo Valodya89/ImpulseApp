@@ -197,14 +197,11 @@ extension ParkingPhotoCameraViewController: QRScanManagerDelegate {
             switch result {
             case .success(let model):
                 QRStore.sharedInstance.qr = code
-                guard let mac = model.bikeDto?.mac, let bikeID = model.bikeDto?.id else {
+                guard model.bikeDto?.id != nil else {
                     self?.showAlertMessage("Failed to scan qr", actionText: "Ok", action: {
                         
                     })
                     return
-                }
-                if model.action == .TripScanned || model.action == .TripStarted {
-                    BLEManager.shareInstance.scan(for: mac, bikeID: bikeID, workOption: BLEOption(afterConnectOption: BLEOption.AfterConnect(unlockDevice: true, updateDeviceState: false)))
                 }
                 self?.scannedTrip?(model)
             case .failure(let error):

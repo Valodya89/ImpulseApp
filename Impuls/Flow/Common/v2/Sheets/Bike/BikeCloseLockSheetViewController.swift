@@ -33,7 +33,7 @@ class BikeCloseLockSheetViewController: UIViewController {
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.setTitle("SHARING_bike_popUp_closedIt".localized(), for: .normal)
         closeButton.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
-        closeButton.setTitleColor(.mimoBlack, for: .normal)
+        closeButton.setTitleColor(.onBrandLabel, for: .normal)
         closeButton.backgroundColor = .mimoYellow500
         closeButton.cornerRadius = 24
         closeButton.addAction(UIAction(handler: { [weak self] _ in

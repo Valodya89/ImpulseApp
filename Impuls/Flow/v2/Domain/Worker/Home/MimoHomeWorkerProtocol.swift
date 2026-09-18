@@ -12,6 +12,12 @@ import CoreLocation
 protocol MimoHomeWorkerProtocol: AnyObject {
     
     var chargerDataPublisher: AnyPublisher<RentedCharger?, Never> { get }
+    /// Fires when the rent socket has been quiet for a while, so the home
+    /// screen re-reads the active trips over HTTP.
+    var chargerLaggingPublisher: AnyPublisher<Void, Never> { get }
+
+    /// (Re)opens the sockets the home screen listens to; safe to call repeatedly.
+    func connectSockets()
     
     func loadScooters() -> AnyPublisher<[ScooterResult], MimoError>
     func loadBikes() -> AnyPublisher<[BikeResult], MimoError>

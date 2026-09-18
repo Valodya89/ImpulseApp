@@ -21,7 +21,7 @@ struct PaymentMethodView: View {
                 .padding(7)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.white)
+        .background(Color.alwaysWhite)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
                 .stroke(isSelected ? Color.brandYellow : Color.gray4, lineWidth: isSelected ? 4 : 0.5)
@@ -38,7 +38,7 @@ struct PaymentMethodView: View {
                         Image(systemName: "checkmark")
                             .resizable()
                             .font(.title.bold())
-                            .foregroundColor(.black)
+                            .foregroundColor(.onBrandLabel)
                             .frame(width: 7.7, height: 7)
                             .padding(.bottom, 3)
                     )

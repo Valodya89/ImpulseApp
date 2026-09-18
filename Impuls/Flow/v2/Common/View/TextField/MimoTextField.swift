@@ -15,7 +15,7 @@ struct MimoTextField: View {
     
     var body: some View {
         ZStack {
-            Color.white
+            Color.appBackground
             
             VStack(alignment: .leading, spacing: 5) {
                 HStack {
@@ -27,7 +27,7 @@ struct MimoTextField: View {
                 
                 TextField(placeholder, text: $text)
                     .font(.robotoRegular17)
-                    .foregroundColor(.black075)
+                    .foregroundColor(.label075)
             }
             .padding(.vertical, 10)
             .padding(.horizontal, 15)
@@ -35,7 +35,7 @@ struct MimoTextField: View {
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .background(
             RoundedRectangle(cornerRadius: 8)
-                .stroke(Color.black, lineWidth: 0.5)
+                .stroke(Color.appLabel, lineWidth: 0.5)
         )
         .frame(height: 63)
         .frame(maxWidth: .infinity)

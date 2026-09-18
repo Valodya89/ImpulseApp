@@ -36,14 +36,14 @@ struct StorySurveyView: View {
                         .font(.robotoSemibold40)
                         .lineLimit(2)
                         .minimumScaleFactor(0.5)
-                        .foregroundColor(.white)
+                        .foregroundColor(.alwaysWhite)
                         .padding(.horizontal, 20)
                         .padding(.bottom, 32)
                     
                     Text(story.content)
                         .multilineTextAlignment(.center)
                         .font(.robotoRegular20)
-                        .foregroundColor(.white.opacity(0.8))
+                        .foregroundColor(.alwaysWhite.opacity(0.8))
                         .padding(.horizontal, 20)
                         .padding(.bottom, 40)
                         .lineLimit(3)
@@ -59,7 +59,7 @@ struct StorySurveyView: View {
                                         if viewModel.isOptionSelected(option: option) {
                                             Color.mimoYellow500
                                         } else {
-                                            Color.white
+                                            Color.alwaysWhite
                                         }
                                         
                                         Text(option)
@@ -88,7 +88,7 @@ struct StorySurveyView: View {
                                         if viewModel.isOptionSelected(option: option) {
                                             Color.mimoYellow500
                                         } else {
-                                            Color.white
+                                            Color.alwaysWhite
                                         }
                                         
                                         Text(option)
@@ -107,7 +107,7 @@ struct StorySurveyView: View {
                             Text("")
                                 .frame(height: 4)
                         }
-                        .background(Color.white.opacity(0.3))
+                        .background(Color.alwaysWhite.opacity(0.3))
                         .cornerRadius(32)
                         .padding(.bottom, 24)
                         .padding(.horizontal, 20)

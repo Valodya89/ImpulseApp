@@ -32,49 +32,49 @@ struct ProfilePaymentView: View {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("MOBILE_gloobal_free_minutes".localized())
                                     .font(.system(size: 12, weight: .light))
-                                    .foregroundColor(.black05)
+                                    .foregroundColor(.label05)
                                 
                                 HStack(alignment: .lastTextBaseline, spacing: 4) {
                                     Text(freeMinutes)
                                         .font(.system(size: 20, weight: .bold))
-                                        .foregroundColor(.black05)
+                                        .foregroundColor(.label05)
                                     
                                     Text("SCOOTER_global_minute".localized())
                                         .font(.system(size: 13, weight: .light))
-                                        .foregroundColor(.black075)
+                                        .foregroundColor(.label075)
                                 }
                             }
                         }
-                        .background(Color.white)
+                        .background(Color.appBackground)
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
                         
                         ZStack {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("MOBILE_profile_page_wallet_payment_balance".localized())
                                     .font(.system(size: 12, weight: .light))
-                                    .foregroundColor(.black05)
+                                    .foregroundColor(.label05)
                                 
                                 HStack(alignment: .lastTextBaseline, spacing: 4) {
                                     Text(balance)
                                         .font(.system(size: 20, weight: .bold))
-                                        .foregroundColor(isBalanceNegative ? .red : .black)
+                                        .foregroundColor(isBalanceNegative ? .red : .appLabel)
                                     
                                     Text(currency)
                                         .font(.system(size: 13, weight: .light))
-                                        .foregroundColor(.black075)
+                                        .foregroundColor(.label075)
                                 }
                             }
                         }
-                        .background(Color.white)
+                        .background(Color.appBackground)
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
                     }
                     
                     Rectangle()
-                        .fill(Color.black025)
+                        .fill(Color.label025)
                         .frame(width: 0.5)
                         .padding(.trailing, 8)
                 }
-                .background(Color.white)
+                .background(Color.appBackground)
                 
                 if let replanishAction {
                     Button(action: replanishAction) {
@@ -84,7 +84,7 @@ struct ProfilePaymentView: View {
                                 Image(systemName: "plus")
                                     .resizable()
                                     .frame(width: 15, height: 15)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.onBrandLabel)
                             )
                     }
                     .frame(width: 38, height: 38)
@@ -93,7 +93,7 @@ struct ProfilePaymentView: View {
             .padding(.horizontal, 12)
             .padding(.vertical, 17)
         }
-        .background(Color.white)
+        .background(Color.appBackground)
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .shadow(color: .black.opacity(0.1), radius: 8, y: 2)
     }

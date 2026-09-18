@@ -10,6 +10,8 @@ import UIKit
 final class SettingsViewController: UIViewController {
     
     @IBOutlet weak var `switch`: UISwitch!
+    @IBOutlet weak var themeLabel: UILabel!
+    @IBOutlet weak var themeSegmentedControl: UISegmentedControl!
     let viewModel = SettingsViewModel()
     
     var languages: [LanguageResult]?
@@ -19,6 +21,7 @@ final class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI), name: Constant.Notifications.LanguageUpdate, object: nil)
+        setupThemeControl()
         UserManager.share.getUser { [weak self] result in
             switch result {
             case .success(let user):
@@ -38,6 +41,29 @@ final class SettingsViewController: UIViewController {
     
     @objc func updateUI() {
         self.navigationItem.title = "MOBILE_profile_settings".localized()
+        updateThemeTitles()
+    }
+    
+    // MARK: - Appearance (light / dark mode)
+    
+    private func setupThemeControl() {
+        updateThemeTitles()
+        themeSegmentedControl.selectedSegmentTintColor = .mimoYellow500
+        themeSegmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.onBrandLabel], for: .selected)
+        themeSegmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.appLabel], for: .normal)
+        themeSegmentedControl.selectedSegmentIndex = AppTheme.ordered.firstIndex(of: ThemeManager.shared.theme) ?? 0
+    }
+    
+    private func updateThemeTitles() {
+        themeLabel.text = "MOBILE_settings_appearance".localized(fallback: "Appearance")
+        for (index, theme) in AppTheme.ordered.enumerated() where index < themeSegmentedControl.numberOfSegments {
+            themeSegmentedControl.setTitle(theme.title, forSegmentAt: index)
+        }
+    }
+    
+    @IBAction func themeChanged(_ sender: UISegmentedControl) {
+        guard AppTheme.ordered.indices.contains(sender.selectedSegmentIndex) else { return }
+        ThemeManager.shared.set(AppTheme.ordered[sender.selectedSegmentIndex])
     }
     
     func selectOneItem(index: Int) {

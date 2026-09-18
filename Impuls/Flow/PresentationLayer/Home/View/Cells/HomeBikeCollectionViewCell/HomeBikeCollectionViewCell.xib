@@ -35,7 +35,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZo-bb-g14" userLabel="shadowView">
                                 <rect key="frame" x="10" y="10" width="268" height="164"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lf4-3M-fK3">
                                 <rect key="frame" x="5" y="5" width="278" height="174"/>
@@ -48,7 +48,7 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y7L-a0-p6L" userLabel="spaceViewTop">
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="15"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EC2-zG-RGi" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="15" width="100" height="15"/>
@@ -61,7 +61,7 @@
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o0t-4n-Ve4" userLabel="spaceView1">
                                                 <rect key="frame" x="0.0" y="30" width="100" height="3"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="3" id="SHs-Fk-oMy"/>
                                                 </constraints>
@@ -83,7 +83,7 @@
                                             </label>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lPX-Ja-T4Y" userLabel="spaceView3">
                                                 <rect key="frame" x="0.0" y="88.333333333333329" width="100" height="3"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="3" id="GM1-0q-6Ie"/>
                                                 </constraints>
@@ -95,7 +95,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstItem="h4D-0A-ADA" firstAttribute="leading" secondItem="CVo-wv-InW" secondAttribute="leading" id="0R9-ag-o6g"/>
                                             <constraint firstAttribute="trailing" secondItem="l9e-3o-IFi" secondAttribute="trailing" id="2Um-7F-yZK"/>
@@ -151,7 +151,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="4fq-Ah-gIC" firstAttribute="height" secondItem="Lf4-3M-fK3" secondAttribute="height" multiplier="0.218391" id="BIC-29-dXe"/>
                                     <constraint firstItem="L5F-tS-SYk" firstAttribute="height" secondItem="Lf4-3M-fK3" secondAttribute="height" multiplier="0.448276" id="GP6-ZW-g1V"/>
@@ -223,5 +223,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

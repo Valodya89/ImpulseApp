@@ -1,12 +1,22 @@
 {
-  "images" : [
+  "images": [
     {
-      "filename" : "charger_black.pdf",
-      "idiom" : "universal"
+      "filename": "charger_black.pdf",
+      "idiom": "universal"
+    },
+    {
+      "filename": "dark_charger_black.pdf",
+      "idiom": "universal",
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ]
     }
   ],
-  "info" : {
-    "author" : "xcode",
-    "version" : 1
+  "info": {
+    "author": "xcode",
+    "version": 1
   }
 }

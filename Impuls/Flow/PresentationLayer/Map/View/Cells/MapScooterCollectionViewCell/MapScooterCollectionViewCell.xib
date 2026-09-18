@@ -35,7 +35,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6IF-Ha-Jrx" userLabel="shadowView">
                                 <rect key="frame" x="10" y="9.5" width="258" height="155"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fHt-8v-3q5">
                                 <rect key="frame" x="5" y="5" width="268" height="164"/>
@@ -48,7 +48,7 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G18-E5-OfI" userLabel="spaceViewTop">
                                                 <rect key="frame" x="0.0" y="0.0" width="96.5" height="14"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ga2-MP-lQm">
                                                 <rect key="frame" x="0.0" y="14" width="96.5" height="14.5"/>
@@ -58,7 +58,7 @@
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ycD-1C-bsF" userLabel="spaceView1">
                                                 <rect key="frame" x="0.0" y="28.5" width="96.5" height="3"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="3" id="DJH-I6-ddr"/>
                                                 </constraints>
@@ -80,7 +80,7 @@
                                             </label>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m43-NF-kLs" userLabel="spaceView3">
                                                 <rect key="frame" x="0.0" y="86" width="96.5" height="3"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="3" id="4se-Mp-ODw"/>
                                                 </constraints>
@@ -92,7 +92,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstItem="ycD-1C-bsF" firstAttribute="top" secondItem="Ga2-MP-lQm" secondAttribute="bottom" id="2z9-5T-K08"/>
                                             <constraint firstItem="Vc4-sK-tDe" firstAttribute="leading" secondItem="etG-EI-lYF" secondAttribute="leading" id="5bW-uI-5bd"/>
@@ -165,7 +165,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstItem="RJm-tO-f22" firstAttribute="top" secondItem="6tn-gM-6XC" secondAttribute="top" id="1eX-cD-ay4"/>
                                             <constraint firstAttribute="bottom" secondItem="Aff-tq-BLt" secondAttribute="bottom" constant="2" id="5Jf-XW-RQl"/>
@@ -177,7 +177,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="6tn-gM-6XC" firstAttribute="leading" secondItem="fHt-8v-3q5" secondAttribute="leading" constant="8" id="0Lf-ZQ-0Hn"/>
                                     <constraint firstItem="etG-EI-lYF" firstAttribute="trailing" secondItem="dhR-Jc-eDv" secondAttribute="trailing" id="3ZW-Ag-ij4"/>
@@ -254,5 +254,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -1,12 +1,22 @@
 {
-  "images" : [
+  "images": [
     {
-      "filename" : "mute.png",
-      "idiom" : "universal"
+      "filename": "mute.png",
+      "idiom": "universal"
+    },
+    {
+      "filename": "dark_mute.png",
+      "idiom": "universal",
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ]
     }
   ],
-  "info" : {
-    "author" : "xcode",
-    "version" : 1
+  "info": {
+    "author": "xcode",
+    "version": 1
   }
 }

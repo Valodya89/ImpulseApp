@@ -28,7 +28,7 @@ struct SegmentedCapsulePicker<Option: SegmentedCapsuleOption>: View {
     var body: some View {
         ZStack(alignment: .leading) {
             Capsule()
-                .fill(Color.white)
+                .fill(Color.appBackground)
                 .overlay(
                     Capsule().stroke(Color.grayBackground, lineWidth: 2)
                 )

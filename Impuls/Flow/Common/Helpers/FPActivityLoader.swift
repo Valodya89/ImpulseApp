@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 class FPActivityLoader: UIView {
     
-    static let defaultColor = UIColor.black
+    static let defaultColor = UIColor.appLabel
     static let defaultLineWidth: CGFloat = 2.0
     static let defaultCircleTime: Double = 1.5
     
@@ -20,7 +20,7 @@ class FPActivityLoader: UIView {
     fileprivate var circleLayer: CAShapeLayer = CAShapeLayer()
     
     @IBInspectable
-    var strokeColor: UIColor = UIColor.black {
+    var strokeColor: UIColor = UIColor.appLabel {
         didSet {
             circleLayer.strokeColor = strokeColor.cgColor
         }
@@ -158,6 +158,11 @@ class FPActivityLoader: UIView {
         }
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        circleLayer.strokeColor = strokeColor.cgColor
+    }
+
     override func prepareForInterfaceBuilder() {
         setupView()
     }

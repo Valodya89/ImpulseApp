@@ -28,7 +28,7 @@ struct ChargingRateView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             RoundedRectangle(cornerSize: .zero)
-                .fill(.white)
+                .fill(Color.evMainBg1)
                 .background(
                     GeometryReader { geometry in
                         Color.clear
@@ -79,7 +79,7 @@ struct ChargingRateView: View {
         if heightOnchange == 1 {
             Image(.evChargingTypeSuperFastCyan)
                 .renderingMode(.template)
-                .foregroundColor(.white)
+                .foregroundColor(.alwaysWhite)
                 .frame(width: 60, height: 60)
         }
     }

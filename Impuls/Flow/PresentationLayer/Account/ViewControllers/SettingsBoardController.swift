@@ -83,7 +83,7 @@ final class SettingsBoardController: UITableViewController {
         let footer = UIView()
         let version = UILabel(frame: .init(origin: .init(x: view.frame.width/2 - 100/3, y: 10), size: CGSize(width: 100, height: 56)))
         version.textAlignment = .center
-        version.textColor = .black
+        version.textColor = .appLabel
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         
         version.text = "v " + (appVersion ?? "")

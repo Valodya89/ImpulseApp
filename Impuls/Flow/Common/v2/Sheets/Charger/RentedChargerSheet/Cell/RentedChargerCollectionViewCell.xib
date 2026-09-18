@@ -257,7 +257,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" name="AppBackground"/>
                                                         <constraints>
                                                             <constraint firstItem="mvF-T9-dbw" firstAttribute="leading" secondItem="I0I-jE-QYa" secondAttribute="leading" id="9Md-ti-iPo"/>
                                                             <constraint firstItem="Ye7-nB-Dr5" firstAttribute="leading" secondItem="I0I-jE-QYa" secondAttribute="leading" id="By3-on-xF3"/>
@@ -287,7 +287,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" name="AppBackground"/>
                                                         <constraints>
                                                             <constraint firstItem="YKj-L2-GxH" firstAttribute="top" secondItem="gKz-hg-7dn" secondAttribute="top" id="05c-l9-rMo"/>
                                                             <constraint firstAttribute="trailing" secondItem="Yrn-4A-FKs" secondAttribute="trailing" id="5Uh-xw-EBS"/>
@@ -317,7 +317,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" name="AppBackground"/>
                                                         <constraints>
                                                             <constraint firstItem="lsi-G3-1YR" firstAttribute="leading" secondItem="owr-ad-C3Q" secondAttribute="leading" id="9SJ-If-9qA"/>
                                                             <constraint firstAttribute="trailing" secondItem="yjf-WJ-Qzb" secondAttribute="trailing" id="CPq-Jj-JFc"/>
@@ -331,7 +331,7 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="stateUnAvailable"/>
                                         <constraints>
                                             <constraint firstItem="hvL-xY-EX6" firstAttribute="top" secondItem="mZR-Gi-Sh4" secondAttribute="top" id="0en-DS-Pua"/>
                                             <constraint firstAttribute="bottom" secondItem="hvL-xY-EX6" secondAttribute="bottom" id="2hI-L1-CPR"/>
@@ -341,7 +341,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="mZR-Gi-Sh4" firstAttribute="top" secondItem="tAl-lR-7aW" secondAttribute="bottom" constant="24" id="3cN-gf-XOe"/>
                                     <constraint firstItem="tAl-lR-7aW" firstAttribute="leading" secondItem="36K-4C-Js4" secondAttribute="leading" constant="20" id="LLX-h8-7rt"/>
@@ -360,7 +360,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="36K-4C-Js4" firstAttribute="leading" secondItem="3w7-L6-0mG" secondAttribute="leading" id="6fv-TQ-GID"/>
                             <constraint firstItem="36K-4C-Js4" firstAttribute="top" secondItem="3w7-L6-0mG" secondAttribute="top" id="F9r-5t-jau"/>
@@ -413,5 +413,11 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="stateUnAvailable">
+            <color red="0.8784" green="0.8784" blue="0.8784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

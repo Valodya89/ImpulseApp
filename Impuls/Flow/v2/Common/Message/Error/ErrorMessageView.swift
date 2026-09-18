@@ -14,7 +14,7 @@ struct ErrorMessageView: View {
         HStack {
             Image(systemName: "xmark.circle.fill")
                 .resizable()
-                .foregroundColor(.white)
+                .foregroundColor(.alwaysWhite)
                 .frame(width: 32, height: 32)
                 .padding(.leading, 20)
             
@@ -24,7 +24,7 @@ struct ErrorMessageView: View {
                     .lineLimit(2)
             }
             .multilineTextAlignment(.leading)
-            .foregroundColor(.white)
+            .foregroundColor(.alwaysWhite)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.vertical, 16)
             .padding(.trailing, 20)

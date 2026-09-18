@@ -28,11 +28,11 @@
                                 <subviews>
                                     <tableView contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjb-ec-YcP">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="738"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <inset key="scrollIndicatorInsets" minX="0.0" minY="3" maxX="0.0" maxY="0.0"/>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="qjb-ec-YcP" secondAttribute="trailing" id="4Oe-9G-61f"/>
                                     <constraint firstAttribute="bottom" secondItem="qjb-ec-YcP" secondAttribute="bottom" id="4iV-W1-ojB"/>
@@ -80,7 +80,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="oeC-tu-x1R" firstAttribute="top" secondItem="a5e-sI-opF" secondAttribute="top" constant="8" id="4Ic-Hx-t3q"/>
                                     <constraint firstAttribute="bottom" secondItem="oeC-tu-x1R" secondAttribute="bottom" id="8Ey-8K-tNu"/>
@@ -90,7 +90,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FMw-T5-EIh"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="a5e-sI-opF" firstAttribute="top" secondItem="FMw-T5-EIh" secondAttribute="top" id="2hm-ec-3gz"/>
                             <constraint firstItem="FMw-T5-EIh" firstAttribute="trailing" secondItem="KML-vR-gmK" secondAttribute="trailing" id="49M-In-Nx3"/>
@@ -157,5 +157,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

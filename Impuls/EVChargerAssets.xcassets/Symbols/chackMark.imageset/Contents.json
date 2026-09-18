@@ -1,12 +1,22 @@
 {
-  "images" : [
+  "images": [
     {
-      "filename" : "Vector.png",
-      "idiom" : "universal"
+      "filename": "Vector.png",
+      "idiom": "universal"
+    },
+    {
+      "filename": "dark_Vector.png",
+      "idiom": "universal",
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ]
     }
   ],
-  "info" : {
-    "author" : "xcode",
-    "version" : 1
+  "info": {
+    "author": "xcode",
+    "version": 1
   }
 }

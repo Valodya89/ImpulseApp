@@ -142,7 +142,7 @@
                                                                         <rect key="frame" x="12" y="12" width="51" height="51"/>
                                                                     </imageView>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" name="AppBackground"/>
                                                                 <constraints>
                                                                     <constraint firstItem="a4a-jw-G8y" firstAttribute="top" secondItem="QTz-B9-3l1" secondAttribute="top" constant="12" id="3xn-rF-O7s"/>
                                                                     <constraint firstAttribute="bottom" secondItem="a4a-jw-G8y" secondAttribute="bottom" constant="12" id="64g-ft-2co"/>
@@ -226,7 +226,7 @@
                                                                         <rect key="frame" x="12" y="12" width="51" height="51"/>
                                                                     </imageView>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" name="AppBackground"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="JSn-52-iNF" secondAttribute="trailing" constant="12" id="HkB-Nt-aWO"/>
                                                                     <constraint firstItem="JSn-52-iNF" firstAttribute="top" secondItem="6BF-Bm-dI2" secondAttribute="top" constant="12" id="IwZ-AN-hgF"/>
@@ -311,7 +311,7 @@
                                                                         <rect key="frame" x="12" y="12" width="51" height="51"/>
                                                                     </imageView>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" name="AppBackground"/>
                                                                 <constraints>
                                                                     <constraint firstItem="a7H-vP-jUj" firstAttribute="leading" secondItem="hlL-5L-JA4" secondAttribute="leading" constant="12" id="0cp-1b-AYM"/>
                                                                     <constraint firstAttribute="width" secondItem="hlL-5L-JA4" secondAttribute="height" id="Ts4-Ps-lxt"/>
@@ -398,7 +398,7 @@
                                                                         <rect key="frame" x="12" y="12" width="51" height="51"/>
                                                                     </imageView>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" name="AppBackground"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="gUS-NV-Yah" secondAttribute="height" id="7ka-Pf-Myh"/>
                                                                     <constraint firstItem="vza-ak-J5q" firstAttribute="leading" secondItem="gUS-NV-Yah" secondAttribute="leading" constant="12" id="8pJ-ka-eaC"/>
@@ -553,7 +553,7 @@
                                                                         <rect key="frame" x="12" y="12" width="312" height="51"/>
                                                                     </imageView>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" name="AppBackground"/>
                                                                 <constraints>
                                                                     <constraint firstItem="rLe-RG-Yu9" firstAttribute="leading" secondItem="NrI-t8-k0M" secondAttribute="leading" constant="12" id="MQn-W6-mIe"/>
                                                                     <constraint firstAttribute="trailing" secondItem="rLe-RG-Yu9" secondAttribute="trailing" constant="12" id="ipM-Le-BHJ"/>
@@ -651,7 +651,7 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="96p-gt-RP2" secondAttribute="trailing" constant="10" id="Ezw-3w-8ei"/>
-                                            <constraint firstAttribute="bottom" secondItem="96p-gt-RP2" secondAttribute="bottom" constant="20" id="VUY-6y-54b"/>
+                                            <constraint firstAttribute="bottom" secondItem="96p-gt-RP2" secondAttribute="bottom" constant="20" priority="250" id="VUY-6y-54b"/>
                                             <constraint firstItem="96p-gt-RP2" firstAttribute="leading" secondItem="SjV-UT-zf6" secondAttribute="leading" constant="10" id="a1h-tG-ldw"/>
                                             <constraint firstItem="96p-gt-RP2" firstAttribute="top" secondItem="SjV-UT-zf6" secondAttribute="top" constant="10" id="fL5-XX-RBa"/>
                                         </constraints>
@@ -673,7 +673,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.95294117649999999" green="0.96862745100000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="mimoGrayLight"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="yBR-HF-CTo" secondAttribute="trailing" id="BUQ-tL-Fkr"/>
                                     <constraint firstItem="yBR-HF-CTo" firstAttribute="top" secondItem="SjV-UT-zf6" secondAttribute="bottom" id="Qdw-Xf-KtC"/>
@@ -697,11 +697,11 @@
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Scooter">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" name="AlwaysWhite"/>
                                                 </state>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="Gray4"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="bh7-zq-g6g" secondAttribute="height" id="LwI-Za-2aM"/>
                                             <constraint firstAttribute="trailing" secondItem="nra-uV-toO" secondAttribute="trailing" id="q2w-av-6PJ"/>
@@ -718,11 +718,11 @@
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Bike">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" name="AlwaysWhite"/>
                                                 </state>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="Gray4"/>
                                         <constraints>
                                             <constraint firstItem="Su1-1j-O2L" firstAttribute="leading" secondItem="CXZ-Un-GHZ" secondAttribute="leading" id="28p-QW-7xt"/>
                                             <constraint firstAttribute="width" secondItem="CXZ-Un-GHZ" secondAttribute="height" id="I3d-RU-bHp"/>
@@ -740,11 +740,11 @@
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Charger">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" name="AlwaysWhite"/>
                                                 </state>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="Gray4"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="2Un-Pv-GXx" secondAttribute="height" id="1nL-9f-KHq"/>
                                             <constraint firstItem="n9b-PG-elZ" firstAttribute="leading" secondItem="2Un-Pv-GXx" secondAttribute="leading" id="699-qa-8ir"/>
@@ -767,7 +767,7 @@
                                     <constraint firstAttribute="width" secondItem="gfX-MY-cl8" secondAttribute="height" id="w4Y-Fs-uEO"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="ic_scan"/>
+                                <state key="normal" image="ic_scan_fixed"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="30"/>
@@ -779,7 +779,7 @@
                             </button>
                             <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QIf-bf-8Gf">
                                 <rect key="frame" x="0.0" y="170" width="368" height="90"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="jve-4K-Rlm"/>
                                 </constraints>
@@ -901,7 +901,7 @@
                                     <constraint firstAttribute="width" constant="60" id="gCS-HZ-cTC"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="ic_scan"/>
+                                <state key="normal" image="ic_scan_fixed"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="30"/>
@@ -913,7 +913,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NHp-r8-JZW"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="UAd-ss-Vvv" firstAttribute="centerX" secondItem="NHp-r8-JZW" secondAttribute="centerX" id="LHh-lA-nSr"/>
                             <constraint firstItem="NHp-r8-JZW" firstAttribute="bottom" secondItem="UAd-ss-Vvv" secondAttribute="bottom" constant="-30" id="jvY-m9-66x"/>
@@ -972,5 +972,17 @@
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <namedColor name="AlwaysWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Gray4">
+            <color red="0.7333" green="0.7333" blue="0.7333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoGrayLight">
+            <color red="0.9647" green="0.9725" blue="0.9843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

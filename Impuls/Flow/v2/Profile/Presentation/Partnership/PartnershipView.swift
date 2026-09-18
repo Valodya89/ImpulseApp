@@ -24,7 +24,7 @@ struct PartnershipView: View {
                     } label: {
                         Image(systemName: "xmark")
                             .resizable()
-                            .foregroundColor(.black)
+                            .foregroundColor(.appLabel)
                             .frame(width: 18, height: 18)
                             .padding(8)
                     }
@@ -35,10 +35,10 @@ struct PartnershipView: View {
                 
                 Text("MOBILE_partnership_application_title".localized())
                     .font(.robotoBold17)
-                    .foregroundColor(.black)
+                    .foregroundColor(.appLabel)
             }
             .frame(height: 54)
-            .background(Color.white)
+            .background(Color.appBackground)
             
             ScrollView(.vertical) {
                 
@@ -52,7 +52,7 @@ struct PartnershipView: View {
                         .frame(height: 63)
                     
                     ZStack {
-                        Color.white
+                        Color.appBackground
                         
                         VStack(alignment: .leading, spacing: 5) {
                             HStack {
@@ -71,7 +71,7 @@ struct PartnershipView: View {
                                     
                                     Image(systemName: "chevron.down")
                                         .resizable()
-                                        .foregroundColor(.black05)
+                                        .foregroundColor(.label05)
                                         .frame(width: 12, height: 7)
                                         .fixedSize()
                                 }
@@ -81,12 +81,12 @@ struct PartnershipView: View {
                                 
                                 Text(viewModel.selectedCountry?.dial_code ?? "")
                                     .font(.robotoBold17)
-                                    .foregroundColor(.black075)
+                                    .foregroundColor(.label075)
                                     .padding(.leading, 10)
                                 
                                 TextField(viewModel.exampleNumber ?? "", text: $viewModel.phoneNumber)
                                     .font(.robotoRegular17)
-                                    .foregroundColor(.black075)
+                                    .foregroundColor(.label075)
                                     .padding(.leading, 5)
                                     .keyboardType(.numberPad)
                                 
@@ -99,7 +99,7 @@ struct PartnershipView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .background(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.black, lineWidth: 0.5)
+                            .stroke(Color.appLabel, lineWidth: 0.5)
                     )
                     .frame(height: 63)
                     .frame(maxWidth: .infinity)

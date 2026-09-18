@@ -99,7 +99,7 @@ class MimoOneTimeCodeTextField: UITextField {
             if i < text.count {
                 let index = text.index(text.startIndex, offsetBy: i)
                 currentLabel.text = String(text[index])
-                currentLabel.textColor = .black
+                currentLabel.textColor = .mimoBlack
 
             } else {
                 currentLabel.textColor =  UIColor(named: "mimoBlack")

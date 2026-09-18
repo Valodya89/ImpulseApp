@@ -1,12 +1,22 @@
 {
-  "images" : [
+  "images": [
     {
-      "filename" : "wallet_arrow_circle.pdf",
-      "idiom" : "universal"
+      "filename": "wallet_arrow_circle.pdf",
+      "idiom": "universal"
+    },
+    {
+      "filename": "dark_wallet_arrow_circle.pdf",
+      "idiom": "universal",
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ]
     }
   ],
-  "info" : {
-    "author" : "xcode",
-    "version" : 1
+  "info": {
+    "author": "xcode",
+    "version": 1
   }
 }

@@ -30,7 +30,7 @@ final class MAToolBar: UIView {
     
     
     var titleBarFont: (deActive: UIFont, active: UIFont) = (UIFont(name: "Roboto-Light", size: 17)!,UIFont(name: "Roboto", size: 17)!)
-    var titleBarColor: (deActive: UIColor,active: UIColor) = (#colorLiteral(red: 0.4470588235, green: 0.4392156863, blue: 0.4392156863, alpha: 1), .black)
+    var titleBarColor: (deActive: UIColor,active: UIColor) = (.appSecondaryLabel, .appLabel)
     
     var titleSpacing: CGFloat = 0
     

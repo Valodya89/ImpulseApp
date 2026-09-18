@@ -82,7 +82,7 @@
                     </connections>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" name="AppBackground"/>
             <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="oGh-3T-AfF" firstAttribute="top" secondItem="KvQ-le-eY2" secondAttribute="bottom" constant="7" id="0Lu-qH-Glq"/>
@@ -132,5 +132,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

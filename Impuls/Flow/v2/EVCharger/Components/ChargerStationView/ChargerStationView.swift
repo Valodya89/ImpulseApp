@@ -41,7 +41,7 @@ struct ChargerStationView: View {
                         .padding(.vertical, 2)
                         .background(
                             Capsule()
-                                .fill(Color.white)
+                                .fill(Color.evMainBg1)
                         )
                         .overlay(
                             Capsule()
@@ -92,7 +92,7 @@ struct ChargerStationView: View {
                 } label: {
                     Text(chooseButtonTitle)
                         .font(.robotoBold15)
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color.alwaysWhite)
                         .frame(maxWidth: .infinity)
                         .padding(10)
                         .background(Color.evbrandCyan80)

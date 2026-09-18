@@ -108,7 +108,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" name="AppBackground"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="H5Y-YM-zOn" secondAttribute="trailing" id="62k-ux-Yev"/>
                                                 <constraint firstItem="H5Y-YM-zOn" firstAttribute="top" secondItem="10W-lf-5XX" secondAttribute="bottom" constant="4" id="GB8-oJ-CGg"/>
@@ -138,7 +138,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" name="AppBackground"/>
                                             <constraints>
                                                 <constraint firstItem="dWF-Vn-hKm" firstAttribute="leading" secondItem="MTt-rM-vlH" secondAttribute="leading" id="6xg-Mu-bus"/>
                                                 <constraint firstAttribute="trailing" secondItem="Og1-en-Ocf" secondAttribute="trailing" id="7v3-ts-E3T"/>
@@ -168,7 +168,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" name="AppBackground"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="uwl-aS-SJT" secondAttribute="trailing" id="DW3-0s-iGt"/>
                                                 <constraint firstAttribute="bottom" secondItem="uwl-aS-SJT" secondAttribute="bottom" id="M1n-cI-iEh"/>
@@ -182,7 +182,7 @@
                                     </subviews>
                                 </stackView>
                             </subviews>
-                            <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" name="stateUnAvailable"/>
                             <constraints>
                                 <constraint firstItem="Nr4-0M-h4x" firstAttribute="top" secondItem="B35-4l-cFx" secondAttribute="top" id="2vL-qK-gF0"/>
                                 <constraint firstAttribute="bottom" secondItem="Nr4-0M-h4x" secondAttribute="bottom" id="AKM-Ej-6Vn"/>
@@ -200,7 +200,7 @@
                             <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="16"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="OK">
-                                <color key="titleColor" name="mimoDarkGray"/>
+                                <color key="titleColor" name="OnBrandLabel"/>
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -213,7 +213,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" name="AppBackground"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Lqu-HN-20W" secondAttribute="trailing" constant="20" id="4sw-QE-TS5"/>
                         <constraint firstItem="Lqu-HN-20W" firstAttribute="top" secondItem="Z4e-up-ey0" secondAttribute="bottom" constant="20" id="BN6-GF-BL8"/>
@@ -274,5 +274,14 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="OnBrandLabel">
+            <color red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="stateUnAvailable">
+            <color red="0.8784" green="0.8784" blue="0.8784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

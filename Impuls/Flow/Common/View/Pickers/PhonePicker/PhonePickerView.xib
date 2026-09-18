@@ -52,7 +52,7 @@
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" name="AppBackground"/>
                     <constraints>
                         <constraint firstItem="RAD-Zp-Le8" firstAttribute="leading" secondItem="0Ns-3z-kBv" secondAttribute="leading" id="0aZ-Oe-j8K"/>
                         <constraint firstItem="RAD-Zp-Le8" firstAttribute="centerY" secondItem="Tbj-Lz-Lpw" secondAttribute="centerY" constant="2" id="7GI-gm-OK7"/>
@@ -81,7 +81,7 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" name="AppBackground"/>
             <constraints>
                 <constraint firstItem="wAD-nN-BIi" firstAttribute="centerY" secondItem="0Ns-3z-kBv" secondAttribute="centerY" constant="-1" id="ADJ-wJ-FMI"/>
                 <constraint firstItem="Bla-yn-Rld" firstAttribute="top" secondItem="It7-Eu-jTF" secondAttribute="top" constant="12.5" id="AGz-TQ-0BG"/>
@@ -111,5 +111,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

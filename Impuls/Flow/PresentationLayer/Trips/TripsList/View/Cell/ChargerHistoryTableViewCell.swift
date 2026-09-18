@@ -41,7 +41,7 @@ final class ChargerHistoryTableViewCell: BaseTableViewCell {
         amountContainerView.layer.cornerRadius = 4
         contentView.addSubview(amountContainerView)
         amountLabel.font = .systemFont(ofSize: 15, weight: .semibold)
-        amountLabel.textColor = .white
+        amountLabel.textColor = .alwaysWhite
         amountContainerView.addSubview(amountLabel)
         
         NSLayoutConstraint.activate([

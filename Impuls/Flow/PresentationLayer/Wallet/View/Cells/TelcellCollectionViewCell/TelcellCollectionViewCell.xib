@@ -34,7 +34,7 @@
                                 <rect key="frame" x="23" y="189" width="309" height="18"/>
                                 <gestureRecognizers/>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="15"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="AlwaysWhite"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
                                 <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="20" maxY="0.0"/>
                                 <state key="normal" title="Choose a current number [num]" image="ic_checkBox_empty">
@@ -76,7 +76,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Zo-1d-Tso" customClass="MIPhonePicker" customModule="MimoBike" customModuleProvider="target">
                                 <rect key="frame" x="17" y="61" width="310" height="63"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="63" id="mEb-8E-nfa"/>
                                 </constraints>
@@ -91,7 +91,7 @@
                                 <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="3" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="-1" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Find my contacts" image="ic_findContects">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" name="AlwaysWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_wallet_find_from_contacts"/>
@@ -163,5 +163,11 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AlwaysWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

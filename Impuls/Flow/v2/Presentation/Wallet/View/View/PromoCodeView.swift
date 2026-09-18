@@ -42,7 +42,7 @@ struct PromoCodeView: View {
             .padding(.vertical, 10)
         }
         .frame(height: 64)
-        .background(Color.white)
+        .background(Color.appBackground)
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .overlay(
             RoundedRectangle(cornerRadius: 8)

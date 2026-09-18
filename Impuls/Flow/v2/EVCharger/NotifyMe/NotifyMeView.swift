@@ -52,7 +52,7 @@ struct NotifyMeView: View {
             ZStack {
                 Color(UIColor.mimoYellow500)
                 
-                Image("ev_envelope")
+                Image("ev_envelope_fixed")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 94, height: 94)
@@ -106,19 +106,19 @@ struct NotifyMeView: View {
             ZStack {
                 Color(UIColor.mimoYellow500)
                 
-                Image("ev_envelope")
+                Image("ev_envelope_fixed")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 94, height: 94)
                 
                 ZStack {
                     Circle()
-                        .fill(Color.white)
+                        .fill(Color.alwaysWhite)
                     
                     Image(systemName: "checkmark")
                         .resizable()
                         .frame(width: 18, height: 18)
-                        .foregroundColor(.black)
+                        .foregroundColor(.alwaysBlack)
                 }
                 .frame(width: 38, height: 38)
                 .padding(.leading, 70)

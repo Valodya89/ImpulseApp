@@ -20,7 +20,7 @@ class MultiTransportViewCollectionViewCell: BaseCollectionViewCell {
     
     var isChecked: Bool = false {
         didSet {
-            containerView.borderColor = isChecked ? .black : .clear
+            containerView.borderColor = isChecked ? .appLabel : .clear
         }
     }
 
@@ -28,6 +28,11 @@ class MultiTransportViewCollectionViewCell: BaseCollectionViewCell {
         super.awakeFromNib()
         
         containerView.addShadow(color: .black, offset: CGSize(width: 0, height: 2), opacity: 0.3, shadowRadius: 6)
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        containerView.borderColor = isChecked ? .appLabel : .clear
     }
 
 }

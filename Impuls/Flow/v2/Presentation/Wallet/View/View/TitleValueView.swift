@@ -29,7 +29,7 @@ struct TitleValueView: View {
         HStack(spacing: 10) {
             Text(title)
                 .font(.system(size: 15))
-                .foregroundColor(.black)
+                .foregroundColor(.appLabel)
                 .padding(.leading, 14)
             
             Spacer()

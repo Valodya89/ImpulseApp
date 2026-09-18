@@ -25,19 +25,19 @@ struct SubscriptionPlanItemView: View {
                 HStack {
                     Text(plan.name)
                         .font(.system(size: 17, weight: .semibold))
-                        .foregroundColor(.black08)
+                        .foregroundColor(.appLabel.opacity(0.8))
                     
                     Spacer()
                     
                     Text("\(String(format: "%.0f", plan.price)) AMD")
                         .font(.system(size: 17, weight: .semibold))
-                        .foregroundColor(.black08)
+                        .foregroundColor(.appLabel.opacity(0.8))
                 }
                 
                 Divider()
                 
                 Text(subtitle ?? plan.description)
-                    .foregroundColor(.black)
+                    .foregroundColor(.appLabel)
                     .font(.system(size: 14, weight: .light))
                     .minimumScaleFactor(0.5)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -45,7 +45,7 @@ struct SubscriptionPlanItemView: View {
             .padding(.horizontal, 14)
             .padding(.vertical, 16)
         }
-        .background(Color.white)
+        .background(Color.appBackground)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
                 .stroke(Color.brandYellow, lineWidth: isSelected ? 4 : 0)
@@ -62,7 +62,7 @@ struct SubscriptionPlanItemView: View {
                         Image(systemName: "checkmark")
                             .resizable()
                             .font(.title.bold())
-                            .foregroundColor(.black)
+                            .foregroundColor(.onBrandLabel)
                             .frame(width: 7.7, height: 7)
                             .padding(.bottom, 3)
                     )

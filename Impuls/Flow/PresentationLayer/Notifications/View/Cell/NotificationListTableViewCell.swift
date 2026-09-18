@@ -16,7 +16,12 @@ class NotificationListTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        backgroundColor = .mimoGray100
+        contentView.backgroundColor = .mimoGray100
+        titleLabel.textColor = .appLabel
+        dateLabel.textColor = .appLabel
+        descriptionLabel.backgroundColor = .clear
+        descriptionLabel.textColor = .appLabel
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

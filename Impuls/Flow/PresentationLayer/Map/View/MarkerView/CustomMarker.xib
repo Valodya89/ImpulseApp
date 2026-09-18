@@ -31,7 +31,7 @@
                 </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" name="AppBackground"/>
             <constraints>
                 <constraint firstItem="S6w-Lh-6X9" firstAttribute="top" secondItem="Bbh-6v-yWF" secondAttribute="top" constant="-10" id="BbH-zO-Wd4"/>
                 <constraint firstItem="S6w-Lh-6X9" firstAttribute="trailing" secondItem="Bbh-6v-yWF" secondAttribute="trailing" constant="10" id="JYS-hh-myO"/>
@@ -50,5 +50,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

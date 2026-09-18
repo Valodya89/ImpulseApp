@@ -28,6 +28,13 @@ class DebtTBCell: UITableViewCell {
         transferBtn.layer.borderWidth = 1.0
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            transferBtn.layer.borderColor = UIColor.mimoBlack.cgColor
+        }
+    }
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

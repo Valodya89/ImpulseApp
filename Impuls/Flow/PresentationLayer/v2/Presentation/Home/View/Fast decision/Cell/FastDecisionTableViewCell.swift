@@ -81,7 +81,7 @@ struct FastDecisionRowView: View {
                 .frame(height: 1)
                 .padding(.leading, 16)
         }
-        .background(Color.white)
+        .background(Color.appBackground)
         // A hosting view inherits the window's safe area, which would squeeze the
         // row that happens to overlap the home indicator.
         .ignoresSafeArea()
@@ -120,10 +120,15 @@ struct FastDecisionRowView: View {
     /// row to the thing in front of them by this, so it stays next to the name.
     private func codePill(_ code: String) -> some View {
         HStack(spacing: 5) {
+            // The asset is a fixed dark-grey SVG with no dark variant; drawn as a
+            // template it takes the label colour, so it stays black in light mode
+            // and turns white in dark mode instead of vanishing into the row.
             Image(.qrIcon)
+                .renderingMode(.template)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 13, height: 13)
+                .foregroundColor(Color.appLabel)
 
             Text(code)
                 .font(.robotoMedium13)

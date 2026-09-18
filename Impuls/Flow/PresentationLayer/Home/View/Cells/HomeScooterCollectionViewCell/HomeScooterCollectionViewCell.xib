@@ -32,7 +32,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RZo-bb-g14" userLabel="shadowView">
                                 <rect key="frame" x="10" y="10" width="268" height="164"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lf4-3M-fK3">
                                 <rect key="frame" x="5" y="5" width="278" height="174"/>
@@ -99,7 +99,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstItem="Sbl-UG-Dc2" firstAttribute="centerX" secondItem="vjF-kI-SuF" secondAttribute="centerX" id="4iG-BV-GTH"/>
                                             <constraint firstItem="vjF-kI-SuF" firstAttribute="leading" secondItem="tGu-Wp-ouJ" secondAttribute="trailing" constant="16" id="4ix-NY-exk"/>
@@ -137,7 +137,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="cvI-SV-YfR" secondAttribute="bottom" constant="2" id="Mw5-4q-PfX"/>
                                             <constraint firstAttribute="trailing" secondItem="cvI-SV-YfR" secondAttribute="trailing" constant="8" id="Rdp-b4-3TW"/>
@@ -149,7 +149,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="Zqx-7Q-Mzv" firstAttribute="top" secondItem="Lf4-3M-fK3" secondAttribute="top" constant="9" id="1TV-5l-MK2"/>
                                     <constraint firstAttribute="trailing" secondItem="l9e-3o-IFi" secondAttribute="trailing" constant="16" id="5aA-se-FHS"/>
@@ -224,5 +224,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

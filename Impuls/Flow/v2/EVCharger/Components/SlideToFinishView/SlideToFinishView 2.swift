@@ -81,7 +81,7 @@ struct SlideToFinishView: View {
         .overlay {
             if isLoading {
                 ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                    .progressViewStyle(CircularProgressViewStyle(tint: .alwaysWhite))
                     .frame(width: 24, height: 24)
             }
         }
@@ -91,7 +91,7 @@ struct SlideToFinishView: View {
     var slack: some View {
         if width != viewWidth {
             Image(systemName: "arrow.right")
-                .foregroundColor(.white)
+                .foregroundColor(.alwaysWhite)
                 .font(.robotoBold24)
                 .padding(.trailing, 20)
         }

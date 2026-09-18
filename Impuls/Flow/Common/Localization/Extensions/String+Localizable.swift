@@ -23,6 +23,13 @@ extension String {
         return Mimo.Localization.localizations[self] ?? self
     }
     
+    /// The server-driven translation, or `fallback` when the key is not on the
+    /// server yet (a bare key must never reach the screen).
+    func localized(fallback: String) -> String {
+        let value = localized()
+        return value == self ? fallback : value
+    }
+    
     /// Use this method to get key from value
     func getKey() -> String {
 //        let keyString = LocalizationModel.shared?.getKey(from: self)

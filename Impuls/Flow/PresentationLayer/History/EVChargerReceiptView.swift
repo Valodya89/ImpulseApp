@@ -99,7 +99,7 @@ struct ReceiptView: View {
                 Text("MOBILE_history_detail_share_receipt".localized())
                     .font(.robotoMedium15)
             }
-            .foregroundColor(.black)
+            .foregroundColor(.onBrandLabel)
             .frame(maxWidth: .infinity)
             .frame(height: 52)
             .background(Capsule().fill(Color.brandYellow))
@@ -141,7 +141,7 @@ struct ReceiptView: View {
         }
         .background(
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color.white)
+                .fill(Color.appBackground)
         )
     }
 
@@ -152,19 +152,19 @@ struct ReceiptView: View {
                 .scaledToFit()
                 .frame(width: 34, height: 34)
                 .padding(14)
-                .background(Circle().fill(Color.white))
+                .background(Circle().fill(Color.appBackground))
 
             Text(receipt.title)
                 .font(.robotoSemibold16)
-                .foregroundColor(.black)
+                .foregroundColor(.appLabel)
 
             Text(receipt.amount)
                 .font(.robotoBold24)
-                .foregroundColor(.black)
+                .foregroundColor(.appLabel)
 
             Text(receipt.dateLine)
                 .font(.robotoRegular12)
-                .foregroundColor(.black075)
+                .foregroundColor(.label075)
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 22)
@@ -199,12 +199,12 @@ struct ReceiptView: View {
         HStack(spacing: 12) {
             Text("MOBILE_history_detail_total".localized())
                 .font(.robotoSemibold16)
-                .foregroundColor(.black)
+                .foregroundColor(.appLabel)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             Text(receipt.amount)
                 .font(.robotoSemibold16)
-                .foregroundColor(.black)
+                .foregroundColor(.appLabel)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 6)
                 .background(Capsule().fill(Color.brandYellow))

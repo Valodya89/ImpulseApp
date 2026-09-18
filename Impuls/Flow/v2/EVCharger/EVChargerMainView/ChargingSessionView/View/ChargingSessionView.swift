@@ -22,7 +22,7 @@ struct ChargingSessionView: View {
                 } else {
                     Text("EV_CHARGER_no_active_chargings".localized())
                         .font(.robotoMedium16)
-                        .foregroundColor(Color.init(hex: "#666666"))
+                        .foregroundColor(Color.evText6)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             } else {
@@ -55,7 +55,7 @@ struct ChargingSessionView: View {
             plusAction: { viewModel.wallet() },
             bellAction: { viewModel.notifications() }
         )
-        .background(Color.init(hex: "#F2F2F2").ignoresSafeArea())
+        .background(Color.evBgColor.ignoresSafeArea())
         .onAppear {
             viewModel.onAppear()
         }
@@ -110,7 +110,7 @@ private struct ChargingSessionCard: View {
                 HStack(spacing: 12) {
                     Image(.contactSmsCircle)
                         .frame(width: 16, height: 13)
-                        .background(Color.white)
+                        .background(Color.evMainBg1)
                     VStack(alignment: .leading, spacing: 5) {
                         Text("MOBILE_mimo_support".localized())
                     }
@@ -121,7 +121,7 @@ private struct ChargingSessionCard: View {
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 18)
-                .background(Color.init(hex: "#F2F2F2"))
+                .background(Color.evBgColor)
                 .cornerRadius(12, corners: .allCorners)
                 .onTapGesture {
                     if let telegramURL = URL(string: "tg://resolve?domain=@impulse_power_help") {
@@ -135,7 +135,7 @@ private struct ChargingSessionCard: View {
                             .font(.robotoRegular16)
 
                         Text(session.connectorId)
-                            .foregroundColor(Color.init(hex: "#666666"))
+                            .foregroundColor(Color.evText6)
                             .font(.robotoSemibold40)
                     }
 
@@ -149,7 +149,7 @@ private struct ChargingSessionCard: View {
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 18)
-                .background(Color.init(hex: "#F2F2F2"))
+                .background(Color.evBgColor)
                 .cornerRadius(12, corners: .allCorners)
 
                 HStack(alignment: .top, spacing: 16) {
@@ -160,7 +160,7 @@ private struct ChargingSessionCard: View {
                             VStack(spacing: 8) {
                                 Text("EV_CHARGER_price".localized())
                                     .frame(maxWidth: .infinity, alignment: .leading)
-                                    .foregroundColor(Color.init(hex: "#666666"))
+                                    .foregroundColor(Color.evText6)
                                     .font(.robotoRegular16)
                                 Text(session.priceKWt)
                                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -171,7 +171,7 @@ private struct ChargingSessionCard: View {
                             VStack(spacing: 8) {
                                 Text("EV_CHARGER_charger_speed".localized())
                                     .frame(maxWidth: .infinity, alignment: .leading)
-                                    .foregroundColor(Color.init(hex: "#666666"))
+                                    .foregroundColor(Color.evText6)
                                     .font(.robotoRegular16)
                                 Text(session.speed)
                                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -182,7 +182,7 @@ private struct ChargingSessionCard: View {
                             VStack(spacing: 8) {
                                 Text("EV_CHARGER_charged".localized())
                                     .frame(maxWidth: .infinity, alignment: .leading)
-                                    .foregroundColor(Color.init(hex: "#666666"))
+                                    .foregroundColor(Color.evText6)
                                     .font(.robotoRegular16)
                                 Text(session.kwtsCharged)
                                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -192,7 +192,7 @@ private struct ChargingSessionCard: View {
                         }
                         .padding(.horizontal, 16)
                         .padding(.vertical, 18)
-                        .background(Color.init(hex: "#F2F2F2"))
+                        .background(Color.evBgColor)
                         .cornerRadius(12, corners: .allCorners)
                     }
                     .frame(maxHeight: .infinity)
@@ -200,7 +200,7 @@ private struct ChargingSessionCard: View {
 
                 HStack {
                     Text("EV_CHARGER_session_total".localized())
-                        .foregroundColor(Color.init(hex: "#666666"))
+                        .foregroundColor(Color.evText6)
                         .font(.robotoRegular16)
 
                     Spacer()
@@ -211,7 +211,7 @@ private struct ChargingSessionCard: View {
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 18)
-                .background(Color.init(hex: "#F2F2F2"))
+                .background(Color.evBgColor)
                 .cornerRadius(12, corners: .allCorners)
 
                 HStack() {
@@ -225,7 +225,7 @@ private struct ChargingSessionCard: View {
             }
         }
         .padding()
-        .background(Color.white)
+        .background(Color.evBgColor4)
         .cornerRadius(16)
     }
 }

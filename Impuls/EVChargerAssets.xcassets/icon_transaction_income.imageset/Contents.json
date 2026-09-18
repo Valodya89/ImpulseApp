@@ -1,12 +1,22 @@
 {
-  "images" : [
+  "images": [
     {
-      "filename" : "icon_transaction_income.svg",
-      "idiom" : "universal"
+      "filename": "icon_transaction_income.svg",
+      "idiom": "universal"
+    },
+    {
+      "filename": "dark_icon_transaction_income.svg",
+      "idiom": "universal",
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ]
     }
   ],
-  "info" : {
-    "author" : "xcode",
-    "version" : 1
+  "info": {
+    "author": "xcode",
+    "version": 1
   }
 }

@@ -14,6 +14,7 @@ class MimoSplashWorker: MimoSplashWorkerProtocol {
     private let authRepository = AuthRepository()
     private let homeRepasitory = HomeRepository()
     private let evChargerRepository = EVChargerRepository()
+    private let localizationStore = LocalizationStore.shared
     
     var isUserLoggedIn: Bool {
         keychain.isUserLoggedIn()
@@ -46,7 +47,27 @@ class MimoSplashWorker: MimoSplashWorkerProtocol {
         .eraseToAnyPublisher()
     }
     
+    /// Texts for the language. With a saved copy on disk the copy is returned
+    /// at once and the backend is asked in the background; the answer is
+    /// merged in and saved for the next launch. Without a copy (first launch)
+    /// the backend answer is awaited, as before, and then saved.
     func getTranslations(languageCode: String) -> AnyPublisher<[String: String], Never> {
+        let fetch = fetchTranslations(languageCode: languageCode)
+            .map { [localizationStore] fetched -> [String: String] in
+                localizationStore.store(fetched: fetched, languageCode: languageCode)
+            }
+            .eraseToAnyPublisher()
+        
+        guard let cached = localizationStore.load(languageCode: languageCode) else {
+            return fetch
+        }
+        
+        localizationStore.runInBackground(fetch)
+        
+        return Just(cached).eraseToAnyPublisher()
+    }
+    
+    private func fetchTranslations(languageCode: String) -> AnyPublisher<[String: String], Never> {
         let first = Publishers.Zip4(
             getScooterTranslations(languageCode: languageCode),
             getBikeTranslations(languageCode: languageCode),

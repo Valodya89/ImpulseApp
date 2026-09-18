@@ -24,7 +24,7 @@ struct ProductCardView: View {
         .frame(height: 93)
         .background(
             RoundedStateView(isSelected: product.isSelected)
-                .background(Color.white.cornerRadius(8, corners: .allCorners))
+                .background(Color.evMainBg1.cornerRadius(8, corners: .allCorners))
         )
     }
 }

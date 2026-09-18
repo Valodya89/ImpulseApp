@@ -157,16 +157,7 @@ final class AccountViewController: UIViewController, StoryboardInitializable {
     }
     
     private func goToWalletVC() {
-        guard let user = user else { return }
-        guard let account = account else { return }
-        let walletVC = WalletViewController.initFromStoryboard(name: Constant.Storyboards.wallet)
-//        navigationController?.isNavigationBarHidden = false
-        walletVC.user = AccountMapper.toUserResult(from: user)
-        walletVC.account = AccountMapper.toUserResult(from: account)
-        walletVC.avataturURLString = avataturURLString
-        
-        let walletNavVC = WalletNavigationController(rootViewController: walletVC)
-        self.present(walletNavVC, animated: true)
+        self.present(WalletHostingController(), animated: true)
     }
     
     private func configTutorialView(isShow: Bool) {

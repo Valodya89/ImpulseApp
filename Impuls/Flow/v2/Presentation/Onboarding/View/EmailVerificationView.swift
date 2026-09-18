@@ -40,7 +40,7 @@ struct EmailVerificationView: View {
                         Image(systemName: "chevron.left")
                             .imageScale(.large)
                             .font(.system(size: 18, weight: .medium))
-                            .foregroundColor(.black075)
+                            .foregroundColor(.label075)
                     }
                     
                     Spacer()
@@ -48,7 +48,7 @@ struct EmailVerificationView: View {
                 
                 Text("")
                     .font(.robotoMedium20)
-                    .foregroundColor(.black08)
+                    .foregroundColor(.appLabel.opacity(0.8))
             }
             .frame(height: 44)
             .padding(.horizontal, 20)
@@ -60,7 +60,7 @@ struct EmailVerificationView: View {
                         
                         Image(systemName: "envelope")
                             .resizable()
-                            .foregroundColor(.black)
+                            .foregroundColor(.onBrandLabel)
                             .font(Font.title.weight(.light))
                             .frame(width: 84, height: 64)
                     }
@@ -69,18 +69,18 @@ struct EmailVerificationView: View {
                     
                     Text("MOBILE_verify_please".localized())
                         .font(.robotoBold24)
-                        .foregroundColor(.black)
+                        .foregroundColor(.appLabel)
                         .multilineTextAlignment(.center)
                     
                     VStack(spacing: 8) {
                         Text("MOBILE_verify_sent_email".localized())
                             .font(.robotoRegular16)
-                            .foregroundColor(.black05)
+                            .foregroundColor(.label05)
                         
                         Text(email)
                             .font(.robotoBold16)
-                            .accentColor(.black)
-                            .foregroundColor(.black)
+                            .accentColor(.appLabel)
+                            .foregroundColor(.appLabel)
                             .disabled(true)
                     }
                     
@@ -89,11 +89,11 @@ struct EmailVerificationView: View {
                             .lineLimit(nil)
                             .multilineTextAlignment(.center)
                             .font(.robotoRegular16)
-                            .foregroundColor(.black05)
+                            .foregroundColor(.label05)
                         
                         Text("spam folder")
                             .font(.robotoBold16)
-                            .foregroundColor(.black)
+                            .foregroundColor(.appLabel)
                     }
                 }
                 .padding(.top, 60)
@@ -125,7 +125,7 @@ struct EmailVerificationView: View {
                 viewModel.resendCode()
             } label: {
                 Text("MOBILE_verify_resend_button".localized())
-                    .foregroundColor(.black)
+                    .foregroundColor(.appLabel)
                     .font(.robotoMedium15)
                     .underline()
             }
@@ -154,7 +154,7 @@ struct EmailVerificationView: View {
                         Image(systemName: "chevron.left")
                             .imageScale(.large)
                             .font(.system(size: 18, weight: .medium))
-                            .foregroundColor(.black075)
+                            .foregroundColor(.label075)
                     }
                     
                     Spacer()
@@ -162,7 +162,7 @@ struct EmailVerificationView: View {
                 
                 Text("")
                     .font(.robotoMedium20)
-                    .foregroundColor(.black08)
+                    .foregroundColor(.appLabel.opacity(0.8))
             }
             .frame(height: 44)
             .padding(.horizontal, 20)
@@ -175,18 +175,18 @@ struct EmailVerificationView: View {
                         
                         Image(systemName: "envelope")
                             .resizable()
-                            .foregroundColor(.black)
+                            .foregroundColor(.onBrandLabel)
                             .font(Font.title.weight(.light))
                             .frame(width: 84, height: 64)
                         
                         ZStack {
                             Circle()
-                                .fill(Color.white)
+                                .fill(Color.alwaysWhite)
                             
                             Image(systemName: "checkmark")
                                 .resizable()
                                 .frame(width: 18, height: 18)
-                                .foregroundColor(.black)
+                                .foregroundColor(.alwaysBlack)
                         }
                         .frame(width: 38, height: 38)
                         .padding(.leading, 70)
@@ -198,12 +198,12 @@ struct EmailVerificationView: View {
                     Text("MOBILE_email_address_verified".localized())
                         .lineLimit(nil)
                         .font(.robotoBold24)
-                        .foregroundColor(.black)
+                        .foregroundColor(.appLabel)
                         .multilineTextAlignment(.center)
                     
                     Text("MOBILE_email_address_verified_description".localized())
                         .font(.robotoRegular16)
-                        .foregroundColor(.black05)
+                        .foregroundColor(.label05)
                         .multilineTextAlignment(.center)
                 }
                 .padding(.top, 60)
@@ -221,7 +221,7 @@ struct EmailVerificationView: View {
                 ).edgesIgnoringSafeArea(.all))
             } label: {
                 Text("MOBILE_got_it".localized())
-                    .foregroundColor(.black)
+                    .foregroundColor(.onBrandLabel)
                     .font(.robotoMedium15)
                     .underline()
             }

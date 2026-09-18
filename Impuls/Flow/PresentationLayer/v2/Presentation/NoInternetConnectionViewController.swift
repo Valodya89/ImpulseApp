@@ -11,7 +11,7 @@ class NoInternetConnectionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .appBackground
         let noConnectionImageView = UIImageView(image: "no_connection".image)
         noConnectionImageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -56,7 +56,7 @@ class NoInternetConnectionViewController: UIViewController {
         let tryAgainButton = UIButton()
         tryAgainButton.translatesAutoresizingMaskIntoConstraints = false
         tryAgainButton.backgroundColor = .mimoYellow500
-        tryAgainButton.setTitleColor(.mimoBlack, for: .normal)
+        tryAgainButton.setTitleColor(.onBrandLabel, for: .normal)
         tryAgainButton.titleLabel?.font = .systemFont(ofSize: 15, weight: .bold)
         tryAgainButton.cornerRadius = 24
         tryAgainButton.setTitle("MOBILE_lostConnection_tryAgain".localized(), for: .normal)

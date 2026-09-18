@@ -35,6 +35,10 @@ class EVChargerSocketService: EVChargerSocketServiceProtocol {
     private let socketManager: SwiftStomp
     private var messageReceiveDate: Date?
     private var timer: Timer?
+    /// When the STOMP session last came up; nil while down. Logged on every
+    /// close so an "automatic" disconnect can be read as "after N seconds".
+    private var connectedAt: Date?
+    private var subscribedDestination: String?
     
     weak var delegate: EVChargerSocketServiceDelegate?
     
@@ -43,34 +47,49 @@ class EVChargerSocketService: EVChargerSocketServiceProtocol {
         socketManager.autoReconnect = true
         socketManager.delegate = self
         socketManager.enableLogging = true
+        MimoSocketLog.info(.evCharger, "init", "host=\(MimoBaseURLs.evChargerSoket.rawValue) autoReconnect=true")
     }
     
     deinit {
-        print("==SOCKET DEINIT EVChargerSocketService")
+        MimoSocketLog.info(.evCharger, "deinit", "isConnected=\(socketManager.isConnected)")
         if self.socketManager.isConnected {
-            print("==SOCKET DEINIT EVChargerSocketService disconnect")
+            MimoSocketLog.info(.evCharger, "disconnect() from deinit")
             socketManager.disconnect()
         }
     }
      
     func connect() {
+        MimoSocketLog.info(.evCharger, "connect() requested", "isConnected=\(socketManager.isConnected) status=\(socketManager.connectionStatus)")
         if !self.socketManager.isConnected {
-            self.socketManager.connect()
+            // `SwiftStomp.connect()` overwrites `autoReconnect` with its own
+            // parameter (default false), so the flag set in `init` was lost on
+            // the first connect and a dropped socket - the app backgrounded
+            // while the rider walked to the cabinet - never came back.
+            self.socketManager.connect(autoReconnect: true)
         }
     }
     
     func disconnect() {
+        MimoSocketLog.info(.evCharger, "disconnect() requested by app", "isConnected=\(socketManager.isConnected) up=\(MimoSocketLog.age(since: connectedAt))")
         if self.socketManager.isConnected {
             self.socketManager.disconnect()
-            print("AAA DISCONNECT")
         }
+        // This service lives for the whole app session, so without stopping the
+        // lag timer here it keeps firing socketDataLagging() every 15 seconds -
+        // and each one refetches state - long after the socket is gone.
+        timer?.invalidate()
+        timer = nil
+        messageReceiveDate = nil
     }
     
     func subscribeToBikeStateUpdate() {
         guard let phoneNumber = StorageManager().fetch(key: .phoneNumber, type: String.self) else {
+            MimoSocketLog.error(.evCharger, "subscribe skipped", "no phone number stored")
             return
         }
         
+        subscribedDestination = phoneNumber
+        MimoSocketLog.info(.evCharger, "subscribe", "destination=\(MimoSocketLog.masked(phoneNumber))")
         self.socketManager.subscribe(to: phoneNumber)
     }
     
@@ -94,10 +113,12 @@ class EVChargerSocketService: EVChargerSocketServiceProtocol {
         timer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { [weak self] _ in
             if let messageReceiveDate = self?.messageReceiveDate {
                 let differenceInSeconds = Int(Date().timeIntervalSince(messageReceiveDate))
-                print("\(Date()): \(differenceInSeconds)")
                 if differenceInSeconds >= 15 {
                     self?.delegate?.socketDataLagging()
-                    print("==SOCKET: socketDataLagging")
+                    MimoSocketLog.info(.evCharger, "data lagging", "lastMessage=\(differenceInSeconds)s ago isConnected=\(self?.socketManager.isConnected ?? false)")
+                    // Reset the watermark so the next report is a fresh 15s of
+                    // silence rather than every tick from here on.
+                    self?.messageReceiveDate = Date()
                 }
             }
         }
@@ -107,22 +128,29 @@ class EVChargerSocketService: EVChargerSocketServiceProtocol {
 extension EVChargerSocketService: SwiftStompDelegate {
     
     func onConnect(swiftStomp: SwiftStomp, connectType: StompConnectType) {
-        print("==SOCKET Socket onConnect")
+        MimoSocketLog.info(.evCharger, "onConnect", "type=\(connectType)")
         
         if connectType == .toStomp {
+            connectedAt = Date()
             delegate?.onConnect()
             subscribeToBikeStateUpdate()
         }
     }
     
     func onDisconnect(swiftStomp: SwiftStomp, disconnectType: StompDisconnectType) {
-        print("==SOCKET Socket onDisconnect")
+        // `.fromSocket` = the WebSocket itself closed (server, network, iOS
+        // suspension); `.fromStomp` = a STOMP-level disconnect. SwiftStomp's own
+        // log line just before this one carries the close code and reason.
+        MimoSocketLog.error(.evCharger, "onDisconnect", "type=\(disconnectType) up=\(MimoSocketLog.age(since: connectedAt)) lastMessage=\(MimoSocketLog.age(since: messageReceiveDate)) ago destination=\(MimoSocketLog.masked(subscribedDestination)) autoReconnect=\(swiftStomp.autoReconnect)")
+        connectedAt = nil
+        subscribedDestination = nil
         
         delegate?.onDisconnect()
     }
     
     func onMessageReceived(swiftStomp: SwiftStomp, message: Any?, messageId: String, destination: String, headers: [String : String]) {
         guard let message = message as? String else { return }
+        MimoSocketLog.info(.evCharger, "message", "id=\(messageId) destination=\(MimoSocketLog.masked(destination)) bytes=\(message.utf8.count)")
         print("==SOCKET Socket message: \(message)")
         
         do {
@@ -135,24 +163,20 @@ extension EVChargerSocketService: SwiftStompDelegate {
             messageReceiveDate = Date()
             setupTimer()
         } catch {
-            print(error.localizedDescription)
+            // `localizedDescription` of a DecodingError says nothing useful.
+            MimoSocketLog.error(.evCharger, "message decode failed", "\(error)")
         }
     }
     
     func onReceipt(swiftStomp: SwiftStomp, receiptId: String) {
-        print("==SOCKET Socket onReceipt")
-        
-        print(#function)
+        MimoSocketLog.info(.evCharger, "onReceipt", "receiptId=\(receiptId)")
     }
     
     func onError(swiftStomp: SwiftStomp, briefDescription: String, fullDescription: String?, receiptId: String?, type: StompErrorType) {
-        print("==SOCKET Socket onError")
-        
-        print(#function)
+        MimoSocketLog.error(.evCharger, "onError", "type=\(type) \(briefDescription): \(fullDescription ?? "-") receiptId=\(receiptId ?? "-") up=\(MimoSocketLog.age(since: connectedAt))")
     }
     
     func onSocketEvent(eventName: String, description: String) {
-        print("==SOCKET onsetocketevent eventName:\(eventName) description:\(description)")
-        print(#function)
+        MimoSocketLog.info(.evCharger, "onSocketEvent", "\(eventName): \(description)")
     }
 }

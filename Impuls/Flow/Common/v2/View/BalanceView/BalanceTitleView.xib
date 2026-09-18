@@ -46,7 +46,7 @@
                                 <constraint firstAttribute="width" secondItem="3sr-Wo-PC4" secondAttribute="height" id="3up-AG-7w9"/>
                                 <constraint firstAttribute="width" constant="22" id="edD-wC-Kap"/>
                             </constraints>
-                            <color key="tintColor" name="mimoDarkGray"/>
+                            <color key="tintColor" name="OnBrandLabel"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" image="plus" catalog="system">
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
@@ -112,6 +112,9 @@
         </namedColor>
         <namedColor name="mimoYellow500">
             <color red="1" green="0.92156862745098034" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="OnBrandLabel">
+            <color red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

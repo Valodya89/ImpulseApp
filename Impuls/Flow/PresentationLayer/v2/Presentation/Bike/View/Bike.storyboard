@@ -19,11 +19,11 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pxS-BC-xZE" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8iz-M9-JgS">
                                 <rect key="frame" x="335" y="680" width="38" height="38"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="8iz-M9-JgS" secondAttribute="height" id="ETJ-ua-u6W"/>
                                     <constraint firstAttribute="width" constant="38" id="VMN-QN-qIM"/>
@@ -44,7 +44,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GsZ-5T-Kkk">
                                 <rect key="frame" x="335" y="630" width="38" height="38"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="GsZ-5T-Kkk" secondAttribute="height" id="8Ls-Pe-s9t"/>
                                     <constraint firstAttribute="width" constant="38" id="BXw-D9-JL9"/>
@@ -67,7 +67,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAB-DV-jGJ">
                                         <rect key="frame" x="20" y="0.0" width="38" height="38"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="QAB-DV-jGJ" secondAttribute="height" id="KC4-Hw-b4B"/>
                                             <constraint firstAttribute="width" constant="38" id="iUq-B8-vy3"/>
@@ -122,14 +122,14 @@
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S0a-Bl-jPG" customClass="ZoneStatusView" customModule="MimoBike" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="59" width="393" height="48"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="bZ6-jA-p1L"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="S0a-Bl-jPG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="5L1-KK-Fb5"/>
                             <constraint firstItem="aIA-tY-Dn7" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="18" id="GNp-uY-1w4"/>
@@ -180,5 +180,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

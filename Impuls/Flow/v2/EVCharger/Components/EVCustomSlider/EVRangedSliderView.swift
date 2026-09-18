@@ -87,7 +87,7 @@ struct DonutThumbView: View {
                 .frame(width: circleSize, height: circleSize)
                 .overlay(
                     Circle()
-                        .fill(Color.white)
+                        .fill(Color.alwaysWhite)
                         .frame(width: circleSize - 12, height: circleSize - 12)
                 )
                 .shadow(color: Color.evGray8.opacity(0.3), radius: 6, x: 0, y: 4)

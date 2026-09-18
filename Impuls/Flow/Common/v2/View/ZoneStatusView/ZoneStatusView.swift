@@ -39,7 +39,7 @@ class ZoneStatusView: UIView {
     private func setupUI() {
         textLabel = UILabel()
         textLabel.font = .systemFont(ofSize: 14, weight: .medium)
-        textLabel.textColor = .black
+        textLabel.textColor = .onBrandLabel
         textLabel.text = "Parking zone"
         textLabel.textAlignment = .center
         addSubview(textLabel)

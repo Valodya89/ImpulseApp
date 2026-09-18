@@ -37,7 +37,7 @@ struct SubscriptionCancelView: View {
                     } label: {
                         ZStack {
                             Text("MOBILE_subscriptions_cancel_keep_action_title".localized())
-                                .foregroundColor(.black)
+                                .foregroundColor(.onBrandLabel)
                                 .font(.system(size: 16, weight: .bold))
                         }
                         .frame(height: 48)
@@ -64,7 +64,7 @@ struct SubscriptionCancelView: View {
                 }
                 .padding(.horizontal, 20)
             }
-            .background(Color.white)
+            .background(Color.appBackground)
             .clipShape(RoundedRectangle(cornerRadius: 12))
             .shadow(color: .black.opacity(0.1), radius: 8, y: 2)
             .padding(.horizontal, 48)

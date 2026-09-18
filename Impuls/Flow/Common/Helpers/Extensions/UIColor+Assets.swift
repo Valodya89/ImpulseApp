@@ -37,4 +37,27 @@ extension UIColor {
     static let zoneGreen: UIColor = UIColor(named: "zoneGreen")!
     static let zoneRed: UIColor = UIColor(named: "zoneRed")!
     static let grayBackground: UIColor = UIColor(named: "GrayBackground")!
+    
+    // MARK: - Semantic (light / dark aware) colors
+    
+    /// Primary screen / card background (white in light, dark gray in dark).
+    static let appBackground: UIColor = UIColor(named: "AppBackground")!
+    /// Grouped canvas behind cards (very light gray in light, near black in dark).
+    static let appSecondaryBackground: UIColor = UIColor(named: "AppSecondaryBackground")!
+    /// Input / chip fill on top of a background.
+    static let appFill: UIColor = UIColor(named: "AppFill")!
+    /// Primary text.
+    static let appLabel: UIColor = UIColor(named: "AppLabel")!
+    /// Secondary text.
+    static let appSecondaryLabel: UIColor = UIColor(named: "AppSecondaryLabel")!
+    /// Hairlines and dividers.
+    static let appSeparator: UIColor = UIColor(named: "AppSeparator")!
+    /// Dimming layer behind sheets and popups.
+    static let overlay: UIColor = UIColor(named: "Overlay")!
+    /// Fixed colors that must not change with the theme (content on brand colors, photos, maps).
+    static let alwaysWhite: UIColor = UIColor(named: "AlwaysWhite")!
+    static let alwaysBlack: UIColor = UIColor(named: "AlwaysBlack")!
+    /// Text on the brand yellow / colored buttons.
+    static let onBrandLabel: UIColor = UIColor(named: "OnBrandLabel")!
+    static let onBrandSecondaryLabel: UIColor = UIColor(named: "OnBrandSecondaryLabel")!
 }

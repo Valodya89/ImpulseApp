@@ -311,7 +311,7 @@ class StartTripViewController: UIViewController, StoryboardInitializable {
 //        }
 //        
         let scanVC = ParkingPhotoCameraViewController.initFromStoryboard(name: Constant.Storyboards.parkingPhotoCamera)
-        scanVC.view.backgroundColor = .white
+        scanVC.view.backgroundColor = .alwaysWhite
         scanVC.tripIdForFinish = self.scooterStateModel?.data?.id ?? ""
 //        scanVC.scooterIdForFinish = self.scooterStateModel?.scooter?.qr ?? ""
 //        self.homeViewModel.listenScanBikeChange {[weak self] result in

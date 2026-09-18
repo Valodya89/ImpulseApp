@@ -12,7 +12,7 @@ class BeepView: UIView {
     
     private lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0.96, green: 0.97, blue: 0.98, alpha: 1)
+        view.backgroundColor = .appSecondaryBackground
         view.cornerRadius = 20
         
         return view
@@ -45,7 +45,7 @@ class BeepView: UIView {
         let bellImageView = UIImageView(image: UIImage(systemName: "bell.and.waves.left.and.right"))
         bellImageView.translatesAutoresizingMaskIntoConstraints = false
         bellImageView.contentMode = .scaleAspectFit
-        bellImageView.tintColor = .black
+        bellImageView.tintColor = .appLabel
         containerView.addSubview(bellImageView)
         
         let horizontalConstraint1 = NSLayoutConstraint(item: bellImageView, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: containerView, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: 0)

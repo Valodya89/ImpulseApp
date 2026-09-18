@@ -29,7 +29,9 @@ extension UIViewController {
         
         let alert = MiAlertView()
         alert.addButton(actionText, action: action)
-        alert.showError(title, subTitle: meassage, colorStyle: 0xFFEB3B, colorTextButton: 0x000000, animationStyle: .topToBottom)
+        // The alert wants integer colours; resolve the brand tokens so the
+        // dark-mode yellow (and its label colour) reach it too.
+        alert.showError(title, subTitle: meassage, colorStyle: UIColor.mimoYellow500.hexValue, colorTextButton: UIColor.onBrandLabel.hexValue, animationStyle: .topToBottom)
     }
     
     func showAlertMessage(_ title: String, meassage: String = "", actionText: [String], action: @escaping ((String) -> ())) {
@@ -191,5 +193,14 @@ extension UIViewController {
         }
 
         return localized
+    }
+}
+
+private extension UIColor {
+    /// 0xRRGGBB of the colour as it resolves right now (dark or light).
+    var hexValue: UInt {
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        resolvedColor(with: UITraitCollection.current).getRed(&r, green: &g, blue: &b, alpha: &a)
+        return UInt(r * 255) << 16 | UInt(g * 255) << 8 | UInt(b * 255)
     }
 }

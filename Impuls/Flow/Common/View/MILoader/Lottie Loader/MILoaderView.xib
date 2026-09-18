@@ -70,7 +70,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" name="AppBackground"/>
                             <constraints>
                                 <constraint firstItem="Ss0-ee-fgS" firstAttribute="height" secondItem="wYQ-rI-4pM" secondAttribute="height" multiplier="0.8" id="5Mg-8u-p56"/>
                                 <constraint firstAttribute="bottom" secondItem="Ss0-ee-fgS" secondAttribute="bottom" constant="13.5" id="5Zh-7k-UGu"/>
@@ -86,10 +86,10 @@
                                     <integer key="value" value="10"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="value" name="AppBackground"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="value" name="AppBackground"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                     <color key="value" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="0.35973261443661969" colorSpace="custom" customColorSpace="sRGB"/>
@@ -120,7 +120,7 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fsp-GG-qVR" customClass="UILocalizedButton" customModule="MimoBike" customModuleProvider="target">
                     <rect key="frame" x="107" y="562.5" width="200" height="40"/>
-                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="Gray4"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Jeb-gc-DNY"/>
                         <constraint firstAttribute="height" constant="40" id="zVc-eV-OHL"/>
@@ -181,5 +181,11 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Gray4">
+            <color red="0.7333" green="0.7333" blue="0.7333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

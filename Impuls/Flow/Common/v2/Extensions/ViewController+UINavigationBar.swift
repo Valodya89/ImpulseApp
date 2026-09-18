@@ -15,7 +15,7 @@ extension UIViewController {
         add(rightButtons: rightButtons)
         
         let configuration = UIImage.SymbolConfiguration(weight: .medium)
-        let backImage = UIImage(systemName: "chevron.left", withConfiguration: configuration)?.withTintColor(.black)
+        let backImage = UIImage(systemName: "chevron.left", withConfiguration: configuration)?.withTintColor(.appLabel, renderingMode: .alwaysOriginal)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: backImage, style: .plain, target: self, action: #selector(backAction))
     }
     
@@ -41,7 +41,7 @@ extension UIViewController {
     
     private func makeDefaultNavigationBar(productType: MimoProductType? = nil) {
         let backgroundView = UIView()
-        backgroundView.backgroundColor = .white.withAlphaComponent(0.85)
+        backgroundView.backgroundColor = UIColor.appBackground.withAlphaComponent(0.85)
         backgroundView.frame = (navigationController?.navigationBar.bounds.insetBy(dx: 0, dy: -30).offsetBy(dx: 0, dy: -30))!
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -78,14 +78,10 @@ extension UIViewController {
         navigationItem.rightBarButtonItems = rightBarButtonItems
     }
     
-    func openWallet(productType: MimoProductType? = nil) {
-//        if let walletVC: WalletNavigationController = UIStoryboard(name: Constant.Storyboards.wallet, bundle: nil).instantiate() {
-//            self.present(walletVC, animated: true, completion: nil)
-//        }
-        
-        let walletView = WalletView(viewModel: MimoWalletViewModel(worker: Resolver.resolve(), productType: productType))
-        let hostingController = UIHostingController(rootView: walletView)
-        self.present(hostingController, animated: true)
+    /// Presents the SwiftUI wallet. `initialAmount` prefills the top-up field
+    /// (a debt handed over by the caller).
+    func openWallet(productType: MimoProductType? = nil, initialAmount: Double? = nil) {
+        self.present(WalletHostingController(productType: productType, initialAmount: initialAmount), animated: true)
     }
     
     /// Presents the v2 history screen. Shared by the profile menu and the map's
@@ -133,10 +129,7 @@ extension UIViewController {
 extension UIViewController {
     
     @objc func notificationAction() {
-        let notListVC = NotificationListViewController.initFromStoryboard(name: Constant.Storyboards.home)
-        let navVC = UINavigationController(rootViewController: notListVC)
-        navVC.modalPresentationStyle = .pageSheet
-        present(navVC, animated: true)
+        present(NotificationsView.makeSheet(), animated: true)
     }
     
     @objc func backAction() {

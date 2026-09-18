@@ -106,6 +106,9 @@ extension Resolver: ResolverRegistering {
         //MARK: - Notify
         register { NotifyNewsWorker() }.implements(NotifyNewsWorkerProtocol.self)
         
+        //MARK: - Notifications
+        register { NotificationsWorker() }.implements(NotificationsWorkerProtocol.self)
+        
         //MARK: - Rates
         register { RatesWorker() }.implements(RatesWorkerProtocol.self)
         

@@ -52,7 +52,7 @@ struct EVVerticalDoubleButtonView: View {
                 nearestStationAction?()
             } label: {
                 Text("EV_CHARGER_map_nearest_stations".localized())
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color.alwaysWhite)
                     .font(.robotoBold15)
                     .frame(maxWidth: .infinity)
                     .padding(15)

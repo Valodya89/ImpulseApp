@@ -36,6 +36,12 @@ class ScooterViewController: MimoBaseViewController {
     
     private var isTransferDebtSelected: Bool = false
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        guard traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else { return }
+        mapView?.applyAppearanceStyle(for: traitCollection)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -179,7 +185,14 @@ class ScooterViewController: MimoBaseViewController {
         .store(in: &cancellables)
         
         viewModel.$scooterStateData.sink { [weak self] data in
-            guard let data, !data.isEmpty else { self?.viewModel?.viewState = .initial; return }
+            guard let data, !data.isEmpty else {
+                // A state poll with no trip must not close a list or sheet
+                // the rider opened; only a trip that just ended steps back.
+                if let viewModel = self?.viewModel, case .trip = viewModel.viewState {
+                    viewModel.viewState = .initial
+                }
+                return
+            }
             
             self?.viewModel?.viewState = .trip(data)
         }
@@ -356,6 +369,7 @@ extension ScooterViewController {
         //MARK: - MapView
         mapView.isMyLocationEnabled = true
         mapView.delegate = self
+        mapView.applyAppearanceStyle()
         
         //MARK: - CollectionView
         setupCollectionView()

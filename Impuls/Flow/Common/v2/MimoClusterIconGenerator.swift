@@ -41,7 +41,7 @@ class MimoClusterIconGenerator: NSObject, GMUClusterIconGenerator {
         view.setNeedsLayout()
         view.cornerRadius = iconSize.designedSize.height / 2
         view.borderWidth = 2
-        view.borderColor = .white
+        view.borderColor = .alwaysWhite
         view.backgroundColor = .mimoDarkGray
         
         let image = UIImage(named: "mimo_m")

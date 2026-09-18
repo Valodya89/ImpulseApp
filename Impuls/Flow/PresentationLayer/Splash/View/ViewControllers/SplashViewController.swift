@@ -207,7 +207,7 @@ final class SplashViewController: UIViewController, StoryboardInitializable {
                 
                 let dataStarted = 300 - abs(Date().timeIntervalSince1970 - Double(Int(data) ?? 0) / 1000)
                 // TODO: change for scooter
-                self.homeViewController.view.backgroundColor = .white
+                self.homeViewController.view.backgroundColor = .appBackground
                 self.homeViewController.tripTime = dataStarted
                 self.homeViewController.updateControllerState(state: .bookedScooter)
                 self.homeViewController.stateBookedBike(bikeID: bookID, reminedTime: dataStarted, location: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
@@ -222,7 +222,7 @@ final class SplashViewController: UIViewController, StoryboardInitializable {
                 let dd = Int(data)
                 let dataStarted = abs((Date().timeIntervalSince1970 - Double(dd)) / 1000)
                 // TODO: change for scooter
-                self.homeViewController.view.backgroundColor = .white
+                self.homeViewController.view.backgroundColor = .appBackground
                 //TODO: need to chenge time coounting
                 self.homeViewController.stateScanScooter(trips: trip_Paused_List, time: dataStarted + self.getPausedTime(pauses: trip_Paused_List.first?.data?.pauses))
             }
@@ -278,11 +278,10 @@ final class SplashViewController: UIViewController, StoryboardInitializable {
                 case .TripStarted:
                     self.playLogoAnimationOnce()
 
-                    if let data = model.data?.start, let id = model.bikeDto?.id, let mac = model.bikeDto?.mac {
+                    if let data = model.data?.start, model.bikeDto?.id != nil {
                         var stringDate = String(data)
                         stringDate.removeLast(3)
                         let dataStarted = abs(Date().timeIntervalSince1970 - Double(Int(stringDate) ?? 0))
-                        BLEManager.shareInstance.scan(for: mac, bikeID: id, workOption: BLEOption(afterConnectOption: BLEOption.AfterConnect(unlockDevice: false, updateDeviceState: true)))
                         self.homeViewController.stateScanBike(trip: model, time: dataStarted)
                     }
                 case .TripEnded:

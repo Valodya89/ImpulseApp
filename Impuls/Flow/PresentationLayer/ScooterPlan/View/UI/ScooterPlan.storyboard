@@ -67,7 +67,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="Hdj-l2-96E" firstAttribute="centerX" secondItem="TAa-5X-FbB" secondAttribute="centerX" id="B8S-kc-9XV"/>
                                     <constraint firstAttribute="bottom" secondItem="EVV-X5-Zt0" secondAttribute="bottom" id="BLA-xq-KdP"/>
@@ -82,7 +82,7 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JJg-Ms-HmB">
                                 <rect key="frame" x="0.0" y="144" width="375" height="537"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="4UA-kX-Adl">
                                 <rect key="frame" x="20" y="696" width="335" height="48"/>
@@ -107,7 +107,7 @@
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Let's go">
-                                            <color key="titleColor" name="mimoDarkGray"/>
+                                            <color key="titleColor" name="OnBrandLabel"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="SCOOTER_global_lets_go"/>
@@ -218,11 +218,11 @@
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="16"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Ok">
-                                                    <color key="titleColor" name="mimoDarkGray"/>
+                                                    <color key="titleColor" name="OnBrandLabel"/>
                                                 </state>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="AppBackground"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="fXD-os-a1O" secondAttribute="bottom" constant="24" id="6jz-bt-Fj7"/>
                                             <constraint firstAttribute="width" secondItem="n3c-IU-s7p" secondAttribute="height" multiplier="307:352" id="9nd-Ld-Uq4"/>
@@ -244,7 +244,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="4UA-kX-Adl" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="1xp-Z7-H6V"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="4UA-kX-Adl" secondAttribute="trailing" constant="20" id="4my-pf-nyu"/>
@@ -332,7 +332,7 @@
                                         <inset key="titleEdgeInsets" minX="2.5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="-2.5" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Continue" image="ic_play">
-                                            <color key="titleColor" name="mimoDarkGray"/>
+                                            <color key="titleColor" name="OnBrandLabel"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="SCOOTER_global_continue"/>
@@ -378,7 +378,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="qUE-ay-AOg" secondAttribute="trailing" constant="34" id="0mW-03-Kg6"/>
                                     <constraint firstItem="nmB-YC-SZf" firstAttribute="top" secondItem="4wT-gS-YiU" secondAttribute="top" constant="16" id="0wS-F1-x3O"/>
@@ -491,7 +491,7 @@
                                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Change Rate">
-                                                    <color key="titleColor" name="mimoDarkGray"/>
+                                                    <color key="titleColor" name="OnBrandLabel"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="SCOOTER_global_change_rate"/>
@@ -509,7 +509,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFz-gP-rvZ" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                         <rect key="frame" x="48.333333333333329" y="174.00000000000003" width="33.333333333333329" height="19"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
-                                        <color key="textColor" red="0.25882352941176467" green="0.25490196078431371" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" name="mimoDarkGray"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="SCOOTER_global_cost"/>
@@ -518,7 +518,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49K-mq-uXf" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                         <rect key="frame" x="48.333333333333329" y="143.00000000000003" width="44.666666666666671" height="19"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
-                                        <color key="textColor" red="0.25882352939999997" green="0.25490196079999999" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" name="mimoDarkGray"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="SCOOTER_global_speed"/>
@@ -537,7 +537,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="bkj-oK-cQN" firstAttribute="top" secondItem="Q5P-er-OL5" secondAttribute="bottom" constant="16" id="41b-tI-fi7"/>
                                     <constraint firstAttribute="trailing" secondItem="0iK-Si-8vW" secondAttribute="trailing" constant="16" id="4la-pb-5fJ"/>
@@ -634,7 +634,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstItem="RPB-zm-z45" firstAttribute="top" secondItem="8QS-ck-We1" secondAttribute="top" constant="5" id="4vH-cH-V8f"/>
                                     <constraint firstAttribute="bottom" secondItem="RPB-zm-z45" secondAttribute="bottom" constant="3" id="5Zg-No-i4z"/>
@@ -647,14 +647,14 @@
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AmO-59-dm6">
                                 <rect key="frame" x="87" y="48" width="240" height="128"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="4Wv-96-5t1"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ib7-Um-fle">
                                 <rect key="frame" x="0.0" y="54" width="414" height="38.333333333333343"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xIv-2m-enM">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -762,7 +762,7 @@
                                         <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="-4" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Pause" image="ic_pause">
-                                            <color key="titleColor" name="mimoBlack"/>
+                                            <color key="titleColor" name="OnBrandLabel"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="SCOOTER_global_pause"/>
@@ -778,7 +778,7 @@
                                         <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="-4" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="End Ride">
-                                            <color key="titleColor" name="mimoWhite"/>
+                                            <color key="titleColor" name="AlwaysWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="SCOOTER_global_end_ride"/>
@@ -800,11 +800,11 @@
                             </label>
                             <view hidden="YES" alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6jm-yi-gnY">
                                 <rect key="frame" x="0.0" y="8" width="414" height="293"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="AlwaysBlack"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Gz7-3T-X4I"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="AmO-59-dm6" firstAttribute="leading" secondItem="Gz7-3T-X4I" secondAttribute="leading" constant="87" id="2ni-5C-NZW"/>
                             <constraint firstItem="sKs-E0-cjG" firstAttribute="top" secondItem="5G2-3z-YmE" secondAttribute="top" constant="21" id="3xK-Hx-JeE"/>
@@ -903,7 +903,7 @@
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Thank you!">
-                                    <color key="titleColor" name="mimoDarkGray"/>
+                                    <color key="titleColor" name="OnBrandLabel"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="SCOOTER_global_thank_you"/>
@@ -958,7 +958,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="aSl-pE-VHU" secondAttribute="bottom" id="F4f-1r-u5N"/>
                                                     <constraint firstAttribute="height" constant="24" id="JgZ-HS-ubs"/>
@@ -998,7 +998,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstItem="pza-td-D9P" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="p4w-7A-Ewx" secondAttribute="trailing" constant="8" id="33s-gq-U1k"/>
                                                     <constraint firstItem="6qe-eu-nK5" firstAttribute="top" secondItem="G6V-bd-HXE" secondAttribute="top" id="72C-H6-kkN"/>
@@ -1038,7 +1038,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" name="AppBackground"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="5zm-Kr-nXk"/>
                                                     <constraint firstItem="9Jp-T9-YPZ" firstAttribute="top" secondItem="bB2-PO-xFJ" secondAttribute="top" id="GGl-67-Jq8"/>
@@ -1056,7 +1056,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="l5j-gj-gKE" secondAttribute="trailing" constant="44" id="4Ac-tE-qRU"/>
                                     <constraint firstItem="2qM-Go-elg" firstAttribute="centerX" secondItem="9Ji-kB-IZm" secondAttribute="centerX" id="5Fl-6w-mwb"/>
@@ -1071,7 +1071,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="A1b-uL-mWJ"/>
-                        <color key="backgroundColor" red="0.96099999999999997" green="0.96099999999999997" blue="0.96099999999999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="mimoGrayLight"/>
                         <constraints>
                             <constraint firstItem="A1b-uL-mWJ" firstAttribute="trailing" secondItem="QcQ-eR-GHQ" secondAttribute="trailing" constant="20" id="28r-Y3-vCI"/>
                             <constraint firstItem="A1b-uL-mWJ" firstAttribute="trailing" secondItem="Dj5-Fo-tMB" secondAttribute="trailing" constant="16" id="2T9-CB-5QX"/>
@@ -1186,7 +1186,7 @@
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Replenish the balance">
-                                    <color key="titleColor" name="mimoDarkGray"/>
+                                    <color key="titleColor" name="OnBrandLabel"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="SCOOTER_replenish_balance"/>
@@ -1210,7 +1210,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Z4n-7o-rGC"/>
-                        <color key="backgroundColor" red="0.96099999999999997" green="0.96099999999999997" blue="0.96099999999999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="mimoGrayLight"/>
                         <constraints>
                             <constraint firstItem="xN2-KH-P7d" firstAttribute="height" secondItem="wFR-q6-wyU" secondAttribute="height" multiplier="2" id="1US-Uh-neP"/>
                             <constraint firstItem="L4T-2t-cpf" firstAttribute="centerY" secondItem="ldU-EE-Lfm" secondAttribute="centerY" id="3si-4k-m0r"/>
@@ -1264,7 +1264,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have a debt of" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bvl-eL-TLV" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                 <rect key="frame" x="18.666666666666657" y="417.33333333333331" width="337.66666666666674" height="23.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" name="mimoBlackWith075alpha"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_you_have_a_debt"/>
@@ -1294,7 +1294,7 @@
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Pay Debt">
-                                    <color key="titleColor" name="mimoDarkGray"/>
+                                    <color key="titleColor" name="OnBrandLabel"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_pay_debt"/>
@@ -1331,7 +1331,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay to continue." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4we-mS-F0p" customClass="UILocalizedLabel" customModule="MimoBike" customModuleProvider="target">
                                 <rect key="frame" x="116.33333333333333" y="497" width="142.66666666666669" height="23.666666666666629"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.70999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" name="mimoBlackWith075alpha"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="MOBILE_pay_to_continue"/>
@@ -1339,7 +1339,7 @@
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LTu-vj-Euy">
                                 <rect key="frame" x="20" y="455.33333333333326" width="335" height="332.66666666666674"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="AppBackground"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DebtTBCell" rowHeight="84" id="aF4-k2-7AM" customClass="DebtTBCell" customModule="MimoBike" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="335" height="84"/>
@@ -1399,7 +1399,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="EBI-Gc-3p0"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="AppBackground"/>
                         <constraints>
                             <constraint firstItem="TOX-P0-fJb" firstAttribute="leading" secondItem="EBI-Gc-3p0" secondAttribute="leading" constant="20" id="3nq-dz-v53"/>
                             <constraint firstItem="aeC-Tk-Ca7" firstAttribute="centerX" secondItem="i8e-r4-7fL" secondAttribute="centerX" id="4kf-dR-FbT"/>
@@ -1483,7 +1483,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Սիրելի MIMO և iDram օգտատերեր💛" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nel-kj-GXh">
                                         <rect key="frame" x="20" y="390.00000000000011" width="761.66666666666663" height="56.333333333333314"/>
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="24"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" name="mimoWhite"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="SCOOTER_min_balanse_title"/>
@@ -1492,7 +1492,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Համալրեք ՄԻՄՈ  հաշիվը iDram-ով սկսած 5000 դրամից և ստացեք կրկնակին:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWp-Lc-PcW">
                                         <rect key="frame" x="20" y="466.33333333333337" width="761.66666666666663" height="70.333333333333371"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" name="mimoWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -1517,7 +1517,7 @@
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="FastShift App">
-                                    <color key="titleColor" name="mimoWhite"/>
+                                    <color key="titleColor" name="AlwaysWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="FastShift App"/>
@@ -1629,7 +1629,7 @@
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Update">
-                                    <color key="titleColor" name="mimoDarkGray"/>
+                                    <color key="titleColor" name="OnBrandLabel"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="localizedTitle" value="MOBILE_update_app"/>
@@ -1640,7 +1640,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IJr-3V-zN5"/>
-                        <color key="backgroundColor" red="0.96099999999999997" green="0.96099999999999997" blue="0.96099999999999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="mimoGrayLight"/>
                         <constraints>
                             <constraint firstItem="RCB-Gq-XPT" firstAttribute="centerY" secondItem="IJr-3V-zN5" secondAttribute="centerY" multiplier="1.08" id="3eF-hK-cRj"/>
                             <constraint firstItem="O01-Eh-dqW" firstAttribute="width" secondItem="TAW-N9-omM" secondAttribute="width" multiplier="0.362667" id="3qo-5J-W6p"/>
@@ -1732,5 +1732,20 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <namedColor name="AlwaysWhite">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="OnBrandLabel">
+            <color red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mimoGrayLight">
+            <color red="0.9647" green="0.9725" blue="0.9843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AlwaysBlack">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -15,10 +15,10 @@ struct StepIndicatorView: View {
     var body: some View {
         ZStack(alignment: .leading) {
             Capsule()
-                .fill(Color.white)
+                .fill(Color.evMainBg1)
                 .frame(maxWidth: .infinity)
                 .background(GeometryReader(content: { geometry in
-                    Color.white.onAppear(perform: {
+                    Color.evMainBg1.onAppear(perform: {
                         weightOfIndicator = geometry.frame(in: .global).width
                     })
                 }))

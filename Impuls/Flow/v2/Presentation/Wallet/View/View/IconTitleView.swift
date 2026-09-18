@@ -40,14 +40,14 @@ struct IconTitleView: View {
             
             Text(title)
                 .font(.system(size: 15))
-                .foregroundColor(.black)
+                .foregroundColor(.appLabel)
                 .padding(.leading, (image == nil && imageURL == nil) ? 14 : 0)
             
             Spacer()
             
             Image(systemName: "chevron.right")
                 .resizable()
-                .foregroundColor(.black)
+                .foregroundColor(.appLabel)
                 .frame(width: 8, height: 12)
                 .padding(.trailing, 20)
         }
