@@ -162,15 +162,15 @@ class LoginViewModel: MimoBaseViewModel, ObservableObject {
                     self.isAccountCompleted = isAccountCompleted
                 }
                 
-                if self.isDeviceVerifid ?? false {
-                    if !(self.isAccountCompleted ?? false) {
-                        self.set(step: .personalInfo)
-                    }
-                } else {
+                // A verified device goes straight to Home, whatever the account
+                // is still missing: profile details and documents are asked for
+                // by `ActionEligibilityFlow` when an action actually needs them
+                // (attaching a card, starting a ride, charging).
+                if !(self.isDeviceVerifid ?? false) {
                     self.set(step: .otp)
                 }
-                
-                self.isAccountFullCompleted = (self.isAccountCompleted ?? false) && (self.isDeviceVerifid ?? false)
+
+                self.isAccountFullCompleted = self.isDeviceVerifid ?? false
             }
             .store(in: &cancellables)
     }
@@ -193,15 +193,15 @@ class LoginViewModel: MimoBaseViewModel, ObservableObject {
                 self.isAccountCompleted = data.user?.isAccountComplated
                 self.isDeviceVerifid = true
 
-                if self.isDeviceVerifid ?? false {
-                    if !(self.isAccountCompleted ?? false) {
-                        self.set(step: .personalInfo)
-                    }
-                } else {
+                // A verified device goes straight to Home, whatever the account
+                // is still missing: profile details and documents are asked for
+                // by `ActionEligibilityFlow` when an action actually needs them
+                // (attaching a card, starting a ride, charging).
+                if !(self.isDeviceVerifid ?? false) {
                     self.set(step: .otp)
                 }
-                
-                self.isAccountFullCompleted = (self.isAccountCompleted ?? false) && (self.isDeviceVerifid ?? false)
+
+                self.isAccountFullCompleted = self.isDeviceVerifid ?? false
             }
             .store(in: &cancellables)
     }
