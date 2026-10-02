@@ -27,6 +27,12 @@ struct HomeRepository {
         network.request(with: URLBuilder(from: AuthAPI.trips(bookId: bikeID, latitude: CGFloat(location.latitude), longitude: CGFloat(location.longitude)))) { (result) in
             switch result {
             case .success(let data):
+                // Refused for unmet rules: report the first rule's code.
+                if let rejection = ActionRejection.parse(data: data, request: nil) {
+                    completion(.failure(.responseError(rejection.message)))
+                    return
+                }
+
                 
                 guard let bikeResponse = MimoConverter<BaseResponseModel<TripActionModel>>.parseJson(data: data as Any) else {
                     completion(.failure(.invalidParse("Can not parse model")))
@@ -60,6 +66,12 @@ struct HomeRepository {
         network.request(with: URLBuilder(from: api)) { (result) in
             switch result {
             case .success(let data):
+                // Refused for unmet rules: report the first rule's code.
+                if let rejection = ActionRejection.parse(data: data, request: nil) {
+                    completion(.failure(.init(error: .responseError(rejection.message))))
+                    return
+                }
+
                 
                 guard let bikeResponse = MimoConverter<BaseResponseModel<EmptyModel>>.parseJson(data: data as Any) else {
                     completion(.failure(.init(error: .invalidParse("Can not parse model"))))
@@ -108,6 +120,12 @@ struct HomeRepository {
         network.request(with: URLBuilder(from: api)) { (result) in
             switch result {
             case .success(let data):
+                // Refused for unmet rules: report the first rule's code.
+                if let rejection = ActionRejection.parse(data: data, request: nil) {
+                    completion(.failure(.init(error: .responseError(rejection.message))))
+                    return
+                }
+
                 
                 guard let bikeResponse = MimoConverter<BaseResponseModel<EmptyModel>>.parseJson(data: data as Any) else {
                     completion(.failure(.init(error: .invalidParse("Can not parse model"))))
@@ -421,6 +439,12 @@ struct HomeRepository {
         network.request(with: URLBuilder(from: HomeAPI.scanScooter(id: id, insurance: insurance, speedModeTariff: speedModeTariff, billingModeTariff: billingModeTariff, longitude: longitude, latitude: latitude,  deviceId: deviceId))) { result in
             switch result {
             case .success(let data):
+                // Refused for unmet rules: report the first rule's code.
+                if let rejection = ActionRejection.parse(data: data, request: nil) {
+                    completion(.failure(.responseError(rejection.message)))
+                    return
+                }
+
                 
                 guard let singleScooterResponse = MimoConverter<BaseResponseModel<ScooterStateModel>>.parseJson(data: data as Any) else {
                     completion(.failure(NetworkError.serverError))
@@ -519,6 +543,12 @@ struct HomeRepository {
         network.request(with: URLBuilder(from: HomeAPI.scanCharger(id: stationId, latitude: location.latitude, longitude: location.longitude))) { (result) in
             switch result {
             case .success(let data):
+                // Refused for unmet rules: report the first rule's code.
+                if let rejection = ActionRejection.parse(data: data, request: nil) {
+                    completion(.failure(.responseError(rejection.message)))
+                    return
+                }
+
                 guard let chargerResponse = MimoConverter<BaseResponseModel<RentedCharger>>.parseJson(data: data as Any) else {
                     completion(.failure(.invalidParse("Can not parse model")))
                     

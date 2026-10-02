@@ -278,11 +278,25 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
     }
     
     func attachCard(provider: PaymentMethodProvider = .tinkoff ) {
+        ActionEligibilityFlow.run(.attachCard(provider: provider.rawValue)) { [weak self] in
+            self?.requestCardAttachment(provider: provider)
+        }
+    }
+    
+    private func requestCardAttachment(provider: PaymentMethodProvider) {
         worker.attachCard(provider: provider)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {
-                    self?.mimoError = error
+                    let isRejection = ActionEligibilityFlow.handleRejection(
+                        message: error.message,
+                        check: .attachCard(provider: provider.rawValue),
+                        retry: { self?.attachCard(provider: provider) }
+                    )
+                    
+                    if !isRejection {
+                        self?.mimoError = error
+                    }
                 }
             } receiveValue: { [weak self] attachCardResponse in
                 self?.attachCardURL = IdentifiableURL(id: attachCardResponse.formUrl)
@@ -292,6 +306,14 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
     
     private func depositFromAttachedCard() {
         let amount = NSString(string: amount).doubleValue
+
+        // No card yet: "pay" means "attach a card first". That goes through
+        // the attach-card pre-check, which is where the rider is asked for the
+        // profile details the card provider needs.
+        guard wallet?.card != nil else {
+            attachCard(provider: cardPaymentMethods.first?.provider ?? .tinkoff)
+            return
+        }
         
         worker.depositFromAttachedCard(amount: amount)
             .receive(on: DispatchQueue.main)

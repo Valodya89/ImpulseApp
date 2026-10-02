@@ -569,7 +569,9 @@ extension ScooterViewController: ScooterDetailsSheetViewControllerDelegate {
     
     func bookScooter(with id: String) {
         guard let location = viewModel?.currentLocation else { return }
-        viewModel?.bookScooter(id: id, location: location)
+        ActionEligibilityFlow.run(.scooter, from: self) { [weak self] in
+            self?.viewModel?.bookScooter(id: id, location: location)
+        }
     }
     
     func cancelScooterBooking(with id: String) {

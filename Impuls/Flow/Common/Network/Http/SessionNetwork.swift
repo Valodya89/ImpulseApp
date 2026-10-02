@@ -162,7 +162,14 @@ final class SessionNetwork: SessionProtocol {
                         return
                     }
                     
-                    guard (200 ..< 299) ~= response.statusCode else {
+                    // An action refused for unmet rules (402/412) lists them in
+                    // `content.violations`. Keep them for the screen showing the
+                    // error, and hand the body on so the caller reads the
+                    // envelope's own status and message instead of being signed out.
+                    let isRejectedAction = response.statusCode != 401
+                        && ActionRejectionStore.shared.record(data: data, request: request) != nil
+
+                    guard (200 ..< 299) ~= response.statusCode || isRejectedAction else {
                         print("ERROR : \(response)")
                         if response.statusCode == 401 {
                             if let isDeviceEndpoint = request.url?.absoluteString.contains("user/device"), !isDeviceEndpoint {

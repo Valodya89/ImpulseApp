@@ -154,7 +154,11 @@ extension UIViewController {
 extension UIViewController {
     
     func showErrorPopUp(message: String, service: MimoType) {
-        let isReplenishable: Bool = (message == "SHARING_no_minimal_requirements") || (message == "MOBILE_map_minimum_requirments") || (message == "CHARGER_no_minimal_requirements")
+        // An action refused for unmet rules is walked through step by step
+        // instead of being shown as an error.
+        if ActionEligibilityFlow.handleRejection(message: message, from: self) { return }
+
+        let isReplenishable: Bool = (message == "SHARING_no_minimal_requirements") || (message == "MOBILE_map_minimum_requirments") || (message == "CHARGER_no_minimal_requirements") || (message == "WALLET_min_balance_required") || (message == "WALLET_min_balance_or_card_required") || (message == "WALLET_card_required")
 
         let displayMessage = UIViewController.userFacingErrorMessage(from: message)
 

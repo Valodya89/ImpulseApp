@@ -418,8 +418,10 @@ extension BikeViewController: MimoScanQrViewControllerDelegate {
     func didFinishScan(with value: String, type: MimoType) {
         guard let currentLocation = viewModel?.currentLocation else { return }
         
-        MILoader.show()
-        viewModel?.scanBike(code: value, location: currentLocation)
+        ActionEligibilityFlow.run(.sharing(action: .startRide), from: self) { [weak self] in
+            MILoader.show()
+            self?.viewModel?.scanBike(code: value, location: currentLocation)
+        }
     }
 }
 
@@ -540,8 +542,10 @@ extension BikeViewController: BikeDetailsSheetViewControllerDelegate {
     
     func bookAction(id: String) {
         guard let currentLocation = viewModel?.currentLocation else { return }
-        viewModel?.bookBike(id: id, location: currentLocation)
-        viewModel?.viewState = .initial
+        ActionEligibilityFlow.run(.sharing(action: .book), from: self) { [weak self] in
+            self?.viewModel?.bookBike(id: id, location: currentLocation)
+            self?.viewModel?.viewState = .initial
+        }
     }
     
     func cancelBooking(id: String) {

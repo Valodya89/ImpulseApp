@@ -381,8 +381,12 @@ extension ChargerViewController: MimoScanQrViewControllerDelegate {
     func didFinishScan(with value: String, type: MimoType) {
         guard let location = viewModel?.currentLocation else { return }
         
-        MILoader.show()
-        viewModel?.scan(stationId: value, currentLocation: location)
+        let check = EligibilityCheck.powerbank(stationId: value, action: .startRent,
+                                               latitude: location.latitude, longitude: location.longitude)
+        ActionEligibilityFlow.run(check, from: self) { [weak self] in
+            MILoader.show()
+            self?.viewModel?.scan(stationId: value, currentLocation: location)
+        }
     }
 }
 

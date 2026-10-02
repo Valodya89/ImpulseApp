@@ -153,5 +153,105 @@
     "en": "Top up",
     "ru": "Пополнить",
     "module": "mobile"
+  },
+  "MOBILE_global_no": {
+    "en": "No",
+    "ru": "Нет",
+    "module": "mobile"
+  },
+  "MOBILE_global_save": {
+    "en": "Save",
+    "ru": "Сохранить",
+    "module": "mobile"
+  },
+  "MOBILE_global_yes": {
+    "en": "Yes",
+    "ru": "Да",
+    "module": "mobile"
+  },
+  "MOBILE_requirements_checklist_title": {
+    "en": "Before you continue",
+    "ru": "Прежде чем продолжить",
+    "module": "mobile"
+  },
+  "MOBILE_requirements_checklist_subtitle": {
+    "en": "A few things need your attention first.",
+    "ru": "Сначала нужно уладить несколько моментов.",
+    "module": "mobile"
+  },
+  "MOBILE_requirements_check_failed": {
+    "en": "We could not check again. Try once more.",
+    "ru": "Не удалось проверить ещё раз. Попробуйте снова.",
+    "module": "mobile"
+  },
+  "MOBILE_requirements_detail_balance": {
+    "en": "Balance",
+    "ru": "Баланс",
+    "module": "mobile"
+  },
+  "MOBILE_requirements_detail_debt": {
+    "en": "Debt",
+    "ru": "Долг",
+    "module": "mobile"
+  },
+  "MOBILE_requirements_detail_required": {
+    "en": "Required",
+    "ru": "Требуется",
+    "module": "mobile"
+  },
+  "MOBILE_requirements_generic_profile": {
+    "en": "Complete your profile to continue.",
+    "ru": "Заполните профиль, чтобы продолжить.",
+    "module": "mobile"
+  },
+  "MOBILE_requirements_generic_email": {
+    "en": "Verify your email address to continue.",
+    "ru": "Подтвердите адрес эл. почты, чтобы продолжить.",
+    "module": "mobile"
+  },
+  "MOBILE_requirements_generic_documents": {
+    "en": "Add your identity document to continue.",
+    "ru": "Добавьте документ, удостоверяющий личность, чтобы продолжить.",
+    "module": "mobile"
+  },
+  "MOBILE_requirements_generic_address": {
+    "en": "Add your address to continue.",
+    "ru": "Добавьте адрес, чтобы продолжить.",
+    "module": "mobile"
+  },
+  "MOBILE_requirements_generic_wallet": {
+    "en": "Top up your wallet to continue.",
+    "ru": "Пополните кошелёк, чтобы продолжить.",
+    "module": "mobile"
+  },
+  "MOBILE_requirements_generic_card": {
+    "en": "Add a bank card to continue.",
+    "ru": "Добавьте банковскую карту, чтобы продолжить.",
+    "module": "mobile"
+  },
+  "MOBILE_requirements_generic_support": {
+    "en": "Contact support to continue.",
+    "ru": "Свяжитесь с поддержкой, чтобы продолжить.",
+    "module": "mobile"
+  },
+  "MOBILE_requirements_generic_none": {
+    "en": "This is not available right now.",
+    "ru": "Сейчас это недоступно.",
+    "module": "mobile"
+  },
+  "MOBILE_requirements_purpose_bike_book": {
+    "en": "To book a bike",
+    "ru": "Чтобы забронировать велосипед",
+    "module": "mobile"
+  },
+  "MOBILE_requirements_purpose_powerbank_book": {
+    "en": "To book a power bank",
+    "ru": "Чтобы забронировать пауэрбанк",
+    "module": "mobile"
+  },
+  "MOBILE_requirements_gender_other": {
+    "en": "Other",
+    "ru": "Другой",
+    "module": "mobile"
   }
 }

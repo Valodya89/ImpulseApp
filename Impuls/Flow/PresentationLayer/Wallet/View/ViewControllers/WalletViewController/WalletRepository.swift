@@ -112,6 +112,12 @@ final class WalletRepository {
         network.request(with: URLBuilder(from: AuthAPI.attachCard(provider: provider))) { (result) in
             switch result {
             case .success(let data):
+                // Refused for unmet rules: report the first rule's code.
+                if let rejection = ActionRejection.parse(data: data, request: nil) {
+                    completion(.failure(.custom(message: rejection.message)))
+                    return
+                }
+
                 guard let countryCodeResponce = MimoConverter<BaseResponseModel<AttachCardModel>>.parseJson(data: data as Any) else {
                     VibrateEffectManager.shared.errorVibration()
                     completion(.failure(.parseError))

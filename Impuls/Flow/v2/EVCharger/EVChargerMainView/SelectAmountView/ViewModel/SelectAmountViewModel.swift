@@ -67,14 +67,34 @@ class SelectAmountViewModel: MimoBaseViewModel, ObservableObject {
     }
     
     func startCharging() {
+        let stationId = connector.stationId ?? station.id
+        let kwts = Double(heightOnChanged) * Double(maxValue)
+        let check = EligibilityCheck.evCharging(stationId: stationId, connectorId: connector.id, kwts: kwts)
+        
         isLoading = true
-        worker.startCharging(id: connector.stationId ?? station.id, connectorId: connector.id, kwts: Double(heightOnChanged) * Double(maxValue))
+        ActionEligibilityFlow.run(check, blocked: { [weak self] in self?.isLoading = false }) { [weak self] in
+            self?.requestCharging(stationId: stationId, kwts: kwts, check: check)
+        }
+    }
+    
+    private func requestCharging(stationId: String, kwts: Double, check: EligibilityCheck) {
+        isLoading = true
+        worker.startCharging(id: stationId, connectorId: connector.id, kwts: kwts)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 switch completion {
                 case .failure(let error):
-                    self?.errorMessage = error.message
                     self?.isLoading = false
+                    
+                    let isRejection = ActionEligibilityFlow.handleRejection(
+                        message: error.message,
+                        check: check,
+                        retry: { self?.startCharging() }
+                    )
+                    
+                    if !isRejection {
+                        self?.errorMessage = error.message
+                    }
                 default: break
                 }
             } receiveValue: { [weak self] (station, chargingModel) in

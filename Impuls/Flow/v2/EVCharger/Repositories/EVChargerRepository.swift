@@ -140,6 +140,12 @@ struct EVChargerRepository {
         network.request(with: URLBuilder(from: EVChargerAPI.startCharging(stationId: id, connectorId: connectorId, kwts: kwts))) { (result) in
             switch result {
             case .success(let data):
+                // Refused for unmet rules: report the first rule's code.
+                if let rejection = ActionRejection.parse(data: data, request: nil) {
+                    completion(.failure(NetworkError.validatorError(rejection.message)))
+                    return
+                }
+
                 
                 guard let stationResponse = MimoConverter<BaseResponseModel<EVStateMessagedDTO>>.parseJson(data: data as Any) else {
                     completion(.failure(NetworkError.invalidParse("Parsing error")))
