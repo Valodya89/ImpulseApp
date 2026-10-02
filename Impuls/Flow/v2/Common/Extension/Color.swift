@@ -66,6 +66,9 @@ extension Color {
     static var alwaysBlack = Color("AlwaysBlack")
     /// Text on the brand yellow / colored buttons.
     static var onBrandLabel = Color("OnBrandLabel")
+    /// The two ends of the pulse in the app icon: orange into amber.
+    static var brandPulseStart = Color("BrandPulseStart")
+    static var brandPulseEnd = Color("BrandPulseEnd")
     static var onBrandSecondaryLabel = Color("OnBrandSecondaryLabel")
     /// Theme-aware replacements for the fixed black overlays above.
     static var label015 = Color("AppLabel").opacity(0.15)
