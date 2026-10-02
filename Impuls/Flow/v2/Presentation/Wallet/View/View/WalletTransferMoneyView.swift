@@ -13,6 +13,8 @@ struct WalletTransferMoneyView: View {
         HStack(spacing: 10) {
             Image("wallet_arrow_circle")
                 .resizable()
+                .renderingMode(.template)
+                .foregroundColor(.appSecondaryLabel)
                 .frame(width: 32, height: 32)
                 .padding(.leading, 14)
             

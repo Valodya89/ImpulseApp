@@ -37,13 +37,12 @@ class BaseRouter {
     }
     
     func showTransferToFirendViewController(_ viewController: UIViewController?, phoneNumber: String, transferUser: ContactsListModel?, debt: Double?) {
-        let user = UserResult(userResponse: UserManager.share.userResponse)
-        let transferToFirendViewController = TransferToFriendViewController.initiateFromStoryboard(phoneNumber,
-                                                                                                   user: user,
-                                                                                                   avatarUrl: nil,
-                                                                                                   wallet: UserManager.share.walletModel,
-                                                                                                   transferUser: transferUser)
-        transferToFirendViewController.debt = debt
+        // v2 transfer flow, opened straight on the amount step with the debtor
+        // prefilled (see TransferHostingController).
+        let transferToFirendViewController = TransferHostingController(wallet: UserManager.share.walletModel,
+                                                                       phoneNumber: phoneNumber,
+                                                                       transferUser: transferUser,
+                                                                       debt: debt)
         viewController?.present(transferToFirendViewController, animated: true)
     }
     

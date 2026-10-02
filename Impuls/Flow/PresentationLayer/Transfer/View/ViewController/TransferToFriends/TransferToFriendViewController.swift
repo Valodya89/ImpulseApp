@@ -166,16 +166,8 @@ final class TransferToFriendViewController: BaseViewController, StoryboardInitia
     }
     
     private func failureMessage(for error: TransferMoneyErrors) -> String {
-        switch error {
-        case .notEnoughBalance:
-            return "MOBILE_transfer_not_enough_money".localized()
-        case .wrongAmount:
-            return "MOBILE_min_value_to_transfer".localized()
-        case .sameReceiver:
-            return UIViewController.userFacingErrorMessage(from: error.rawValue)
-        case .other:
-            return "MOBILE_something_wrong".localized()
-        }
+        // Same wording as the v2 transfer screen (TransferMoneyViewModel).
+        error.userMessage
     }
     
 }

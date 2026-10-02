@@ -407,13 +407,8 @@ final class WalletViewController: UIViewController, StoryboardInitializable {
             UIAlertController.showError(message: "MOBILE_have_active_trip".localized())
         } else {
             
-            let transferVC = TransferViewController.initFromStoryboard(name: Constant.Storyboards.transfer)
-            transferVC.user = user
-            transferVC.avatarUrl = avataturURLString
-            transferVC.wallet = wallet
-            
-            let nc = UINavigationController(rootViewController: transferVC)
-            present(nc, animated: true, completion: nil)
+            let transferVC = TransferHostingController(wallet: wallet)
+            present(transferVC, animated: true, completion: nil)
         }
     }
     

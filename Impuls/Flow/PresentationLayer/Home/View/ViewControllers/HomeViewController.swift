@@ -2329,12 +2329,12 @@ extension HomeViewController: ShowDebtViewControllerDdelegate {
     }
     
     func goToTransferToFriendVC(_ phoneNumber: String, _ transferUser: ContactsListModel?, debt: Double?) {
-        let user = UserResult(userResponse: UserManager.share.userResponse)
-        let trancferToFriendVC = TransferToFriendViewController.initiateFromStoryboard(phoneNumber, user: user, avatarUrl: nil, wallet: UserManager.share.walletModel, transferUser: transferUser)
-        trancferToFriendVC.debt = debt
-        //        trancferToFriendVC.modalPresentationStyle = .fullScreen
-        self.present(trancferToFriendVC, animated: true)
-        //        navigationController?.pushViewController(trancferToFriendVC, animated: true)
+        // v2 transfer flow, opened straight on the amount step with the debtor
+        // prefilled (see TransferHostingController).
+        BaseRouter.shared.showTransferToFirendViewController(self,
+                                                            phoneNumber: phoneNumber,
+                                                            transferUser: transferUser,
+                                                            debt: debt)
     }
     
     private func inviteUser(_ phoneNumber: String) {

@@ -303,5 +303,70 @@
     "en": "Other",
     "ru": "Другой",
     "module": "mobile"
+  },
+  "MOBILE_transfer_recent": {
+    "en": "Recent",
+    "ru": "Недавние",
+    "module": "mobile"
+  },
+  "MOBILE_transfer_select_number": {
+    "en": "Select a phone number",
+    "ru": "Выберите номер телефона",
+    "module": "mobile"
+  },
+  "MOBILE_transfer_invalid_phone": {
+    "en": "Please enter a valid phone number",
+    "ru": "Введите корректный номер телефона",
+    "module": "mobile"
+  },
+  "MOBILE_transfer_contact_no_phone": {
+    "en": "This contact has no phone number",
+    "ru": "У этого контакта нет номера телефона",
+    "module": "mobile"
+  },
+  "MOBILE_transfer_check_failed": {
+    "en": "Failed to check contact user",
+    "ru": "Не удалось проверить контакт",
+    "module": "mobile"
+  },
+  "MOBILE_transfer_invite_sent": {
+    "en": "Invitation sent",
+    "ru": "Приглашение отправлено",
+    "module": "mobile"
+  },
+  "MOBILE_transfer_fill_amount": {
+    "en": "Please fill a valid amount",
+    "ru": "Введите корректную сумму",
+    "module": "mobile"
+  },
+  "MOBILE_transfer_success_body": {
+    "en": "Money sent to",
+    "ru": "Деньги отправлены:",
+    "module": "mobile"
+  },
+  "MOBILE_transfer_failed_generic": {
+    "en": "The transfer could not be completed. Please try again.",
+    "ru": "Перевод не удался. Попробуйте ещё раз.",
+    "module": "mobile"
+  },
+  "IPAY_duplicate_receiver": {
+    "en": "You cannot transfer money to yourself",
+    "ru": "Нельзя перевести деньги самому себе",
+    "module": "ipay"
+  },
+  "IPAY_transfer_not_allowed": {
+    "en": "Transfers are not allowed for this wallet",
+    "ru": "Переводы недоступны для этого кошелька",
+    "module": "ipay"
+  },
+  "IPAY_no_such_user": {
+    "en": "The recipient does not have an Impulse wallet",
+    "ru": "У получателя нет кошелька Impulse",
+    "module": "ipay"
+  },
+  "IPAY_no_such_wallet": {
+    "en": "The recipient does not have an Impulse wallet",
+    "ru": "У получателя нет кошелька Impulse",
+    "module": "ipay"
   }
 }

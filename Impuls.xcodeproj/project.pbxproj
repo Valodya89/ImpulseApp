@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6164901CA56C8C9F46378099 /* TransferHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BEF3D72B9C9736A322C9AC /* TransferHostingController.swift */; };
+		403999630866E883ED6B5710 /* TransferHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BEF3D72B9C9736A322C9AC /* TransferHostingController.swift */; };
+		F597C91D0E450DDA2C4542EC /* TransferMoneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5E2D8262918380678DAF2 /* TransferMoneyView.swift */; };
+		10977F4398B4097A05CE42B2 /* TransferMoneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5E2D8262918380678DAF2 /* TransferMoneyView.swift */; };
+		2FEFF49490D9C613EFA99CB1 /* TransferMoneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CC1E974A987A8347CD0314 /* TransferMoneyViewModel.swift */; };
+		17A54FA429C099651BA7DF36 /* TransferMoneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CC1E974A987A8347CD0314 /* TransferMoneyViewModel.swift */; };
+		FC6E2DD5396DE831689442FD /* TransferRecipientCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B9C029784B65724D14F804 /* TransferRecipientCardView.swift */; };
+		92FD1ADC822882F011B5B954 /* TransferRecipientCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B9C029784B65724D14F804 /* TransferRecipientCardView.swift */; };
+		2EBD253124B3DFA053A4FDC9 /* TransferAmountFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC1A182AAA0AFBD3F07345 /* TransferAmountFieldView.swift */; };
+		6972EBC511E6760D2E4619E7 /* TransferAmountFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC1A182AAA0AFBD3F07345 /* TransferAmountFieldView.swift */; };
+		E5EDD9E0C3AD21D6967BEAA8 /* TransferPhoneNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7277FF504D6D004BBEA76B26 /* TransferPhoneNumberField.swift */; };
+		881122AD11B9B21BD4F4506C /* TransferPhoneNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7277FF504D6D004BBEA76B26 /* TransferPhoneNumberField.swift */; };
+		0829C820FA4C48C9E83B9957 /* TransferContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C79B0F49FF9BBA6403423B4 /* TransferContactPicker.swift */; };
+		F542994303B7286EBE41EDF6 /* TransferContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C79B0F49FF9BBA6403423B4 /* TransferContactPicker.swift */; };
 		094D0A403A6E4E1586151582 /* EligibilityAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BD4E07FD0F02900820AC11 /* EligibilityAPI.swift */; };
 		0FB22F40B50CCCF9A29EA0FF /* RequirementsProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56454F9F963908C5E7F5EF4A /* RequirementsProfileService.swift */; };
 		160886A62D859A6900419981 /* ChargingRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160886A52D859A6900419981 /* ChargingRateView.swift */; };
@@ -1767,6 +1781,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B9BEF3D72B9C9736A322C9AC /* TransferHostingController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferHostingController.swift; sourceTree = "<group>"; };
+		12A5E2D8262918380678DAF2 /* TransferMoneyView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferMoneyView.swift; sourceTree = "<group>"; };
+		A9CC1E974A987A8347CD0314 /* TransferMoneyViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferMoneyViewModel.swift; sourceTree = "<group>"; };
+		32B9C029784B65724D14F804 /* TransferRecipientCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferRecipientCardView.swift; sourceTree = "<group>"; };
+		47EC1A182AAA0AFBD3F07345 /* TransferAmountFieldView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferAmountFieldView.swift; sourceTree = "<group>"; };
+		7277FF504D6D004BBEA76B26 /* TransferPhoneNumberField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferPhoneNumberField.swift; sourceTree = "<group>"; };
+		3C79B0F49FF9BBA6403423B4 /* TransferContactPicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferContactPicker.swift; sourceTree = "<group>"; };
 		160886A52D859A6900419981 /* ChargingRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargingRateView.swift; sourceTree = "<group>"; };
 		160886AF2D933F1900419981 /* SelectAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAmountView.swift; sourceTree = "<group>"; };
 		160886B22D933F2700419981 /* SelectAmountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAmountViewModel.swift; sourceTree = "<group>"; };
@@ -2698,6 +2719,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE1AF5C6883C5202C93E441E /* Transfer */ = {
+			isa = PBXGroup;
+			children = (
+				B9BEF3D72B9C9736A322C9AC /* TransferHostingController.swift */,
+				12A5E2D8262918380678DAF2 /* TransferMoneyView.swift */,
+				A9CC1E974A987A8347CD0314 /* TransferMoneyViewModel.swift */,
+				32B9C029784B65724D14F804 /* TransferRecipientCardView.swift */,
+				47EC1A182AAA0AFBD3F07345 /* TransferAmountFieldView.swift */,
+				7277FF504D6D004BBEA76B26 /* TransferPhoneNumberField.swift */,
+				3C79B0F49FF9BBA6403423B4 /* TransferContactPicker.swift */,
+			);
+			path = Transfer;
+			sourceTree = "<group>";
+		};
 		160886A42D859A5500419981 /* RateView */ = {
 			isa = PBXGroup;
 			children = (
@@ -5067,6 +5102,7 @@
 		759FDEB72AB62C74009B7E74 /* v2 */ = {
 			isa = PBXGroup;
 			children = (
+				AE1AF5C6883C5202C93E441E /* Transfer */,
 				1A2CF9FE015FEE0376819607 /* AccountScreens */,
 				166439CA2D52AFC300C79ED2 /* EVCharger */,
 				759FDEB82AB62C86009B7E74 /* Common */,
@@ -8183,6 +8219,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6164901CA56C8C9F46378099 /* TransferHostingController.swift in Sources */,
+				F597C91D0E450DDA2C4542EC /* TransferMoneyView.swift in Sources */,
+				2FEFF49490D9C613EFA99CB1 /* TransferMoneyViewModel.swift in Sources */,
+				FC6E2DD5396DE831689442FD /* TransferRecipientCardView.swift in Sources */,
+				2EBD253124B3DFA053A4FDC9 /* TransferAmountFieldView.swift in Sources */,
+				E5EDD9E0C3AD21D6967BEAA8 /* TransferPhoneNumberField.swift in Sources */,
+				0829C820FA4C48C9E83B9957 /* TransferContactPicker.swift in Sources */,
 				989EC4315E02E21BB01C3B06 /* AccountScreenHost.swift in Sources */,
 				92585CEF823139DC01283A3A /* MimoFormField.swift in Sources */,
 				B54641A119E16BB791008AF9 /* CompleteProfileFormView.swift in Sources */,
@@ -8913,6 +8956,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				403999630866E883ED6B5710 /* TransferHostingController.swift in Sources */,
+				10977F4398B4097A05CE42B2 /* TransferMoneyView.swift in Sources */,
+				17A54FA429C099651BA7DF36 /* TransferMoneyViewModel.swift in Sources */,
+				92FD1ADC822882F011B5B954 /* TransferRecipientCardView.swift in Sources */,
+				6972EBC511E6760D2E4619E7 /* TransferAmountFieldView.swift in Sources */,
+				881122AD11B9B21BD4F4506C /* TransferPhoneNumberField.swift in Sources */,
+				F542994303B7286EBE41EDF6 /* TransferContactPicker.swift in Sources */,
 				FFED95805200F926A086BB34 /* AccountScreenHost.swift in Sources */,
 				EBA0CCBD4D90C39196A5F12F /* MimoFormField.swift in Sources */,
 				EE128C042E9E4943B420EBFE /* CompleteProfileFormView.swift in Sources */,

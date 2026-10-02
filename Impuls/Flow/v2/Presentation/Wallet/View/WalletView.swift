@@ -443,12 +443,8 @@ struct WalletView: View {
         if UserManager.share.isHaveBikeTrip || UserManager.share.isHaveScooterTrip {
             errorMessage = ErrorMessage(title: "MOBILE__global_attention".localized(), body: "MOBILE_have_active_trip".localized())
         } else {
-            let transferVC = TransferViewController.initFromStoryboard(name: Constant.Storyboards.transfer)
-            transferVC.avatarUrl = viewModel.user?.avatar?.getURL()?.absoluteString
-            transferVC.wallet = viewModel.wallet
-
-            let nc = UINavigationController(rootViewController: transferVC)
-            UIApplication.shared.topMostViewController()?.present(nc, animated: true, completion: nil)
+            let transferVC = TransferHostingController(wallet: viewModel.wallet)
+            UIApplication.shared.topMostViewController()?.present(transferVC, animated: true, completion: nil)
         }
     }
 }
