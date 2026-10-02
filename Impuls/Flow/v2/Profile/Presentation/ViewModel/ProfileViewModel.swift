@@ -78,6 +78,28 @@ final class ProfileViewModel: MimoBaseViewModel, ObservableObject {
         .store(in: &BAG)
     }
     
+    /// Pull-to-refresh: reports back once the user (or an error) arrives.
+    func reload(completion: @escaping (Bool) -> Void) {
+        var delivered = false
+        let loaded = $user.dropFirst().map { _ in true }
+        let failed = $errorMessage.dropFirst().compactMap { $0 }.map { _ in false }
+
+        loaded.merge(with: failed)
+            .first()
+            .timeout(.seconds(15), scheduler: DispatchQueue.main)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { result in
+                // Timed out without a value: end the indicator, no success chime.
+                if case .finished = result, !delivered { completion(false) }
+            }, receiveValue: { success in
+                delivered = true
+                completion(success)
+            })
+            .store(in: &BAG)
+
+        loadData()
+    }
+
     func logout() {
         worker.logout()
             .receive(on: DispatchQueue.main)

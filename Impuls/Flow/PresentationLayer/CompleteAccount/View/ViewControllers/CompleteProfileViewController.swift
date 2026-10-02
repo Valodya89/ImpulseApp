@@ -48,18 +48,14 @@ final class CompleteProfileViewController: UIViewController, StoryboardInitializ
     private var imagePicker: ImagePickerManager!
     private var datePicker: DatePickerManager!
     private var pickerManager: PickerViewManager!
-    private var pickerData = [UserGender.male, UserGender.female]
+    private var pickerData = UserGender.options()
     private var selectedSex: UserGender?
-    
-    var existingModel: UserResponse?
 
-    /// Parses the stored birthday string (saved as "dd-MM-yyyy") into a Date so
-    /// the compact picker can show the user's existing date of birth.
-    private static let birthdayDateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy"
-        return formatter
-    }()
+    /// Presentation mirror of the storyboard fields. The fields themselves are
+    /// still the source of truth for everything that is submitted.
+    private let formModel = CompleteProfileFormModel()
+
+    var existingModel: UserResponse?
 
     //MARK: - Life cycles
 
@@ -70,6 +66,7 @@ final class CompleteProfileViewController: UIViewController, StoryboardInitializ
         MITextFieldView.animatable = false
         configureUI()
         MITextFieldView.animatable = true
+        installRedesignedForm()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -88,6 +85,7 @@ final class CompleteProfileViewController: UIViewController, StoryboardInitializ
                 guard let self = self else { return }
                 DispatchQueue.main.async {
                     self.phoneLabel.text = phoneNumber
+                    self.formModel.phone = phoneNumber
                 }
             }
         }
@@ -100,12 +98,11 @@ final class CompleteProfileViewController: UIViewController, StoryboardInitializ
         }
         
         imagePicker = ImagePickerManager(presentationController: self, delegate: self)
-        datePicker = DatePickerManager(view: view, textField: dateOfBirthTextField.textField, hasDoneButton: true, dateFormat: "dd MMMM yyyy", maxDate: Calendar.current.date(byAdding: .year, value: -18, to: Date()))
-
-        // Edit profile uses a compact, inline date picker whose calendar opens
-        // above the date-of-birth field.
-        let existingBirthDate = existingModel?.birthday.flatMap { Self.birthdayDateFormatter.date(from: $0) }
-        datePicker.showCompactDatePicker(mode: .date, initialDate: existingBirthDate)
+        datePicker = DatePickerManager(view: view, textField: dateOfBirthTextField.textField, hasDoneButton: true, dateFormat: "dd MMMM yyyy", maxDate: Date())
+        // The 18+ limit on the wheel is gone: the minimum age is the backend's
+        // rule per country and per action now, and PUT /api/user no longer
+        // refuses a younger birthday. The wheel opens 18 years back as a hint.
+        datePicker.datePickerView.date = Calendar.current.date(byAdding: .year, value: -18, to: Date()) ?? Date()
         
         pickerManager = PickerViewManager(view: view, textField: sexTextField.textField, hasDoneButton: true)
         pickerManager.delegate = self
@@ -118,16 +115,122 @@ final class CompleteProfileViewController: UIViewController, StoryboardInitializ
             firstNameTextField.fieldText = existingModel.name ?? ""
             lastNameTextField.fieldText = existingModel.surname ?? ""
             emailTextField.fieldText = existingModel.email ?? ""
-            dateOfBirthTextField.fieldText = existingModel.birthday ?? ""
-            if let gender = existingModel.gender {
-                sexTextField.fieldText = gender == "MALE" ? UserGender.male.rawValue.localized() : UserGender.female.rawValue.localized()
+            if let birthday = Self.birthdayFormatter.date(from: existingModel.birthday ?? "") {
+                // What is submitted is the picker's date, so it has to start
+                // from the stored birthday or an untouched form overwrites it.
+                applyDateOfBirth(birthday)
             }
+
+            // The stored gender is what an untouched form sends back.
+            selectedSex = UserGender(backendValue: existingModel.gender)
+            pickerData = UserGender.options(keeping: selectedSex)
+            sexTextField.fieldText = selectedSex?.title ?? ""
             bioTextView.text = existingModel.bio?.count ?? 0 > 0 ? existingModel.bio : "MOBILE_registartion_bio".localized()
             title = "MOBILE_on_boarding_edit_profile".localized()
 //            doneBarButton.isHidden = false
         }
     }
     
+    // MARK: - Redesign (SwiftUI presentation over the storyboard scene)
+
+    /// Fades the storyboard form out and pins `CompleteProfileFormView` over it.
+    /// The storyboard fields stay in the hierarchy and keep doing the work: the
+    /// SwiftUI rows write into them, and the gender row focuses its field so
+    /// the existing wheel appears. Nothing about what gets submitted, or when,
+    /// changes.
+    private func installRedesignedForm() {
+        syncFormFromFields()
+        formModel.avatarURL = existingModel?.avatar?.getURL()
+
+        formModel.onEdit = { [weak self] in
+            guard let self = self else { return }
+
+            self.firstNameTextField.textField.text = self.formModel.name
+            self.lastNameTextField.textField.text = self.formModel.surname
+            self.emailTextField.textField.text = self.formModel.email
+            self.bioTextView.textView.text = self.formModel.bio
+            self.validate()
+        }
+
+        formModel.onPickDateOfBirth = { [weak self] in
+            self?.presentDateOfBirthSheet()
+        }
+
+        formModel.onPickGender = { [weak self] in
+            self?.sexTextField.startTyping()
+        }
+
+        formModel.onPickPhoto = { [weak self] in
+            self?.presentAvatarPicker()
+        }
+
+        formModel.onSave = { [weak self] in
+            guard let self = self else { return }
+            self.saveTapped(self.saveButton)
+        }
+
+        // The wheel writes into the text field without telling anyone; mirror it
+        // as the rider spins so the row is not stale until Done is tapped.
+        datePicker.datePickerView.addTarget(self,
+                                            action: #selector(didSpinDateOfBirth),
+                                            for: .valueChanged)
+
+        installAccountScreenHost(CompleteProfileFormView(model: formModel),
+                                 hiding: view.subviews)
+    }
+
+    /// Pulls the storyboard fields into the SwiftUI mirror.
+    private func syncFormFromFields() {
+        formModel.name = firstNameTextField.textField.text ?? ""
+        formModel.surname = lastNameTextField.textField.text ?? ""
+        formModel.email = emailTextField.textField.text ?? ""
+        formModel.dateOfBirth = dateOfBirthTextField.textField.text ?? ""
+        formModel.gender = sexTextField.textField.text ?? ""
+
+        // The legacy text view shows its hint as text; the row has its own
+        // placeholder, so the hint must not become the bio.
+        let bio = bioTextView.textView.text ?? ""
+        formModel.bio = bio == "MOBILE_registartion_bio".localized() ? "" : bio
+    }
+
+    @objc private func didSpinDateOfBirth() {
+        formModel.dateOfBirth = dateOfBirthTextField.textField.text ?? ""
+    }
+
+    /// `MimoDateOfBirthSheet` replaces the wheel. The legacy picker still holds
+    /// the date, because that is where validation and Save read it from.
+    private func presentDateOfBirthSheet() {
+        let hasDateOfBirth = !(dateOfBirthTextField.textField.text ?? "").isEmpty
+
+        MimoDateOfBirthPicker.present(from: self,
+                                      selected: hasDateOfBirth ? datePicker.datePickerView.date : nil) { [weak self] date in
+            guard let self = self else { return }
+
+            self.applyDateOfBirth(date)
+            self.formModel.dateOfBirth = self.dateOfBirthTextField.textField.text ?? ""
+            self.validate()
+        }
+    }
+
+    private func applyDateOfBirth(_ date: Date) {
+        datePicker.datePickerView.date = date
+        dateOfBirthTextField.fieldText = MimoDateOfBirthPicker.displayString(from: date)
+    }
+
+    /// `birthday` as the accounts service stores it.
+    private static let birthdayFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "dd-MM-yyyy"
+        return formatter
+    }()
+
+    /// Same call the storyboard's camera button makes.
+    private func presentAvatarPicker() {
+        imagePicker.present(from: userProfileImageView)
+    }
+
     private func configureTextFields() {
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
@@ -188,8 +291,13 @@ final class CompleteProfileViewController: UIViewController, StoryboardInitializ
             switch result {
             case .success:
                 self.saveButton.change(to: .active)
-            case .failure:
+                self.formModel.isSaveEnabled = true
+                self.formModel.validationMessage = ""
+            case .failure(let error):
                 self.saveButton.change(to: .inActive)
+                self.formModel.isSaveEnabled = false
+                // Rendered as a red line under the row the validator rejected.
+                self.formModel.validationMessage = error.message
             }
         }
     }
@@ -236,7 +344,7 @@ final class CompleteProfileViewController: UIViewController, StoryboardInitializ
                 }
             } else {
                 var date =  ""
-                if self.dateOfBirthTextField.textField.text?.count ?? 0 == 10 {
+                if Self.birthdayFormatter.date(from: self.dateOfBirthTextField.textField.text ?? "") != nil {
                     date  = self.dateOfBirthTextField.textField.text ?? ""
                 } else {
                     date = self.datePicker.datePickerView.date.toString(format: .custom("dd-MM-yyyy"))
@@ -268,6 +376,7 @@ extension CompleteProfileViewController: ImagePickerDelegate {
         guard let image = image else { return }
         userProfileImageView.image = image
         currentSelectedImage = image
+        formModel.avatar = image
         validate()
     }
 }
@@ -280,11 +389,12 @@ extension CompleteProfileViewController: UITextFieldDelegate {
         
         switch textField {
         case dateOfBirthTextField.textField:
-            // The compact chip handles date selection directly; don't begin
-            // editing so no keyboard appears.
-            return false
+            datePicker.showDatePicker(mode: .date)
         case sexTextField.textField:
             pickerManager.showPickerView()
+            if let selectedSex = selectedSex, let row = pickerData.firstIndex(of: selectedSex) {
+                pickerManager.pickerView.selectRow(row, inComponent: 0, animated: false)
+            }
         default:
             break
         }
@@ -298,11 +408,12 @@ extension CompleteProfileViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         
         if textField == sexTextField.textField {
-            sexTextField.textField.text = selectedSex?.rawValue.localized() ?? pickerData[0].rawValue.localized()
+            sexTextField.textField.text = selectedSex?.title ?? pickerData[0].title
             if selectedSex == nil {
                 selectedSex = .male
             }
         }
+        syncFormFromFields()
         validate()
     }
 }
@@ -328,13 +439,14 @@ extension CompleteProfileViewController: PickerViewManagerDelegate, PickerViewMa
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        return pickerData[row].rawValue.localized()
+        return pickerData[row].title
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         VibrateManager.vibrate()
         selectedSex = pickerData[row]
-        sexTextField.textField.text = pickerData[row].rawValue.localized()
+        sexTextField.textField.text = pickerData[row].title
+        formModel.gender = sexTextField.textField.text ?? ""
     }
 }
 

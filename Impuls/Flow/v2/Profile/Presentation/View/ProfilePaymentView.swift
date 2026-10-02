@@ -7,94 +7,59 @@
 
 import SwiftUI
 
+/// Balance card on the profile: label, amount with currency, and the yellow
+/// top-up button. Adaptive surface, no white hardcoded anywhere.
 struct ProfilePaymentView: View {
-    
-    let freeMinutes: String
+
     let currency: String
     let balance: String
     let isBalanceNegative: Bool
     let replanishAction: (() -> Void)?
-    
-    init(freeMinutes: String, currency: String, balance: String, isBalanceNegative: Bool, replanishAction: (() -> Void)? = nil) {
-        self.freeMinutes = freeMinutes
+
+    init(currency: String, balance: String, isBalanceNegative: Bool, replanishAction: (() -> Void)? = nil) {
         self.currency = currency
         self.balance = balance
         self.isBalanceNegative = isBalanceNegative
         self.replanishAction = replanishAction
     }
-    
+
     var body: some View {
-        ZStack {
-            HStack {
-                ZStack {
-                    HStack(spacing: 8) {
-                        ZStack {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("MOBILE_gloobal_free_minutes".localized())
-                                    .font(.system(size: 12, weight: .light))
-                                    .foregroundColor(.label05)
-                                
-                                HStack(alignment: .lastTextBaseline, spacing: 4) {
-                                    Text(freeMinutes)
-                                        .font(.system(size: 20, weight: .bold))
-                                        .foregroundColor(.label05)
-                                    
-                                    Text("SCOOTER_global_minute".localized())
-                                        .font(.system(size: 13, weight: .light))
-                                        .foregroundColor(.label075)
-                                }
-                            }
-                        }
-                        .background(Color.appBackground)
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-                        
-                        ZStack {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("MOBILE_profile_page_wallet_payment_balance".localized())
-                                    .font(.system(size: 12, weight: .light))
-                                    .foregroundColor(.label05)
-                                
-                                HStack(alignment: .lastTextBaseline, spacing: 4) {
-                                    Text(balance)
-                                        .font(.system(size: 20, weight: .bold))
-                                        .foregroundColor(isBalanceNegative ? .red : .appLabel)
-                                    
-                                    Text(currency)
-                                        .font(.system(size: 13, weight: .light))
-                                        .foregroundColor(.label075)
-                                }
-                            }
-                        }
-                        .background(Color.appBackground)
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-                    }
-                    
-                    Rectangle()
-                        .fill(Color.label025)
-                        .frame(width: 0.5)
-                        .padding(.trailing, 8)
-                }
-                .background(Color.appBackground)
-                
-                if let replanishAction {
-                    Button(action: replanishAction) {
-                        Circle()
-                            .fill(Color.mimoYellow500)
-                            .overlay(
-                                Image(systemName: "plus")
-                                    .resizable()
-                                    .frame(width: 15, height: 15)
-                                    .foregroundColor(.onBrandLabel)
-                            )
-                    }
-                    .frame(width: 38, height: 38)
+        HStack(spacing: 12) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text("MOBILE_profile_page_wallet_payment_balance".localized())
+                    .font(.robotoRegular12)
+                    .foregroundColor(.gray5)
+
+                HStack(alignment: .lastTextBaseline, spacing: 4) {
+                    Text(balance)
+                        .font(.robotoBold24)
+                        .foregroundColor(isBalanceNegative ? .errorRed : .appLabel)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+
+                    Text(currency)
+                        .font(.robotoMedium12)
+                        .foregroundColor(.gray5)
                 }
             }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 17)
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+            if let replanishAction {
+                Button(action: replanishAction) {
+                    Circle()
+                        .fill(Color.brandYellow)
+                        .frame(width: 40, height: 40)
+                        .overlay(
+                            Image(systemName: "plus")
+                                .font(.system(size: 18, weight: .bold))
+                                .foregroundColor(.onBrandLabel)
+                        )
+                }
+                .frame(width: 44, height: 44)
+            }
         }
-        .background(Color.appBackground)
-        .clipShape(RoundedRectangle(cornerRadius: 8))
-        .shadow(color: .black.opacity(0.1), radius: 8, y: 2)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .mimoCard()
     }
 }

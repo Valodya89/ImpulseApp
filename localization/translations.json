@@ -253,5 +253,55 @@
     "en": "Other",
     "ru": "Другой",
     "module": "mobile"
+  },
+  "MOBILE_dob_picker_day": {
+    "en": "Day",
+    "ru": "День",
+    "module": "mobile"
+  },
+  "MOBILE_dob_picker_month": {
+    "en": "Month",
+    "ru": "Месяц",
+    "module": "mobile"
+  },
+  "MOBILE_dob_picker_year": {
+    "en": "Year",
+    "ru": "Год",
+    "module": "mobile"
+  },
+  "MOBILE_validation_first_name_required": {
+    "en": "First name can not be empty",
+    "ru": "Имя не может быть пустым",
+    "module": "mobile"
+  },
+  "MOBILE_validation_last_name_required": {
+    "en": "Last name can not be empty",
+    "ru": "Фамилия не может быть пустой",
+    "module": "mobile"
+  },
+  "MOBILE_validation_no_space": {
+    "en": "Can not contain space",
+    "ru": "Не может содержать пробелы",
+    "module": "mobile"
+  },
+  "MOBILE_validation_invalid_email": {
+    "en": "Invalid email address",
+    "ru": "Неверный адрес эл. почты",
+    "module": "mobile"
+  },
+  "MOBILE_validation_dob_required": {
+    "en": "Please select date of birth",
+    "ru": "Выберите дату рождения",
+    "module": "mobile"
+  },
+  "MOBILE_validation_gender_required": {
+    "en": "Please select your gender",
+    "ru": "Выберите пол",
+    "module": "mobile"
+  },
+  "MOBILE_registartion_sex_bottom_sheet_other": {
+    "en": "Other",
+    "ru": "Другой",
+    "module": "mobile"
   }
 }

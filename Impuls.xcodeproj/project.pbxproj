@@ -89,7 +89,9 @@
 		16A628622D53F8BA0043DBA8 /* ChargerStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A628602D53F8B30043DBA8 /* ChargerStationView.swift */; };
 		16A628652D53FF740043DBA8 /* EVColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A628642D53FF740043DBA8 /* EVColor.swift */; };
 		16A628662D53FF740043DBA8 /* EVColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A628642D53FF740043DBA8 /* EVColor.swift */; };
+		199BFEE77E0BF994FCEF1B89 /* MimoDateOfBirthSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F44F192EF6F630308782B8 /* MimoDateOfBirthSheet.swift */; };
 		29EEDDAE27145DA16F8DF005 /* RequirementsProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56454F9F963908C5E7F5EF4A /* RequirementsProfileService.swift */; };
+		2E622686E0A149325DA822D6 /* MimoDateOfBirthSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F44F192EF6F630308782B8 /* MimoDateOfBirthSheet.swift */; };
 		31409146ECA804A576297D1E /* ActionEligibilityFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A781A7DE9D9BB1D82F5B685 /* ActionEligibilityFlow.swift */; };
 		3613B9F9795637F20E0C7560 /* RequirementFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE7BCD0F2E764F53E2F4137 /* RequirementFieldsView.swift */; };
 		3687BB0982EFF1D06C0A744F /* RequirementFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE7BCD0F2E764F53E2F4137 /* RequirementFieldsView.swift */; };
@@ -1544,10 +1546,13 @@
 		88C6EE33269F725700A997B3 /* HomeViewController+Zoning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C6EE32269F725700A997B3 /* HomeViewController+Zoning.swift */; };
 		88D950A526923CDA00D96C0A /* ZoningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D950A426923CDA00D96C0A /* ZoningView.swift */; };
 		88D950A726923D7F00D96C0A /* ZoningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D950A626923D7F00D96C0A /* ZoningView.xib */; };
+		92585CEF823139DC01283A3A /* MimoFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6957DA98B08EB2F6B07F2501 /* MimoFormField.swift */; };
 		9385C95D26F0A7C200B28D2B /* MiAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385C95C26F0A7C200B28D2B /* MiAlertView.swift */; };
+		989EC4315E02E21BB01C3B06 /* AccountScreenHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF81FA5882C38790CE00F7 /* AccountScreenHost.swift */; };
 		A8C1D69CE9CED96ED44B1465 /* EligibilityModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C200DEB33506D98716132483 /* EligibilityModels.swift */; };
 		AB0D58CF27AD4F22FFA28FAD /* EligibilityModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C200DEB33506D98716132483 /* EligibilityModels.swift */; };
 		B2B64AEA980E65FD119DF7AB /* RequirementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD13364D96156FA36412F6 /* RequirementsView.swift */; };
+		B54641A119E16BB791008AF9 /* CompleteProfileFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81DB58773A7A3F68F739EAB /* CompleteProfileFormView.swift */; };
 		C7F6E748FEE56B900F896384 /* ViolationPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E013527BC34A9D0CE8955F4 /* ViolationPresentation.swift */; };
 		CA001BF1265FD7E40002F844 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA001BF0265FD7E40002F844 /* ViewController.swift */; };
 		CA05372826613A2A00ACD208 /* Transfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA05372726613A2A00ACD208 /* Transfer.storyboard */; };
@@ -1744,7 +1749,9 @@
 		EAEB1BEE26A333EB007D3193 /* img_5.png in Resources */ = {isa = PBXBuildFile; fileRef = EAEB1BE726A333EB007D3193 /* img_5.png */; };
 		EAEB1BEF26A333EB007D3193 /* bicycleAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = EAEB1BE826A333EB007D3193 /* bicycleAnimation.json */; };
 		EAF408B226BEB2E900BBEA5E /* bike_ride.json in Resources */ = {isa = PBXBuildFile; fileRef = EAF408B126BEB2E900BBEA5E /* bike_ride.json */; };
+		EBA0CCBD4D90C39196A5F12F /* MimoFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6957DA98B08EB2F6B07F2501 /* MimoFormField.swift */; };
 		ECC00E64923E34431D2158CE /* EligibilityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42893EF539A1AD92FA2D7F2 /* EligibilityRepository.swift */; };
+		EE128C042E9E4943B420EBFE /* CompleteProfileFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81DB58773A7A3F68F739EAB /* CompleteProfileFormView.swift */; };
 		F3DA65EE3BDC4917E989A236 /* RequirementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD13364D96156FA36412F6 /* RequirementsView.swift */; };
 		FE10000000000000000000A2 /* TeamEnergyLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE10000000000000000000A1 /* TeamEnergyLocation.swift */; };
 		FE10000000000000000000A3 /* TeamEnergyLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE10000000000000000000A1 /* TeamEnergyLocation.swift */; };
@@ -1756,6 +1763,7 @@
 		FE10000000000000000000D3 /* locations-en.json in Resources */ = {isa = PBXBuildFile; fileRef = FE10000000000000000000D1 /* locations-en.json */; };
 		FE10000000000000000000E2 /* locations-ru.json in Resources */ = {isa = PBXBuildFile; fileRef = FE10000000000000000000E1 /* locations-ru.json */; };
 		FE10000000000000000000E3 /* locations-ru.json in Resources */ = {isa = PBXBuildFile; fileRef = FE10000000000000000000E1 /* locations-ru.json */; };
+		FFED95805200F926A086BB34 /* AccountScreenHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF81FA5882C38790CE00F7 /* AccountScreenHost.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1800,6 +1808,7 @@
 		16A628642D53FF740043DBA8 /* EVColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EVColor.swift; sourceTree = "<group>"; };
 		1A781A7DE9D9BB1D82F5B685 /* ActionEligibilityFlow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ActionEligibilityFlow.swift; sourceTree = "<group>"; };
 		1E013527BC34A9D0CE8955F4 /* ViolationPresentation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ViolationPresentation.swift; sourceTree = "<group>"; };
+		28F44F192EF6F630308782B8 /* MimoDateOfBirthSheet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MimoDateOfBirthSheet.swift; sourceTree = "<group>"; };
 		2B73A855E1CEB0950A7AD4AC /* Pods-Impuls-Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Impuls-Dev.debug.xcconfig"; path = "Target Support Files/Pods-Impuls-Dev/Pods-Impuls-Dev.debug.xcconfig"; sourceTree = "<group>"; };
 		43133B76288F3C6E00A147C2 /* BookedScooterResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedScooterResult.swift; sourceTree = "<group>"; };
 		435CCDE2288488CC00228F99 /* ScooterPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScooterPlanViewController.swift; sourceTree = "<group>"; };
@@ -1930,6 +1939,7 @@
 		66DDD51826661C66000BF23F /* MultipartFormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartFormData.swift; sourceTree = "<group>"; };
 		66DDD57F266786E0000BF23F /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
 		66DDD581266786E7000BF23F /* WalletRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletRepository.swift; sourceTree = "<group>"; };
+		6957DA98B08EB2F6B07F2501 /* MimoFormField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MimoFormField.swift; sourceTree = "<group>"; };
 		6C0687E429D9FE2C00837D2E /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
 		6C0A74CD289339C800DCDBEA /* ScooterScanResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScooterScanResponse.swift; sourceTree = "<group>"; };
 		6C0A74CF28942E0E00DCDBEA /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -2430,6 +2440,8 @@
 		88D950A626923D7F00D96C0A /* ZoningView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZoningView.xib; sourceTree = "<group>"; };
 		8CCD13364D96156FA36412F6 /* RequirementsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequirementsView.swift; sourceTree = "<group>"; };
 		9385C95C26F0A7C200B28D2B /* MiAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiAlertView.swift; sourceTree = "<group>"; };
+		96BF81FA5882C38790CE00F7 /* AccountScreenHost.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountScreenHost.swift; sourceTree = "<group>"; };
+		A81DB58773A7A3F68F739EAB /* CompleteProfileFormView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CompleteProfileFormView.swift; sourceTree = "<group>"; };
 		C200DEB33506D98716132483 /* EligibilityModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EligibilityModels.swift; sourceTree = "<group>"; };
 		CA001BF0265FD7E40002F844 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CA05372726613A2A00ACD208 /* Transfer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transfer.storyboard; sourceTree = "<group>"; };
@@ -3008,6 +3020,16 @@
 				50AD36932D875D4A00592139 /* Double+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1A2CF9FE015FEE0376819607 /* AccountScreens */ = {
+			isa = PBXGroup;
+			children = (
+				96BF81FA5882C38790CE00F7 /* AccountScreenHost.swift */,
+				6957DA98B08EB2F6B07F2501 /* MimoFormField.swift */,
+				A81DB58773A7A3F68F739EAB /* CompleteProfileFormView.swift */,
+			);
+			path = AccountScreens;
 			sourceTree = "<group>";
 		};
 		2077288D10E15B3C42859CA3 /* Network */ = {
@@ -5045,6 +5067,7 @@
 		759FDEB72AB62C74009B7E74 /* v2 */ = {
 			isa = PBXGroup;
 			children = (
+				1A2CF9FE015FEE0376819607 /* AccountScreens */,
 				166439CA2D52AFC300C79ED2 /* EVCharger */,
 				759FDEB82AB62C86009B7E74 /* Common */,
 				759FDEBD2AB62F83009B7E74 /* Presentation */,
@@ -5078,6 +5101,7 @@
 		759FDEB92AB62C8B009B7E74 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BBACC03542BF438AC1E16717 /* Pickers */,
 				75F852842AC216C900606A81 /* TextField */,
 				759FDEBA2AB62C9E009B7E74 /* WelcomePlayerUIView.swift */,
 				759FDEC82AB63B9D009B7E74 /* LogoAnimationView.swift */,
@@ -6270,6 +6294,12 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
+		BBACC03542BF438AC1E16717 /* Pickers */ = {
+			isa = PBXGroup;
+			children = (
+				28F44F192EF6F630308782B8 /* MimoDateOfBirthSheet.swift */,
+			);
+			path = Pickers;
 			sourceTree = "<group>";
 		};
 		CA053726266139FB00ACD208 /* Transfer */ = {
@@ -8153,6 +8183,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				989EC4315E02E21BB01C3B06 /* AccountScreenHost.swift in Sources */,
+				92585CEF823139DC01283A3A /* MimoFormField.swift in Sources */,
+				B54641A119E16BB791008AF9 /* CompleteProfileFormView.swift in Sources */,
+				199BFEE77E0BF994FCEF1B89 /* MimoDateOfBirthSheet.swift in Sources */,
 				75E5102A2A000753000D99F0 /* AlertController.swift in Sources */,
 				75E5102B2A000753000D99F0 /* DebtTBCell.swift in Sources */,
 				75E5102C2A000753000D99F0 /* UIColorExtension.swift in Sources */,
@@ -8879,6 +8913,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFED95805200F926A086BB34 /* AccountScreenHost.swift in Sources */,
+				EBA0CCBD4D90C39196A5F12F /* MimoFormField.swift in Sources */,
+				EE128C042E9E4943B420EBFE /* CompleteProfileFormView.swift in Sources */,
+				2E622686E0A149325DA822D6 /* MimoDateOfBirthSheet.swift in Sources */,
 				EA62DDE3266B8BB1006CF5FB /* AlertController.swift in Sources */,
 				6CA6F078296842C00051FE79 /* DebtTBCell.swift in Sources */,
 				CAC45CD1262F6196005D1D52 /* UIColorExtension.swift in Sources */,

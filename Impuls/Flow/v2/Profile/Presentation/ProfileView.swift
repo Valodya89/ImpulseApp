@@ -9,18 +9,18 @@ import SwiftUI
 import Kingfisher
 
 struct ProfileView: View {
-    
+
     private var appVersion: String {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         return "v \(appVersion ?? "")"
     }
-    
+
     @ObservedObject var viewModel: ProfileViewModel
-    
+
     private let navigationController: UINavigationController
-    
+
     @State var isHaveProfilePicture: Bool = false
-    
+
     @State private var showActiveTripAlert = false
     @State private var activeAlert: ProfileAlert?
     @State private var showWalletScreen = false
@@ -35,250 +35,131 @@ struct ProfileView: View {
 
         var id: Int { hashValue }
     }
-    
+
     init(viewModel: ProfileViewModel, navigationController: UINavigationController) {
         self.viewModel = viewModel
         self.navigationController = navigationController
     }
-    
+
     var body: some View {
         VStack(spacing: 0) {
+            // Edit bar. Sits in the top safe area like the old 32pt strip did,
+            // but with a real 44pt target.
             HStack {
                 Spacer()
-                
+
                 Button {
                     ProfileRouter(navigationController: navigationController).showEditProfileScreen(user: viewModel.user)
                 } label: {
-                    Image(systemName: "pencil.line")
-                        .resizable()
-                        .foregroundColor(Color.label075)
+                    Image(systemName: "pencil")
+                        .font(.system(size: 20, weight: .medium))
+                        .foregroundColor(.appSecondaryLabel)
+                        .frame(width: 44, height: 44)
                 }
-                .frame(width: 24, height: 24)
             }
-            .padding(.horizontal, 20)
-            .frame(height: 32)
-            .background(Color.profileBackground)
+            .padding(.horizontal, 12)
+            .frame(height: 44)
             .alert(isPresented: $showActiveTripAlert) {
                 Alert(
-                    title: Text("MOBILE_you_have_active_trip".localized()).foregroundColor(.mimoDarkGray),
-                    dismissButton: .cancel(Text("Ok").foregroundColor(.appLabel)))
+                    title: Text("MOBILE_you_have_active_trip".localized()),
+                    dismissButton: .cancel(Text("MOBILE_global_ok".localized(fallback: "OK"))))
             }
-            
-            ScrollView(.vertical, showsIndicators: true) {
-                VStack(alignment: .center, spacing: 0) {
-                    VStack(spacing: 0) {
-                        if viewModel.avatarURL != nil {
-                            KFImage(viewModel.avatarURL)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 106, height: 106)
-                                .clipShape(Circle())
-                                .overlay(
-                                    Circle()
-                                        .stroke(Color.label075, lineWidth: 1)
-                                )
-                        } else {
-                            ZStack {
-                                Image(systemName: "person")
-                                    .resizable()
-                                    .font(.title.weight(.ultraLight))
-                                    .frame(width: 58, height: 58)
-                                    .foregroundColor(.label075)
-                            }
-                            .frame(width: 106, height: 106)
-                            .background(Color.gray.opacity(0.2))
-                            .clipShape(Circle())
-                            .overlay(
-                                Circle()
-                                    .stroke(Color.label075, lineWidth: 1.5)
-                            )
-                        }
-                        
-                        Text(viewModel.name)
-                            .font(.system(size: 17, weight: .bold))
-                            .foregroundColor(.appLabel)
-                            .padding(.top, 20)
-                        
-                        Text(viewModel.phoneNumber)
-                            .font(.system(size: 15, weight: .regular))
-                            .foregroundColor(.label05)
-                            .padding(.top, 6)
-                    }
-//
-//                    HStack {
-//                        ZStack {
-//                            VStack {
-//                                HStack {
-//                                    Image("profile_distance")
-//                                    
-//                                    Text("\(viewModel.distance) \("MOBILE_global_km".localized())")
-//                                }
-//                                
-//                                Text("MOBILE_global_distance".localized())
-//                                    .font(.system(size: 15, weight: .light))
-//                                    .foregroundColor(.label05)
-//                            }
-//                        }
-//                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-//                        
-//                        ZStack {
-//                            VStack {
-//                                HStack {
-//                                    Image("profile_ccal")
-//                                    
-//                                    Text("\(viewModel.calories) \("MOBILE_global_ccal".localized())")
-//                                }
-//                                
-//                                Text("MOBILE_global_calories".localized())
-//                                    .font(.system(size: 15, weight: .light))
-//                                    .foregroundColor(.label05)
-//                            }
-//                        }
-//                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-//                        
-//                        ZStack {
-//                            VStack {
-//                                HStack {
-//                                    Image("profile_carbon")
-//                                    
-//                                    Text(viewModel.carbon)
-//                                }
-//                                
-//                                Text("MOBILE_global_carbon".localized())
-//                                    .font(.system(size: 15, weight: .light))
-//                                    .foregroundColor(.label05)
-//                            }
-//                        }
-//                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-//                    }
-//                    .frame(height: 44)
-//                    .padding(.top, 25)
-//                    .padding(.horizontal, 10)
 
-//                    if !viewModel.isEmailVerified {
-//                        ProfileRowView(icon: "profile_verify_mail", title: "Verify your email")
-//                            .clipShape(RoundedRectangle(cornerRadius: 8))
-//                            .shadow(color: .black.opacity(0.1), radius: 8, y: 2)
-//                            .padding(.top, 20)
-//                            .onTapGesture {
-//                                if let email = viewModel.user?.email {
-//                                    ProfileRouter(navigationController: navigationController).showEmailVerifyScreen(email: email)
-//                                } else {
-//                                    ProfileRouter(navigationController: navigationController).showEditProfileScreen(user: viewModel.user)
-//                                }
-//                            }
-//                    }
-                    
-//                    HeaderTitleView(title: "MOBILE_profile_page_wallet_payment".localized())
-//                        .padding(.top, 18)
-//                    
-//                    ProfilePaymentView(
-//                        freeMinutes: viewModel.freeMinutes,
-//                        currency: viewModel.currency,
-//                        balance: viewModel.balance,
-//                        isBalanceNegative: viewModel.isBalanceNegative,
-//                        replanishAction: {
-//                            showWalletScreen = true
-//                        }
-//                    )
-//                    .padding(.top, 6)
-//                    
-//                    if let package = viewModel.package {
-//                        HStack {
-//                            ProfilePackageView(
-//                                title: package.name.uppercased(),
-//                                startDate: DateFormatter.fullDateFormatter.string(from: package.startDate),
-//                                endDate: DateFormatter.fullDateFormatter.string(from: package.endDate)
-//                            )
-//                        }
-//                        .padding(.top, 8)
-//                        .onTapGesture {
-//                            ProfileRouter(navigationController: navigationController).showPackagesScreen()
-//                        }
-//                    }
-//                    
-//                    ZStack {
-//                        VStack(spacing: 0) {
-//                            ForEach([ProfilePaymentRows.subscriptions]) { item in
-//                                ProfileRowView(icon: item.icon, title: item.name)
-//                                    .onTapGesture {
-//                                        showSubscriptionScreen = true
-//                                    }
-//                                
-//                                if item != ProfilePaymentRows.allCases.last {
-//                                    Divider()
-//                                }
-//                            }
-//                        }
-//                    }
-//                    .background(Color.appBackground)
-//                    .clipShape(RoundedRectangle(cornerRadius: 8))
-//                    .shadow(color: .black.opacity(0.1), radius: 8, y: 2)
-//                    .padding(.top, 12)
-                    
-                    HeaderTitleView(title: "MOBILE_profile_support_settings".localized().uppercased())
-                        .padding(.top, 18)
-                    
-                    ZStack {
-                        VStack(spacing: 0) {
-                            ForEach(ProfileSettingsRows.allCases) { item in
-                                ProfileRowView(icon: item.icon, title: item.name, type: item.isDestuctive ? .destructive : .standard, isArrowVisible: !item.isDestuctive)
-                                    .onTapGesture {
-                                        settingsAction(for: item)
-                                    }
-                                
-                                if item != ProfileSettingsRows.allCases.last {
-                                    Divider()
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 10) {
+                    identityHeader
+
+                    MimoSectionLabel(title: "MOBILE_profile_page_wallet_payment".localized())
+                        .padding(.top, 10)
+
+                    ProfilePaymentView(
+                        currency: viewModel.currency,
+                        balance: viewModel.balance,
+                        isBalanceNegative: viewModel.isBalanceNegative,
+                        replanishAction: {
+                            showWalletScreen = true
+                        }
+                    )
+
+                    if let package = viewModel.package {
+                        ProfilePackageView(
+                            title: package.name.uppercased(),
+                            startDate: DateFormatter.fullDateFormatter.string(from: package.startDate),
+                            endDate: DateFormatter.fullDateFormatter.string(from: package.endDate)
+                        )
+                        .onTapGesture {
+                            ProfileRouter(navigationController: navigationController).showPackagesScreen()
+                        }
+                    }
+
+                    MimoSectionLabel(title: "MOBILE_profile_support_settings".localized())
+                        .padding(.top, 10)
+
+                    VStack(spacing: 0) {
+                        ForEach(ProfileSettingsRows.allCases) { item in
+                            MimoListRow(
+                                icon: Image(item.icon),
+                                title: item.name,
+                                tone: item.isDestuctive ? .destructive : .standard
+                            ) {
+                                if item.isDestuctive {
+                                    EmptyView()
+                                } else {
+                                    MimoChevron()
                                 }
                             }
+                            .onTapGesture {
+                                settingsAction(for: item)
+                            }
+
+                            if item != ProfileSettingsRows.allCases.last {
+                                MimoRowDivider()
+                            }
                         }
                     }
-                    .background(Color.appBackground)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .shadow(color: .black.opacity(0.1), radius: 8, y: 2)
-                    .padding(.top, 6)
-                    
+                    .mimoCard()
+
                     Text(appVersion)
-                        .font(.subheadline)
-                        .foregroundColor(.label05)
-                        .padding(.top, 8)
-                    
-                    Spacer()
+                        .font(.robotoRegular12)
+                        .foregroundColor(.gray5)
+                        .frame(maxWidth: .infinity)
+                        .padding(.top, 4)
                 }
-                .frame(alignment: .center)
-                .padding(.top, 3)
                 .padding(.horizontal, 20)
-                .padding(.bottom, 32)
+                .padding(.top, 4)
+                .padding(.bottom, 100)
                 // Both logout and delete-account confirmations are driven by a
                 // single `.alert(item:)` so they can't clobber each other.
                 .alert(item: $activeAlert) { alert in
                     switch alert {
                     case .logout:
-                        return Alert(title: Text("MOBILE__profile_log_out_message".localized()).foregroundColor(.mimoDarkGray),
+                        return Alert(title: Text("MOBILE__profile_log_out_message".localized()),
                                      primaryButton: .destructive(
                                         Text("MOBILE__confirmation_yes".localized()),
                                         action: {
                                             MILoader.show()
                                             viewModel.logout()
                                         }),
-                                     secondaryButton: .cancel(Text("MOBILE__confirmation_no".localized()).foregroundColor(.appLabel))
+                                     secondaryButton: .cancel(Text("MOBILE__confirmation_no".localized()))
                         )
                     case .deleteAccount:
-                        return Alert(title: Text("MOBILE_profice_deleete_confirm".localized()).foregroundColor(.mimoDarkGray),
+                        return Alert(title: Text("MOBILE_profice_deleete_confirm".localized()),
                                      primaryButton: .destructive(
                                         Text("MOBILE__confirmation_yes".localized()),
                                         action: {
                                             MILoader.show()
                                             viewModel.deleteAccount()
                                         }),
-                                     secondaryButton: .cancel(Text("MOBILE__confirmation_no".localized()).foregroundColor(.appLabel))
+                                     secondaryButton: .cancel(Text("MOBILE__confirmation_no".localized()))
                         )
                     }
                 }
+                .mimoRefreshable { done in
+                    viewModel.reload(completion: done)
+                }
             }
-            .frame(minWidth: 0, maxWidth: .infinity)
         }
-        .background(Color.profileBackground.ignoresSafeArea(edges: .all))
+        .background(Color.appSecondaryBackground.ignoresSafeArea(edges: .all))
         .onAppear {
             viewModel.loadData()
         }
@@ -299,12 +180,49 @@ struct ProfileView: View {
             }
         }
     }
-    
+
+    /// Avatar with the brand ring, name and phone. Left-aligned so it reads
+    /// as the top of a list, not a centred hero.
+    private var identityHeader: some View {
+        HStack(spacing: 14) {
+            Group {
+                if viewModel.avatarURL != nil {
+                    KFImage(viewModel.avatarURL)
+                        .resizable()
+                        .scaledToFill()
+                } else {
+                    Image(systemName: "person")
+                        .font(.system(size: 30, weight: .light))
+                        .foregroundColor(.gray5)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(Color.appFill)
+                }
+            }
+            .frame(width: 72, height: 72)
+            .clipShape(Circle())
+            .overlay(Circle().stroke(Color.brandYellow, lineWidth: 2))
+
+            VStack(alignment: .leading, spacing: 3) {
+                Text(viewModel.name)
+                    .font(.robotoBold20)
+                    .foregroundColor(.appLabel)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
+
+                Text(viewModel.phoneNumber)
+                    .font(.robotoRegular14)
+                    .foregroundColor(.gray5)
+            }
+
+            Spacer(minLength: 0)
+        }
+    }
+
     private func settingsAction(for type: ProfileSettingsRows) {
         VibrateManager.vibrate()
-        
+
         let router = ProfileRouter(navigationController: navigationController)
-        
+
         switch type {
         case .history:
             router.showHistoryScreen()
@@ -323,17 +241,17 @@ struct ProfileView: View {
         case .terms:
             router.showAgreementScreen()
         case .logOut:
-//            if UserManager.share.isHaveBikeTrip || UserManager.share.isHaveScooterTrip {
-//                showActiveTripAlert = true
-//            } else {
+            if UserManager.share.isHaveBikeTrip || UserManager.share.isHaveScooterTrip {
+                showActiveTripAlert = true
+            } else {
                 activeAlert = .logout
-//            }
+            }
         case .deleteAccount:
-//            if UserManager.share.isHaveBikeTrip || UserManager.share.isHaveScooterTrip {
-//                showActiveTripAlert = true
-//            } else {
+            if UserManager.share.isHaveBikeTrip || UserManager.share.isHaveScooterTrip {
+                showActiveTripAlert = true
+            } else {
                 activeAlert = .deleteAccount
-//            }
+            }
         }
     }
 }
