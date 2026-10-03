@@ -249,6 +249,11 @@
     "ru": "Чтобы забронировать пауэрбанк",
     "module": "mobile"
   },
+  "MOBILE_requirements_purpose_transfer": {
+    "en": "To send money",
+    "ru": "Чтобы отправить деньги",
+    "module": "mobile"
+  },
   "MOBILE_requirements_gender_other": {
     "en": "Other",
     "ru": "Другой",
@@ -367,6 +372,11 @@
   "IPAY_no_such_wallet": {
     "en": "The recipient does not have an Impulse wallet",
     "ru": "У получателя нет кошелька Impulse",
+    "module": "ipay"
+  },
+  "IPAY_accounts_service_unavailable": {
+    "en": "The service is temporarily unavailable. Please try again later.",
+    "ru": "Сервис временно недоступен. Попробуйте позже.",
     "module": "ipay"
   }
 }

@@ -406,9 +406,15 @@ final class WalletViewController: UIViewController, StoryboardInitializable {
         if UserManager.share.isHaveScooterTrip || UserManager.share.isHaveBikeTrip {
             UIAlertController.showError(message: "MOBILE_have_active_trip".localized())
         } else {
-            
-            let transferVC = TransferHostingController(wallet: wallet)
-            present(transferVC, animated: true, completion: nil)
+            // The sender must meet the TRANSFER payment rules first; if the
+            // pre-check cannot be read the flow opens anyway and the transfer
+            // call enforces them.
+            ActionEligibilityFlow.run(.transfer, from: self) { [weak self] in
+                guard let self else { return }
+
+                let transferVC = TransferHostingController(wallet: self.wallet)
+                self.present(transferVC, animated: true, completion: nil)
+            }
         }
     }
     

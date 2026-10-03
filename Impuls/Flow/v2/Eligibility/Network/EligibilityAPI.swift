@@ -4,6 +4,7 @@
 //
 //  Each service answers for its own action:
 //    ipay       GET api/bank/card/{provider}/eligibility
+//    ipay       GET api/wallet/transfer/eligibility   (TRANSFER rules, sender only)
 //    powerbank  GET api/rent/{id}/eligibility?action=START_RENT|BOOK&latitude&longitude
 //    scooter    GET api/trip/eligibility
 //    sharing    GET api/trip/eligibility?action=START_RIDE|BOOK
@@ -26,6 +27,9 @@ enum EligibilityCheck {
 
     /// `provider` is the value passed to `api/bank/card/{provider}/attach`.
     case attachCard(provider: String)
+    /// Sending money to another rider (`PATCH api/wallet/transfer`). The rules
+    /// are evaluated on the sender only; the recipient is never checked.
+    case transfer
     /// `stationId` is the value passed to `api/rent/{id}/scan`.
     case powerbank(stationId: String, action: PowerbankAction, latitude: Double?, longitude: Double?)
     case scooter
@@ -66,6 +70,8 @@ extension EligibilityCheck {
         if isHost(.payment), path.hasSuffix("/attach"),
            let index = parts.firstIndex(of: "card"), parts.count > index + 2 {
             self = .attachCard(provider: parts[index + 1])
+        } else if isHost(.payment), path.hasSuffix("/wallet/transfer") {
+            self = .transfer
         } else if isHost(.charger), path.hasSuffix("/scan"),
                   let index = parts.firstIndex(of: "rent"), parts.count > index + 2 {
             self = .powerbank(stationId: parts[index + 1], action: .startRent,
@@ -91,7 +97,7 @@ extension EligibilityCheck: APIProtocol {
 
     var base: String {
         switch self {
-        case .attachCard:
+        case .attachCard, .transfer:
             return MimoBaseURLs.payment.rawValue
         case .powerbank:
             return MimoBaseURLs.charger.rawValue
@@ -108,6 +114,8 @@ extension EligibilityCheck: APIProtocol {
         switch self {
         case .attachCard(let provider):
             return "api/bank/card/\(provider)/eligibility"
+        case .transfer:
+            return "api/wallet/transfer/eligibility"
         case .powerbank(let stationId, _, _, _):
             return "api/rent/\(stationId)/eligibility"
         case .scooter, .sharing:
@@ -126,7 +134,7 @@ extension EligibilityCheck: APIProtocol {
 
     var query: [String: String] {
         switch self {
-        case .attachCard, .scooter:
+        case .attachCard, .transfer, .scooter:
             return [:]
         case let .powerbank(_, action, latitude, longitude):
             var query = ["action": action.rawValue]

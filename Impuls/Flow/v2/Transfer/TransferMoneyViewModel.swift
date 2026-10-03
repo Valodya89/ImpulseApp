@@ -338,6 +338,14 @@ final class TransferMoneyViewModel: ObservableObject {
                         body: "MOBILE_transfer_success_body".localized(fallback: "Money sent to") + " " + recipient.displayName
                     )
                     self.didTransfer = true
+                case .failure(.rulesNotMet(let rejection)):
+                    // The sender does not meet the TRANSFER rules (a rule
+                    // switched on after this screen was opened): walk through
+                    // them, then send again with the same recipient and amount.
+                    UserManager.share.isOpenDebtScreen = true
+                    ActionEligibilityFlow.handle(rejection, check: .transfer, retry: { [weak self] in
+                        self?.transferTapped()
+                    })
                 case .failure(let error):
                     UserManager.share.isOpenDebtScreen = true
                     self.errorMessage = ErrorMessage(
@@ -426,11 +434,18 @@ extension TransferMoneyErrors {
         case .wrongAmount:
             return "MOBILE_min_value_to_transfer".localized()
         case .sameReceiver:
-            return rawValue.localized(fallback: "You cannot transfer money to yourself")
+            return (code ?? "").localized(fallback: "You cannot transfer money to yourself")
         case .transferNotAllowed:
-            return rawValue.localized(fallback: "Transfers are not allowed for this wallet")
+            return (code ?? "").localized(fallback: "Transfers are not allowed for this wallet")
         case .noSuchUser, .noSuchWallet:
-            return rawValue.localized(fallback: "The recipient does not have an Impulse wallet")
+            return (code ?? "").localized(fallback: "The recipient does not have an Impulse wallet")
+        case .serviceUnavailable:
+            // Same wording as a card attach while accounts is down.
+            return (code ?? "").localized(fallback: "The service is temporarily unavailable. Please try again later.")
+        case .rulesNotMet(let rejection):
+            // Shown only when the requirements sheet could not take over:
+            // the first failing rule's code is a shared locale key.
+            return rejection.message.localized(fallback: "MOBILE_requirements_checklist_subtitle".localized(fallback: "A few things need your attention first."))
         case .other:
             return "MOBILE_transfer_failed_generic".localized(fallback: "The transfer could not be completed. Please try again.")
         }

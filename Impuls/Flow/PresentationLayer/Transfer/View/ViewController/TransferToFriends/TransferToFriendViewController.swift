@@ -151,6 +151,12 @@ final class TransferToFriendViewController: BaseViewController, StoryboardInitia
                 self.showSuccessMessage(title: "MOBILE_global_success_title".localized(),
                                         body: "MOBILE_global_success".localized())
                 self.dismiss(animated: true, completion: nil)
+            case .failure(.rulesNotMet(let rejection)):
+                // Unmet TRANSFER rules: walk through them, then send again.
+                UserManager.share.isOpenDebtScreen = true
+                ActionEligibilityFlow.handle(rejection, check: .transfer, from: self, retry: { [weak self] in
+                    self?.sendMoneyToFriend(sender)
+                })
             case .failure(let err):
                 UserManager.share.isOpenDebtScreen = true
                 print(err.localizedDescription)

@@ -38,12 +38,16 @@ class BaseRouter {
     
     func showTransferToFirendViewController(_ viewController: UIViewController?, phoneNumber: String, transferUser: ContactsListModel?, debt: Double?) {
         // v2 transfer flow, opened straight on the amount step with the debtor
-        // prefilled (see TransferHostingController).
-        let transferToFirendViewController = TransferHostingController(wallet: UserManager.share.walletModel,
-                                                                       phoneNumber: phoneNumber,
-                                                                       transferUser: transferUser,
-                                                                       debt: debt)
-        viewController?.present(transferToFirendViewController, animated: true)
+        // prefilled (see TransferHostingController). Paying a debt is a
+        // transfer, so the sender's TRANSFER payment rules are checked first;
+        // an unreadable pre-check opens the flow anyway.
+        ActionEligibilityFlow.run(.transfer, from: viewController) { [weak viewController] in
+            let transferToFirendViewController = TransferHostingController(wallet: UserManager.share.walletModel,
+                                                                           phoneNumber: phoneNumber,
+                                                                           transferUser: transferUser,
+                                                                           debt: debt)
+            (viewController ?? UIApplication.shared.topMostViewController())?.present(transferToFirendViewController, animated: true)
+        }
     }
     
     func showNewsViewController(_ viewController: UIViewController?, news: [NewsObject]) {

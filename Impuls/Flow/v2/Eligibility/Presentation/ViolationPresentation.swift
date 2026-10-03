@@ -198,6 +198,8 @@ extension Optional where Wrapped == EligibilityCheck {
         switch self {
         case .attachCard?:
             return "MOBILE_requirements_purpose_attach_card".localized(fallback: "To add a bank card")
+        case .transfer?:
+            return "MOBILE_requirements_purpose_transfer".localized(fallback: "To send money")
         case .sharing(action: .startRide)?:
             return "MOBILE_requirements_purpose_bike".localized(fallback: "To start a bike ride")
         case .sharing(action: .book)?:

@@ -443,8 +443,14 @@ struct WalletView: View {
         if UserManager.share.isHaveBikeTrip || UserManager.share.isHaveScooterTrip {
             errorMessage = ErrorMessage(title: "MOBILE__global_attention".localized(), body: "MOBILE_have_active_trip".localized())
         } else {
-            let transferVC = TransferHostingController(wallet: viewModel.wallet)
-            UIApplication.shared.topMostViewController()?.present(transferVC, animated: true, completion: nil)
+            // The sender must meet the TRANSFER payment rules first; if the
+            // pre-check cannot be read the flow opens anyway and the transfer
+            // call enforces them.
+            let wallet = viewModel.wallet
+            ActionEligibilityFlow.run(.transfer) {
+                let transferVC = TransferHostingController(wallet: wallet)
+                UIApplication.shared.topMostViewController()?.present(transferVC, animated: true, completion: nil)
+            }
         }
     }
 }

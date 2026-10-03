@@ -59,9 +59,23 @@ enum ActionEligibilityFlow {
                                 retry: (() -> Void)? = nil) -> Bool {
         guard let rejection = ActionRejectionStore.shared.take(matching: message) else { return false }
 
-        present(violations: rejection.violations, check: check ?? rejection.check, from: presenter, onSatisfied: retry)
+        handle(rejection, check: check, from: presenter, retry: retry)
 
         return true
+    }
+
+    /// Walks the rider through the rules of a refusal the caller has already
+    /// decoded itself (`ActionRejection.parse`), e.g. a transfer answered with
+    /// `content.violations`. `retry` runs the action again once they are met.
+    static func handle(_ rejection: ActionRejection,
+                       check: EligibilityCheck? = nil,
+                       from presenter: UIViewController? = nil,
+                       retry: (() -> Void)? = nil) {
+        // Drop the copy `SessionNetwork` recorded so a later, unrelated error
+        // with the same message is not mistaken for this refusal.
+        ActionRejectionStore.shared.take(matching: rejection.message)
+
+        present(violations: rejection.violations, check: check ?? rejection.check, from: presenter, onSatisfied: retry)
     }
 
     private static func present(violations: [EligibilityViolation],
