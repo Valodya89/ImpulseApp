@@ -42,7 +42,27 @@ struct SubscriptionView: View {
                             )
                                 .frame(height: 97)
                                 .padding(.horizontal, 20)
+
+                            // Renewal stopped (activePlan.cancelled): the plan
+                            // still runs until activeUntil and is not charged again.
+                            if viewModel.isActivePlanCancelled {
+                                Text("MOBILE_subscriptions_cancelled_notice".localized()
+                                        .replacingOccurrences(of: "%@", with: viewModel.activeUntilDate()))
+                                    .font(.system(size: 13, weight: .regular))
+                                    .foregroundColor(.warningColor)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.horizontal, 20)
+                                    .padding(.top, -8)
+                            }
                             
+                        } else if viewModel.hasNoPlans {
+                            // Nothing on sale for this country/locale: the
+                            // backend answered with an empty catalogue.
+                            Text("MOBILE_subscriptions_empty".localized())
+                                .font(.system(size: 15, weight: .regular))
+                                .foregroundColor(.gray8)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 32)
                         } else {
                             Text("MOBILE_subscriptions_mimo_title".localized())
                                 .font(.system(size: 20, weight: .bold))
@@ -58,7 +78,7 @@ struct SubscriptionView: View {
                     }
                     .padding(.vertical, 24)
                 }
-                .frame(height: viewModel.activePlan == nil ? 197 : 161)
+                .frame(height: viewModel.activePlan == nil ? 197 : (viewModel.isActivePlanCancelled ? 201 : 161))
                 .frame(maxWidth: .infinity)
                 .background(Color.clearVision)
                 .overlay(
@@ -111,11 +131,13 @@ struct SubscriptionView: View {
                     )
                 } label: {
                     Button(action: {
+                        guard !viewModel.hasNoPlans else { return }
                         showSubscriptionPlans = true
                     }, label: {
                         Text(viewModel.activePlan == nil ? "MOBILE_subscriptions_button_choose_period".localized() : "MOBILE_subscriptions_button_choose_another_period".localized())
                     })
-                    .buttonStyle(MimoButton())
+                    .buttonStyle(MimoButton(isEnabled: !viewModel.hasNoPlans))
+                    .disabled(viewModel.hasNoPlans)
                     .padding(.bottom, 20)
                 }
             }
@@ -144,6 +166,13 @@ struct SubscriptionView: View {
         }
         .onAppear {
             viewModel.loadData()
+        }
+        .onChange(of: showSubscriptionPlans) { isShown in
+            // Back from the plans screen: a purchase, change or cancellation
+            // there must show here without reopening the sheet.
+            if !isShown {
+                viewModel.loadData()
+            }
         }
     }
 }

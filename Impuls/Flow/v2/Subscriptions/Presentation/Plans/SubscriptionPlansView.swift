@@ -28,6 +28,20 @@ struct SubscriptionPlansView: View {
         self.viewModel = viewModel
     }
 
+    /// "Pay and subscribe" with no active plan, "Change to <plan>" while
+    /// another plan is active, "Resume subscription" for the cancelled active
+    /// plan (the backend only un-cancels it, no charge).
+    private func ctaTitle(for selectedPlan: SubscriptionPlan) -> String {
+        if viewModel.isResumingActivePlan {
+            return "MOBILE_subscriptions_button_resume".localized()
+        }
+        if viewModel.activePlan != nil {
+            return "MOBILE_subscriptions_button_change_to_plan".localized()
+                .replacingOccurrences(of: "%@", with: selectedPlan.name)
+        }
+        return "MOBILE_subscriptions_button_pay_and_subscribe".localized()
+    }
+
     private func presentSuccess(_ message: SubscriptionSuccess) {
         let host = UIHostingController(rootView: SubscriptionSuccessView(message: message))
         host.view.backgroundColor = .clear
@@ -45,12 +59,27 @@ struct SubscriptionPlansView: View {
             ScrollView {
                 VStack(spacing: 16) {
                     ForEach(viewModel.plans, id: \.id) { plan in
-                        SubscriptionPlanItemView(plan: plan, isSelected: plan.id == viewModel.selectedPlan?.id)
-                            .allowsHitTesting(viewModel.activePlan?.subscriptionPlanId != plan.id)
-                            .opacity(viewModel.activePlan?.subscriptionPlanId == plan.id ? 0.7 : 1)
+                        SubscriptionPlanItemView(
+                            plan: plan,
+                            subtitle: viewModel.isActive(plan) ? viewModel.activePlanSubtitle() : nil,
+                            isSelected: plan.id == viewModel.selectedPlan?.id
+                        )
+                            // The renewing active plan cannot be bought again; once
+                            // its renewal is cancelled it can be selected to resume.
+                            .allowsHitTesting(!viewModel.isActive(plan) || viewModel.isActivePlanCancelled)
+                            .opacity(viewModel.isActive(plan) && !viewModel.isActivePlanCancelled ? 0.7 : 1)
                             .onTapGesture {
                                 viewModel.selectedPlan = plan
                             }
+                    }
+
+                    if viewModel.isActivePlanCancelled {
+                        Text("MOBILE_subscriptions_cancelled_notice".localized()
+                                .replacingOccurrences(of: "%@", with: viewModel.activeUntilDate()))
+                            .font(.system(size: 13, weight: .regular))
+                            .foregroundColor(.warningColor)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity)
                     }
                     
                     Divider()
@@ -68,8 +97,7 @@ struct SubscriptionPlansView: View {
                     MILoader.show()
                     viewModel.activatePlan(id: selectedPlan.id)
                 }, label: {
-                    Text(viewModel.activePlan != nil ? "MOBILE_subscriptions_button_change_to_plan".localized().replacingOccurrences(of: "%@", with: selectedPlan.name)
-                         : "MOBILE_subscriptions_button_pay_and_subscribe".localized())
+                    Text(ctaTitle(for: selectedPlan))
                 })
                 .buttonStyle(MimoButton(isEnabled: viewModel.selectedPlan != nil))
                 .padding(.bottom, (viewModel.activePlan?.cancelled ?? false) ? 10 : 0)

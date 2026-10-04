@@ -92,6 +92,23 @@ struct ProfileView: View {
                         }
                     }
 
+                    // Subscriptions are offered per country through Remote Config
+                    // (subscription_enabled_countries); unlisted markets never see
+                    // the row. The plan catalogue itself is country/locale-driven
+                    // by the backend (accounts GET /api/subscription-plan/list).
+                    if SubscriptionAvailability.isEnabledForCurrentCountry {
+                        MimoListRow(
+                            icon: Image(ProfilePaymentRows.subscriptions.icon),
+                            title: ProfilePaymentRows.subscriptions.name,
+                            subtitle: subscriptionSubtitle
+                        )
+                        .mimoCard()
+                        .onTapGesture {
+                            VibrateManager.vibrate()
+                            showSubscriptionScreen = true
+                        }
+                    }
+
                     MimoSectionLabel(title: "MOBILE_profile_support_settings".localized())
                         .padding(.top, 10)
 
@@ -166,7 +183,11 @@ struct ProfileView: View {
         .sheet(isPresented: $showWalletScreen, content: {
             WalletView(viewModel: MimoWalletViewModel(worker: Resolver.resolve()))
         })
-        .sheet(isPresented: $showSubscriptionScreen, content: {
+        .sheet(isPresented: $showSubscriptionScreen, onDismiss: {
+            // A purchase, change or cancellation in the sheet changes
+            // `activePlan` on the user (and the wallet balance): refresh the row.
+            viewModel.loadData()
+        }, content: {
             SubscriptionView(
                 viewModel: SubscriptionInfoViewModel(
                     worker: Resolver.resolve()
@@ -179,6 +200,22 @@ struct ProfileView: View {
                 BaseRouter.shared.showSplashView()
             }
         }
+    }
+
+    /// Supporting line of the Subscriptions row: the day the active plan runs
+    /// out, flagged when its renewal was cancelled. The active plan comes from
+    /// GET /api/user `activePlan` (accounts docs/mobile-api.md); nil without one.
+    private var subscriptionSubtitle: String? {
+        guard let activePlan = viewModel.user?.activePlan else { return nil }
+
+        let until = DateFormatter.dayMonthYearFormatter.string(
+            from: Date(timeIntervalSince1970: TimeInterval(activePlan.activeUntil / 1000))
+        )
+        let key = activePlan.cancelled
+            ? "MOBILE_subscriptions_row_cancelled_until"
+            : "MOBILE_subscriptions_row_active_until"
+
+        return key.localized().replacingOccurrences(of: "%@", with: until)
     }
 
     /// Avatar with the brand ring, name and phone. Left-aligned so it reads

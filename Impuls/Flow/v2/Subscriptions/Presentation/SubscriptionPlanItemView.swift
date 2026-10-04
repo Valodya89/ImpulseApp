@@ -29,7 +29,9 @@ struct SubscriptionPlanItemView: View {
                     
                     Spacer()
                     
-                    Text("\(String(format: "%.0f", plan.price)) AMD")
+                    // The plan DTO carries no currency: the backend charges the
+                    // rider's wallet, so the wallet currency is the right label.
+                    Text("\(String(format: "%.0f", plan.price)) \(UserManager.walletCurrencyTitle)")
                         .font(.system(size: 17, weight: .semibold))
                         .foregroundColor(.appLabel.opacity(0.8))
                 }
