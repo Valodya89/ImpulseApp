@@ -18,8 +18,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     let sessionNetwork = SessionNetwork()
-    var isOpenedWithPushNotification = false
+
+    /// The current FCM registration token. Home uploads it with
+    /// `PUT /api/user/device` on every appearance (cold start, after login) and
+    /// again whenever Firebase rotates it (`didReceiveRegistrationToken`).
     var fcmToken: String?
+
+    /// Posted when `fcmToken` changes, so a visible Home re-uploads it.
+    static let fcmTokenUpdated = NSNotification.Name("UpdateFCMToken")
+    /// Posted when a push tap has been routed; the object is the `PushRoute`.
+    /// A running Home opens it at once, otherwise it waits in
+    /// `pendingPushRoute` for Home to appear (cold start through the splash,
+    /// or a signed-out user who must log in first).
+    static let pushRouteReceived = NSNotification.Name("Mimo.Notification.pushRouteReceived")
+
+    private(set) var pendingPushRoute: PushRoute?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
@@ -53,17 +66,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
     
+    /// Wires Firebase Messaging and asks APNs for a device token. The user is
+    /// NOT asked for notification permission here: Home asks, with the brand
+    /// rationale, once the rider is signed in (see
+    /// `MimoHomeViewController.offerNotificationPermissionIfNeeded`). The APNs
+    /// registration and the FCM token do not depend on that permission, so the
+    /// token is registered with the backend either way and pushes start the
+    /// moment the permission is granted.
     private func registerForNotifications(application: UIApplication) {
         UNUserNotificationCenter.current().delegate = self
         Messaging.messaging().delegate = self
-        
-        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-        UNUserNotificationCenter.current().requestAuthorization(
-            options: authOptions,
-            completionHandler: { _, _ in }
-        )
-        
+
         application.registerForRemoteNotifications()
+    }
+
+    // MARK: - Push routing
+
+    /// Parks the route of a tapped push and tells a running Home about it.
+    private func hold(pushRoute: PushRoute) {
+        pendingPushRoute = pushRoute
+        NotificationCenter.default.post(name: AppDelegate.pushRouteReceived, object: pushRoute)
+    }
+
+    /// Hands over the parked route once; a second call returns nil.
+    func takePendingPushRoute() -> PushRoute? {
+        defer { pendingPushRoute = nil }
+        return pendingPushRoute
+    }
+
+    /// The legacy `action: wallet` marker (and every wallet-domain push) means
+    /// the balance changed; the screens that show it re-read it.
+    private func refreshBalanceIfNeeded(for payload: PushPayload) {
+        guard payload.refreshesBalance, KeychainManager().isUserLoggedIn() else { return }
+
+        let messageService: MessageServiceProtocol = Resolver.resolve()
+        messageService.publish(.balanceUpdated)
     }
     
     private func approvalNavigationToolBarAppearance() {
@@ -118,22 +155,33 @@ extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
         Messaging.messaging().apnsToken = deviceToken
     }
     
+    /// The first token and every rotation. The backend drops a token FCM
+    /// rejects as UNREGISTERED and never restores it, so each new token has to
+    /// reach `PUT /api/user/device` (accounts docs/push-notifications.md,
+    /// "Token lifecycle (mobile)").
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         self.fcmToken = fcmToken
-        NotificationCenter.default.post(name: NSNotification.Name("UpdateFCMToken"), object: nil)
+        NotificationCenter.default.post(name: AppDelegate.fcmTokenUpdated, object: nil)
     }
-    
+
+    /// A push while the app is in the foreground is shown as a banner (and
+    /// kept in the list); its tap arrives in `didReceive` like any other.
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        refreshBalanceIfNeeded(for: PushPayload(userInfo: notification.request.content.userInfo))
+
         completionHandler([.list, .banner, .badge, .sound])
     }
-    
+
+    /// A tap on a system push - app killed, in the background or open - goes
+    /// through the one router keyed on the payload `type` (accounts
+    /// docs/push-notifications.md, "Routing table"); an unknown type opens the
+    /// notification list.
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        let application = UIApplication.shared
-        
-        if application.applicationState == .inactive {
-            isOpenedWithPushNotification = true
-        }
-        
+        let payload = PushPayload(userInfo: response.notification.request.content.userInfo)
+
+        refreshBalanceIfNeeded(for: payload)
+        hold(pushRoute: PushRouter.route(for: payload))
+
         completionHandler()
     }
 }

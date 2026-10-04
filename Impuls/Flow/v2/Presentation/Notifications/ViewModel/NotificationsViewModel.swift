@@ -73,10 +73,20 @@ final class NotificationsViewModel: MimoBaseViewModel, ObservableObject {
         let hasBody: Bool
         let time: String
         let context: NotificationContextStyle
-        /// The row's metadata routes to a real screen - it shows a chevron.
-        /// Impulse has no shared push router yet, so no row pretends to be a
-        /// link; the flag stays so the layout is ready for one.
-        let isNavigable: Bool
+        /// Where the row's metadata leads, resolved by the same `PushRouter`
+        /// a push tap goes through; nil when the type is unknown or absent.
+        let route: PushRoute?
+        /// The row routes to a real screen - it shows a chevron and is tappable.
+        var isNavigable: Bool { route != nil }
+    }
+
+    /// Called with the destination of a tapped row; the host dismisses the
+    /// sheet and presents the screen (see `NotificationsView.makeSheet`).
+    var onRoute: ((PushRoute) -> Void)?
+
+    func open(_ row: Row) {
+        guard let route = row.route else { return }
+        onRoute?(route)
     }
 
     /// One day of notifications, newest first.
@@ -197,7 +207,7 @@ final class NotificationsViewModel: MimoBaseViewModel, ObservableObject {
                    hasBody: !bodyText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
                    time: timeText(for: item, locale: locale),
                    context: NotificationContextStyle(context: item.context),
-                   isNavigable: false)
+                   route: PushRouter.destination(for: PushPayload(metadata: item.metadata, context: item.context)))
     }
 
     /// The backend ships one `Message` per language; pick the one the app is
@@ -263,7 +273,7 @@ final class NotificationsViewModel: MimoBaseViewModel, ObservableObject {
                 hasBody: true,
                 time: "2h ago",
                 context: .general,
-                isNavigable: false)
+                route: nil)
         }
 
         return [DaySection(id: Date(), title: "Today", rows: rows)]

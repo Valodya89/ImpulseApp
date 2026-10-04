@@ -22,11 +22,22 @@ struct NotificationsView: View {
     }
 
     /// The screen wrapped for UIKit callers, presented as a page sheet.
-    static func makeSheet() -> UIViewController {
-        let view = NotificationsView(viewModel: NotificationsViewModel(worker: Resolver.resolve()))
+    /// `onRoute` receives the destination of a tapped row after the sheet has
+    /// been dismissed, so the caller presents the screen in its place.
+    static func makeSheet(onRoute: ((PushRoute) -> Void)? = nil) -> UIViewController {
+        let viewModel = NotificationsViewModel(worker: Resolver.resolve())
+        let view = NotificationsView(viewModel: viewModel)
         let host = UIHostingController(rootView: view)
         host.modalPresentationStyle = .pageSheet
         host.view.backgroundColor = .appSecondaryBackground
+
+        viewModel.onRoute = { [weak host] route in
+            guard let host else {
+                onRoute?(route)
+                return
+            }
+            host.dismiss(animated: true) { onRoute?(route) }
+        }
         return host
     }
 
@@ -169,6 +180,14 @@ struct NotificationsView: View {
                 .fill(Color.evBgColor4)
         )
         .shadow(color: Color.alwaysBlack.opacity(0.05), radius: 6, x: 0, y: 2)
+        .contentShape(Rectangle())
+        // Only a row the router resolves is a link; the others stay still, so
+        // the links inside their body keep working.
+        .onTapGesture {
+            guard row.isNavigable else { return }
+            VibrateManager.vibrate()
+            viewModel.open(row)
+        }
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(row.isNavigable ? .isButton : .isStaticText)
     }

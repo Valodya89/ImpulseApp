@@ -7,6 +7,8 @@
 
 import Foundation
 import Combine
+import UIKit
+import FirebaseMessaging
 
 final class ProfileViewModel: MimoBaseViewModel, ObservableObject {
     
@@ -111,12 +113,13 @@ final class ProfileViewModel: MimoBaseViewModel, ObservableObject {
                 KeychainManager().removeData()
                 StorageManager().remove(key: .avatar)
                 UserManager.share.userResponse = nil
-                
+                Self.revokePushToken()
+
                 self?.isSuccessfullyLogout = isSuccess
             }
             .store(in: &BAG)
     }
-    
+
     func deleteAccount() {
         worker.deleteAccount()
             .receive(on: DispatchQueue.main)
@@ -127,10 +130,31 @@ final class ProfileViewModel: MimoBaseViewModel, ObservableObject {
             } receiveValue: { [weak self] isSuccess in
                 KeychainManager().removeData()
                 UserManager.share.userResponse = nil
-                
+                Self.revokePushToken()
+
                 self?.isSuccessfullyLogout = isSuccess
             }
             .store(in: &BAG)
+    }
+
+    /// There is no unregister endpoint: the device's FCM token is deleted
+    /// client-side, so a shared phone stops receiving the previous account's
+    /// pushes (accounts docs/push-notifications.md, "Token lifecycle
+    /// (mobile)"). Firebase then mints a fresh token, which reaches
+    /// `didReceiveRegistrationToken` and is registered by the next signed-in
+    /// Home.
+    private static func revokePushToken() {
+        MimoHomeWorker.forgetAcknowledgedPushToken()
+        (UIApplication.shared.delegate as? AppDelegate)?.fcmToken = nil
+
+        Messaging.messaging().deleteToken { error in
+            if let error {
+                debugPrint("[push] token delete failed: \(error.localizedDescription)")
+            }
+
+            // Ask for the replacement right away rather than on the next launch.
+            Messaging.messaging().token { _, _ in }
+        }
     }
     
     private func handleUserResponse(_ user: UserResponse?) {

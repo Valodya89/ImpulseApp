@@ -188,15 +188,66 @@ class MimoHomeWorker: MimoHomeWorkerProtocol {
         }.eraseToAnyPublisher()
     }
     
+    // MARK: - Push token
+
+    /// The FCM token the backend has acknowledged in this process. Home calls
+    /// `updateDeviceInfo` on every appearance, so the same token is not sent
+    /// again and again; a rotated token differs and goes through. Cleared on
+    /// logout, so the next account registers afresh.
+    private static var acknowledgedPushToken: String?
+
+    /// Back-off between upload attempts; a cold start often races the network.
+    private static let pushTokenRetryDelays: [TimeInterval] = [2, 5, 15, 45]
+
+    /// Forgets the acknowledged token (logout / account deletion), so the next
+    /// signed-in Home uploads whatever token Firebase mints next.
+    static func forgetAcknowledgedPushToken() {
+        acknowledgedPushToken = nil
+    }
+
+    /// `PUT /api/user/device` with the current FCM token (accounts
+    /// docs/mobile-api.md). The backend removes a token FCM rejects as
+    /// UNREGISTERED and never restores it, so the token is re-registered after
+    /// login, on every cold start and on rotation (accounts
+    /// docs/push-notifications.md, "Token lifecycle (mobile)"). The publisher
+    /// completes when the token is acknowledged, was already acknowledged, or
+    /// the retries are exhausted; it never fails, the strip must not care.
     func updateDeviceInfo(token: String) -> AnyPublisher<Void, Never> {
         Deferred {
             Future<Void, Never> { promise in
-                self.accountRepository.updateDeviceInfo(token: token) { _ in
-                    promise(.success(()))
+                guard Self.acknowledgedPushToken != token else {
+                    return promise(.success(()))
                 }
+
+                self.sendDeviceInfo(token: token, attempt: 0, promise: promise)
             }
         }
         .eraseToAnyPublisher()
+    }
+
+    private func sendDeviceInfo(token: String, attempt: Int, promise: @escaping (Result<Void, Never>) -> Void) {
+        accountRepository.updateDeviceInfo(token: token) { [weak self] result in
+            switch result {
+            case .success:
+                Self.acknowledgedPushToken = token
+                debugPrint("[push] token registered")
+                promise(.success(()))
+            case .failure(let error):
+                debugPrint("[push] token registration failed, attempt \(attempt): \(error.localizedDescription)")
+
+                // A signed-out user has no device to update; the next login's
+                // Home starts over.
+                guard let self, attempt < Self.pushTokenRetryDelays.count, KeychainManager().isUserLoggedIn() else {
+                    return promise(.success(()))
+                }
+
+                DispatchQueue.global().asyncAfter(deadline: .now() + Self.pushTokenRetryDelays[attempt]) {
+                    // The token may have rotated meanwhile; the newer upload wins.
+                    guard Self.acknowledgedPushToken != token else { return promise(.success(())) }
+                    self.sendDeviceInfo(token: token, attempt: attempt + 1, promise: promise)
+                }
+            }
+        }
     }
     
     func getActiveScooters() -> AnyPublisher<[ScooterStateModel], MimoError> {

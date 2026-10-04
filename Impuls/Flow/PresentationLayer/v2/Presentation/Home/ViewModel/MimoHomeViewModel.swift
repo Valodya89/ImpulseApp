@@ -365,12 +365,14 @@ class MimoHomeViewModel: MimoBaseViewModel {
             .store(in: &cancellables)
     }
     
+    /// Registers the FCM token with `PUT /api/user/device`. Called on every
+    /// Home appearance (cold start, after login) and on every token rotation;
+    /// the worker skips a token the backend already acknowledged and retries
+    /// a failed upload on its own.
     func updateDeviceInfo(fcmToken: String) {
         worker.updateDeviceInfo(token: fcmToken)
             .receive(on: DispatchQueue.main)
-            .sink { _ in
-                print("Device info successfully updated")
-            }
+            .sink { _ in }
             .store(in: &cancellables)
     }
     

@@ -11,6 +11,7 @@
 import UIKit
 import Combine
 import SwiftUI
+import UserNotifications
 
 class MimoHomeViewController: MimoBaseViewController {
     
@@ -79,14 +80,19 @@ class MimoHomeViewController: MimoBaseViewController {
         setupViewModel()
         setupPullToRefresh()
         observeStationLinks()
+        observePushRoutes()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateFCMToken), name: AppDelegate.fcmTokenUpdated, object: nil)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         // A station sticker link that cold-started the app has waited through
         // the splash for this moment.
         openPendingStationLink()
+        // So has a tapped push.
+        openPendingPushRoute()
+        offerNotificationPermissionIfNeeded()
     }
     
     /// Drag down anywhere on the home content to refresh: the stories strip,
@@ -134,12 +140,14 @@ class MimoHomeViewController: MimoBaseViewController {
         viewModel?.loadBalance()
         viewModel?.getActiveTrips()
         loadStories()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateFCMToken), name: NSNotification.Name("UpdateFCMToken"), object: nil)
-        if (UIApplication.shared.delegate as? AppDelegate)?.isOpenedWithPushNotification ?? false {
-            notificationAction()
-        }
+        // Home is the first screen with a signed-in user, so this covers
+        // "after login" and "every cold start"; the worker skips a token the
+        // backend already has.
+        updateFCMToken()
     }
-    
+
+    /// Registers the current FCM token with the backend (PUT /api/user/device).
+    /// Also the target of `AppDelegate.fcmTokenUpdated`, i.e. a token rotation.
     @objc func updateFCMToken() {
         if let fcmToken = (UIApplication.shared.delegate as? AppDelegate)?.fcmToken {
             viewModel?.updateDeviceInfo(fcmToken: fcmToken)
@@ -463,6 +471,86 @@ class MimoHomeViewController: MimoBaseViewController {
                 self?.stationLinkWait = nil
                 self?.didFinishScan(with: code, type: .charger)
             }
+    }
+
+    // MARK: - Push routes
+
+    /// A push tapped while the app is running (Home exists, possibly under
+    /// another screen or tab) is opened at once.
+    private func observePushRoutes() {
+        NotificationCenter.default.publisher(for: AppDelegate.pushRouteReceived)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.openPendingPushRoute()
+            }
+            .store(in: &cancellables)
+    }
+
+    /// Takes the parked push route (once) and opens its screen from Home:
+    /// the wallet for the wallet types, the notification list for the rest
+    /// (accounts docs/push-notifications.md, "Routing table"). Whatever is
+    /// above Home gives way first, so the screen never stacks on a sheet.
+    private func openPendingPushRoute() {
+        guard let route = (UIApplication.shared.delegate as? AppDelegate)?.takePendingPushRoute() else { return }
+
+        let presenter = tabBarController ?? navigationController ?? self
+        presenter.presentedViewController?.dismiss(animated: false)
+        presentedViewController?.dismiss(animated: false)
+        tabBarController?.selectedIndex = 0
+        navigationController?.popToRootViewController(animated: false)
+
+        // The dismissals above settle on the next turn of the run loop; a
+        // present in the same turn is refused while they are in flight.
+        DispatchQueue.main.async { [weak self] in
+            self?.open(pushRoute: route)
+        }
+    }
+
+    // MARK: - Notification permission
+
+    /// One offer per launch: the OS prompt can only be shown once anyway, and
+    /// a rider who said "not now" is not nagged on every visit to Home.
+    private static var hasOfferedNotificationPermission = false
+
+    /// Asks for notification permission here, signed in, with the brand
+    /// rationale first - not on the splash or the login screen. Nothing is
+    /// asked when the OS already has an answer; a denial is surfaced in
+    /// Settings instead. The FCM token is registered regardless.
+    private func offerNotificationPermissionIfNeeded() {
+        guard !Self.hasOfferedNotificationPermission else { return }
+
+        UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
+            guard settings.authorizationStatus == .notDetermined else { return }
+
+            // Let the splash hand-over, the loader and a pending route settle.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                self?.presentNotificationRationale()
+            }
+        }
+    }
+
+    private func presentNotificationRationale() {
+        guard !Self.hasOfferedNotificationPermission,
+              viewIfLoaded?.window != nil,
+              presentedViewController == nil,
+              navigationController?.topViewController === self else { return }
+        Self.hasOfferedNotificationPermission = true
+
+        let alert = UIAlertController(
+            title: "MOBILE_notifications_permission_title".localized(fallback: "Stay in the loop"),
+            message: "MOBILE_notifications_permission_rationale".localized(fallback: "Impulse will let you know when a top-up lands, when someone sends you money and when something about your rentals or account needs your attention."),
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "MOBILE_notifications_permission_later".localized(fallback: "Not now"), style: .cancel))
+        alert.addAction(UIAlertAction(title: "MOBILE_notifications_permission_allow".localized(fallback: "Turn on notifications"), style: .default) { _ in
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }
+        })
+
+        present(alert, animated: true)
     }
 }
 

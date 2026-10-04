@@ -127,11 +127,28 @@ extension UIViewController {
 }
 
 extension UIViewController {
-    
+
+    /// The bell and the push fallback: the notification list as a sheet. A
+    /// tapped row routes through the same `PushRouter` as a push tap and lands
+    /// on the screen presented from here once the sheet is gone.
     @objc func notificationAction() {
-        present(NotificationsView.makeSheet(), animated: true)
+        let sheet = NotificationsView.makeSheet { [weak self] route in
+            self?.open(pushRoute: route)
+        }
+        present(sheet, animated: true)
     }
-    
+
+    /// Opens the screen a push or a notification row resolved to. Impulse tops
+    /// up on the wallet screen, so both wallet targets present the wallet.
+    func open(pushRoute: PushRoute) {
+        switch pushRoute {
+        case .wallet, .walletTopUp:
+            openWallet()
+        case .notificationList:
+            notificationAction()
+        }
+    }
+
     @objc func backAction() {
         self.navigationController?.popViewController(animated: true)
     }
