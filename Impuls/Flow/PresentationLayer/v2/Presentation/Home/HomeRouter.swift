@@ -60,6 +60,38 @@ class HomeRouter {
     public func homeViewController() -> MimoHomeTabBarController? {
         return storyboard.instantiate()
     }
+
+    // MARK: - Station App Link
+    
+    /// The station code from a scanned sticker link that is waiting for Home.
+    /// The app may be cold-starting through the splash when the link arrives,
+    /// so the code is parked here and taken by Home when it appears.
+    private(set) var pendingStationCode: String?
+    
+    /// The in-app scanner's rules for a power-bank station code: the numeric
+    /// 200... stickers and the lettered MOSH08231025... ones. Impulse rents
+    /// power banks only, so any other code is not a station link here.
+    static func isStationCode(_ code: String) -> Bool {
+        let allowed = CharacterSet.alphanumerics
+        guard !code.isEmpty, code.unicodeScalars.allSatisfy({ allowed.contains($0) }) else { return false }
+        return code.hasPrefix("200") || code.hasPrefix("MOSH08231025")
+    }
+    
+    /// Parks a station code and tells a running Home about it. Returns false
+    /// (and holds nothing) for a code the app does not handle.
+    @discardableResult
+    func holdStationLink(code: String) -> Bool {
+        guard HomeRouter.isStationCode(code) else { return false }
+        pendingStationCode = code
+        NotificationCenter.default.post(name: Constant.Notifications.stationScanLink, object: code)
+        return true
+    }
+    
+    /// Hands over the parked station code once; a second call returns nil.
+    func takePendingStationCode() -> String? {
+        defer { pendingStationCode = nil }
+        return pendingStationCode
+    }
     
     func reset() {
         fastDecisionSheetController = nil

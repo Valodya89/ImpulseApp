@@ -26,6 +26,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
         
         MILoader.run(containerView: window)
+        
+        // A link that cold-starts the app arrives here, not in `scene(_:continue:)`
+        // or `scene(_:openURLContexts:)`. Nothing is on screen yet, so the handler
+        // only parks what it finds (a station code waits for Home).
+        if let url = connectionOptions.userActivities.first(where: { $0.activityType == NSUserActivityTypeBrowsingWeb })?.webpageURL {
+            handle(url: url)
+        } else if let context = connectionOptions.urlContexts.first {
+            handle(url: context.url)
+        }
     }
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
@@ -56,7 +65,48 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 payload[item.name] = item.value
             }
             NotificationCenter.default.post(name: Constant.Notifications.paymentCallback, object: payload)
+            return
         }
+
+        if let code = SceneDelegate.stationCode(from: url) {
+            // A rider who is not signed in lands on the welcome screen; the
+            // station is not remembered across the login.
+            guard KeychainManager().isUserLoggedIn() else { return }
+            HomeRouter.shared.holdStationLink(code: code)
+            return
+        }
+
+        // Any other link is not ours to act on.
+    }
+
+    // MARK: - Station App Link
+
+    /// The hosts that serve the station stickers' links; both are associated
+    /// domains of the app (applinks: in the entitlements).
+    private static let stationLinkHosts: Set<String> = ["accounts.impulsepower.ru", "impulsepower.ru"]
+
+    /// Parses `https://accounts.impulsepower.ru/scan/{code}` (a trailing slash
+    /// is ignored) and the same path on the app's own URL schemes
+    /// (`mimo://scan/{code}`, `mimo:///scan/{code}`). Returns the code, or nil
+    /// for any other link. The code itself is validated by `HomeRouter`.
+    static func stationCode(from url: URL) -> String? {
+        guard let scheme = url.scheme?.lowercased() else { return nil }
+
+        var segments: [String]
+        if scheme == "https" || scheme == "http" {
+            guard scheme == "https", let host = url.host?.lowercased(), stationLinkHosts.contains(host) else { return nil }
+            segments = url.pathComponents.filter { $0 != "/" }
+        } else {
+            // On a custom scheme the first segment is parsed as the host.
+            segments = url.pathComponents.filter { $0 != "/" }
+            if let host = url.host, !host.isEmpty {
+                segments.insert(host, at: 0)
+            }
+        }
+
+        guard segments.count == 2, segments[0].lowercased() == "scan" else { return nil }
+        let code = segments[1].trimmingCharacters(in: .whitespacesAndNewlines)
+        return code.isEmpty ? nil : code
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

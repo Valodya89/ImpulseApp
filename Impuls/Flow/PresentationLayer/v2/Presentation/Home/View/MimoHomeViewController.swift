@@ -45,6 +45,10 @@ class MimoHomeViewController: MimoBaseViewController {
     /// reconnect), and every copy used to present another summary on top.
     private var shownSummaryRentIds = Set<String>()
     
+    /// A station link waiting for the location permission answer (see
+    /// `openPendingStationLink`); a newer link replaces it.
+    private var stationLinkWait: AnyCancellable?
+    
     private enum Hero {
         static let height: CGFloat = 196
         static let topInset: CGFloat = 8
@@ -74,6 +78,15 @@ class MimoHomeViewController: MimoBaseViewController {
         setupUI()
         setupViewModel()
         setupPullToRefresh()
+        observeStationLinks()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // A station sticker link that cold-started the app has waited through
+        // the splash for this moment.
+        openPendingStationLink()
     }
     
     /// Drag down anywhere on the home content to refresh: the stories strip,
@@ -402,6 +415,54 @@ class MimoHomeViewController: MimoBaseViewController {
     
     @IBAction private func scanAction() {
         ScanRouter.shared.showQrScanViewController(self, delegate: self)
+    }
+    
+    // MARK: - Station App Link
+    
+    /// A link opened while the app is already running (Home exists, possibly
+    /// under another screen or tab) is delivered at once.
+    private func observeStationLinks() {
+        NotificationCenter.default.publisher(for: Constant.Notifications.stationScanLink)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.openPendingStationLink()
+            }
+            .store(in: &cancellables)
+    }
+    
+    /// Takes the parked station code (once) and opens the power-bank map on
+    /// that station exactly as a code from the in-app scanner does: the same
+    /// location check and the same charger screen; no rent is started.
+    private func openPendingStationLink() {
+        guard let code = HomeRouter.shared.takePendingStationCode() else { return }
+        
+        // Whatever is above Home (the scanner, a sheet, another product's map,
+        // the profile tab) gives way, so the station screen never stacks.
+        let presenter = tabBarController ?? navigationController ?? self
+        presenter.presentedViewController?.dismiss(animated: false)
+        presentedViewController?.dismiss(animated: false)
+        tabBarController?.selectedIndex = 0
+        navigationController?.popToRootViewController(animated: false)
+        
+        guard viewModel?.isLocationAuthorized != true else {
+            didFinishScan(with: code, type: .charger)
+            return
+        }
+        
+        // On a cold start Home can appear before CoreLocation's first
+        // authorization callback, or while the permission prompt is still up.
+        // Wait for the grant, bounded; after that the scan runs anyway and
+        // shows the same location alert a camera scan would.
+        let granted = viewModel?.$isLocationAuthorized.filter { $0 }.map { _ in () }.eraseToAnyPublisher()
+            ?? Empty<Void, Never>().eraseToAnyPublisher()
+        let gaveUp = Just(()).delay(for: .seconds(5), scheduler: DispatchQueue.main).eraseToAnyPublisher()
+        stationLinkWait = granted.merge(with: gaveUp)
+            .first()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.stationLinkWait = nil
+                self?.didFinishScan(with: code, type: .charger)
+            }
     }
 }
 

@@ -155,5 +155,21 @@ struct Constant {
         static let ThemeUpdate = NSNotification.Name(rawValue: "Mimo.Notification.Theme")
         /// Fresh backend translations were merged into the in-memory dictionary.
         static let TranslationsUpdate = NSNotification.Name(rawValue: "Mimo.Notification.Translations")
+        /// A station App Link (https://accounts.impulsepower.ru/scan/{code}) was opened
+        /// while the app is running; the code is held in `HomeRouter` until Home takes it.
+        static let stationScanLink = NSNotification.Name(rawValue: "Mimo.Notification.stationScanLink")
     }
+}
+
+/// How riders reach the Impulse support team. Every entry point (Profile >
+/// Support, the map support banner, the live-session row) opens the same
+/// Telegram chat; keep the link here so they cannot drift apart.
+enum SupportContact {
+    /// Telegram channel id of the Impulse support chat (the same id Impulse
+    /// Android opens). An `https://t.me` link is handed to the Telegram app
+    /// when it is installed and opens in the browser otherwise, so no `tg://`
+    /// scheme (or `canOpenURL` check) is needed.
+    static let telegramChannelId = "impulse_power_help"
+    static let telegramChatURLString = "https://t.me/\(telegramChannelId)"
+    static var telegramChatURL: URL? { URL(string: telegramChatURLString) }
 }
