@@ -33,6 +33,15 @@ class ChargerWorker: ChargerWorkerProtocol {
         // created last.
         chargerSocketService.dataPublisher
             .sink { [weak self] data in
+                // Only rent frames reach the screens. A BOOKING_* frame carries a
+                // Booking, not an ActiveRent, and NONE or a state this build does
+                // not know has nothing for them to do (docs/events.md
+                // "WebSocket / STOMP pushes").
+                guard data.isRent else {
+                    MimoSocketLog.info(.charger, "frame ignored", "state=\(data.rentState.rawValue)")
+                    return
+                }
+
                 self?.rentedChargerDataSubject.send(data)
             }
             .store(in: &cancellables)
@@ -159,13 +168,61 @@ class ChargerWorker: ChargerWorkerProtocol {
         .eraseToAnyPublisher()
     }
     
+    /// `GET /api/state` (powerbank docs/mobile-api.md "GET /api/state"), rent
+    /// entries only, oldest first.
+    ///
+    /// One request is in flight at a time: a call made while one is running
+    /// joins it instead of starting another - the socket watchdog and the
+    /// RENT_ENDED message both trigger a read, often together. A failed read is
+    /// retried at most `ChargerWorker.stateRetryDelays.count` times, after 2 s,
+    /// 4 s and 6 s, then the error is reported; the next call starts afresh.
     func getChargerState() -> AnyPublisher<[RentedCharger], MimoError> {
+        stateLock.lock()
+        defer { stateLock.unlock() }
+
+        if let inFlightState {
+            return inFlightState
+        }
+
+        let request = fetchChargerStateOnce()
+            .retry(after: ChargerWorker.stateRetryDelays.map { .seconds($0) }, scheduler: DispatchQueue.main)
+            .handleEvents(
+                receiveCompletion: { [weak self] _ in self?.clearInFlightState() },
+                receiveCancel: { [weak self] in self?.clearInFlightState() }
+            )
+            .share()
+            .eraseToAnyPublisher()
+
+        inFlightState = request
+
+        return request
+    }
+
+    /// Back-off before each retry of `GET /api/state`, in seconds.
+    static let stateRetryDelays: [TimeInterval] = [2, 4, 6]
+
+    private let stateLock = NSLock()
+    private var inFlightState: AnyPublisher<[RentedCharger], MimoError>?
+
+    private func clearInFlightState() {
+        stateLock.lock()
+        inFlightState = nil
+        stateLock.unlock()
+    }
+
+    private func fetchChargerStateOnce() -> AnyPublisher<[RentedCharger], MimoError> {
         Deferred {
             Future<[RentedCharger], MimoError> { promise in
                 self.homeRepasitory.getChargerState { result in
                     switch result {
                     case .success(let data):
-                        promise(.success(data.sorted(by: { ($0.data?.start ?? 0) < ($1.data?.start ?? 0) })))
+                        // A booking entry (state BOOKING_STARTED, data = Booking) is
+                        // not a rent and never belongs on the rent screens.
+                        let rents = data
+                            .filter { $0.isRent }
+                            .sorted(by: { ($0.data?.start ?? 0) < ($1.data?.start ?? 0) })
+
+                        promise(.success(rents))
                     case .failure(let error):
                         promise(.failure(MimoError.init(error: error)))
                     }
@@ -177,6 +234,30 @@ class ChargerWorker: ChargerWorkerProtocol {
     
     func socketConnect() {
         chargerSocketService.connect()
+    }
+}
+
+// MARK: - Bounded retry
+
+private extension Publisher {
+
+    /// Re-subscribes after each failure, waiting `delays[i]` before the i-th
+    /// retry; once the delays are used up the last error is passed on.
+    func retry<S: Scheduler>(after delays: [S.SchedulerTimeType.Stride], scheduler: S) -> AnyPublisher<Output, Failure> {
+        self.catch { error -> AnyPublisher<Output, Failure> in
+            guard let delay = delays.first else {
+                return Fail(error: error).eraseToAnyPublisher()
+            }
+
+            return Just(())
+                .setFailureType(to: Failure.self)
+                .delay(for: delay, scheduler: scheduler)
+                .flatMap { _ in
+                    self.retry(after: Array(delays.dropFirst()), scheduler: scheduler)
+                }
+                .eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
     }
 }
 
