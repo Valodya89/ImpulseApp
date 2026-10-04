@@ -48,7 +48,10 @@ class ChargerCollectionViewCell: BaseCollectionViewCell {
     func set(station: ChargingStation) {
         titleLabel.text = station.destinationName ?? "-"
         addressLabel.text = station.destinationAddress ?? "-"
-        availableSlotsLabel.text = "\(station.powerBanksCount ?? 0) \("MOBILE_charger_slotsAvailable".localized())"
+        availableSlotsLabel.text = String.powerBanksAvailable(
+            station.powerBanksCount ?? 0,
+            fallbackUnit: "MOBILE_charger_slotsAvailable".localized()
+        )
         discountLabel.text = "\(station.discount)% \("MOBILE_charger_discount".localized())"
         
         logoImageView.sd_setImage(with: station.logo?.imageURL)

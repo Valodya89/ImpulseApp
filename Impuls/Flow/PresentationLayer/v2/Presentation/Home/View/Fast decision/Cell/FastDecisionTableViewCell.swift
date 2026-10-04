@@ -487,7 +487,10 @@ class FastDecisionTableViewCell: BaseTableViewCell {
         }
 
         let availableBanks = charger.availablePowerBanksCount
-        let slotsTitle = availableBanks == 1 ? "MOBILE_charger.slot".localized() : "MOBILE_charger.slots".localized()
+        // Russian needs one/few/many ("1 слот / 2 слота / 5 слотов"); the server
+        // label only has one/other, so it stays the fallback for other languages.
+        let serverSlotsTitle = availableBanks == 1 ? "MOBILE_charger.slot".localized() : "MOBILE_charger.slots".localized()
+        let slotsText = String.slotsCount(availableBanks, fallbackUnit: serverSlotsTitle)
         let hasBanks = availableBanks > 0
 
         apply(
@@ -500,7 +503,7 @@ class FastDecisionTableViewCell: BaseTableViewCell {
                 // An empty cabinet is the one case worth stopping a rider, so it is
                 // the only one that turns red.
                 status: .capsule(
-                    text: "\(availableBanks) \(slotsTitle)",
+                    text: slotsText,
                     background: Color(hasBanks ? "stateAvailable" : "stateUnAvailable"),
                     foreground: Color(hasBanks ? "stateAvailableTitle" : "stateUnAvailableTitle")
                 )

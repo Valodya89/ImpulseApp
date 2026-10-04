@@ -61,8 +61,14 @@ class ChargingStationSheetViewController: MimoBaseViewController {
         
         let slotsCount = viewModel?.chargingStation?.slotsCount ?? 0
         let availableSlotsCount = viewModel?.chargingStation?.powerBanksCount ?? 0
-        availableSlotsLabel.text = "\(availableSlotsCount) \("MOBILE_charger_slotsAvailable".localized())"
-        slotsToReturnLabel.text = "\(slotsCount - availableSlotsCount) \("MOBILE_charger_slotsToReturn".localized())"
+        availableSlotsLabel.text = String.powerBanksAvailable(
+            availableSlotsCount,
+            fallbackUnit: "MOBILE_charger_slotsAvailable".localized()
+        )
+        slotsToReturnLabel.text = String.slotsToReturn(
+            slotsCount - availableSlotsCount,
+            fallbackUnit: "MOBILE_charger_slotsToReturn".localized()
+        )
         logoImageView.sd_setImage(with: viewModel?.chargingStation?.logo?.imageURL)
         
         photosCountLabel.text = "\(viewModel?.chargingStation?.images?.count ?? 0)"
