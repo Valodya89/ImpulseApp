@@ -1,0 +1,27 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "MIMO_MOBILE_APP=impulse MIMO_MOBILE_PLATFORM=ios bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/require-mobile-feature.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "MIMO_SETUP_CALL='get_mobile_repo_setup with app=impulse and platform=ios' bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/check-mimo-instructions.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
