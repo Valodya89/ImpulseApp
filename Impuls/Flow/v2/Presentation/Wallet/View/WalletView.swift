@@ -156,7 +156,12 @@ struct WalletView: View {
         }
         .onReceive(viewModel.$promoCodeSuccess) { isSuccess in
             if isSuccess {
-                successMessage = SuccessMessage(title: "MOBILE_global_success_title".localized(), body: "MOBILE_global_success".localized())
+                // Activation itself pays nothing: the bonus arrives with the
+                // next top-up, so say that rather than the envelope's "SUCCESS".
+                successMessage = SuccessMessage(
+                    title: "MOBILE_global_success_title".localized(),
+                    body: "MOBILE_wallet_promo_code_activated".localized(fallback: "Promo code activated. The bonus will be added with your next top-up.")
+                )
                 viewModel.promoCodeSuccess = false
                 viewModel.promoCode = ""
                 withAnimation(.easeInOut(duration: 0.25)) {

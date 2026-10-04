@@ -70,7 +70,18 @@ struct TransactionRowView: View {
 
 extension TransactionDTO {
 
-    var isIncome: Bool { type.isIncomeing }
+    /// Direction comes from the type alone: a ride or purchase (MIMO_PAY), a
+    /// transfer sent (MIMO_WITHDRAWAL_LOCAL) and a card-attachment hold are
+    /// spending; every deposit, bonus and received transfer is income.
+    var isIncome: Bool {
+        switch type {
+        case .mimoPay, .mimoWithdrawalLocal,
+             .evocaCardAttachment, .idCardAttachment, .idCardAttachmentMir, .ameriaCardAttachment, .tinkoffCardAttachment:
+            return false
+        default:
+            return true
+        }
+    }
 
     /// "Income" / "Outcome", the keys the transaction list already uses.
     var directionTitle: String {
@@ -130,17 +141,24 @@ extension TransactionDTO {
         (isIncome ? "+" : "−") + MimoWalletViewModel.format(amount: abs(amount))
     }
 
-    /// A badge only when the backend says the transaction is not settled. The
-    /// status vocabulary is not documented client-side, so only the common
-    /// pending/failed spellings are recognised and anything else shows nothing.
+    /// A badge whenever the backend says the transaction is not a settled
+    /// charge. ipay's `TransactionStatus` is WAITING, CHARGE, REJECT, DEBT,
+    /// REFUND (docs/mobile-api.md, GET /api/transactions); older spellings are
+    /// kept for safety, CHARGE and anything unknown show nothing.
     var statusBadge: (title: String, tone: MimoBadge.Tone)? {
         let value = status.uppercased()
 
         if ["PENDING", "IN_PROGRESS", "PROCESSING", "CREATED", "WAITING"].contains(value) {
             return ("MOBILE_transactions_status_pending".localized(fallback: "Pending"), .amber)
         }
-        if ["FAILED", "FAIL", "REJECTED", "DECLINED", "CANCELED", "CANCELLED", "ERROR"].contains(value) {
+        if ["FAILED", "FAIL", "REJECT", "REJECTED", "DECLINED", "CANCELED", "CANCELLED", "ERROR"].contains(value) {
             return ("MOBILE_transactions_status_failed".localized(fallback: "Failed"), .red)
+        }
+        if value == "DEBT" {
+            return ("MOBILE_wallet_debt_badge".localized(fallback: "Debt"), .red)
+        }
+        if value == "REFUND" {
+            return ("MOBILE_transactions_status_refund".localized(fallback: "Refund"), .gray)
         }
 
         return nil

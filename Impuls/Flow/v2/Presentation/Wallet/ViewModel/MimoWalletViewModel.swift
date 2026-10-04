@@ -18,7 +18,13 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
     
     private var phoneNumber: String = ""
     
+    /// The typed top-up amount: digits with an optional decimal part (',' or
+    /// '.' as separator). Parsed through `parseAmount`.
     @Published var amount: String = ""
+    /// A debt handed in by navigation (or read from the first wallet load) is
+    /// put in the field once per screen instance; coming back from a card
+    /// form or a reload never refills a field the rider has cleared.
+    private var hasAppliedInitialAmount = false
     
     private(set) var user: UserResponse?
     @Published private(set) var wallet: WalletModel?
@@ -80,6 +86,7 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
 
         if let initialAmount, initialAmount > 0 {
             amount = Self.amountText(initialAmount)
+            hasAppliedInitialAmount = true
         }
 
         transactionListViewModel.$transactions
@@ -109,21 +116,80 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
             .store(in: &BAG)
     }
 
-    /// Amount grouped for reading: "12 500", "1 200.5". At most two decimals.
+    /// Amount grouped for reading: "12 500", "1 200.5". At most two decimals,
+    /// no trailing zeros. Goes through `Decimal` so binary noise such as
+    /// 99.89999999999999 never reaches the screen.
     static func format(amount: Double) -> String {
+        format(amount: Self.decimal(amount))
+    }
+
+    static func format(amount: Decimal) -> String {
+        let rounded = Self.rounded(amount)
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = amount.rounded() == amount ? 0 : 2
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
         formatter.groupingSeparator = " "
         formatter.usesGroupingSeparator = true
 
-        return formatter.string(from: NSNumber(value: amount)) ?? String(amount)
+        return formatter.string(from: rounded as NSDecimalNumber) ?? "\(rounded)"
     }
 
-    /// The amount field uses a number pad, so a fractional debt is rounded up
-    /// to the next whole unit - rounding down would leave part of it unpaid.
+    /// Text for the amount field from a number handed in by navigation or read
+    /// from the wallet: a dot as decimal separator, at most two decimals, no
+    /// grouping, rounded up to the cent so no part of a debt is left unpaid
+    /// ("150.5", "1200", "99.99").
     static func amountText(_ amount: Double) -> String {
-        String(Int(amount.rounded(.up)))
+        var value = Self.decimal(amount)
+        var result = Decimal()
+        NSDecimalRound(&result, &value, 2, .up)
+        let formatter = NumberFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 2
+        formatter.usesGroupingSeparator = false
+
+        return formatter.string(from: result as NSDecimalNumber) ?? "\(result)"
+    }
+
+    /// The typed amount as a number: digits with an optional fraction, ',' or
+    /// '.' as the decimal separator. nil when it is not a number.
+    static func parseAmount(_ text: String) -> Double? {
+        let normalised = text
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .replacingOccurrences(of: ",", with: ".")
+        guard !normalised.isEmpty, normalised != ".",
+              let value = Decimal(string: normalised, locale: Locale(identifier: "en_US_POSIX")) else {
+            return nil
+        }
+        return NSDecimalNumber(decimal: value).doubleValue
+    }
+
+    /// Hosted rails bill whole units of currency; a fractional amount is rounded
+    /// up so the top-up never falls short of a debt.
+    static func wholeUnits(_ amount: Double) -> Double {
+        amount.rounded(.up)
+    }
+
+    /// Available balance in decimal arithmetic: wallet balance minus what the
+    /// financial state says is owed, half-up to two decimals.
+    static func availableBalance(balance: Double, owed: Double?) -> Decimal {
+        Self.rounded(Self.decimal(balance) - Self.decimal(owed ?? 0))
+    }
+
+    /// `Decimal(99.9)` carries the double's binary noise; going through the
+    /// shortest round-trip text ("99.9") gives the number the backend meant.
+    private static func decimal(_ value: Double) -> Decimal {
+        guard value.isFinite else { return 0 }
+        return Decimal(string: "\(value)", locale: Locale(identifier: "en_US_POSIX")) ?? Decimal(value)
+    }
+
+    private static func rounded(_ value: Decimal) -> Decimal {
+        var source = value
+        var result = Decimal()
+        NSDecimalRound(&result, &source, 2, .plain)
+        return result
     }
     
     func setupUI() {
@@ -174,7 +240,20 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
     static let recentTransactionsLimit = 3
 
     var amountValue: Double? {
-        Double(amount)
+        Self.parseAmount(amount)
+    }
+
+    /// The amount a deposit call sends, or nil (with the validation message
+    /// set) when nothing usable is typed. The only client-side rule is
+    /// "more than zero": minimums and maximums belong to ipay, whose refusal
+    /// (e.g. IPAY_amount_less_then_acceptable) is shown as it comes back. The
+    /// typed amount is kept so the rider can correct it.
+    private func validatedAmount() -> Double? {
+        guard let value = amountValue, value > 0 else {
+            errorMessage = "MOBILE_validation_gratherThan0".localized()
+            return nil
+        }
+        return value
     }
 
     /// The primary button only fires with a real amount; every provider path
@@ -262,7 +341,13 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
     }
     
     func submit(promoCode: String) {
-        worker.submitPromo(code: promoCode)
+        let code = promoCode.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !code.isEmpty else {
+            errorMessage = "MOBILE_validation_required".localized(fallback: "This field is required")
+            return
+        }
+
+        worker.submitPromo(code: code)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {
@@ -318,8 +403,6 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
     }
     
     private func depositFromAttachedCard() {
-        let amount = NSString(string: amount).doubleValue
-
         // No card yet: "pay" means "attach a card first". That goes through
         // the attach-card pre-check, which is where the rider is asked for the
         // profile details the card provider needs.
@@ -327,6 +410,10 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
             attachCard(provider: cardPaymentMethods.first?.provider ?? .tinkoff)
             return
         }
+
+        // The attached card is charged the exact decimal amount
+        // (PATCH api/bank/card/attached/deposit, amount: Double).
+        guard let amount = validatedAmount() else { return }
         
         worker.depositFromAttachedCard(amount: amount)
             .receive(on: DispatchQueue.main)
@@ -340,18 +427,18 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
                     self?.depositSuccess = true
                 } else if let attachCardResponse {
                     self?.attachCardURL = IdentifiableURL(id: attachCardResponse.formUrl)
+                } else {
+                    // Neither a wallet nor a form: the envelope said 200 but
+                    // carried nothing usable. Say so instead of staying silent.
+                    self?.errorMessage = "MOBILE_something_wrong".localized(fallback: "Something went wrong. Please try again.")
                 }
             }
             .store(in: &BAG)
     }
     
     private func depositFromIDram() {
-        let amount = NSString(string: amount).doubleValue
-        
-        guard amount > 0 else {
-            errorMessage = "MOBILE_validation_gratherThan0".localized()
-            return
-        }
+        guard let typed = validatedAmount() else { return }
+        let amount = Self.wholeUnits(typed)
         
         if UIApplication.shared.canOpenURL(URL(string: "idramapp://launch?itm=558788989")!) {
             IdramPaymentManager.pay(
@@ -368,12 +455,8 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
     }
     
     private func depositFromTelCell() {
-        let amount = NSString(string: amount).doubleValue
-        
-        guard amount > 0 else {
-            errorMessage = "MOBILE_validation_gratherThan0".localized()
-            return
-        }
+        guard let typed = validatedAmount() else { return }
+        let amount = Self.wholeUnits(typed)
         
         worker.depositFromTelCell(amount: amount, phoneNumber: phoneNumber)
             .receive(on: DispatchQueue.main)
@@ -388,12 +471,8 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
     }
     
     private func depositFromFastshift() {
-        let amount = NSString(string: amount).doubleValue
-        
-        guard amount > 0 else {
-            errorMessage = "MOBILE_validation_gratherThan0".localized()
-            return
-        }
+        guard let typed = validatedAmount() else { return }
+        let amount = Self.wholeUnits(typed)
         
         worker.depositFromFastshift(amount: amount, phoneNumber: phoneNumber)
             .receive(on: DispatchQueue.main)
@@ -402,23 +481,28 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
                     self?.mimoError = error
                 }
             } receiveValue: { [weak self] result in
-                self?.fastshiftDepositSuccess = true
-                if UIApplication.shared.canOpenURL(URL(string: result.formUrl)!) {
-                    UIApplication.shared.open(URL(string: result.formUrl)!)
-                } else {
-                    self?.errorMessage = "MOBILE_no_idram_app".localized()
+                self?.openHostedPage(result.formUrl) {
+                    self?.fastshiftDepositSuccess = true
                 }
             }
             .store(in: &BAG)
     }
-    
-    private func depositFromMyAmeria() {
-        let amount = NSString(string: amount).doubleValue
-        
-        guard amount > 0 else {
-            errorMessage = "MOBILE_validation_gratherThan0".localized()
+
+    /// Opens a provider's hosted page. A malformed or unopenable URL is an
+    /// error, never a crash; `onOpened` runs only when the page was handed to
+    /// the system.
+    private func openHostedPage(_ urlString: String, onOpened: @escaping () -> Void) {
+        guard let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) else {
+            errorMessage = "MOBILE_something_wrong".localized(fallback: "Something went wrong. Please try again.")
             return
         }
+        UIApplication.shared.open(url)
+        onOpened()
+    }
+    
+    private func depositFromMyAmeria() {
+        guard let typed = validatedAmount() else { return }
+        let amount = Self.wholeUnits(typed)
         
         worker.depositFromMyAmeria(amount: amount)
             .receive(on: DispatchQueue.main)
@@ -427,23 +511,18 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
                     self?.mimoError = error
                 }
             } receiveValue: { [weak self] result in
-                self?.myAmeriaDepositSuccess = true
-                if UIApplication.shared.canOpenURL(URL(string: result.paymentUrl)!) {
-                    UIApplication.shared.open(URL(string: result.paymentUrl)!)
-                } else {
-                    self?.errorMessage = "MOBILE_no_idram_app".localized()
+                self?.openHostedPage(result.paymentUrl) {
+                    self?.myAmeriaDepositSuccess = true
                 }
             }
             .store(in: &BAG)
     }
     
+    /// No client-side minimum: CryptoCloud's own range is enforced by ipay
+    /// (POST api/crypto-cloud/deposit) and its refusal is what the rider sees.
     private func depositFromCrypto() {
-        let amount = NSString(string: amount).doubleValue
-        
-        guard amount >= 1000 else {
-            errorMessage = "MOBILE_min_value_to_transfer_crypto".localized()
-            return
-        }
+        guard let typed = validatedAmount() else { return }
+        let amount = Self.wholeUnits(typed)
         
         worker.depositFromCrypto(amount: amount)
             .receive(on: DispatchQueue.main)
@@ -466,17 +545,20 @@ extension MimoWalletViewModel {
         self.wallet = wallet
         self.financialState = financialState
         
-        self.currency = wallet.currency.currencyName
+        // The wallet currency is an ISO code (RUB, AMD); shown through its
+        // IPAY_currency_* copy, or as the code itself when there is none.
+        self.currency = wallet.currency.currencyNameOrCode ?? wallet.currency
         
-        let balance = (wallet.balance - (financialState.additional ?? 0))
+        let balance = Self.availableBalance(balance: wallet.balance, owed: financialState.additional)
         self.balance = Self.format(amount: balance)
         self.isBalanceNegative = balance < 0
 
         // A rider sent here by a debt prompt should not have to work out how
         // much clears it: the field opens on that amount, as the old wallet's
-        // did. Only on first load and only while nothing has been typed.
-        if previousBalance == nil, balance < 0, amount.isEmpty {
-            amount = Self.amountText(-balance)
+        // did. Once per screen, and only while nothing has been typed.
+        if !hasAppliedInitialAmount, previousBalance == nil, balance < 0, amount.isEmpty {
+            amount = Self.amountText(NSDecimalNumber(decimal: -balance).doubleValue)
+            hasAppliedInitialAmount = true
         }
         
         self.paymentMethods = paymentMethods

@@ -161,20 +161,28 @@ final class WalletRepository {
         }
     }
     
+    /// PATCH api/bank/card/attached/deposit (ipay docs/mobile-api.md): the
+    /// amount goes as a JSON number; success is `statusCode` 200 with the
+    /// updated wallet as content (or, when the bank wants a form first, a
+    /// `formUrl`). Every refusal is an HTTP-200 envelope without content whose
+    /// `message` is the code (IPAY_amount_less_then_acceptable,
+    /// IPAY_payment_rejected_by_payment_provider, ...) and is reported as is.
     func depositFromAttachedCard2(_ ammout: Double, _ completion: @escaping (Result<(WalletModel?, AttachCardModel?), WalletRequestErrors>) -> Void) {
         network.request(with: URLBuilder(from: AuthAPI.depositFromAttachedCard(ammount: ammout))) { (result) in
             switch result {
             case .success(let data):
-                if let walletData = try? JSONDecoder().decode(BaseResponseModel<WalletModel>.self, from: data), let wallet = walletData.content {
+                if let walletData = try? JSONDecoder().decode(BaseResponseModel<WalletModel>.self, from: data),
+                   walletData.statusCode == 200, let wallet = walletData.content {
                     completion(.success((wallet, nil)))
-                } else if let attachCardData = try? JSONDecoder().decode(BaseResponseModel<AttachCardModel>.self, from: data), let attachCard = attachCardData.content {
+                } else if let attachCardData = try? JSONDecoder().decode(BaseResponseModel<AttachCardModel>.self, from: data),
+                          attachCardData.statusCode == 200, let attachCard = attachCardData.content {
                     completion(.success((nil, attachCard)))
                 } else {
-                    if let content = try? JSONDecoder().decode(BaseResponseModel<EmptyModel>.self, from: data) {
-                        VibrateEffectManager.shared.errorVibration()
-                        completion(.failure(.custom(message: content.message)))
+                    VibrateEffectManager.shared.errorVibration()
+                    if let envelope = try? JSONDecoder().decode(BaseResponseModel<EmptyModel>.self, from: data),
+                       !envelope.message.isEmpty, envelope.message != "SUCCESS" {
+                        completion(.failure(.custom(message: envelope.message)))
                     } else {
-                        VibrateEffectManager.shared.errorVibration()
                         completion(.failure(.custom(message: "Invalid data from server")))
                     }
                 }
@@ -185,11 +193,29 @@ final class WalletRepository {
         }
     }
     
+    /// PATCH api/telcell/deposit (ipay docs/mobile-api.md): success is an
+    /// EMPTY 200 body - this endpoint does not use the envelope for success.
+    /// A refusal is the usual HTTP-200 envelope (`statusCode` != 200, message
+    /// such as user.not.found.telcell.system), which used to pass as success.
     func depositWithTelCell(amount: Double, phoneNumber: String, completion: @escaping (Result<Void, WalletRequestErrors>) -> Void) {
         network.request(with: URLBuilder(from: AuthAPI.depositWithTelcell(amount: amount, number: phoneNumber))) { (result) in
             switch result {
-            case .success:
-                completion(.success(()))
+            case .success(let data):
+                let body = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+                if body.isEmpty {
+                    completion(.success(()))
+                } else if let envelope = try? JSONDecoder().decode(BaseResponseModel<EmptyModel>.self, from: data) {
+                    if envelope.statusCode == 200 {
+                        completion(.success(()))
+                    } else {
+                        VibrateEffectManager.shared.errorVibration()
+                        completion(.failure(.custom(message: envelope.message)))
+                    }
+                } else {
+                    // Not the documented empty body and not an envelope: an
+                    // unknown non-refusal answer, treated as before.
+                    completion(.success(()))
+                }
             case .failure(let error):
                 VibrateEffectManager.shared.errorVibration()
                 completion(.failure(.custom(message: error.localizedDescription)))
@@ -380,8 +406,10 @@ final class WalletRepository {
         }
     }
 
+    /// PATCH api/promo-code/{code}: a bare envelope, `statusCode` 200 with
+    /// message "SUCCESS" on success; the screen shows its own copy for that.
     func sendPromoCode(code: String, _ completion: @escaping (Result<EmptyModel, WalletRequestErrors>) -> ()) {
-        network.request(with: URLBuilder(from: AuthAPI.sendPromoCode(code: code))) { result in
+        network.request(with: URLBuilder(from: AuthAPI.sendPromoCode(code: code.trimmingCharacters(in: .whitespacesAndNewlines)))) { result in
             switch result {
             case .success(let data):
                 guard let countryCodeResponce = try? JSONDecoder().decode(BaseResponseModel<EmptyModel>.self, from: data) else {
