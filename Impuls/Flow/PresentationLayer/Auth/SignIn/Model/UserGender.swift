@@ -7,6 +7,10 @@
 
 import Foundation
 
+/// Impulse offers only male and female when a gender is picked (product
+/// decision 2026-10-04). The accounts service still knows OTHER, so a profile
+/// that already has it keeps showing and saving it unchanged; the value is
+/// just never offered to a rider who picks anew.
 enum UserGender: String {
     case male = "MOBILE_registartion_sex_bottom_sheet_male"
     case female = "MOBILE_registartion_sex_bottom_sheet_female"
@@ -42,10 +46,13 @@ enum UserGender: String {
         }
     }
 
-    /// What the gender picker offers. The accounts service accepts OTHER
-    /// everywhere, so it is always on the list; a rider who already has it
-    /// stored keeps seeing it.
+    /// What the gender picker offers: male and female, plus OTHER only when
+    /// the profile already carries it, so that profile still renders and saves.
     static func options(keeping current: UserGender? = nil) -> [UserGender] {
-        [.male, .female, .other]
+        var options: [UserGender] = [.male, .female]
+        if current == .other {
+            options.append(.other)
+        }
+        return options
     }
 }

@@ -11,6 +11,8 @@ import SwiftUI
 
 final class RequirementFieldsViewModel: ObservableObject {
 
+    /// Impulse offers only male and female when picking; OTHER stays a known
+    /// value so a profile that already has it still shows and saves it.
     enum Gender: String, CaseIterable {
         case male = "MALE"
         case female = "FEMALE"
@@ -22,6 +24,15 @@ final class RequirementFieldsViewModel: ObservableObject {
             case .female: return "MOBILE_registartion_sex_bottom_sheet_female".localized(fallback: "Female")
             case .other: return "MOBILE_requirements_gender_other".localized(fallback: "Other")
             }
+        }
+
+        /// Pills offered for picking; OTHER only when it is the current value.
+        static func offered(current: String) -> [Gender] {
+            var offered: [Gender] = [.male, .female]
+            if current == Gender.other.title {
+                offered.append(.other)
+            }
+            return offered
         }
     }
 
@@ -304,7 +315,7 @@ struct RequirementFieldsView: View {
         case .gender:
             MimoWheelPickerTextField(title: field.title,
                                      placeholder: field.title,
-                                     items: RequirementFieldsViewModel.Gender.allCases.map(\.title),
+                                     items: RequirementFieldsViewModel.Gender.offered(current: viewModel.gender).map(\.title),
                                      selectedItem: $viewModel.gender)
         case .birthday:
             MimoDatePickerTextField(title: field.title, placeholder: field.title, date: $viewModel.birthday)
