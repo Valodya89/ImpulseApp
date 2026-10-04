@@ -47,8 +47,15 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
     @Published private(set) var recentTransactions: [TransactionDTO] = []
     
     @Published private(set) var cardPaymentMethods: [PaymentMethodModel] = []
+    /// The non-card rails the screen offers. Empty while the Remote Config
+    /// flag `showExtraPaymentRails` is off: Impulse then sells only the Carta
+    /// MIR top-up. EasyPay is never offered - the backend has no deposit route
+    /// for it.
     @Published private(set) var otherPaymentMethods: [PaymentMethodModel] = []
     @Published private(set) var paymentMethods: [PaymentMethodModel] = []
+    /// Mirror of the Remote Config flag, re-read on every wallet load and
+    /// whenever a fetch-activate changes the config while the wallet is open.
+    @Published private(set) var showExtraPaymentRails: Bool = MimoMeta.appConfig.showExtraPaymentRails
     @Published var selectedPaymentMethod: PaymentMethodModel?
     
     @Published var attachCardURL: IdentifiableURL?
@@ -57,7 +64,6 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
     
     @Published var depositSuccess: Bool = false
     @Published var telcellDepositSuccess: Bool = false
-    @Published var easyPayDepositSuccess: Bool = false
     @Published var fastshiftDepositSuccess: Bool = false
     @Published var myAmeriaDepositSuccess: Bool = false
     @Published var promoCodeSuccess: Bool = false
@@ -90,6 +96,15 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.loadData()
+            }
+            .store(in: &BAG)
+
+        // Remote Config may arrive after the wallet opened; apply the rails
+        // flag to the list already shown instead of waiting for a reload.
+        NotificationCenter.default.publisher(for: MimoMeta.appConfigDidChange)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.applyPaymentRails()
             }
             .store(in: &BAG)
     }
@@ -239,8 +254,6 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
             depositFromFastshift()
         case .myameria:
             depositFromMyAmeria()
-        case .easypay:
-            depositFromEasyPay()
         case .cryptoCloud:
             depositFromCrypto()
         default:
@@ -342,7 +355,7 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
         
         if UIApplication.shared.canOpenURL(URL(string: "idramapp://launch?itm=558788989")!) {
             IdramPaymentManager.pay(
-                withReceiverName: "MIMO Bike",
+                withReceiverName: "Impulse",
                 receiverId: "110000222",
                 title: phoneNumber,
                 amount: amount as NSNumber,
@@ -370,31 +383,6 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
                 }
             } receiveValue: { [weak self] _ in
                 self?.telcellDepositSuccess = true
-            }
-            .store(in: &BAG)
-    }
-    
-    private func depositFromEasyPay() {
-        let amount = NSString(string: amount).doubleValue
-        
-        guard amount > 0 else {
-            errorMessage = "MOBILE_validation_gratherThan0".localized()
-            return
-        }
-        
-        worker.depositFromEasyPay(amount: amount, phoneNumber: phoneNumber)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] completion in
-                if case .failure(let error) = completion {
-                    self?.mimoError = error
-                }
-            } receiveValue: { [weak self] result in
-                self?.easyPayDepositSuccess = true
-                if UIApplication.shared.canOpenURL(URL(string: result.formUrl)!) {
-                    
-                } else {
-                    self?.errorMessage = "MOBILE_no_idram_app".localized()
-                }
             }
             .store(in: &BAG)
     }
@@ -493,7 +481,7 @@ extension MimoWalletViewModel {
         
         self.paymentMethods = paymentMethods
         self.cardPaymentMethods = paymentMethods.filter { $0.type == .card }
-        self.otherPaymentMethods = paymentMethods.filter { $0.type != .card }
+        applyPaymentRails()
         
         if wallet.card != nil {
             selectedPaymentMethod = .none
@@ -510,6 +498,22 @@ extension MimoWalletViewModel {
         // treated as a change.
         if let previousBalance, previousBalance != wallet.balance {
             Resolver.resolve(MessageServiceProtocol.self).publish(.balanceUpdated)
+        }
+    }
+
+    /// Decides which non-card rails the screen offers from the Remote Config
+    /// flag. With the flag off nothing but the card top-up is offered, and a
+    /// rail that was selected is dropped so `deposit()` routes to the card.
+    private func applyPaymentRails() {
+        showExtraPaymentRails = MimoMeta.appConfig.showExtraPaymentRails
+
+        otherPaymentMethods = showExtraPaymentRails
+            ? paymentMethods.filter { $0.type != .card && $0.provider != .easypay }
+            : []
+
+        if let selected = selectedPaymentMethod,
+           !otherPaymentMethods.contains(where: { $0.id == selected.id }) {
+            selectedPaymentMethod = wallet?.card == nil ? otherPaymentMethods.first : nil
         }
     }
 }

@@ -14,6 +14,12 @@ struct RemoteConfigManager {
         let settings = RemoteConfigSettings()
         settings.minimumFetchInterval = 0
         remoteConfig.configSettings = settings
+        // Every flag the app knows defaults to false until the remote value
+        // arrives, so a missing key reads as the safe value and never as an
+        // error.
+        remoteConfig.setDefaults(AppConfig.CodingKeys.allCases.reduce(into: [String: NSObject]()) { defaults, key in
+            defaults[key.rawValue] = NSNumber(value: false)
+        })
         return remoteConfig
     }()
         
@@ -26,16 +32,8 @@ struct RemoteConfigManager {
             print("<<================= FirebaseRemoteConfig.fetch.Success =================<<")
             RemoteConfig.remoteConfig().activate()
             
-            let appConfigKeys = remoteConfig.allKeys(from: .remote)
-            var appConfigDictionary = [String : Bool]()
-            
-            appConfigKeys.forEach { key in
-                appConfigDictionary[key] = RemoteConfigManager.bool(forKey: key) ?? false
-            }
-            
             do {
-                let appConfig = try JSONDecoder().decode(AppConfig.self, from: (appConfigDictionary.jsonData ?? Data()))
-                MimoMeta.appConfig = appConfig
+                MimoMeta.appConfig = try decodeAppConfig()
                 print("<<================= FirebaseRemoteConfig.JSONDecoder.Success =================<<")
             } catch  {
               print("<<================= FirebaseRemoteConfig.JSONDecoder.Error =================<<")
@@ -45,18 +43,23 @@ struct RemoteConfigManager {
     }
     
     static func configure() async throws -> AppConfig {
-        let status = try await remoteConfig.fetch()
+        _ = try await remoteConfig.fetch()
         try await RemoteConfig.remoteConfig().activate()
         
-        let appConfigKeys = remoteConfig.allKeys(from: .remote)
+        return try decodeAppConfig()
+    }
+
+    /// Reads every key the app knows from the activated config. Unknown remote
+    /// keys are ignored and missing ones fall back to the in-app default, so
+    /// the decode only fails if the payload itself cannot be serialised.
+    private static func decodeAppConfig() throws -> AppConfig {
         var appConfigDictionary = [String : Bool]()
         
-        appConfigKeys.forEach { key in
-            appConfigDictionary[key] = RemoteConfigManager.bool(forKey: key) ?? false
+        AppConfig.CodingKeys.allCases.forEach { key in
+            appConfigDictionary[key.rawValue] = RemoteConfigManager.bool(forKey: key.rawValue) ?? false
         }
         
-        let appConfig = try JSONDecoder().decode(AppConfig.self, from: (appConfigDictionary.jsonData ?? Data()))
-        return appConfig
+        return try JSONDecoder().decode(AppConfig.self, from: (appConfigDictionary.jsonData ?? Data()))
     }
     
     static func value(forKey key: String) -> String? {

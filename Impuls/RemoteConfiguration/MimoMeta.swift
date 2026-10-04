@@ -10,7 +10,18 @@ import KeychainAccess
 
 public class MimoMeta {
 
-    public static var appConfig = AppConfig()
+    /// Posted on the main queue whenever `appConfig` changes, so screens that
+    /// are already open can re-read a Remote Config flag after a fetch-activate.
+    public static let appConfigDidChange = Notification.Name("MimoMeta.appConfigDidChange")
+
+    public static var appConfig = AppConfig() {
+        didSet {
+            guard appConfig != oldValue else { return }
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: MimoMeta.appConfigDidChange, object: nil)
+            }
+        }
+    }
     public static let configuration = Config()
     public static var externalLinks: [String: [String: String]]?
     public static var localizations: [String: [String: String?]?]?

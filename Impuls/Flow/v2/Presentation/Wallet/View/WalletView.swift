@@ -154,13 +154,6 @@ struct WalletView: View {
                 viewModel.myAmeriaDepositSuccess = false
             }
         }
-        .onReceive(viewModel.$easyPayDepositSuccess) { isSuccess in
-            if isSuccess {
-                successMessage = SuccessMessage(title: "MOBILE_verify_successful_alert".localized(), body: "MOBILE__trip_sent_telcell".localized())
-                viewModel.amount = ""
-                viewModel.easyPayDepositSuccess = false
-            }
-        }
         .onReceive(viewModel.$promoCodeSuccess) { isSuccess in
             if isSuccess {
                 successMessage = SuccessMessage(title: "MOBILE_global_success_title".localized(), body: "MOBILE_global_success".localized())
@@ -256,6 +249,8 @@ struct WalletView: View {
 
     /// The attached card, the ways to attach one, and the other providers as
     /// one list. Rows with a radio mark select; the "add card" rows attach.
+    /// The other providers come from the view model already filtered by the
+    /// `showExtraPaymentRails` Remote Config flag: off means card (MIR) only.
     private var paymentMethodsCard: some View {
         VStack(spacing: 0) {
             if let card = viewModel.wallet?.card {
