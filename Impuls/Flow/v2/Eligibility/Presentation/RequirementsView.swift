@@ -129,10 +129,9 @@ private struct RequirementRow: View {
                 .clipShape(Circle())
 
             VStack(alignment: .leading, spacing: 4) {
-                Text(violation.message)
-                    .font(.robotoMedium15)
-                    .foregroundColor(.appLabel)
-                    .fixedSize(horizontal: false, vertical: true)
+                // A rule title is a whole sentence from the backend: when it is
+                // wider than the row it glides sideways instead of being cut.
+                MarqueeText(text: violation.message, font: .robotoMedium15, color: .appLabel)
 
                 if let details = violation.detailsLine {
                     Text(details)
