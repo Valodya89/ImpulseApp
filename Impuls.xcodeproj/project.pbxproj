@@ -7,22 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6164901CA56C8C9F46378099 /* TransferHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BEF3D72B9C9736A322C9AC /* TransferHostingController.swift */; };
-		403999630866E883ED6B5710 /* TransferHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BEF3D72B9C9736A322C9AC /* TransferHostingController.swift */; };
-		F597C91D0E450DDA2C4542EC /* TransferMoneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5E2D8262918380678DAF2 /* TransferMoneyView.swift */; };
-		10977F4398B4097A05CE42B2 /* TransferMoneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5E2D8262918380678DAF2 /* TransferMoneyView.swift */; };
-		2FEFF49490D9C613EFA99CB1 /* TransferMoneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CC1E974A987A8347CD0314 /* TransferMoneyViewModel.swift */; };
-		17A54FA429C099651BA7DF36 /* TransferMoneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CC1E974A987A8347CD0314 /* TransferMoneyViewModel.swift */; };
-		FC6E2DD5396DE831689442FD /* TransferRecipientCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B9C029784B65724D14F804 /* TransferRecipientCardView.swift */; };
-		92FD1ADC822882F011B5B954 /* TransferRecipientCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B9C029784B65724D14F804 /* TransferRecipientCardView.swift */; };
-		2EBD253124B3DFA053A4FDC9 /* TransferAmountFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC1A182AAA0AFBD3F07345 /* TransferAmountFieldView.swift */; };
-		6972EBC511E6760D2E4619E7 /* TransferAmountFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC1A182AAA0AFBD3F07345 /* TransferAmountFieldView.swift */; };
-		E5EDD9E0C3AD21D6967BEAA8 /* TransferPhoneNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7277FF504D6D004BBEA76B26 /* TransferPhoneNumberField.swift */; };
-		881122AD11B9B21BD4F4506C /* TransferPhoneNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7277FF504D6D004BBEA76B26 /* TransferPhoneNumberField.swift */; };
 		0829C820FA4C48C9E83B9957 /* TransferContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C79B0F49FF9BBA6403423B4 /* TransferContactPicker.swift */; };
-		F542994303B7286EBE41EDF6 /* TransferContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C79B0F49FF9BBA6403423B4 /* TransferContactPicker.swift */; };
 		094D0A403A6E4E1586151582 /* EligibilityAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BD4E07FD0F02900820AC11 /* EligibilityAPI.swift */; };
 		0FB22F40B50CCCF9A29EA0FF /* RequirementsProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56454F9F963908C5E7F5EF4A /* RequirementsProfileService.swift */; };
+		10977F4398B4097A05CE42B2 /* TransferMoneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5E2D8262918380678DAF2 /* TransferMoneyView.swift */; };
 		160886A62D859A6900419981 /* ChargingRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160886A52D859A6900419981 /* ChargingRateView.swift */; };
 		160886A72D859A6900419981 /* ChargingRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160886A52D859A6900419981 /* ChargingRateView.swift */; };
 		160886B02D933F1900419981 /* SelectAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160886AF2D933F1900419981 /* SelectAmountView.swift */; };
@@ -103,12 +91,16 @@
 		16A628622D53F8BA0043DBA8 /* ChargerStationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A628602D53F8B30043DBA8 /* ChargerStationView.swift */; };
 		16A628652D53FF740043DBA8 /* EVColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A628642D53FF740043DBA8 /* EVColor.swift */; };
 		16A628662D53FF740043DBA8 /* EVColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A628642D53FF740043DBA8 /* EVColor.swift */; };
+		17A54FA429C099651BA7DF36 /* TransferMoneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CC1E974A987A8347CD0314 /* TransferMoneyViewModel.swift */; };
 		199BFEE77E0BF994FCEF1B89 /* MimoDateOfBirthSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F44F192EF6F630308782B8 /* MimoDateOfBirthSheet.swift */; };
 		29EEDDAE27145DA16F8DF005 /* RequirementsProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56454F9F963908C5E7F5EF4A /* RequirementsProfileService.swift */; };
 		2E622686E0A149325DA822D6 /* MimoDateOfBirthSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F44F192EF6F630308782B8 /* MimoDateOfBirthSheet.swift */; };
+		2EBD253124B3DFA053A4FDC9 /* TransferAmountFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC1A182AAA0AFBD3F07345 /* TransferAmountFieldView.swift */; };
+		2FEFF49490D9C613EFA99CB1 /* TransferMoneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CC1E974A987A8347CD0314 /* TransferMoneyViewModel.swift */; };
 		31409146ECA804A576297D1E /* ActionEligibilityFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A781A7DE9D9BB1D82F5B685 /* ActionEligibilityFlow.swift */; };
 		3613B9F9795637F20E0C7560 /* RequirementFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE7BCD0F2E764F53E2F4137 /* RequirementFieldsView.swift */; };
 		3687BB0982EFF1D06C0A744F /* RequirementFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE7BCD0F2E764F53E2F4137 /* RequirementFieldsView.swift */; };
+		403999630866E883ED6B5710 /* TransferHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BEF3D72B9C9736A322C9AC /* TransferHostingController.swift */; };
 		43133B77288F3C6E00A147C2 /* BookedScooterResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43133B76288F3C6E00A147C2 /* BookedScooterResult.swift */; };
 		435CCDE4288488CC00228F99 /* ScooterPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435CCDE2288488CC00228F99 /* ScooterPlanViewController.swift */; };
 		435CCDE9288489BB00228F99 /* ScooterPlan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 435CCDE8288489BB00228F99 /* ScooterPlan.storyboard */; };
@@ -292,6 +284,7 @@
 		54FDA36B2D5789E300B9C45D /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FDA36A2D5789E300B9C45D /* BlurView.swift */; };
 		54FDA36C2D5789E300B9C45D /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54FDA36A2D5789E300B9C45D /* BlurView.swift */; };
 		5503CC92F006289E14FA3AE8 /* EligibilityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42893EF539A1AD92FA2D7F2 /* EligibilityRepository.swift */; };
+		6164901CA56C8C9F46378099 /* TransferHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9BEF3D72B9C9736A322C9AC /* TransferHostingController.swift */; };
 		64937DB1F2C898E6D71273E1 /* DocumentUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BC7DCA93B38748DAF0122D /* DocumentUploadView.swift */; };
 		667E0E4E2670FA7C00B6CACB /* StudentInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667E0E4D2670FA7C00B6CACB /* StudentInformationViewController.swift */; };
 		668B77C9266E39700055A33F /* OrderCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B77C3266E39700055A33F /* OrderCardViewModel.swift */; };
@@ -306,6 +299,7 @@
 		66DDD51926661C66000BF23F /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDD51826661C66000BF23F /* MultipartFormData.swift */; };
 		66DDD580266786E0000BF23F /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDD57F266786E0000BF23F /* WalletViewModel.swift */; };
 		66DDD582266786E7000BF23F /* WalletRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DDD581266786E7000BF23F /* WalletRepository.swift */; };
+		6972EBC511E6760D2E4619E7 /* TransferAmountFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC1A182AAA0AFBD3F07345 /* TransferAmountFieldView.swift */; };
 		6C0687E529D9FE2C00837D2E /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0687E429D9FE2C00837D2E /* AppVersion.swift */; };
 		6C0A74CE289339C800DCDBEA /* ScooterScanResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A74CD289339C800DCDBEA /* ScooterScanResponse.swift */; };
 		6C0A74D028942E0E00DCDBEA /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C0A74CF28942E0E00DCDBEA /* UIImage+Extension.swift */; };
@@ -1489,6 +1483,7 @@
 		7A5E4E03000000000000000D /* refresh_pop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7A5E4E01000000000000000D /* refresh_pop.wav */; };
 		7A5E4E0300000000000007 /* MimoSocketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5E4E0100000000000007 /* MimoSocketLog.swift */; };
 		7B18E27F056F4940F10D4E26 /* DocumentUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BC7DCA93B38748DAF0122D /* DocumentUploadView.swift */; };
+		881122AD11B9B21BD4F4506C /* TransferPhoneNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7277FF504D6D004BBEA76B26 /* TransferPhoneNumberField.swift */; };
 		8815079526681D6500C5CCAE /* NumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8815079426681D6500C5CCAE /* NumericTextField.swift */; };
 		88163C06266AC6D300A57D9D /* MIPlansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88163C05266AC6D300A57D9D /* MIPlansViewController.swift */; };
 		88163C09266AC6DC00A57D9D /* MIPlan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88163C08266AC6DC00A57D9D /* MIPlan.storyboard */; };
@@ -1561,6 +1556,7 @@
 		88D950A526923CDA00D96C0A /* ZoningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D950A426923CDA00D96C0A /* ZoningView.swift */; };
 		88D950A726923D7F00D96C0A /* ZoningView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88D950A626923D7F00D96C0A /* ZoningView.xib */; };
 		92585CEF823139DC01283A3A /* MimoFormField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6957DA98B08EB2F6B07F2501 /* MimoFormField.swift */; };
+		92FD1ADC822882F011B5B954 /* TransferRecipientCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B9C029784B65724D14F804 /* TransferRecipientCardView.swift */; };
 		9385C95D26F0A7C200B28D2B /* MiAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385C95C26F0A7C200B28D2B /* MiAlertView.swift */; };
 		989EC4315E02E21BB01C3B06 /* AccountScreenHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BF81FA5882C38790CE00F7 /* AccountScreenHost.swift */; };
 		A8C1D69CE9CED96ED44B1465 /* EligibilityModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C200DEB33506D98716132483 /* EligibilityModels.swift */; };
@@ -1702,6 +1698,7 @@
 		DB2CD19ACE156662FC2862B9 /* ActionEligibilityFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A781A7DE9D9BB1D82F5B685 /* ActionEligibilityFlow.swift */; };
 		E1A6BF5E62BD61049DB526FB /* Pods_Impuls_Dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E545E9D90E774270A8402FD2 /* Pods_Impuls_Dev.framework */; };
 		E39D7FA9CA98004265969C91 /* ViolationPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E013527BC34A9D0CE8955F4 /* ViolationPresentation.swift */; };
+		E5EDD9E0C3AD21D6967BEAA8 /* TransferPhoneNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7277FF504D6D004BBEA76B26 /* TransferPhoneNumberField.swift */; };
 		EA09AAEC266D09E900ED2EB6 /* HomeSingleBikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA09AAEB266D09E900ED2EB6 /* HomeSingleBikeViewModel.swift */; };
 		EA1E898C268E702F009A861A /* TripsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1E898B268E702F009A861A /* TripsNavigationController.swift */; };
 		EA22BA8B267A7A2400212235 /* ImportProblemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA22BA8A267A7A2400212235 /* ImportProblemViewController.swift */; };
@@ -1767,6 +1764,9 @@
 		ECC00E64923E34431D2158CE /* EligibilityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42893EF539A1AD92FA2D7F2 /* EligibilityRepository.swift */; };
 		EE128C042E9E4943B420EBFE /* CompleteProfileFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81DB58773A7A3F68F739EAB /* CompleteProfileFormView.swift */; };
 		F3DA65EE3BDC4917E989A236 /* RequirementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCD13364D96156FA36412F6 /* RequirementsView.swift */; };
+		F542994303B7286EBE41EDF6 /* TransferContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C79B0F49FF9BBA6403423B4 /* TransferContactPicker.swift */; };
+		F597C91D0E450DDA2C4542EC /* TransferMoneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A5E2D8262918380678DAF2 /* TransferMoneyView.swift */; };
+		FC6E2DD5396DE831689442FD /* TransferRecipientCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B9C029784B65724D14F804 /* TransferRecipientCardView.swift */; };
 		FE10000000000000000000A2 /* TeamEnergyLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE10000000000000000000A1 /* TeamEnergyLocation.swift */; };
 		FE10000000000000000000A3 /* TeamEnergyLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE10000000000000000000A1 /* TeamEnergyLocation.swift */; };
 		FE10000000000000000000B2 /* TeamEnergyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE10000000000000000000B1 /* TeamEnergyProvider.swift */; };
@@ -1781,13 +1781,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B9BEF3D72B9C9736A322C9AC /* TransferHostingController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferHostingController.swift; sourceTree = "<group>"; };
 		12A5E2D8262918380678DAF2 /* TransferMoneyView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferMoneyView.swift; sourceTree = "<group>"; };
-		A9CC1E974A987A8347CD0314 /* TransferMoneyViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferMoneyViewModel.swift; sourceTree = "<group>"; };
-		32B9C029784B65724D14F804 /* TransferRecipientCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferRecipientCardView.swift; sourceTree = "<group>"; };
-		47EC1A182AAA0AFBD3F07345 /* TransferAmountFieldView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferAmountFieldView.swift; sourceTree = "<group>"; };
-		7277FF504D6D004BBEA76B26 /* TransferPhoneNumberField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferPhoneNumberField.swift; sourceTree = "<group>"; };
-		3C79B0F49FF9BBA6403423B4 /* TransferContactPicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferContactPicker.swift; sourceTree = "<group>"; };
 		160886A52D859A6900419981 /* ChargingRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargingRateView.swift; sourceTree = "<group>"; };
 		160886AF2D933F1900419981 /* SelectAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAmountView.swift; sourceTree = "<group>"; };
 		160886B22D933F2700419981 /* SelectAmountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAmountViewModel.swift; sourceTree = "<group>"; };
@@ -1831,6 +1825,8 @@
 		1E013527BC34A9D0CE8955F4 /* ViolationPresentation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ViolationPresentation.swift; sourceTree = "<group>"; };
 		28F44F192EF6F630308782B8 /* MimoDateOfBirthSheet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MimoDateOfBirthSheet.swift; sourceTree = "<group>"; };
 		2B73A855E1CEB0950A7AD4AC /* Pods-Impuls-Dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Impuls-Dev.debug.xcconfig"; path = "Target Support Files/Pods-Impuls-Dev/Pods-Impuls-Dev.debug.xcconfig"; sourceTree = "<group>"; };
+		32B9C029784B65724D14F804 /* TransferRecipientCardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferRecipientCardView.swift; sourceTree = "<group>"; };
+		3C79B0F49FF9BBA6403423B4 /* TransferContactPicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferContactPicker.swift; sourceTree = "<group>"; };
 		43133B76288F3C6E00A147C2 /* BookedScooterResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedScooterResult.swift; sourceTree = "<group>"; };
 		435CCDE2288488CC00228F99 /* ScooterPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScooterPlanViewController.swift; sourceTree = "<group>"; };
 		435CCDE8288489BB00228F99 /* ScooterPlan.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScooterPlan.storyboard; sourceTree = "<group>"; };
@@ -1859,6 +1855,7 @@
 		439C12B42892FD9C00EA0440 /* PauseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseViewController.swift; sourceTree = "<group>"; };
 		439C12B62893046E00EA0440 /* ChangeRideRateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRideRateViewController.swift; sourceTree = "<group>"; };
 		439C12BA28935C1D00EA0440 /* TripScooterDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripScooterDataModel.swift; sourceTree = "<group>"; };
+		47EC1A182AAA0AFBD3F07345 /* TransferAmountFieldView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferAmountFieldView.swift; sourceTree = "<group>"; };
 		50183D0B2D7FB9B500AFD003 /* EVSelectionModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EVSelectionModifier.swift; sourceTree = "<group>"; };
 		5060A57D264D651400C866AC /* BikeResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeResult.swift; sourceTree = "<group>"; };
 		5060A580264D66BB00C866AC /* HomeMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapper.swift; sourceTree = "<group>"; };
@@ -2021,6 +2018,7 @@
 		6CF4ECDC2870A7A400AF9D38 /* NoInternetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetViewController.swift; sourceTree = "<group>"; };
 		6CF4ECDE2870A93B00AF9D38 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		6F098E3794A5031AF7AB71E3 /* Pods_Impuls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Impuls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7277FF504D6D004BBEA76B26 /* TransferPhoneNumberField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferPhoneNumberField.swift; sourceTree = "<group>"; };
 		750CE0572C3ED22900392173 /* ChargerSpecialDiscountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerSpecialDiscountsViewController.swift; sourceTree = "<group>"; };
 		750E680B2B06AB89004794C3 /* ChargerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChargerViewController.swift; sourceTree = "<group>"; };
 		750E680E2B06AB96004794C3 /* Charger.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Charger.storyboard; sourceTree = "<group>"; };
@@ -2463,6 +2461,8 @@
 		9385C95C26F0A7C200B28D2B /* MiAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiAlertView.swift; sourceTree = "<group>"; };
 		96BF81FA5882C38790CE00F7 /* AccountScreenHost.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountScreenHost.swift; sourceTree = "<group>"; };
 		A81DB58773A7A3F68F739EAB /* CompleteProfileFormView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CompleteProfileFormView.swift; sourceTree = "<group>"; };
+		A9CC1E974A987A8347CD0314 /* TransferMoneyViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferMoneyViewModel.swift; sourceTree = "<group>"; };
+		B9BEF3D72B9C9736A322C9AC /* TransferHostingController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferHostingController.swift; sourceTree = "<group>"; };
 		C200DEB33506D98716132483 /* EligibilityModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EligibilityModels.swift; sourceTree = "<group>"; };
 		CA001BF0265FD7E40002F844 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CA05372726613A2A00ACD208 /* Transfer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Transfer.storyboard; sourceTree = "<group>"; };
@@ -2719,20 +2719,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AE1AF5C6883C5202C93E441E /* Transfer */ = {
-			isa = PBXGroup;
-			children = (
-				B9BEF3D72B9C9736A322C9AC /* TransferHostingController.swift */,
-				12A5E2D8262918380678DAF2 /* TransferMoneyView.swift */,
-				A9CC1E974A987A8347CD0314 /* TransferMoneyViewModel.swift */,
-				32B9C029784B65724D14F804 /* TransferRecipientCardView.swift */,
-				47EC1A182AAA0AFBD3F07345 /* TransferAmountFieldView.swift */,
-				7277FF504D6D004BBEA76B26 /* TransferPhoneNumberField.swift */,
-				3C79B0F49FF9BBA6403423B4 /* TransferContactPicker.swift */,
-			);
-			path = Transfer;
-			sourceTree = "<group>";
-		};
 		160886A42D859A5500419981 /* RateView */ = {
 			isa = PBXGroup;
 			children = (
@@ -6330,6 +6316,20 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
+		AE1AF5C6883C5202C93E441E /* Transfer */ = {
+			isa = PBXGroup;
+			children = (
+				B9BEF3D72B9C9736A322C9AC /* TransferHostingController.swift */,
+				12A5E2D8262918380678DAF2 /* TransferMoneyView.swift */,
+				A9CC1E974A987A8347CD0314 /* TransferMoneyViewModel.swift */,
+				32B9C029784B65724D14F804 /* TransferRecipientCardView.swift */,
+				47EC1A182AAA0AFBD3F07345 /* TransferAmountFieldView.swift */,
+				7277FF504D6D004BBEA76B26 /* TransferPhoneNumberField.swift */,
+				3C79B0F49FF9BBA6403423B4 /* TransferContactPicker.swift */,
+			);
+			path = Transfer;
+			sourceTree = "<group>";
+		};
 		BBACC03542BF438AC1E16717 /* Pickers */ = {
 			isa = PBXGroup;
 			children = (
@@ -9896,7 +9896,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = SHG3WMPK3S;
@@ -9964,7 +9964,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = SHG3WMPK3S;
 				FRAMEWORK_SEARCH_PATHS = (
