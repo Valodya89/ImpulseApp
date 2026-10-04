@@ -132,13 +132,14 @@ class ChargerRouter {
         sheetViewController.animateIn(to: viewController.view, in: viewController)
     }
     
+    /// End-of-rent summary: the same receipt the history shows for the rent,
+    /// as a sheet. It publishes `.chargerRentEnded` when it closes.
     func showChargerSuccessViewController(_ viewController: UIViewController, currency: String?, rentedCharger: RentedCharger?) {
-        if let successViewController: ChargerSuccessViewController = storyboard.instantiate() {
-            successViewController.rentedCharger = rentedCharger
-            successViewController.currency = currency
-            
-            viewController.present(successViewController, animated: true)
-        }
+        // A second RENT_ENDED for the same rent must not stack two sheets.
+        if viewController.presentedViewController is RentSummaryHostingController { return }
+        
+        let summaryViewController = RentSummaryHostingController(rentedCharger: rentedCharger, currency: currency)
+        viewController.present(summaryViewController, animated: true)
     }
     
     func showSpecialDiscountsScreen(_ rootViewController: UIViewController) {

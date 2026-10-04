@@ -2,8 +2,9 @@
 //  EVChargerReceiptView.swift
 //  MimoBike
 //
-//  Receipt for a finished trip or rent, opened from the history list. One screen
-//  for every product - each history model maps itself onto `ReceiptData`.
+//  Receipt for a finished trip or rent, opened from the history list and shown
+//  as the end-of-session summary the moment a rent ends. One screen for every
+//  product - each history / session model maps itself onto `ReceiptData`.
 //
 
 import SwiftUI
@@ -40,7 +41,16 @@ struct ReceiptData: Identifiable {
 struct ReceiptView: View {
 
     let receipt: ReceiptData
+    /// Title of the primary button under the card. Set by the end-of-session
+    /// summary ("Thank you"); the history receipt has none and keeps the yellow
+    /// share button as its only action.
+    var doneTitle: String? = nil
+    /// Primary action of the end-of-session summary. Close (x) and this button
+    /// end the screen the same way.
+    var onDone: (() -> Void)? = nil
     let onClose: () -> Void
+
+    private var isSummary: Bool { onDone != nil }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -51,11 +61,20 @@ struct ReceiptView: View {
                     receiptCard
                         .padding(.horizontal, 16)
 
-                    shareButton
+                    if isSummary {
+                        VStack(spacing: 12) {
+                            quietShareButton
+
+                            doneButton
+                        }
                         .padding(.horizontal, 16)
+                    } else {
+                        shareButton
+                            .padding(.horizontal, 16)
+                    }
                 }
                 .padding(.top, 20)
-                // Breathing room under the share button so it never sits against
+                // Breathing room under the buttons so they never sit against
                 // the bottom edge on a scrolled-to-end receipt.
                 .padding(.bottom, 100)
             }
@@ -103,6 +122,44 @@ struct ReceiptView: View {
             .frame(maxWidth: .infinity)
             .frame(height: 52)
             .background(Capsule().fill(Color.brandYellow))
+        }
+    }
+
+    /// Quiet secondary share of the summary - the yellow belongs to the primary
+    /// button there. Shares the very same card image as the history receipt.
+    private var quietShareButton: some View {
+        Button {
+            ReceiptSharing.share(receipt: receiptCard)
+        } label: {
+            HStack(spacing: 8) {
+                Image(systemName: "square.and.arrow.up")
+                    .font(.system(size: 16, weight: .semibold))
+
+                Text("MOBILE_history_detail_share_receipt".localized())
+                    .font(.robotoBold15)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
+            }
+            .foregroundColor(.appLabel)
+            .frame(maxWidth: .infinity)
+            .frame(height: 48)
+            .background(Capsule().fill(Color.appBackground))
+            .overlay(Capsule().stroke(Color.evStroke, lineWidth: 1))
+        }
+    }
+
+    private var doneButton: some View {
+        Button {
+            onDone?()
+        } label: {
+            Text(doneTitle ?? "")
+                .font(.robotoBold15)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+                .foregroundColor(.onBrandLabel)
+                .frame(maxWidth: .infinity)
+                .frame(height: 48)
+                .background(Capsule().fill(Color.brandYellow))
         }
     }
 
@@ -270,6 +327,26 @@ enum ReceiptFormat {
         String(format: "%.2f", amount ?? 0) + " " + UserManager.walletCurrencyTitle
     }
 
+    /// "00:12:34" - the padded h:m:s an end-of-session summary shows, where
+    /// seconds still matter for a rent that just closed.
+    static func clock(seconds: TimeInterval) -> String {
+        DateComponentsFormatter.hmsFormatter.string(from: max(0, seconds)) ?? "00:00:00"
+    }
+
+    /// Date line of an end-of-session summary: the start when the payload has
+    /// one; a session that never started is summarised the moment it ends, so
+    /// "now" is the honest date to print.
+    static func dateLineOrNow(milliseconds: Int, now: Date = Date()) -> String {
+        let stamp = milliseconds > 0 ? milliseconds : Int(now.timeIntervalSince1970 * 1000)
+        return fullDate(milliseconds: stamp)
+    }
+
+    /// Amount in the currency the backend priced it in, falling back to the
+    /// rider's wallet currency.
+    static func amount(_ amount: Double?, currency: String?) -> String {
+        String(format: "%.2f", amount ?? 0) + " " + UserManager.currencyTitle(currency)
+    }
+
     private static func date(milliseconds: Int) -> Date {
         Date(timeIntervalSince1970: TimeInterval(milliseconds) / 1000.0)
     }
@@ -339,6 +416,61 @@ extension ChargerRentModel {
                                value: ReceiptFormat.duration(fromMilliseconds: start, toMilliseconds: end))
                 ])
             ]
+        )
+    }
+}
+
+extension RentedCharger {
+
+    /// End-of-rent summary of a power bank, built from the RENT_ENDED payload
+    /// (powerbank docs/events.md: startStationQR, billingDetails.amount,
+    /// currentTariff.priceName, activePackage). Same card as the history receipt
+    /// of the rent; only the rows differ: the station pill, then the power bank,
+    /// the plan it was billed on, and the start / end / HH:MM:SS duration.
+    /// - Parameter currency: the wallet currency the caller knows; the rent
+    ///   payload carries none of its own.
+    func receipt(currency: String?, now: Date = Date()) -> ReceiptData {
+        let rent = data
+        let start = Int(rent?.start ?? 0)
+        let end = Int(rent?.end ?? 0)
+        let billing = rent?.billingDetails
+
+        // A valid package names the plan; otherwise the tariff the rent was
+        // billed on. Unknown until the backend says - never a blank cell.
+        var plan = billing?.currentTariff?.priceName
+        if rent?.activePackageValid == true, let package = rent?.activePackage?.name, !package.isEmpty {
+            plan = package
+        }
+
+        let powerBankId = powerBank?.id ?? rent?.powerBank
+
+        let rentRows = [
+            ReceiptRow(title: "MOBILE_history_detail_charger_id".localized(),
+                       value: powerBankId.flatMap { $0.isEmpty ? nil : $0 } ?? "-"),
+            ReceiptRow(title: "MOBILE_history_detail_plan".localized(fallback: "Plan"),
+                       value: plan.flatMap { $0.isEmpty ? nil : $0 } ?? "-")
+        ]
+
+        let timeRows = [
+            ReceiptRow(title: "MOBILE_history_detail_start".localized(),
+                       value: start > 0 ? ReceiptFormat.time(milliseconds: start) : "-"),
+            ReceiptRow(title: "MOBILE_history_detail_end".localized(),
+                       value: end > 0 ? ReceiptFormat.time(milliseconds: end) : "-"),
+            ReceiptRow(title: "MOBILE_history_detail_duration".localized(),
+                       value: ReceiptFormat.clock(seconds: TimeInterval(max(0, end - start)) / 1000))
+        ]
+
+        let stationCode = rent?.startStationQR ?? ""
+
+        return ReceiptData(
+            id: rent?.id ?? UUID().uuidString,
+            iconName: "mimo_charger_station",
+            title: "MOBILE_history_detail_rent_complete".localized(),
+            amount: ReceiptFormat.amount(billing?.amount, currency: currency),
+            dateLine: ReceiptFormat.dateLineOrNow(milliseconds: start, now: now),
+            codeTitle: "MOBILE_history_detail_station".localized(),
+            code: stationCode.isEmpty ? nil : stationCode,
+            sections: [ReceiptSection(rows: rentRows), ReceiptSection(rows: timeRows)]
         )
     }
 }
