@@ -162,26 +162,63 @@ class MimoHomeWorker: MimoHomeWorkerProtocol {
         }.eraseToAnyPublisher()
     }
     
+    // MARK: - Force update
+
+    /// The answer of the first check in this process. Home asks on every
+    /// appearance, but the guide wants the backend asked once per launch; a
+    /// later Home (after a re-login) gets the same verdict without a new call,
+    /// so a wall that was needed stays needed.
+    private static var forceUpdateVerdict: Bool?
+
+    /// `true` when the rider must update: either the published version
+    /// (`GET apk-version/IOS` on accounts, docs/mobile-api.md "GET
+    /// /apk-version/{osType}") or the minimum version the backend requires
+    /// (`GET settings/default`, field `iosVersion`) is numerically above this
+    /// build. Both calls fail silently - offline, 404 (no record) or an
+    /// unreadable value means no wall and no error.
     func checkAppVersion() -> AnyPublisher<Bool, Never> {
+        if let verdict = Self.forceUpdateVerdict {
+            return Just(verdict).eraseToAnyPublisher()
+        }
+
+        let installed = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        return Publishers.Zip(publishedVersion(), minimumVersion())
+            .map { published, minimum in
+                AppVersionCompare.isBelow(installed: installed, required: published)
+                    || AppVersionCompare.isBelow(installed: installed, required: minimum)
+            }
+            .handleEvents(receiveOutput: { Self.forceUpdateVerdict = $0 })
+            .eraseToAnyPublisher()
+    }
+
+    /// The version published for this app and OS, or `nil` when the backend
+    /// has no record (404) or cannot be reached.
+    private func publishedVersion() -> AnyPublisher<String?, Never> {
         Deferred {
-            Future<Bool, Never> { promise in
+            Future<String?, Never> { promise in
                 self.homeRepasitory.getAppVersion { result in
                     switch result {
                     case .success(let data):
-                        if let info = Bundle.main.infoDictionary,
-                           let storeVersion = data.version,
-                           let currentVersion = info["CFBundleShortVersionString"] as? String {
-                            
-                            if storeVersion > currentVersion {
-                                promise(.success(true))
-                            } else {
-                                promise(.success(false))
-                            }
-                        } else {
-                            promise(.success(false))
-                        }
+                        promise(.success(data.version))
                     case .failure:
-                        promise(.success(false))
+                        promise(.success(nil))
+                    }
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
+
+    /// The minimum iOS version from the default settings, or `nil` when the
+    /// call fails or the field is empty.
+    private func minimumVersion() -> AnyPublisher<String?, Never> {
+        Deferred {
+            Future<String?, Never> { promise in
+                self.homeRepasitory.getGlobalSettings { result in
+                    switch result {
+                    case .success(let settings):
+                        promise(.success(settings.iosVersion))
+                    case .failure:
+                        promise(.success(nil))
                     }
                 }
             }
@@ -360,5 +397,36 @@ class MimoHomeWorker: MimoHomeWorkerProtocol {
             }
         }
         .eraseToAnyPublisher()
+    }
+}
+
+// MARK: - Version comparison
+
+/// Decides whether the installed build is older than a version the backend
+/// names (the published `apk-version` or the `settings/default` minimum).
+enum AppVersionCompare {
+
+    /// `true` when `installed` is strictly lower than `required`, comparing
+    /// numeric parts one by one: "1.0" equals "1.0.0" and "1.10.0" is above
+    /// "1.9.3", which a plain string compare gets wrong. Anything unreadable -
+    /// nil, empty, a part that is not a number - compares as "not below", so
+    /// a malformed value from the server never locks riders out.
+    static func isBelow(installed: String?, required: String?) -> Bool {
+        guard let installed = parts(of: installed), let required = parts(of: required) else { return false }
+
+        let count = max(installed.count, required.count)
+        for index in 0..<count {
+            let have = index < installed.count ? installed[index] : 0
+            let need = index < required.count ? required[index] : 0
+            if have != need { return have < need }
+        }
+        return false
+    }
+
+    private static func parts(of version: String?) -> [Int]? {
+        guard let version = version?.trimmingCharacters(in: .whitespacesAndNewlines), !version.isEmpty else { return nil }
+        let parts = version.split(separator: ".", omittingEmptySubsequences: false).map { Int($0) }
+        guard !parts.isEmpty, parts.allSatisfy({ $0 != nil }) else { return nil }
+        return parts.compactMap { $0 }
     }
 }

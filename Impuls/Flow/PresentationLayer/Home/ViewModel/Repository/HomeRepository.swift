@@ -224,6 +224,28 @@ struct HomeRepository {
         }
     }
     
+    /// `GET settings/default` on accounts (docs/mobile-api.md "GET
+    /// /settings/default (SettingsController)"): `Response<Settings>` whose
+    /// `content.iosVersion` is the minimum app version. Public, no token. The
+    /// completion fires on every path, so a caller waiting on it never hangs.
+    func getGlobalSettings(completion: @escaping (Result<GlobalSettings, NetworkError>) -> Void) {
+        network.request(with: URLBuilder(from: AuthAPI.getGlobalSettings)) { (result) in
+            switch result {
+            case .success(let data):
+                guard let response = MimoConverter<BaseResponseModel<GlobalSettings>>.parseJson(data: data as Any),
+                      response.statusCode == 200,
+                      let settings = response.content else {
+                    completion(.failure(NetworkError.serverError))
+                    return
+                }
+                GlobalSettings.settings = settings
+                completion(.success(settings))
+            case .failure(let error):
+                completion(.failure(.responseError(error.description)))
+            }
+        }
+    }
+
     func getZoneInfo( completion: @escaping (Result<[ZoneInfo], NetworkError>) -> Void) {
         network.request(with: URLBuilder(from: HomeAPI.getZoneInfo)) { (result) in
             switch result {
