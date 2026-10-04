@@ -30,13 +30,13 @@ final class MimoImportantView: UIView {
         if isSuccess {
             mediaViewLeftConstraint.constant = Constant.Width.width79
             imageView.image = #imageLiteral(resourceName: "ic_POP_UP_chekmark")
-            titleLabel.text = title ?? "Thank you"
+            titleLabel.text = title ?? "MOBILE_global_thank_you".localized(fallback: "Thank you")
             messageLabel.font = UIFont(name: Constant.Font.robotoBold, size: 15)
             messageLabel.text = message
         } else {
             mediaViewLeftConstraint.constant =  Constant.Width.width68
             imageView.image = #imageLiteral(resourceName: "ic_POP_UP_credit_card")
-            titleLabel.text = title ?? "Insufficient account"
+            titleLabel.text = title ?? "MOBILE_insufficient_account".localized(fallback: "Insufficient funds")
             messageLabel.font = UIFont(name: Constant.Font.robotoBold, size: 15)
             messageLabel.text = message
         }

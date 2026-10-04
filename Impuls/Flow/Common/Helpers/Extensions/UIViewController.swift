@@ -1,83 +1,68 @@
 //
 //  UIViewController.swift
-//  MimoBike
+//  Impuls
 //
 //  Created by Vardan on 12.05.21.
+//
+//  Alert helpers. Every one of them raises the Mimo alert card
+//  (`MimoAlertController`) instead of a system `UIAlertController` or the old
+//  SCL-derived `MiAlertView`, with the same signatures the call sites use.
 //
 
 import UIKit
 import SwiftMessages
 
 extension UIViewController {
-    
+
     func showAlertMessage(_ title: String, meassage: String = "") {
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: title, message: meassage, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
+        MimoAlertController.present(.info(title, message: meassage), on: self)
     }
-    
+
     func showAlertMessage(_ title: String, meassage: String = "", actionText: String, action: @escaping (() -> ())) {
-//        DispatchQueue.main.async {
-//            let alert = UIAlertController(title: title, message: meassage, preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: actionText, style: .default, handler: {_ in
-//                action()
-//            }))
-//            self.present(alert, animated: true, completion: nil)
-//        }
-        
-        let alert = MiAlertView()
-        alert.addButton(actionText, action: action)
-        // The alert wants integer colours; resolve the brand tokens so the
-        // dark-mode yellow (and its label colour) reach it too.
-        alert.showError(title, subTitle: meassage, colorStyle: UIColor.mimoYellow500.hexValue, colorTextButton: UIColor.onBrandLabel.hexValue, animationStyle: .topToBottom)
+        MimoAlertController.present(
+            .info(title, message: meassage, actions: [MimoAlertAction(title: actionText, tone: .primary, handler: action)]),
+            on: self
+        )
     }
-    
+
+    /// Several choices. A title that reads as "cancel" / "no" gets the hairline
+    /// pill and the rest the yellow one; otherwise the last title is treated as
+    /// the affirmative one and the others stay quiet.
     func showAlertMessage(_ title: String, meassage: String = "", actionText: [String], action: @escaping ((String) -> ())) {
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: title, message: meassage, preferredStyle: .alert)
-            
-            actionText.forEach { (actionTitlte) in
-                alert.addAction(UIAlertAction(title: actionTitlte, style: .default, handler: {_ in
-                    action(actionTitlte)
-                }))
+        let quietTitles = Set([
+            "MOBILE_global_cancel".localized(),
+            "MOBILE__confirmation_no".localized(),
+            "Cancel", "No", "Ok", "OK"
+        ].map { $0.lowercased() })
+        let quiet = actionText.map { quietTitles.contains($0.lowercased()) }
+        let hasQuiet = actionText.count > 1 && quiet.contains(true) && quiet.contains(false)
+
+        let actions = actionText.enumerated().map { index, actionTitle -> MimoAlertAction in
+            let tone: MimoAlertAction.Tone
+            if hasQuiet {
+                tone = quiet[index] ? .secondary : .primary
+            } else {
+                tone = index == actionText.count - 1 ? .primary : .secondary
             }
-            
-            self.present(alert, animated: true, completion: nil)
+            return MimoAlertAction(title: actionTitle, tone: tone) { action(actionTitle) }
         }
+        MimoAlertController.present(.info(title, message: meassage, actions: actions), on: self)
     }
-    
+
     func showAlertMessageWithDismiss(_ title: String, meassage: String = "", actionText: [String], action: @escaping ((String) -> ())) {
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: title, message: meassage, preferredStyle: .alert)
-            
-            actionText.forEach { (actionTitlte) in
-                alert.addAction(UIAlertAction(title: actionTitlte, style: .default, handler: {_ in
-                    alert.dismiss(animated: true, completion: nil)
-                    action(actionTitlte)
-                }))
-            }
-            
-            self.present(alert, animated: true, completion: nil)
-        }
+        showAlertMessage(title, meassage: meassage, actionText: actionText, action: action)
     }
-    
-    func showErrorAlertMessage(_ message: String = "Something went wrong") {
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: message, message: "", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            UINotificationFeedbackGenerator().notificationOccurred(.error)
-            self.present(alert, animated: true, completion: nil)
-        }
+
+    func showErrorAlertMessage(_ message: String = "MOBILE_something_wrong".localized(fallback: "Something went wrong. Please try again.")) {
+        MimoAlertController.present(.error(message), on: self)
     }
-    
+
     /// Set view controller as root
     func setRootViewController(_ vc: UIViewController?) {
         UIApplication.shared.windows.first?.rootViewController = vc
         UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
-    
+
     func goToNextVC(_ vc: UIViewController) {
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
@@ -85,35 +70,43 @@ extension UIViewController {
 }
 
 extension UIAlertController {
+
+    /// Kept under its old name for the managers that call it without a view
+    /// controller. `.cancel` becomes the quiet pill, `.destructive` the red one.
+    /// The closure still receives an alert controller for the callers that
+    /// dismiss it themselves; it is never on screen, so that is a no-op.
     static func showAction(title: String, message: String, actions: (String,UIAlertAction.Style, (UIAlertController)->())...) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        guard let window = UIApplication.topController() else { return }
-        
-        actions.forEach { action in
-            let action = UIAlertAction(title: action.0, style: action.1, handler: {_ in
-                action.2(alertController)
-            })
-            alertController.addAction(action)
+        let placeholder = UIAlertController(title: title, message: message, preferredStyle: .alert)
+
+        let mapped = actions.map { action -> MimoAlertAction in
+            let tone: MimoAlertAction.Tone
+            switch action.1 {
+            case .cancel: tone = .secondary
+            case .destructive: tone = .destructive
+            case .default: tone = .primary
+            @unknown default: tone = .primary
+            }
+            return MimoAlertAction(title: action.0, tone: tone) { action.2(placeholder) }
         }
-        window.present(alertController, animated: true, completion: nil)
+
+        MimoAlertController.present(MimoAlertContent(kind: .info, title: title, message: message, actions: mapped))
     }
-    
+
     static func showError(message: String) {
-        let alert = MiAlertView()
-//        _ = alert.addButton("OK".localized(), action: alert.hideView)
-        _ = alert.showError("MOBILE__global_attention".localized().localized(), subTitle: message, closeButtonTitle: "OK".localized(), colorStyle: SCLAlertViewStyle.error.defaultColorInt, colorTextButton: 0x000000, animationStyle: .topToBottom)
-        
-//        UIAlertController.showAction(title: "Error".localized(), message: message, actions: ("OK".localized(), .default, {
-//            action in
-//            action.dismiss(animated: true, completion: nil)
-//        }))
+        MimoAlertController.present(.error(message))
     }
 
     static func showLocationDeniedAlert() {
-        UIAlertController.showAction(title: "MOBILE_global_warning".localized(), message: "SHARING_location_to_show_bikes_near_to_you".localized(), actions: ("MOBILE_profile_settings".localized(), .default, { controller in
-            controller.dismiss(animated: true, completion: nil)
-            AppDelegate.redirectSettings()
-        }))
+        MimoAlertController.present(
+            .important("MOBILE_global_warning".localized(),
+                       message: "SHARING_location_to_show_bikes_near_to_you".localized(),
+                       actions: [
+                        MimoAlertAction(title: "MOBILE_profile_settings".localized(), tone: .primary) {
+                            AppDelegate.redirectSettings()
+                        },
+                        .cancel()
+                       ])
+        )
     }
 }
 
@@ -153,6 +146,10 @@ extension UIViewController {
 
 extension UIViewController {
     
+    /// The backend refused to start a rent or ride. One shared card for every
+    /// product (`ChargerErrorViewController`); a balance below the minimum also
+    /// offers the two ways to top up and a Continue that opens the wallet in
+    /// that product's context.
     /// - Parameter retry: runs the refused action again once what held it back
     ///   is settled (a debt paid, rules met).
     func showErrorPopUp(message: String, service: MimoType, retry: (() -> Void)? = nil) {
@@ -175,14 +172,16 @@ extension UIViewController {
         let isReplenishable: Bool = (message == "SHARING_no_minimal_requirements") || (message == "MOBILE_map_minimum_requirments") || (message == "CHARGER_no_minimal_requirements") || (message == "WALLET_min_balance_required") || (message == "WALLET_min_balance_or_card_required") || (message == "WALLET_card_required")
 
         let displayMessage = UIViewController.userFacingErrorMessage(from: message)
+        let minimumAmount = ChargerErrorViewController.defaultMinimumAmount
 
-        // A single error screen (powerbank image) is used across the whole app,
-        // regardless of the service that produced the error.
-        let vc = ChargerErrorViewController(message: displayMessage, isReplenishable: isReplenishable, onReplenish: { [weak self] in
-            self?.openWallet()
+        let vc = ChargerErrorViewController(message: displayMessage,
+                                            isReplenishable: isReplenishable,
+                                            service: service,
+                                            minimumAmount: minimumAmount,
+                                            onReplenish: { [weak self] in
+            self?.openWallet(productType: service.walletProductType, initialAmount: minimumAmount)
         })
 
-        vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
     }
 
@@ -214,11 +213,15 @@ extension UIViewController {
     }
 }
 
-private extension UIColor {
-    /// 0xRRGGBB of the colour as it resolves right now (dark or light).
-    var hexValue: UInt {
-        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
-        resolvedColor(with: UITraitCollection.current).getRed(&r, green: &g, blue: &b, alpha: &a)
-        return UInt(r * 255) << 16 | UInt(g * 255) << 8 | UInt(b * 255)
+private extension MimoType {
+    /// The wallet opens in the product's context so the top-up lands where the
+    /// rider was refused.
+    var walletProductType: MimoProductType {
+        switch self {
+        case .scooter: return .scooter
+        case .bike: return .bike
+        case .charger: return .charger
+        case .evCharger: return .evCharger
+        }
     }
 }

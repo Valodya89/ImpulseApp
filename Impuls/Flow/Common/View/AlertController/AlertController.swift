@@ -9,8 +9,6 @@ import UIKit
 
 final class AlertController: UIView {
     
-    private static var visibiltyControll: [(parent: UIViewController, alert: AlertController)] = []
-    
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
@@ -104,28 +102,41 @@ final class AlertController: UIView {
 }
 
 extension AlertController {
-    
+
+    /// Image-and-text popups now show as the Mimo alert card (`MimoAlertCardView`):
+    /// the card's kind icon replaces the custom image. Kept under the old name
+    /// so `show` / `dismiss*` call sites did not change.
+    private static var presented: [(parent: UIViewController, alert: MimoAlertController)] = []
+
     static func show(title: String?, message: String?, image: UIImage, in controller: UIViewController, dismissOnTouch: Bool, dismissed: (() -> ())? = nil) {
-        let alertController = AlertController(frame: controller.view.bounds)
-        alertController.configUI(with: title, message: message, image: image)
-        alertController.dismissOnTouch = dismissOnTouch
-        alertController.didDismiss  = dismissed
-        controller.view.addSubviewSizedConstraints(view: alertController)
-        visibiltyControll.append((controller, alertController))
+        var content = MimoAlertContent(kind: .info,
+                                       title: title ?? message ?? "",
+                                       message: title == nil ? nil : message,
+                                       actions: [])
+        content.dismissesOnScrimTap = dismissOnTouch
+
+        var alertRef: MimoAlertController?
+        let alert = MimoAlertController(content: content) {
+            presented.removeAll { $0.alert === alertRef }
+            dismissed?()
+        }
+        alertRef = alert
+        presented.append((controller, alert))
+        MimoAlertController.show(alert, on: controller)
     }
-    
+
     static func dismissLast(from controller: UIViewController) {
-        visibiltyControll.reversed().first(where: {$0.parent === controller})?.alert.removeContent()
+        presented.reversed().first(where: { $0.parent === controller })?.alert.finish(with: nil)
     }
-    
+
     static func dismissFirst(from controller: UIViewController) {
-        visibiltyControll.first(where: {$0.parent === controller})?.alert.removeContent()
+        presented.first(where: { $0.parent === controller })?.alert.finish(with: nil)
     }
 
     static func dismiss(from controller: UIViewController) {
-        visibiltyControll.forEach { item in
+        presented.forEach { item in
             if item.parent === controller {
-                item.alert.removeContent()
+                item.alert.finish(with: nil)
             }
         }
     }
