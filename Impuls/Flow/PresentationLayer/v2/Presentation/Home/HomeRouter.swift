@@ -17,44 +17,46 @@ class HomeRouter {
     public var fastDecisionViewController: HomeFastDecisionSheetViewController? {
         return HomeFastDecisionSheetViewController.loadFromNib()
     }
-    
-    private var fastDecisionSheetController: SheetViewController?
-    private var height: CGFloat = 0
-    
+
+    // MARK: - Fast decision sheet
+
+    /// The collapsed sheet never shows less than this, whatever the home
+    /// layout above it leaves over.
+    static let minimumSheetPeekHeight: CGFloat = 200
+
+    /// The sheet hosts itself in Home: laid out once at its open height and
+    /// slid by offset between its peek and the top (see
+    /// `HomeFastDecisionSheetViewController`).
+    private var fastDecisionSheet: HomeFastDecisionSheetViewController?
+    private var peekHeight: CGFloat = 0
+
+    /// Home's layout left `height` for the collapsed sheet; the sheet follows
+    /// when that changes (the active-sessions strip came or went).
     public func fastDecisionSheetAnimate(to height: CGFloat) {
-        if self.height != height {
-            self.height = height
-            fastDecisionSheetController?.setSizes([.fixed(height), .fullscreen], animated: true)
-        }
+        let peek = max(Self.minimumSheetPeekHeight, height)
+        guard peekHeight != peek else { return }
+        peekHeight = peek
+        fastDecisionSheet?.setPeekHeight(peek, animated: true)
     }
 
     public func fastDecisionSheetAnimateIn(to view: UIView, in parent: UIViewController, height: CGFloat, viewModel: MimoHomeViewModel?, delegate: HomeFastDecisionSheetViewControllerDelegate?) {
-        guard fastDecisionSheetController == nil else {
-            fastDecisionSheetController?.animateIn(size: .fixed(height))
+        peekHeight = max(Self.minimumSheetPeekHeight, height)
+
+        if let sheet = fastDecisionSheet, sheet.parent === parent {
+            sheet.setPeekHeight(peekHeight, animated: false)
+            sheet.animateIn()
             return
         }
-        
-        var sheetOptions = SheetOptions()
-        sheetOptions.pullBarHeight = 10
-        sheetOptions.useInlineMode = true
-        sheetOptions.useFullScreenMode = true
-        
-        let viewController = HomeFastDecisionSheetViewController.loadFromNib()
-        viewController.viewModel = viewModel
-        viewController.delegate = delegate
-        fastDecisionSheetController = SheetViewController(controller: viewController,
-                                                              sizes: [.fixed(height), .fullscreen],
-                                                              options: sheetOptions)
-        fastDecisionSheetController?.setupMimoConfigs()
-        fastDecisionSheetController?.allowGestureThroughOverlay = true
-        fastDecisionSheetController?.overlayColor = .clear
-        fastDecisionSheetController?.allowPullingPastMinHeight = false
-        fastDecisionSheetController?.allowPullingPastMaxHeight = true
-        fastDecisionSheetController?.minimumSpaceAbovePullBar = (UIApplication.shared.keyWindowInConnectedScenes?.safeAreaTop ?? 0) + 50
-        fastDecisionSheetController?.cornerRadius = 20
-        fastDecisionSheetController?.shouldRecognizePanGestureWithUIControls = false
-        
-        fastDecisionSheetController?.animateIn(to: view, in: parent)
+
+        // A sheet left over from an earlier Home belongs to a view that is gone.
+        fastDecisionSheet?.remove()
+
+        let sheet = HomeFastDecisionSheetViewController.loadFromNib()
+        sheet.viewModel = viewModel
+        sheet.delegate = delegate
+        sheet.install(in: parent, hostView: view, peekHeight: peekHeight)
+        sheet.animateIn()
+        fastDecisionSheet = sheet
     }
     
     public func homeViewController() -> MimoHomeTabBarController? {
@@ -94,7 +96,9 @@ class HomeRouter {
     }
     
     func reset() {
-        fastDecisionSheetController = nil
+        fastDecisionSheet?.remove()
+        fastDecisionSheet = nil
+        peekHeight = 0
     }
     
     func showNotifyMeScreen(_ navigationController: UINavigationController?) {

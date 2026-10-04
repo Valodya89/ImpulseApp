@@ -7,6 +7,12 @@
 //  Home screen: balance bar, stories, active sessions, the row of service hero
 //  cards, the nearest-vehicles sheet and the scan button.
 //
+//  The header (balance capsule, bell) is the navigation bar, pinned above the
+//  content and drawn opaque on the ground colour under the status bar. The
+//  content itself does not scroll here, so the header never needs its
+//  hairline; the nearest-vehicles sheet slides over it by offset (see
+//  `HomeFastDecisionSheetViewController`).
+//
 
 import UIKit
 import Combine
@@ -64,6 +70,8 @@ class MimoHomeViewController: MimoBaseViewController {
         static let extraHeight: CGFloat = height + topInset + bottomInset - 147
     }
     
+    /// What the content above leaves for the collapsed nearest-vehicles sheet.
+    /// `HomeRouter` never lets the peek drop below 200pt.
     var height: CGFloat {
         let bottomSafeArea = UIApplication.shared.keyWindowInConnectedScenes?.safeAreaBottom ?? 0
         let reserved: CGFloat = (viewModel!.activeTrips.isEmpty ? 400 : 508) + Hero.extraHeight
@@ -125,6 +133,14 @@ class MimoHomeViewController: MimoBaseViewController {
             viewModel.getActiveTrips()
             viewModel.getAvailableServices()
             self.loadStories()
+
+            // The nearby list reloads when the services publisher fires again,
+            // which `getAvailableServices` does not do without a country code.
+            // The services already in hand are reloaded directly then.
+            if ApplicationSettings.shared.isoCountryCode == nil,
+               let services = viewModel.availableServices, !services.isEmpty {
+                viewModel.loadData(for: services)
+            }
         }
         pullToRefresh = refresh
     }
@@ -168,6 +184,7 @@ class MimoHomeViewController: MimoBaseViewController {
         
         navigationController?.setNavigationBarHidden(false, animated: false)
         makeNavigationBarWithProfileView()
+        pinHeader()
         updateFCMToken()
         
         // The tile row (skeletons, tiles, edit-mode close buttons) never shows:
@@ -180,6 +197,20 @@ class MimoHomeViewController: MimoBaseViewController {
         embedServicesCarousel()
     }
     
+    /// The header is a bar drawn on the ground colour, reaching under the
+    /// status bar, with no hairline: Home's content does not scroll, so there
+    /// is never anything to divide it from. Set on this item only, so the
+    /// product screens pushed from here keep their own translucent bar.
+    private func pinHeader() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .appBackground
+        appearance.shadowColor = .clear
+        navigationItem.standardAppearance = appearance
+        navigationItem.compactAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+    }
+
     private func embedServicesCarousel() {
         guard let viewModel, servicesCollectionView == nil,
               let container = servicesStackView.superview else { return }
