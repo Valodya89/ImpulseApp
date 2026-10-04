@@ -36,6 +36,16 @@ class BaseRouter {
         }
     }
     
+    /// The redesigned full-screen debt screen (DebtHostingController). Presented
+    /// by the power-bank map when ipay GET /api/state is DEBT / DEBT_ON_DEVICE,
+    /// and for a scan held back by a debt. Pass the state and wallet the map
+    /// already has; with either missing the screen loads them itself.
+    /// `onPaid` runs once the screen closed because nothing is left to settle.
+    func showDebtScreen(_ viewController: UIViewController?, financialState: FinancialStateModel?, wallet: WalletModel?, onPaid: (() -> Void)?) {
+        let debtScreen = DebtHostingController(financialState: financialState, wallet: wallet, onPaid: onPaid)
+        (viewController ?? UIApplication.shared.topMostViewController())?.present(debtScreen, animated: true)
+    }
+    
     func showTransferToFirendViewController(_ viewController: UIViewController?, phoneNumber: String, transferUser: ContactsListModel?, debt: Double?) {
         // v2 transfer flow, opened straight on the amount step with the debtor
         // prefilled (see TransferHostingController). Paying a debt is a

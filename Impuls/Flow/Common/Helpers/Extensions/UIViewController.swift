@@ -153,10 +153,24 @@ extension UIViewController {
 
 extension UIViewController {
     
-    func showErrorPopUp(message: String, service: MimoType) {
+    /// - Parameter retry: runs the refused action again once what held it back
+    ///   is settled (a debt paid, rules met).
+    func showErrorPopUp(message: String, service: MimoType, retry: (() -> Void)? = nil) {
+        // A start held back by a debt (SHARING_user_has_debt / _device_ / _card_,
+        // powerbank docs/error-codes.md 'Rent rule violations') opens the debt
+        // screen: pay by card or wallet, or settle another account's debt by a
+        // transfer; the action is re-sent once the debt is cleared.
+        if DebtHostingController.isDebtRefusal(message) {
+            // Drop the recorded refusal so the requirements sheet does not pick
+            // it up for an unrelated error later.
+            ActionRejectionStore.shared.take(matching: message)
+            BaseRouter.shared.showDebtScreen(self, financialState: nil, wallet: nil, onPaid: retry)
+            return
+        }
+
         // An action refused for unmet rules is walked through step by step
         // instead of being shown as an error.
-        if ActionEligibilityFlow.handleRejection(message: message, from: self) { return }
+        if ActionEligibilityFlow.handleRejection(message: message, from: self, retry: retry) { return }
 
         let isReplenishable: Bool = (message == "SHARING_no_minimal_requirements") || (message == "MOBILE_map_minimum_requirments") || (message == "CHARGER_no_minimal_requirements") || (message == "WALLET_min_balance_required") || (message == "WALLET_min_balance_or_card_required") || (message == "WALLET_card_required")
 

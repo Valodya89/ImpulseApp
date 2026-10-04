@@ -103,7 +103,9 @@ class ChargerViewModel: MimoBaseViewModel {
         restoreCachedStations()
         setupPublishers()
         
-        self.messagingService.subscribe(self, for: .chargerRentEnded)
+        // `balanceUpdated` comes from the wallet, the debt screen and the
+        // history: the header balance and the debt state follow it at once.
+        self.messagingService.subscribe(self, for: .chargerRentEnded, .balanceUpdated)
     }
     
     private func setupPublishers() {
@@ -306,13 +308,15 @@ class ChargerViewModel: MimoBaseViewModel {
         switch message {
         case .chargerRentEnded:
             self.getState()
+        case .balanceUpdated:
+            self.loadBalance()
         default:
             break
         }
     }
     
     override func unsubscribe() {
-        messagingService.unsubscribe(self, from: .chargerRentEnded)
+        messagingService.unsubscribe(self, from: .chargerRentEnded, .balanceUpdated)
     }
 }
 

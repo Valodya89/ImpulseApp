@@ -17,6 +17,13 @@ class ChargerViewController: MimoBaseViewController {
     /// keeps reporting a finished rent for a while, and every re-read used to
     /// try to present the summary again on top of the one already up.
     private var shownSummaryRentIds = Set<String>()
+    /// The debt screen opens at most once per map visit (this controller's
+    /// lifetime); after the rider was in the wallet or a transfer it stays up
+    /// only while a fresh state still reports a debt.
+    private var hasPresentedDebtScreen = false
+    /// The station code of the last scan. A scan held back by a debt is
+    /// re-sent once the debt is paid, so the rider does not scan twice.
+    private var pendingScanCode: String?
 //    private var clusterManager: GMUClusterManager?
     
     //MARK: - Outlets
@@ -79,10 +86,18 @@ class ChargerViewController: MimoBaseViewController {
         guard let viewModel else { return }
         
         viewModel.$errorMessage.sink { [weak self] errorMessage in
-            guard let errorMessage else { return }
-            self?.showErrorPopUp(message: errorMessage, service: .charger)
-            
+            guard let self, let errorMessage else { return }
             MILoader.hide()
+            
+            if DebtHostingController.isDebtRefusal(errorMessage) {
+                // The debt screen is going up for this scan; the map-open
+                // prompt must not follow it on the reloaded state.
+                self.hasPresentedDebtScreen = true
+            }
+            self.showErrorPopUp(message: errorMessage, service: .charger, retry: { [weak self] in
+                self?.viewModel?.loadBalance()
+                self?.resumePendingScan()
+            })
         }
         .store(in: &cancellables)
         
@@ -107,6 +122,9 @@ class ChargerViewController: MimoBaseViewController {
             ChargerRouter.shared.scanSheetViewController?.data?.walletInfo = walletInfo
             
             self?.set(balance: walletInfo, financialState: viewModel.financialState)
+            // `loadBalance` sets the state before the wallet, so both are
+            // fresh here.
+            self?.presentDebtScreenIfNeeded()
         }
         .store(in: &cancellables)
         
@@ -262,6 +280,38 @@ class ChargerViewController: MimoBaseViewController {
     }
 }
 
+//MARK: - Debt
+extension ChargerViewController {
+    
+    /// Opens the full-screen debt screen when ipay GET /api/state reports DEBT
+    /// or DEBT_ON_DEVICE (not DEBT_ON_CARD, not a failed load), once per map
+    /// visit and never over another modal. The map's balance is reloaded once
+    /// the debt is cleared.
+    private func presentDebtScreenIfNeeded() {
+        guard let viewModel, let financialState = viewModel.financialState, let wallet = viewModel.walletInfo else { return }
+        guard !hasPresentedDebtScreen, DebtHostingController.presentsOnMapOpen(financialState.state) else { return }
+        guard presentedViewController == nil, viewIfLoaded?.window != nil else { return }
+        
+        hasPresentedDebtScreen = true
+        presentDebtScreen(financialState: financialState, wallet: wallet, onPaid: { [weak self] in
+            self?.viewModel?.loadBalance()
+        })
+    }
+    
+    private func presentDebtScreen(financialState: FinancialStateModel?, wallet: WalletModel?, onPaid: @escaping () -> Void) {
+        BaseRouter.shared.showDebtScreen(self, financialState: financialState, wallet: wallet, onPaid: onPaid)
+    }
+    
+    /// Sends the scan that a debt held back. Skips the local debt check: the
+    /// state on this screen is being reloaded and would still say "debt"; the
+    /// backend pre-check decides.
+    private func resumePendingScan() {
+        guard let code = pendingScanCode else { return }
+        pendingScanCode = nil
+        startScan(stationId: code, checkKnownDebt: false)
+    }
+}
+
 //MARK: - UI
 extension ChargerViewController {
     
@@ -379,7 +429,23 @@ extension ChargerViewController: ScanSheetViewControllerDelegate {
 extension ChargerViewController: MimoScanQrViewControllerDelegate {
     
     func didFinishScan(with value: String, type: MimoType) {
+        startScan(stationId: value, checkKnownDebt: true)
+    }
+    
+    /// - Parameter checkKnownDebt: with a debt already known from GET /api/state
+    ///   the debt screen opens first and the scan is sent once it is paid.
+    private func startScan(stationId value: String, checkKnownDebt: Bool) {
         guard let location = viewModel?.currentLocation else { return }
+        pendingScanCode = value
+        
+        if checkKnownDebt, DebtHostingController.isDebtState(viewModel?.walletState) {
+            hasPresentedDebtScreen = true
+            presentDebtScreen(financialState: viewModel?.financialState, wallet: viewModel?.walletInfo, onPaid: { [weak self] in
+                self?.viewModel?.loadBalance()
+                self?.resumePendingScan()
+            })
+            return
+        }
         
         let check = EligibilityCheck.powerbank(stationId: value, action: .startRent,
                                                latitude: location.latitude, longitude: location.longitude)
