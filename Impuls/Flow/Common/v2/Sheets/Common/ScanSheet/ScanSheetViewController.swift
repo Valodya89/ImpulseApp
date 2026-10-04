@@ -164,6 +164,9 @@ extension ScanSheetViewController: UITableViewDelegate {
             // point gets the identical row UI.
             openHistory()
         case .support:
+            // The same support screen the profile menu opens
+            // (`ProfileRouter.showSupportScreen`); Impulse has no SwiftUI
+            // support sheet yet, so both entry points share the storyboard one.
             let supportController = SupportNavigationViewController.initFromStoryboard(name: Constant.Storyboards.accountCover)
             present(supportController, animated: true, completion: nil)
         case .rates:

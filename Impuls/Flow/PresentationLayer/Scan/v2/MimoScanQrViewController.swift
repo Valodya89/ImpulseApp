@@ -4,8 +4,15 @@
 //
 //  Created by Razmik Mkhitaryan on 01.06.23.
 //
+//  The QR scan screen. The camera (`QRScannerView`), code validation and the
+//  delegate live here; everything drawn on top of the camera is
+//  `MimoScanQrOverlayView` below. The storyboard scene still connects the
+//  outlets, so they stay declared and its subviews are hidden instead of
+//  removed.
+//
 
 import UIKit
+import SwiftUI
 import AVFoundation
 import MercariQRScanner
 
@@ -14,42 +21,37 @@ protocol MimoScanQrViewControllerDelegate: AnyObject {
 }
 
 class MimoScanQrViewController: MimoBaseViewController {
-    
+
     @IBOutlet private weak var qrTextField: MITextFieldView!
-    
+
     @IBOutlet private weak var flashButton: UIButton!
     @IBOutlet private weak var doneButton: UIBarButtonItem!
-    
+
     @IBOutlet private weak var qrTextFieldBottomConstraint: NSLayoutConstraint!
-    
+
     var mimoType: MimoType?
     weak var delegate: MimoScanQrViewControllerDelegate?
-    
+
     private var qrScannerView: QRScannerView?
+    private let overlayModel = MimoScanQrOverlayModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupUI()
+        installOverlay()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardNotification(notification:)),
-                                               name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+
+        // The overlay carries its own close button; the storyboard's bar is
+        // only chrome now.
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        NotificationCenter.default.removeObserver(self)
-    }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+
         if qrScannerView == nil {
             if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
                 self.setupQRScanner()
@@ -67,29 +69,88 @@ class MimoScanQrViewController: MimoBaseViewController {
             }
         }
     }
-    
+
     private func setupQRScanner() {
         guard qrScannerView == nil else { return }
         self.qrScannerView = QRScannerView(frame: self.view.bounds)
-        self.qrScannerView?.configure(delegate: self, input: .init(isBlurEffectEnabled: true))
+        self.qrScannerView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        // The library draws its own focus frame at a fixed spot; a clear image
+        // keeps that out of the way so the overlay's viewfinder is the only one.
+        let clearFocus = UIGraphicsImageRenderer(size: CGSize(width: 1, height: 1)).image { _ in }
+        self.qrScannerView?.configure(delegate: self, input: .init(focusImage: clearFocus, isBlurEffectEnabled: true))
         self.qrScannerView?.startRunning()
         self.view.addSubview(self.qrScannerView!)
         self.view.sendSubviewToBack(self.qrScannerView!)
     }
-    
-    private func setupUI() {
-        doneButton.title = nil
-        doneButton.image = UIImage(named: "ic_close_white")?.withRenderingMode(.alwaysOriginal)
-        qrTextField.text = "MOBILE_scan_bike_code".localized()
-        qrTextField.delegate = self
-        qrTextField.keyboardType = .numberPad
-        qrTextField.textField.addDoneButtonOnKeyboard()
+
+    private func installOverlay() {
+        view.subviews.forEach { $0.isHidden = true }
+        view.backgroundColor = .black
+
+        let host = UIHostingController(
+            rootView: MimoScanQrOverlayView(
+                model: overlayModel,
+                onClose: { [weak self] in self?.doneAction() },
+                onToggleTorch: { [weak self] in self?.flashAction() },
+                onSubmit: { [weak self] code in self?.submitManualCode(code) }
+            )
+        )
+        addChild(host)
+        host.view.translatesAutoresizingMaskIntoConstraints = false
+        host.view.backgroundColor = .clear
+        view.addSubview(host.view)
+
+        NSLayoutConstraint.activate([
+            host.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            host.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            host.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            host.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+
+        host.didMove(toParent: self)
+    }
+
+    private func finishScan(with code: String) {
+        self.dismiss(animated: true) { [code, mimoType, delegate] in
+            var val: String
+            switch mimoType {
+            case .scooter:
+                val = code
+            case .bike:
+                val = URL(string: code)?.query ?? ""
+            case .charger:
+                val = URL(string: code)?.lastPathComponent ?? ""
+            case .evCharger:
+                val = URL(string: code)?.lastPathComponent ?? ""
+            case nil:
+                val = ""
+            }
+            delegate?.didFinishScan(with: val, type: mimoType ?? .scooter)
+        }
+    }
+
+    /// The typed code. Same wrapping the old text field did: anything that is
+    /// not a scooter or station code is handed to the validators as a URL.
+    private func submitManualCode(_ code: String) {
+        let trimmed = code.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else {
+            overlayModel.shakeToken += 1
+            MimoFeedback.shared.error()
+            return
+        }
+
+        var value = trimmed
+        if !value.hasPrefix("1001") && !value.hasPrefix("200") {
+            value = "https://testHost.com?\(value)"
+        }
+
+        handleScanned(code: value, qrScannerView: qrScannerView)
     }
 }
 
 // MARK: - Actions
 extension MimoScanQrViewController {
-    
+
     @IBAction private func flashAction() {
         guard let device = AVCaptureDevice.default(for: AVMediaType.video) else { return }
         guard device.hasTorch else { return }
@@ -107,98 +168,49 @@ extension MimoScanQrViewController {
                 }
             }
             device.unlockForConfiguration()
+            overlayModel.isTorchOn = device.torchMode == .on
+            MimoFeedback.shared.impactLight()
         } catch {
             print(error)
         }
     }
-    
+
     @IBAction private func doneAction() {
         self.dismiss(animated: true)
     }
 }
 
-// MARK: - UITextFieldDelegate
-extension MimoScanQrViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string.count == 0 { return true }
-        if qrTextField.fieldText.count >= 10 {
-            return false
-        } else {
-            return true
-        }
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        if qrTextField.fieldText.isEmpty {
-            qrTextField.shake()
-        } else {
-            qrTextField.endTyping()
-            var value = qrTextField.fieldText
-            if !value.hasPrefix("1001") && !value.hasPrefix("200") {
-                value = "https://testHost.com?\(value)"
-            }
-            
-            qrScannerView(qrScannerView!, didSuccess: value)
-        }
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
-    }
-}
-
-// MARK: - Keyboard Notification
-extension MimoScanQrViewController {
-    
-    @objc func keyboardNotification(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-            let duration: TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
-            let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
-            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
-            let animationCurve: UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
-            
-            if (endFrame?.origin.y)! >= UIScreen.main.bounds.size.height {
-                qrTextFieldBottomConstraint.constant = 18
-                flashButton.isHidden = false
-                
-            } else {
-                //open keyboar
-                let height: CGFloat = (notification.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)!.size.height
-                qrTextFieldBottomConstraint.constant = height - 20
-                flashButton.isHidden = true
-            }
-            
-            UIView.animate(withDuration: duration,
-                           delay: TimeInterval(0),
-                           options: animationCurve,
-                           animations: { self.view.layoutIfNeeded() },
-                           completion: nil)
-        }
-    }
-}
-
 extension MimoScanQrViewController: QRScannerViewDelegate {
     func qrScannerView(_ qrScannerView: QRScannerView, didFailure error: QRScannerError) {
-        showAlertMessage("Scanning not supported", meassage: error.localizedDescription)
+        showAlertMessage("MOBILE_scan_not_supported".localized(fallback: "Scanning not supported"), meassage: error.localizedDescription)
     }
-    
-    func qrScannerView(_ qrScannerView: QRScannerView, didSuccess code: String) {        
+
+    func qrScannerView(_ qrScannerView: QRScannerView, didSuccess code: String) {
+        handleScanned(code: code, qrScannerView: qrScannerView)
+    }
+
+    // Also reached from manual code entry, where no scanner exists because the
+    // user denied camera access.
+    private func handleScanned(code: String, qrScannerView: QRScannerView?) {
         let scooterQrValidator = Validator(data: code)
                                     .isValidScooterCode()
                                     .validate()
-        
+
         let chargerQrValidator = Validator(data: code)
                                     .isValidChargerCode()
                                     .validate()
         let evChargerQrValidator = Validator(data: code)
                                     .isValidEVChargerCode()
                                     .validate()
-        
+
         let bikeQrValidator = Validator(data: code)
                                 .isValidBikeCode()
                                 .validate()
-        
+
+        // Cleared first: otherwise an unrecognised code kept the type this screen
+        // was opened with and was processed as that vehicle instead of rejected.
+        mimoType = nil
+
         if scooterQrValidator.isValid {
             mimoType = .scooter
         } else if chargerQrValidator.isValid {
@@ -208,7 +220,7 @@ extension MimoScanQrViewController: QRScannerViewDelegate {
         } else if evChargerQrValidator.isValid {
             mimoType = .evCharger
         }
-        
+
         if mimoType == .scooter {
             UserDefaults.standard.set("scooter", forKey: "BikeState")
         } else if mimoType == .charger {
@@ -219,27 +231,207 @@ extension MimoScanQrViewController: QRScannerViewDelegate {
             UserDefaults.standard.set("bike", forKey: "BikeState")
         } else {
             self.showAlertMessage("MOBILE_incorrect_qr".localized(), actionText: "MOBILE_global_ok".localized(), action: {
-                qrScannerView.rescan()
+                qrScannerView?.rescan()
             })
-            
+
             return
         }
-        
-        self.dismiss(animated: true) { [code, mimoType, delegate] in
-            var val: String
-            switch mimoType {
-            case .scooter:
-                val = code
-            case .bike:
-                val = URL(string: code)?.query ?? ""
-            case .charger:
-                val = URL(string: code)?.lastPathComponent ?? ""
-            case .evCharger:
-                val = URL(string: code)?.lastPathComponent ?? ""
-            case nil:
-                val = ""
-            }
-            delegate?.didFinishScan(with: val, type: mimoType ?? .scooter)
+
+        finishScan(with: code)
+    }
+}
+
+// MARK: - Overlay
+
+/// State shared between the controller and the SwiftUI overlay.
+final class MimoScanQrOverlayModel: ObservableObject {
+    @Published var code: String = ""
+    @Published var isTorchOn: Bool = false
+    /// Manual entry shakes when submitted empty; bumping this replays it.
+    @Published var shakeToken: Int = 0
+}
+
+/// Everything drawn over the camera on the QR scan screen: the close and
+/// torch controls, the viewfinder frame with its hint, and the card at the
+/// bottom for typing the code instead. Lives in this file because the Xcode
+/// project is not folder-synchronised.
+struct MimoScanQrOverlayView: View {
+
+    @ObservedObject var model: MimoScanQrOverlayModel
+    let onClose: () -> Void
+    let onToggleTorch: () -> Void
+    let onSubmit: (String) -> Void
+
+    @FocusState private var isEditing: Bool
+
+    private let maxCodeLength = 10
+
+    var body: some View {
+        VStack(spacing: 0) {
+            topBar
+
+            Spacer(minLength: 12)
+
+            viewfinder
+
+            Spacer(minLength: 12)
+
+            entryCard
+                .padding(.horizontal, 20)
+                .padding(.bottom, 12)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .contentShape(Rectangle())
+        .onTapGesture { isEditing = false }
+    }
+
+    // MARK: - Top
+
+    private var topBar: some View {
+        HStack {
+            roundButton(systemImage: "xmark", isActive: false, action: onClose)
+
+            Spacer()
+
+            Text("MOBILE_scan_qr_title".localized(fallback: "Scan QR code"))
+                .font(.robotoBold17)
+                .foregroundColor(.white)
+                .lineLimit(1)
+
+            Spacer()
+
+            roundButton(systemImage: model.isTorchOn ? "bolt.fill" : "bolt.slash.fill",
+                        isActive: model.isTorchOn,
+                        action: onToggleTorch)
+        }
+        .padding(.horizontal, 16)
+        .padding(.top, 8)
+    }
+
+    /// Drawn over the camera, so white on a dark scrim in both appearances.
+    private func roundButton(systemImage: String, isActive: Bool, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Image(systemName: systemImage)
+                .font(.system(size: 17, weight: .semibold))
+                .foregroundColor(isActive ? .onBrandLabel : .white)
+                .frame(width: 44, height: 44)
+                .background(Circle().fill(isActive ? Color.brandYellow : Color.black.opacity(0.45)))
+                .contentShape(Circle())
+        }
+        .buttonStyle(.plain)
+    }
+
+    // MARK: - Viewfinder
+
+    private var viewfinder: some View {
+        VStack(spacing: 18) {
+            MimoScanViewfinderCorners()
+                .stroke(Color.brandYellow, style: StrokeStyle(lineWidth: 4, lineCap: .round))
+                .frame(width: 240, height: 240)
+
+            Text("MOBILE_scan_bike_code".localized())
+                .font(.robotoMedium15)
+                .foregroundColor(.white)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 40)
+                .shadow(color: .black.opacity(0.5), radius: 4, y: 1)
+        }
+    }
+
+    // MARK: - Manual entry
+
+    private var entryCard: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("MOBILE_scan_enter_code".localized(fallback: "Or type the code"))
+                .font(.robotoMedium13)
+                .foregroundColor(.appSecondaryLabel)
+
+            HStack(spacing: 10) {
+                TextField("", text: Binding(
+                    get: { model.code },
+                    set: { model.code = String($0.filter(\.isNumber).prefix(maxCodeLength)) }
+                ))
+                .keyboardType(.numberPad)
+                .font(.robotoMedium16)
+                .foregroundColor(.appLabel)
+                .focused($isEditing)
+                .submitLabel(.done)
+                .padding(.horizontal, 14)
+                .frame(height: 48)
+                .background(
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        .fill(Color.appSecondaryBackground)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        .stroke(isEditing ? Color.brandYellow : Color.appSeparator, lineWidth: 1)
+                )
+                .modifier(MimoScanShakeEffect(shakes: CGFloat(model.shakeToken)))
+                .animation(.default, value: model.shakeToken)
+
+                Button {
+                    isEditing = false
+                    onSubmit(model.code)
+                } label: {
+                    Image(systemName: "arrow.right")
+                        .font(.system(size: 17, weight: .bold))
+                        .foregroundColor(model.code.isEmpty ? .gray4 : .onBrandLabel)
+                        .frame(width: 48, height: 48)
+                        .background(Circle().fill(model.code.isEmpty ? Color.appFill : Color.brandYellow))
+                        .contentShape(Circle())
+                }
+                .buttonStyle(.plain)
+            }
+        }
+        .padding(16)
+        .mimoCard(radius: 20)
+    }
+}
+
+/// Four L-shaped corners: the classic scan frame, drawn rather than shipped
+/// as an image so it takes the accent colour.
+private struct MimoScanViewfinderCorners: Shape {
+    func path(in rect: CGRect) -> Path {
+        let arm: CGFloat = 32
+        let radius: CGFloat = 20
+        var path = Path()
+
+        // top-left
+        path.move(to: CGPoint(x: rect.minX, y: rect.minY + arm))
+        path.addLine(to: CGPoint(x: rect.minX, y: rect.minY + radius))
+        path.addQuadCurve(to: CGPoint(x: rect.minX + radius, y: rect.minY), control: CGPoint(x: rect.minX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.minX + arm, y: rect.minY))
+
+        // top-right
+        path.move(to: CGPoint(x: rect.maxX - arm, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.maxX - radius, y: rect.minY))
+        path.addQuadCurve(to: CGPoint(x: rect.maxX, y: rect.minY + radius), control: CGPoint(x: rect.maxX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY + arm))
+
+        // bottom-right
+        path.move(to: CGPoint(x: rect.maxX, y: rect.maxY - arm))
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY - radius))
+        path.addQuadCurve(to: CGPoint(x: rect.maxX - radius, y: rect.maxY), control: CGPoint(x: rect.maxX, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.maxX - arm, y: rect.maxY))
+
+        // bottom-left
+        path.move(to: CGPoint(x: rect.minX + arm, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.minX + radius, y: rect.maxY))
+        path.addQuadCurve(to: CGPoint(x: rect.minX, y: rect.maxY - radius), control: CGPoint(x: rect.minX, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY - arm))
+
+        return path
+    }
+}
+
+private struct MimoScanShakeEffect: GeometryEffect {
+    var shakes: CGFloat
+    var animatableData: CGFloat {
+        get { shakes }
+        set { shakes = newValue }
+    }
+
+    func effectValue(size: CGSize) -> ProjectionTransform {
+        ProjectionTransform(CGAffineTransform(translationX: 8 * sin(shakes * .pi * 4), y: 0))
     }
 }
