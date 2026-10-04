@@ -66,38 +66,69 @@ class LoginViewModel: MimoBaseViewModel, ObservableObject {
     @Published var isAccountFullCompleted: Bool = false
     
     @Published private(set) var availableProducts: [ProductCardViewModel] = []
-    
+
+    /// Location permission gate of the phone step: Next stays disabled until the
+    /// rider has granted "when in use" (or "always") access. The status is replayed
+    /// by the location manager, so it is right even when the system prompt was
+    /// answered before this screen opened.
+    @Published private(set) var locationAuthorizationStatus: CLAuthorizationStatus = .notDetermined
+
+    /// Set once the first fix has been reverse-geocoded, so a late fix does not
+    /// swap the dial code under a number the rider is already typing.
+    private var hasResolvedCountryFromLocation = false
+
     var activeTrips: [AnyObject]
-    
+
+    var isLocationAuthorized: Bool {
+        locationAuthorizationStatus == .authorizedWhenInUse || locationAuthorizationStatus == .authorizedAlways
+    }
+
+    /// The rider said no (or the device forbids it): the only way forward is Settings.
+    var isLocationDenied: Bool {
+        locationAuthorizationStatus == .denied || locationAuthorizationStatus == .restricted
+    }
+
     var formattedPhoneNumber: String {
         let dialCode = selectedCountry?.dial_code ?? ""
         let phoneNumber = phoneNumber.trimmingCharacters(in: .whitespaces)
         return "\(dialCode) \(phoneNumber)"
     }
-    
+
     init(locationManager: MimoLocationManager, activeTrips: [AnyObject]) {
         self.locationManager = locationManager
         self.activeTrips = activeTrips
-        
+
         super.init()
-        
+
         locationManager.locationPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] location in
-                self?.geoCoder.reverseGeocodeLocation(location.clLocation, completionHandler: { placemarks, error in
-                    guard let currentLocPlacemark = placemarks?.first else { return }
-                    if self?.selectedCountry == nil {
-                        self?.selectedCountry = ApplicationSettings.shared.countryCodes.first(where: { $0.code == currentLocPlacemark.isoCountryCode ?? "AM" })
+                guard let self, !self.hasResolvedCountryFromLocation else { return }
+                self.hasResolvedCountryFromLocation = true
+                self.geoCoder.reverseGeocodeLocation(location.clLocation, completionHandler: { [weak self] placemarks, _ in
+                    guard let self else { return }
+                    // A geocoder failure must never block sign-in: the dial code
+                    // simply stays on the fallback and the country stays unknown.
+                    guard let alpha2 = placemarks?.first?.isoCountryCode else {
+                        self.hasResolvedCountryFromLocation = false
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self.applyLocatedCountry(alpha2: alpha2)
                     }
                 })
             }
             .store(in: &cancellables)
-        
-        locationManager.authorizationStatusPublisher
+
+        locationManager.authorizationStatusValuePublisher
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] isAuthorized in
-                if !isAuthorized {
-                    self?.selectedCountry = ApplicationSettings.shared.countryCodes.first(where: { $0.code == "AM" })
+            .sink { [weak self] status in
+                guard let self else { return }
+                self.locationAuthorizationStatus = status
+                if self.selectedCountry == nil {
+                    // Nothing to locate yet (or ever, when denied): start from the
+                    // fallback so the phone field is usable straight away.
+                    self.selectedCountry = self.fallbackCountry()
                 }
             }
             .store(in: &cancellables)
@@ -142,6 +173,50 @@ class LoginViewModel: MimoBaseViewModel, ObservableObject {
     func invalidate() {
         cancellables.forEach({ $0.cancel() })
         cancellables.removeAll()
+    }
+
+    // MARK: - Location permission gate
+
+    /// "Allow" on the location card: shows the system prompt while the status is
+    /// not determined. Asks for "when in use" only; "always" is never requested here.
+    func requestLocationPermission() {
+        locationManager.requestWhenInUseAuthorization()
+    }
+
+    /// "Open Settings" on the location card after a denial.
+    func openLocationSettings() {
+        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+
+    /// The rider's country from the first fix: pre-selects the dial code and is
+    /// stored as ISO alpha-3 in the application settings. Impulse keeps its fixed
+    /// `Constant.requestCountryCode` request header untouched; the stored value only
+    /// feeds the places that already read `ApplicationSettings.isoCountryCode`.
+    private func applyLocatedCountry(alpha2: String) {
+        if let alpha3 = CountryUtilities.getAlphaThreeCode(byAlpha2Code: alpha2) {
+            ApplicationSettings.shared.isoCountryCode = alpha3
+        }
+
+        guard let located = ApplicationSettings.shared.countryCodes.first(where: { $0.code == alpha2 }) else { return }
+
+        // Only replace the pre-selected fallback, and only while the field is still
+        // empty: a country the rider picked or typed against is theirs.
+        let isStillOnFallback = selectedCountry == nil || selectedCountry?.code == fallbackCountry()?.code
+        if isStillOnFallback && phoneNumber.isEmpty && selectedCountry?.code != located.code {
+            selectedCountry = located
+        }
+    }
+
+    /// Dial code to show before (or without) a fix: the country Impulse serves
+    /// (`Constant.requestCountryCode`, alpha-3), then Armenia as in the sibling apps.
+    private func fallbackCountry() -> CountryCodeResponse? {
+        let codes = ApplicationSettings.shared.countryCodes
+        if let fixed = Constant.requestCountryCode,
+           let match = codes.first(where: { $0.code.flatMap { CountryUtilities.getAlphaThreeCode(byAlpha2Code: $0) } == fixed }) {
+            return match
+        }
+        return codes.first(where: { $0.code == "AM" })
     }
     
     func signIn() {
@@ -370,6 +445,8 @@ class LoginViewModel: MimoBaseViewModel, ObservableObject {
     func isValid() -> Bool {
         switch loginStep {
         case .phoneNumber:
+            // Location permission is part of the gate: Next waits for it.
+            guard isLocationAuthorized else { return false }
             let phoneNumber = (self.selectedCountry?.dial_code ?? "") + self.phoneNumber.trimmingCharacters(in: .whitespaces)
             return isTermsAccepted && isPrivacyPoliceAccepted && PhoneNumberKit().isValidPhoneNumber(phoneNumber)
         case .otp:

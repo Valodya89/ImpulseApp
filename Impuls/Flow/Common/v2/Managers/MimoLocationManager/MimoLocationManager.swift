@@ -28,22 +28,29 @@ final class MimoLocationManager: NSObject, MimoLocationManagerProtocol {
     
     private let locationSubject = PassthroughSubject<CLLocationCoordinate2D, Never>()
     private let authorizationStatusSubject = PassthroughSubject<Bool, Never>()
+    private let authorizationStatusValueSubject: CurrentValueSubject<CLAuthorizationStatus, Never>
     private var lastLocation: CLLocationCoordinate2D?
-    
+
     var locationPublisher: AnyPublisher<CLLocationCoordinate2D, Never> {
         return locationSubject.eraseToAnyPublisher()
     }
-    
+
     var authorizationStatusPublisher: AnyPublisher<Bool, Never> {
         return authorizationStatusSubject.eraseToAnyPublisher()
     }
-    
+
+    var authorizationStatusValuePublisher: AnyPublisher<CLAuthorizationStatus, Never> {
+        return authorizationStatusValueSubject.eraseToAnyPublisher()
+    }
+
     override init() {
+        authorizationStatusValueSubject = CurrentValueSubject(locationManager.authorizationStatus)
+
         super.init()
-        
+
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-        
+
         start()
     }
     
@@ -69,6 +76,11 @@ final class MimoLocationManager: NSObject, MimoLocationManagerProtocol {
         guard let lastLocation else { return }
         locationSubject.send(lastLocation)
     }
+
+    func requestWhenInUseAuthorization() {
+        guard locationManager.authorizationStatus == .notDetermined else { return }
+        locationManager.requestWhenInUseAuthorization()
+    }
 }
 
 extension MimoLocationManager: CLLocationManagerDelegate {
@@ -81,6 +93,7 @@ extension MimoLocationManager: CLLocationManagerDelegate {
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         let isAuthorized = manager.authorizationStatus == .authorizedWhenInUse || manager.authorizationStatus == .authorizedAlways
+        authorizationStatusValueSubject.send(manager.authorizationStatus)
         authorizationStatusSubject.send(isAuthorized)
     }
 }

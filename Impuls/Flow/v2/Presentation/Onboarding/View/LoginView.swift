@@ -247,7 +247,11 @@ struct LoginView: View {
             )
             .frame(height: 63)
             .frame(maxWidth: .infinity)
-            
+
+            if !viewModel.isLocationAuthorized {
+                locationPermissionCard
+            }
+
             HStack {
                 Button {
                     viewModel.isTermsAccepted.toggle()
@@ -339,13 +343,78 @@ struct LoginView: View {
         .sheet(isPresented: $isCountryCodePresented) {
             CountryCodeView(code: $viewModel.selectedCountry)
         }
+        .onAppear {
+            // Ask as soon as the phone step is on screen; a no-op once answered.
+            viewModel.requestLocationPermission()
+        }
         .onReceive(viewModel.$isDeviceVerifid) { isDeviceVerified in
             guard isDeviceVerified != nil else { return }
 
             MILoader.hide()
         }
     }
-    
+
+    /// Shown under the phone field until location is authorised: explains why the
+    /// app needs it and offers "Allow" (system prompt) or, after a denial, the
+    /// reason it is blocked and "Open Settings".
+    @ViewBuilder
+    private var locationPermissionCard: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .top, spacing: 10) {
+                Image(systemName: "location.fill")
+                    .font(.system(size: 18, weight: .medium))
+                    .foregroundColor(.brandYellow)
+                    .padding(.top, 2)
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("MOBILE_login_location_title".localized(fallback: "Allow location access"))
+                        .font(.robotoBold15)
+                        .foregroundColor(.appLabel)
+
+                    Text("MOBILE_login_location_subtitle".localized(fallback: "We use your location to find the nearest stations and to set up the service for your country."))
+                        .font(.robotoLight14)
+                        .foregroundColor(.appLabel.opacity(0.8))
+                        .lineLimit(nil)
+                        .multilineTextAlignment(.leading)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+
+                Spacer(minLength: 0)
+            }
+
+            if viewModel.isLocationDenied {
+                Text("MOBILE_login_location_denied".localized(fallback: "Location access is turned off. Enable it in Settings to continue."))
+                    .font(.robotoRegular15)
+                    .foregroundColor(.mimoRed500)
+                    .lineLimit(nil)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
+
+                Button {
+                    viewModel.openLocationSettings()
+                } label: {
+                    Text("MOBILE_login_location_settings".localized(fallback: "Open Settings"))
+                }
+                .buttonStyle(MimoSecondaryButton())
+            } else {
+                Button {
+                    viewModel.requestLocationPermission()
+                } label: {
+                    Text("MOBILE_login_location_allow".localized(fallback: "Allow"))
+                }
+                .buttonStyle(MimoButton())
+            }
+        }
+        .padding(15)
+        .background(Color.appBackground)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(Color.appLabel, lineWidth: 0.5)
+        )
+        .frame(maxWidth: .infinity)
+    }
+
     @ViewBuilder
     private var otpView: some View {
         VStack(spacing: 15) {
