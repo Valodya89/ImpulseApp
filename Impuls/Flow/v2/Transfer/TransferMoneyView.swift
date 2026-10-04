@@ -51,7 +51,14 @@ struct TransferMoneyView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.appSecondaryBackground.ignoresSafeArea())
-        .onAppear { viewModel.loadRecentRecipients() }
+        // Banners are shown only between these two: a result that lands after
+        // the sheet closed is dropped, one that lands while the screen is
+        // covered is shown when it is back.
+        .onAppear {
+            viewModel.screenAppeared()
+            viewModel.loadRecentRecipients()
+        }
+        .onDisappear { viewModel.screenDisappeared() }
         .sheet(isPresented: $isCountryCodePresented) {
             CountryCodeView(code: $viewModel.selectedCountry)
         }

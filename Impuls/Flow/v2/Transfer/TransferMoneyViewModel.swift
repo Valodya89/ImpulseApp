@@ -107,10 +107,25 @@ final class TransferMoneyViewModel: ObservableObject {
 
     // MARK: - Feedback
 
+    /// One-shot banners. The view's `swiftMessage` binding writes nil back
+    /// once a banner is dismissed, and a new value replaces whatever is still
+    /// on screen, so an error never survives the problem it reported. Set
+    /// only through `present(_:)`, which holds a banner back while the screen
+    /// is not visible and drops it once the screen closed.
     @Published var successMessage: SuccessMessage?
     @Published var errorMessage: ErrorMessage?
     /// Flipped once a transfer went through; the view closes the screen.
     @Published var didTransfer = false
+
+    /// Between the view's onAppear and onDisappear. onDisappear fires when the
+    /// sheet is dismissed (not when the app goes to the background), so a
+    /// result that lands after the rider closed the screen is never shown over
+    /// whatever replaced it.
+    private var isScreenVisible = false
+    /// A result that arrived while the screen was not visible, shown on the
+    /// next appearance instead of being lost.
+    private var pendingError: ErrorMessage?
+    private var pendingSuccess: SuccessMessage?
     /// True while PATCH api/wallet/transfer is in flight: the send button is
     /// disabled and a second tap is ignored until the answer arrives.
     @Published private(set) var isTransferring = false
@@ -204,17 +219,78 @@ final class TransferMoneyViewModel: ObservableObject {
         return formatter.string(from: NSNumber(value: amount)) ?? String(amount)
     }
 
+    // MARK: - Lifecycle
+
+    /// Called from the view's onAppear: banners held back while the screen
+    /// was away are shown now.
+    func screenAppeared() {
+        isScreenVisible = true
+
+        if let pendingError {
+            self.pendingError = nil
+            errorMessage = pendingError
+        }
+        if let pendingSuccess {
+            self.pendingSuccess = nil
+            successMessage = pendingSuccess
+        }
+    }
+
+    /// Called from the view's onDisappear: an error still on screen is taken
+    /// down with the sheet; a success toast is left to finish on its own.
+    func screenDisappeared() {
+        isScreenVisible = false
+        errorMessage = nil
+    }
+
+    private func present(_ error: ErrorMessage) {
+        guard isScreenVisible else {
+            pendingError = error
+            return
+        }
+
+        errorMessage = error
+    }
+
+    private func present(_ success: SuccessMessage) {
+        guard isScreenVisible else {
+            pendingSuccess = success
+            return
+        }
+
+        successMessage = success
+    }
+
+    /// Hands a network answer to the main queue. The loader is taken down
+    /// whatever happened to the screen; the body runs only while the view
+    /// model (and so the screen) is still alive, and shows its banners
+    /// through `present(_:)`, so a late answer never surfaces over another
+    /// screen.
+    private static func deliver(to viewModel: TransferMoneyViewModel?,
+                                _ body: @escaping (TransferMoneyViewModel) -> Void) {
+        DispatchQueue.main.async {
+            MILoader.hide()
+            guard let viewModel else { return }
+
+            body(viewModel)
+        }
+    }
+
     // MARK: - Step 1 actions
 
     func loadRecentRecipients() {
         finder.fetchContacts { [weak self] result in
             DispatchQueue.main.async {
-                guard case .success(let contacts) = result else { return }
+                guard let self, case .success(let contacts) = result else { return }
 
-                self?.recentRecipientsLoaded = true
+                self.recentRecipientsLoaded = true
 
-                self?.recentRecipients = contacts.compactMap { contact -> TransferRecipient? in
-                    guard let phone = contact.receiverId, !phone.isEmpty else { return nil }
+                // One row per receiver: the withdrawals list has an entry per
+                // transfer, so a friend paid twice would show up twice.
+                var seen = Set<String>()
+                self.recentRecipients = contacts.compactMap { contact -> TransferRecipient? in
+                    guard let phone = contact.receiverId, !phone.isEmpty,
+                          seen.insert(phone).inserted else { return nil }
 
                     return TransferRecipient(phoneNumber: phone, contact: contact)
                 }
@@ -225,10 +301,10 @@ final class TransferMoneyViewModel: ObservableObject {
     func findTapped() {
         guard canFind else { return }
         guard isPhoneNumberValid else {
-            errorMessage = ErrorMessage(
+            present(ErrorMessage(
                 title: "MOBILE__global_attention".localized(),
                 body: "MOBILE_transfer_invalid_phone".localized(fallback: "Please enter a valid phone number")
-            )
+            ))
 
             return
         }
@@ -242,10 +318,10 @@ final class TransferMoneyViewModel: ObservableObject {
         let numbers = phoneNumbers.filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
 
         guard !numbers.isEmpty else {
-            errorMessage = ErrorMessage(
+            present(ErrorMessage(
                 title: "MOBILE__global_attention".localized(),
                 body: "MOBILE_transfer_contact_no_phone".localized(fallback: "This contact has no phone number")
-            )
+            ))
 
             return
         }
@@ -272,20 +348,18 @@ final class TransferMoneyViewModel: ObservableObject {
         invitePhoneNumber = nil
         MILoader.show()
         finder.inviteUser(phoneNumber: phoneNumber) { [weak self] result in
-            DispatchQueue.main.async {
-                MILoader.hide()
-
+            TransferMoneyViewModel.deliver(to: self) { viewModel in
                 switch result {
                 case .success:
-                    self?.successMessage = SuccessMessage(
+                    viewModel.present(SuccessMessage(
                         title: "MOBILE_verify_successful_alert".localized(),
                         body: "MOBILE_transfer_invite_sent".localized(fallback: "Invitation sent")
-                    )
+                    ))
                 case .failure(let error):
-                    self?.errorMessage = ErrorMessage(
+                    viewModel.present(ErrorMessage(
                         title: "MOBILE__global_attention".localized(),
                         body: MimoError(error: error).message
-                    )
+                    ))
                 }
             }
         }
@@ -314,34 +388,36 @@ final class TransferMoneyViewModel: ObservableObject {
 
     func transferTapped() {
         guard let recipient = recipient else { return }
-        guard let amount = amountValue, amount > 0 else {
-            UserManager.share.isOpenDebtScreen = true
-            errorMessage = ErrorMessage(
-                title: "MOBILE_transfer_transfer_failed".localized(),
-                body: "MOBILE_transfer_fill_amount".localized(fallback: "Please fill a valid amount")
-            )
 
+        // The same checks ipay runs, in its order (docs/mobile-api.md,
+        // "PATCH /api/wallet/transfer"), each with the copy its refusal would
+        // carry, so nothing is sent that is known to come back refused.
+        guard let amount = amountValue, amount > 0 else {
+            refuseTransfer("MOBILE_transfer_fill_amount".localized(fallback: "Please fill a valid amount"))
             return
         }
 
         // Only a known range is enforced here; otherwise the backend decides.
         if let ranges, amount < ranges.min || amount > ranges.max {
-            UserManager.share.isOpenDebtScreen = true
-            errorMessage = ErrorMessage(
-                title: "MOBILE_transfer_transfer_failed".localized(),
-                body: TransferMoneyErrors.wrongAmount.userMessage
-            )
+            refuseTransfer(TransferMoneyErrors.wrongAmount.userMessage)
+            return
+        }
 
+        // receiverId must match ^\+[0-9]{9,14}$; a recent or prefilled
+        // recipient is normalised the same way as a typed number.
+        guard let receiverId = normalizedReceiverId(recipient.phoneNumber) else {
+            refuseTransfer(TransferMoneyErrors.noSuchUser.userMessage)
+            return
+        }
+
+        // 418 IPAY_duplicate_receiver, refused before the request.
+        guard !TransferMoneyErrors.isOwnNumber(receiverId) else {
+            refuseTransfer(TransferMoneyErrors.sameReceiver.userMessage)
             return
         }
 
         if amount > balance {
-            UserManager.share.isOpenDebtScreen = true
-            errorMessage = ErrorMessage(
-                title: "MOBILE_transfer_transfer_failed".localized(),
-                body: "MOBILE_transfer_not_enough_money".localized()
-            )
-
+            refuseTransfer(TransferMoneyErrors.notEnoughBalance.userMessage)
             return
         }
 
@@ -352,38 +428,46 @@ final class TransferMoneyViewModel: ObservableObject {
         guard transferGuard.begin() else { return }
 
         MILoader.show()
-        transfer.transferMoney(amount: amount, phoneNumber: recipient.phoneNumber) { [weak self] result in
-            DispatchQueue.main.async {
-                MILoader.hide()
-                self?.transferGuard.end()
-                guard let self = self else { return }
+        transfer.transferMoney(amount: amount, phoneNumber: receiverId) { [weak self] result in
+            // The guard dies with the view model, so a screen closed mid-flight
+            // needs no release; a live one is released before anything is shown.
+            TransferMoneyViewModel.deliver(to: self) { viewModel in
+                viewModel.transferGuard.end()
 
                 switch result {
                 case .success:
                     UserManager.share.isOpenDebtScreen = false
                     NotificationCenter.default.post(name: Constant.Notifications.updateUserUI, object: nil)
-                    self.successMessage = SuccessMessage(
+                    viewModel.present(SuccessMessage(
                         title: "MOBILE_global_success_title".localized(),
                         body: "MOBILE_transfer_success_body".localized(fallback: "Money sent to") + " " + recipient.displayName
-                    )
-                    self.didTransfer = true
+                    ))
+                    viewModel.didTransfer = true
                 case .failure(.rulesNotMet(let rejection)):
                     // The sender does not meet the TRANSFER rules (a rule
                     // switched on after this screen was opened): walk through
                     // them, then send again with the same recipient and amount.
                     UserManager.share.isOpenDebtScreen = true
-                    ActionEligibilityFlow.handle(rejection, check: .transfer, retry: { [weak self] in
-                        self?.transferTapped()
+                    guard viewModel.isScreenVisible else { return }
+
+                    ActionEligibilityFlow.handle(rejection, check: .transfer, retry: { [weak viewModel] in
+                        viewModel?.transferTapped()
                     })
                 case .failure(let error):
-                    UserManager.share.isOpenDebtScreen = true
-                    self.errorMessage = ErrorMessage(
-                        title: "MOBILE_transfer_transfer_failed".localized(),
-                        body: error.userMessage
-                    )
+                    viewModel.refuseTransfer(error.userMessage)
                 }
             }
         }
+    }
+
+    /// A transfer that did not go through, for whichever reason: the debt
+    /// flow is told to come back, and the reason replaces any earlier banner.
+    private func refuseTransfer(_ reason: String) {
+        UserManager.share.isOpenDebtScreen = true
+        present(ErrorMessage(
+            title: "MOBILE_transfer_transfer_failed".localized(),
+            body: reason
+        ))
     }
 
     // MARK: - Private
@@ -401,26 +485,75 @@ final class TransferMoneyViewModel: ObservableObject {
         }
     }
 
-    private func lookUp(phoneNumber: String) {
+    private func lookUp(phoneNumber raw: String) {
+        // The number looked up is the one PATCH api/wallet/transfer will get as
+        // receiverId, so it is brought to the backend's shape first and refused
+        // here with the copy ipay would answer with (IPAY_no_such_user for a
+        // malformed id, IPAY_duplicate_receiver for the rider's own number).
+        guard let phoneNumber = normalizedReceiverId(raw) else {
+            present(ErrorMessage(
+                title: "MOBILE__global_attention".localized(),
+                body: TransferMoneyErrors.noSuchUser.userMessage
+            ))
+
+            return
+        }
+
+        guard !TransferMoneyErrors.isOwnNumber(phoneNumber) else {
+            present(ErrorMessage(
+                title: "MOBILE__global_attention".localized(),
+                body: TransferMoneyErrors.sameReceiver.userMessage
+            ))
+
+            return
+        }
+
         MILoader.show()
         finder.isMimoUser(phoneNumber: phoneNumber) { [weak self] status in
-            DispatchQueue.main.async {
-                MILoader.hide()
-                guard let self = self else { return }
-
+            TransferMoneyViewModel.deliver(to: self) { viewModel in
                 switch status {
                 case .isMimoUser(let contact):
-                    self.select(TransferRecipient(phoneNumber: phoneNumber, contact: contact))
+                    viewModel.select(TransferRecipient(phoneNumber: phoneNumber, contact: contact))
                 case .noSuchUser:
-                    self.invitePhoneNumber = phoneNumber
+                    // The invite alert is a view-driven binding; held back the
+                    // same way as a banner while the screen is away.
+                    guard viewModel.isScreenVisible else { return }
+
+                    viewModel.invitePhoneNumber = phoneNumber
                 case .error:
-                    self.errorMessage = ErrorMessage(
+                    viewModel.present(ErrorMessage(
                         title: "MOBILE__global_attention".localized(),
                         body: "MOBILE_transfer_check_failed".localized(fallback: "Failed to check contact user")
-                    )
+                    ))
                 }
             }
         }
+    }
+
+    /// Brings a number to the shape ipay keys wallets by: E.164 (`+` and
+    /// 9-14 digits, docs/mobile-api.md "PATCH /api/wallet/transfer"). Parsed
+    /// with PhoneNumberKit for the selected country first; otherwise only
+    /// formatting is stripped and a `00` trunk prefix becomes `+`. No country
+    /// code is ever added that the rider did not enter. nil when the result
+    /// still does not match the pattern.
+    private func normalizedReceiverId(_ raw: String) -> String? {
+        let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return nil }
+
+        let region = selectedCountry?.code ?? PhoneNumberKit.defaultRegionCode()
+        if let parsed = try? phoneNumberKit.parse(trimmed, withRegion: region, ignoreType: true) {
+            let e164 = phoneNumberKit.format(parsed, toType: .e164)
+            if TransferMoneyErrors.isValidReceiverId(e164) {
+                return e164
+            }
+        }
+
+        var number = trimmed.filter { $0.isNumber || $0 == "+" }
+        if number.hasPrefix("00") {
+            number = "+" + number.dropFirst(2)
+        }
+
+        return TransferMoneyErrors.isValidReceiverId(number) ? number : nil
     }
 
     private func select(_ recipient: TransferRecipient) {
@@ -429,28 +562,16 @@ final class TransferMoneyViewModel: ObservableObject {
     }
 
     /// Address-book numbers arrive in any local format. Parse them with the
-    /// selected country as the default region, and fall back to the legacy
-    /// Armenian normalisation when parsing fails.
+    /// selected country as the default region; a number that cannot be
+    /// parsed is passed on as typed and refused by the receiver-id check in
+    /// `lookUp` (no `+374` is invented for it any more).
     private func normalize(contactNumber raw: String) -> String {
         let region = selectedCountry?.code ?? PhoneNumberKit.defaultRegionCode()
         if let parsed = try? phoneNumberKit.parse(raw, withRegion: region, ignoreType: true) {
             return phoneNumberKit.format(parsed, toType: .e164)
         }
 
-        var number = raw
-        number.removeAll(where: { $0.isWhitespace })
-        number = number.replacingOccurrences(of: "-", with: "")
-
-        if number.hasPrefix("0") {
-            number.removeFirst()
-            number = "+374" + number
-        }
-
-        if number.hasPrefix("374") {
-            number = "+" + number
-        }
-
-        return number
+        return raw.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     private func updateNumberMask() {

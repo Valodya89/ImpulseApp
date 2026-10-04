@@ -29,6 +29,10 @@ enum TransferMoneyCheckModel {
             // the envelope, so the status code is what decides the outcome. Keying off a
             // recognised error message instead treated every unrecognised failure —
             // a wallet lock, an unknown receiver — as a completed transfer.
+            // Known refusals (ipay docs/mobile-api.md, "PATCH /api/wallet/transfer"):
+            // 400 IPAY_deposit_local_wrong_amount, 418 IPAY_duplicate_receiver,
+            // 404 IPAY_no_such_wallet / IPAY_no_such_user, 402 IPAY_no_such_balance,
+            // 412 IPAY_transfer_not_allowed, 503 IPAY_accounts_service_unavailable.
             guard checkModel.statusCode == 200 else {
                 self = .failure(TransferMoneyErrors(code: checkModel.message))
                 return
@@ -69,6 +73,30 @@ enum TransferMoneyErrors: Error {
         case .rulesNotMet(let rejection): return rejection.message
         case .other: return nil
         }
+    }
+
+    /// What ipay accepts as `receiverId` on PATCH /api/wallet/transfer: a
+    /// `+`-prefixed phone number of 9-14 digits (`@Pattern("^\\+[0-9]{9,14}$")`,
+    /// docs/mobile-api.md). Anything else is refused by bean validation before
+    /// the wallet lookup, so the app checks it first and shows the copy the
+    /// receiver lookup would give (IPAY_no_such_user).
+    static let receiverIdPattern = "^\\+[0-9]{9,14}$"
+
+    static func isValidReceiverId(_ receiverId: String) -> Bool {
+        receiverId.range(of: receiverIdPattern, options: .regularExpression) != nil
+    }
+
+    /// True when `receiverId` is the rider's own number (the phone the session
+    /// was opened with), compared digit by digit so a missing `+` or stray
+    /// formatting never hides a self-transfer. ipay answers it with
+    /// 418 IPAY_duplicate_receiver; the app refuses before the request.
+    static func isOwnNumber(_ receiverId: String) -> Bool {
+        guard let own = StorageManager().fetch(key: .phoneNumber, type: String.self) else { return false }
+
+        let ownDigits = own.filter { $0.isNumber }
+        let receiverDigits = receiverId.filter { $0.isNumber }
+
+        return !ownDigits.isEmpty && ownDigits == receiverDigits
     }
 
     init(code: String?) {
