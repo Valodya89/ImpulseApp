@@ -138,7 +138,13 @@ final class TransactionListViewModel: MimoBaseViewModel, ObservableObject {
             } receiveValue: { [weak self] transactions in
                 guard let self else { return }
                 self.hasLoaded = true
-                self.transactions = transactions.sorted { $0.date > $1.date }
+                // A card attachment is the bank's verification charge when a card is
+                // linked - neither a top-up nor a purchase. Product decision
+                // 2026-10-04: hide every `<PROVIDER>_CARD_ATTACHMENT` row before
+                // rows, day totals, the In/Out summary and the wallet preview.
+                self.transactions = transactions
+                    .filter { !$0.type.rawValue.uppercased().contains("ATTACHMENT") }
+                    .sorted { $0.date > $1.date }
                 self.rebuildSections()
             }
             .store(in: &cancellables)
