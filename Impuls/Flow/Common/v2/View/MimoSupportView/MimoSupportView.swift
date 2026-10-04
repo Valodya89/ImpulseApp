@@ -34,9 +34,10 @@ class MimoSupportView: UIView {
     }
     
     @IBAction private func supportAction() {
-        let telegramURL = URL(string: "tg://resolve?domain=impulse_power_help")!
-        if UIApplication.shared.canOpenURL(telegramURL) {
-            UIApplication.shared.open(telegramURL)
+        // Same chat as Profile > Support: the https://t.me link opens the
+        // Telegram app when installed and the browser otherwise.
+        if let url = SupportContact.telegramChatURL {
+            UIApplication.shared.open(url)
         }
     }
 }
