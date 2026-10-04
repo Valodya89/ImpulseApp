@@ -43,9 +43,9 @@ final class URLBuilder: URLBuilderProtocol {
         var header = api.header.merging(api.privateApiKey, uniquingKeysWith: { j, key in
             return key
         })
-//        if let countryCode = ApplicationSettings.shared.isoCountryCode {
-            header.updateValue("RUS"/*countryCode*/, forKey: "country")
-//        }
+        if let countryCode = Constant.requestCountryCode {
+            header.updateValue(countryCode, forKey: "country")
+        }
         
         header.updateValue("IOS", forKey: "os-type")
         if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {

@@ -11,6 +11,10 @@ import UIKit
 struct Constant {
     
     static let screenSize = UIScreen.main.bounds
+
+    /// Upper-case ISO alpha-3 country sent as the `country` header on every API
+    /// request and used in the legal page URLs. Impulse operates in Russia only.
+    static let requestCountryCode: String? = "RUS"
     
     struct APIKeys {
         static let GOOGLE_MAPS_API_KEY = "AIzaSyBBnsPKB01veDAEZd0MYs13FFuwJJi7KKo"
@@ -98,8 +102,29 @@ struct Constant {
     }
     
     struct URLString {
-        static let terms = "https://privacy.impulsepower.ru/<language>/agreement"
-        static let privacyPolicy = "https://privacy.impulsepower.ru/<language>/privacy-policy"
+        /// Legal pages: https://privacy.impulsepower.ru/<COUNTRY>/<language>/<slug>.
+        /// The country segment is the same upper-case ISO alpha-3 value the app
+        /// sends in the `country` request header and is omitted when unknown;
+        /// the site serves the default document for a country without its own
+        /// page, so it is always appended when known (never a country list).
+        private static let legalHost = "https://privacy.impulsepower.ru"
+
+        enum LegalDocument: String {
+            case agreement = "agreement"
+            case privacyPolicy = "privacy-policy"
+        }
+
+        static func legalURL(_ document: LegalDocument, language: String? = nil) -> URL {
+            let language = (language ?? StorageManager().fetch(key: .language, type: String.self)
+                            ?? String(Locale.preferredLanguages[0].prefix(2)))
+            var segments = [legalHost]
+            if let country = Constant.requestCountryCode, !country.isEmpty {
+                segments.append(country.uppercased())
+            }
+            segments.append(language)
+            segments.append(document.rawValue)
+            return URL(string: segments.joined(separator: "/"))!
+        }
     }
     
     struct Lottie {

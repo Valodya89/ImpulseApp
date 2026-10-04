@@ -16,9 +16,7 @@ class PrivacyPolicyViewController: UIViewController, StoryboardInitializable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var languageKey = storageManager.fetch(key: .language, type: String.self) ?? String(Locale.preferredLanguages[0].prefix(2))
-        let urlString = Constant.URLString.privacyPolicy.replacingOccurrences(of: "<language>", with: languageKey)
-        let request = URLRequest(url: URL(string: urlString)!)
+        let request = URLRequest(url: Constant.URLString.legalURL(.privacyPolicy))
         self.webView.load(request)
         self.webView.navigationDelegate = self
         MILoader.show()

@@ -265,8 +265,8 @@ struct LoginView: View {
                         .underline()
                         .onTapGesture {
                             let language = viewModel.getLanguage()
-                            let urlString = Constant.URLString.terms.replacingOccurrences(of: "<language>", with: language)
-                            if let url = URL(string: urlString) {
+                            let url = Constant.URLString.legalURL(.agreement, language: language)
+                            if true {
                                 let safariVC = SFSafariViewController(url: url)
                                 safariVC.dismissButtonStyle = .close
                                 safariVC.preferredControlTintColor = .mimoDarkGray
@@ -298,8 +298,8 @@ struct LoginView: View {
                         .underline()
                         .onTapGesture {
                             let language = viewModel.getLanguage()
-                            let urlString = Constant.URLString.privacyPolicy.replacingOccurrences(of: "<language>", with: language)
-                            if let url = URL(string: urlString) {
+                            let url = Constant.URLString.legalURL(.privacyPolicy, language: language)
+                            if true {
                                 let safariVC = SFSafariViewController(url: url)
                                 safariVC.dismissButtonStyle = .close
                                 safariVC.preferredControlTintColor = .mimoDarkGray

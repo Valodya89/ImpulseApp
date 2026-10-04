@@ -116,11 +116,9 @@ final class SignInViewController: BaseViewController, StoryboardInitializable, U
             return
         }
         
-        let language = StorageManager().fetch(key: .language, type: String.self)
-        let privacyURL = Constant.URLString.privacyPolicy.replacingOccurrences(of: "<language>", with: language ?? "en")
-        let termsURL = Constant.URLString.terms.replacingOccurrences(of: "<language>", with: language ?? "en")
-        self.termsURL = URL(string: termsURL)!
-        self.privacyURL = URL(string: privacyURL)!
+        let language = StorageManager().fetch(key: .language, type: String.self) ?? "en"
+        self.termsURL = Constant.URLString.legalURL(.agreement, language: language)
+        self.privacyURL = Constant.URLString.legalURL(.privacyPolicy, language: language)
 
         let mutableString = NSMutableAttributedString()
         mutableString.setAttributedString(NSAttributedString(string: termsTextView.text))
@@ -161,19 +159,13 @@ final class SignInViewController: BaseViewController, StoryboardInitializable, U
     /// Open Terms
     private func openTerms() {
         let language = authViewModel.getLanguage()
-        let urlString = Constant.URLString.terms.replacingOccurrences(of: "<language>", with: language)
-        if let url = URL(string: urlString) {
-            UIApplication.shared.open(url)
-        }
+        UIApplication.shared.open(Constant.URLString.legalURL(.agreement, language: language))
     }
     
     /// Open privacy and policy
     private func openPrivacyPolicy() {
         let language = authViewModel.getLanguage()
-        let urlString = Constant.URLString.privacyPolicy.replacingOccurrences(of: "<language>", with: language)
-        if let url = URL(string: urlString) {
-            UIApplication.shared.open(url)
-        }
+        UIApplication.shared.open(Constant.URLString.legalURL(.privacyPolicy, language: language))
     }
    
     private func updateNextButton() {
