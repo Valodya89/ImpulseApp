@@ -338,7 +338,9 @@ struct WalletView: View {
     }
 
     /// Sticky primary action. The title carries the amount so the rider sees
-    /// what is about to be paid without looking back up.
+    /// what is about to be paid without looking back up. Disabled, with a
+    /// spinner, while a deposit request is on its way so it cannot be sent
+    /// twice; `canProceed` goes back to true when it answers.
     private var bottomBar: some View {
         VStack(spacing: 0) {
             Rectangle()
@@ -349,10 +351,17 @@ struct WalletView: View {
                 UIApplication.shared.dismissKeyboard()
                 viewModel.deposit()
             } label: {
-                Text(viewModel.proceedTitle)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.7)
-                    .padding(.horizontal, 12)
+                HStack(spacing: 8) {
+                    if viewModel.isDepositing {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: Color.onBrandLabel))
+                    }
+
+                    Text(viewModel.proceedTitle)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+                }
+                .padding(.horizontal, 12)
             }
             .buttonStyle(MimoButton(isEnabled: viewModel.canProceed))
             .disabled(!viewModel.canProceed)

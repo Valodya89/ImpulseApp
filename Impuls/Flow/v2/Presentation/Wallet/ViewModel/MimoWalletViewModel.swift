@@ -76,6 +76,13 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
     
     @Published var productItemViewModels: [ProductItemViewModel] = []
 
+    /// True while a deposit request (attached card, Telcell, Fastshift,
+    /// MyAmeria, crypto) is in flight: the pay button is disabled and further
+    /// taps are ignored until it answers. One guard for every rail, since the
+    /// screen has one button for all of them.
+    @Published private(set) var isDepositing = false
+    private let depositGuard = SubmissionGuard()
+
     /// - Parameter initialAmount: Pre-fills the top-up field, e.g. with an
     ///   outstanding debt so the user only has to confirm the payment.
     init(worker: WalletWorkerProtocol, productType: MimoProductType? = nil, initialAmount: Double? = nil) {
@@ -95,6 +102,7 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
             .assign(to: &$recentTransactions)
 
         loadPromoAvailability()
+        depositGuard.publisher.assign(to: &$isDepositing)
 
         // The scene posts this when the app is reopened by a payment provider's
         // callback URL, so money added through an external redirect shows up
@@ -259,7 +267,7 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
     /// The primary button only fires with a real amount; every provider path
     /// rejects zero anyway, this just says so before the tap.
     var canProceed: Bool {
-        wallet != nil && (amountValue ?? 0) > 0
+        wallet != nil && (amountValue ?? 0) > 0 && !isDepositing
     }
 
     /// Button title: the amount about to be paid once one is typed, otherwise
@@ -414,10 +422,12 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
         // The attached card is charged the exact decimal amount
         // (PATCH api/bank/card/attached/deposit, amount: Double).
         guard let amount = validatedAmount() else { return }
+        guard depositGuard.begin() else { return }
         
         worker.depositFromAttachedCard(amount: amount)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
+                self?.depositGuard.end()
                 if case .failure(let error) = completion {
                     self?.mimoError = error
                 }
@@ -458,9 +468,12 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
         guard let typed = validatedAmount() else { return }
         let amount = Self.wholeUnits(typed)
         
+        guard depositGuard.begin() else { return }
+        
         worker.depositFromTelCell(amount: amount, phoneNumber: phoneNumber)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
+                self?.depositGuard.end()
                 if case .failure(let error) = completion {
                     self?.mimoError = error
                 }
@@ -474,9 +487,12 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
         guard let typed = validatedAmount() else { return }
         let amount = Self.wholeUnits(typed)
         
+        guard depositGuard.begin() else { return }
+        
         worker.depositFromFastshift(amount: amount, phoneNumber: phoneNumber)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
+                self?.depositGuard.end()
                 if case .failure(let error) = completion {
                     self?.mimoError = error
                 }
@@ -504,9 +520,12 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
         guard let typed = validatedAmount() else { return }
         let amount = Self.wholeUnits(typed)
         
+        guard depositGuard.begin() else { return }
+        
         worker.depositFromMyAmeria(amount: amount)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
+                self?.depositGuard.end()
                 if case .failure(let error) = completion {
                     self?.mimoError = error
                 }
@@ -524,9 +543,12 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
         guard let typed = validatedAmount() else { return }
         let amount = Self.wholeUnits(typed)
         
+        guard depositGuard.begin() else { return }
+        
         worker.depositFromCrypto(amount: amount)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
+                self?.depositGuard.end()
                 if case .failure(let error) = completion {
                     self?.mimoError = error
                 }

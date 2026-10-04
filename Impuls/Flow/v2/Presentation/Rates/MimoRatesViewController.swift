@@ -149,6 +149,18 @@ class MimoRatesViewController: MimoBaseViewController {
             MiAlertView().showSuccess("SHARING_package_\(activatedPackage.package?.name ?? "")_activated".localized(), closeButtonTitle: "OK")
         }
         .store(in: &cancellables)
+        
+        // The package cells read the flag when they are configured: redraw
+        // them so their Activate buttons go grey while one is in flight and
+        // come back when it answered.
+        viewModel.$isActivatingPackage
+            .removeDuplicates()
+            .dropFirst()
+            .sink { [weak self] _ in
+                guard let self, self.viewModel.rateType.value == .plan else { return }
+                self.tableView.reloadData()
+            }
+            .store(in: &cancellables)
     }
     
     func animateTable() {
@@ -263,6 +275,7 @@ extension MimoRatesViewController: UITableViewDataSource, UITableViewDelegate {
                 let package = viewModel.bikePcakages.value[indexPath.row]
                 cell.set(package: package)
                 cell.delegate = self
+                apply(activationInFlight: viewModel.isActivatingPackage, to: cell)
                 
                 return cell
             case .discounts:
@@ -282,6 +295,7 @@ extension MimoRatesViewController: UITableViewDataSource, UITableViewDelegate {
                 
                 cell.set(data: package, isActivated: package.id == viewModel.alreadyActivatedChargerPackage?.package?.id)
                 cell.delegate = self
+                apply(activationInFlight: viewModel.isActivatingPackage, to: cell)
                 
                 return cell
             case .discounts:
@@ -380,11 +394,21 @@ extension MimoRatesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return .leastNormalMagnitude
     }
+    
+    /// Disabled state of a package card while an activation is in flight: no
+    /// taps reach its Activate button and the card is dimmed.
+    private func apply(activationInFlight: Bool, to cell: UITableViewCell) {
+        cell.isUserInteractionEnabled = !activationInFlight
+        cell.contentView.alpha = activationInFlight ? 0.5 : 1
+    }
 }
 
 extension MimoRatesViewController: ChargerPackageTableViewCellDelegate {
     func didSelectActivatePackage(for cell: ChargerPackageTableViewCell) {
         guard let index = tableView.indexPath(for: cell)?.row else { return }
+        // The view model refuses a second activation anyway; checking here
+        // keeps the loader from being shown for a tap that does nothing.
+        guard !viewModel.isActivatingPackage else { return }
         let id = viewModel.chargerPackages.value[index].id
         
         MILoader.show()
@@ -414,6 +438,7 @@ extension MimoRatesViewController: BikeTariffTableViewCellDelegate {
 extension MimoRatesViewController: BikePackageTableViewCellDelegate {
     func didSelectBikePackageActivate(for cell: BikePackageTableViewCell) {
         guard let index = tableView.indexPath(for: cell)?.row else { return }
+        guard !viewModel.isActivatingPackage else { return }
         let id = viewModel.bikePcakages.value[index].id
         
         viewModel.bikePackageActivate(id: id)

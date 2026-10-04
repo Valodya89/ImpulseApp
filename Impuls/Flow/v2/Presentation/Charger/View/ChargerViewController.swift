@@ -415,10 +415,18 @@ extension ChargerViewController {
 //MARK: - BottomSheet
 extension ChargerViewController: ScanSheetViewControllerDelegate {
     
+    /// Opens the QR scanner, unless a scan is still being answered: every
+    /// "scan" control on this map (scan sheet, station card, details sheet,
+    /// the "+" of the multi-rent bar) goes through here.
+    private func openScanner() {
+        guard viewModel?.isScanning != true else { return }
+        ScanRouter.shared.showQrScanViewController(self, delegate: self)
+    }
+    
     func scanSheetAction(actionType: ScanSheetAction) {
         switch actionType {
         case .scanQr:
-            ScanRouter.shared.showQrScanViewController(self, delegate: self)
+            openScanner()
         case .rates:
 //            viewModel.viewState = .scooterList
             break
@@ -435,12 +443,15 @@ extension ChargerViewController: MimoScanQrViewControllerDelegate {
     /// - Parameter checkKnownDebt: with a debt already known from GET /api/state
     ///   the debt screen opens first and the scan is sent once it is paid.
     private func startScan(stationId value: String, checkKnownDebt: Bool) {
-        guard let location = viewModel?.currentLocation else { return }
+        guard let viewModel, let location = viewModel.currentLocation else { return }
+        // A code delivered while the previous scan is still in flight is
+        // dropped; the view model refuses the request as well.
+        guard !viewModel.isScanning else { return }
         pendingScanCode = value
         
-        if checkKnownDebt, DebtHostingController.isDebtState(viewModel?.walletState) {
+        if checkKnownDebt, DebtHostingController.isDebtState(viewModel.walletState) {
             hasPresentedDebtScreen = true
-            presentDebtScreen(financialState: viewModel?.financialState, wallet: viewModel?.walletInfo, onPaid: { [weak self] in
+            presentDebtScreen(financialState: viewModel.financialState, wallet: viewModel.walletInfo, onPaid: { [weak self] in
                 self?.viewModel?.loadBalance()
                 self?.resumePendingScan()
             })
@@ -473,7 +484,7 @@ extension ChargerViewController: ChargerCollectionViewCellDelegate {
     }
     
     func didSelectScan(cell: ChargerCollectionViewCell) {
-        ScanRouter.shared.showQrScanViewController(self, delegate: self)
+        openScanner()
     }
 }
 
@@ -483,7 +494,7 @@ extension ChargerViewController: ChargingStationSheetViewControllerDelegate {
     }
     
     func didSelectScan() {
-        ScanRouter.shared.showQrScanViewController(self, delegate: self)
+        openScanner()
     }
 }
 

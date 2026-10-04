@@ -29,6 +29,11 @@ class ChargerViewModel: MimoBaseViewModel {
     /// the first fix arrives, and only once.
     private var hasRefreshedStations = false
     private var isLoadingStations = false
+    /// One POST api/rent/{id}/scan at a time. `isScanning` is true from the
+    /// accepted `scan` until its answer (rent, error) so the scanner is not
+    /// reopened and a second code is not sent while the first is in flight.
+    private let scanGuard = SubmissionGuard()
+    @Published private(set) var isScanning = false
     
     @Published var viewState: MimoChargerViewState = .initial
     
@@ -102,6 +107,7 @@ class ChargerViewModel: MimoBaseViewModel {
         
         restoreCachedStations()
         setupPublishers()
+        scanGuard.publisher.assign(to: &$isScanning)
         
         // `balanceUpdated` comes from the wallet, the debt screen and the
         // history: the header balance and the debt state follow it at once.
@@ -251,10 +257,16 @@ class ChargerViewModel: MimoBaseViewModel {
         }
     }
     
+    /// Sends the scanned station code. Ignored while an earlier scan has not
+    /// answered yet; the guard is released on the answer, success or error,
+    /// so a retry after a refusal (debt, requirements) goes through.
     func scan(stationId: String, currentLocation: CLLocationCoordinate2D) {
+        guard scanGuard.begin() else { return }
+        
         worker.scan(stationId: stationId, currentLocation: currentLocation)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
+                self?.scanGuard.end()
                 switch completion {
                 case .failure(let error):
                     self?.errorMessage = error.message

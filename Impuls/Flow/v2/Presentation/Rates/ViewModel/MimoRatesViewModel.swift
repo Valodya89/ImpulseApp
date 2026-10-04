@@ -32,11 +32,18 @@ class MimoRatesViewModel: MimoBaseViewModel {
     @Published var activatedPackage: ActivatedPackage?
     @Published var bikeActivatedPackage: ActivatedPackage?
     
+    /// One package activation (PATCH api/package/{id}/activate, bike or
+    /// charger) at a time: `isActivatingPackage` is true from the accepted tap
+    /// until the answer, and the screen disables the Activate buttons with it.
+    private let packageGuard = SubmissionGuard()
+    @Published private(set) var isActivatingPackage = false
+    
     init(worker: RatesWorkerProtocol, supportedTypes: [MimoType], mimoType: MimoType) {
         self.worker = worker
         self.mimoType = CurrentValueSubject(mimoType)
         self.supportedTypes = supportedTypes
         super.init()
+        packageGuard.publisher.assign(to: &$isActivatingPackage)
         
         switch mimoType {
         case .scooter:
@@ -99,9 +106,12 @@ class MimoRatesViewModel: MimoBaseViewModel {
     }
     
     func bikePackageActivate(id: String) {
+        guard packageGuard.begin() else { return }
+        
         worker.activateBikePackage(id: id)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
+                self?.packageGuard.end()
                 switch completion {
                 case .failure(let error):
                     self?.mimoError = error
@@ -151,10 +161,15 @@ class MimoRatesViewModel: MimoBaseViewModel {
             .store(in: &cancellables)
     }
     
+    /// Ignored while an activation is already on its way; released on the
+    /// answer, success or error, so the rider can try again after a refusal.
     func chargerPackageActivate(id: String) {
+        guard packageGuard.begin() else { return }
+        
         worker.activateChargerPackage(id: id)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
+                self?.packageGuard.end()
                 switch completion {
                 case .failure(let error):
                     self?.mimoError = error

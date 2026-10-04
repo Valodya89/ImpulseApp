@@ -226,14 +226,16 @@ struct TransferMoneyView: View {
         )
         .padding(.top, 20)
 
+        // Disabled while a transfer is on its way and re-enabled only once it
+        // answered and the amount is still valid.
         Button {
             UIApplication.shared.dismissKeyboard()
             viewModel.transferTapped()
         } label: {
             Text("MOBILE_transfer_send_money".localized())
         }
-        .buttonStyle(MimoButton(isEnabled: viewModel.canTransfer))
-        .disabled(!viewModel.canTransfer)
+        .buttonStyle(MimoButton(isEnabled: viewModel.canSend))
+        .disabled(!viewModel.canSend)
         .padding(.top, 28)
     }
 }

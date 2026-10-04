@@ -111,6 +111,9 @@ final class TransferMoneyViewModel: ObservableObject {
     @Published var errorMessage: ErrorMessage?
     /// Flipped once a transfer went through; the view closes the screen.
     @Published var didTransfer = false
+    /// True while PATCH api/wallet/transfer is in flight: the send button is
+    /// disabled and a second tap is ignored until the answer arrives.
+    @Published private(set) var isTransferring = false
 
     let balance: Double
     let currency: String
@@ -120,6 +123,7 @@ final class TransferMoneyViewModel: ObservableObject {
 
     private let finder = TransferViewModel()
     private let transfer = TransferToFriendsViewModel()
+    private let transferGuard = SubmissionGuard()
     private let phoneNumberKit = PhoneNumberKit()
     private var numberMask: String?
 
@@ -152,6 +156,8 @@ final class TransferMoneyViewModel: ObservableObject {
             ?? countries.first
         updateNumberMask()
         loadRanges()
+
+        transferGuard.publisher.assign(to: &$isTransferring)
     }
 
     // MARK: - Derived
@@ -166,6 +172,11 @@ final class TransferMoneyViewModel: ObservableObject {
 
     var canTransfer: Bool {
         (amountValue ?? 0) > 0
+    }
+
+    /// The send button: a valid amount and nothing already on its way.
+    var canSend: Bool {
+        canTransfer && !isTransferring
     }
 
     var formattedBalance: String {
@@ -334,10 +345,17 @@ final class TransferMoneyViewModel: ObservableObject {
             return
         }
 
+        // One transfer at a time: a tap while the previous one is still
+        // answering does nothing. Released below on every outcome, so the
+        // requirements sheet's retry (and a plain retry after an error) can
+        // send again.
+        guard transferGuard.begin() else { return }
+
         MILoader.show()
         transfer.transferMoney(amount: amount, phoneNumber: recipient.phoneNumber) { [weak self] result in
             DispatchQueue.main.async {
                 MILoader.hide()
+                self?.transferGuard.end()
                 guard let self = self else { return }
 
                 switch result {
@@ -443,6 +461,77 @@ final class TransferMoneyViewModel: ObservableObject {
                                                               withFormat: .international)
         exampleNumber = example?.replacingOccurrences(of: dialCode, with: "").trimmingCharacters(in: .whitespaces)
         numberMask = exampleNumber?.replacingOccurrences(of: "[0-9]", with: "#", options: .regularExpression)
+    }
+}
+
+// MARK: - Single-flight guard
+
+/// Admits one in-flight submission per user action - send money, top up,
+/// scan-to-rent, activate a package. `begin()` returns true for exactly one
+/// caller until `end()` releases it, whatever thread the taps come from, so a
+/// request that is already on its way is never sent a second time; a refused
+/// call does nothing (no queueing). The owner mirrors `publisher` into a
+/// published flag its screen uses to disable the button, and calls `end()` on
+/// success, error and cancellation alike. Shared by the wallet, the charger
+/// map and the rates screen.
+final class SubmissionGuard {
+
+    private let lock = NSLock()
+    private var inFlight = false
+    private let subject = CurrentValueSubject<Bool, Never>(false)
+
+    /// True from an accepted `begin()` until the matching `end()`.
+    var isSubmitting: Bool {
+        lock.lock()
+        defer { lock.unlock() }
+        return inFlight
+    }
+
+    /// The in-flight state, delivered on the main thread (synchronously when
+    /// `begin()`/`end()` are called there) so a SwiftUI button follows it in
+    /// the same turn of the run loop.
+    var publisher: AnyPublisher<Bool, Never> {
+        subject.removeDuplicates().eraseToAnyPublisher()
+    }
+
+    /// Claims the slot. False when a submission is already in flight: the
+    /// caller must return without sending anything.
+    @discardableResult
+    func begin() -> Bool {
+        lock.lock()
+        guard !inFlight else {
+            lock.unlock()
+            return false
+        }
+        inFlight = true
+        lock.unlock()
+        publish()
+
+        return true
+    }
+
+    /// Releases the slot. Safe to call more than once.
+    func end() {
+        lock.lock()
+        let wasInFlight = inFlight
+        inFlight = false
+        lock.unlock()
+        if wasInFlight {
+            publish()
+        }
+    }
+
+    private func publish() {
+        if Thread.isMainThread {
+            subject.send(isSubmitting)
+        } else {
+            // Report the state as it is when the hop lands, so a begin/end
+            // pair from a background thread never arrives out of order.
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                self.subject.send(self.isSubmitting)
+            }
+        }
     }
 }
 
