@@ -121,6 +121,10 @@ extension TransactionDTO {
             return "MOBILE_transactions_kind_crypto".localized(fallback: "Crypto")
         case .fastshiftDepositTerminal:
             return "Fastshift " + Self.terminalWord
+        case .other:
+            // A `TransactionType` this build does not know: a generic label
+            // rather than a failed page.
+            return "MOBILE_transactions_kind_other".localized(fallback: "Payment")
         }
     }
 

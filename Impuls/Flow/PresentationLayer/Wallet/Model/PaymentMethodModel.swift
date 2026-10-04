@@ -7,6 +7,15 @@
 
 import Foundation
 
+/// One `PaymentMethodDto` of ipay `GET /api/payment-methods` (ipay
+/// docs/mobile-api.md "GET /api/payment-methods", commit
+/// 644cafc841d1f76a656daadd95f01f132bb463fa): `id`, `provider`, `type`,
+/// `currency`, `country`, `description` and `popup` (localized), `logo`
+/// (`FileData`).
+///
+/// Decoding is lenient: `description`, `popup` and `logo` may be missing, a
+/// provider or type this build does not know keeps its raw value instead of
+/// failing the whole list, and an empty `popup` counts as no popup.
 struct PaymentMethodModel: Decodable, Identifiable {
     let id: String
     let currency: String
@@ -17,26 +26,128 @@ struct PaymentMethodModel: Decodable, Identifiable {
     let popup: String?
 }
 
-enum PaymentMethodProvider: String, Decodable {
-    case ameriaBank = "AMERIA_BANK"
-    case evocaBank = "EVOCA_BANK"
-    case conversBank = "CONVERSE_BANK"
-    case idBank = "ID_BANK"
-    case tinkoff = "TINKOFF"
-    case idram = "IDRAM"
-    case telcell = "TELCELL"
-    case cryptoCloud = "CRYPTO_CLOUD"
-    case inecopay = "INECOPAY"
-    case fastshift = "FASTSHIFT"
-    case easypay = "EASYPAY"
-    case mimo = "MIMO"
-    case myameria = "MYAMERIA_PAY"
+extension PaymentMethodModel {
+
+    private enum CodingKeys: String, CodingKey {
+        case id, currency, description, provider, type, logo, popup
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let document = "PaymentMethodDto"
+
+        let rawProvider = container.decodeLenient(String.self, forKey: .provider, in: document) ?? ""
+        let rawType = container.decodeLenient(String.self, forKey: .type, in: document) ?? ""
+
+        provider = PaymentMethodProvider(rawValue: rawProvider)
+        type = PaymentMethodType(rawValue: rawType)
+        currency = container.decodeLenient(String.self, forKey: .currency, in: document, default: "")
+        description = container.decodeLenient(String.self, forKey: .description, in: document, default: "")
+        logo = container.decodeLenient(ImageDto.self, forKey: .logo, in: document)
+
+        let popupText = container.decodeLenient(String.self, forKey: .popup, in: document)?
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        popup = (popupText?.isEmpty ?? true) ? nil : popupText
+
+        // The list is keyed by id in the grid: a row without one still needs a
+        // stable key, so it is derived from what identifies the method.
+        if let id = container.decodeLenient(String.self, forKey: .id, in: document), !id.isEmpty {
+            self.id = id
+        } else {
+            LenientDecoding.report(document: document, field: "id", detail: "missing")
+            id = "\(rawProvider)_\(rawType)_\(currency)"
+        }
+
+        if case .unknown(let raw) = provider {
+            LenientDecoding.report(document: document, field: "provider", detail: "unknown value \(raw)")
+        }
+        if case .unknown(let raw) = type {
+            LenientDecoding.report(document: document, field: "type", detail: "unknown value \(raw)")
+        }
+    }
 }
 
-enum PaymentMethodType: String, Decodable {
-    case card = "CARD"
-    case eWallet = "E_WALLET"
-    case crypto = "CRYPTO"
+/// ipay `PaymentProvider`. `unknown` carries a value this build does not know
+/// so the method still lists and its raw name still reaches the backend.
+enum PaymentMethodProvider: Equatable, Hashable {
+    case ameriaBank
+    case evocaBank
+    case conversBank
+    case idBank
+    case tinkoff
+    case idram
+    case telcell
+    case cryptoCloud
+    case inecopay
+    case fastshift
+    case easypay
+    case mimo
+    case myameria
+    case unknown(String)
+
+    private static let known: [PaymentMethodProvider] = [
+        .ameriaBank, .evocaBank, .conversBank, .idBank, .tinkoff, .idram, .telcell,
+        .cryptoCloud, .inecopay, .fastshift, .easypay, .mimo, .myameria
+    ]
+
+    init(rawValue: String) {
+        self = Self.known.first { $0.rawValue == rawValue } ?? .unknown(rawValue)
+    }
+
+    var rawValue: String {
+        switch self {
+        case .ameriaBank: return "AMERIA_BANK"
+        case .evocaBank: return "EVOCA_BANK"
+        case .conversBank: return "CONVERSE_BANK"
+        case .idBank: return "ID_BANK"
+        case .tinkoff: return "TINKOFF"
+        case .idram: return "IDRAM"
+        case .telcell: return "TELCELL"
+        case .cryptoCloud: return "CRYPTO_CLOUD"
+        case .inecopay: return "INECOPAY"
+        case .fastshift: return "FASTSHIFT"
+        case .easypay: return "EASYPAY"
+        case .mimo: return "MIMO"
+        case .myameria: return "MYAMERIA_PAY"
+        case .unknown(let raw): return raw
+        }
+    }
+}
+
+extension PaymentMethodProvider: Decodable {
+    init(from decoder: Decoder) throws {
+        self.init(rawValue: try decoder.singleValueContainer().decode(String.self))
+    }
+}
+
+/// ipay `PaymentMethodType`: `CARD, E_WALLET, CRYPTO`; `unknown` keeps any
+/// other value.
+enum PaymentMethodType: Equatable, Hashable {
+    case card
+    case eWallet
+    case crypto
+    case unknown(String)
+
+    private static let known: [PaymentMethodType] = [.card, .eWallet, .crypto]
+
+    init(rawValue: String) {
+        self = Self.known.first { $0.rawValue == rawValue } ?? .unknown(rawValue)
+    }
+
+    var rawValue: String {
+        switch self {
+        case .card: return "CARD"
+        case .eWallet: return "E_WALLET"
+        case .crypto: return "CRYPTO"
+        case .unknown(let raw): return raw
+        }
+    }
+}
+
+extension PaymentMethodType: Decodable {
+    init(from decoder: Decoder) throws {
+        self.init(rawValue: try decoder.singleValueContainer().decode(String.self))
+    }
 }
 
 extension String {
