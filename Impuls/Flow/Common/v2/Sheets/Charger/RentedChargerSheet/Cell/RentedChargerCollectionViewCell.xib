@@ -32,7 +32,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="465" height="249"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3w7-L6-0mG">
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3w7-L6-0mG">
                         <rect key="frame" x="0.0" y="0.0" width="465" height="249"/>
                         <subviews>
                             <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="36K-4C-Js4">
@@ -371,13 +371,14 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="3w7-L6-0mG" secondAttribute="trailing" id="RxF-bY-yvb"/>
-                <constraint firstAttribute="bottom" secondItem="3w7-L6-0mG" secondAttribute="bottom" id="YwV-yJ-lyS"/>
-                <constraint firstItem="3w7-L6-0mG" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="cIu-J5-nUH"/>
-                <constraint firstItem="3w7-L6-0mG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="oOS-TY-Qo0"/>
+                <constraint firstAttribute="trailing" secondItem="3w7-L6-0mG" secondAttribute="trailing" constant="6" id="RxF-bY-yvb"/>
+                <constraint firstAttribute="bottom" secondItem="3w7-L6-0mG" secondAttribute="bottom" constant="4" id="YwV-yJ-lyS"/>
+                <constraint firstItem="3w7-L6-0mG" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="4" id="cIu-J5-nUH"/>
+                <constraint firstItem="3w7-L6-0mG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="6" id="oOS-TY-Qo0"/>
             </constraints>
             <size key="customSize" width="465" height="249"/>
             <connections>
+                <outlet property="cardView" destination="3w7-L6-0mG" id="cRd-Vw-0t1"/>
                 <outlet property="currentPlanLabel" destination="mPV-Vm-iMv" id="f3G-Ux-PsL"/>
                 <outlet property="durationLabel" destination="Ye7-nB-Dr5" id="tB2-gr-6ya"/>
                 <outlet property="nameLabel" destination="Cq9-gG-e7T" id="sUp-r9-EhV"/>

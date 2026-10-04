@@ -22,8 +22,37 @@ class RentedChargerCollectionViewCell: BaseCollectionViewCell {
     
     @IBOutlet private weak var plansContainerView: UIView!
     @IBOutlet private weak var onePlanContainerView: UIView!
+    /// The whole rent card; rounded and outlined so it reads as one card of the
+    /// peeking carousel on the sheet's ground.
+    @IBOutlet private weak var cardView: UIView!
     
     private var timer: AnyCancellable?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        
+        cardView.backgroundColor = .appBackground
+        cardView.layer.cornerRadius = 16
+        cardView.layer.cornerCurve = .continuous
+        cardView.layer.borderWidth = 1
+        cardView.clipsToBounds = true
+        applyAppearanceColors()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        guard traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else { return }
+        applyAppearanceColors()
+    }
+    
+    /// `CGColor`s do not follow the appearance by themselves.
+    private func applyAppearanceColors() {
+        cardView.layer.borderColor = UIColor.appSeparator.cgColor
+    }
     
     func set(rentedCharger: RentedCharger, currency: String) {
         nameLabel.text = rentedCharger.data?.startStationQR
