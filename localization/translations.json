@@ -254,11 +254,6 @@
     "ru": "Чтобы отправить деньги",
     "module": "mobile"
   },
-  "MOBILE_requirements_gender_other": {
-    "en": "Other",
-    "ru": "Другой",
-    "module": "mobile"
-  },
   "MOBILE_dob_picker_day": {
     "en": "Day",
     "ru": "День",
@@ -302,11 +297,6 @@
   "MOBILE_validation_gender_required": {
     "en": "Please select your gender",
     "ru": "Выберите пол",
-    "module": "mobile"
-  },
-  "MOBILE_registartion_sex_bottom_sheet_other": {
-    "en": "Other",
-    "ru": "Другой",
     "module": "mobile"
   },
   "MOBILE_transfer_recent": {
@@ -378,5 +368,320 @@
     "en": "The service is temporarily unavailable. Please try again later.",
     "ru": "Сервис временно недоступен. Попробуйте позже.",
     "module": "ipay"
+  },
+  "MOBILE_transfer_no_recent": {
+    "en": "No transfers yet",
+    "ru": "Переводов пока нет",
+    "module": "mobile"
+  },
+  "MOBILE_scan_qr_title": {
+    "en": "Scan QR code",
+    "ru": "Сканируйте QR-код",
+    "module": "mobile"
+  },
+  "MOBILE_scan_enter_code": {
+    "en": "Or type the code",
+    "ru": "Или введите код",
+    "module": "mobile"
+  },
+  "MOBILE_scan_not_supported": {
+    "en": "Scanning not supported",
+    "ru": "Сканирование недоступно",
+    "module": "mobile"
+  },
+  "MOBILE_wallet_promo_code_activated": {
+    "en": "Promo code activated. The bonus will be added with your next top-up.",
+    "ru": "Промокод активирован. Бонус будет начислен при следующем пополнении.",
+    "module": "mobile"
+  },
+  "MOBILE_transactions_status_refund": {
+    "en": "Refund",
+    "ru": "Возврат",
+    "module": "mobile"
+  },
+  "MOBILE_history_detail_plan": {
+    "en": "Plan",
+    "ru": "Тариф",
+    "module": "mobile"
+  },
+  "MOBILE_login_location_title": {
+    "en": "Allow location access",
+    "ru": "Разрешите доступ к геопозиции",
+    "module": "mobile"
+  },
+  "MOBILE_login_location_subtitle": {
+    "en": "We use your location to find the nearest stations and to set up the service for your country.",
+    "ru": "Геопозиция нужна, чтобы находить ближайшие станции и настроить сервис для вашей страны.",
+    "module": "mobile"
+  },
+  "MOBILE_login_location_allow": {
+    "en": "Allow",
+    "ru": "Разрешить",
+    "module": "mobile"
+  },
+  "MOBILE_login_location_settings": {
+    "en": "Open Settings",
+    "ru": "Открыть настройки",
+    "module": "mobile"
+  },
+  "MOBILE_login_location_denied": {
+    "en": "Location access is turned off. Enable it in Settings to continue.",
+    "ru": "Доступ к геопозиции выключен. Включите его в настройках, чтобы продолжить.",
+    "module": "mobile"
+  },
+  "MOBILE_debt_pay_title": {
+    "en": "Pay your debt",
+    "ru": "Оплатите долг",
+    "module": "mobile"
+  },
+  "MOBILE_debt_amount_hint": {
+    "en": "Your wallet balance is already taken off this amount.",
+    "ru": "Баланс кошелька уже вычтен из этой суммы.",
+    "module": "mobile"
+  },
+  "MOBILE_pay_to_continue": {
+    "en": "Pay to continue.",
+    "ru": "Оплатите, чтобы продолжить.",
+    "module": "mobile"
+  },
+  "MOBILE_debt_list_title": {
+    "en": "Debts",
+    "ru": "Долги",
+    "module": "mobile"
+  },
+  "MOBILE_debt_pay_with_card": {
+    "en": "Pay with card ··%@",
+    "ru": "Оплатить картой ··%@",
+    "module": "mobile"
+  },
+  "MOBILE_debt_pay_confirm": {
+    "en": "Pay %@ from your card ·%@?",
+    "ru": "Оплатить %@ с карты ·%@?",
+    "module": "mobile"
+  },
+  "MOBILE_debt_pay_action": {
+    "en": "Pay",
+    "ru": "Оплатить",
+    "module": "mobile"
+  },
+  "MOBILE_debt_pay_failed_title": {
+    "en": "Payment failed",
+    "ru": "Платёж не прошёл",
+    "module": "mobile"
+  },
+  "MOBILE_debt_pay_other_methods": {
+    "en": "Other ways to pay",
+    "ru": "Другие способы оплаты",
+    "module": "mobile"
+  },
+  "MOBILE_debt_pay_no_card": {
+    "en": "There is no card attached to your wallet.",
+    "ru": "К кошельку не привязана карта.",
+    "module": "mobile"
+  },
+  "MOBILE_debt_pay_below_minimum": {
+    "en": "The amount is below the minimum for a card payment.",
+    "ru": "Сумма меньше минимальной для оплаты картой.",
+    "module": "mobile"
+  },
+  "MOBILE_debt_pay_declined": {
+    "en": "Your bank declined the payment.",
+    "ru": "Банк отклонил платёж.",
+    "module": "mobile"
+  },
+  "MOBILE_debt_pay_network": {
+    "en": "No connection. Check your internet and try again.",
+    "ru": "Нет соединения. Проверьте интернет и попробуйте снова.",
+    "module": "mobile"
+  },
+  "MOBILE_debt_pay_failed": {
+    "en": "The payment could not be completed. Try again later.",
+    "ru": "Не удалось выполнить платёж. Попробуйте позже.",
+    "module": "mobile"
+  },
+  "MOBILE_transfer_user_check_failed": {
+    "en": "We could not check this account. Try again.",
+    "ru": "Не удалось проверить аккаунт. Попробуйте снова.",
+    "module": "mobile"
+  },
+  "MOBILE_global_retry": {
+    "en": "Try again",
+    "ru": "Попробовать снова",
+    "module": "mobile"
+  },
+  "MOBILE_notifications_permission_title": {
+    "en": "Stay in the loop",
+    "ru": "Будьте в курсе",
+    "module": "mobile"
+  },
+  "MOBILE_notifications_permission_rationale": {
+    "en": "Impulse will let you know when a top-up lands, when someone sends you money and when something about your rentals or account needs your attention.",
+    "ru": "Impulse сообщит, когда пополнение зачислено, когда вам перевели деньги и когда аренде или аккаунту нужно ваше внимание.",
+    "module": "mobile"
+  },
+  "MOBILE_notifications_permission_allow": {
+    "en": "Turn on notifications",
+    "ru": "Включить уведомления",
+    "module": "mobile"
+  },
+  "MOBILE_notifications_permission_later": {
+    "en": "Not now",
+    "ru": "Не сейчас",
+    "module": "mobile"
+  },
+  "MOBILE_settings_system_notifications_disabled": {
+    "en": "Notifications are turned off for Impulse in iOS Settings, so you will not hear about top-ups, transfers and your rentals. Turn them on to get them back.",
+    "ru": "Уведомления для Impulse выключены в настройках iOS, поэтому вы не узнаете о пополнениях, переводах и аренде. Включите их, чтобы снова получать сообщения.",
+    "module": "mobile"
+  },
+  "MOBILE_settings_open_notification_settings": {
+    "en": "Open notification settings",
+    "ru": "Открыть настройки уведомлений",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_row_title": {
+    "en": "Subscriptions",
+    "ru": "Подписки",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_navigation_title": {
+    "en": "Subscriptions",
+    "ru": "Подписки",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_mimo_title": {
+    "en": "Impulse subscription",
+    "ru": "Подписка Impulse",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_points_title": {
+    "en": "What you get",
+    "ru": "Что входит в подписку",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_point_1": {
+    "en": "Ride without worrying about the per-minute price",
+    "ru": "Катайтесь, не думая о поминутной цене",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_point_2": {
+    "en": "The subscription renews automatically from your wallet",
+    "ru": "Подписка продлевается автоматически с баланса кошелька",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_point_3": {
+    "en": "Change the period at any time",
+    "ru": "Меняйте период в любой момент",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_point_4": {
+    "en": "Cancel at any time: the plan stays active until the end of the paid period",
+    "ru": "Отменяйте в любой момент: подписка действует до конца оплаченного периода",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_point_5": {
+    "en": "Priority support in the app",
+    "ru": "Приоритетная поддержка в приложении",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_button_choose_period": {
+    "en": "Choose period",
+    "ru": "Выбрать период",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_button_choose_another_period": {
+    "en": "Choose another period",
+    "ru": "Выбрать другой период",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_button_pay_and_subscribe": {
+    "en": "Pay and subscribe",
+    "ru": "Оплатить и подписаться",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_button_change_to_plan": {
+    "en": "Change to %@",
+    "ru": "Перейти на %@",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_button_resume": {
+    "en": "Resume subscription",
+    "ru": "Возобновить подписку",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_button_cancel": {
+    "en": "Cancel subscription",
+    "ru": "Отменить подписку",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_plans_hint": {
+    "en": "The price is charged from your wallet. The subscription renews automatically at the end of the period until you cancel it.",
+    "ru": "Стоимость списывается с баланса кошелька. Подписка продлевается автоматически в конце периода, пока вы её не отмените.",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_cancel_title": {
+    "en": "Cancel subscription?",
+    "ru": "Отменить подписку?",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_cancel_description": {
+    "en": "The subscription will not renew. It stays active until the end of the paid period; the payment is not refunded.",
+    "ru": "Подписка не будет продлена. Она действует до конца оплаченного периода; оплата не возвращается.",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_cancel_keep_action_title": {
+    "en": "Keep subscription",
+    "ru": "Оставить подписку",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_cancel_action_title": {
+    "en": "Cancel subscription",
+    "ru": "Отменить подписку",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_cancelled_notice": {
+    "en": "Renewal is cancelled. The subscription stays active until %@.",
+    "ru": "Продление отменено. Подписка действует до %@.",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_success_title": {
+    "en": "Subscription activated",
+    "ru": "Подписка оформлена",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_success_congratulations": {
+    "en": "Congratulations!",
+    "ru": "Поздравляем!",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_success_description": {
+    "en": "Your %@ subscription is active.",
+    "ru": "Ваша подписка %@ активна.",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_success_action_title": {
+    "en": "Great",
+    "ru": "Отлично",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_empty": {
+    "en": "Subscriptions are not available in your region yet.",
+    "ru": "Подписки в вашем регионе пока недоступны.",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_row_active_until": {
+    "en": "Active until %@",
+    "ru": "Действует до %@",
+    "module": "mobile"
+  },
+  "MOBILE_subscriptions_row_cancelled_until": {
+    "en": "Cancelled, active until %@",
+    "ru": "Отменена, действует до %@",
+    "module": "mobile"
+  },
+  "MOBILE_transactions_kind_other": {
+    "en": "Payment",
+    "ru": "Платёж",
+    "module": "mobile"
   }
 }
