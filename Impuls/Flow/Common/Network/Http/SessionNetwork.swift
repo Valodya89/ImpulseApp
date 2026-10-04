@@ -220,6 +220,7 @@ final class TokenRenewer {
         request.log()
         #endif
         SessionNetwork.sharedSession.dataTask(with: request) { data, response, error in
+            NetworkFailureReporter.report(request: request, response: response, data: data, error: error)
             #if DEBUG
             (response as? HTTPURLResponse)?.log(data: data, error: error)
             #endif
@@ -288,7 +289,9 @@ final class SessionNetwork: SessionProtocol {
             #endif
             
             SessionNetwork.sharedSession.dataTask(with: request) { [weak self] data, response, error in
-                
+                // Error reporting: 5xx and transport failures go to POST /mobile-errors.
+                NetworkFailureReporter.report(request: request, response: response, data: data, error: error)
+
                 if !(request.url?.absoluteString.contains("/api/notification") ?? false) { // TODO: Need to fix API response
                     #if DEBUG
                     (response as? HTTPURLResponse)?.log(data: data, error: error)

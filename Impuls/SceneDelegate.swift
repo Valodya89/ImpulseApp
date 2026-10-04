@@ -17,6 +17,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        // Crash / error reporting (accounts POST /mobile-errors): installs the
+        // uncaught-exception and signal handlers, turns a crash left by the
+        // previous run into a report, flushes the disk queue and flushes again
+        // whenever the network returns. Idempotent.
+        ErrorReporter.shared.start()
+
         guard let windowScene = scene as? UIWindowScene else { return }
         let window = UIWindow(windowScene: windowScene)
         ThemeManager.shared.apply(to: window)

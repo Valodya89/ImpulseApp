@@ -49,11 +49,18 @@ class NetworkService {
         request.log()
         #endif
         
+        // Error reporting: 5xx and transport failures go to POST /mobile-errors.
+        let reportedRequest = request
         return URLSession.shared.dataTaskPublisher(for: request)
             .handleEvents(receiveOutput: { output in
                 #if DEBUG
                 (output.response as? HTTPURLResponse)?.log(data: output.data, error: nil)
                 #endif
+                NetworkFailureReporter.report(request: reportedRequest, response: output.response, data: output.data, error: nil)
+            }, receiveCompletion: { completion in
+                if case .failure(let error) = completion {
+                    NetworkFailureReporter.report(request: reportedRequest, response: nil, data: nil, error: error)
+                }
             })
             .tryMap { (data, response) -> Data in
                 if let httpResponse = response as? HTTPURLResponse,
