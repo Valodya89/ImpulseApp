@@ -63,15 +63,15 @@ enum NetworkSessionErrors: Error {
 }
 
 final class SessionNetwork: SessionProtocol {
-    
+
+    /// One session for every request. A session made per request and never
+    /// invalidated keeps its delegate queue and sockets alive, which after long
+    /// use exhausts the process ("Cannot allocate memory", NSPOSIXErrorDomain 12).
+    private static let sharedSession = URLSession(configuration: .default)
+
     private var dispatchWorkItem: DispatchWorkItem? = nil
     private var needAccessTokenUpdate: Bool = true
     private var keychainManager = KeychainManager()
-    
-    lazy var noInternet: NoInternetViewController = {
-        let homeVC = NoInternetViewController.initFromStoryboard(name: Constant.Storyboards.splash)
-        return homeVC
-    }()
     
     /// Set view controller as root
     func setRootViewController(_ vc: UIViewController) {
@@ -83,22 +83,6 @@ final class SessionNetwork: SessionProtocol {
         
         if builderProtocol.getRequst()?.url?.absoluteString.contains("api/user") ?? false {
             print("")
-        }
-        
-        if Reachability.isConnectedToNetwork(){
-            print("Internet Connection Available!")
-        } else {
-//            let splashVC = NoInternetViewController.initFromStoryboard(name: Constant.Storyboards.splash)
-//            setRootViewController(splashVC)
-////            BaseRouter.shared.showSplashView()
-            
-            if !(UIApplication.shared.topMostViewController() is NoInternetConnectionViewController) {
-                let noConnectionVC = NoInternetConnectionViewController()
-                noConnectionVC.modalPresentationStyle = .fullScreen
-                setRootViewController(noConnectionVC)
-            }
-            
-            return
         }
         
         if keychainManager.isTokenExpired() && needAccessTokenUpdate && keychainManager.getRefreshToken() != nil {
@@ -134,8 +118,7 @@ final class SessionNetwork: SessionProtocol {
             request.log()
             #endif
             
-            let session = URLSession(configuration: .default)
-            session.dataTask(with: request) { [weak self] data, response, error in
+            SessionNetwork.sharedSession.dataTask(with: request) { [weak self] data, response, error in
                 
                 if !(request.url?.absoluteString.contains("/api/notification") ?? false) { // TODO: Need to fix API response
                     #if DEBUG

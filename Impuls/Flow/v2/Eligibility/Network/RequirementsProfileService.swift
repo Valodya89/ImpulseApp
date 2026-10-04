@@ -105,7 +105,10 @@ final class RequirementsProfileService {
         body.append("--\(boundary)--\r\n")
 
         // Uploaded from memory, so no copy of the document is left on disk.
-        URLSession(configuration: .ephemeral).uploadTask(with: request, from: body) { data, _, error in
+        // The session is invalidated once the upload finishes so it does not
+        // stay allocated for the rest of the process.
+        let session = URLSession(configuration: .ephemeral)
+        session.uploadTask(with: request, from: body) { data, _, error in
             var result: Result<Void, RequirementsServiceError> = .failure(RequirementsServiceError(code: nil))
 
             if error == nil, let data {
@@ -114,6 +117,7 @@ final class RequirementsProfileService {
 
             DispatchQueue.main.async { completion(result) }
         }.resume()
+        session.finishTasksAndInvalidate()
     }
 
     /// The accounts service answers 200 with the real status in the envelope.

@@ -351,12 +351,6 @@ extension ParkingPhotoCameraViewController: QRScanManagerDelegate {
         if requestInProgress {
             return
         }
-        if Reachability.isConnectedToNetwork() {
-            print("Internet Connection Available!")
-        } else {
-            BaseRouter.shared.showSplashView()
-            return
-        }
         requestInProgress = true
         MILoader.show()
         

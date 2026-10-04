@@ -258,14 +258,6 @@ extension ScanViewController: QRScanManagerDelegate {
         if requestInProgress {
             return
         }
-        if Reachability.isConnectedToNetwork() {
-            print("Internet Connection Available!")
-        } else {
-//            let splashVC = NoInternetViewController.initFromStoryboard(name: Constant.Storyboards.splash)
-//            setRootViewController(splashVC)
-            BaseRouter.shared.showSplashView()
-            return
-        }
         requestInProgress = true
         MILoader.show()
         

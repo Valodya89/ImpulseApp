@@ -35,13 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         registerForNotifications(application: application)
         
-        if Reachability.isConnectedToNetwork(){
-            print("Internet Connection Available!")
-        } else {
-            print("Internet Connection not Available!")
-            let splashVC = NoInternetConnectionViewController()
-            setRootViewController(splashVC)
-        }
         IQKeyboardManager.shared.isEnabled = true
         IQKeyboardManager.shared.keyboardDistance = 40
         IQKeyboardManager.shared.resignOnTouchOutside = true
