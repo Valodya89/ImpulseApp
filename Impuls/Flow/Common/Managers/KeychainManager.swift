@@ -51,9 +51,15 @@ final class KeychainManager {
         }
     }
     
-    /// Check user token
+    /// Check user token.
+    ///
+    /// An expired access token still counts as signed in while a refresh
+    /// token is stored: the first request answered with 401 renews the pair
+    /// through POST /account/refresh-token (see SessionNetwork). Without a
+    /// refresh token the legacy rule applies and the user signs in again.
     func isUserLoggedIn() -> Bool {
-        return keychain[accessTokenKey] != nil && !isTokenExpired()
+        guard keychain[accessTokenKey] != nil else { return false }
+        return !isTokenExpired() || getRefreshToken() != nil
     }
     
     /// Check user token
@@ -71,10 +77,8 @@ final class KeychainManager {
     
     /// Get refresh token from keychain
     func getRefreshToken() -> String? {
-//        let token = try? keychain.getString(refreshTokenKey)
-//        return token
-        
-        return nil
+        guard let token = try? keychain.getString(refreshTokenKey), !token.isEmpty else { return nil }
+        return token
     }
     
     /// Delete token from keychain
@@ -101,9 +105,14 @@ final class KeychainManager {
         }
     }
     
+    /// Store a `JwtToken` pair (`access_token`, `refresh_token`, `expires_in`)
+    /// as returned by POST /account/start, /account/verify-device and
+    /// /account/refresh-token. A missing refresh token keeps the stored one.
     func parse(from content: UserToken) {
         self.saveToken(token: content.token?.accessToken ?? "")
-//        self.saveRefreshToken(token: content.token?.refreshToken ?? "")
+        if let refreshToken = content.token?.refreshToken, !refreshToken.isEmpty {
+            self.saveRefreshToken(token: refreshToken)
+        }
         self.saveExpireIn(expiresIn: content.token?.expiresIn ?? 0)
     }
 }

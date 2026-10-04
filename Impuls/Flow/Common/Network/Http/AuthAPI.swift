@@ -577,6 +577,10 @@ enum AuthAPI: APIProtocol {
             ]
         case .deviceVerification:
             return ["Content-Type": "application/json"]
+        case .refreshToken:
+            // accounts docs/mobile-api.md "POST /account/refresh-token": public,
+            // JSON body RefreshTokenDto { refreshToken, deviceId }.
+            return ["Content-Type": "application/json"]
         case .updateUser, .updatePersonalInfo:
             return ["Content-Type": "application/json"]
         case .getTranslations:
