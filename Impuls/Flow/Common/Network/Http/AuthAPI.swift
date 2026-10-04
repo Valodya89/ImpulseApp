@@ -164,6 +164,8 @@ enum AuthAPI: APIProtocol {
     case updateUser(name: String, surname: String, gender: String?, email: String, birthday: String?, bio: String, settings: [String: Any])
     case getPhoneCodes(locale: String)
     case tranfer(id: String, amount: Double)
+    /// ipay GET api/wallet/transfer/ranges: { min, max } allowed transfer amounts.
+    case transferRanges
     case checkMimoContact(phoneNumber: String)
     case getPackages(locale: String)
     case activatePackage(packageID: String)
@@ -317,7 +319,7 @@ enum AuthAPI: APIProtocol {
             return MimoBaseURLs.payment.rawValue
         case .getWallet:
             return MimoBaseURLs.payment.rawValue
-        case .tranfer:
+        case .tranfer, .transferRanges:
             return MimoBaseURLs.payment.rawValue
         case .checkMimoContact:
             return MimoBaseURLs.accounts.rawValue
@@ -485,6 +487,8 @@ enum AuthAPI: APIProtocol {
             return "api/wallet"
         case .tranfer:
             return "api/wallet/transfer"
+        case .transferRanges:
+            return "api/wallet/transfer/ranges"
         case .checkMimoContact(let phoneNumber):
             return "api/user/\(phoneNumber)"
         case .inviteUser(let phoneNumber):
@@ -695,11 +699,6 @@ enum AuthAPI: APIProtocol {
         case .preactivate(let deviceId):
             return [
                 "deviceId": deviceId
-            ]
-        case .getFinancialState(let deviceID):
-            print("deviceID = \(deviceID)")
-            return [
-                "deviceId": deviceID
             ]
         case .getZoning(long: let long, lat: let lat):
             return [
@@ -1015,6 +1014,8 @@ enum AuthAPI: APIProtocol {
             return .get
         case .tranfer:
             return .patch
+        case .transferRanges:
+            return .get
         case .checkMimoContact:
             return .get
         case .inviteUser:

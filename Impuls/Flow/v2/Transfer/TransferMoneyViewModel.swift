@@ -82,6 +82,9 @@ final class TransferMoneyViewModel: ObservableObject {
     }
     @Published private(set) var exampleNumber: String?
     @Published private(set) var recentRecipients: [TransferRecipient] = []
+    /// True once GET api/transactions/withdrawals answered, so the empty state
+    /// is shown only for a confirmed empty list, never while loading.
+    @Published private(set) var recentRecipientsLoaded = false
 
     /// Set when the looked-up number is not a Mimo user; the view asks
     /// whether to send an invitation.
@@ -120,8 +123,12 @@ final class TransferMoneyViewModel: ObservableObject {
     private let phoneNumberKit = PhoneNumberKit()
     private var numberMask: String?
 
-    /// Below this the backend rejects the transfer (`IPAY_deposit_local_wrong_amount`).
-    static let minimumAmount: Double = 100
+    /// Allowed amount range from ipay GET api/wallet/transfer/ranges (docs/mobile-api.md).
+    /// nil until a statusCode-200 answer arrives; the app never ships its own limits -
+    /// while unknown any positive amount is sent and the backend refusal
+    /// (IPAY_deposit_local_wrong_amount) is shown.
+    @Published private(set) var ranges: (min: Double, max: Double)?
+    private let rangesNetwork = SessionNetwork()
     static let quickAmounts: [Double] = [500, 1_000, 2_000, 5_000]
 
     init(wallet: WalletModel?, recipient: TransferRecipient? = nil, debt: Double? = nil) {
@@ -144,6 +151,7 @@ final class TransferMoneyViewModel: ObservableObject {
             ?? countries.first(where: { $0.code == "AM" })
             ?? countries.first
         updateNumberMask()
+        loadRanges()
     }
 
     // MARK: - Derived
@@ -191,6 +199,8 @@ final class TransferMoneyViewModel: ObservableObject {
         finder.fetchContacts { [weak self] result in
             DispatchQueue.main.async {
                 guard case .success(let contacts) = result else { return }
+
+                self?.recentRecipientsLoaded = true
 
                 self?.recentRecipients = contacts.compactMap { contact -> TransferRecipient? in
                     guard let phone = contact.receiverId, !phone.isEmpty else { return nil }
@@ -303,11 +313,12 @@ final class TransferMoneyViewModel: ObservableObject {
             return
         }
 
-        if amount < TransferMoneyViewModel.minimumAmount {
+        // Only a known range is enforced here; otherwise the backend decides.
+        if let ranges, amount < ranges.min || amount > ranges.max {
             UserManager.share.isOpenDebtScreen = true
             errorMessage = ErrorMessage(
                 title: "MOBILE_transfer_transfer_failed".localized(),
-                body: "MOBILE_min_value_to_transfer".localized()
+                body: TransferMoneyErrors.wrongAmount.userMessage
             )
 
             return
@@ -358,6 +369,19 @@ final class TransferMoneyViewModel: ObservableObject {
     }
 
     // MARK: - Private
+
+    /// A refused or failed answer keeps the last known range (or none).
+    private func loadRanges() {
+        rangesNetwork.request(with: URLBuilder(from: AuthAPI.transferRanges)) { [weak self] result in
+            guard case .success(let data) = result,
+                  let envelope = try? JSONDecoder().decode(BaseResponseModel<[String: Double]>.self, from: data),
+                  envelope.statusCode == 200,
+                  let content = envelope.content,
+                  let min = content["min"], let max = content["max"], min <= max else { return }
+
+            DispatchQueue.main.async { self?.ranges = (min, max) }
+        }
+    }
 
     private func lookUp(phoneNumber: String) {
         MILoader.show()

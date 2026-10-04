@@ -160,6 +160,23 @@ struct TransferMoneyView: View {
                 }
             }
             .mimoCard()
+        } else if viewModel.recentRecipientsLoaded {
+            // No transfers yet: fill the space where the Recent card would be
+            // instead of leaving the screen blank under the search block.
+            VStack(spacing: 16) {
+                Image("ic_empty_data")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 164, height: 164)
+                    .accessibilityHidden(true)
+                Text("MOBILE_transfer_no_recent".localized(fallback: "No transfers yet"))
+                    .font(.robotoRegular16)
+                    .foregroundColor(.appSecondaryLabel)
+                    .multilineTextAlignment(.center)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.horizontal, 32)
+            .padding(.top, 40)
         }
     }
 
