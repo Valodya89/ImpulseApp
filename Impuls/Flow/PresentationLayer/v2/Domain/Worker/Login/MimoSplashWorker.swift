@@ -251,7 +251,8 @@ class MimoSplashWorker: MimoSplashWorkerProtocol {
                 self.homeRepasitory.getChargerState { result in
                     switch result {
                     case .success(let data):
-                        promise(.success(data.sorted(by: { ($0.data?.start ?? 0) < ($1.data?.start ?? 0) })))
+                        // Booking frames (data = Booking) are not rents: keep the strip to active rents.
+                        promise(.success(data.filter { $0.isRent }.sorted(by: { ($0.data?.start ?? 0) < ($1.data?.start ?? 0) })))
                     case .failure(let error):
                         promise(.failure(MimoError.init(error: error)))
                     }
