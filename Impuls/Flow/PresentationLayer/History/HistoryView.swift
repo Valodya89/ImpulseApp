@@ -277,9 +277,17 @@ struct HistoryView: View {
         )
     }
 
+    /// Power-bank rents, page by page: a spinner before page 0 lands, the empty
+    /// state when page 0 is empty, otherwise the rows with a footer loader while
+    /// the next page is on its way. Rows report their appearance so the view
+    /// model can ask for the next page near the end.
     func chargerRentsListView() -> some View {
-        Group {
-            if viewModel.chargerRents.isEmpty {
+        let state = viewModel.chargerState
+
+        return Group {
+            if !state.hasLoaded {
+                loadingView
+            } else if state.items.isEmpty {
                 refreshableEmptyView
             } else {
                 ScrollView(showsIndicators: false) {
@@ -291,6 +299,7 @@ struct HistoryView: View {
                                     chargerView(item)
                                         .contentShape(Rectangle())
                                         .onTapGesture { selectedReceipt = item.receipt }
+                                        .onAppear { viewModel.chargerRowAppeared(item) }
                                 }
                                 .padding(.horizontal, 16)
                             } header: {
@@ -300,12 +309,42 @@ struct HistoryView: View {
                                 )
                             }
                         }
+
+                        if state.showsFooter {
+                            pagingFooter(isLoading: state.isLoading)
+                        }
                     }
                     .padding(.bottom, 24)
                     .mimoRefreshable { done in viewModel.reload(completion: done) }
                 }
             }
         }
+    }
+
+    /// Room at the end of the list while the next page loads - and a quiet
+    /// spacer when it is not loading yet, so the list does not jump when the
+    /// spinner appears.
+    private func pagingFooter(isLoading: Bool) -> some View {
+        HStack {
+            Spacer()
+            if isLoading {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: Color.gray6))
+            }
+            Spacer()
+        }
+        .frame(height: 44)
+    }
+
+    /// Before page 0 has answered: neither rows nor the empty state are true yet.
+    private var loadingView: some View {
+        VStack {
+            Spacer()
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle(tint: Color.gray6))
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private func chargerView(_ item: ChargerRentModel) -> some View {

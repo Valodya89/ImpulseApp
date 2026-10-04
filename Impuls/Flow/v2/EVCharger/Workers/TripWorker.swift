@@ -11,6 +11,8 @@ protocol TripWorkerProtocol {
     func getScooterTripList() -> AnyPublisher<[TripScooterDataModel], MimoError>
     func getBikeTripList() -> AnyPublisher<[TripBikeDataModel], MimoError>
     func getChargerRentList() -> AnyPublisher<[ChargerRentModel], MimoError>
+    /// One page of power-bank rents, newest first; pages start at 0.
+    func getChargerRentPage(page: Int, size: Int) -> AnyPublisher<HistoryPage<ChargerRentModel>, MimoError>
     func getEVChargerRentList() -> AnyPublisher<[EVChargerRentModel], MimoError>
 }
 
@@ -72,6 +74,22 @@ final class TripWorker: TripWorkerProtocol {
         .eraseToAnyPublisher()
     }
     
+    func getChargerRentPage(page: Int, size: Int) -> AnyPublisher<HistoryPage<ChargerRentModel>, MimoError> {
+        Deferred {
+            Future<HistoryPage<ChargerRentModel>, MimoError> { promise in
+                self.tripRepository.getChargerRentPage(page: page, size: size) { result in
+                    switch result {
+                    case .success(let page):
+                        promise(.success(page))
+                    case .failure(let error):
+                        promise(.failure(.init(error: error)))
+                    }
+                }
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+
     func getEVChargerRentList() -> AnyPublisher<[EVChargerRentModel], MimoError> {
         Deferred {
             Future<[EVChargerRentModel], MimoError> { promise in

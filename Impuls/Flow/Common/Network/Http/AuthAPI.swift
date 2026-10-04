@@ -718,8 +718,13 @@ enum AuthAPI: APIProtocol {
             return ["sort" : "end,DESC",
                     "size": "10000"]
         case .getChargerRentList:
+            // Spring `Pageable` (powerbank docs/mobile-api.md "GET /api/rent"):
+            // page 0 of `HistoryViewModel.rentPageSize` rows, newest first. The
+            // history screen pages through the rest via `TripRepository`, which
+            // overrides `page` on top of this query.
             return ["sort" : "end,DESC",
-                    "size": "10000"]
+                    "page": "0",
+                    "size": String(HistoryViewModel.rentPageSize)]
         case .getEVChargerRentList:
             return ["sort" : "end,DESC",
                     "size": "10000"]
