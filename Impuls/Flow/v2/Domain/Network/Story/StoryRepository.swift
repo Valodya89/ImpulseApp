@@ -11,8 +11,10 @@ struct StoryRepository {
     
     private let network = SessionNetwork()
     
-    func getStories(completion: @escaping (Result<[Story], NetworkError>) -> ()) {
-        network.request(with: URLBuilder(from: StoryAPI.getStories)) { result in
+    /// `locale` nil asks in the rider's language; a value asks in that language
+    /// instead (used to borrow content the rider's language lacks).
+    func getStories(locale: String? = nil, completion: @escaping (Result<[Story], NetworkError>) -> ()) {
+        network.request(with: URLBuilder(from: StoryAPI.getStories(locale: locale))) { result in
             switch result {
             case .success(let data):
                 do {

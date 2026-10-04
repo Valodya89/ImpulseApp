@@ -9,7 +9,9 @@ import Foundation
 
 enum StoryAPI: APIProtocol {
     
-    case getStories
+    /// `locale` nil asks in the rider's language; a value asks in that language
+    /// instead, which is how content missing for the rider's language is found.
+    case getStories(locale: String? = nil)
     case like(id: String)
     case options(id: String, pageNumber: Int, options: [String])
     
@@ -28,10 +30,10 @@ enum StoryAPI: APIProtocol {
     
     var header: [String : String] {
         switch self {
-        case .getStories:
+        case .getStories(let locale):
             let header = [
                 "Content-Type": "application/json",
-                "locale": StorageManager().fetch(key: .language, type: String.self) ?? String(Locale.preferredLanguages[0].prefix(2)),
+                "locale": locale ?? Self.riderLocale,
             ]
             
             return header
@@ -46,6 +48,11 @@ enum StoryAPI: APIProtocol {
         }
     }
     
+    /// The language chosen in the app, or the device's when none was chosen.
+    static var riderLocale: String {
+        StorageManager().fetch(key: .language, type: String.self) ?? String(Locale.preferredLanguages[0].prefix(2))
+    }
+
     var query: [String : String] { [:] }
     var body: [String : Any]? {
         switch self {

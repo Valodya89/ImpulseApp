@@ -23,9 +23,7 @@ struct StorySurveyView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                KFImage(story.background?.imageURL)
-                    .resizable()
-                    .scaledToFill()
+                StoryBackgroundView(page: story)
                     .frame(width: geometry.size.width, height: geometry.size.height)
                 
                 VStack(spacing: 0) {

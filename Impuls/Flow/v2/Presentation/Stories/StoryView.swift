@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 import Kingfisher
+import AVFoundation
 //import FirebaseAnalytics
 
 struct StoryView: View {
@@ -24,6 +25,7 @@ struct StoryView: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.black.ignoresSafeArea(edges: .all))
         }
     }
 }
@@ -40,13 +42,20 @@ struct StoryCardView: View {
     @GestureState var isPressing = false
     @State var shareURL: URL? = nil
     @State var currentIndex = 0
+
+    /// Plays the page whose background is a video; that page lasts as long as
+    /// its video instead of the five seconds a picture gets.
+    @StateObject private var playback = StoryVideoPlayback()
     
     var body: some View {
         GeometryReader { proxy in
             ZStack {
-                let index = min(Int(timerProgress), story.pages.count - 1)
-                
-                if story.pages[index].type == .link {
+                // A story with no pages yields index -1 and traps on subscript.
+                let index = max(0, min(Int(timerProgress), story.pages.count - 1))
+
+                if story.pages.isEmpty {
+                    EmptyView()
+                } else if story.pages[index].type == .link {
                     StoryActionView(storyGroup: story, story: story.pages[index])
                         .environmentObject(storyViewModel)
                 } else {
@@ -179,28 +188,56 @@ struct StoryCardView: View {
                               anchor: proxy.frame(in: .global).minX > 0 ? .leading : .trailing,
                               perspective: 2.5)
         }
+        .environmentObject(playback)
         .onAppear(perform: {
             withAnimation {
                 timerProgress = 0
             }
         })
+        .onDisappear {
+            playback.reset()
+        }
         .onReceive(timer) { _ in
-            guard isTimerRunning else { return }
-            
-            if story.id == storyViewModel.currentStory {
-                if timerProgress < CGFloat(story.pages.count) {
+            let isCurrent = story.id == storyViewModel.currentStory && storyViewModel.showStory
+
+            guard isCurrent else {
+                // Swiped away from: coming back starts its page over.
+                playback.reset()
+                return
+            }
+
+            playback.show(story.pages.indices.contains(shownIndex) ? story.pages[shownIndex] : nil)
+
+            guard isTimerRunning else {
+                playback.pause()
+                return
+            }
+
+            playback.play()
+
+            if timerProgress < CGFloat(story.pages.count) {
+                if let videoProgress = playback.progress {
+                    // The video is the clock: the bar follows it, waits while
+                    // it loads, and moves on when it ends.
+                    let target = CGFloat(shownIndex) + videoProgress
+                    if target != timerProgress {
+                        withAnimation(videoProgress >= 1 ? nil : .linear(duration: 0.1)) {
+                            timerProgress = target
+                        }
+                    }
+                } else {
                     withAnimation {
                         timerProgress += 0.02
                     }
-                } else {
-                    updateStory()
                 }
+            } else {
+                updateStory()
             }
-            
-            let index = min(Int(timerProgress), story.pages.count - 1)
-            if self.currentIndex != index {
+
+            let index = max(0, min(Int(timerProgress), story.pages.count - 1))
+            if self.currentIndex != index, story.pages.indices.contains(index) {
                 self.currentIndex = index
-                
+
                 print("Story -> \(story.pages[index].title) ::::")
             }
         }
@@ -226,6 +263,11 @@ struct StoryCardView: View {
                 }
     }
     
+    /// The page on screen, as `body` picks it.
+    private var shownIndex: Int {
+        max(0, min(Int(timerProgress), story.pages.count - 1))
+    }
+
     func getAngle(proxy: GeometryProxy) -> Angle {
         let progress = proxy.frame(in: .global).minX / proxy.size.width
         let rotationAngle: CGFloat = 45
@@ -235,7 +277,8 @@ struct StoryCardView: View {
     }
     
     func updateStory(forward: Bool = true) {
-        let index = min(Int(timerProgress), story.pages.count - 1)
+        let index = max(0, min(Int(timerProgress), story.pages.count - 1))
+        guard story.pages.indices.contains(index) else { return }
         let currentStory = self.story.pages[index]
         
         if !forward {
@@ -326,5 +369,270 @@ extension View {
             onLongPressBegan: onLongPressBegan,
             onLongPressEnded: onLongPressEnded
         ))
+    }
+}
+
+// MARK: - Page background (picture or video)
+
+/// The background of a story page: the picture, or the video when the page's
+/// file is one. Fills the page either way.
+struct StoryBackgroundView: View {
+
+    let page: StoryPage
+
+    @EnvironmentObject private var playback: StoryVideoPlayback
+
+    var body: some View {
+        if playback.videoPageNumber == page.number {
+            ZStack {
+                Color.black
+
+                StoryVideoLayerView(player: playback.player)
+
+                if !playback.isReady {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                }
+            }
+        } else if page.backgroundKind == .video {
+            // About to be handed to the player; a video is not a picture to load.
+            Color.black
+        } else {
+            KFImage(page.background?.imageURL)
+                .resizable()
+                .scaledToFill()
+        }
+    }
+}
+
+/// `AVPlayerLayer` behind a SwiftUI view, filling it the way the pictures do.
+private struct StoryVideoLayerView: UIViewRepresentable {
+
+    let player: AVPlayer
+
+    func makeUIView(context: Context) -> PlayerView {
+        let view = PlayerView()
+        view.playerLayer.videoGravity = .resizeAspectFill
+        view.playerLayer.player = player
+        view.isUserInteractionEnabled = false
+        return view
+    }
+
+    func updateUIView(_ uiView: PlayerView, context: Context) {
+        if uiView.playerLayer.player !== player {
+            uiView.playerLayer.player = player
+        }
+    }
+
+    final class PlayerView: UIView {
+        override static var layerClass: AnyClass { AVPlayerLayer.self }
+
+        var playerLayer: AVPlayerLayer { layer as! AVPlayerLayer }
+    }
+}
+
+// MARK: - Video playback
+
+/// What a page's background file is. The stories contract describes the
+/// background as a `FileData` and nothing more (accounts docs/mobile-api.md,
+/// GET /api/stories), so the kind is read from what the file says about
+/// itself: its `type`, then its address, then - when neither tells - the
+/// content type the server answers with.
+enum StoryBackgroundKind {
+    case image
+    case video
+    case undetermined
+}
+
+extension StoryPage {
+
+    private static let videoExtensions: Set<String> = ["mp4", "mov", "m4v"]
+    private static let imageExtensions: Set<String> = ["jpg", "jpeg", "png", "webp", "gif", "heic", "heif", "bmp"]
+
+    var backgroundKind: StoryBackgroundKind {
+        guard let url = background?.imageURL else { return .image }
+
+        if let type = backgroundType?.lowercased(), !type.isEmpty {
+            if type.contains("video") || Self.videoExtensions.contains(type) { return .video }
+            if type.contains("image") || Self.imageExtensions.contains(type) { return .image }
+        }
+
+        let pathExtension = url.pathExtension.lowercased()
+
+        if Self.videoExtensions.contains(pathExtension) { return .video }
+        if Self.imageExtensions.contains(pathExtension) { return .image }
+
+        return .undetermined
+    }
+}
+
+/// Plays the page of a story whose background is a video. One per story card:
+/// the card tells it which page is up, reads how far the video has got to
+/// drive the progress bar, and pauses it with the rest of the story.
+final class StoryVideoPlayback: ObservableObject {
+
+    let player = AVPlayer()
+
+    /// The page whose background is being played as a video, nil while the
+    /// page on screen shows a picture.
+    @Published private(set) var videoPageNumber: Int?
+    /// False until the first frame can be shown.
+    @Published private(set) var isReady = false
+
+    private var shownPageNumber: Int?
+    private var didFinish = false
+    private var wantsToPlay = false
+    private var statusObservation: NSKeyValueObservation?
+    private var endObserver: NSObjectProtocol?
+    private var probe: URLSessionDataTask?
+
+    /// Answers of the content-type check, so a page is asked about once.
+    private static var probedKinds: [URL: Bool] = [:]
+
+    deinit {
+        probe?.cancel()
+        statusObservation?.invalidate()
+        if let endObserver { NotificationCenter.default.removeObserver(endObserver) }
+        player.pause()
+    }
+
+    // MARK: Which page
+
+    /// Call whenever the page on screen changes. Showing the same page again
+    /// changes nothing, so it is safe to call on every tick.
+    func show(_ page: StoryPage?) {
+        guard page?.number != shownPageNumber else { return }
+
+        stop()
+        shownPageNumber = page?.number
+
+        guard let page, let url = page.background?.imageURL else { return }
+
+        switch page.backgroundKind {
+        case .image:
+            break
+        case .video:
+            start(url, pageNumber: page.number)
+        case .undetermined:
+            resolve(url, pageNumber: page.number)
+        }
+    }
+
+    /// Forgets the page, so the next `show` starts it from the beginning.
+    func reset() {
+        stop()
+        shownPageNumber = nil
+    }
+
+    private func stop() {
+        probe?.cancel()
+        probe = nil
+        statusObservation?.invalidate()
+        statusObservation = nil
+        if let endObserver { NotificationCenter.default.removeObserver(endObserver) }
+        endObserver = nil
+
+        player.pause()
+        player.replaceCurrentItem(with: nil)
+
+        didFinish = false
+        if isReady { isReady = false }
+        if videoPageNumber != nil { videoPageNumber = nil }
+    }
+
+    private func resolve(_ url: URL, pageNumber: Int) {
+        if let isVideo = Self.probedKinds[url] {
+            if isVideo { start(url, pageNumber: pageNumber) }
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "HEAD"
+
+        let task = URLSession.shared.dataTask(with: request) { [weak self] _, response, _ in
+            let contentType = (response as? HTTPURLResponse)?.value(forHTTPHeaderField: "Content-Type")?.lowercased()
+
+            DispatchQueue.main.async {
+                guard let contentType else { return }
+
+                let isVideo = contentType.hasPrefix("video/")
+                Self.probedKinds[url] = isVideo
+
+                guard let self, isVideo, self.shownPageNumber == pageNumber else { return }
+
+                self.start(url, pageNumber: pageNumber)
+            }
+        }
+
+        probe = task
+        task.resume()
+    }
+
+    private func start(_ url: URL, pageNumber: Int) {
+        let item = AVPlayerItem(url: url)
+
+        statusObservation = item.observe(\.status, options: [.new]) { [weak self] item, _ in
+            DispatchQueue.main.async {
+                guard let self, self.player.currentItem === item else { return }
+
+                switch item.status {
+                case .readyToPlay:
+                    self.isReady = true
+                case .failed:
+                    // Not playable after all: the page falls back to the
+                    // picture and to the picture's timing.
+                    self.stop()
+                default:
+                    break
+                }
+            }
+        }
+
+        endObserver = NotificationCenter.default.addObserver(
+            forName: .AVPlayerItemDidPlayToEndTime,
+            object: item,
+            queue: .main
+        ) { [weak self] _ in
+            self?.didFinish = true
+        }
+
+        videoPageNumber = pageNumber
+        player.replaceCurrentItem(with: item)
+
+        if wantsToPlay { player.play() }
+    }
+
+    // MARK: Transport
+
+    func play() {
+        wantsToPlay = true
+
+        guard player.currentItem != nil, !didFinish, player.rate == 0 else { return }
+
+        player.play()
+    }
+
+    func pause() {
+        wantsToPlay = false
+
+        guard player.rate != 0 else { return }
+
+        player.pause()
+    }
+
+    // MARK: Progress
+
+    /// How much of the page has passed, 0...1, while a video is on screen;
+    /// nil for a picture, which keeps its own clock. A video that is still
+    /// loading holds the page at its start.
+    var progress: CGFloat? {
+        guard videoPageNumber != nil, let item = player.currentItem else { return nil }
+
+        if didFinish { return 1 }
+
+        let duration = item.duration.seconds
+        guard isReady, duration.isFinite, duration > 0 else { return 0 }
+
+        return CGFloat(min(max(player.currentTime().seconds / duration, 0), 1))
     }
 }
