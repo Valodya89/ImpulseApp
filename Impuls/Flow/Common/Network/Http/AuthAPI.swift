@@ -711,6 +711,11 @@ enum AuthAPI: APIProtocol {
             ]
         case .getNotificationList:
             return ["sort" : "date,DESC"]
+        case .getTransactions:
+            // ipay has no default order (Mongo insertion order = oldest first) and
+            // the stored field is `startDate` (DTO `date` is only its name).
+            return ["sort": "startDate,desc",
+                    "size": "100"]
         case .getBikeTripList:
             return ["sort" : "end,DESC",
                     "size": "10000"]
