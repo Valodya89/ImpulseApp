@@ -7,6 +7,7 @@
 
 import Combine
 import CoreLocation
+import UIKit
 
 class ChargerWorker: ChargerWorkerProtocol {
     
@@ -179,4 +180,117 @@ class ChargerWorker: ChargerWorkerProtocol {
     }
 }
 
+// MARK: - Stations cache
 
+/// The last successful `GET api/station` answer, kept for the life of the app
+/// process so a second visit to the power-bank map opens with its pins and
+/// station cards already on screen. The map still reloads the list on every
+/// open, exactly as before; this only decides what the rider looks at while
+/// that reload is in flight.
+///
+/// Stations are kept `maxAge` (slot counts change; past that a blank map is
+/// more honest than a list that is mostly wrong). Nothing here depends on
+/// where the rider is: `api/station` takes no location, and the distance
+/// order is computed on the device from the live fix every time.
+///
+/// What the answer DOES depend on is the request context every call sends:
+/// the `country` and `locale` headers, and whose account the token belongs
+/// to. The entry is stamped with that context; reading or writing under a
+/// different one empties the cache first - so signing out, a 401 or a push
+/// forced logout (every path ends in `KeychainManager.removeData()`) and a
+/// language switch all start the next map the way the first one did. A
+/// memory warning empties it as well. Never persisted to disk.
+///
+/// Thread-safe: every access takes the lock. The map reads and writes on the
+/// main thread; the memory warning arrives there too, but nothing relies on it.
+final class ChargerStationsCache {
+
+    static let shared = ChargerStationsCache()
+
+    /// Power-bank stations - the same age the Mimo map uses for its vehicles.
+    static let maxAge: TimeInterval = 30 * 60
+
+    private struct Entry {
+        let stations: [ChargingStation]
+        let fetchedAt: Date
+    }
+
+    private let lock = NSLock()
+    private var entry: Entry?
+    private var context: String?
+
+    /// Overridable for a test harness; production reads the app settings.
+    var contextProvider: () -> String = ChargerStationsCache.currentRequestContext
+    var now: () -> Date = Date.init
+
+    init() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didReceiveMemoryWarning),
+            name: UIApplication.didReceiveMemoryWarningNotification,
+            object: nil
+        )
+    }
+
+    /// The last successful answer, in the order it was fetched, or `nil` when
+    /// there is none, it is older than `maxAge`, or it was fetched under a
+    /// different request context. Setting `nil` removes the entry.
+    var stations: [ChargingStation]? {
+        get {
+            let current = contextProvider()
+
+            lock.lock()
+            defer { lock.unlock() }
+
+            guard context == current else {
+                entry = nil
+                context = current
+                return nil
+            }
+
+            guard let entry, now().timeIntervalSince(entry.fetchedAt) <= ChargerStationsCache.maxAge else {
+                return nil
+            }
+
+            return entry.stations
+        }
+        set {
+            let current = contextProvider()
+
+            lock.lock()
+            defer { lock.unlock() }
+
+            if context != current {
+                entry = nil
+                context = current
+            }
+
+            entry = newValue.map { Entry(stations: $0, fetchedAt: now()) }
+        }
+    }
+
+    /// Forget everything. The next map open loads the way the first one did.
+    func clear() {
+        lock.lock()
+        defer { lock.unlock() }
+        entry = nil
+        context = nil
+    }
+
+    @objc private func didReceiveMemoryWarning() {
+        clear()
+    }
+
+    /// What the station request sends that changes its answer: the `country`
+    /// header (`URLBuilder`), the `locale` header (`HomeAPI.getChargingStations`)
+    /// and the account the access token belongs to. Only the token's hash is
+    /// kept, never the token.
+    private static func currentRequestContext() -> String {
+        let country = Constant.requestCountryCode ?? "-"
+        let language = StorageManager().fetch(key: .language, type: String.self)
+            ?? String(Locale.preferredLanguages[0].prefix(2))
+        let account = KeychainManager().getAccessToken().map { String($0.hashValue) } ?? "-"
+
+        return "\(country)|\(language)|\(account)"
+    }
+}

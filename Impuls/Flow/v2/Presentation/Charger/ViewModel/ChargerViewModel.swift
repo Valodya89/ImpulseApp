@@ -21,8 +21,14 @@ class ChargerViewModel: MimoBaseViewModel {
     private let locationManager: MimoLocationManagerProtocol
     private let worker: ChargerWorkerProtocol
     private let messagingService: MessageServiceProtocol
+    private let stationsCache: ChargerStationsCache
     
     private var cancellables = Set<AnyCancellable>()
+    /// One network load per map open. The list is restored from the cache
+    /// before the first render; this makes sure it is still refreshed once
+    /// the first fix arrives, and only once.
+    private var hasRefreshedStations = false
+    private var isLoadingStations = false
     
     @Published var viewState: MimoChargerViewState = .initial
     
@@ -85,14 +91,16 @@ class ChargerViewModel: MimoBaseViewModel {
         }
     }
     
-    init(preScannedQR: String?, preSelectedQR: String?, worker: ChargerWorkerProtocol, locationManager: MimoLocationManagerProtocol, messagingService: MessageServiceProtocol) {
+    init(preScannedQR: String?, preSelectedQR: String?, worker: ChargerWorkerProtocol, locationManager: MimoLocationManagerProtocol, messagingService: MessageServiceProtocol, stationsCache: ChargerStationsCache = .shared) {
         self._scannedQR = preScannedQR
         self.preSelectedQR = preSelectedQR
         self.worker = worker
         self.locationManager = locationManager
         self.messagingService = messagingService
+        self.stationsCache = stationsCache
         super.init()
         
+        restoreCachedStations()
         setupPublishers()
         
         self.messagingService.subscribe(self, for: .chargerRentEnded)
@@ -158,20 +166,87 @@ class ChargerViewModel: MimoBaseViewModel {
             .store(in: &cancellables)
     }
     
+    /// Whatever an earlier visit to the map already loaded goes straight onto
+    /// this one, before its first render: the pins are drawn as soon as the
+    /// map view subscribes, and the station cards are there the moment a pin
+    /// is tapped. The list is put in distance order from the fix the location
+    /// manager already has (the fetch sorted it from the fix of that visit).
+    /// `refreshStationsIfNeeded` still reloads it; the answer replaces this
+    /// list in place.
+    private func restoreCachedStations() {
+        guard let cached = stationsCache.stations, !cached.isEmpty else { return }
+        
+        let restored: [ChargingStation]
+        if let fix = locationManager.currenntLocation {
+            restored = cached.sortedByDistance(from: fix)
+        } else {
+            restored = cached
+        }
+        
+        stations.send(restored)
+        stationsMarkers = restored.compactMap({ $0.toGMSMarker() })
+    }
+    
+    /// Called on every first fix of this map (and again after "my location"
+    /// resets it). Loads when there is nothing on screen yet, or when this
+    /// map has not refreshed its restored list yet; never two requests at
+    /// once.
+    func refreshStationsIfNeeded(currentLocation: CLLocationCoordinate2D) {
+        guard !isLoadingStations else { return }
+        guard (stations.value ?? []).isEmpty || !hasRefreshedStations else { return }
+        
+        getChargingStations(currentLocation: currentLocation)
+    }
+    
     func getChargingStations(currentLocation: CLLocationCoordinate2D) {
+        isLoadingStations = true
+        
         worker.getChargingStations(currentLocation: currentLocation)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
+                guard let self else { return }
+                self.isLoadingStations = false
+                
                 switch completion {
                 case .failure(let error):
-                    self?.errorMessage = error.message
+                    // A failed load keeps whatever list is already on screen -
+                    // an earlier answer or the restored one - instead of
+                    // blanking the map; the rider is only told when there is
+                    // nothing to show at all.
+                    if (self.stations.value ?? []).isEmpty {
+                        self.errorMessage = error.message
+                    }
                 default: break
                 }
             } receiveValue: { [weak self] stations in
-                self?.stations.send(stations)
-                self?.stationsMarkers = stations.compactMap({ $0.toGMSMarker() })
+                guard let self else { return }
+                self.hasRefreshedStations = true
+                self.stationsCache.stations = stations
+                self.apply(stations: stations)
             }
             .store(in: &cancellables)
+    }
+    
+    /// Replaces the list in place. A station the rider has selected stays
+    /// selected (matched by id, so the highlighted pin and the carousel index
+    /// follow it to its new position); one that is gone from the answer
+    /// returns the map to its initial state.
+    private func apply(stations: [ChargingStation]) {
+        self.stations.send(stations)
+        
+        guard let selectedId = selectedStation?.id else {
+            stationsMarkers = stations.compactMap({ $0.toGMSMarker() })
+            return
+        }
+        
+        if let stillThere = stations.first(where: { $0.id == selectedId }) {
+            selectedStation = stillThere
+        } else {
+            selectedStation = nil
+            if case .chargerList = viewState {
+                viewState = .initial
+            }
+        }
     }
     
     func scan(stationId: String, currentLocation: CLLocationCoordinate2D) {
@@ -238,5 +313,19 @@ class ChargerViewModel: MimoBaseViewModel {
     
     override func unsubscribe() {
         messagingService.unsubscribe(self, from: .chargerRentEnded)
+    }
+}
+
+private extension Array where Element == ChargingStation {
+    
+    /// The same order `ChargerWorker.getChargingStations` returns: nearest
+    /// first, from the given fix.
+    func sortedByDistance(from location: CLLocation) -> [ChargingStation] {
+        sorted { station1, station2 in
+            let location1 = CLLocation(latitude: station1.location?.latitude ?? 0, longitude: station1.location?.longitude ?? 0)
+            let location2 = CLLocation(latitude: station2.location?.latitude ?? 0, longitude: station2.location?.longitude ?? 0)
+            
+            return location1.distance(from: location) < location2.distance(from: location)
+        }
     }
 }

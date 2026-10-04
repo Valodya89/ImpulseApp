@@ -94,9 +94,9 @@ class ChargerViewController: MimoBaseViewController {
         viewModel.$startLocation.sink { [weak self] coordinate in
             guard let self, let coordinate else { return }
             
-            if (viewModel.stations.value ?? []).isEmpty {
-                viewModel.getChargingStations(currentLocation: coordinate)
-            }
+            // Restored stations are already on screen; this still refreshes
+            // them once per map open, and loads them when there are none.
+            viewModel.refreshStationsIfNeeded(currentLocation: coordinate)
             
             let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude, longitude: coordinate.longitude, zoom: 18)
             self.mapView.animate(to: camera)
