@@ -219,6 +219,22 @@ class LoginViewModel: MimoBaseViewModel, ObservableObject {
         return codes.first(where: { $0.code == "AM" })
     }
     
+    /// Incremented when a code was sent again from the code step; the view
+    /// restarts its countdown on it, so a refused resend starts no countdown.
+    @Published private(set) var codeResentCount = 0
+
+    /// Refusals of POST /account/start shown as text, never as a bare code.
+    static func signInMessage(for code: String) -> String {
+        switch code {
+        case "ACCOUNTS_phone_number_not_supported":
+            return code.localized(fallback: "We can't send an SMS to this phone number. Please use a different number.")
+        case "ACCOUNTS_sms_service_unavailable", "ACCOUNTS_new_tel_service_unavailable":
+            return code.localized(fallback: "The SMS service is temporarily unavailable. Please try again later.")
+        default:
+            return code
+        }
+    }
+
     func signIn() {
         let phoneNumber = (self.selectedCountry?.dial_code ?? "") + self.phoneNumber.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "-", with: "")
         worker.signIn(phoneNumber: phoneNumber)
@@ -226,11 +242,17 @@ class LoginViewModel: MimoBaseViewModel, ObservableObject {
             .sink { [weak self] failure in
                 switch failure {
                 case .failure(let error):
-                    self?.errorMessage = error.message
+                    // The step stays where it is (phone step: the number stays
+                    // editable and Continue works at once; code step: the rider
+                    // can go back to the phone step).
+                    self?.errorMessage = LoginViewModel.signInMessage(for: error.message)
                 default: break
                 }
             } receiveValue: { [weak self] isDeviceVerifid, isAccountCompleted, _, otpMethod in
                 guard let self else { return }
+                if self.loginStep == .otp {
+                    self.codeResentCount += 1
+                }
                 self.otpMethod = otpMethod ?? .CALL
                 self.isDeviceVerifid = isDeviceVerifid
                 if self.isAccountCompleted == nil {

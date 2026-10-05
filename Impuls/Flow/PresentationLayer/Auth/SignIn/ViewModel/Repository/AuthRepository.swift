@@ -555,7 +555,13 @@ final class AuthRepository {
                         return
                     }
                     completion(.success((false, nil, otpContent.content?.method)))
-                } else if signInResponse.statusCode == 406 {
+                } else if signInResponse.statusCode != 200 {
+                    // Every other refusal of POST /account/start is an HTTP-200
+                    // envelope whose `message` is a locale key: 406 closed/blocked,
+                    // 429 ACCOUNTS_resend_code_interval, 400
+                    // ACCOUNTS_phone_number_not_supported (the SMS provider refuses
+                    // the number for good), 503 ACCOUNTS_sms_service_unavailable
+                    // (accounts docs/mobile-api.md, POST /account/start).
                     completion(.failure(NetworkError.invalidParse(signInResponse.message)))
                 }
                 

@@ -437,6 +437,11 @@ struct LoginView: View {
                         self.timer.upstream.connect().cancel()
                     }
                 })
+                .onReceive(viewModel.$codeResentCount.dropFirst()) { _ in
+                    // A refused resend (number not supported, SMS service down)
+                    // starts no countdown; only a sent code does.
+                    timeRemaining = 60
+                }
             }
             
             Text(viewModel.otpMethod == .CALL ? ("\("MOBILE_fill_last_four_digit".localized())\n+7 (***) ***-12-34") : "MOBILE_sign_in_SMS_hint".localized())
@@ -456,7 +461,6 @@ struct LoginView: View {
                     Spacer()
                     
                     Button {
-                        timeRemaining = 60
                         viewModel.signIn()
                     } label: {
                         Text("MOBILE_sign_in_request_again".localized())
