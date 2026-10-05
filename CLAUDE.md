@@ -21,22 +21,22 @@ all six apps: what it is, how to implement it, which apps it applies to and
 which apps already have it. It is authenticated with the developer's own
 `MIMO_MCP_TOKEN`; every call is recorded under that developer's name.
 
-### Keep these instructions current — version 11
+### Keep these instructions current — version 12
 
 This section and the hook scripts are a local copy of rules that live on the
-mimo-knowledge MCP server. The copy has **version 11**, also stored
+mimo-knowledge MCP server. The copy has **version 12**, also stored
 in `.claude/mimo-instructions.version`. Before you change anything in a
 session, make sure the copy is current:
 
 1. Call `get_instructions_version` (the session-start check does the same and
    prints a notice when the copy is outdated; `pending_mobile_features` and
    `list_mobile_apps` also return `instructionsVersion`).
-2. If the server's version is 11, continue.
+2. If the server's version is 12, continue.
 3. If it differs, update first: call `get_mobile_repo_setup` with
    `app=impulse`, `platform=ios`, follow its steps (replace this
    section, overwrite the hook files, write the version file, then commit
    exactly those instruction files and push), read the new section, tell the
-   user in one line that the instructions went from 11 to the new
+   user in one line that the instructions went from 12 to the new
    version, and only then continue with the task.
 
 Never edit this section by hand: a change belongs on the server.
@@ -147,6 +147,42 @@ Mobile-Feature: Wallet: pending top-ups with a badge : wallet-pending-top-ups-wi
 
 The commit hook asks for that line on commits Claude makes. Use
 `Mobile-Feature: none` only for the excluded cases above.
+
+### Crashes and errors the app reported
+
+The apps send crashes and errors to the backend, and the same MCP server
+gives access to them, always for one app and platform. For this repository
+that is `app=impulse`, `platform=ios`.
+
+- **To see what is broken:** `mobile_error_summary`. Each bug appears once
+  with how often it happened, on how many devices and app versions, and when.
+  Crashes come first. A group with `resolvedBefore` was fixed earlier and has
+  come back: read that note first.
+- **To investigate one bug:** `get_mobile_error` with the group's
+  `latestReportId` for the stack trace and the context the app attached
+  (breadcrumbs, thread, network, build type); `list_mobile_errors` with the
+  `fingerprint` for the other occurrences when one report is not enough.
+- **To fix it:** find the cause in this repository, fix it, and verify. If
+  the fix changes behaviour, register it like any other change
+  (`type=fix`), which also tells the other apps to check the same bug.
+- **After the fix is committed:** `delete_mobile_errors` with the bug's
+  `fingerprint` and a `resolution` saying what fixed it (commit, feature
+  key) and `fixedInVersion`. The note is kept, so the bug coming back shows
+  as a regression.
+- **Delete only** what you fixed and verified, or what is provably obsolete
+  (a test build, a version nobody runs any more), and say which it is in the
+  `resolution`. Never delete reports to tidy up, never delete reports you
+  have not read, and when you are unsure whether a fix covers a group, leave
+  the group and tell me.
+- Users on an older app version can still send an error you already fixed.
+  Check `appVersions` before deciding a fix did not work.
+- `deviceId` and `userId` identify a real customer. Never put them in a
+  commit message, a feature record, a translation or the chat.
+
+When asked to "fix the crashes" or "process the errors", work through the
+summary from the top: one bug at a time, fix, commit, delete its reports,
+then the next. At the end report a table: fingerprint, what it was, what you
+did (fixed and deleted / obsolete and deleted / left, with the reason).
 
 ### Texts and translations
 
