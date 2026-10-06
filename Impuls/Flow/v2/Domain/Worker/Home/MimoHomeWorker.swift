@@ -117,7 +117,11 @@ class MimoHomeWorker: MimoHomeWorkerProtocol {
     }
     
     func getActiveEvChargers() -> AnyPublisher<[EVStateMessagedDTO], MimoError> {
-        Deferred {
+        // Impulse offers no evCharger: never call its service (the host does not exist).
+        guard MimoProductType.evCharger.isOfferedByThisApp else {
+            return Just([]).setFailureType(to: MimoError.self).eraseToAnyPublisher()
+        }
+        return Deferred {
             Future<[EVStateMessagedDTO], MimoError> { promise in
                 self.homeRepasitory.getChargingState { result in
                     switch result {
@@ -288,7 +292,11 @@ class MimoHomeWorker: MimoHomeWorkerProtocol {
     }
     
     func getActiveScooters() -> AnyPublisher<[ScooterStateModel], MimoError> {
-        Deferred {
+        // Impulse offers no scooter: never call its service (the host does not exist).
+        guard MimoProductType.scooter.isOfferedByThisApp else {
+            return Just([]).setFailureType(to: MimoError.self).eraseToAnyPublisher()
+        }
+        return Deferred {
             Future<[ScooterStateModel], MimoError> { promise in
                 self.authRepository.getScooterState { result in
                     switch result {
@@ -304,7 +312,11 @@ class MimoHomeWorker: MimoHomeWorkerProtocol {
     }
     
     func getActiveBikes() -> AnyPublisher<TripActionModel?, MimoError> {
-        Deferred {
+        // Impulse offers no bike: never call its service (the host does not exist).
+        guard MimoProductType.bike.isOfferedByThisApp else {
+            return Just(nil).setFailureType(to: MimoError.self).eraseToAnyPublisher()
+        }
+        return Deferred {
             Future<TripActionModel?, MimoError> { promise in
                 self.authRepository.getState { result in
                     switch result {
@@ -375,7 +387,11 @@ class MimoHomeWorker: MimoHomeWorkerProtocol {
     }
     
     func getLeasedScooters() -> AnyPublisher<[String], MimoError> {
-        Deferred {
+        // Impulse offers no scooter: never call its service (the host does not exist).
+        guard MimoProductType.scooter.isOfferedByThisApp else {
+            return Just([]).setFailureType(to: MimoError.self).eraseToAnyPublisher()
+        }
+        return Deferred {
             Future<[String], MimoError> { promise in
                 self.homeRepasitory.getLeasedScooters { result in
                     switch result {

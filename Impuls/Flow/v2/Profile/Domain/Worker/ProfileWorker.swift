@@ -72,7 +72,12 @@ final class ProfileWorker: ProfileWorkerProtocol {
     }
     
     func getActivePackage() -> AnyPublisher<UserResponse?, MimoError> {
-        Deferred {
+        // The active package comes from the bike-sharing service's account;
+        // Impulse offers no bikes and that host does not exist, so skip it.
+        guard MimoProductType.bike.isOfferedByThisApp else {
+            return Just(nil).setFailureType(to: MimoError.self).eraseToAnyPublisher()
+        }
+        return Deferred {
             Future<UserResponse?, MimoError> { promise in
                 self.accountRepository.getUserAccount { result in
                     switch result {
