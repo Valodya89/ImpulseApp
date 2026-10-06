@@ -206,10 +206,16 @@ enum AuthAPI: APIProtocol {
     case activateInsurance
     case deactivateInsurance
     case getInsurancePrice
+    /// GET /contact-info?country=<ISO alpha-3>: public, the support contacts for
+    /// this app and country (accounts docs/mobile-api.md "GET /contact-info").
+    /// `nil` country = query omitted, the `country` header decides.
+    case getContactInfo(country: String?)
     
     var base: String {
         switch self {
         case .getVersion:
+            return MimoBaseURLs.accounts.rawValue
+        case .getContactInfo:
             return MimoBaseURLs.accounts.rawValue
         case .getLanguage:
             return MimoBaseURLs.locale.rawValue
@@ -380,6 +386,8 @@ enum AuthAPI: APIProtocol {
         switch self {
         case .getVersion:
             return "apk-version/IOS"
+        case .getContactInfo:
+            return "contact-info"
         case .checkPromoStatus:
             return "api/promo-code"
         case.sendPromoCode(let code):
@@ -700,6 +708,9 @@ enum AuthAPI: APIProtocol {
     
     var query: [String : String] {
         switch self {
+        case .getContactInfo(let country):
+            guard let country, !country.isEmpty else { return [:] }
+            return ["country": country]
         case .preactivate(let deviceId):
             return [
                 "deviceId": deviceId
@@ -946,7 +957,7 @@ enum AuthAPI: APIProtocol {
     
     var method: RequestMethod {
         switch self {
-        case .getLanguage, .checkPromoStatus, .getVersion:
+        case .getLanguage, .checkPromoStatus, .getVersion, .getContactInfo:
             return .get
         case .uploadFCM:
             return .put

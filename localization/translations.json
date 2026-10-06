@@ -683,5 +683,15 @@
     "en": "Payment",
     "ru": "Платёж",
     "module": "mobile"
+  },
+  "MOBILE_support_chat_telegram": {
+    "en": "Chat on Telegram",
+    "ru": "Написать в Telegram",
+    "module": "mobile"
+  },
+  "MOBILE_support_chat_whatsapp": {
+    "en": "Chat on WhatsApp",
+    "ru": "Написать в WhatsApp",
+    "module": "mobile"
   }
 }

@@ -695,4 +695,53 @@ final class AuthRepository {
             }
         }
     }
+
+    // MARK: - Support contacts
+
+    /// GET /contact-info?country=<ISO alpha-3>: the support hotline and chats
+    /// for this app and country (accounts docs/mobile-api.md "GET /contact-info
+    /// (`ContactInfoController`)", commit 499a79b8). Public, so the bearer the
+    /// builder attaches is dropped; the usual `country` / `os-type` /
+    /// `app-version` headers stay. Sent through a plain `URLSession` rather
+    /// than `SessionNetwork`, which signs the user out on any HTTP status
+    /// above 401: a deployment without the endpoint answers a plain 404, which
+    /// must only mean "keep the bundled contacts". Completes on the main queue.
+    func getContactInfo(country: String?, completion: @escaping (ContactInfoOutcome) -> Void) {
+        guard var request = URLBuilder(from: AuthAPI.getContactInfo(country: country)).getRequst() else {
+            DispatchQueue.main.async { completion(.unavailable) }
+            return
+        }
+        request.setValue(nil, forHTTPHeaderField: "Authorization")
+        request.timeoutInterval = 20
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            NetworkFailureReporter.report(request: request, response: response, data: data, error: error)
+            let outcome = AuthRepository.contactInfoOutcome(data: data, response: response, error: error)
+            DispatchQueue.main.async { completion(outcome) }
+        }.resume()
+    }
+
+    /// Pure mapping of the HTTP answer to an outcome: only an HTTP 2xx body
+    /// that is the standard envelope counts as an answer; envelope 200 ->
+    /// contacts, envelope 404 `ACCOUNTS_contact_info_not_found` -> not found,
+    /// everything else -> unavailable.
+    static func contactInfoOutcome(data: Data?, response: URLResponse?, error: Error?) -> ContactInfoOutcome {
+        guard error == nil,
+              let http = response as? HTTPURLResponse,
+              (200 ..< 300).contains(http.statusCode),
+              let data else {
+            return .unavailable
+        }
+        guard let envelope = try? JSONDecoder().decode(BaseResponseModel<ContactInfoDto>.self, from: data) else {
+            return .unavailable
+        }
+        switch envelope.statusCode {
+        case 200:
+            guard let dto = envelope.content, let contacts = SupportContacts(dto: dto) else { return .unavailable }
+            return .contacts(contacts)
+        case 404 where envelope.message == "ACCOUNTS_contact_info_not_found":
+            return .notFound
+        default:
+            return .unavailable
+        }
+    }
 }
