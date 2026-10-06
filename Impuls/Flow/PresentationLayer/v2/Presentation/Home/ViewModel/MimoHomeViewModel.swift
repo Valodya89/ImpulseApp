@@ -268,6 +268,12 @@ class MimoHomeViewModel: MimoBaseViewModel {
             .sink { _ in } receiveValue: { [weak self] scooters, bikes, chargers, evChargers in
                 guard let self else { return }
 
+                // The summary is not this screen's job any more: the presenter
+                // remembers which rents this read shows as running and, when a
+                // later read reports one of them as ended (the socket frame was
+                // lost), shows the summary over whatever screen is up.
+                EndedRentPresenter.shared.stateRead(chargers)
+
                 // Only rents that are really still running belong on the strip: the
                 // socket may already have ended one the server still lists, and the
                 // list itself can carry an entry whose own state is RENT_ENDED.

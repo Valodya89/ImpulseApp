@@ -13,10 +13,6 @@ import Combine
 class ChargerViewController: MimoBaseViewController {
     
     private var cancellables = Set<AnyCancellable>()
-    /// Rents whose end-of-rent summary has already been presented. `getState()`
-    /// keeps reporting a finished rent for a while, and every re-read used to
-    /// try to present the summary again on top of the one already up.
-    private var shownSummaryRentIds = Set<String>()
     /// The debt screen opens at most once per map visit (this controller's
     /// lifetime); after the rider was in the wallet or a transfer it stays up
     /// only while a fresh state still reports a debt.
@@ -75,6 +71,14 @@ class ChargerViewController: MimoBaseViewController {
         super.viewWillAppear(animated)
         
         viewModel?.loadBalance()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // A rent summary that could not be shown while another screen or an
+        // alert was up (`EndedRentPresenter`) goes up now.
+        EndedRentPresenter.shared.presentPendingIfPossible()
     }
     
     deinit {
@@ -197,19 +201,9 @@ class ChargerViewController: MimoBaseViewController {
             }
             
             if !_rentEndedChargers.isEmpty {
-                // One summary per finished rent, however many times the state
-                // still reports it; and never on top of another modal.
-                if let ended = _rentEndedChargers.first(where: { rent in
-                       guard let id = rent.data?.id else { return false }
-                       return !self.shownSummaryRentIds.contains(id)
-                   }),
-                   let id = ended.data?.id,
-                   self.presentedViewController == nil {
-                    self.shownSummaryRentIds.insert(id)
-                    MimoSocketLog.info(.charger, "summary shown on power-bank map", "rent=\(id)")
-                    ChargerRouter.shared.showChargerSuccessViewController(self, currency: viewModel.walletInfo?.currency, rentedCharger: ended)
-                }
-                
+                // The summary itself is `EndedRentPresenter`'s job: it listens
+                // to the socket directly and gets every `getState()` answer from
+                // the view model, so this screen only takes its rent sheet down.
                 if _rentedChargers.isEmpty && _rentScannedChargers.isEmpty {
                     self.leaveRentStateIfNeeded()
                 }

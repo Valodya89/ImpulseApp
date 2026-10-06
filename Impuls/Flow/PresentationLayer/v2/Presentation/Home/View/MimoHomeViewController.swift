@@ -47,11 +47,6 @@ class MimoHomeViewController: MimoBaseViewController {
     /// drives the branded indicator and re-reads everything.
     private var pullToRefresh: MimoPullToRefreshGesture?
     
-    /// Rents whose end-of-rent summary has already been presented from here.
-    /// The socket can deliver RENT_ENDED more than once (a resubscribe after a
-    /// reconnect), and every copy used to present another summary on top.
-    private var shownSummaryRentIds = Set<String>()
-    
     /// A station link waiting for the location permission answer (see
     /// `openPendingStationLink`); a newer link replaces it.
     private var stationLinkWait: AnyCancellable?
@@ -90,6 +85,10 @@ class MimoHomeViewController: MimoBaseViewController {
         observeStationLinks()
         observePushRoutes()
         NotificationCenter.default.addObserver(self, selector: #selector(updateFCMToken), name: AppDelegate.fcmTokenUpdated, object: nil)
+        
+        // The scene delegate starts it at launch; idempotent, so this only
+        // matters if home is ever reached another way.
+        EndedRentPresenter.shared.start()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -101,6 +100,9 @@ class MimoHomeViewController: MimoBaseViewController {
         // So has a tapped push.
         openPendingPushRoute()
         offerNotificationPermissionIfNeeded()
+        // A rent summary that could not be shown while another screen or an
+        // alert was up (`EndedRentPresenter`) goes up now.
+        EndedRentPresenter.shared.presentPendingIfPossible()
     }
     
     /// Drag down anywhere on the home content to refresh: the stories strip,
@@ -333,17 +335,6 @@ class MimoHomeViewController: MimoBaseViewController {
         })
         .store(in: &cancellables)
         
-        viewModel?.$rentedCharger
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] charger in
-                guard let self, let charger else { return }
-                
-                if charger.state == .rentEnded {
-                    self.presentRentSummaryIfNeeded(charger)
-                }
-            })
-            .store(in: &cancellables)
-        
         // Putting the bank back happens with the phone in a pocket. Coming back
         // to the foreground on this tab fires no appearance callback, so the
         // socket is reconnected and the strip re-read here - a RENT_ENDED sent
@@ -378,28 +369,6 @@ class MimoHomeViewController: MimoBaseViewController {
         guard ApplicationSettings.shared.isoCountryCode != nil else { return }
         
         storyViewModel.getStories()
-    }
-    
-    // MARK: - Rent summary
-    
-    /// One summary per finished rent, presented over whatever is on screen as
-    /// long as home is the top of its stack (the power-bank map presents its
-    /// own when it is up, so this must not double it).
-    private func presentRentSummaryIfNeeded(_ charger: RentedCharger) {
-        guard let id = charger.data?.id, !shownSummaryRentIds.contains(id) else { return }
-        guard navigationController?.topViewController === self else {
-            MimoSocketLog.info(.charger, "summary left to the top screen", "rent=\(id)")
-            return
-        }
-        
-        var presenter: UIViewController = tabBarController ?? self
-        while let presented = presenter.presentedViewController {
-            presenter = presented
-        }
-        
-        shownSummaryRentIds.insert(id)
-        MimoSocketLog.info(.charger, "summary shown on home", "rent=\(id)")
-        ChargerRouter.shared.showChargerSuccessViewController(presenter, currency: viewModel?.walletInfo?.currency, rentedCharger: charger)
     }
     
     // MARK: - Services

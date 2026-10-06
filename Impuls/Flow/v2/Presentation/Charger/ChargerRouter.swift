@@ -134,10 +134,11 @@ class ChargerRouter {
     
     /// End-of-rent summary: the same receipt the history shows for the rent,
     /// as a sheet. It publishes `.chargerRentEnded` when it closes.
+    ///
+    /// Only `EndedRentPresenter` calls this: it owns the one-per-rent rule and
+    /// decides when the top of the screen can take the sheet. Screens that
+    /// learn of an end hand it to `EndedRentPresenter.shared.offer(_:)`.
     func showChargerSuccessViewController(_ viewController: UIViewController, currency: String?, rentedCharger: RentedCharger?) {
-        // A second RENT_ENDED for the same rent must not stack two sheets.
-        if viewController.presentedViewController is RentSummaryHostingController { return }
-        
         let summaryViewController = RentSummaryHostingController(rentedCharger: rentedCharger, currency: currency)
         viewController.present(summaryViewController, animated: true)
     }

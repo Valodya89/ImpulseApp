@@ -292,6 +292,10 @@ class ChargerViewModel: MimoBaseViewModel {
                 default: break
                 }
             } receiveValue: { [weak self] rentedChargers in
+                // HTTP fallback for a lost RENT_ENDED frame: the presenter shows
+                // the summary for a rent it saw running that is now reported
+                // as ended (never for old finished rents the state still lists).
+                EndedRentPresenter.shared.stateRead(rentedChargers)
                 self?.rentedChargers = rentedChargers
             }
             .store(in: &cancellables)

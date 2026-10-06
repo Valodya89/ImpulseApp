@@ -22,6 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // previous run into a report, flushes the disk queue and flushes again
         // whenever the network returns. Idempotent.
         ErrorReporter.shared.start()
+        // End-of-rent summary over whatever screen is up: subscribes once to
+        // the power-bank socket and retries on activation. Idempotent.
+        EndedRentPresenter.shared.start()
 
         guard let windowScene = scene as? UIWindowScene else { return }
         let window = UIWindow(windowScene: windowScene)
