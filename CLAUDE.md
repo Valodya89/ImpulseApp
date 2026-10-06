@@ -21,22 +21,22 @@ all six apps: what it is, how to implement it, which apps it applies to and
 which apps already have it. It is authenticated with the developer's own
 `MIMO_MCP_TOKEN`; every call is recorded under that developer's name.
 
-### Keep these instructions current — version 12
+### Keep these instructions current — version 13
 
 This section and the hook scripts are a local copy of rules that live on the
-mimo-knowledge MCP server. The copy has **version 12**, also stored
+mimo-knowledge MCP server. The copy has **version 13**, also stored
 in `.claude/mimo-instructions.version`. Before you change anything in a
 session, make sure the copy is current:
 
 1. Call `get_instructions_version` (the session-start check does the same and
    prints a notice when the copy is outdated; `pending_mobile_features` and
    `list_mobile_apps` also return `instructionsVersion`).
-2. If the server's version is 12, continue.
+2. If the server's version is 13, continue.
 3. If it differs, update first: call `get_mobile_repo_setup` with
    `app=impulse`, `platform=ios`, follow its steps (replace this
    section, overwrite the hook files, write the version file, then commit
    exactly those instruction files and push), read the new section, tell the
-   user in one line that the instructions went from 12 to the new
+   user in one line that the instructions went from 13 to the new
    version, and only then continue with the task.
 
 Never edit this section by hand: a change belongs on the server.
@@ -174,6 +174,9 @@ that is `app=impulse`, `platform=ios`.
   `resolution`. Never delete reports to tidy up, never delete reports you
   have not read, and when you are unsure whether a fix covers a group, leave
   the group and tell me.
+- If `delete_mobile_errors` answers that the reports of this app are
+  read-only on the server, that is expected for some apps: do not retry, keep
+  the fingerprint and what fixed it in your report instead.
 - Users on an older app version can still send an error you already fixed.
   Check `appVersions` before deciding a fix did not work.
 - `deviceId` and `userId` identify a real customer. Never put them in a
@@ -187,23 +190,31 @@ did (fixed and deleted / obsolete and deleted / left, with the reason).
 ### Texts and translations
 
 The apps' texts come from the locale service and are managed through the same
-MCP server. Before using a text key: `search_translations` for the text or the
-key, and reuse an existing key when the text already exists. A new text:
-`add_translation` with the module, a key that follows the module's prefix
-(`MOBILE_`, `EV_CHARGER_` …), a description of where it is shown, and the
-value in every language you can translate (`en` is required; `ru`, `hy`, `dv`,
-`es` in the same call). Keep placeholders identical in all languages. Never
-overwrite an existing value without asking me.
+MCP server. Mimo and EVUP share one locale service; Impulse has its own with
+its own keys and languages. So pass `app=impulse` to every translation tool
+(`list_translation_modules`, `search_translations`, `get_translation`,
+`missing_translations`, `add_translation`, `reload_translation_cache`);
+without it the tools answer for the shared Mimo/EVUP service. Before using a
+text key: `search_translations` for the text or the key, and reuse an existing
+key when the text already exists. A new text: `add_translation` with the
+module, a key that follows the module's prefix (`MOBILE_`, `EV_CHARGER_` …), a
+description of where it is shown, and the value in every language the module
+lists (`en` is required; the others in the same call). Keep placeholders
+identical in all languages. Never overwrite an existing value without asking
+me.
 
 Every feature carries its translation keys in `localizationKeys`:
 
 - **When you build a new feature,** pass every key it shows in
   `localizationKeys` of `create_mobile_feature`.
 - **When you port a feature,** `get_mobile_feature` lists its keys with the
-  module, the languages that have a value and the ones still missing. Use
-  exactly those keys. Do not create a second key for a text that already has
-  one. If this platform needs a text the feature does not list, add the key
-  with `add_translation` and pass it in `localizationKeys` of
+  module, the languages that have a value and the ones still missing, per
+  locale service when the feature spans Impulse and Mimo/EVUP
+  (`localeService`). Use exactly those keys. Do not create a second key for a
+  text that already has one. If a key exists only in the other locale service,
+  add it to yours with `add_translation` (same key, same texts). If this
+  platform needs a text the feature does not list, add the key with
+  `add_translation` and pass it in `localizationKeys` of
   `implement_mobile_feature`, which adds it to the feature.
 - A key reported as "not found in the locale service" was named but never
   added: add it with `add_translation`, or correct the list with
