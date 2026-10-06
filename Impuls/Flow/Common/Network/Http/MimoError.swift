@@ -1331,6 +1331,12 @@ extension UIViewController {
 /// reported, so a failing reporter cannot feed itself.
 enum NetworkFailureReporter {
 
+    /// 502, 503, 504 and Cloudflare's 520-527: the service or the gateway in front
+    /// of it is down. Expected, never a report.
+    static func isBackendOutage(_ status: Int) -> Bool {
+        (502...504).contains(status) || (520...527).contains(status)
+    }
+
     static func report(request: URLRequest, response: URLResponse?, data: Data?, error: Error?) {
         guard let url = request.url, !url.path.hasSuffix("/" + ErrorReportSender.endpointPath) else { return }
 
@@ -1359,14 +1365,19 @@ enum NetworkFailureReporter {
 
         guard let status = (response as? HTTPURLResponse)?.statusCode, status >= 500 else { return }
 
-        let gateway = (502...504).contains(status) || (520...527).contains(status)
+        // A backend or gateway outage (502-504, Cloudflare 520-527) is an expected
+        // failure: the rider already sees the 'server unavailable' message and it is
+        // a backend fact, not an app bug, so it is not reported - like offline and
+        // 401. A 500 and other unexpected statuses are still reported.
+        if NetworkFailureReporter.isBackendOutage(status) { return }
+
         extra["status"] = "\(status)"
         if let body = ReportSanitizer(ownPhone: AppReportContext.phoneNumber).responseBody(data) {
             extra["responseBody"] = body
         }
 
         ErrorReporter.shared.report(
-            type: gateway ? .other : .unhandledError,
+            type: .unhandledError,
             message: "\(flow): \(status)",
             stackTrace: nil,
             extra: extra
