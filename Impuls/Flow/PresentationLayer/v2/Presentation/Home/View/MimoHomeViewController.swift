@@ -69,9 +69,14 @@ class MimoHomeViewController: MimoBaseViewController {
     /// `HomeRouter` never lets the peek drop below 200pt.
     var height: CGFloat {
         let bottomSafeArea = UIApplication.shared.keyWindowInConnectedScenes?.safeAreaBottom ?? 0
-        let reserved: CGFloat = (viewModel!.activeTrips.isEmpty ? 400 : 508) + Hero.extraHeight
+        let reserved: CGFloat = (viewModel!.activeTrips.isEmpty ? 400 : 508) + Hero.extraHeight + Self.storiesExtraHeight
         return UIScreen.main.bounds.height - reserved - bottomSafeArea
     }
+    
+    /// The storyboard sizes the stories container for the old 101 pt strip;
+    /// the picture cards need more, and the sheet below moves down by as much.
+    private static let storyboardStoriesHeight: CGFloat = 101
+    private static var storiesExtraHeight: CGFloat { StoriesThumbView.stripHeight - storyboardStoriesHeight }
     
     var viewModel: MimoHomeViewModel?
     var storyViewModel: StoryViewModel = StoryViewModel(worker: Resolver.resolve())
@@ -323,6 +328,9 @@ class MimoHomeViewController: MimoBaseViewController {
             hostingController.view.translatesAutoresizingMaskIntoConstraints = false
             self.storiesContainerView.subviews.forEach({ $0.removeFromSuperview() })
             self.storiesContainerView.addSubview(hostingController.view)
+            self.storiesContainerView.constraints
+                .first { $0.firstAttribute == .height && $0.firstItem === self.storiesContainerView }?
+                .constant = StoriesThumbView.stripHeight
             
             NSLayoutConstraint.activate([
                 hostingController.view.topAnchor.constraint(equalTo: self.storiesContainerView.topAnchor),

@@ -32,21 +32,27 @@ struct StoryPage: Decodable {
     /// when one is sent and falls back to the `node` + `id` repository form.
     var background: ImageDto?
     /// `FileData.type` of the background, as sent. The background can be a
-    /// video; see `backgroundKind` in StoryView.swift.
+    /// video; see `backgroundKind` in LoadingRectangle.swift (`StoryVideoPlayback`).
     var backgroundType: String?
     var logo: ImageDto?
     var url: String?
     var urlButtonName: String?
+    /// Tint of the viewer's close button as the admin set it, e.g. "#FFFFFF".
+    /// Read leniently: anything that is not a usable hex colour leaves the
+    /// button white (see `StoryHeaderView`).
+    var closeButtonColor: String?
 
     private enum CodingKeys: String, CodingKey {
-        case number, content, options, selectedOptions, title, type, background, logo, url, urlButtonName
+        case number, content, options, selectedOptions, title, type, background, logo, url, urlButtonName, closeButtonColor
     }
 
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
 
+        // Nothing on a page is allowed to fail the feed: a missing number
+        // becomes 0, an unknown or missing type reads as a plain LINK page.
         number = (try? c.decodeIfPresent(Int.self, forKey: .number)) ?? 0
-        type = (try? c.decodeIfPresent(StoryType.self, forKey: .type)) ?? .link
+        type = StoryType(lenient: try? c.decodeIfPresent(String.self, forKey: .type))
         content = (try? c.decodeIfPresent(String.self, forKey: .content)) ?? ""
         title = (try? c.decodeIfPresent(String.self, forKey: .title)) ?? ""
         options = (try? c.decodeIfPresent([String].self, forKey: .options)) ?? []
@@ -58,6 +64,20 @@ struct StoryPage: Decodable {
         logo = (try? c.decodeIfPresent(ImageDto.self, forKey: .logo))?.usable
         url = try? c.decodeIfPresent(String.self, forKey: .url)
         urlButtonName = try? c.decodeIfPresent(String.self, forKey: .urlButtonName)
+        closeButtonColor = try? c.decodeIfPresent(String.self, forKey: .closeButtonColor)
+    }
+}
+
+extension StoryPage {
+
+    /// The page's link when it can be opened: a non-empty address; one typed
+    /// without a scheme ("impulsepower.ru/promo") is read as https. Drives the
+    /// CTA button and the swipe-up gesture.
+    var linkURL: URL? {
+        guard let raw = url?.trimmingCharacters(in: .whitespacesAndNewlines), !raw.isEmpty,
+              let url = URL(string: raw) else { return nil }
+        if url.scheme != nil { return url }
+        return URL(string: "https://" + raw)
     }
 }
 
@@ -107,6 +127,7 @@ extension Story {
             if copy.pages[index].options.isEmpty { copy.pages[index].options = match.options }
             if (copy.pages[index].url ?? "").isEmpty { copy.pages[index].url = match.url }
             if (copy.pages[index].urlButtonName ?? "").isEmpty { copy.pages[index].urlButtonName = match.urlButtonName }
+            if (copy.pages[index].closeButtonColor ?? "").isEmpty { copy.pages[index].closeButtonColor = match.closeButtonColor }
         }
 
         return copy
@@ -116,4 +137,11 @@ extension Story {
 enum StoryType: String, Decodable {
     case link = "LINK"
     case questionnaire = "QUESTIONNAIRE"
+
+    /// Case-insensitive; anything the app does not know (or no value at all)
+    /// is shown as a link page rather than dropping the story.
+    init(lenient rawValue: String?) {
+        let normalized = rawValue?.trimmingCharacters(in: .whitespacesAndNewlines).uppercased() ?? ""
+        self = StoryType(rawValue: normalized) ?? .link
+    }
 }
