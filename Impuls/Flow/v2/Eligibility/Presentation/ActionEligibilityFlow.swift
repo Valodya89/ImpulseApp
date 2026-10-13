@@ -25,10 +25,21 @@ enum ActionEligibilityFlow {
     /// action runs anyway: the backend still enforces the rules, and its
     /// refusal is handled by `handleRejection`.
     ///
-    /// - Parameter blocked: called when the rules are shown instead of the
-    ///   action running, e.g. to stop a loading state.
+    /// - Parameters:
+    ///   - resumeAfterRequirements: whether `perform` runs by itself once the
+    ///     rider has met the rules shown in the checklist. False for a
+    ///     place-bound action (a power bank scan): the checklist still closes
+    ///     by itself when the backend is satisfied, but the action is dropped
+    ///     and the rider starts it again where they are (scans again).
+    ///   - requirementsMet: called instead of `perform` when the checklist
+    ///     closes satisfied and `resumeAfterRequirements` is false, e.g. to
+    ///     re-arm the scanner.
+    ///   - blocked: called when the rules are shown instead of the action
+    ///     running, e.g. to stop a loading state.
     static func run(_ check: EligibilityCheck,
                     from presenter: UIViewController? = nil,
+                    resumeAfterRequirements: Bool = true,
+                    requirementsMet: (() -> Void)? = nil,
                     blocked: (() -> Void)? = nil,
                     perform: @escaping () -> Void) {
         repository.check(check) { result in
@@ -39,7 +50,8 @@ enum ActionEligibilityFlow {
             }
 
             blocked?()
-            present(violations: eligibility.violations, check: check, from: presenter, onSatisfied: perform)
+            present(violations: eligibility.violations, check: check, from: presenter,
+                    onSatisfied: resumeAfterRequirements ? perform : requirementsMet)
         }
     }
 
@@ -49,6 +61,8 @@ enum ActionEligibilityFlow {
     ///   - message: the error message the screen received.
     ///   - check: the action's pre-check, if the screen knows it; otherwise it
     ///     is derived from the refused request.
+    ///   - resumeAfterRequirements: see `run`; false drops `retry` once the
+    ///     rules are met and calls `requirementsMet` instead.
     ///   - retry: runs the action again once the rules are met.
     /// - Returns: false when the error is not such a refusal, so the caller
     ///   shows it as usual.
@@ -56,26 +70,33 @@ enum ActionEligibilityFlow {
     static func handleRejection(message: String?,
                                 check: EligibilityCheck? = nil,
                                 from presenter: UIViewController? = nil,
+                                resumeAfterRequirements: Bool = true,
+                                requirementsMet: (() -> Void)? = nil,
                                 retry: (() -> Void)? = nil) -> Bool {
         guard let rejection = ActionRejectionStore.shared.take(matching: message) else { return false }
 
-        handle(rejection, check: check, from: presenter, retry: retry)
+        handle(rejection, check: check, from: presenter,
+               resumeAfterRequirements: resumeAfterRequirements, requirementsMet: requirementsMet, retry: retry)
 
         return true
     }
 
     /// Walks the rider through the rules of a refusal the caller has already
     /// decoded itself (`ActionRejection.parse`), e.g. a transfer answered with
-    /// `content.violations`. `retry` runs the action again once they are met.
+    /// `content.violations`. `retry` runs the action again once they are met,
+    /// unless `resumeAfterRequirements` is false (see `run`).
     static func handle(_ rejection: ActionRejection,
                        check: EligibilityCheck? = nil,
                        from presenter: UIViewController? = nil,
+                       resumeAfterRequirements: Bool = true,
+                       requirementsMet: (() -> Void)? = nil,
                        retry: (() -> Void)? = nil) {
         // Drop the copy `SessionNetwork` recorded so a later, unrelated error
         // with the same message is not mistaken for this refusal.
         ActionRejectionStore.shared.take(matching: rejection.message)
 
-        present(violations: rejection.violations, check: check ?? rejection.check, from: presenter, onSatisfied: retry)
+        present(violations: rejection.violations, check: check ?? rejection.check, from: presenter,
+                onSatisfied: resumeAfterRequirements ? retry : requirementsMet)
     }
 
     private static func present(violations: [EligibilityViolation],
@@ -235,6 +256,9 @@ final class RequirementsHostingController: UIHostingController<RequirementsView>
         }
     }
 
+    /// The rules are met: the checklist closes by itself. `onSatisfied` is the
+    /// resumed action, or whatever the caller asked for instead of it (a
+    /// place-bound action is not re-sent; the rider scans again).
     private func finish() {
         let onSatisfied = onSatisfied
 

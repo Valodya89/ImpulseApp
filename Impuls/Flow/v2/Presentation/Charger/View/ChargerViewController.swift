@@ -98,7 +98,13 @@ class ChargerViewController: MimoBaseViewController {
                 // prompt must not follow it on the reloaded state.
                 self.hasPresentedDebtScreen = true
             }
-            self.showErrorPopUp(message: errorMessage, service: .charger, retry: { [weak self] in
+            // A debt paid re-sends the scan. Rules met (balance, card) do
+            // not: the rider may have left the cabinet meanwhile, so the
+            // checklist closes and the scanner comes back for a new scan.
+            self.showErrorPopUp(message: errorMessage, service: .charger,
+                                resumeAfterRequirements: false,
+                                requirementsMet: { [weak self] in self?.requirementsMetForScan() },
+                                retry: { [weak self] in
                 self?.viewModel?.loadBalance()
                 self?.resumePendingScan()
             })
@@ -304,6 +310,17 @@ extension ChargerViewController {
         pendingScanCode = nil
         startScan(stationId: code, checkKnownDebt: false)
     }
+    
+    /// The requirements checklist closed because the rules a scan was refused
+    /// for are now met. The scan is NOT re-sent (no power bank pops out while
+    /// the rider may be away from the cabinet): the held code is dropped, the
+    /// balance reloaded and the scanner opened again so the rider scans the
+    /// cabinet once more.
+    private func requirementsMetForScan() {
+        pendingScanCode = nil
+        viewModel?.loadBalance()
+        openScanner()
+    }
 }
 
 //MARK: - UI
@@ -454,7 +471,13 @@ extension ChargerViewController: MimoScanQrViewControllerDelegate {
         
         let check = EligibilityCheck.powerbank(stationId: value, action: .startRent,
                                                latitude: location.latitude, longitude: location.longitude)
-        ActionEligibilityFlow.run(check, from: self) { [weak self] in
+        // The scanner has already closed itself when the code arrives. Rules
+        // met from the checklist do not send the scan by themselves (the
+        // rider may have walked away from the cabinet): the scanner is shown
+        // again instead and the rider scans once more.
+        ActionEligibilityFlow.run(check, from: self,
+                                  resumeAfterRequirements: false,
+                                  requirementsMet: { [weak self] in self?.requirementsMetForScan() }) { [weak self] in
             MILoader.show()
             self?.viewModel?.scan(stationId: value, currentLocation: location)
         }

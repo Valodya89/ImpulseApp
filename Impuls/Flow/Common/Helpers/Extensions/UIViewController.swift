@@ -98,10 +98,10 @@ extension UIAlertController {
 
     static func showLocationDeniedAlert() {
         MimoAlertController.present(
-            .important("MOBILE_global_warning".localized(),
-                       message: "SHARING_location_to_show_bikes_near_to_you".localized(),
+            .important("MOBILE_global_location".localized(fallback: "Location"),
+                       message: "MOBILE__global_location_access".localized(fallback: "In order to find the closest powerbanks for you and save your time, we need access to your location."),
                        actions: [
-                        MimoAlertAction(title: "MOBILE_profile_settings".localized(), tone: .primary) {
+                        MimoAlertAction(title: "MOBILE_profile_settings".localized(fallback: "Settings"), tone: .primary) {
                             AppDelegate.redirectSettings()
                         },
                         .cancel()
@@ -150,9 +150,19 @@ extension UIViewController {
     /// product (`ChargerErrorViewController`); a balance below the minimum also
     /// offers the two ways to top up and a Continue that opens the wallet in
     /// that product's context.
-    /// - Parameter retry: runs the refused action again once what held it back
-    ///   is settled (a debt paid, rules met).
-    func showErrorPopUp(message: String, service: MimoType, retry: (() -> Void)? = nil) {
+    /// - Parameters:
+    ///   - resumeAfterRequirements: whether `retry` runs by itself once the
+    ///     rules of a refusal are met (`ActionEligibilityFlow`). False for a
+    ///     place-bound action such as a power bank scan: the checklist closes
+    ///     by itself but the action is not re-sent; `requirementsMet` runs
+    ///     instead (re-arm the scanner). A debt always resumes `retry`.
+    ///   - retry: runs the refused action again once what held it back
+    ///     is settled (a debt paid, rules met).
+    func showErrorPopUp(message: String,
+                        service: MimoType,
+                        resumeAfterRequirements: Bool = true,
+                        requirementsMet: (() -> Void)? = nil,
+                        retry: (() -> Void)? = nil) {
         // A start held back by a debt (SHARING_user_has_debt / _device_ / _card_,
         // powerbank docs/error-codes.md 'Rent rule violations') opens the debt
         // screen: pay by card or wallet, or settle another account's debt by a
@@ -167,9 +177,14 @@ extension UIViewController {
 
         // An action refused for unmet rules is walked through step by step
         // instead of being shown as an error.
-        if ActionEligibilityFlow.handleRejection(message: message, from: self, retry: retry) { return }
+        if ActionEligibilityFlow.handleRejection(message: message, from: self,
+                                                 resumeAfterRequirements: resumeAfterRequirements,
+                                                 requirementsMet: requirementsMet,
+                                                 retry: retry) { return }
 
-        let isReplenishable: Bool = (message == "SHARING_no_minimal_requirements") || (message == "MOBILE_map_minimum_requirments") || (message == "CHARGER_no_minimal_requirements") || (message == "WALLET_min_balance_required") || (message == "WALLET_min_balance_or_card_required") || (message == "WALLET_card_required")
+        // A refusal without rule violations: the plain card. The wallet codes
+        // also offer the ways to top up.
+        let isReplenishable: Bool = (message == "SHARING_no_minimal_requirements") || (message == "MOBILE_map_minimum_requirments") || (message == "WALLET_min_balance_required") || (message == "WALLET_min_balance_or_card_required") || (message == "WALLET_card_required")
 
         let displayMessage = UIViewController.userFacingErrorMessage(from: message)
         let minimumAmount = ChargerErrorViewController.defaultMinimumAmount
@@ -191,7 +206,10 @@ extension UIViewController {
     /// (Impuls.NetworkSessionErrors error 0.)") are replaced with a friendly
     /// localized message so technical text is never shown to the user.
     static func userFacingErrorMessage(from message: String) -> String {
-        let localized = message.localized()
+        // The one resolver: in-memory texts, then the dictionaries saved on disk
+        // (this language, then English), then the generic error for an unknown
+        // machine code; human text is shown unchanged.
+        let localized = message.localizedMessage()
 
         let technicalMarkers = [
             "NetworkSessionErrors",
