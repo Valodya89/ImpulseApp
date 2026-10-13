@@ -587,8 +587,16 @@ enum AuthAPI: APIProtocol {
             return ["Content-Type": "application/json"]
         case .refreshToken:
             // accounts docs/mobile-api.md "POST /account/refresh-token": public,
-            // JSON body RefreshTokenDto { refreshToken, deviceId }.
-            return ["Content-Type": "application/json"]
+            // JSON body RefreshTokenDto { refreshToken, deviceId }. The JSON
+            // content type is mandatory: without it URLSession labels the body
+            // application/x-www-form-urlencoded, Tomcat reads the pretty-printed
+            // JSON as one form parameter name and Spring's StrictHttpFirewall
+            // answers a plain 500 (415 without newlines) before the controller
+            // runs - whatever the token. `locale` as for `.auth`.
+            return [
+                "Content-Type": "application/json",
+                "locale": StorageManager().fetch(key: .language, type: String.self) ?? String(Locale.preferredLanguages[0].prefix(2)),
+            ]
         case .updateUser, .updatePersonalInfo:
             return ["Content-Type": "application/json"]
         case .getTranslations:

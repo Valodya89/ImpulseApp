@@ -69,14 +69,34 @@ enum NetworkSessionErrors: Error {
 /// requests and their retries run outside the lock.
 ///
 /// Backend contract (accounts, commit eb41a3e9):
-/// - docs/mobile-api.md "POST /account/refresh-token": public, body
-///   `RefreshTokenDto { refreshToken, deviceId }`, answer
-///   `Response<{ user: UserDto, token: JwtToken }>`.
+/// - docs/mobile-api.md "POST /account/refresh-token": public, JSON body
+///   `RefreshTokenDto { refreshToken, deviceId }` (Content-Type
+///   application/json is mandatory), always HTTP 200 with the envelope:
+///   `statusCode` 200 with `{ user: UserDto, token: JwtToken }` renews,
+///   `statusCode` 401 means the refresh token was refused (undecodable,
+///   expired, wrong signature). The call rebinds `User.activeDevice` to the
+///   `deviceId` sent, so an empty one must never go out.
 /// - docs/mobile-api.md "POST /account/start": public, rate-limited 5/min per
 ///   IP (raw `429` text when exceeded), body `SignOnDto { userId, deviceId }`,
 ///   `412 DEVICE_NOT_VERIFIED` envelope when the device must be re-verified.
 /// - docs/authentication.md "Token issuance and shape": `JwtToken`
-///   `{ access_token, refresh_token, expires_in, token_type, scope }`.
+///   `{ access_token, refresh_token, expires_in, token_type, scope }`; the
+///   refresh token is an HS512 JWT whose payload carries `exp`.
+///
+/// Rules that keep a dead session from looping through 401 -> refresh -> 5xx:
+/// - a refresh token already expired by its own `exp` claim is not sent; a
+///   stored value that is not a JWT is dropped by
+///   `KeychainManager.getRefreshToken` and counts as "nothing to refresh with";
+///   both go to the /account/start fallback, whose refusal ends the session;
+/// - a plain 5xx or 415 from the refresh cannot come from a bad token (every
+///   token decision is a 200 envelope): the request itself was malformed, so
+///   it is reported as a client bug; the first one is taken as transient, a
+///   second for the same refresh token is a refusal;
+/// - after any attempt that did not renew, every 401 of the following 15 s is
+///   answered without a new call: the burst of 401s a dead session produces
+///   must not become a burst of calls;
+/// - nothing is sent while the phone is still locked after a reboot (the
+///   keychain is closed) or without a device id: the session is kept.
 final class TokenRenewer {
 
     static let shared = TokenRenewer()
@@ -88,8 +108,10 @@ final class TokenRenewer {
         /// /account/start refused, or nothing to renew with). The session is
         /// invalid: sign out when the user is signed in.
         case rejected
-        /// Transport error, HTTP error or unparsable body (raw 429 text, 5xx).
-        /// Keep the session and fail the request with its original 401.
+        /// Transport error, HTTP error or unparsable body (raw 429 text, 5xx),
+        /// a closed keychain, no device id, or an attempt too soon after a
+        /// failed one. Keep the session and fail the request with its
+        /// original 401.
         case unavailable
     }
 
@@ -98,16 +120,43 @@ final class TokenRenewer {
     private var isRenewing = false
     private let keychainManager = KeychainManager()
 
+    /// Refresh tokens (hashed) the server answered a plain 5xx / 415 to, with
+    /// the count of consecutive such answers.
+    private var serverFailures: [Int: Int] = [:]
+    /// When the last attempt ended without a renewal; attempts are spaced out.
+    private var lastFailureAt: Date?
+    private static let retryInterval: TimeInterval = 15
+    private static let serverFailuresBeforeGivingUp = 2
+
     private init() {}
 
     /// - Parameter failedToken: the bearer the failed request carried.
     /// - Parameter completion: called on the main queue exactly once.
     func renew(failedWith failedToken: String, completion: @escaping (Outcome) -> Void) {
+        // Read before taking the lock: off the main thread this hops to main.
+        let isKeychainOpen = KeychainHelper.isProtectedDataAvailable
+
         lock.lock()
+        let stored = keychainManager.getAccessToken()
         // Another request already renewed the token this one failed with.
-        if let stored = keychainManager.getAccessToken(), stored != failedToken {
+        if let stored, stored != failedToken {
             lock.unlock()
             DispatchQueue.main.async { completion(.renewed) }
+            return
+        }
+        // The session is already gone (signed out while this request was in
+        // flight): nothing to renew, and /account/start must not sign the
+        // rider back in with the phone number that outlives a logout.
+        guard stored != nil else {
+            lock.unlock()
+            DispatchQueue.main.async { completion(.rejected) }
+            return
+        }
+        // The phone has not been unlocked since it booted: the keychain is
+        // closed, nothing can be read, renewed or stored. Keep the session.
+        guard isKeychainOpen else {
+            lock.unlock()
+            DispatchQueue.main.async { completion(.unavailable) }
             return
         }
         waiters.append(completion)
@@ -116,49 +165,73 @@ final class TokenRenewer {
             return
         }
         isRenewing = true
+
+        // A renewal just failed: every request of the burst that follows a
+        // dead session gets the same answer without another call (and
+        // without moving the 15 s window).
+        if let last = lastFailureAt, Date().timeIntervalSince(last) < Self.retryInterval {
+            lock.unlock()
+            finish(.unavailable, attempted: false)
+            return
+        }
         lock.unlock()
 
         refreshToken { [weak self] outcome in
             guard let self else { return }
             switch outcome {
             case .renewed, .unavailable:
-                self.finish(outcome)
+                self.finish(outcome, attempted: true)
             case .rejected:
                 // Refresh refused or not possible: legacy sign-on fallback.
-                self.signOn { self.finish($0) }
+                self.signOn { self.finish($0, attempted: true) }
             }
         }
     }
 
     /// Signs the user out once (idempotent across waiters) and routes to the
     /// login / device re-verification screen.
-    func signOutIfSignedIn() {
+    /// - Returns: whether there was a session to end.
+    @discardableResult
+    func signOutIfSignedIn() -> Bool {
         lock.lock()
         let isSignedIn = keychainManager.getAccessToken() != nil
         if isSignedIn {
             keychainManager.removeData()
         }
+        serverFailures.removeAll()
         lock.unlock()
-        guard isSignedIn else { return }
+        guard isSignedIn else { return false }
         DispatchQueue.main.async {
             UserManager.share.userResponse = nil
             BaseRouter.shared.showLoginView()
         }
+        return true
     }
 
     // MARK: - Private
 
-    private func finish(_ outcome: Outcome) {
+    /// - Parameter attempted: whether a renewal was actually tried (as
+    ///   opposed to answered from the 15 s back-off); only an attempt that
+    ///   did not renew starts the back-off.
+    private func finish(_ outcome: Outcome, attempted: Bool) {
         lock.lock()
         let pending = waiters
         waiters.removeAll()
         isRenewing = false
+        if case .renewed = outcome {
+            lastFailureAt = nil
+            serverFailures.removeAll()
+        } else if attempted {
+            lastFailureAt = Date()
+        }
         lock.unlock()
         DispatchQueue.main.async {
             pending.forEach { $0(outcome) }
         }
     }
 
+    /// The stored device identifier; empty while the keychain cannot be read
+    /// (`DeviceCheckManager` never generates a second id in that state).
     private var deviceID: String {
         let current = DeviceCheckManager.shared.deviceUnicToken
         return current.isEmpty ? DeviceCheckManager.shared.checkAndSaveValueInKeychain() : current
@@ -166,21 +239,57 @@ final class TokenRenewer {
 
     /// POST /account/refresh-token with the stored refresh token.
     private func refreshToken(_ completion: @escaping (Outcome) -> Void) {
+        // Nothing to refresh with (never stored, or a non-JWT value that
+        // `getRefreshToken` just discarded): let /account/start decide.
         guard let refreshToken = keychainManager.getRefreshToken() else {
             completion(.rejected)
             return
         }
-        send(AuthAPI.refreshToken(refreshToken: refreshToken, deviceID: deviceID)) { outcome in
+
+        // Expired by its own clock: the server would only answer the 401
+        // envelope. Treated as refused without a call.
+        if let expiry = KeychainManager.expiry(ofJWT: refreshToken), expiry < Date() {
+            completion(.rejected)
+            return
+        }
+
+        // The backend rebinds the account's active device to the id sent
+        // here: an empty one (keychain not readable yet) must never go out.
+        let deviceID = self.deviceID
+        guard !deviceID.isEmpty else {
+            completion(.unavailable)
+            return
+        }
+
+        send(AuthAPI.refreshToken(refreshToken: refreshToken, deviceID: deviceID)) { [weak self] outcome in
+            guard let self else { return }
             switch outcome {
             case .renewed:
                 completion(.renewed)
-            case .unavailable(isTransportError: true):
-                // Offline: /account/start cannot do better; keep the session.
-                completion(.unavailable)
-            case .rejected, .unavailable:
-                // Refused, or answered without a usable envelope (bare 401 for
-                // an expired refresh token, 5xx): let /account/start decide.
+            case .rejected:
+                // The 401 envelope: the server refused the refresh token.
+                // Let /account/start decide.
                 completion(.rejected)
+            case .unavailable(let status):
+                guard let status, Self.isMalformedRequestAnswer(status) else {
+                    // Offline, or answered without a usable envelope (plain-text
+                    // 429 of the rate limiter): keep the session.
+                    completion(.unavailable)
+                    return
+                }
+                // Not an outage and not a token the server refused (that is
+                // the 401 envelope): the request itself was malformed. Keep
+                // the rider signed in once, in case it was a hiccup; twice
+                // for the same token cannot succeed.
+                Self.reportMalformedRequest(status: status)
+                self.lock.lock()
+                let key = refreshToken.hashValue
+                let failures = (self.serverFailures[key] ?? 0) + 1
+                self.serverFailures[key] = failures
+                let givenUp = failures >= Self.serverFailuresBeforeGivingUp
+                if givenUp { self.serverFailures[key] = nil }
+                self.lock.unlock()
+                completion(givenUp ? .rejected : .unavailable)
             }
         }
     }
@@ -194,10 +303,34 @@ final class TokenRenewer {
         send(AuthAPI.auth(userId: phone, deviceID: deviceID)) { completion($0.flattened) }
     }
 
+    /// Answers from the refresh endpoint that only a malformed request
+    /// produces: the controller answers every token decision inside a 200
+    /// envelope, so a plain 5xx (Spring's firewall rejecting a form-parsed
+    /// JSON body) or 415 (a body without a JSON content type) means the app
+    /// built the request wrongly, not that the token is bad or the service
+    /// is down.
+    private static func isMalformedRequestAnswer(_ status: Int) -> Bool {
+        status >= 500 || status == 415
+    }
+
+    /// A client bug worth a report of its own: with `Content-Type:
+    /// application/json` on the request this can no longer come from a bad
+    /// token. The 5xx itself is already reported by `NetworkFailureReporter`
+    /// as an unhandled error; the abnormal-behaviour report names the cause
+    /// so the two are not confused. No body and no token is attached.
+    private static func reportMalformedRequest(status: Int) {
+        ErrorReporter.shared.reportAbnormalBehavior(
+            "POST /account/refresh-token answered \(status): the refresh request was malformed (client bug)",
+            action: "tokenRefresh",
+            extra: ["status": "\(status)"]
+        )
+    }
+
     private enum RawOutcome {
         case renewed
         case rejected
-        case unavailable(isTransportError: Bool)
+        /// `status` is nil for a transport error or a non-HTTP answer.
+        case unavailable(status: Int?)
 
         var flattened: Outcome {
             switch self {
@@ -208,11 +341,24 @@ final class TokenRenewer {
         }
     }
 
+    /// The envelope of both renewal endpoints, read leniently. The refusal of
+    /// a refresh comes as `{"statusCode":401,"status":"UNAUTHORIZED",
+    /// "message":null,"content":null}`: `BaseResponseModel` requires `message`
+    /// to be a string, so decoding it there fails and the refusal would be
+    /// taken as a transient failure instead of a refusal.
+    private struct RenewalEnvelope: Decodable {
+        let statusCode: Int
+        let content: SignInReponse?
+    }
+
     /// Runs a renewal call outside the 401 handling of `SessionNetwork` and
-    /// without the (expired) bearer: both endpoints are public.
+    /// without the (expired) bearer: both endpoints are public. Only that
+    /// header goes: `Content-Type: application/json` from `AuthAPI.header`
+    /// must stay, or Spring reads the JSON body as a form parameter and
+    /// answers a plain 500 / 415 before the controller runs.
     private func send(_ api: AuthAPI, _ completion: @escaping (RawOutcome) -> Void) {
         guard var request = URLBuilder(from: api).getRequst() else {
-            completion(.unavailable(isTransportError: false))
+            completion(.unavailable(status: nil))
             return
         }
         request.setValue(nil, forHTTPHeaderField: "Authorization")
@@ -224,15 +370,21 @@ final class TokenRenewer {
             #if DEBUG
             (response as? HTTPURLResponse)?.log(data: data, error: error)
             #endif
-            guard error == nil, let data, response is HTTPURLResponse else {
-                completion(.unavailable(isTransportError: error != nil))
+            guard error == nil, let data, let http = response as? HTTPURLResponse else {
+                completion(.unavailable(status: nil))
                 return
             }
-            // Business answers (200, 406, 412, 429 RESEND_CODE_INTERVAL) are
-            // JSON envelopes; a bare 401/5xx or the IP rate limiter's plain
-            // text 429 is not parsable and counts as transient.
-            guard let envelope = MimoConverter<BaseResponseModel<SignInReponse>>.parseJson(data: data as Any) else {
-                completion(.unavailable(isTransportError: false))
+            // A 5xx never carries a decision; its body is Spring's plain
+            // error object, not an envelope.
+            guard http.statusCode < 500 else {
+                completion(.unavailable(status: http.statusCode))
+                return
+            }
+            // Business answers (200, 401 refusal, 406, 412, 429
+            // RESEND_CODE_INTERVAL) are JSON envelopes; a 415 or the IP rate
+            // limiter's plain text 429 is not parsable and counts as transient.
+            guard let envelope = try? JSONDecoder().decode(RenewalEnvelope.self, from: data) else {
+                completion(.unavailable(status: http.statusCode))
                 return
             }
             guard envelope.statusCode == 200,
@@ -401,7 +553,11 @@ final class SessionNetwork: SessionProtocol {
             completion(.failure(.invalidStatusCode(code: 401)))
             return
         }
-        TokenRenewer.shared.signOutIfSignedIn()
+        // No session to end (already signed out): the caller gets its 401
+        // instead of a completion that never comes.
+        if !TokenRenewer.shared.signOutIfSignedIn() {
+            completion(.failure(.invalidStatusCode(code: 401)))
+        }
     }
 }
 
