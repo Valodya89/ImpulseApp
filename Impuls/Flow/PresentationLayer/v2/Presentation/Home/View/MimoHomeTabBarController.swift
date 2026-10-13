@@ -25,8 +25,11 @@ class MimoHomeTabBarController: UITabBarController {
         tabBar.standardAppearance = appearance
         tabBar.scrollEdgeAppearance = appearance
         
-        guard let homeViewController = storyboard?.instantiateViewController(withIdentifier: "MimoHomeNav") as? UINavigationController,
-              let profileViewController: AccountViewController = UIStoryboard(name: Constant.Storyboards.account, bundle: nil).instantiate() else { return }
+        // The profile tab is `ProfileContainerView`. The legacy `AccountViewController`
+        // used to be instantiated here as well and, although never shown, loading
+        // its view fired its requests at every start, among them GET /api/account
+        // on the bike-sharing host, which does not exist for Impulse.
+        guard let homeViewController = storyboard?.instantiateViewController(withIdentifier: "MimoHomeNav") as? UINavigationController else { return }
         (homeViewController.viewControllers.first as? MimoHomeViewController)?.viewModel = viewModel
         
         let profileVC = ProfileContainerView()
@@ -36,8 +39,6 @@ class MimoHomeTabBarController: UITabBarController {
         profileNavigationController.tabBarItem.image = UIImage(named: "tab_profile")
         profileNavigationController.tabBarItem.selectedImage = UIImage(named: "tab_profile_selected")
         profileNavigationController.tabBarItem.title = "MOBILE_global_profile".localized()
-        
-        profileViewController.view.backgroundColor = .appSecondaryBackground
         
         viewControllers = [homeViewController, profileNavigationController]
         

@@ -33,8 +33,14 @@ final class AccountRepository {
         }
     }
 
+    /// The bike-sharing account (GET /api/account on the sharing service).
+    /// Impulse offers no bikes and that host does not exist, so the request is
+    /// never sent here; callers that need it are the legacy bike/scooter flows.
     func getUserAccount(completion: @escaping (Result<UserResponse, NetworkError>) -> Void) {
-        
+        guard MimoProductType.bike.isOfferedByThisApp else {
+            completion(.failure(.responseError("Bike sharing is not offered by this app")))
+            return
+        }
         let builder = URLBuilder(from: AuthAPI.getAccount)
         network.request(with: builder) { (result) in
             switch result {

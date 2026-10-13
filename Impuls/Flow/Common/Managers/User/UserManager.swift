@@ -52,10 +52,14 @@ final class UserManager {
         }
     }
     
+    /// The bike-sharing account (GET /api/account on the sharing service):
+    /// package, tariff, free minutes. Impulse offers no bikes and that host does
+    /// not exist, so the request is never sent here.
     func getAccount(completion: @escaping (Result<UserResponse, Error>) -> ()) {
-//        if let content = userAccooountResponse {
-//            return completion(.success(content))
-//        }
+        guard MimoProductType.bike.isOfferedByThisApp else {
+            completion(.failure(NetworkError.responseError("Bike sharing is not offered by this app")))
+            return
+        }
         sessionNetwork.request(with: URLBuilder(from: AuthAPI.getAccount)) { (result) in
             switch result {
             case .success(let data):
