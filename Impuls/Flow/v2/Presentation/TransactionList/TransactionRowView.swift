@@ -95,7 +95,7 @@ extension TransactionDTO {
     var sourceTitle: String {
         switch type {
         case .mimoPay:
-            return "MOBILE_transactions_kind_ride".localized(fallback: "Ride")
+            return "MOBILE_transactions_kind_ride".localized(fallback: "Rental")
         case .mimoWithdrawalLocal:
             return "MOBILE_transactions_kind_transfer_sent".localized(fallback: "Transfer sent")
         case .mimoDepositLocal:

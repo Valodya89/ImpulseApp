@@ -54,7 +54,7 @@ struct WalletBalanceHeroView: View {
             .padding(.top, 6)
 
             if isNegative {
-                Text("MOBILE_wallet_debt_hero_hint".localized(fallback: "Top up to clear the debt and keep riding."))
+                Text("MOBILE_wallet_debt_hero_hint".localized(fallback: "Top up to clear the debt and keep renting."))
                     .font(.robotoRegular13)
                     .foregroundColor(.appSecondaryLabel)
                     .fixedSize(horizontal: false, vertical: true)

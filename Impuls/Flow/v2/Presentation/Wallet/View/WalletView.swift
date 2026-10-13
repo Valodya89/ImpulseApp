@@ -476,6 +476,6 @@ extension WalletView {
         .padding(.top, 6)
         .padding(.horizontal)
         .roundedBorderMedium()
-        .sectionTopContent(icon: "gift", label: "Your Rewards".uppercased(), labelValue: "1 Mimo point = 1$")
+        .sectionTopContent(icon: "gift", label: "Your Rewards".uppercased(), labelValue: "1 Impulse point = 1$")
     }
 }

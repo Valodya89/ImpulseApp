@@ -20,8 +20,8 @@
     "module": "mobile"
   },
   "MOBILE_transactions_empty_description": {
-    "en": "Your transactions will show here once you’ve made your first top-up or trip",
-    "ru": "Ваши операции появятся здесь после первого пополнения или поездки",
+    "en": "Your transactions will show here once you’ve made your first top-up or rental",
+    "ru": "Ваши операции появятся здесь после первого пополнения или аренды",
     "module": "mobile"
   },
   "MOBILE_transactions_empty_title": {
@@ -60,8 +60,8 @@
     "module": "mobile"
   },
   "MOBILE_transactions_kind_ride": {
-    "en": "Ride",
-    "ru": "Поездка",
+    "en": "Rental",
+    "ru": "Аренда",
     "module": "mobile"
   },
   "MOBILE_transactions_kind_terminal": {
@@ -105,8 +105,8 @@
     "module": "mobile"
   },
   "MOBILE_wallet_debt_hero_hint": {
-    "en": "Top up to clear the debt and keep riding.",
-    "ru": "Пополните баланс, чтобы погасить долг и продолжить поездки.",
+    "en": "Top up to clear the debt and keep renting.",
+    "ru": "Пополните баланс, чтобы погасить долг и продолжить аренду.",
     "module": "mobile"
   },
   "MOBILE_wallet_have_promo_code": {
@@ -550,8 +550,8 @@
     "module": "mobile"
   },
   "MOBILE_subscriptions_mimo_title": {
-    "en": "Impulse subscription",
-    "ru": "Подписка Impulse",
+    "en": "Impulse Subscription Plans",
+    "ru": "Планы подписки Импульс",
     "module": "mobile"
   },
   "MOBILE_subscriptions_points_title": {
@@ -560,8 +560,8 @@
     "module": "mobile"
   },
   "MOBILE_subscriptions_point_1": {
-    "en": "Ride without worrying about the per-minute price",
-    "ru": "Катайтесь, не думая о поминутной цене",
+    "en": "Start for free - 0 AMD. Pay per minute.",
+    "ru": "0 драм за старт. Платите только за минуты.",
     "module": "mobile"
   },
   "MOBILE_subscriptions_point_2": {
@@ -692,6 +692,146 @@
   "MOBILE_support_chat_whatsapp": {
     "en": "Chat on WhatsApp",
     "ru": "Написать в WhatsApp",
+    "module": "mobile"
+  },
+  "MOBILE__global_camera": {
+    "en": "Camera",
+    "ru": "Камера",
+    "module": "mobile"
+  },
+  "MOBILE_global_location": {
+    "en": "Location",
+    "ru": "Локация",
+    "module": "mobile"
+  },
+  "MOBILE__global_camera_access": {
+    "en": "To scan a station's QR code, we need access to your phone's camera.",
+    "ru": "Чтобы отсканировать QR-код станции, нам нужен доступ к камере телефона.",
+    "module": "mobile"
+  },
+  "MOBILE__global_location_access": {
+    "en": "In order to find the closest powerbanks for you and save your time, we need access to your location.",
+    "ru": "Чтобы найти ближайшие пауэрбанки для вас и сэкономить ваше время, нам нужен доступ к вашему местоположению.",
+    "module": "mobile"
+  },
+  "MOBILE_profile_settings": {
+    "en": "Settings",
+    "ru": "Настройки",
+    "module": "mobile"
+  },
+  "MOBILE_global_cancel": {
+    "en": "Cancel",
+    "ru": "Отмена",
+    "module": "mobile"
+  },
+  "MOBILE_have_active_trip": {
+    "en": "You have an active power bank rental. Please end it and then try to transfer money.",
+    "ru": "У вас активная аренда пауэрбанка. Завершите её, а затем попробуйте перевести деньги.",
+    "module": "mobile"
+  },
+  "MOBILE_you_have_active_trip": {
+    "en": "You have an active power bank rental. Please end it, then try to log out.",
+    "ru": "У вас активная аренда пауэрбанка. Завершите её, а затем попробуйте выйти.",
+    "module": "mobile"
+  },
+  "MOBILE_agree_Mimo_Privacy_Policy": {
+    "en": "I agree to Impulse Privacy Policy",
+    "ru": "Я согласен с Политикой конфиденциальности Импульс",
+    "module": "mobile"
+  },
+  "MOBILE_charger_thankYou_title": {
+    "en": "Thanks for using Impulse charger!",
+    "ru": "Спасибо за использование Импульс!",
+    "module": "mobile"
+  },
+  "MOBILE_mimo_support": {
+    "en": "Have questions? Contact Impulse Support",
+    "ru": "Есть вопросы? Свяжитесь со службой поддержки Импульс",
+    "module": "mobile"
+  },
+  "MOBILE_profile_agreement": {
+    "en": "Impulse agreement",
+    "ru": "Импульс соглашение",
+    "module": "mobile"
+  },
+  "MOBILE_rates_title": {
+    "en": "Impulse Rates",
+    "ru": "Импульс Тарифы",
+    "module": "mobile"
+  },
+  "MOBILE_transfer_invite_or_not": {
+    "en": "This contact does not have Impulse yet. Would you like to invite?",
+    "ru": "У этого контакта еще нет Импульс. Хотите пригласить?",
+    "module": "mobile"
+  },
+  "MOBILE_transfer_not_enough_money": {
+    "en": "Insufficient funds in Impulse Wallet",
+    "ru": "Недостаточно средств в кошельке Импульс",
+    "module": "mobile"
+  },
+  "MOBILE_welcome_join_us": {
+    "en": "Join Impulse",
+    "ru": "Присоединяйтесь к Импульс",
+    "module": "mobile"
+  },
+  "MOBILE_story_new": {
+    "en": "New",
+    "ru": "Новая",
+    "module": "mobile"
+  },
+  "MOBILE_story_like": {
+    "en": "Like",
+    "ru": "Нравится",
+    "module": "mobile"
+  },
+  "MOBILE_story_liked": {
+    "en": "Liked",
+    "ru": "Понравилось",
+    "module": "mobile"
+  },
+  "MOBILE_story_mute": {
+    "en": "Mute",
+    "ru": "Без звука",
+    "module": "mobile"
+  },
+  "MOBILE_story_unmute": {
+    "en": "Unmute",
+    "ru": "Включить звук",
+    "module": "mobile"
+  },
+  "MOBILE_story_open_link": {
+    "en": "Open link",
+    "ru": "Открыть ссылку",
+    "module": "mobile"
+  },
+  "MOBILE_story_pause": {
+    "en": "Pause",
+    "ru": "Пауза",
+    "module": "mobile"
+  },
+  "MOBILE_story_previous": {
+    "en": "Previous",
+    "ru": "Назад",
+    "module": "mobile"
+  },
+  "MOBILE_story_resume": {
+    "en": "Resume",
+    "ru": "Продолжить",
+    "module": "mobile"
+  },
+  "MOBILE_story_share": {
+    "en": "Share",
+    "ru": "Поделиться",
+    "module": "mobile"
+  },
+  "MOBILE_global_done": {
+    "en": "Close",
+    "ru": "Закрыть",
+    "module": "mobile"
+  },
+  "MOBILE_global_next": {
+    "en": "Next",
+    "ru": "Следующий",
     "module": "mobile"
   }
 }

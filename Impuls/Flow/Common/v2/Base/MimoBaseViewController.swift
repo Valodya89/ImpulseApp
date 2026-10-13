@@ -36,16 +36,20 @@ class MimoBaseViewController: UIViewController {
 }
 
 extension MimoBaseViewController {
+    /// The camera was refused: Impulse can only read a station's QR code with
+    /// it, so the only way forward is iOS Settings. Every text comes from the
+    /// locale service with an English fallback; a bare key never reaches the
+    /// screen.
     func showCameraAccessAlert() {
-        let alertController = UIAlertController(title: "Error",
-                                      message: "Camera access is denied",
-                                      preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .default))
-        alertController.addAction(UIAlertAction(title: "Settings", style: .cancel) { _ in
+        let alertController = UIAlertController(
+            title: "MOBILE__global_camera".localized(fallback: "Camera"),
+            message: "MOBILE__global_camera_access".localized(fallback: "To scan a station's QR code, we need access to your phone's camera."),
+            preferredStyle: .alert
+        )
+        alertController.addAction(UIAlertAction(title: "MOBILE_global_cancel".localized(fallback: "Cancel"), style: .cancel))
+        alertController.addAction(UIAlertAction(title: "MOBILE_profile_settings".localized(fallback: "Settings"), style: .default) { _ in
             if let url = URL(string: UIApplication.openSettingsURLString) {
-                UIApplication.shared.open(url, options: [:], completionHandler: { _ in
-                    // Handle
-                })
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         })
 
@@ -53,17 +57,15 @@ extension MimoBaseViewController {
     }
     
     func openAppOrSystemSettingsAlert(title: String, message: String) {
-        let alertController = UIAlertController (title: title, message: message, preferredStyle: .alert)
-        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let settingsAction = UIAlertAction(title: "MOBILE_profile_settings".localized(fallback: "Settings"), style: .default) { _ in
             guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
             if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                    print("Settings opened: \(success)") // Prints true
-                })
+                UIApplication.shared.open(settingsUrl, completionHandler: nil)
             }
         }
         alertController.addAction(settingsAction)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "MOBILE_global_cancel".localized(fallback: "Cancel"), style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
     }

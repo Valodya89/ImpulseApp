@@ -62,7 +62,7 @@ extension RatesView {
     func navigationView() -> some View {
         ZStack(alignment: .leading) {
             HStack(spacing: 0) {
-                Text("Mimo Rates")
+                Text("MOBILE_rates_title".localized(fallback: "Impulse Rates"))
                     .font(.robotoBold15)
                     .foregroundColor(.appLabel)
             }

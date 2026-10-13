@@ -235,7 +235,7 @@ struct TransactionListView: View {
                 .font(.robotoSemibold16)
                 .foregroundColor(.appLabel)
 
-            Text("MOBILE_transactions_empty_description".localized(fallback: "Your transactions will show here once you’ve made your first top-up or trip"))
+            Text("MOBILE_transactions_empty_description".localized(fallback: "Your transactions will show here once you’ve made your first top-up or rental"))
                 .font(.robotoRegular15)
                 .foregroundColor(.gray5)
                 .multilineTextAlignment(.center)
