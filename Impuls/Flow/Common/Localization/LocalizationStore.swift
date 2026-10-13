@@ -16,9 +16,17 @@ final class LocalizationStore {
     
     private let fileManager = FileManager.default
     private let queue = DispatchQueue(label: "ru.impulsepower.localization-store", qos: .utility)
-    /// The in-flight background refresh. Kept here, not in the splash worker,
-    /// which is released as soon as the splash screen is gone.
-    private var refresh: AnyCancellable?
+    /// The in-flight background refreshes (the current language, English).
+    /// Kept here, not in the splash worker, which is released as soon as the
+    /// splash screen is gone.
+    private var refreshes: [UUID: AnyCancellable] = [:]
+    private let lock = NSLock()
+    /// The saved dictionaries read so far, by language code; `nil` records
+    /// that nothing is saved for the code, so a key lookup that misses never
+    /// hits the disk twice. Guarded by `lock`.
+    private var loaded: [String: [String: String]?] = [:]
+    /// The codes with a file on disk, listed once. Guarded by `lock`.
+    private var codesOnDisk: [String]?
     
     private init() { }
     
@@ -40,10 +48,96 @@ final class LocalizationStore {
         return dictionary
     }
     
+    /// Every language code with a saved dictionary ("ru", "en", "en-US", ...).
+    /// The directory is listed once; a `save` adds its code.
+    func cachedLanguageCodes() -> [String] {
+        lock.lock()
+        if let codes = codesOnDisk {
+            lock.unlock()
+            return codes
+        }
+        lock.unlock()
+        var codes: [String] = []
+        if let directory = directoryURL,
+           let names = try? fileManager.contentsOfDirectory(atPath: directory.path) {
+            codes = names.compactMap { name -> String? in
+                guard name.hasPrefix(Self.filePrefix), name.hasSuffix(Self.fileSuffix) else { return nil }
+                let code = name.dropFirst(Self.filePrefix.count).dropLast(Self.fileSuffix.count)
+                return code.isEmpty ? nil : String(code)
+            }
+        }
+        lock.lock()
+        if codesOnDisk == nil { codesOnDisk = codes }
+        let result = codesOnDisk ?? codes
+        lock.unlock()
+        return result
+    }
+    
+    /// `load(languageCode:)` read once and kept in memory, so a key that the
+    /// in-memory table does not have (`localized()` miss) can be looked up in
+    /// the saved texts without touching the disk on every call. A `save` for
+    /// the code refreshes the copy.
+    func cachedDictionary(languageCode: String) -> [String: String]? {
+        lock.lock()
+        if let known = loaded[languageCode] {
+            lock.unlock()
+            return known
+        }
+        lock.unlock()
+        let dictionary = load(languageCode: languageCode)
+        lock.lock()
+        loaded[languageCode] = .some(dictionary)
+        lock.unlock()
+        return dictionary
+    }
+    
+    /// The saved dictionaries a key may fall back to for the language, by
+    /// code: the language itself with any region ("ru", "ru-RU") and English
+    /// ("en", "en-US"). `String.servedText` orders them. Other languages'
+    /// files are left on disk unread.
+    func fallbackDictionaries(for languageCode: String) -> [String: [String: String]] {
+        let wanted = Set([Self.primaryLanguage(of: languageCode), "en"])
+        let codes = Set(cachedLanguageCodes() + [languageCode, "en"])
+            .filter { wanted.contains(Self.primaryLanguage(of: $0)) }
+        var result: [String: [String: String]] = [:]
+        for code in codes {
+            if let dictionary = cachedDictionary(languageCode: code) {
+                result[code] = dictionary
+            }
+        }
+        return result
+    }
+    
+    /// The text saved on disk for a key the in-memory table does not have:
+    /// the current language (any region), then English. Nil when no saved
+    /// dictionary serves the key. This is the offline/other-language part of
+    /// `String.localized()` and of the backend message resolver.
+    func servedFallback(for key: String) -> String? {
+        let language = currentLanguageCode
+        return String.servedText(for: key,
+                                 dictionary: [:],
+                                 cached: fallbackDictionaries(for: language),
+                                 language: language)
+    }
+    
+    /// "ru" for "ru", "ru-RU" or "ru_RU".
+    static func primaryLanguage(of code: String) -> String {
+        let separators = CharacterSet(charactersIn: "-_")
+        let primary = code.components(separatedBy: separators).first ?? code
+        return primary.lowercased()
+    }
+    
     /// Saves atomically off the main thread. An empty dictionary is never
     /// written: it would only replace good texts with nothing.
     func save(_ dictionary: [String: String], languageCode: String) {
         guard !dictionary.isEmpty else { return }
+        lock.lock()
+        loaded[languageCode] = .some(dictionary)
+        if var codes = codesOnDisk, !codes.contains(languageCode) {
+            codes.append(languageCode)
+            codesOnDisk = codes
+        }
+        lock.unlock()
         queue.async {
             guard let url = self.fileURL(for: languageCode),
                   let data = try? JSONEncoder().encode(dictionary) else { return }
@@ -97,16 +191,37 @@ final class LocalizationStore {
     }
     
     /// Runs a backend refresh to completion regardless of who started it.
+    /// Several may run at once (the current language and English).
     func runInBackground(_ publisher: AnyPublisher<[String: String], Never>) {
-        refresh = publisher.sink { _ in }
+        let id = UUID()
+        // Registered before subscribing: a publisher that completes at once
+        // (`Just`) removes the entry synchronously, and then nothing is kept.
+        lock.lock()
+        refreshes[id] = AnyCancellable { }
+        lock.unlock()
+        let cancellable = publisher.sink(receiveCompletion: { [weak self] _ in
+            guard let self else { return }
+            self.lock.lock()
+            self.refreshes[id] = nil
+            self.lock.unlock()
+        }, receiveValue: { _ in })
+        lock.lock()
+        if refreshes[id] != nil { refreshes[id] = cancellable }
+        lock.unlock()
     }
     
     // MARK: - Private
     
+    private static let filePrefix = "translations-"
+    private static let fileSuffix = ".json"
+    
+    private var directoryURL: URL? {
+        fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?
+            .appendingPathComponent("Localization", isDirectory: true)
+    }
+    
     private func fileURL(for languageCode: String) -> URL? {
-        guard let base = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else { return nil }
         let safe = languageCode.replacingOccurrences(of: "/", with: "_")
-        return base.appendingPathComponent("Localization", isDirectory: true)
-            .appendingPathComponent("translations-\(safe).json")
+        return directoryURL?.appendingPathComponent(Self.filePrefix + safe + Self.fileSuffix)
     }
 }

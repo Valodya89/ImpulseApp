@@ -58,6 +58,8 @@ class MimoSplashWorker: MimoSplashWorkerProtocol {
             }
             .eraseToAnyPublisher()
         
+        cacheEnglishInBackground(currentLanguageCode: languageCode)
+        
         guard let cached = localizationStore.load(languageCode: languageCode) else {
             return fetch
         }
@@ -65,6 +67,31 @@ class MimoSplashWorker: MimoSplashWorkerProtocol {
         localizationStore.runInBackground(fetch)
         
         return Just(cached).eraseToAnyPublisher()
+    }
+    
+    /// Keeps an English dictionary on disk next to the rider's language, so a
+    /// backend message code the rider's language has no text for is shown in
+    /// English instead of as the generic error (`String.resolveMessage`).
+    /// Best effort and silent: it starts a few seconds after the splash
+    /// requests so it never competes with them, a failed module keeps the
+    /// saved English texts, and nothing is applied to the screen. Skipped when
+    /// the rider's language is English - that dictionary is the one fetched
+    /// above.
+    private func cacheEnglishInBackground(currentLanguageCode: String) {
+        let english = "en"
+        guard LocalizationStore.primaryLanguage(of: currentLanguageCode) != english else { return }
+        let fetch = Just(())
+            .delay(for: .seconds(3), scheduler: DispatchQueue.global(qos: .utility))
+            // Strong: the worker is released with the splash screen, before
+            // the delay ends; the subscription keeps it alive until the answer.
+            .flatMap { _ -> AnyPublisher<[String: String], Never> in
+                self.fetchTranslations(languageCode: english)
+            }
+            .map { [localizationStore] fetched -> [String: String] in
+                localizationStore.store(fetched: fetched, languageCode: english)
+            }
+            .eraseToAnyPublisher()
+        localizationStore.runInBackground(fetch)
     }
     
     private func fetchTranslations(languageCode: String) -> AnyPublisher<[String: String], Never> {
