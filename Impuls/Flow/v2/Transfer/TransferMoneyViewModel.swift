@@ -244,6 +244,10 @@ final class TransferMoneyViewModel: ObservableObject {
     }
 
     private func present(_ error: ErrorMessage) {
+        // A request that got no answer from the network shows no banner (the
+        // same rule as `MimoBaseViewModel`); the loader is already down and
+        // the transfer guard released by `deliver`.
+        guard !ConnectivityFailure.matches(text: error.body) else { return }
         guard isScreenVisible else {
             pendingError = error
             return

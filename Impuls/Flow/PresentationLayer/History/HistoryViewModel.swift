@@ -105,7 +105,7 @@ final class HistoryViewModel: MimoBaseViewModel, ObservableObject {
         case .charger: loaded = $chargerRents.dropFirst().map { _ in true }.eraseToAnyPublisher()
         case .evup: loaded = $evChargerRents.dropFirst().map { _ in true }.eraseToAnyPublisher()
         }
-        let failed = $errorMessage.dropFirst().compactMap { $0 }.map { _ in false }
+        let failed = requestFailed.map { _ in false }
 
         var delivered = false
         loaded.merge(with: failed)
@@ -135,7 +135,7 @@ final class HistoryViewModel: MimoBaseViewModel, ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {
-                    self?.errorMessage = error.message
+                    self?.handle(error)
                 }
             } receiveValue: { [weak self] wallet, financialState in
                 self?.debt = Debt(wallet: wallet, financialState: financialState)
@@ -229,7 +229,7 @@ final class HistoryViewModel: MimoBaseViewModel, ObservableObject {
                 // A stale answer (an older refresh, or a page other than the
                 // one expected) is dropped without touching the list.
                 guard self.chargerState.fail(error.message, for: request) else { return }
-                self.errorMessage = error.message
+                self.handle(error)
                 if request.isRefresh { self.finishChargerRefresh(false) }
             } receiveValue: { [weak self] page in
                 guard let self, self.chargerState.receive(page, for: request) else { return }
@@ -273,7 +273,7 @@ final class HistoryViewModel: MimoBaseViewModel, ObservableObject {
             .sink { [weak self] completion in
                 switch completion {
                 case .failure(let error):
-                    self?.errorMessage = error.message
+                    self?.handle(error)
                 default: break
                 }
             } receiveValue: { [weak self] scooterTrips in
@@ -306,7 +306,7 @@ final class HistoryViewModel: MimoBaseViewModel, ObservableObject {
             .sink { [weak self] completion in
                 switch completion {
                 case .failure(let error):
-                    self?.errorMessage = error.message
+                    self?.handle(error)
                 default: break
                 }
             } receiveValue: { [weak self] bikeTrips in
@@ -338,7 +338,7 @@ final class HistoryViewModel: MimoBaseViewModel, ObservableObject {
             .sink { [weak self] completion in
                 switch completion {
                 case .failure(let error):
-                    self?.errorMessage = error.message
+                    self?.handle(error)
                 default: break
                 }
             } receiveValue: { [weak self] evChargerRents in

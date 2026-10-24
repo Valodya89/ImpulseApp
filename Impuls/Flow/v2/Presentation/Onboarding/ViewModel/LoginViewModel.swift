@@ -245,7 +245,7 @@ class LoginViewModel: MimoBaseViewModel, ObservableObject {
                     // The step stays where it is (phone step: the number stays
                     // editable and Continue works at once; code step: the rider
                     // can go back to the phone step).
-                    self?.errorMessage = LoginViewModel.signInMessage(for: error.message)
+                    self?.handle(error, message: LoginViewModel.signInMessage(for: error.message))
                 default: break
                 }
             } receiveValue: { [weak self] isDeviceVerifid, isAccountCompleted, _, otpMethod in
@@ -280,7 +280,7 @@ class LoginViewModel: MimoBaseViewModel, ObservableObject {
             .sink { [weak self] failure in
                 switch failure {
                 case .failure(let error):
-                    self?.errorMessage = error.message
+                    self?.handle(error)
                     self?.isValidOTP = false
                 default: break
                 }
@@ -317,7 +317,7 @@ class LoginViewModel: MimoBaseViewModel, ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] failure in
                 switch failure {
-                case .failure(let error): self?.errorMessage = error.message
+                case .failure(let error): self?.handle(error)
                 default: break
                 }
             } receiveValue: { [weak self] data in
@@ -346,7 +346,7 @@ class LoginViewModel: MimoBaseViewModel, ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] failure in
                 switch failure {
-                case .failure(let error): self?.errorMessage = error.message
+                case .failure(let error): self?.handle(error)
                 default: break
                 }
             } receiveValue: { [weak self] data in
@@ -368,7 +368,7 @@ class LoginViewModel: MimoBaseViewModel, ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] failure in
                 switch failure {
-                case .failure(let error): self?.errorMessage = error.message
+                case .failure(let error): self?.handle(error)
                 default: break
                 }
             } receiveValue: { [weak self] data in
@@ -413,7 +413,7 @@ class LoginViewModel: MimoBaseViewModel, ObservableObject {
             .sink { [weak self] completion in
                 switch completion {
                 case .failure(let error):
-                    self?.errorMessage = error.message
+                    self?.handle(error)
                 default: break
                 }
             } receiveValue: { [weak self] in

@@ -31,7 +31,7 @@ final class NotificationsWorker: NotificationsWorkerProtocol {
 
                         promise(.success(response.content ?? []))
                     case .failure(let error):
-                        promise(.failure(.init(error: .responseError(error.localizedDescription))))
+                        promise(.failure(.init(error: .responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }

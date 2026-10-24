@@ -74,7 +74,7 @@ class PartnershipViewModel: MimoBaseViewModel, ObservableObject {
             .sink { [weak self] completion in
                 switch completion {
                 case .failure(let error):
-                    self?.errorMessage = error.message
+                    self?.handle(error)
                 case .finished: break
                 }
             } receiveValue: { [weak self] _ in

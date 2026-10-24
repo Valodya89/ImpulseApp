@@ -62,7 +62,7 @@ class LoginWorker: LoginWorkerProtocol {
                         self.userDataSubject.send(data.user)
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(MimoError(error: NetworkError.responseError(error.localizedDescription))))
+                        promise(.failure(MimoError(error: NetworkError.responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -85,7 +85,7 @@ class LoginWorker: LoginWorkerProtocol {
                         case .success(let data):
                             promise(.success(data))
                         case .failure(let error):
-                            promise(.failure(MimoError.init(error: NetworkError.responseError(error.localizedDescription))))
+                            promise(.failure(MimoError.init(error: NetworkError.responseError(error.localizedDescription), underlying: error)))
                         }
                     }
             }
@@ -101,7 +101,7 @@ class LoginWorker: LoginWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(MimoError.init(error: NetworkError.responseError(error.localizedDescription))))
+                        promise(.failure(MimoError.init(error: NetworkError.responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }

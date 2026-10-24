@@ -120,10 +120,12 @@ class MimoHomeViewController: MimoBaseViewController {
             guard let self, let viewModel = self.viewModel else { return completion(false) }
 
             // Balance is the one fetch every rider notices; the indicator waits
-            // for it (or an error) and the rest refreshes alongside.
+            // for it (or a failure) and the rest refreshes alongside. The
+            // failure signal, not the alert text: a timed-out request shows no
+            // alert but must still end the indicator.
             var delivered = false
             let loaded = viewModel.$walletInfo.dropFirst().map { _ in true }
-            let failed = viewModel.$errorMessage.dropFirst().compactMap { $0 }.map { _ in false }
+            let failed = viewModel.requestFailed.map { _ in false }
             loaded.merge(with: failed)
                 .first()
                 .timeout(.seconds(10), scheduler: DispatchQueue.main)

@@ -48,7 +48,7 @@ class BikeWorker: BikeWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(.init(error: NetworkError.responseError(error.localizedDescription))))
+                        promise(.failure(.init(error: NetworkError.responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -80,7 +80,7 @@ class BikeWorker: BikeWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(MimoError(error: NetworkError.responseError(error.localizedDescription))))
+                        promise(.failure(MimoError(error: NetworkError.responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -97,7 +97,7 @@ class BikeWorker: BikeWorkerProtocol {
                         let bikeResult = HomeMapper.toBikeResults(from: data)
                         promise(.success(bikeResult))
                     case .failure(let error):
-                        promise(.failure(.init(error: .responseError(error.localizedDescription))))
+                        promise(.failure(.init(error: .responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }

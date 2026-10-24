@@ -311,7 +311,7 @@ final class MimoWalletViewModel: MimoBaseViewModel, ObservableObject {
     func reload(completion: @escaping (Bool) -> Void) {
         var delivered = false
         let loaded = $wallet.dropFirst().map { _ in true }
-        let failed = $errorMessage.dropFirst().compactMap { $0 }.map { _ in false }
+        let failed = requestFailed.map { _ in false }
 
         loaded.merge(with: failed)
             .first()

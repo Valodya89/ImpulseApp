@@ -17,7 +17,7 @@ struct HomeRepository {
             case .success:
                 completion(.success(()))
             case .failure(let error):
-                completion(.failure(.init(error: .responseError(error.description))))
+                completion(.failure(.init(error: .responseError(error.description), underlying: error)))
             }
         }
     }

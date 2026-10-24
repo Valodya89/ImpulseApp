@@ -222,7 +222,7 @@ class ChargerViewModel: MimoBaseViewModel {
                     // blanking the map; the rider is only told when there is
                     // nothing to show at all.
                     if (self.stations.value ?? []).isEmpty {
-                        self.errorMessage = error.message
+                        self.handle(error)
                     }
                 default: break
                 }
@@ -269,7 +269,7 @@ class ChargerViewModel: MimoBaseViewModel {
                 self?.scanGuard.end()
                 switch completion {
                 case .failure(let error):
-                    self?.errorMessage = error.message
+                    self?.handle(error)
                 default: break
                 }
             } receiveValue: { [weak self] rentedCharger in
@@ -288,7 +288,7 @@ class ChargerViewModel: MimoBaseViewModel {
             .sink { [weak self] completion in
                 switch completion {
                 case .failure(let error):
-                    self?.errorMessage = error.message
+                    self?.handle(error)
                 default: break
                 }
             } receiveValue: { [weak self] rentedChargers in

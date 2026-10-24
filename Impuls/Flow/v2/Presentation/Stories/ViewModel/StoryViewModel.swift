@@ -50,7 +50,7 @@ class StoryViewModel: MimoBaseViewModel, ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {
-                    self?.errorMessage = error.message
+                    self?.handle(error)
                 }
             } receiveValue: { [weak self] stories in
                 guard let self else { return }
@@ -84,7 +84,7 @@ class StoryViewModel: MimoBaseViewModel, ObservableObject {
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {
                     self?.likedStories.removeAll(where: { $0 == storyId })
-                    self?.errorMessage = error.message
+                    self?.handle(error)
                 }
             } receiveValue: { _ in }
             .store(in: &cancellables)
@@ -145,7 +145,7 @@ class StoryViewModel: MimoBaseViewModel, ObservableObject {
                 if self.selectedOptions[key] == options {
                     self.selectedOptions[key] = previous
                 }
-                self.errorMessage = error.message
+                self.handle(error)
             } receiveValue: { _ in }
             .store(in: &cancellables)
 

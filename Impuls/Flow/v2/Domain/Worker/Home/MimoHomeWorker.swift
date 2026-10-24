@@ -60,7 +60,7 @@ class MimoHomeWorker: MimoHomeWorkerProtocol {
                         let scooterResult = HomeMapper.toScooterResults(from: data)
                         promise(.success(scooterResult))
                     case .failure(let error):
-                        promise(.failure(MimoError.init(error: .responseError(error.localizedDescription))))
+                        promise(.failure(MimoError.init(error: .responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -76,7 +76,7 @@ class MimoHomeWorker: MimoHomeWorkerProtocol {
                         let bikeResult = HomeMapper.toBikeResults(from: data)
                         promise(.success(bikeResult))
                     case .failure(let error):
-                        promise(.failure(MimoError.init(error: .responseError(error.localizedDescription))))
+                        promise(.failure(MimoError.init(error: .responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -144,7 +144,7 @@ class MimoHomeWorker: MimoHomeWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(MimoError.init(error: .responseError(error.localizedDescription))))
+                        promise(.failure(MimoError.init(error: .responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }

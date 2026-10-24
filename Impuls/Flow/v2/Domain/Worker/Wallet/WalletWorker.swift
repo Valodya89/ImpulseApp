@@ -40,7 +40,7 @@ final class WalletWorker: WalletWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(MimoError.init(error: NetworkError.responseError(error.localizedDescription))))
+                        promise(.failure(MimoError.init(error: NetworkError.responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -56,7 +56,7 @@ final class WalletWorker: WalletWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(MimoError.init(error: NetworkError.responseError(error.localizedDescription))))
+                        promise(.failure(MimoError.init(error: NetworkError.responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -88,7 +88,7 @@ final class WalletWorker: WalletWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(MimoError(error: NetworkError.responseError(error.localizedDescription))))
+                        promise(.failure(MimoError(error: NetworkError.responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -104,7 +104,7 @@ final class WalletWorker: WalletWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(MimoError(error: NetworkError.responseError(error.localizedDescription))))
+                        promise(.failure(MimoError(error: NetworkError.responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -120,7 +120,7 @@ final class WalletWorker: WalletWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(.init(error: .responseError(error.localizedDescription))))
+                        promise(.failure(.init(error: .responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -136,7 +136,7 @@ final class WalletWorker: WalletWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(.init(error: .responseError(error.localizedDescription))))
+                        promise(.failure(.init(error: .responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -152,7 +152,7 @@ final class WalletWorker: WalletWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(.init(error: .responseError(error.localizedDescription))))
+                        promise(.failure(.init(error: .responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -168,7 +168,7 @@ final class WalletWorker: WalletWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(.init(error: .responseError(error.localizedDescription))))
+                        promise(.failure(.init(error: .responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -184,7 +184,7 @@ final class WalletWorker: WalletWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(.init(error: .responseError(error.localizedDescription))))
+                        promise(.failure(.init(error: .responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -200,7 +200,7 @@ final class WalletWorker: WalletWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(.init(error: .responseError(error.localizedDescription))))
+                        promise(.failure(.init(error: .responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -216,7 +216,7 @@ final class WalletWorker: WalletWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(.init(error: .responseError(error.localizedDescription))))
+                        promise(.failure(.init(error: .responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -232,7 +232,7 @@ final class WalletWorker: WalletWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(.init(error: .responseError(error.localizedDescription))))
+                        promise(.failure(.init(error: .responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -248,7 +248,7 @@ final class WalletWorker: WalletWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(.init(error: .responseError(error.localizedDescription))))
+                        promise(.failure(.init(error: .responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -264,7 +264,7 @@ final class WalletWorker: WalletWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(.init(error: .responseError(error.localizedDescription))))
+                        promise(.failure(.init(error: .responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -280,7 +280,7 @@ final class WalletWorker: WalletWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(.init(error: .responseError(error.localizedDescription))))
+                        promise(.failure(.init(error: .responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }

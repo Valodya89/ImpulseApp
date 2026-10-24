@@ -130,7 +130,7 @@ class MimoHomeViewModel: MimoBaseViewModel {
             .sink { [weak self] completion in
                 switch completion {
                 case .failure(let error):
-                    self?.errorMessage = error.message
+                    self?.handle(error)
                 case .finished: break
                 }
             } receiveValue: { [weak self] leasedScooters in
@@ -177,7 +177,7 @@ class MimoHomeViewModel: MimoBaseViewModel {
             .sink { [weak self] completion in
                 switch completion {
                 case .failure(let error):
-                    self?.errorMessage = error.message
+                    self?.handle(error)
                 case .finished: break
                 }
             } receiveValue: {
@@ -224,7 +224,7 @@ class MimoHomeViewModel: MimoBaseViewModel {
             .sink { error in
                 switch error {
                 case .failure(let error):
-                    self.errorMessage = error.message
+                    self.handle(error)
                 default: break
                 }
             } receiveValue: { [weak self] data in

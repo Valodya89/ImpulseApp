@@ -14,8 +14,16 @@ import os
 
 final class MimoError: Error {
     public var message: String
+    /// The failure the message was made from, when the worker kept it: the
+    /// `NetworkSessionErrors` of the legacy stack (which still holds the
+    /// `URLError` of a transport failure) or whatever the repository answered.
+    /// `message` is unchanged by it; `ConnectivityFailure` reads it so a lost
+    /// connection is recognised even when the text alone is not telling
+    /// ("The operation couldn't be completed. (Impuls.NetworkError error 1.)").
+    public let underlying: Error?
 
-    init(error: NetworkError) {
+    init(error: NetworkError, underlying: Error? = nil) {
+        self.underlying = underlying
         switch error {
         case .validatorError(let error):
             self.message = error
@@ -37,6 +45,147 @@ public enum NetworkError: Error {
     case serverError
     case invalidParse(_ errorMessage: String)
     case tooFar(_ errorMessage: String)
+}
+
+// =============================================================================
+// MARK: - Connectivity failures
+// =============================================================================
+//
+// A request that got no answer from the network: the connection was lost, the
+// request timed out, the phone is offline. `MimoBaseViewModel` shows no alert
+// for it (the map and home poll every minute and on every socket tick, and
+// such a poll recovers by itself); everything else - business refusals, HTTP
+// errors, decoding failures - still alerts. Both stacks are covered: the
+// `URLError` itself where it is still there (`NetworkSessionErrors
+// .invalidRequest`, `MimoError.underlying`, an `NSError` in NSURLErrorDomain)
+// and the texts the legacy stack flattens it to ("Invalid request: The request
+// timed out.", the app's offline sentence). Pure, unit-testable.
+
+extension URLError {
+
+    /// The transport failures that mean "no answer from the network".
+    static let connectivityCodes: Set<URLError.Code> = [
+        .notConnectedToInternet, .networkConnectionLost, .cannotFindHost, .cannotConnectToHost,
+        .dnsLookupFailed, .timedOut, .internationalRoamingOff, .dataNotAllowed, .callIsActive
+    ]
+
+    var isConnectivityFailure: Bool {
+        Self.connectivityCodes.contains(code)
+    }
+
+    /// The locale key of the app's offline sentence.
+    static let offlineMessageKey = "MOBILE_lostConnection_message"
+
+    /// The app's offline sentence (`MOBILE_lostConnection_message`), the text
+    /// `UIViewController.userFacingErrorMessage` shows for a technical failure.
+    static var offlineMessage: String {
+        offlineMessageKey.localized()
+    }
+}
+
+enum ConnectivityFailure {
+
+    /// Whether `error` is a transport failure, following `MimoError.underlying`,
+    /// `NetworkSessionErrors.invalidRequest(error:)` and `NSUnderlyingErrorKey`
+    /// down to the `URLError`, and reading the text where only the text is left.
+    static func matches(_ error: Error) -> Bool {
+        switch error {
+        case let urlError as URLError:
+            return urlError.isConnectivityFailure
+        case let mimoError as MimoError:
+            if let underlying = mimoError.underlying, matches(underlying) { return true }
+            return matches(text: mimoError.message)
+        case let networkError as NetworkError:
+            switch networkError {
+            case .responseError(let text), .validatorError(let text), .tooFar(let text), .invalidParse(let text):
+                return matches(text: text)
+            case .serverError:
+                return false
+            }
+        case let sessionError as NetworkSessionErrors:
+            switch sessionError {
+            case .invalidRequest(_, let underlying):
+                return underlying.map(matches) ?? false
+            case .resultsError(let underlying):
+                return matches(underlying)
+            case .sessionExpired, .invalidStatusCode, .unknown:
+                return false
+            }
+        case let walletError as WalletRequestErrors:
+            if case .custom(let text) = walletError { return matches(text: text) }
+            return false
+        case let apiError as APIError:
+            switch apiError {
+            case .requestFailed(let text), .responseError(let text):
+                return matches(text: text)
+            case .invalidURL, .missingData, .decodingFailed, .authorizationError:
+                return false
+            }
+        default:
+            let nsError = error as NSError
+            if nsError.domain == NSURLErrorDomain {
+                return URLError.connectivityCodes.contains(URLError.Code(rawValue: nsError.code))
+            }
+            if let underlying = nsError.userInfo[NSUnderlyingErrorKey] as? Error {
+                return matches(underlying)
+            }
+            return false
+        }
+    }
+
+    /// Whether `text` is what a transport failure reads as once the error is
+    /// gone: the app's offline sentence or its key, a `URLError` description
+    /// ("The request timed out.") with or without the legacy stack's "Invalid
+    /// request: " prefix, or the unlocalised form "The operation couldn't be
+    /// completed. (NSURLErrorDomain error -1001.)". A backend message code
+    /// other than the offline key never matches.
+    static func matches(text: String) -> Bool {
+        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return false }
+        if trimmed == URLError.offlineMessageKey || trimmed == URLError.offlineMessage { return true }
+
+        var body = trimmed
+        for prefix in flattenedPrefixes where body.hasPrefix(prefix) {
+            body = String(body.dropFirst(prefix.count)).trimmingCharacters(in: .whitespaces)
+            break
+        }
+        if body == URLError.offlineMessage { return true }
+        if englishDescriptions.contains(body) || runtimeDescriptions.contains(body) { return true }
+        if let code = urlErrorDomainCode(in: body) {
+            return URLError.connectivityCodes.contains(URLError.Code(rawValue: code))
+        }
+        return false
+    }
+
+    /// How `NetworkSessionErrors.description` wraps the transport error.
+    private static let flattenedPrefixes = ["Invalid request:", "Results error :", "Results error:"]
+
+    /// CFNetwork's English texts for the connectivity codes, so the check
+    /// does not depend on the error-domain provider being loaded.
+    private static let englishDescriptions: Set<String> = [
+        "The Internet connection appears to be offline.",
+        "The network connection was lost.",
+        "A server with the specified hostname could not be found.",
+        "Could not connect to the server.",
+        "The request timed out.",
+        "International roaming is currently off.",
+        "A data connection is not currently allowed.",
+        "A phone call is in progress."
+    ]
+
+    /// The same texts in the device language, as this process renders them.
+    private static let runtimeDescriptions: Set<String> = Set(
+        URLError.connectivityCodes.map { URLError($0).localizedDescription }
+    )
+
+    /// "... (NSURLErrorDomain error -1001.)" -> -1001.
+    private static let domainCodePattern = try! NSRegularExpression(pattern: #"NSURLErrorDomain error (-?\d+)"#)
+
+    private static func urlErrorDomainCode(in text: String) -> Int? {
+        let range = NSRange(location: 0, length: (text as NSString).length)
+        guard let match = domainCodePattern.firstMatch(in: text, range: range) else { return nil }
+        return Int((text as NSString).substring(with: match.range(at: 1)))
+    }
 }
 
 // =============================================================================

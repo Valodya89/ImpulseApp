@@ -103,7 +103,7 @@ final class TransactionListViewModel: MimoBaseViewModel, ObservableObject {
     func reload(completion: @escaping (Bool) -> Void) {
         var delivered = false
         let loaded = $transactions.dropFirst().map { _ in true }
-        let failed = $errorMessage.dropFirst().compactMap { $0 }.map { _ in false }
+        let failed = requestFailed.map { _ in false }
 
         loaded.merge(with: failed)
             .first()
@@ -133,7 +133,7 @@ final class TransactionListViewModel: MimoBaseViewModel, ObservableObject {
                 self.isLoading = false
                 if case .failure(let error) = completion {
                     self.loadFailed = !self.hasLoaded
-                    self.errorMessage = error.message
+                    self.handle(error)
                 }
             } receiveValue: { [weak self] transactions in
                 guard let self else { return }

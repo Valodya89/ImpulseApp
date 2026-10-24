@@ -97,6 +97,10 @@ class NetworkService {
                     return APIError.decodingFailed(error.localizedDescription)
                 } else if let apiError = error as? APIError {
                     return apiError
+                } else if let urlError = error as? URLError, urlError.isConnectivityFailure {
+                    // Keep the connectivity failure recognisable: the base view
+                    // model shows no alert for it (ConnectivityFailure.matches).
+                    return APIError.requestFailed(URLError.offlineMessage)
                 } else {
                     return APIError.requestFailed("An unknown error occurred.")
                 }

@@ -29,7 +29,7 @@ class EmailVerificationViewModel: MimoBaseViewModel, ObservableObject {
                 case .success:
                     self?.emailVerified = true
                 case .failure(let error):
-                    self?.errorMessage = error.localizedDescription
+                    self?.handle(error)
                 }
             }
             .store(in: &cancellables)

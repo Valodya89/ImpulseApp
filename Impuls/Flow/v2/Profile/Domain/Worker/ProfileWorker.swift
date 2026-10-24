@@ -31,7 +31,7 @@ final class ProfileWorker: ProfileWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(MimoError.init(error: NetworkError.responseError(error.localizedDescription))))
+                        promise(.failure(MimoError.init(error: NetworkError.responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -63,7 +63,7 @@ final class ProfileWorker: ProfileWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(MimoError(error: NetworkError.responseError(error.localizedDescription))))
+                        promise(.failure(MimoError(error: NetworkError.responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -100,7 +100,7 @@ final class ProfileWorker: ProfileWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(MimoError(error: NetworkError.responseError(error.localizedDescription))))
+                        promise(.failure(MimoError(error: NetworkError.responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
@@ -116,7 +116,7 @@ final class ProfileWorker: ProfileWorkerProtocol {
                     case .success(let data):
                         promise(.success(data))
                     case .failure(let error):
-                        promise(.failure(MimoError(error: NetworkError.responseError(error.localizedDescription))))
+                        promise(.failure(MimoError(error: NetworkError.responseError(error.localizedDescription), underlying: error)))
                     }
                 }
             }
