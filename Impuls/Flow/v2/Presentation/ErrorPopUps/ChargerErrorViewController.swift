@@ -23,8 +23,10 @@ struct ServiceBlockedPopupContent {
     let message: String
     /// Whether the two top-up options and Continue are shown.
     let isReplenishable: Bool
-    /// "5000 AMD"-style minimum shown inside the balance option's title.
-    let minimumBalance: String
+    /// "5000 AMD"-style minimum shown inside the balance option's title, as
+    /// the backend's rule reported it. Nil when no rule gave an amount: the
+    /// option then just says to top up, without a number.
+    let minimumBalance: String?
 
     /// Impulse rents power banks, so the power-bank station is the one
     /// illustration for every product except an EV charging point.
@@ -159,12 +161,18 @@ struct ServiceBlockedPopupView: View {
     }
 
     private var balanceTitle: Text {
+        // No amount from the backend: the plain invitation, never a number
+        // made up by the app.
+        guard let minimumBalance = content.minimumBalance else {
+            return Text("MOBILE_plans_fill_the_balance".localized(fallback: "Top up balance"))
+        }
+
         let template = "CHARGER_top_up_balance".localized(fallback: "Top up at least %@")
         let text = template.contains("%@")
-            ? String(format: template, content.minimumBalance)
-            : "\(template) \(content.minimumBalance)"
+            ? String(format: template, minimumBalance)
+            : "\(template) \(minimumBalance)"
         // The amount is what the rider needs to remember, so it gets the colour.
-        guard let range = text.range(of: content.minimumBalance) else { return Text(text) }
+        guard let range = text.range(of: minimumBalance) else { return Text(text) }
 
         return Text(text[..<range.lowerBound])
             + Text(text[range]).foregroundColor(.successGreen)
@@ -291,42 +299,63 @@ class ChargerErrorViewController: UIViewController {
     private let content: ServiceBlockedPopupContent
     private let onReplenish: () -> Void
 
-    /// The minimum the rent rules ask for when no card is attached. Source:
-    /// powerbank docs/mobile-api.md, POST /api/rent/{id}/scan -
-    /// `WALLET_min_balance_or_card_required` (`MIN_BALANCE_OR_CARD`, `amount` 5000).
-    static let defaultMinimumAmount: Double = 5000
+    /// The amount the backend's rule reported (`details.amount`), e.g. 5000 or
+    /// 12.5; nil when the rule gave none. The app never supplies a minimum of
+    /// its own (the rule set is per country: 5000 AMD in Armenia today, ARS
+    /// in Argentina).
+    static func minimumAmount(from violation: EligibilityViolation) -> Double? {
+        guard case .number(let amount)? = violation.details["amount"], amount > 0 else { return nil }
+        return amount
+    }
 
-    /// `amount` followed by the signed-in user's wallet currency, e.g. "5000 AMD".
-    /// Falls back to the bare amount when no wallet is loaded - never another
-    /// currency's name.
-    static func formattedMinimumBalance(_ amount: Double = defaultMinimumAmount) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 2
-        formatter.minimumFractionDigits = 0
-        let number = formatter.string(from: NSNumber(value: amount)) ?? "\(amount)"
+    /// The minimum the backend's rule reported, with its currency, the way the
+    /// top-up option prints it: "5000 AMD", "12.5 ARS". The amount is written
+    /// without trailing zeros or grouping; the currency is the rule's
+    /// `details.currency` as the app names money elsewhere (`IPAY_currency_<code>`,
+    /// the code itself when there is no name), the signed-in user's wallet
+    /// currency when the rule sent none. Nil when the rule gave no amount.
+    static func minimumBalance(from violation: EligibilityViolation) -> String? {
+        guard let amount = minimumAmount(from: violation) else { return nil }
 
-        guard let currency = UserManager.share.walletModel?.currency.currencyNameOrCode else {
+        let number = amountFormatter.string(from: NSNumber(value: amount)) ?? String(amount)
+
+        var code: String?
+        if case .text(let currency)? = violation.details["currency"], !currency.isEmpty {
+            code = currency
+        }
+        guard let currency = (code ?? UserManager.share.walletModel?.currency)?.currencyNameOrCode else {
             return number
         }
         return "\(number) \(currency)"
     }
 
+    private static let amountFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.usesGroupingSeparator = false
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 0
+        formatter.decimalSeparator = "."
+        return formatter
+    }()
+
     /// - Parameters:
     ///   - message: the backend's reason, already made user-facing.
     ///   - isReplenishable: whether topping up fixes it (options + Continue).
     ///   - service: picks the illustration; the power-bank station by default.
-    ///   - minimumAmount: the balance the rules ask for, shown in the top-up option.
+    ///   - minimumBalance: the balance the rules ask for, with its currency
+    ///     (`minimumBalance(from:)`), shown in the top-up option; nil shows the
+    ///     option without a number.
     ///   - onReplenish: runs after Continue once the card has closed.
     init(message: String,
          isReplenishable: Bool,
          service: MimoType = .charger,
-         minimumAmount: Double = ChargerErrorViewController.defaultMinimumAmount,
+         minimumBalance: String? = nil,
          onReplenish: @escaping () -> Void) {
         self.content = ServiceBlockedPopupContent(service: service,
                                                   message: message,
                                                   isReplenishable: isReplenishable,
-                                                  minimumBalance: ChargerErrorViewController.formattedMinimumBalance(minimumAmount))
+                                                  minimumBalance: minimumBalance)
         self.onReplenish = onReplenish
         super.init(nibName: nil, bundle: nil)
     }

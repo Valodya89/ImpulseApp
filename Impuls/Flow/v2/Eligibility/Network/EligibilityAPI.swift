@@ -39,6 +39,27 @@ enum EligibilityCheck {
 
 extension EligibilityCheck {
 
+    /// The action behind the check without its place or parameters (a power
+    /// bank scan of any cabinet is one action). Keys the way a product asks to
+    /// have a refusal of that action presented, so the refusal that arrives
+    /// later through the networking layer is matched to the same presenter.
+    var actionKey: String {
+        switch self {
+        case .attachCard:
+            return "ATTACH_CARD"
+        case .transfer:
+            return "TRANSFER"
+        case .powerbank(_, let action, _, _):
+            return "POWERBANK_" + action.rawValue
+        case .scooter:
+            return "SCOOTER"
+        case .sharing(let action):
+            return "SHARING_" + action.rawValue
+        case .evCharging:
+            return "START_CHARGING"
+        }
+    }
+
     /// The pre-check for an action request the backend has just refused, so a
     /// screen that only knows the error can still re-check after each step.
     init?(rejectedRequest request: URLRequest) {

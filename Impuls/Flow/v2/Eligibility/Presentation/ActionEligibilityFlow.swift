@@ -20,6 +20,29 @@ enum ActionEligibilityFlow {
 
     private static let repository = EligibilityRepository()
 
+    /// Products that show a refusal about the wallet alone their own way (the
+    /// power bank's top-up popup) instead of the checklist, by action
+    /// (`EligibilityCheck.actionKey`). Set by `run`, read again when the
+    /// refusal of the same action arrives through the networking layer.
+    private static var walletRefusalPresenters: [String: (EligibilityViolation) -> Void] = [:]
+
+    /// The rules a top-up or a card alone fixes (powerbank docs/error-codes.md,
+    /// "Rent rule violations"). A debt (`NO_DEBT`, `NO_DEVICE_DEBT`,
+    /// `NO_CARD_DEBT`) is not one of them.
+    private static let walletRules: Set<String> = ["MIN_BALANCE_OR_CARD", "MIN_BALANCE", "HAS_CARD"]
+
+    /// The wallet violation to present when the wallet is all that is in the
+    /// way: every violation's rule is `MIN_BALANCE_OR_CARD`, `MIN_BALANCE` or
+    /// `HAS_CARD`, and the `MIN_BALANCE_OR_CARD` one wins (else the first).
+    /// Nil as soon as anything else is violated too - a debt, a document, a
+    /// profile field, the e-mail - with or without the wallet.
+    static func walletOnlyViolation(in violations: [EligibilityViolation]) -> EligibilityViolation? {
+        guard !violations.isEmpty,
+              violations.allSatisfy({ walletRules.contains($0.rule) }) else { return nil }
+
+        return violations.first { $0.rule == "MIN_BALANCE_OR_CARD" } ?? violations[0]
+    }
+
     /// Runs `perform` once the rules for `check` are met, walking the rider
     /// through the missing steps first. If the pre-check cannot be read the
     /// action runs anyway: the backend still enforces the rules, and its
@@ -36,12 +59,25 @@ enum ActionEligibilityFlow {
     ///     re-arm the scanner.
     ///   - blocked: called when the rules are shown instead of the action
     ///     running, e.g. to stop a loading state.
+    ///   - walletRefusal: shown instead of the checklist when the only thing
+    ///     in the way is the wallet (a balance under the rule's minimum with
+    ///     no card: `WALLET_min_balance_or_card_required` and its two
+    ///     siblings) - the product's own top-up popup, with the amount and
+    ///     currency the rule reported. The action is not resumed from here:
+    ///     `blocked` is called and the rider acts and starts again (scans
+    ///     again). Any other mix of violations, debts included, still goes
+    ///     through the checklist. Remembered per action, so a refusal of the
+    ///     same action that arrives through the networking layer
+    ///     (`handleRejection`) is presented the same way.
     static func run(_ check: EligibilityCheck,
                     from presenter: UIViewController? = nil,
                     resumeAfterRequirements: Bool = true,
                     requirementsMet: (() -> Void)? = nil,
                     blocked: (() -> Void)? = nil,
+                    walletRefusal: ((EligibilityViolation) -> Void)? = nil,
                     perform: @escaping () -> Void) {
+        walletRefusalPresenters[check.actionKey] = walletRefusal
+
         repository.check(check) { result in
             guard case .success(let eligibility) = result,
                   !eligibility.satisfied, !eligibility.violations.isEmpty else {
@@ -50,6 +86,13 @@ enum ActionEligibilityFlow {
             }
 
             blocked?()
+
+            if let walletRefusal, let violation = walletOnlyViolation(in: eligibility.violations) {
+                MILoader.hide()
+                walletRefusal(violation)
+                return
+            }
+
             present(violations: eligibility.violations, check: check, from: presenter,
                     onSatisfied: resumeAfterRequirements ? perform : requirementsMet)
         }
@@ -64,6 +107,8 @@ enum ActionEligibilityFlow {
     ///   - resumeAfterRequirements: see `run`; false drops `retry` once the
     ///     rules are met and calls `requirementsMet` instead.
     ///   - retry: runs the action again once the rules are met.
+    ///   - walletRefusal: see `run`; when nil, the presenter `run` remembered
+    ///     for the refused action is used.
     /// - Returns: false when the error is not such a refusal, so the caller
     ///   shows it as usual.
     @discardableResult
@@ -72,11 +117,13 @@ enum ActionEligibilityFlow {
                                 from presenter: UIViewController? = nil,
                                 resumeAfterRequirements: Bool = true,
                                 requirementsMet: (() -> Void)? = nil,
-                                retry: (() -> Void)? = nil) -> Bool {
+                                retry: (() -> Void)? = nil,
+                                walletRefusal: ((EligibilityViolation) -> Void)? = nil) -> Bool {
         guard let rejection = ActionRejectionStore.shared.take(matching: message) else { return false }
 
         handle(rejection, check: check, from: presenter,
-               resumeAfterRequirements: resumeAfterRequirements, requirementsMet: requirementsMet, retry: retry)
+               resumeAfterRequirements: resumeAfterRequirements, requirementsMet: requirementsMet,
+               retry: retry, walletRefusal: walletRefusal)
 
         return true
     }
@@ -85,17 +132,32 @@ enum ActionEligibilityFlow {
     /// decoded itself (`ActionRejection.parse`), e.g. a transfer answered with
     /// `content.violations`. `retry` runs the action again once they are met,
     /// unless `resumeAfterRequirements` is false (see `run`).
+    ///
+    /// A wallet-only refusal of an action whose product shows its own popup
+    /// (`walletRefusal`, given here or remembered by `run`) is presented that
+    /// way instead, and the action is not attempted again from here: the
+    /// caller has already released its scan and the rider scans again.
     static func handle(_ rejection: ActionRejection,
                        check: EligibilityCheck? = nil,
                        from presenter: UIViewController? = nil,
                        resumeAfterRequirements: Bool = true,
                        requirementsMet: (() -> Void)? = nil,
-                       retry: (() -> Void)? = nil) {
+                       retry: (() -> Void)? = nil,
+                       walletRefusal: ((EligibilityViolation) -> Void)? = nil) {
         // Drop the copy `SessionNetwork` recorded so a later, unrelated error
         // with the same message is not mistaken for this refusal.
         ActionRejectionStore.shared.take(matching: rejection.message)
 
-        present(violations: rejection.violations, check: check ?? rejection.check, from: presenter,
+        let check = check ?? rejection.check
+
+        if let presentWalletRefusal = walletRefusal ?? check.flatMap({ walletRefusalPresenters[$0.actionKey] }),
+           let violation = walletOnlyViolation(in: rejection.violations) {
+            MILoader.hide()
+            presentWalletRefusal(violation)
+            return
+        }
+
+        present(violations: rejection.violations, check: check, from: presenter,
                 onSatisfied: resumeAfterRequirements ? retry : requirementsMet)
     }
 

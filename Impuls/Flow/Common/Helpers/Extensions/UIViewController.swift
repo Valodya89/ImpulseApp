@@ -158,11 +158,17 @@ extension UIViewController {
     ///     instead (re-arm the scanner). A debt always resumes `retry`.
     ///   - retry: runs the refused action again once what held it back
     ///     is settled (a debt paid, rules met).
+    ///   - walletRefusal: shown instead of the checklist when the refusal's
+    ///     only violations are the wallet's (balance under the rule's minimum,
+    ///     no card) - the product's own top-up popup with the amount the rule
+    ///     reported (`ActionEligibilityFlow.run(walletRefusal:)`). Nil keeps
+    ///     the presenter the pre-check of the same action remembered, if any.
     func showErrorPopUp(message: String,
                         service: MimoType,
                         resumeAfterRequirements: Bool = true,
                         requirementsMet: (() -> Void)? = nil,
-                        retry: (() -> Void)? = nil) {
+                        retry: (() -> Void)? = nil,
+                        walletRefusal: ((EligibilityViolation) -> Void)? = nil) {
         // A start held back by a debt (SHARING_user_has_debt / _device_ / _card_,
         // powerbank docs/error-codes.md 'Rent rule violations') opens the debt
         // screen: pay by card or wallet, or settle another account's debt by a
@@ -180,21 +186,47 @@ extension UIViewController {
         if ActionEligibilityFlow.handleRejection(message: message, from: self,
                                                  resumeAfterRequirements: resumeAfterRequirements,
                                                  requirementsMet: requirementsMet,
-                                                 retry: retry) { return }
+                                                 retry: retry,
+                                                 walletRefusal: walletRefusal) { return }
 
         // A refusal without rule violations: the plain card. The wallet codes
-        // also offer the ways to top up.
+        // also offer the ways to top up - without a number, since no rule
+        // reported one (the minimum is the backend's, never the app's).
         let isReplenishable: Bool = (message == "SHARING_no_minimal_requirements") || (message == "MOBILE_map_minimum_requirments") || (message == "WALLET_min_balance_required") || (message == "WALLET_min_balance_or_card_required") || (message == "WALLET_card_required")
 
-        let displayMessage = UIViewController.userFacingErrorMessage(from: message)
-        let minimumAmount = ChargerErrorViewController.defaultMinimumAmount
+        showServiceBlockedPopup(message: UIViewController.userFacingErrorMessage(from: message),
+                                service: service,
+                                isReplenishable: isReplenishable,
+                                minimumBalance: nil,
+                                topUpAmount: nil)
+    }
 
-        let vc = ChargerErrorViewController(message: displayMessage,
+    /// The wallet alone refused to start a rent: the product's "Let's start"
+    /// popup with the served refusal text, the attach-card and top-up options
+    /// and Continue, which opens the wallet in the product's context with the
+    /// rule's amount prefilled. Amount and currency are the violation's
+    /// `details.amount` / `details.currency`; when the rule sent none the
+    /// popup shows no number. The action is never started from here: the
+    /// rider tops up or attaches a card and scans again.
+    func showWalletRefusalPopup(_ violation: EligibilityViolation, service: MimoType) {
+        showServiceBlockedPopup(message: UIViewController.userFacingErrorMessage(from: violation.code),
+                                service: service,
+                                isReplenishable: true,
+                                minimumBalance: ChargerErrorViewController.minimumBalance(from: violation),
+                                topUpAmount: ChargerErrorViewController.minimumAmount(from: violation))
+    }
+
+    private func showServiceBlockedPopup(message: String,
+                                         service: MimoType,
+                                         isReplenishable: Bool,
+                                         minimumBalance: String?,
+                                         topUpAmount: Double?) {
+        let vc = ChargerErrorViewController(message: message,
                                             isReplenishable: isReplenishable,
                                             service: service,
-                                            minimumAmount: minimumAmount,
+                                            minimumBalance: minimumBalance,
                                             onReplenish: { [weak self] in
-            self?.openWallet(productType: service.walletProductType, initialAmount: minimumAmount)
+            self?.openWallet(productType: service.walletProductType, initialAmount: topUpAmount)
         })
 
         self.present(vc, animated: true)

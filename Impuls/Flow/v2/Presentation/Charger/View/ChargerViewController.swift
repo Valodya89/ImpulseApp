@@ -101,13 +101,17 @@ class ChargerViewController: MimoBaseViewController {
             // A debt paid re-sends the scan. Rules met (balance, card) do
             // not: the rider may have left the cabinet meanwhile, so the
             // checklist closes and the scanner comes back for a new scan.
+            // The wallet alone in the way (POST api/rent/{id}/scan answered
+            // with only MIN_BALANCE_OR_CARD / MIN_BALANCE / HAS_CARD) is the
+            // power bank's own top-up popup, as in the pre-check.
             self.showErrorPopUp(message: errorMessage, service: .charger,
                                 resumeAfterRequirements: false,
                                 requirementsMet: { [weak self] in self?.requirementsMetForScan() },
                                 retry: { [weak self] in
                 self?.viewModel?.loadBalance()
                 self?.resumePendingScan()
-            })
+            },
+                                walletRefusal: { [weak self] violation in self?.presentWalletRefusal(violation) })
         }
         .store(in: &cancellables)
         
@@ -321,6 +325,18 @@ extension ChargerViewController {
         viewModel?.loadBalance()
         openScanner()
     }
+
+    /// The wallet alone refused the scan - a balance under the rule's minimum
+    /// and no card - in the pre-check or in the answer to the scan itself: the
+    /// power bank's "Let's start" popup (attach a card, or top up to the amount
+    /// and currency the rule reported; Continue opens the wallet) instead of
+    /// the checklist. The held code is dropped: nothing is re-sent, the rider
+    /// tops up or attaches a card and scans the cabinet again.
+    private func presentWalletRefusal(_ violation: EligibilityViolation) {
+        pendingScanCode = nil
+        MILoader.hide()
+        showWalletRefusalPopup(violation, service: .charger)
+    }
 }
 
 //MARK: - UI
@@ -474,10 +490,12 @@ extension ChargerViewController: MimoScanQrViewControllerDelegate {
         // The scanner has already closed itself when the code arrives. Rules
         // met from the checklist do not send the scan by themselves (the
         // rider may have walked away from the cabinet): the scanner is shown
-        // again instead and the rider scans once more.
+        // again instead and the rider scans once more. The wallet alone in
+        // the way shows the top-up popup instead of the checklist.
         ActionEligibilityFlow.run(check, from: self,
                                   resumeAfterRequirements: false,
-                                  requirementsMet: { [weak self] in self?.requirementsMetForScan() }) { [weak self] in
+                                  requirementsMet: { [weak self] in self?.requirementsMetForScan() },
+                                  walletRefusal: { [weak self] violation in self?.presentWalletRefusal(violation) }) { [weak self] in
             MILoader.show()
             self?.viewModel?.scan(stationId: value, currentLocation: location)
         }
